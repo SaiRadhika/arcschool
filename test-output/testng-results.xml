@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="1" total="4" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-05-19T18:40:51 IST" name="ARC Essential Test Suite" finished-at="2021-05-19T18:43:19 IST" duration-ms="148713">
+    <groups>
+    </groups>
+    <test started-at="2021-05-19T18:40:51 IST" name="ARC Essential Reboot Test Cases" finished-at="2021-05-19T18:43:19 IST" duration-ms="148713">
+      <class name="com.arc.testCases.Building.ProjectPageTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.arc.testCases.Building.ProjectPageTest@1b6e1eff]" started-at="2021-05-19T18:42:30 IST" name="setup" finished-at="2021-05-19T18:43:16 IST" duration-ms="45978" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="CheckProjectListed()[pri:0, instance:com.arc.testCases.Building.ProjectPageTest@1b6e1eff]" started-at="2021-05-19T18:43:16 IST" name="CheckProjectListed" finished-at="2021-05-19T18:43:19 IST" duration-ms="2762" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckProjectListed -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.arc.testCases.Building.ProjectPageTest@1b6e1eff]" started-at="2021-05-19T18:43:19 IST" name="tearDown" finished-at="2021-05-19T18:43:19 IST" duration-ms="278" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.arc.testCases.Building.ProjectPageTest -->
+      <class name="com.arc.testCases.LoginPageTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.arc.testCases.LoginPageTest@1cbb87f3]" started-at="2021-05-19T18:40:51 IST" name="setup" finished-at="2021-05-19T18:41:19 IST" duration-ms="28088" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="LoginIntoApplicationTest()[pri:2, instance:com.arc.testCases.LoginPageTest@1cbb87f3]" started-at="2021-05-19T18:41:19 IST" name="LoginIntoApplicationTest" finished-at="2021-05-19T18:41:41 IST" duration-ms="22230" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginIntoApplicationTest -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.arc.testCases.LoginPageTest@1cbb87f3]" started-at="2021-05-19T18:41:41 IST" name="tearDown" finished-at="2021-05-19T18:41:41 IST" duration-ms="289" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.arc.testCases.LoginPageTest -->
+      <class name="com.arc.testCases.HomePageTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.arc.testCases.HomePageTest@1a4013]" started-at="2021-05-19T18:41:41 IST" name="setup" finished-at="2021-05-19T18:42:24 IST" duration-ms="42520" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="CheckClickOnProjectsMenu()[pri:0, instance:com.arc.testCases.HomePageTest@1a4013]" started-at="2021-05-19T18:42:24 IST" name="CheckClickOnProjectsMenu" finished-at="2021-05-19T18:42:30 IST" duration-ms="6238" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CheckClickOnProjectsMenu -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.arc.testCases.HomePageTest@1a4013]" started-at="2021-05-19T18:42:30 IST" name="tearDown" finished-at="2021-05-19T18:42:30 IST" duration-ms="254" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.arc.testCases.HomePageTest -->
+    </test> <!-- ARC Essential Reboot Test Cases -->
+  </suite> <!-- ARC Essential Test Suite -->
+</testng-results>
