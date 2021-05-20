@@ -7,6 +7,7 @@
       <class name="com.arc.testCases.LoginPageTest"/>
        <class name="com.arc.testCases.HomePageTest"/>
       <class name="com.arc.testCases.Building.ProjectPageTest"/>
+      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
