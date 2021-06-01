@@ -1,4 +1,4 @@
-package com.arc.pageObjects;
+package com.arc.PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +26,9 @@ public class LoginPageObjects extends BaseClass{
 	@FindBy(xpath="//button[@type='submit'][text()='Log In']")
 	WebElement loginButton;
 	
+	
+	
+	
 	public LoginPageObjects()
 	{
 		PageFactory.initElements(driver,this);
@@ -49,6 +52,9 @@ public class LoginPageObjects extends BaseClass{
 				
 		return new HomePageObjects();
 	}
+	
+	
+	
 	
 
 }

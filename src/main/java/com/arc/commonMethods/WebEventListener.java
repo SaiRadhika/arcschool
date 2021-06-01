@@ -1,5 +1,7 @@
 package com.arc.commonMethods;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -84,13 +86,13 @@ public class WebEventListener extends BaseClass implements WebDriverEventListene
 
 	@Override
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		System.out.println("Trying to find Element By : " + by.toString());
 		
 	}
 
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
-		// TODO Auto-generated method stub
+		System.out.println("Found Element By : " + by.toString());
 		
 	}
 
@@ -108,13 +110,13 @@ public class WebEventListener extends BaseClass implements WebDriverEventListene
 
 	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-		// TODO Auto-generated method stub
+		System.out.println("Value of the:" + element.toString() + " before changes made");
 		
 	}
 
 	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-		// TODO Auto-generated method stub
+		System.out.println("Element value changed to: " + element.toString());
 		
 	}
 
@@ -144,7 +146,8 @@ public class WebEventListener extends BaseClass implements WebDriverEventListene
 
 	@Override
 	public void onException(Throwable throwable, WebDriver driver) {
-		// TODO Auto-generated method stub
+		System.out.println("Exception occured: " + throwable);
+		//CommonMethod.takeScreenshotTest();
 		
 	}
 
