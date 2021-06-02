@@ -67,6 +67,7 @@ public class BaseClass {
 	public BaseClass() {
 
 		try {
+			log.info("Base class constructor started");
 			prop = new Properties();
 			FileInputStream fis = new FileInputStream(
 					System.getProperty("user.dir") + "\\src\\main\\java\\com\\arc\\config\\config.properties");
@@ -79,11 +80,15 @@ public class BaseClass {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		log.info("Base class constructor ends");
+
 	}
 
 	@Parameters("browserName")
 	@BeforeTest
 	public static void initializtion(String browserName) {
+		log.info("Initialization method started");
+
 		//String browserName = prop.getProperty("browserName");
 		CommonMethod.deleteAllDownloadedFiles();
 		CommonMethod.deleteAllPreviousScreenshotsFiles();
@@ -134,7 +139,8 @@ public class BaseClass {
 		 */
 		driver.get(prop.getProperty("QAurl"));
 		log.info("URL navigated to .. "+prop.getProperty("QAurl"));
-		
+		log.info("Initialization method ends");
+
 		
 		
 		
