@@ -59,4 +59,38 @@ public class CommunitiesPageTest extends BaseClass{
 		}
 
 	}
+	
+	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 8)
+	public void Community_LEEDIDProject_Download_Invoice() {
+		
+			log.info("Community_LEEDIDProject_Download_Invoice method started ");
+			HomePage.setHomePageApplication();
+			ProjectPage = HomePage.clickOnProject();
+			System.out.println(data.getCellData("Reboot", 11, 2));
+			CommunitiesPage=ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 11, 2));
+			CommunitiesPage.ClickonBillingInManage();
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.ClikOnBillingDownloadForRegistrationLink();
+			long FileLength = CommonMethod.CheckDownloadedFile();
+			if(FileLength>0)
+			{
+				for(File file:DownloadFolder.listFiles())
+				{
+					file.delete();
+				}
+				DownloadFolder.delete();
+				log.info("Community_LEEDIDProject_Download_Invoice method completed ");
+				Assert.assertTrue(FileLength>0);
+			}
+			else 
+			{
+				for(File file:DownloadFolder.listFiles())
+				{
+					file.delete();
+				}
+				DownloadFolder.delete();
+				log.info("Community_LEEDIDProject_Download_Invoice method completed ");
+				Assert.assertTrue(false);
+			}
+	}
 }

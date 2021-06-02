@@ -21,7 +21,7 @@ public class ParkingPageTest extends BaseClass{
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 6, 2));
-		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 11, 2));
+		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 12, 2));
 		ParkingPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		boolean flag = CommonMethod.CheckAgreementDisplay();
@@ -42,7 +42,7 @@ public class ParkingPageTest extends BaseClass{
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 0, 2));
-		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 11, 2));
+		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 12, 2));
 		ParkingPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		CommonMethod.ClikOnAgreementRegistrationDownloadLink();
@@ -69,7 +69,7 @@ public class ParkingPageTest extends BaseClass{
 			HomePage.setHomePageApplication();
 			ProjectPage = HomePage.clickOnProject();
 			System.out.println(data.getCellData("Reboot", 8, 2));
-			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 12, 2));
+			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 13, 2));
 			HomePage.closeProjectSearchTextBox();
 			ParkingPage.ClickonBillingInManage();
 			CommonMethod.ClikOnBillingDownloadForRegistrationLink();

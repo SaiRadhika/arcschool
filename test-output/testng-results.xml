@@ -1,94 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="15" total="38" passed="23" failed="0" skipped="0">
+<testng-results ignored="14" total="40" passed="26" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-06-01T10:51:33Z" name="ARC Essential Test Suite " finished-at="2021-06-01T11:01:40Z" duration-ms="606263">
+  <suite started-at="2021-06-02T12:51:26Z" name="ARC Essential Test Suite " finished-at="2021-06-02T13:00:59Z" duration-ms="572544">
     <groups>
       <group name="LoginMethodTCGroup">
-        <method signature="LoginPageTest.Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@328cf0e1]" name="Login_ApplicationTest" class="com.arc.testCases.LoginPageTest"/>
+        <method signature="LoginPageTest.Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@12aba8be]" name="Login_ApplicationTest" class="com.arc.testCases.LoginPageTest"/>
       </group> <!-- LoginMethodTCGroup -->
     </groups>
-    <test started-at="2021-06-01T10:51:33Z" name="ARC_Reboot_Test_Chrome " finished-at="2021-06-01T11:01:40Z" duration-ms="606263">
+    <test started-at="2021-06-02T12:51:26Z" name="ARC_Reboot_Test_Chrome " finished-at="2021-06-02T13:00:59Z" duration-ms="572544">
       <class name="com.arc.testCases.Project.BuildingPageTest">
-        <test-method signature="Building_Agreement_Display()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@75459c75]" started-at="2021-06-01T16:22:35Z" name="Building_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:23:05Z" duration-ms="30004" status="PASS">
+        <test-method signature="Building_Agreement_Display()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@27462a88]" started-at="2021-06-02T18:22:43Z" name="Building_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:22:57Z" duration-ms="14156" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Building_Agreement_Display -->
-        <test-method signature="Building_LEEDIDProject_Download_Invoice()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@75459c75]" started-at="2021-06-01T16:23:05Z" name="Building_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:23:50Z" duration-ms="45509" status="PASS">
+        <test-method signature="Building_LEEDIDProject_Download_Invoice()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@27462a88]" started-at="2021-06-02T18:22:57Z" name="Building_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:23:20Z" duration-ms="22328" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Building_LEEDIDProject_Download_Invoice -->
-        <test-method signature="Building_PerformanceCertificate_Download_Invoice_Receipt()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@75459c75]" started-at="2021-06-01T16:23:50Z" name="Building_PerformanceCertificate_Download_Invoice_Receipt" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:24:56Z" duration-ms="65773" status="PASS">
+        <test-method signature="Building_PerformanceCertificate_Download_Invoice_Receipt()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@27462a88]" started-at="2021-06-02T18:23:20Z" name="Building_PerformanceCertificate_Download_Invoice_Receipt" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:24:02Z" duration-ms="42429" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Building_PerformanceCertificate_Download_Invoice_Receipt -->
-        <test-method signature="Building_Agreement_Download()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@75459c75]" started-at="2021-06-01T16:24:56Z" name="Building_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:25:27Z" depends-on-methods="com.arc.testCases.Project.BuildingPageTest.Building_Agreement_Display" duration-ms="30614" status="PASS">
+        <test-method signature="Building_Recertification_Download_Invoice()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@27462a88]" started-at="2021-06-02T18:24:02Z" name="Building_Recertification_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:24:24Z" duration-ms="22136" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Building_Recertification_Download_Invoice -->
+        <test-method signature="Building_Agreement_Download()[pri:4, instance:com.arc.testCases.Project.BuildingPageTest@27462a88]" started-at="2021-06-02T18:24:24Z" name="Building_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:24:48Z" depends-on-methods="com.arc.testCases.Project.BuildingPageTest.Building_Agreement_Display" duration-ms="23481" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Building_Agreement_Download -->
       </class> <!-- com.arc.testCases.Project.BuildingPageTest -->
       <class name="com.arc.testCases.Project.ParkingPageTest">
-        <test-method signature="Parking_Agreement_Display()[pri:9, instance:com.arc.testCases.Project.ParkingPageTest@2a3c96e3]" started-at="2021-06-01T16:30:38Z" name="Parking_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:30:48Z" duration-ms="10720" status="PASS">
+        <test-method signature="Parking_Agreement_Display()[pri:9, instance:com.arc.testCases.Project.ParkingPageTest@54a7079e]" started-at="2021-06-02T18:29:53Z" name="Parking_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:30:04Z" duration-ms="11517" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Parking_Agreement_Display -->
-        <test-method signature="Parking_LEEDID_Project_Download_Invoice()[pri:9, instance:com.arc.testCases.Project.ParkingPageTest@2a3c96e3]" started-at="2021-06-01T16:30:48Z" name="Parking_LEEDID_Project_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:31:09Z" duration-ms="20780" status="PASS">
+        <test-method signature="Parking_LEEDID_Project_Download_Invoice()[pri:9, instance:com.arc.testCases.Project.ParkingPageTest@54a7079e]" started-at="2021-06-02T18:30:04Z" name="Parking_LEEDID_Project_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:30:24Z" duration-ms="19726" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Parking_LEEDID_Project_Download_Invoice -->
-        <test-method signature="Parking_Agreement_Download()[pri:9, instance:com.arc.testCases.Project.ParkingPageTest@2a3c96e3]" started-at="2021-06-01T16:31:09Z" name="Parking_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:31:29Z" depends-on-methods="com.arc.testCases.Project.ParkingPageTest.Parking_Agreement_Display" duration-ms="20144" status="PASS">
+        <test-method signature="Parking_Agreement_Download()[pri:9, instance:com.arc.testCases.Project.ParkingPageTest@54a7079e]" started-at="2021-06-02T18:30:24Z" name="Parking_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:30:44Z" depends-on-methods="com.arc.testCases.Project.ParkingPageTest.Parking_Agreement_Display" duration-ms="19784" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Parking_Agreement_Download -->
       </class> <!-- com.arc.testCases.Project.ParkingPageTest -->
       <class name="com.arc.testCases.Project.SchoolPageTest">
-        <test-method signature="School_Agreement_Display()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@183e8023]" started-at="2021-06-01T16:25:27Z" name="School_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:25:45Z" duration-ms="18004" status="PASS">
+        <test-method signature="School_Agreement_Display()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@659499f1]" started-at="2021-06-02T18:24:48Z" name="School_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:25:01Z" duration-ms="13633" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- School_Agreement_Display -->
-        <test-method signature="School_LEEDProject_DownloadInvoice()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@183e8023]" started-at="2021-06-01T16:25:45Z" name="School_LEEDProject_DownloadInvoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:26:14Z" duration-ms="29136" status="PASS">
+        <test-method signature="School_LEEDProject_DownloadInvoice()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@659499f1]" started-at="2021-06-02T18:25:01Z" name="School_LEEDProject_DownloadInvoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:25:24Z" duration-ms="22337" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- School_LEEDProject_DownloadInvoice -->
-        <test-method signature="School_PerformanceCertificate_Download_Invoice_Receipt()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@183e8023]" started-at="2021-06-01T16:26:14Z" name="School_PerformanceCertificate_Download_Invoice_Receipt" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:27:04Z" duration-ms="50351" status="PASS">
+        <test-method signature="School_PerformanceCertificate_Download_Invoice_Receipt()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@659499f1]" started-at="2021-06-02T18:25:24Z" name="School_PerformanceCertificate_Download_Invoice_Receipt" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:26:02Z" duration-ms="38551" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- School_PerformanceCertificate_Download_Invoice_Receipt -->
-        <test-method signature="School_Agreement_Download()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@183e8023]" started-at="2021-06-01T16:27:04Z" name="School_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:27:41Z" depends-on-methods="com.arc.testCases.Project.SchoolPageTest.School_Agreement_Display" duration-ms="36915" status="PASS">
+        <test-method signature="School_Agreement_Download()[pri:5, instance:com.arc.testCases.Project.SchoolPageTest@659499f1]" started-at="2021-06-02T18:26:02Z" name="School_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:26:25Z" depends-on-methods="com.arc.testCases.Project.SchoolPageTest.School_Agreement_Display" duration-ms="22975" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- School_Agreement_Download -->
       </class> <!-- com.arc.testCases.Project.SchoolPageTest -->
       <class name="com.arc.testCases.Project.TransitPageTest">
-        <test-method signature="Transit_Agreement_Display()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@3e5499cc]" started-at="2021-06-01T16:28:47Z" name="Transit_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:28:58Z" duration-ms="10717" status="PASS">
+        <test-method signature="Transit_Agreement_Display()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@47e2e487]" started-at="2021-06-02T18:27:14Z" name="Transit_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:27:25Z" duration-ms="11498" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Transit_Agreement_Display -->
-        <test-method signature="Transit_Credits_Download_Upload_Document()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@3e5499cc]" started-at="2021-06-01T16:28:58Z" name="Transit_Credits_Download_Upload_Document" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:29:28Z" duration-ms="29570" status="PASS">
+        <test-method signature="Transit_CreditForm_Download_Upload_Document()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@47e2e487]" started-at="2021-06-02T18:27:25Z" name="Transit_CreditForm_Download_Upload_Document" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:27:56Z" duration-ms="30874" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Transit_Credits_Download_Upload_Document -->
-        <test-method signature="Transit_LEEDIDProject_Download_Invoice()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@3e5499cc]" started-at="2021-06-01T16:29:28Z" name="Transit_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:29:49Z" duration-ms="21187" status="PASS">
+        </test-method> <!-- Transit_CreditForm_Download_Upload_Document -->
+        <test-method signature="Transit_File_Upload_Remove()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@47e2e487]" started-at="2021-06-02T18:27:56Z" name="Transit_File_Upload_Remove" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:28:22Z" duration-ms="25931" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Transit_File_Upload_Remove -->
+        <test-method signature="Transit_LEEDIDProject_Download_Invoice()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@47e2e487]" started-at="2021-06-02T18:28:22Z" name="Transit_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:28:43Z" duration-ms="20518" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Transit_LEEDIDProject_Download_Invoice -->
-        <test-method signature="Transit_Agreement_Download()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@3e5499cc]" started-at="2021-06-01T16:29:49Z" name="Transit_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:30:09Z" depends-on-methods="com.arc.testCases.Project.TransitPageTest.Transit_Agreement_Display" duration-ms="20515" status="PASS">
+        <test-method signature="Transit_Agreement_Download()[pri:7, instance:com.arc.testCases.Project.TransitPageTest@47e2e487]" started-at="2021-06-02T18:28:43Z" name="Transit_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:29:03Z" depends-on-methods="com.arc.testCases.Project.TransitPageTest.Transit_Agreement_Display" duration-ms="20600" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Transit_Agreement_Download -->
       </class> <!-- com.arc.testCases.Project.TransitPageTest -->
-      <class name="com.arc.testCases.Project.CommunitiesPageTest">
-        <test-method signature="Communities_Agreement_Display()[pri:8, instance:com.arc.testCases.Project.CommunitiesPageTest@b78a709]" started-at="2021-06-01T16:30:09Z" name="Communities_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:30:19Z" duration-ms="9492" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Communities_Agreement_Display -->
-        <test-method signature="Communities_Agreement_Download()[pri:8, instance:com.arc.testCases.Project.CommunitiesPageTest@b78a709]" started-at="2021-06-01T16:30:19Z" name="Communities_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:30:38Z" depends-on-methods="com.arc.testCases.Project.CommunitiesPageTest.Communities_Agreement_Display" duration-ms="18937" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Communities_Agreement_Download -->
-      </class> <!-- com.arc.testCases.Project.CommunitiesPageTest -->
       <class name="com.arc.testCases.LoginPageTest">
-        <test-method is-config="true" signature="initializtion(java.lang.String)[pri:0, instance:com.arc.testCases.LoginPageTest@328cf0e1]" started-at="2021-06-01T16:21:33Z" name="initializtion" finished-at="2021-06-01T16:21:43Z" duration-ms="9894" status="PASS">
+        <test-method is-config="true" signature="initializtion(java.lang.String)[pri:0, instance:com.arc.testCases.LoginPageTest@12aba8be]" started-at="2021-06-02T18:21:27Z" name="initializtion" finished-at="2021-06-02T18:21:55Z" duration-ms="28174" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -99,39 +97,53 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializtion -->
-        <test-method signature="Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@328cf0e1]" started-at="2021-06-01T16:21:43Z" name="Login_ApplicationTest" finished-at="2021-06-01T16:21:57Z" duration-ms="13888" status="PASS">
+        <test-method signature="Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@12aba8be]" started-at="2021-06-02T18:21:55Z" name="Login_ApplicationTest" finished-at="2021-06-02T18:22:17Z" duration-ms="22374" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Login_ApplicationTest -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.arc.testCases.LoginPageTest@328cf0e1]" started-at="2021-06-01T16:31:39Z" name="closeBrowser" finished-at="2021-06-01T16:31:40Z" duration-ms="92" status="PASS">
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.arc.testCases.LoginPageTest@12aba8be]" started-at="2021-06-02T18:30:58Z" name="closeBrowser" finished-at="2021-06-02T18:30:59Z" duration-ms="344" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
       </class> <!-- com.arc.testCases.LoginPageTest -->
-      <class name="com.arc.testCases.Project.CityPageTest">
-        <test-method signature="City_Agreement_Display()[pri:6, instance:com.arc.testCases.Project.CityPageTest@45efc20d]" started-at="2021-06-01T16:27:41Z" name="City_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:27:56Z" duration-ms="14720" status="PASS">
+      <class name="com.arc.testCases.Project.CommunitiesPageTest">
+        <test-method signature="Communities_Agreement_Display()[pri:8, instance:com.arc.testCases.Project.CommunitiesPageTest@61001b64]" started-at="2021-06-02T18:29:03Z" name="Communities_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:29:13Z" duration-ms="9425" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- City_Agreement_Display -->
-        <test-method signature="City_LEEDIDProject_Download_Invoice()[pri:6, instance:com.arc.testCases.Project.CityPageTest@45efc20d]" started-at="2021-06-01T16:27:56Z" name="City_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:28:25Z" duration-ms="29490" status="PASS">
+        </test-method> <!-- Communities_Agreement_Display -->
+        <test-method signature="Community_LEEDIDProject_Download_Invoice()[pri:8, instance:com.arc.testCases.Project.CommunitiesPageTest@61001b64]" started-at="2021-06-02T18:29:13Z" name="Community_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:29:32Z" duration-ms="19525" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- City_LEEDIDProject_Download_Invoice -->
-        <test-method signature="City_Agreement_Download()[pri:6, instance:com.arc.testCases.Project.CityPageTest@45efc20d]" started-at="2021-06-01T16:28:25Z" name="City_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:28:47Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_Agreement_Display" duration-ms="21954" status="PASS">
+        </test-method> <!-- Community_LEEDIDProject_Download_Invoice -->
+        <test-method signature="Communities_Agreement_Download()[pri:8, instance:com.arc.testCases.Project.CommunitiesPageTest@61001b64]" started-at="2021-06-02T18:29:32Z" name="Communities_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:29:53Z" depends-on-methods="com.arc.testCases.Project.CommunitiesPageTest.Communities_Agreement_Display" duration-ms="20722" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- City_Agreement_Download -->
-      </class> <!-- com.arc.testCases.Project.CityPageTest -->
+        </test-method> <!-- Communities_Agreement_Download -->
+      </class> <!-- com.arc.testCases.Project.CommunitiesPageTest -->
       <class name="com.arc.testCases.HomePageTest">
-        <test-method signature="EssentialUser_Download_Invoice()[pri:2, instance:com.arc.testCases.HomePageTest@63b1d4fa]" started-at="2021-06-01T16:21:57Z" name="EssentialUser_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:22:35Z" duration-ms="37646" status="PASS">
+        <test-method signature="EssentialUser_Download_Invoice()[pri:2, instance:com.arc.testCases.HomePageTest@290222c1]" started-at="2021-06-02T18:22:17Z" name="EssentialUser_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:22:43Z" duration-ms="25909" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EssentialUser_Download_Invoice -->
-        <test-method signature="Logout_Test()[pri:100, instance:com.arc.testCases.HomePageTest@63b1d4fa]" started-at="2021-06-01T16:31:29Z" name="Logout_Test" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-01T16:31:39Z" duration-ms="10066" status="PASS">
+        <test-method signature="Logout_Test()[pri:100, instance:com.arc.testCases.HomePageTest@290222c1]" started-at="2021-06-02T18:30:44Z" name="Logout_Test" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:30:58Z" duration-ms="14544" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Logout_Test -->
       </class> <!-- com.arc.testCases.HomePageTest -->
+      <class name="com.arc.testCases.Project.CityPageTest">
+        <test-method signature="City_Agreement_Display()[pri:6, instance:com.arc.testCases.Project.CityPageTest@51e69659]" started-at="2021-06-02T18:26:25Z" name="City_Agreement_Display" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:26:34Z" duration-ms="8935" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Agreement_Display -->
+        <test-method signature="City_LEEDIDProject_Download_Invoice()[pri:6, instance:com.arc.testCases.Project.CityPageTest@51e69659]" started-at="2021-06-02T18:26:34Z" name="City_LEEDIDProject_Download_Invoice" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:26:54Z" duration-ms="19991" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_LEEDIDProject_Download_Invoice -->
+        <test-method signature="City_Agreement_Download()[pri:6, instance:com.arc.testCases.Project.CityPageTest@51e69659]" started-at="2021-06-02T18:26:54Z" name="City_Agreement_Download" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-02T18:27:14Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_Agreement_Display" duration-ms="19646" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Agreement_Download -->
+      </class> <!-- com.arc.testCases.Project.CityPageTest -->
     </test> <!-- ARC_Reboot_Test_Chrome  -->
   </suite> <!-- ARC Essential Test Suite  -->
 </testng-results>

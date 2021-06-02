@@ -71,6 +71,14 @@ public class WaitHelper extends BaseClass{
 		log.info("Element is clickable now");
 	}
 	
+	public void WaitForElementInvisible(WebElement element, int TimoutInSeconds,int PollingEveryMillSeconds)
+	{
+		log.info("Waiting for Element for "+element.toString() +"  for  "+TimoutInSeconds +"  seconds");
+		WebDriverWait wait=new WebDriverWait(driver,TimoutInSeconds);	
+		wait.until(ExpectedConditions.invisibilityOf(element));
+		log.info("Element is Invisible now");
+	}
+	
 	/**
 	 * This will make sure element is invisible
 	 * @param element

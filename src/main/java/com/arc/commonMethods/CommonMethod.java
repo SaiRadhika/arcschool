@@ -295,6 +295,45 @@ public class CommonMethod extends BaseClass {
 
 	}
 
+	
+	public static void ClikOnBillingDownloadForRecertificationLink() {
+		log.info("ClikOnBillingDownloadForRecertificationLink method starts here ......");
+		// String mainwindow=driver.getWindowHandle();
+		boolean flag = false;
+		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
+		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
+		if (BillingTable.size() > 0) {
+			Iterator itr = BillingTable.iterator();
+			String OrderTypePath;
+			for (int i = 0; i < BillingTable.size(); i++) {
+				int rownum = i + 1;
+				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
+				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
+				System.out.println(OrderTypePath + "......." + OrderType);
+				if (OrderType.equals("REVIEW\nLEED Certification")) {
+					flag = true;
+					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
+					try {
+						Thread.sleep(8000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+
+					}
+					break;
+				}
+
+			}
+		}
+		if (flag)
+			log.info("Order Type REVIEW found ...");
+		else
+			log.info("Order Type REVIEW not found ...");
+
+		log.info("ClikOnBillingDownloadForRecertificationLink method ends here ......");
+
+	}
+
 	public static void setClipBoard(String file) {
 		log.info("setClipBoard method starts here ......");
 		StringSelection obj = new StringSelection(file);

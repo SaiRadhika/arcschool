@@ -65,7 +65,7 @@ public class TransitPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 7)
-	public void Transit_Credits_Download_Upload_Document() {
+	public void Transit_CreditForm_Download_Upload_Document() {
 		log.info("Transit_Credits_Download_Upload_Document method started ");
 		String DownloadedFilePath = "";
 		HomePage.setHomePageApplication();
@@ -75,7 +75,7 @@ public class TransitPageTest extends BaseClass {
 		HomePage.closeProjectSearchTextBox();
 		
 		TransitPage.ClickonActionName("Site Development - Protect or Restore Habitat");
-		TransitPage.ClickonDownLoadButton();
+		TransitPage.ClickonCreditFormDownLoadButton();
 
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
@@ -83,9 +83,9 @@ public class TransitPageTest extends BaseClass {
 				System.out.println(file.getPath());
 				System.out.println(System.getProperty("user.dir") + "\\" + file.getPath());
 				DownloadedFilePath = System.getProperty("user.dir") + "\\" + file.getPath();
-				TransitPage.ClickonUpLoadButton();
+				TransitPage.ClickonCreditFormUpLoadButton();
 				CommonMethod.UploadFile(DownloadedFilePath);
-				boolean flag = TransitPage.uploadStatus();
+				boolean flag = TransitPage.CreditFormuploadStatus();
 				if (flag) {
 					
 					log.info("Transit_Credits_Download_Upload_Document method completed ");
@@ -112,6 +112,55 @@ public class TransitPageTest extends BaseClass {
 			log.info("Transit_Credits_Download_Upload_Document method completed ");
 			Assert.assertTrue(false);
 		}
+	}
+	
+	
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 7)
+	public void Transit_File_Upload_Remove() {
+		log.info("Transit_File_Upload_Remove method started ");
+		String DownloadedFilePath = "";
+		HomePage.setHomePageApplication();
+		ProjectPage = HomePage.clickOnProject();
+		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
+		TransitPage.AllActionSubMenu();
+		HomePage.closeProjectSearchTextBox();
+		
+		TransitPage.ClickonActionName("Site Development - Protect or Restore Habitat");
+		TransitPage.ClickonFileUpLoadUsingComputerButton();
+		String UploadPath=System.getProperty("user.dir")+"\\"+"UploadDocument";
+		
+		File upload=new File(UploadPath);
+		for(File f: upload.listFiles())
+		{
+			String filepath=f.getPath();
+			System.out.println(filepath);
+			
+			CommonMethod.UploadFile(filepath);
+			boolean flag = TransitPage.FileuploadStatus();
+			System.out.println("Flag is....................."+flag);
+			boolean deleted=false;
+			if (flag) {
+				
+				deleted=TransitPage.ClickonFileDeleButton(f.getName());
+				System.out.println("deleted is....................."+deleted);
+				if(deleted)
+				{				
+				log.info("Transit_File_Upload_Remove method ends...... ");
+				Assert.assertTrue(true);
+				}
+				else
+				{
+					log.info("Transit_File_Upload_Remove method ends...... ");
+					Assert.assertTrue(false);
+				}
+			}
+
+			else {
+				
+				Assert.assertTrue(false);
+			}
+		}
+		
 	}
 	
 	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 7)

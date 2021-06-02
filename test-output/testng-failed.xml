@@ -9,7 +9,7 @@
     <classes>
       <class name="com.arc.testCases.Project.TransitPageTest">
         <methods>
-          <include name="Transit_Credits_Download_Upload_Document"/>
+          <include name="Transit_File_Upload_Remove"/>
         </methods>
       </class> <!-- com.arc.testCases.Project.TransitPageTest -->
       <class name="com.arc.testCases.LoginPageTest">

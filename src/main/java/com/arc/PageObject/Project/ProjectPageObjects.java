@@ -92,7 +92,7 @@ public class ProjectPageObjects extends BaseClass {
 	{
 		log.info("SearchAndClickOnProject method started..... ");
 		actionhelper.mouseOverElementAndClick(SearchIcon);
-		
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends...... ");
@@ -104,7 +104,7 @@ public class ProjectPageObjects extends BaseClass {
 		log.info("SearchAndClickOnSchoolProject method started..... ");
 		
 		actionhelper.mouseOverElementAndClick(SearchIcon);
-		
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		SearchedProject.click();
 		log.info("SearchAndClickOnSchoolProject method ends...... ");
@@ -115,7 +115,7 @@ public class ProjectPageObjects extends BaseClass {
 	{
 		log.info("SearchAndClickOnCityProject method started..... ");
 		actionhelper.mouseOverElementAndClick(SearchIcon);
-		
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		SearchedProject.click();
 		log.info("SearchAndClickOnCityProject method ends..... ");
@@ -126,7 +126,7 @@ public class ProjectPageObjects extends BaseClass {
 	{
 		log.info("SearchAndClickOnTransitProject method started..... ");
 		actionhelper.mouseOverElementAndClick(SearchIcon);
-		
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		SearchedProject.click();
@@ -138,7 +138,7 @@ public class ProjectPageObjects extends BaseClass {
 	{
 		log.info("SearchAndClickOnCommunitiesProject method started..... ");
 		actionhelper.mouseOverElementAndClick(SearchIcon);
-		
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		SearchedProject.click();
@@ -150,7 +150,7 @@ public class ProjectPageObjects extends BaseClass {
 	{
 		log.info("SearchAndClickOnTransitParking method started..... ");
 		actionhelper.mouseOverElementAndClick(SearchIcon);
-		
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		SearchedProject.click();

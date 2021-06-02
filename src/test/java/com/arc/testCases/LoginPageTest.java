@@ -34,16 +34,14 @@ public class LoginPageTest extends BaseClass{
 	 */
 	
 	
-	@Test(enabled=false)
-	public void LoginPageTitleTest()
-	{
-			LoginPage=new LoginPageObjects();
-			HomePage=new HomePageObjects();
-		    log.info("LoginPageTitleTest started");
-			String Title=LoginPage.checkLoginPageTitle();
-			Assert.assertEquals("Arc Skoru | Sustainability performance platform", Title);
-			log.info("LoginPageTitleTest completed");
-	}
+	/*
+	 * @Test(enabled=false) public void LoginPageTitleTest() { LoginPage=new
+	 * LoginPageObjects(); HomePage=new HomePageObjects();
+	 * log.info("LoginPageTitleTest started"); String
+	 * Title=LoginPage.checkLoginPageTitle();
+	 * Assert.assertEquals("Arc Skoru | Sustainability performance platform",
+	 * Title); log.info("LoginPageTitleTest completed"); }
+	 */
 	
 	@Test(groups={"LoginMethodTCGroup" }, priority = 1)
 	

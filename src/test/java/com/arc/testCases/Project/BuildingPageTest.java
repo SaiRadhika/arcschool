@@ -184,11 +184,47 @@ public class BuildingPageTest extends BaseClass {
 			}
 	
 
-	/*
-	 * @AfterMethod public void tearDown() {
-	 * log.info("tearDown method of BuildingPageTest class started ");
-	 * closeBrowser();
-	 * log.info("tearDown method of BuildingPageTest class completed "); }
-	 */
+	
+}
+	
+	
+	
+	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 4)
+	public void Building_Recertification_Download_Invoice() {
+		
+			log.info("Building_Recertification_Download_Invoice method started ");
+			HomePage.setHomePageApplication();
+			ProjectPage = HomePage.clickOnProject();
+			System.out.println(data.getCellData("Reboot", 14, 2));
+			BuildingPage=ProjectPage.SearchAndClickOnProject(data.getCellData("Reboot", 14, 2));
+			//BuildingPage=ProjectPage.clickOnFirstProject();
+			BuildingPage.ClickonBillingInManage();
+			HomePage.closeProjectSearchTextBox();
+			System.out.println();
+			
+			CommonMethod.ClikOnBillingDownloadForRecertificationLink();
+			//BuildingPage.ClikOnBillingDownloadForRegistrationLink();
+			long FileLength = CommonMethod.CheckDownloadedFile();
+			if(FileLength>0)
+			{
+				for(File file:DownloadFolder.listFiles())
+				{
+					file.delete();
+				}
+				DownloadFolder.delete();
+				log.info("Building_Recertification_Download_Invoice method completed ");
+				Assert.assertTrue(FileLength>0);
+			}
+			else 
+			{
+				for(File file:DownloadFolder.listFiles())
+				{
+					file.delete();
+				}
+				DownloadFolder.delete();
+				log.info("Building_Recertification_Download_Invoice method completed ");
+				Assert.assertTrue(false);
+			}
+	
 }
 }

@@ -39,16 +39,15 @@ import com.arc.commonMethods.LoggerHelper;
 import com.arc.commonMethods.WaitHelper;
 import com.arc.commonMethods.WebEventListener;
 
-
 public class BaseClass {
 
 	public static WebDriver driver;
 	public static Properties prop;
-	public  static EventFiringWebDriver e_driver;
+	public static EventFiringWebDriver e_driver;
 	public static WebEventListener eventListener;
 	public static String ScreenshotPath;
 	public static File DownloadFolder;
-	private static Logger log= LoggerHelper.getLogger(BaseClass.class);
+	private static Logger log = LoggerHelper.getLogger(BaseClass.class);
 	public static ExcelHelper data;
 	public static Actions action;
 	public static LoginPageObjects LoginPage;
@@ -64,51 +63,59 @@ public class BaseClass {
 	public static CommunitiesPageObject CommunitiesPage;
 	public static ParkingPageObject ParkingPage;
 
-	public BaseClass() {
-
-		try {
-			log.info("Base class constructor started");
-			prop = new Properties();
-			FileInputStream fis = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\main\\java\\com\\arc\\config\\config.properties");
-			prop.load(fis);
-			data= new ExcelHelper(System.getProperty("user.dir")+"/TestData/RebootTest.xlsx");
-			
-		} catch (FileNotFoundException e) {
-						e.printStackTrace();
-						log.info("Config.properties file not found");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		log.info("Base class constructor ends");
-
-	}
-
+	/*
+	 * public BaseClass() {
+	 * 
+	 * try { log.info("Base class constructor started"); prop = new Properties();
+	 * FileInputStream fis = new FileInputStream( System.getProperty("user.dir") +
+	 * "\\src\\main\\java\\com\\arc\\config\\config.properties"); prop.load(fis);
+	 * data = new ExcelHelper(System.getProperty("user.dir") +
+	 * "/TestData/RebootTest.xlsx");
+	 * 
+	 * } catch (FileNotFoundException e) { e.printStackTrace();
+	 * log.info("Config.properties file not found"); } catch (IOException e) {
+	 * e.printStackTrace(); } log.info("Base class constructor ends");
+	 * 
+	 * }
+	 */
 	@Parameters("browserName")
 	@BeforeTest
 	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
+		try {
+			prop = new Properties();
+			FileInputStream fis = new FileInputStream(
+					System.getProperty("user.dir") + "\\src\\main\\java\\com\\arc\\config\\config.properties");
+			prop.load(fis);
+			data = new ExcelHelper(System.getProperty("user.dir") + "/TestData/RebootTest.xlsx");
 
-		//String browserName = prop.getProperty("browserName");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			log.info("Config.properties file not found");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// String browserName = prop.getProperty("browserName");
 		CommonMethod.deleteAllDownloadedFiles();
 		CommonMethod.deleteAllPreviousScreenshotsFiles();
 		if (browserName.equalsIgnoreCase("chrome")) {
-			//System.out.println(System.getProperty("user.dir"));
-			DownloadFolder=new File("DownLoadedFiles\\"+UUID.randomUUID().toString());
-			//DownloadFolder.mkdir();
-			
-			ChromeOptions options=new ChromeOptions();			
-			Map<String,Object> Pref=new HashMap<String, Object>();			
-			Pref.put("profile.default_content_settings.popus",0);
-			Pref.put("download.default_directory",DownloadFolder.getAbsolutePath());			
+			// System.out.println(System.getProperty("user.dir"));
+			DownloadFolder = new File("DownLoadedFiles\\" + UUID.randomUUID().toString());
+			// DownloadFolder.mkdir();
+
+			ChromeOptions options = new ChromeOptions();
+			Map<String, Object> Pref = new HashMap<String, Object>();
+			Pref.put("profile.default_content_settings.popus", 0);
+			Pref.put("download.default_directory", DownloadFolder.getAbsolutePath());
 			options.setExperimentalOption("prefs", Pref);
-			DesiredCapabilities cap=DesiredCapabilities.chrome();
+			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\DriverFiles\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",
+					System.getProperty("user.dir") + "\\DriverFiles\\chromedriver.exe");
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
-			
-			
+
 		} else if (browserName.equalsIgnoreCase("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
 					System.getProperty("user.dir") + "/DriverFiles/geckodriver.exe");
@@ -118,17 +125,17 @@ public class BaseClass {
 			System.out.println("Invalid Browser Name");
 			log.info("IE browser launched successfully");
 		}
-		
+
 		e_driver = new EventFiringWebDriver(driver);
 		eventListener = new WebEventListener();
 		e_driver.register(eventListener);
-		
+
 		driver = e_driver;
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		waithelper=new WaitHelper();
-		actionhelper=new ActionsHelper();
-		JSHelper=new JavaScriptHelper();
+		waithelper = new WaitHelper();
+		actionhelper = new ActionsHelper();
+		JSHelper = new JavaScriptHelper();
 		System.out.println(prop.getProperty("implicitTime"));
 		System.out.println(Long.parseLong(prop.getProperty("implicitTime")));
 		waithelper.setImplicitWait(Long.parseLong(prop.getProperty("implicitTime")), TimeUnit.SECONDS);
@@ -138,20 +145,15 @@ public class BaseClass {
 		 * driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		 */
 		driver.get(prop.getProperty("QAurl"));
-		log.info("URL navigated to .. "+prop.getProperty("QAurl"));
+		log.info("URL navigated to .. " + prop.getProperty("QAurl"));
 		log.info("Initialization method ends");
 
-		
-		
-		
 	}
-	
-	
-	
+
 	@AfterTest
-	public void closeBrowser(){	
-		
+	public void closeBrowser() {
+
 		driver.close();
-			
+
 	}
 }

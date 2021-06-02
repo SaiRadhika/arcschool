@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,7 +30,10 @@ public class TransitPageObject extends BaseClass {
 	WebElement AllActionSubmenu;
 
 	@FindBy(xpath = "(//*[text()='Credit form successfully saved.'])[1]")
-	WebElement UploadSuccessMsg;
+	WebElement CreditFormUploadSuccessMsg;
+	
+	@FindBy(xpath = "(//*[text()='File successfully uploaded.'])[1]")
+	WebElement FileUploadSuccessMsg;
 
 	/*
 	 * @FindBy(
@@ -36,11 +41,21 @@ public class TransitPageObject extends BaseClass {
 	 * ) List<WebElement> ActionNames;
 	 */
 
+	@FindBy(xpath = "//*[@class='viewUpload laptop']")
+	WebElement FileUploadButtonUsingComputer;
+	
+	@FindBy(xpath="//div[@id='uploaded_files']/p/span")
+	WebElement FileDeletebutton;
+	
+	@FindBy(xpath="//span[@class='uploadLoaderSpinner ng-scope']")
+	WebElement FileProcessing;
+	
+	
 	@FindBy(xpath = "//form[@name='Fileform']/p/a")
-	WebElement DownloadButton;
+	WebElement CreditFormDownloadButton;
 
 	@FindBy(xpath = "(//*[text()='Upload'])[1]")
-	WebElement UploadButton;
+	WebElement CreditFormUploadButton;
 
 	public TransitPageObject() {
 		PageFactory.initElements(driver, this);
@@ -85,11 +100,11 @@ public class TransitPageObject extends BaseClass {
 
 	}
 
-	public void ClickonDownLoadButton() {
+	public void ClickonCreditFormDownLoadButton() {
 
 		try {
 
-			JSHelper.clickElement(DownloadButton);		
+			JSHelper.clickElement(CreditFormDownloadButton);		
 			Thread.sleep(8000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -97,24 +112,103 @@ public class TransitPageObject extends BaseClass {
 		}
 	}
 
-	public void ClickonUpLoadButton() {
+	public void ClickonCreditFormUpLoadButton() {
 
 		try {
 
-			UploadButton.click();
+			CreditFormUploadButton.click();
 
-			Thread.sleep(6000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public void ClickonFileUpLoadUsingComputerButton() {
 
-	public boolean uploadStatus() {
-		waithelper.WaitForElementVisibleWithPollingTime(UploadSuccessMsg,
+		try {
+
+			waithelper.WaitForElementClickable(FileUploadButtonUsingComputer, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			FileUploadButtonUsingComputer.click();
+			JSHelper.clickElement(FileUploadButtonUsingComputer);
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean ClickonFileDeleButton(String fname) {
+
+		boolean flag=false;
+		
+		WebElement ele=driver.findElement(By.xpath("//*[text()='"+fname+"']"));
+		if(ele.isDisplayed())
+			{
+			FileDeletebutton.click();
+			
+			
+			try {
+				waithelper.WaitForElementInvisible(ele, 30, 2);
+				flag=ele.isDisplayed();
+				System.out.println(flag+"This is ele.isDisplayed() value;");
+				System.out.println();
+			}
+			catch(StaleElementReferenceException e)
+			{
+				flag=false;
+				System.out.println("=====================StaleElementReferenceException=====================");
+				e.printStackTrace();
+				
+			}
+			catch(NoSuchElementException e)
+			{
+				System.out.println("=====================NoSuchElementException=====================");
+				flag=false;
+			}
+			if(flag==true)
+			{
+				return false;
+			}
+			else
+				return true;
+			}
+		return false;
+			
+			/*try {
+			if(FileDeletebutton.isDisplayed())
+			return true;
+			else
+				return false;
+			}
+		
+		catch(NoSuchElementException e)
+		{
+			
+		}
+		else
+			return false;*/
+	}
+
+	public boolean CreditFormuploadStatus() {
+		waithelper.WaitForElementVisibleWithPollingTime(CreditFormUploadSuccessMsg,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			boolean flag = UploadSuccessMsg.isDisplayed();
+			boolean flag = CreditFormUploadSuccessMsg.isDisplayed();
+			return flag;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+	
+	public boolean FileuploadStatus() {
+		waithelper.WaitForElementVisibleWithPollingTime(FileUploadSuccessMsg,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			boolean flag = FileUploadSuccessMsg.isDisplayed();
 			return flag;
 		} catch (Exception e) {
 			e.printStackTrace();
