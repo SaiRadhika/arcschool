@@ -27,7 +27,7 @@ public class ProjectPageObjects extends BaseClass {
 	@FindBy(xpath="//*[@id=\"myproject_body\"]/nav/div/div[1]/h3")
 	WebElement ProjectLabel;
 	
-	@FindBy(xpath="(//*[@href='/app/projects/my-projects/?project-type=building']/span[1])[1]")
+	@FindBy(xpath="(//*[@href='/app/projects/my-projects/?project-type=building']/span[1])[1]")	
 	WebElement BuildingMenu;
 	
 	@FindBy(xpath="(//*[@href='/app/projects/my-projects/?project-type=school']/span[1])[1]")

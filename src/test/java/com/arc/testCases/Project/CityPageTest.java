@@ -69,7 +69,42 @@ public void City_Agreement_Download() {
 			Assert.assertTrue(false);
 		}
 			
+}	
+		@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 6)
+		public void City_LEEDIDProject_Download_Invoice() {
+			
+				log.info("City_LEEDIDProject_Download_Invoice method started ");
+				HomePage.setHomePageApplication();
+				ProjectPage = HomePage.clickOnProject();
+				System.out.println(data.getCellData("Reboot", 8, 2));
+				CityPage=ProjectPage.SearchAndClickOnCityProject(data.getCellData("Reboot", 7, 2));
+				CityPage.ClickonBillingInManage();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.ClikOnBillingDownloadForRegistrationLink();
+				long FileLength = CommonMethod.CheckDownloadedFile();
+				if(FileLength>0)
+				{
+					for(File file:DownloadFolder.listFiles())
+					{
+						file.delete();
+					}
+					DownloadFolder.delete();
+					log.info("City_LEEDIDProject_Download_Invoice method completed ");
+					Assert.assertTrue(FileLength>0);
+				}
+				else 
+				{
+					for(File file:DownloadFolder.listFiles())
+					{
+						file.delete();
+					}
+					DownloadFolder.delete();
+					log.info("City_LEEDIDProject_Download_Invoice method completed ");
+					Assert.assertTrue(false);
+				}
+		}
+
 }
 
 
-}
+

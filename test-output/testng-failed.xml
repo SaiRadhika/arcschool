@@ -9,7 +9,7 @@
     <classes>
       <class name="com.arc.testCases.Project.TransitPageTest">
         <methods>
-          <include name="Transit_PerformanceCertificate_Download_Invoice_Receipt"/>
+          <include name="Transit_Credits_Download_Upload_Document"/>
         </methods>
       </class> <!-- com.arc.testCases.Project.TransitPageTest -->
       <class name="com.arc.testCases.LoginPageTest">

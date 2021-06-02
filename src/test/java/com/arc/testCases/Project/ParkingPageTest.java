@@ -21,7 +21,7 @@ public class ParkingPageTest extends BaseClass{
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 6, 2));
-		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 10, 2));
+		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 11, 2));
 		ParkingPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		boolean flag = CommonMethod.CheckAgreementDisplay();
@@ -42,7 +42,7 @@ public class ParkingPageTest extends BaseClass{
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 0, 2));
-		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 10, 2));
+		ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 11, 2));
 		ParkingPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		CommonMethod.ClikOnAgreementRegistrationDownloadLink();
@@ -63,13 +63,13 @@ public class ParkingPageTest extends BaseClass{
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 9)
-	public void Parking_Download_Invoice() {
+	public void Parking_LEEDID_Project_Download_Invoice() {
 		
-			log.info("Parking_Download_Invoice method started ");
+			log.info("Parking_LEEDID_Project_Download_Invoice method started ");
 			HomePage.setHomePageApplication();
 			ProjectPage = HomePage.clickOnProject();
 			System.out.println(data.getCellData("Reboot", 8, 2));
-			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 10, 2));
+			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 12, 2));
 			HomePage.closeProjectSearchTextBox();
 			ParkingPage.ClickonBillingInManage();
 			CommonMethod.ClikOnBillingDownloadForRegistrationLink();
@@ -79,10 +79,10 @@ public class ParkingPageTest extends BaseClass{
 					file.delete();
 				}
 				DownloadFolder.delete();
-				log.info("Parking_Download_Invoice method completed ");
+				log.info("Parking_LEEDID_Project_Download_Invoice method completed ");
 				Assert.assertTrue(FileLength > 0);
 			} else {
-				log.info("Parking_Download_Invoice method completed ");
+				log.info("Parking_LEEDID_Project_Download_Invoice method completed ");
 				Assert.assertTrue(false);
 			}
 			}

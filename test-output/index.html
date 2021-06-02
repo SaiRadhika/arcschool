@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" class="navigator-link">
-              <span class="suite-name border-failed">ARC Essential Test Suite </span>
+              <span class="suite-name border-passed">ARC Essential Test Suite </span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-ARC_Essential_Test_Suite_" class="navigator-link ">
-                    <span>C:\AutomationTasks\ARCEssential\src\main\resources\testng.xml</span>
+                    <span>C:\AutomationTasks\ARCEssential\src\main\resources\RebootTestSuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -91,21 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">22 methods, 1 failed,   21 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" class="hide-methods failed suite-ARC_Essential_Test_Suite_"> (hide)</a> <!-- hide-methods failed suite-ARC_Essential_Test_Suite_ -->
-                      <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" class="show-methods failed suite-ARC_Essential_Test_Suite_"> (show)</a> <!-- show-methods failed suite-ARC_Essential_Test_Suite_ -->
-                    </span>
-                    <div class="method-list-content failed suite-ARC_Essential_Test_Suite_">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.TransitPageTest" class="method navigator-link" hash-for-method="Transit_PerformanceCertificate_Download_Invoice_Receipt">Transit_PerformanceCertificate_Download_Invoice_Receipt</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-ARC_Essential_Test_Suite_ -->
+                    <span class="method-stats">23 methods,   23 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -146,6 +132,11 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_LEEDIDProject_Download_Invoice">City_LEEDIDProject_Download_Invoice</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.CommunitiesPageTest" class="method navigator-link" hash-for-method="Communities_Agreement_Display">Communities_Agreement_Display</a> <!-- method navigator-link -->
                       </span>
                       <br/>
@@ -181,7 +172,7 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.ParkingPageTest" class="method navigator-link" hash-for-method="Parking_Download_Invoice">Parking_Download_Invoice</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.ParkingPageTest" class="method navigator-link" hash-for-method="Parking_LEEDID_Project_Download_Invoice">Parking_LEEDID_Project_Download_Invoice</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -219,6 +210,11 @@
                         <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.TransitPageTest" class="method navigator-link" hash-for-method="Transit_Credits_Download_Upload_Document">Transit_Credits_Download_Upload_Document</a> <!-- method navigator-link -->
                       </span>
                       <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite_" title="com.arc.testCases.Project.TransitPageTest" class="method navigator-link" hash-for-method="Transit_LEEDIDProject_Download_Invoice">Transit_LEEDIDProject_Download_Invoice</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                     </div> <!-- method-list-content passed suite-ARC_Essential_Test_Suite_ -->
                   </li>
                 </ul>
@@ -231,178 +227,6 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-ARC_Essential_Test_Suite_" class="panel ARC_Essential_Test_Suite_">
-          <div class="suite-ARC_Essential_Test_Suite_-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.arc.testCases.Project.TransitPageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Transit_PerformanceCertificate_Download_Invoice_Receipt">
-                  </a> <!-- Transit_PerformanceCertificate_Download_Invoice_Receipt -->
-                  <span class="method-name">Transit_PerformanceCertificate_Download_Invoice_Receipt</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
-	at com.arc.testCases.Project.TransitPageTest.Transit_PerformanceCertificate_Download_Invoice_Receipt(TransitPageTest.java:157)
-... Removed 29 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-failed -->
-          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.Project.SchoolPageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="School_Agreement_Display">
-                  </a> <!-- School_Agreement_Display -->
-                  <span class="method-name">School_Agreement_Display</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="School_Agreement_Download">
-                  </a> <!-- School_Agreement_Download -->
-                  <span class="method-name">School_Agreement_Download</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="School_LEEDProject_DownloadInvoice">
-                  </a> <!-- School_LEEDProject_DownloadInvoice -->
-                  <span class="method-name">School_LEEDProject_DownloadInvoice</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="School_PerformanceCertificate_Download_Invoice_Receipt">
-                  </a> <!-- School_PerformanceCertificate_Download_Invoice_Receipt -->
-                  <span class="method-name">School_PerformanceCertificate_Download_Invoice_Receipt</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.Project.TransitPageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Transit_Agreement_Display">
-                  </a> <!-- Transit_Agreement_Display -->
-                  <span class="method-name">Transit_Agreement_Display</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="Transit_Agreement_Download">
-                  </a> <!-- Transit_Agreement_Download -->
-                  <span class="method-name">Transit_Agreement_Download</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="Transit_Credits_Download_Upload_Document">
-                  </a> <!-- Transit_Credits_Download_Upload_Document -->
-                  <span class="method-name">Transit_Credits_Download_Upload_Document</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.Project.ParkingPageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Parking_Agreement_Display">
-                  </a> <!-- Parking_Agreement_Display -->
-                  <span class="method-name">Parking_Agreement_Display</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="Parking_Agreement_Download">
-                  </a> <!-- Parking_Agreement_Download -->
-                  <span class="method-name">Parking_Agreement_Download</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="Parking_Download_Invoice">
-                  </a> <!-- Parking_Download_Invoice -->
-                  <span class="method-name">Parking_Download_Invoice</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.Project.CityPageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="City_Agreement_Display">
-                  </a> <!-- City_Agreement_Display -->
-                  <span class="method-name">City_Agreement_Display</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="City_Agreement_Download">
-                  </a> <!-- City_Agreement_Download -->
-                  <span class="method-name">City_Agreement_Download</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.HomePageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="EssentialUser_Download_Invoice">
-                  </a> <!-- EssentialUser_Download_Invoice -->
-                  <span class="method-name">EssentialUser_Download_Invoice</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="Logout_Test">
-                  </a> <!-- Logout_Test -->
-                  <span class="method-name">Logout_Test</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.LoginPageTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Login_ApplicationTest">
-                  </a> <!-- Login_ApplicationTest -->
-                  <span class="method-name">Login_ApplicationTest</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
           <div class="suite-ARC_Essential_Test_Suite_-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -461,10 +285,177 @@
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.Project.ParkingPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Parking_Agreement_Display">
+                  </a> <!-- Parking_Agreement_Display -->
+                  <span class="method-name">Parking_Agreement_Display</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="Parking_Agreement_Download">
+                  </a> <!-- Parking_Agreement_Download -->
+                  <span class="method-name">Parking_Agreement_Download</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="Parking_LEEDID_Project_Download_Invoice">
+                  </a> <!-- Parking_LEEDID_Project_Download_Invoice -->
+                  <span class="method-name">Parking_LEEDID_Project_Download_Invoice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.Project.CityPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Agreement_Display">
+                  </a> <!-- City_Agreement_Display -->
+                  <span class="method-name">City_Agreement_Display</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Agreement_Download">
+                  </a> <!-- City_Agreement_Download -->
+                  <span class="method-name">City_Agreement_Download</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_LEEDIDProject_Download_Invoice">
+                  </a> <!-- City_LEEDIDProject_Download_Invoice -->
+                  <span class="method-name">City_LEEDIDProject_Download_Invoice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.Project.SchoolPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="School_Agreement_Display">
+                  </a> <!-- School_Agreement_Display -->
+                  <span class="method-name">School_Agreement_Display</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="School_Agreement_Download">
+                  </a> <!-- School_Agreement_Download -->
+                  <span class="method-name">School_Agreement_Download</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="School_LEEDProject_DownloadInvoice">
+                  </a> <!-- School_LEEDProject_DownloadInvoice -->
+                  <span class="method-name">School_LEEDProject_DownloadInvoice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="School_PerformanceCertificate_Download_Invoice_Receipt">
+                  </a> <!-- School_PerformanceCertificate_Download_Invoice_Receipt -->
+                  <span class="method-name">School_PerformanceCertificate_Download_Invoice_Receipt</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.HomePageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="EssentialUser_Download_Invoice">
+                  </a> <!-- EssentialUser_Download_Invoice -->
+                  <span class="method-name">EssentialUser_Download_Invoice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="Logout_Test">
+                  </a> <!-- Logout_Test -->
+                  <span class="method-name">Logout_Test</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.LoginPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Login_ApplicationTest">
+                  </a> <!-- Login_ApplicationTest -->
+                  <span class="method-name">Login_ApplicationTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_Test_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.Project.TransitPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Transit_Agreement_Display">
+                  </a> <!-- Transit_Agreement_Display -->
+                  <span class="method-name">Transit_Agreement_Display</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="Transit_Agreement_Download">
+                  </a> <!-- Transit_Agreement_Download -->
+                  <span class="method-name">Transit_Agreement_Download</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="Transit_Credits_Download_Upload_Document">
+                  </a> <!-- Transit_Credits_Download_Upload_Document -->
+                  <span class="method-name">Transit_Credits_Download_Upload_Document</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="Transit_LEEDIDProject_Download_Invoice">
+                  </a> <!-- Transit_LEEDIDProject_Download_Invoice -->
+                  <span class="method-name">Transit_LEEDIDProject_Download_Invoice</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_Test_Suite_-class-passed -->
         </div> <!-- panel ARC_Essential_Test_Suite_ -->
         <div panel-name="test-xml-ARC_Essential_Test_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\AutomationTasks\ARCEssential\src\main\resources\testng.xml</span>
+            <span class="header-content">C:\AutomationTasks\ARCEssential\src\main\resources\RebootTestSuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -532,100 +523,104 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(22);
+data.addRows(23);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'Building_PerformanceCertificate_Download_Invoice_Receipt')
 data.setCell(0, 2, 'com.arc.testCases.Project.BuildingPageTest')
-data.setCell(0, 3, 40348);
+data.setCell(0, 3, 65773);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'School_PerformanceCertificate_Download_Invoice_Receipt')
 data.setCell(1, 2, 'com.arc.testCases.Project.SchoolPageTest')
-data.setCell(1, 3, 38829);
+data.setCell(1, 3, 50351);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'Transit_Credits_Download_Upload_Document')
-data.setCell(2, 2, 'com.arc.testCases.Project.TransitPageTest')
-data.setCell(2, 3, 31955);
+data.setCell(2, 1, 'Building_LEEDIDProject_Download_Invoice')
+data.setCell(2, 2, 'com.arc.testCases.Project.BuildingPageTest')
+data.setCell(2, 3, 45509);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'EssentialUser_Download_Invoice')
 data.setCell(3, 2, 'com.arc.testCases.HomePageTest')
-data.setCell(3, 3, 27577);
+data.setCell(3, 3, 37646);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'Transit_Agreement_Download')
-data.setCell(4, 2, 'com.arc.testCases.Project.TransitPageTest')
-data.setCell(4, 3, 23282);
+data.setCell(4, 1, 'School_Agreement_Download')
+data.setCell(4, 2, 'com.arc.testCases.Project.SchoolPageTest')
+data.setCell(4, 3, 36915);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'School_Agreement_Download')
-data.setCell(5, 2, 'com.arc.testCases.Project.SchoolPageTest')
-data.setCell(5, 3, 23054);
+data.setCell(5, 1, 'Building_Agreement_Download')
+data.setCell(5, 2, 'com.arc.testCases.Project.BuildingPageTest')
+data.setCell(5, 3, 30614);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'Building_LEEDIDProject_Download_Invoice')
+data.setCell(6, 1, 'Building_Agreement_Display')
 data.setCell(6, 2, 'com.arc.testCases.Project.BuildingPageTest')
-data.setCell(6, 3, 22415);
+data.setCell(6, 3, 30004);
 data.setCell(7, 0, 7)
-data.setCell(7, 1, 'Building_Agreement_Download')
-data.setCell(7, 2, 'com.arc.testCases.Project.BuildingPageTest')
-data.setCell(7, 3, 22174);
+data.setCell(7, 1, 'Transit_Credits_Download_Upload_Document')
+data.setCell(7, 2, 'com.arc.testCases.Project.TransitPageTest')
+data.setCell(7, 3, 29570);
 data.setCell(8, 0, 8)
-data.setCell(8, 1, 'City_Agreement_Download')
+data.setCell(8, 1, 'City_LEEDIDProject_Download_Invoice')
 data.setCell(8, 2, 'com.arc.testCases.Project.CityPageTest')
-data.setCell(8, 3, 21819);
+data.setCell(8, 3, 29490);
 data.setCell(9, 0, 9)
-data.setCell(9, 1, 'Communities_Agreement_Download')
-data.setCell(9, 2, 'com.arc.testCases.Project.CommunitiesPageTest')
-data.setCell(9, 3, 21467);
+data.setCell(9, 1, 'School_LEEDProject_DownloadInvoice')
+data.setCell(9, 2, 'com.arc.testCases.Project.SchoolPageTest')
+data.setCell(9, 3, 29136);
 data.setCell(10, 0, 10)
-data.setCell(10, 1, 'Parking_Agreement_Download')
-data.setCell(10, 2, 'com.arc.testCases.Project.ParkingPageTest')
-data.setCell(10, 3, 21339);
+data.setCell(10, 1, 'City_Agreement_Download')
+data.setCell(10, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(10, 3, 21954);
 data.setCell(11, 0, 11)
-data.setCell(11, 1, 'Parking_Download_Invoice')
-data.setCell(11, 2, 'com.arc.testCases.Project.ParkingPageTest')
-data.setCell(11, 3, 21090);
+data.setCell(11, 1, 'Transit_LEEDIDProject_Download_Invoice')
+data.setCell(11, 2, 'com.arc.testCases.Project.TransitPageTest')
+data.setCell(11, 3, 21187);
 data.setCell(12, 0, 12)
-data.setCell(12, 1, 'School_LEEDProject_DownloadInvoice')
-data.setCell(12, 2, 'com.arc.testCases.Project.SchoolPageTest')
-data.setCell(12, 3, 20853);
+data.setCell(12, 1, 'Parking_LEEDID_Project_Download_Invoice')
+data.setCell(12, 2, 'com.arc.testCases.Project.ParkingPageTest')
+data.setCell(12, 3, 20780);
 data.setCell(13, 0, 13)
-data.setCell(13, 1, 'City_Agreement_Display')
-data.setCell(13, 2, 'com.arc.testCases.Project.CityPageTest')
-data.setCell(13, 3, 18047);
+data.setCell(13, 1, 'Transit_Agreement_Download')
+data.setCell(13, 2, 'com.arc.testCases.Project.TransitPageTest')
+data.setCell(13, 3, 20515);
 data.setCell(14, 0, 14)
-data.setCell(14, 1, 'Login_ApplicationTest')
-data.setCell(14, 2, 'com.arc.testCases.LoginPageTest')
-data.setCell(14, 3, 15158);
+data.setCell(14, 1, 'Parking_Agreement_Download')
+data.setCell(14, 2, 'com.arc.testCases.Project.ParkingPageTest')
+data.setCell(14, 3, 20144);
 data.setCell(15, 0, 15)
-data.setCell(15, 1, 'Building_Agreement_Display')
-data.setCell(15, 2, 'com.arc.testCases.Project.BuildingPageTest')
-data.setCell(15, 3, 13172);
+data.setCell(15, 1, 'Communities_Agreement_Download')
+data.setCell(15, 2, 'com.arc.testCases.Project.CommunitiesPageTest')
+data.setCell(15, 3, 18937);
 data.setCell(16, 0, 16)
-data.setCell(16, 1, 'Transit_Agreement_Display')
-data.setCell(16, 2, 'com.arc.testCases.Project.TransitPageTest')
-data.setCell(16, 3, 12053);
+data.setCell(16, 1, 'School_Agreement_Display')
+data.setCell(16, 2, 'com.arc.testCases.Project.SchoolPageTest')
+data.setCell(16, 3, 18004);
 data.setCell(17, 0, 17)
-data.setCell(17, 1, 'School_Agreement_Display')
-data.setCell(17, 2, 'com.arc.testCases.Project.SchoolPageTest')
-data.setCell(17, 3, 11580);
+data.setCell(17, 1, 'City_Agreement_Display')
+data.setCell(17, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(17, 3, 14720);
 data.setCell(18, 0, 18)
-data.setCell(18, 1, 'Transit_PerformanceCertificate_Download_Invoice_Receipt')
-data.setCell(18, 2, 'com.arc.testCases.Project.TransitPageTest')
-data.setCell(18, 3, 11408);
+data.setCell(18, 1, 'Login_ApplicationTest')
+data.setCell(18, 2, 'com.arc.testCases.LoginPageTest')
+data.setCell(18, 3, 13888);
 data.setCell(19, 0, 19)
 data.setCell(19, 1, 'Parking_Agreement_Display')
 data.setCell(19, 2, 'com.arc.testCases.Project.ParkingPageTest')
-data.setCell(19, 3, 10964);
+data.setCell(19, 3, 10720);
 data.setCell(20, 0, 20)
-data.setCell(20, 1, 'Communities_Agreement_Display')
-data.setCell(20, 2, 'com.arc.testCases.Project.CommunitiesPageTest')
-data.setCell(20, 3, 9821);
+data.setCell(20, 1, 'Transit_Agreement_Display')
+data.setCell(20, 2, 'com.arc.testCases.Project.TransitPageTest')
+data.setCell(20, 3, 10717);
 data.setCell(21, 0, 21)
 data.setCell(21, 1, 'Logout_Test')
 data.setCell(21, 2, 'com.arc.testCases.HomePageTest')
-data.setCell(21, 3, 9543);
+data.setCell(21, 3, 10066);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'Communities_Agreement_Display')
+data.setCell(22, 2, 'com.arc.testCases.Project.CommunitiesPageTest')
+data.setCell(22, 3, 9492);
 window.suiteTableData['ARC_Essential_Test_Suite_']= { tableData: data, tableDiv: 'times-div-ARC_Essential_Test_Suite_'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 7 minutes</span>
+              <span class="suite-total-time">Total running time: 9 minutes</span>
               <div id="times-div-ARC_Essential_Test_Suite_">
               </div> <!-- times-div-ARC_Essential_Test_Suite_ -->
             </div> <!-- times-div -->
@@ -644,34 +639,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.Project.SchoolPageTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">initializtion</span>
-                <br/>
-                <span class="ignored-method-name">closeBrowser</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.Project.TransitPageTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">initializtion</span>
-                <br/>
-                <span class="ignored-method-name">closeBrowser</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.Project.ParkingPageTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">initializtion</span>
-                <br/>
-                <span class="ignored-method-name">closeBrowser</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.HomePageTest</span>
+              <span class="ignored-class-name">com.arc.testCases.Project.BuildingPageTest</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">initializtion</span>
                 <br/>
@@ -689,14 +657,7 @@ return data;
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.LoginPageTest</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">LoginPageTitleTest</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.Project.BuildingPageTest</span>
+              <span class="ignored-class-name">com.arc.testCases.Project.CommunitiesPageTest</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">initializtion</span>
                 <br/>
@@ -705,7 +666,41 @@ return data;
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.Project.CommunitiesPageTest</span>
+              <span class="ignored-class-name">com.arc.testCases.Project.ParkingPageTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initializtion</span>
+                <br/>
+                <span class="ignored-method-name">closeBrowser</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.arc.testCases.Project.SchoolPageTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initializtion</span>
+                <br/>
+                <span class="ignored-method-name">closeBrowser</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.arc.testCases.HomePageTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initializtion</span>
+                <br/>
+                <span class="ignored-method-name">closeBrowser</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.arc.testCases.LoginPageTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">LoginPageTitleTest</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.arc.testCases.Project.TransitPageTest</span>
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">initializtion</span>
                 <br/>
@@ -728,124 +723,126 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Login_ApplicationTest</span>
-                <span class="method-start">11459 ms</span>
+                <span class="method-start">9910 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.HomePageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">EssentialUser_Download_Invoice</span>
-                <span class="method-start">26670 ms</span>
+                <span class="method-start">23806 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.Project.BuildingPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">Building_Agreement_Display</span>
-                <span class="method-start">54253 ms</span>
+                <span class="method-start">61454 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Building_LEEDIDProject_Download_Invoice</span>
-                <span class="method-start">67429 ms</span>
+                <span class="method-start">91459 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Building_PerformanceCertificate_Download_Invoice_Receipt</span>
-                <span class="method-start">89849 ms</span>
+                <span class="method-start">136969 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Building_Agreement_Download</span>
-                <span class="method-start">130201 ms</span>
+                <span class="method-start">202744 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.Project.SchoolPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">School_Agreement_Display</span>
-                <span class="method-start">152378 ms</span>
+                <span class="method-start">233360 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">School_LEEDProject_DownloadInvoice</span>
-                <span class="method-start">163962 ms</span>
+                <span class="method-start">251365 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">School_PerformanceCertificate_Download_Invoice_Receipt</span>
-                <span class="method-start">184819 ms</span>
+                <span class="method-start">280502 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">School_Agreement_Download</span>
-                <span class="method-start">223653 ms</span>
+                <span class="method-start">330855 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.Project.CityPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">City_Agreement_Display</span>
-                <span class="method-start">246711 ms</span>
+                <span class="method-start">367771 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_LEEDIDProject_Download_Invoice</span>
+                <span class="method-start">382493 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">City_Agreement_Download</span>
-                <span class="method-start">264762 ms</span>
+                <span class="method-start">411984 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.Project.TransitPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">Transit_Agreement_Display</span>
-                <span class="method-start">286585 ms</span>
+                <span class="method-start">433939 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Transit_Credits_Download_Upload_Document</span>
-                <span class="method-start">298642 ms</span>
+                <span class="method-start">444656 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">Transit_PerformanceCertificate_Download_Invoice_Receipt</span>
-                <span class="method-start">330599 ms</span>
+                <span class="method-name">Transit_LEEDIDProject_Download_Invoice</span>
+                <span class="method-start">474227 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Transit_Agreement_Download</span>
-                <span class="method-start">342362 ms</span>
+                <span class="method-start">495415 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.Project.CommunitiesPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">Communities_Agreement_Display</span>
-                <span class="method-start">365650 ms</span>
+                <span class="method-start">515930 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Communities_Agreement_Download</span>
-                <span class="method-start">375475 ms</span>
+                <span class="method-start">525423 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.Project.ParkingPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">Parking_Agreement_Display</span>
-                <span class="method-start">396944 ms</span>
+                <span class="method-start">544362 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <span class="method-name">Parking_Download_Invoice</span>
-                <span class="method-start">407912 ms</span>
+                <span class="method-name">Parking_LEEDID_Project_Download_Invoice</span>
+                <span class="method-start">555083 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">Parking_Agreement_Download</span>
-                <span class="method-start">429005 ms</span>
+                <span class="method-start">575864 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.HomePageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">Logout_Test</span>
-                <span class="method-start">450346 ms</span>
+                <span class="method-start">596011 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.LoginPageTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">459891 ms</span>
+                <span class="method-start">606078 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

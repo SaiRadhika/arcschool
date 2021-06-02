@@ -19,7 +19,7 @@ public class CommunitiesPageTest extends BaseClass{
 		log.info("Communities_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 9, 2));
+		CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 10, 2));
 		CommunitiesPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		boolean flag = CommonMethod.CheckAgreementDisplay();
@@ -40,7 +40,7 @@ public class CommunitiesPageTest extends BaseClass{
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 0, 2));
-		CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 9, 2));
+		CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 10, 2));
 		CommunitiesPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		CommonMethod.ClikOnAgreementRegistrationDownloadLink();

@@ -43,10 +43,6 @@ public class LoginPageTest extends BaseClass{
 			String Title=LoginPage.checkLoginPageTitle();
 			Assert.assertEquals("Arc Skoru | Sustainability performance platform", Title);
 			log.info("LoginPageTitleTest completed");
-			
-			
-		
-		
 	}
 	
 	@Test(groups={"LoginMethodTCGroup" }, priority = 1)

@@ -23,7 +23,7 @@ public class TransitPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 6, 2));
-		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 7, 2));
+		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
 		TransitPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		boolean flag = CommonMethod.CheckAgreementDisplay();
@@ -44,7 +44,7 @@ public class TransitPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		// BuildingPage=ProjectPage.clickOnFirstProject();
 		// System.out.println(data.getCellData("Reboot", 0, 2));
-		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 7, 2));
+		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
 		TransitPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
 		CommonMethod.ClikOnAgreementRegistrationDownloadLink();
@@ -70,7 +70,7 @@ public class TransitPageTest extends BaseClass {
 		String DownloadedFilePath = "";
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 7, 2));
+		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
 		TransitPage.AllActionSubMenu();
 		HomePage.closeProjectSearchTextBox();
 		
@@ -115,50 +115,37 @@ public class TransitPageTest extends BaseClass {
 	}
 	
 	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 7)
-	public void Transit_PerformanceCertificate_Download_Invoice_Receipt() {
+	public void Transit_LEEDIDProject_Download_Invoice() {
 		
-			log.info("Transit_PerformanceCertificate_Download_Invoice_Receipt method started ");
+			log.info("Transit_LEEDIDProject_Download_Invoice method started ");
 			HomePage.setHomePageApplication();
 			ProjectPage = HomePage.clickOnProject();
-			System.out.println(data.getCellData("Reboot", 8, 2));
-			TransitPage=ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
+			System.out.println(data.getCellData("Reboot", 9, 2));
+			TransitPage=ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 9, 2));
 			TransitPage.ClickonBillingInManage();
 			HomePage.closeProjectSearchTextBox();
-			boolean flag=CommonMethod.ClikOnBillingDownloadForSubScriptionLink();
-			if(flag)
+			CommonMethod.ClikOnBillingDownloadForRegistrationLink();
+			long FileLength = CommonMethod.CheckDownloadedFile();
+			if(FileLength>0)
 			{
-				boolean FilesDownloaded = CommonMethod.CheckDownloadedForTwoFile();
-				if(FilesDownloaded==true)
+				for(File file:DownloadFolder.listFiles())
 				{
-					for(File file:DownloadFolder.listFiles())
-					{
-						file.delete();
-					}
-					DownloadFolder.delete();
-					log.info("Transit_PerformanceCertificate_Download_Invoice_Receipt method completed ");
-					Assert.assertTrue(FilesDownloaded);
+					file.delete();
 				}
-				else 
-				{
-					for(File file:DownloadFolder.listFiles())
-					{
-						file.delete();
-					}
-					DownloadFolder.delete();
-					log.info("Transit_PerformanceCertificate_Download_Invoice_Receipt method completed ");
-					Assert.assertTrue(false);
-				}
-					
-				
+				DownloadFolder.delete();
+				log.info("Transit_LEEDIDProject_Download_Invoice method completed ");
+				Assert.assertTrue(FileLength>0);
 			}
-			else
+			else 
 			{
-				log.info("Transit_PerformanceCertificate_Download_Invoice_Receipt method completed ");
+				for(File file:DownloadFolder.listFiles())
+				{
+					file.delete();
+				}
+				DownloadFolder.delete();
+				log.info("Transit_LEEDIDProject_Download_Invoice method completed ");
 				Assert.assertTrue(false);
 			}
-			
-		
-
 	}
 
 }
