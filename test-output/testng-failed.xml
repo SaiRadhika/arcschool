@@ -7,36 +7,6 @@
   <test name="ARC_Reboot_Test_Chrome (failed)">
     <parameter name="browserName" value="chrome"/>
     <classes>
-      <class name="com.arc.testCases.Project.BuildingPageTest">
-        <methods>
-          <include name="Building_Agreement_Download"/>
-          <include name="Building_Agreement_Display"/>
-          <include name="Building_Recertification_Download_Invoice"/>
-          <include name="Building_PerformanceCertificate_Download_Invoice_Receipt"/>
-          <include name="Building_LEEDIDProject_Download_Invoice"/>
-        </methods>
-      </class> <!-- com.arc.testCases.Project.BuildingPageTest -->
-      <class name="com.arc.testCases.Project.CityPageTest">
-        <methods>
-          <include name="City_Agreement_Display"/>
-          <include name="City_Agreement_Download"/>
-          <include name="City_LEEDIDProject_Download_Invoice"/>
-        </methods>
-      </class> <!-- com.arc.testCases.Project.CityPageTest -->
-      <class name="com.arc.testCases.Project.CommunitiesPageTest">
-        <methods>
-          <include name="Community_LEEDIDProject_Download_Invoice"/>
-          <include name="Communities_Agreement_Download"/>
-          <include name="Communities_Agreement_Display"/>
-        </methods>
-      </class> <!-- com.arc.testCases.Project.CommunitiesPageTest -->
-      <class name="com.arc.testCases.Project.ParkingPageTest">
-        <methods>
-          <include name="Parking_Agreement_Display"/>
-          <include name="Parking_Agreement_Download"/>
-          <include name="Parking_LEEDID_Project_Download_Invoice"/>
-        </methods>
-      </class> <!-- com.arc.testCases.Project.ParkingPageTest -->
       <class name="com.arc.testCases.Project.SchoolPageTest">
         <methods>
           <include name="School_LEEDProject_DownloadInvoice"/>
@@ -45,18 +15,13 @@
           <include name="School_Agreement_Display"/>
         </methods>
       </class> <!-- com.arc.testCases.Project.SchoolPageTest -->
-      <class name="com.arc.testCases.HomePageTest">
+      <class name="com.arc.testCases.Project.ParkingPageTest">
         <methods>
-          <include name="EssentialUser_Download_Invoice"/>
-          <include name="Logout_Test"/>
+          <include name="Parking_Agreement_Display"/>
+          <include name="Parking_Agreement_Download"/>
+          <include name="Parking_LEEDID_Project_Download_Invoice"/>
         </methods>
-      </class> <!-- com.arc.testCases.HomePageTest -->
-      <class name="com.arc.testCases.LoginPageTest">
-        <methods>
-          <include name="initializtion"/>
-          <include name="Login_ApplicationTest"/>
-        </methods>
-      </class> <!-- com.arc.testCases.LoginPageTest -->
+      </class> <!-- com.arc.testCases.Project.ParkingPageTest -->
       <class name="com.arc.testCases.Project.TransitPageTest">
         <methods>
           <include name="Transit_CreditForm_Download_Upload_Document"/>
@@ -66,6 +31,42 @@
           <include name="Transit_File_Upload_Remove"/>
         </methods>
       </class> <!-- com.arc.testCases.Project.TransitPageTest -->
+      <class name="com.arc.testCases.LoginPageTest">
+        <methods>
+          <include name="initializtion"/>
+          <include name="Login_ApplicationTest"/>
+          <include name="closeBrowser"/>
+        </methods>
+      </class> <!-- com.arc.testCases.LoginPageTest -->
+      <class name="com.arc.testCases.Project.CityPageTest">
+        <methods>
+          <include name="City_Agreement_Display"/>
+          <include name="City_Agreement_Download"/>
+          <include name="City_LEEDIDProject_Download_Invoice"/>
+        </methods>
+      </class> <!-- com.arc.testCases.Project.CityPageTest -->
+      <class name="com.arc.testCases.HomePageTest">
+        <methods>
+          <include name="EssentialUser_Download_Invoice"/>
+          <include name="Logout_Test"/>
+        </methods>
+      </class> <!-- com.arc.testCases.HomePageTest -->
+      <class name="com.arc.testCases.Project.BuildingPageTest">
+        <methods>
+          <include name="Building_Agreement_Download"/>
+          <include name="Building_Agreement_Display"/>
+          <include name="Building_Recertification_Download_Invoice"/>
+          <include name="Building_PerformanceCertificate_Download_Invoice_Receipt"/>
+          <include name="Building_LEEDIDProject_Download_Invoice"/>
+        </methods>
+      </class> <!-- com.arc.testCases.Project.BuildingPageTest -->
+      <class name="com.arc.testCases.Project.CommunitiesPageTest">
+        <methods>
+          <include name="Community_LEEDIDProject_Download_Invoice"/>
+          <include name="Communities_Agreement_Download"/>
+          <include name="Communities_Agreement_Display"/>
+        </methods>
+      </class> <!-- com.arc.testCases.Project.CommunitiesPageTest -->
     </classes>
   </test> <!-- ARC_Reboot_Test_Chrome (failed) -->
 </suite> <!-- Failed suite [ARC Essential Test Suite ] -->

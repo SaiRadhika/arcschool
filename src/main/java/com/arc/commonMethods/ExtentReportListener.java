@@ -23,8 +23,13 @@ public class ExtentReportListener extends TestListenerAdapter{
 	{
 		
 		//htmlReporter=new ExtentHtmlReporter(System.getProperty("user.dir")+ "/Reports/"+"ARC_Reboot_TestReport_"+testContext.getName()+".html");//specify location of the report
-		htmlReporter=new ExtentHtmlReporter(System.getProperty("user.dir")+ "/Reports/"+"ARC_Reboot_TestReport"+".html");
-		htmlReporter.loadXMLConfig(System.getProperty("user.dir")+ "/extent-config.xml");
+		
+		//htmlReporter=new ExtentHtmlReporter(System.getProperty("user.dir")+ "/Reports/"+"ARC_Reboot_TestReport"+".html");
+		//htmlReporter.loadXMLConfig(System.getProperty("user.dir")+ "/extent-config.xml");
+		
+		htmlReporter=new ExtentHtmlReporter("Reports/"+"ARC_Reboot_TestReport"+".html");
+		htmlReporter.loadXMLConfig("extent-config.xml");
+		
 		extent=new ExtentReports();
 		extent.attachReporter(htmlReporter);
 		extent.setSystemInfo("Host name","localhost");

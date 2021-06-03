@@ -16,7 +16,7 @@ public class TransitPageTest extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(TransitPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = false, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 7)
 	public void Transit_Agreement_Display() {
 		log.info("Transit_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -37,7 +37,7 @@ public class TransitPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", enabled = false, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", enabled = true, priority = 7)
 	public void Transit_Agreement_Download() {
 		log.info("Transit_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -165,7 +165,7 @@ public class TransitPageTest extends BaseClass {
 		
 	}
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = false, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 7)
 	public void Transit_LEEDIDProject_Download_Invoice() {
 		
 			log.info("Transit_LEEDIDProject_Download_Invoice method started ");
