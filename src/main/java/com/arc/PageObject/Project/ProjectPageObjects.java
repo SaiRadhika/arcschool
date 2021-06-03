@@ -91,9 +91,11 @@ public class ProjectPageObjects extends BaseClass {
 	public BuildingPageObject SearchAndClickOnProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnProject method started..... ");
-		actionhelper.mouseOverElementAndClick(SearchIcon);
+		if(!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends...... ");
 		return new BuildingPageObject();
@@ -102,10 +104,13 @@ public class ProjectPageObjects extends BaseClass {
 	public SchoolPageObject SearchAndClickOnSchoolProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnSchoolProject method started..... ");
-		
-		actionhelper.mouseOverElementAndClick(SearchIcon);
+		if(!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		//actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		
+		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		SearchedProject.click();
 		log.info("SearchAndClickOnSchoolProject method ends...... ");
 		return new SchoolPageObject();
@@ -114,9 +119,12 @@ public class ProjectPageObjects extends BaseClass {
 	public CityPageObject SearchAndClickOnCityProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnCityProject method started..... ");
-		actionhelper.mouseOverElementAndClick(SearchIcon);
+		if(!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		//actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		SearchedProject.click();
 		log.info("SearchAndClickOnCityProject method ends..... ");
 		return new CityPageObject();
@@ -125,7 +133,9 @@ public class ProjectPageObjects extends BaseClass {
 	public TransitPageObject SearchAndClickOnTransitProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnTransitProject method started..... ");
-		actionhelper.mouseOverElementAndClick(SearchIcon);
+		if(!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		//actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
@@ -137,7 +147,9 @@ public class ProjectPageObjects extends BaseClass {
 	public CommunitiesPageObject SearchAndClickOnCommunitiesProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnCommunitiesProject method started..... ");
-		actionhelper.mouseOverElementAndClick(SearchIcon);
+		if(!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		//actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
@@ -149,7 +161,9 @@ public class ProjectPageObjects extends BaseClass {
 	public ParkingPageObject SearchAndClickOnParkingProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnTransitParking method started..... ");
-		actionhelper.mouseOverElementAndClick(SearchIcon);
+		if(!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		//actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));

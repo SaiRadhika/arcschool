@@ -52,6 +52,8 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "//span[@class='close']")
 	WebElement CloseSearchTextboxIcon;
+	
+	
 
 	public boolean CheckHomePageLabel() {
 		return HomePageLabel.isDisplayed();
@@ -90,6 +92,7 @@ public class HomePageObjects extends BaseClass {
 	}
 
 	public void closeProjectSearchTextBox() {
+		
 		CloseSearchTextboxIcon.click();
 	}
 	
