@@ -97,8 +97,8 @@ public class BaseClass {
 		}
 
 		// String browserName = prop.getProperty("browserName");
-		CommonMethod.deleteAllDownloadedFiles();
-		CommonMethod.deleteAllPreviousScreenshotsFiles();
+		//CommonMethod.deleteAllDownloadedFiles();
+		//CommonMethod.deleteAllPreviousScreenshotsFiles();
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// System.out.println(System.getProperty("user.dir"));
 			DownloadFolder = new File("DownLoadedFiles\\" + UUID.randomUUID().toString());

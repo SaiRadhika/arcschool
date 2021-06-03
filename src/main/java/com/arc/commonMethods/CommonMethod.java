@@ -295,7 +295,6 @@ public class CommonMethod extends BaseClass {
 
 	}
 
-	
 	public static void ClikOnBillingDownloadForRecertificationLink() {
 		log.info("ClikOnBillingDownloadForRecertificationLink method starts here ......");
 		// String mainwindow=driver.getWindowHandle();
@@ -364,14 +363,17 @@ public class CommonMethod extends BaseClass {
 		log.info("deleteALlDownloadedFiles method starts here ......");
 		String filepath = System.getProperty("user.dir") + "\\DownLoadedFiles";
 		File file = new File(filepath);
-		for (File f : file.listFiles()) {
-			if (f.isDirectory()) {
-				for (File f1 : f.listFiles()) {
-					f1.delete();
+
+		if (file.listFiles().length > 0) {
+			for (File f : file.listFiles()) {
+				if (f.isDirectory()) {
+					for (File f1 : f.listFiles()) {
+						f1.delete();
+					}
+					f.delete();
 				}
 				f.delete();
 			}
-			f.delete();
 		}
 		log.info("deleteALlDownloadedFiles method ends here ......");
 	}
@@ -380,14 +382,16 @@ public class CommonMethod extends BaseClass {
 		log.info("deleteAllPreviousScreenshotsFiles method starts here ......");
 		String filepath = System.getProperty("user.dir") + "\\Screenshots";
 		File file = new File(filepath);
-		for (File f : file.listFiles()) {
-			if (f.isDirectory()) {
-				for (File f1 : f.listFiles()) {
-					f1.delete();
+		if (file.listFiles().length > 0) {
+			for (File f : file.listFiles()) {
+				if (f.isDirectory()) {
+					for (File f1 : f.listFiles()) {
+						f1.delete();
+					}
+					f.delete();
 				}
 				f.delete();
 			}
-			f.delete();
 		}
 		log.info("deleteAllPreviousScreenshotsFiles method ends here ......");
 	}
