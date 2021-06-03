@@ -87,8 +87,8 @@ public class BaseClass {
 			FileInputStream fis = new FileInputStream(
 					System.getProperty("user.dir") + "\\src\\main\\java\\com\\arc\\config\\config.properties");
 			prop.load(fis);
-			data = new ExcelHelper(System.getProperty("user.dir") + "/TestData/RebootTest.xlsx");
-
+			//data = new ExcelHelper(System.getProperty("user.dir") + "/TestData/RebootTest.xlsx");
+			data = new ExcelHelper( "TestData/RebootTest.xlsx");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			log.info("Config.properties file not found");
@@ -97,8 +97,8 @@ public class BaseClass {
 		}
 
 		// String browserName = prop.getProperty("browserName");
-		//CommonMethod.deleteAllDownloadedFiles();
-		//CommonMethod.deleteAllPreviousScreenshotsFiles();
+			//CommonMethod.deleteAllDownloadedFiles();
+			//CommonMethod.deleteAllPreviousScreenshotsFiles();
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// System.out.println(System.getProperty("user.dir"));
 			DownloadFolder = new File("DownLoadedFiles\\" + UUID.randomUUID().toString());
