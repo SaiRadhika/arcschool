@@ -394,6 +394,8 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		 * LatitudeTextbox.getAttribute("value").isBlank())) { return true; } else
 		 * return false; } catch(Exception e) { e.printStackTrace(); }
 		 */
+		
+		
 		return false;
 	}
 
