@@ -418,6 +418,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	

@@ -24,11 +24,6 @@ public class ProjectRegistrationPageTest extends BaseClass {
 				ProjectRegistrationPage.closeProjectButton();
 				HomePage.setHomePageApplication();
 			
-			/*
-			 * if (!HomePage.CheckHomePageLabel())
-			 * ProjectRegistrationPage.closeProjectButton();
-			 * HomePage.setHomePageApplication();
-			 */
 			
 
 		} catch (Exception e) {
