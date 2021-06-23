@@ -16,7 +16,7 @@ public class TransitPageTest extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(TransitPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 7)
 	public void Transit_Agreement_Display() {
 		log.info("Transit_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -37,7 +37,7 @@ public class TransitPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 7)
 	public void Transit_Agreement_Download() {
 		log.info("Transit_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -64,7 +64,7 @@ public class TransitPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = false,  groups={"Reboot"},priority = 7)
 	public void Transit_CreditForm_Download_Upload_Document() {
 		log.info("Transit_Credits_Download_Upload_Document method started ");
 		String DownloadedFilePath = "";
@@ -117,7 +117,7 @@ public class TransitPageTest extends BaseClass {
 	}
 	
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = false, priority = 7)
 	public void Transit_File_Upload_Remove() {
 		log.info("Transit_File_Upload_Remove method started ");
 		String DownloadedFilePath = "";
@@ -165,7 +165,7 @@ public class TransitPageTest extends BaseClass {
 		
 	}
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 7)
 	public void Transit_LEEDIDProject_Download_Invoice() {
 		
 			log.info("Transit_LEEDIDProject_Download_Invoice method started ");
@@ -198,5 +198,90 @@ public class TransitPageTest extends BaseClass {
 				Assert.assertTrue(false);
 			}
 	}
+	
+	
+	// Verify Manage-->Teams should show team members added to the project.
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 7)
+		public void Transit_Team_Add_Member() {
+
+			log.info("Transit_Team_Add_Member method started ");
+			HomePage.setHomePageApplication();
+			ProjectPage = HomePage.clickOnProject();
+			System.out.println(data.getCellData("Reboot", 9, 2));
+			TransitPage=ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 9, 2));
+			TransitPage.ClickonTeamInManage();
+			HomePage.closeProjectSearchTextBox();
+			System.out.println();
+			String username = data.getCellData("Reboot", 15, 2);
+			boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
+			System.out.println(username + "-----------existence is----" + emailexist);
+			boolean flag = false;
+			flag = CommonMethod.Team_Add_Member(username);
+			if(flag)
+			{
+				log.info(username+"  added successfully");
+				boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
+				if(UserNamePresent)
+				{
+					log.info(username+ "  exists in the team member");
+					log.info("Transit_Team_Add_Member method completed .......................");
+					Assert.assertTrue(true);
+				}
+				else
+				{
+					log.info(username+ "  does not exist in the team member");
+					log.info("Transit_Team_Add_Member method completed .......................");
+					Assert.assertTrue(false);
+				}
+			}
+			else
+			{
+				log.info(username+"  is not added successfully");
+				log.info("Transit_Team_Add_Member method completed .......................");
+				Assert.assertTrue(false);
+			}
+			
+
+		}
+
+		// Verify Manage-->It should allow to delete member from the added list
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+				"Reboot" }, dependsOnMethods = "Transit_Team_Add_Member", enabled = true, priority = 7)
+		public void Transit_Team_Delete_Member() {
+
+			log.info("Transit_Team_Delete_Member method started .......................");
+			HomePage.setHomePageApplication();
+			ProjectPage = HomePage.clickOnProject();
+			System.out.println(data.getCellData("Reboot", 9, 2));
+			TransitPage=ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 9, 2));
+			TransitPage.ClickonTeamInManage();
+			HomePage.closeProjectSearchTextBox();
+			System.out.println();
+			String username = data.getCellData("Reboot", 15, 2);
+				boolean flag = CommonMethod.Team_Delete_Member(username);
+				if (flag) {
+					boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
+					if(!emailexist)
+					{
+						log.info(username+"  does not exist as team member");
+						log.info("Transit_Team_Delete_Member method completed.......................");
+						Assert.assertTrue(true);
+					}
+					else
+					{
+						log.info(username+" still exist as team member");
+						log.info("Transit_Team_Delete_Member method completed.......................");
+						Assert.assertTrue(false);
+					}
+				} 
+				else {
+					log.info(username+" is not deleted successfully .......................");
+					Assert.assertTrue(false);
+				
+			}
+
+		}
 
 }

@@ -43,7 +43,7 @@ public class LoginPageTest extends BaseClass{
 	 * Title); log.info("LoginPageTitleTest completed"); }
 	 */
 	
-	@Test(groups={"LoginMethodTCGroup" }, priority = 1)
+	@Test(groups={"LoginMethodTCGroup","Reboot","Regression" }, priority = 1)
 	
 	public void Login_ApplicationTest()
 	{
@@ -62,10 +62,20 @@ public class LoginPageTest extends BaseClass{
 			log.info("LoginApplicationTest completed");
 			Assert.assertTrue(false);
 		}
-		
-		
-		
 	}
+	
+	
+	/*
+	 * @Test(groups={"LoginMethodTCGroupR","Regression" }, priority = 1)
+	 * 
+	 * public void Login_ApplicationTes1t() { LoginPage=new LoginPageObjects();
+	 * HomePage=new HomePageObjects(); log.info("LoginApplicationTest started1");
+	 * HomePage=LoginPage.login(prop.getProperty("email"),
+	 * prop.getProperty("password")); boolean flag = HomePage.CheckHomePageLabel();
+	 * if(flag) { log.info("LoginApplicationTest completed1");
+	 * Assert.assertTrue(true); } else {
+	 * log.info("LoginApplicationTest completed1"); Assert.assertTrue(false); } }
+	 */
 	/*
 	 * @AfterMethod public void tearDown() {
 	 * log.info("tearDown method of LoginPageTest class started "); closeBrowser();

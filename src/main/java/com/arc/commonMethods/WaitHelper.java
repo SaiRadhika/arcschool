@@ -138,6 +138,15 @@ public class WaitHelper extends BaseClass{
 		log.info(element.toString()+ "  is visible now");
 	}
 	
+	public void waitForElementToBeStale(WebElement element,int timeOutInSeconds)
+	{
+		log.info("waiting for :"+element.toString()+" for "+timeOutInSeconds);
+		WebDriverWait wait=new WebDriverWait(driver, timeOutInSeconds);
+		wait.until(ExpectedConditions.stalenessOf(element));
+		log.info(element.toString()+ "  is stale now");
+	}
+	
+	
 	public void pageLoadTime(long timeout,TimeUnit unit)
 	{
 		//log.info("Waiting Page to load for  "+unit+ "  seconds");

@@ -24,6 +24,7 @@ import org.testng.annotations.Parameters;
 
 import com.arc.PageObject.HomePageObjects;
 import com.arc.PageObject.LoginPageObjects;
+import com.arc.PageObject.ProjectRegistrationPageObject;
 import com.arc.PageObject.Project.BuildingPageObject;
 import com.arc.PageObject.Project.CityPageObject;
 import com.arc.PageObject.Project.CommunitiesPageObject;
@@ -38,6 +39,7 @@ import com.arc.commonMethods.JavaScriptHelper;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.commonMethods.WaitHelper;
 import com.arc.commonMethods.WebEventListener;
+import com.arc.commonMethods.DropDownHelper;
 
 public class BaseClass {
 
@@ -58,10 +60,12 @@ public class BaseClass {
 	public static CityPageObject CityPage;
 	public static WaitHelper waithelper;
 	public static ActionsHelper actionhelper;
+	public static DropDownHelper dropdownhelper;
 	public static TransitPageObject TransitPage;
 	public static JavaScriptHelper JSHelper;
 	public static CommunitiesPageObject CommunitiesPage;
 	public static ParkingPageObject ParkingPage;
+	public static ProjectRegistrationPageObject ProjectRegistrationPage;
 
 	/*
 	 * public BaseClass() {
@@ -79,7 +83,7 @@ public class BaseClass {
 	 * }
 	 */
 	@Parameters("browserName")
-	@BeforeTest
+	@BeforeTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
 	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
 		try {
@@ -141,6 +145,7 @@ public class BaseClass {
 		waithelper = new WaitHelper();
 		actionhelper = new ActionsHelper();
 		JSHelper = new JavaScriptHelper();
+		dropdownhelper=new DropDownHelper();
 		System.out.println(prop.getProperty("implicitTime"));
 		System.out.println(Long.parseLong(prop.getProperty("implicitTime")));
 		waithelper.setImplicitWait(Long.parseLong(prop.getProperty("implicitTime")), TimeUnit.SECONDS);
@@ -155,7 +160,7 @@ public class BaseClass {
 
 	}
 
-	@AfterTest
+	@AfterTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
 	public void closeBrowser() {
 
 		driver.close();

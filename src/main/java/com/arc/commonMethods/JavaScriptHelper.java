@@ -95,5 +95,7 @@ public class JavaScriptHelper extends BaseClass {
 	{
 		executeScript("arguments[0].click();",element);
 	}
+	
+	
 
 }

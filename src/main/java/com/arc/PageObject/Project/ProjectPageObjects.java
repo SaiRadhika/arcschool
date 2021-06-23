@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.arc.commonMethods.ActionsHelper;
+import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
@@ -91,6 +92,7 @@ public class ProjectPageObjects extends BaseClass {
 	public BuildingPageObject SearchAndClickOnProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnProject method started..... ");
+		CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
@@ -104,6 +106,7 @@ public class ProjectPageObjects extends BaseClass {
 	public SchoolPageObject SearchAndClickOnSchoolProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnSchoolProject method started..... ");
+		CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);
@@ -119,6 +122,7 @@ public class ProjectPageObjects extends BaseClass {
 	public CityPageObject SearchAndClickOnCityProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnCityProject method started..... ");
+		CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);
@@ -133,6 +137,7 @@ public class ProjectPageObjects extends BaseClass {
 	public TransitPageObject SearchAndClickOnTransitProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnTransitProject method started..... ");
+		CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);
@@ -147,6 +152,7 @@ public class ProjectPageObjects extends BaseClass {
 	public CommunitiesPageObject SearchAndClickOnCommunitiesProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnCommunitiesProject method started..... ");
+		CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);
@@ -161,6 +167,7 @@ public class ProjectPageObjects extends BaseClass {
 	public ParkingPageObject SearchAndClickOnParkingProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnTransitParking method started..... ");
+		CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);

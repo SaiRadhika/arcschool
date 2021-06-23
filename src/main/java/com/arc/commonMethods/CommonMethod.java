@@ -1,5 +1,7 @@
 package com.arc.commonMethods;
 
+import static org.testng.Assert.assertFalse;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -19,9 +21,15 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.arc.testBase.BaseClass;
 
@@ -172,7 +180,7 @@ public class CommonMethod extends BaseClass {
 					flag = true;
 					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[3]")).click();
 					try {
-						Thread.sleep(8000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -227,7 +235,7 @@ public class CommonMethod extends BaseClass {
 					// DownLoadInvoicelink.click();
 					try {
 						driver.findElement(By.xpath("//*[contains(text(),' Download invoice')]")).click();
-						Thread.sleep(8000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -236,7 +244,7 @@ public class CommonMethod extends BaseClass {
 					// DownLoadReceiptlink.click();
 					try {
 						driver.findElement(By.xpath("//*[contains(text(),' Download receipt')]")).click();
-						Thread.sleep(8000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -276,7 +284,7 @@ public class CommonMethod extends BaseClass {
 					flag = true;
 					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
 					try {
-						Thread.sleep(8000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -314,7 +322,7 @@ public class CommonMethod extends BaseClass {
 					flag = true;
 					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
 					try {
-						Thread.sleep(8000);
+						Thread.sleep(10000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -334,6 +342,8 @@ public class CommonMethod extends BaseClass {
 
 	}
 
+	
+	
 	public static void setClipBoard(String file) {
 		log.info("setClipBoard method starts here ......");
 		StringSelection obj = new StringSelection(file);
@@ -359,6 +369,16 @@ public class CommonMethod extends BaseClass {
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		log.info("UploadFile method ends here ......");
 	}
+	
+	public static void PerformTabout() {
+		log.info("PerformTabout method starts here ......");
+		Robot robot = null;
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		log.info("PerformTabout method ends here ......");
+	}
+	
+	
 
 	public static void deleteAllDownloadedFiles() {
 		log.info("deleteALlDownloadedFiles method starts here ......");
@@ -396,4 +416,235 @@ public class CommonMethod extends BaseClass {
 		}
 		log.info("deleteAllPreviousScreenshotsFiles method ends here ......");
 	}
+	
+	
+	public static String generateRandomString(int n)
+	{
+		String AlphabeticalString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder(n);
+		  
+        for (int i = 0; i < n; i++) {  
+           
+            int index
+                = (int)(AlphabeticalString.length()
+                        * Math.random());
+  
+            sb.append(AlphabeticalString
+                          .charAt(index));
+        }
+  
+        return sb.toString();
+    }
+	
+	
+	// This method will switch to defautl content from any frame
+	
+	public static void switchToDefaultContent()
+	{
+		driver.switchTo().defaultContent();
+    }
+	
+	
+	// This method will refresh the page and wait till page loaded successfully
+	
+	public static void  RefreshPagewaitForPageLoaded(WebDriver driver)
+	{
+		driver.get(driver.getCurrentUrl());;
+	    ExpectedCondition<Boolean> expectation = new
+	ExpectedCondition<Boolean>() 
+	    {
+	        public Boolean apply(WebDriver driver)
+	        {
+	            return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+	        }
+	    };
+	    Wait<WebDriver> wait = new WebDriverWait(driver,30);
+	    try
+	    {
+	        wait.until(expectation);
+	    }
+	    catch(Throwable error)
+	    {
+	        log.info("Timeout waiting for Page Load Request to complete.");
+	    }
+	    log.info("Page Rerreshed and waited till page load completed successfully......");
+	}
+	
+  // This method will add one team member 
+	
+	public static boolean Team_Add_Member(String EmailAddress) {
+		log.info("Team_Add_Member Method starts here.............................................");
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		boolean flag = false;
+
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//input[@name='input']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//input[@name='input']")).clear();
+
+		driver.findElement(By.xpath("//input[@name='input']")).sendKeys(EmailAddress);
+
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
+
+		
+
+		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+				Integer.parseInt(prop.getProperty("explicitTime")));
+		String msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated
+		}
+
+		if (msgText.equals("Team member added successfully.")) {
+			flag=true;
+			log.info(msgText + "  .........  displaying");
+			
+		} else {
+			flag=false;
+			log.info(msgText + " .........  displaying");
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("Team_Add_Member Method ends here.............................................");
+		return flag;
+
+	}
+
+	// This method will check whether email exists or not as team member
+	public static boolean Team_checkEmailExistOrNot(String EmailAddress) {
+		log.info("Team_checkEmailExistOrNot Method starts here.............................................");
+		boolean flag = false;
+		String email=null;
+		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
+		System.out.println("Size of the Table is ----- "+TeamMemberRow.size());
+		for (int i = 0; i < TeamMemberRow.size(); i++) {
+			int row = i + 1;
+			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
+			try {
+				 email = driver.findElement(By.xpath(EmailXpath)).getText();
+			}
+			catch(StaleElementReferenceException e)
+			{
+				log.info("StaleElementReferenceException exception showing for--"+EmailXpath);
+				
+				e.printStackTrace();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+				if (EmailAddress.equals(email)) {
+				log.info(EmailAddress + "  found in this project.....");
+				return true;
+			}
+		}
+
+		log.info("Team_checkEmailExistOrNot Method ends here.............................................");
+		return flag;
+
+	}
+	
+	// This method will delete one team member
+
+	public static boolean Team_Delete_Member(String EmailAddress) {
+		log.info("Team_Delete_Member Method starts here.............................................");
+		
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		
+		String msgText = null;
+		
+		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
+		System.out.println("Size of the Table is ----- "+TeamMemberRow.size());
+		for (int i = 0; i < TeamMemberRow.size(); i++) {
+			int row = i + 1;
+			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
+			try {
+				Thread.sleep(1000);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			String email = driver.findElement(By.xpath(EmailXpath)).getText();
+			System.out.println(EmailXpath + "--------" + email);
+			if (EmailAddress.equals(email)) {
+				String deletexpath = Rowxpath + "[" + row + "]/td[5]/div[1]";
+				try {
+					Thread.sleep(3000);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				waithelper.WaitForElementClickable(driver.findElement(By.xpath(deletexpath)),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				System.out.println("Before clicking on delete button*********************************");
+				driver.findElement(By.xpath(deletexpath)).click();
+				System.out.println("After clicking on delete button*********************************");
+				
+				try {
+					
+					Thread.sleep(3000);
+					System.out.println("-----Wait Method--------------------------------------------------------");
+					
+					waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					
+				
+				} catch (StaleElementReferenceException e) {
+					
+					log.info("StaleElementReferenceException exception showing for--"+deletexpath);
+					e.printStackTrace();
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+					System.out.println("Displayed Message is -----" + msgText);
+				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+
+			}
+		}
+		try {
+			
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (msgText.equals("Team member removed successfully.")) {
+			log.info("Team_Delete_Member Method ends here.............................................");
+			return true;
+
+		}
+
+		log.info("Team_Delete_Member Method ends here.............................................");
+		return false;
+
+	}
+
+	
 }

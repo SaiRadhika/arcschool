@@ -19,6 +19,9 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "//body/div[@id='app']/nav[1]/div[1]/div[1]/div[1]/div[2]/span[1]")
 	WebElement BuildingSubMenu;
+	
+	@FindBy(xpath = "(//*[@class='ml10' and text()='Cities'])[1]")
+	WebElement CitiesSubMenu;
 
 	@FindBy(xpath = "//table[@class='table table-striped arc-table']//child::tr[1]/td[3]/div/span")
 	WebElement BuildingName;
@@ -26,7 +29,7 @@ public class HomePageObjects extends BaseClass {
 	@FindBy(xpath = "(//*[text()='Home'])[1]")
 	WebElement HomeHeader;
 
-	@FindBy(xpath = "//*[@id=\"content\"]/main/nav/div/div[1]/h3")
+	@FindBy(xpath = "//*[@id='content']/main/nav/div/div[1]/h3")
 	WebElement HomePageLabel;
 
 	@FindBy(xpath = "//*[@class='user cursor-pointer icon dropdown-toggle ng-scope']")
@@ -53,10 +56,18 @@ public class HomePageObjects extends BaseClass {
 	@FindBy(xpath = "//span[@class='close']")
 	WebElement CloseSearchTextboxIcon;
 	
-	
+	@FindBy(xpath = "//*[text()='Add a Project']")
+	WebElement AddAProjectButton;
 
 	public boolean CheckHomePageLabel() {
-		return HomePageLabel.isDisplayed();
+		try {
+			return HomePageLabel.isDisplayed();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public HomePageObjects() {
@@ -66,10 +77,25 @@ public class HomePageObjects extends BaseClass {
 	public String checkHomePageTitle() {
 		return driver.getTitle();
 	}
+	
+	// This method click on Add a Project from RHS and returns the Project Registration page.
+	
+	public ProjectRegistrationPageObject ClickOnAddAProjectButton() {
+		try {
+			AddAProjectButton.click();
+			return new ProjectRegistrationPageObject();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public ProjectPageObjects clickOnProject() {
-		ProjectHeader.click();
+		
 		try {
+			ProjectHeader.click();
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -79,28 +105,67 @@ public class HomePageObjects extends BaseClass {
 	}
 
 	public void clickOnBuildingSubMenu() {
-		BuildingSubMenu.click();
+		
+		
+		try {
+			BuildingSubMenu.click();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 	}
 
-	public void clickOnBuildingName() {
-		BuildingName.click();
+	public void clickOnCitiesSubMenu() {
+		try {
+			CitiesSubMenu.click();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void setHomePageApplication() {
-		HomeHeader.click();
+		
+		try {
+			HomeHeader.click();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
+	// This method closes the Project Searching text box
+	
 	public void closeProjectSearchTextBox() {
-		
-		CloseSearchTextboxIcon.click();
+		try {
+			CloseSearchTextboxIcon.click();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
+	// This project clicks on Profile --> Sign out button and returns the page title.
+	
 	public String checkSignOut() {
+		try {
 		ProfileIcon.click();
 		ProfileSignOut.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@id='login-box-trigger-lg']")), Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		return driver.getTitle();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public boolean ProfileBillingInvoice() {

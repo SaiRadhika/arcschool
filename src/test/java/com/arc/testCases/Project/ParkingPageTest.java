@@ -14,7 +14,7 @@ public class ParkingPageTest extends BaseClass{
 	
 	private static Logger log = LoggerHelper.getLogger(ParkingPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, priority = 9)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 9)
 	public void Parking_Agreement_Display() {
 		log.info("Parking_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -35,7 +35,7 @@ public class ParkingPageTest extends BaseClass{
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Parking_Agreement_Display", enabled = true, priority = 9)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Parking_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 9)
 	public void Parking_Agreement_Download() {
 		log.info("Parking_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -62,7 +62,7 @@ public class ParkingPageTest extends BaseClass{
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup",enabled = true, priority = 9)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 9)
 	public void Parking_LEEDID_Project_Download_Invoice() {
 		
 			log.info("Parking_LEEDID_Project_Download_Invoice method started ");
@@ -87,4 +87,88 @@ public class ParkingPageTest extends BaseClass{
 			}
 			}
 
+	
+	// Verify Manage-->Teams should show team members added to the project.
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 9)
+		public void Parking_Team_Add_Member() {
+
+			log.info("Parking_Team_Add_Member method started ");
+			HomePage.setHomePageApplication();
+			ProjectPage = HomePage.clickOnProject();
+			System.out.println(data.getCellData("Reboot", 13, 2));
+			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 13, 2));
+			ParkingPage.ClickonTeamInManage();
+			HomePage.closeProjectSearchTextBox();
+			System.out.println();
+			String username = data.getCellData("Reboot", 15, 2);
+			boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
+			System.out.println(username + "-----------existence is----" + emailexist);
+			boolean flag = false;
+			flag = CommonMethod.Team_Add_Member(username);
+			if(flag)
+			{
+				log.info(username+"  added successfully");
+				boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
+				if(UserNamePresent)
+				{
+					log.info(username+ "  exists in the team member");
+					log.info("Parking_Team_Add_Member method completed .......................");
+					Assert.assertTrue(true);
+				}
+				else
+				{
+					log.info(username+ "  does not exist in the team member");
+					log.info("Parking_Team_Add_Member method completed .......................");
+					Assert.assertTrue(false);
+				}
+			}
+			else
+			{
+				log.info(username+"  is not added successfully");
+				log.info("Parking_Team_Add_Member method completed .......................");
+				Assert.assertTrue(false);
+			}
+			
+
+		}
+
+		// Verify Manage-->It should allow to delete member from the added list
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+				"Reboot" }, dependsOnMethods = "Parking_Team_Add_Member", enabled = true, priority = 9)
+		public void Parking_Team_Delete_Member() {
+
+			log.info("Parking_Team_Delete_Member method started .......................");
+			HomePage.setHomePageApplication();
+			ProjectPage = HomePage.clickOnProject();
+			System.out.println(data.getCellData("Reboot", 13, 2));
+			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(data.getCellData("Reboot", 13, 2));
+			ParkingPage.ClickonTeamInManage();
+			HomePage.closeProjectSearchTextBox();
+			System.out.println();
+			String username = data.getCellData("Reboot", 15, 2);
+				boolean flag = CommonMethod.Team_Delete_Member(username);
+				if (flag) {
+					boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
+					if(!emailexist)
+					{
+						log.info(username+"  does not exist as team member");
+						log.info("Parking_Team_Delete_Member method completed.......................");
+						Assert.assertTrue(true);
+					}
+					else
+					{
+						log.info(username+" still exist as team member");
+						log.info("Parking_Team_Delete_Member method completed.......................");
+						Assert.assertTrue(false);
+					}
+				} 
+				else {
+					log.info(username+" is not deleted successfully .......................");
+					Assert.assertTrue(false);
+				
+			}
+
+		}
 }

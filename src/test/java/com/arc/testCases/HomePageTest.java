@@ -29,10 +29,10 @@ public class HomePageTest extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(HomePageTest.class);
 
-	public HomePageTest() {
-		//super();
-		log.info("HomePageTest constructor is called");
-	}
+	/*
+	 * public HomePageTest() { //super();
+	 * log.info("HomePageTest constructor is called"); }
+	 */
 
 	/*
 	 * @BeforeMethod
@@ -62,7 +62,7 @@ public class HomePageTest extends BaseClass {
 	 * }
 	 */
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", priority = 2)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", priority = 2,groups={"Reboot"}, enabled = true)
 	public void EssentialUser_Download_Invoice() {
 
 		HomePage.setHomePageApplication();
@@ -103,7 +103,7 @@ public class HomePageTest extends BaseClass {
 		
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", priority = 100)
+	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 100)
 	public void Logout_Test() {
 
 		
@@ -116,10 +116,31 @@ public class HomePageTest extends BaseClass {
 		
 	}
 
-	/*
-	 * @AfterMethod public void tearDown() {
-	 * log.info("tearDown method of HomePageTest class started "); closeBrowser();
-	 * log.info("tearDown method of HomePageTest class completed "); }
-	 */
-
+	////////////////////////////////////////////Regression Tests**********************************///////////////////////////////////////////////
+	
+	//Verify clicking on add a project at RHS button opens the registration form successfully.
+	
+	@Test(groups = "Regression" ,dependsOnGroups= "LoginMethodTCGroup",priority = 2, enabled = false)
+	public void Check_Add_A_Project() {		
+		log.info("Check_Add_A_Project method started ........... ");
+		
+		boolean flag=false;
+		HomePage.setHomePageApplication();
+		ProjectRegistrationPage=HomePage.ClickOnAddAProjectButton();
+		flag=ProjectRegistrationPage.checkAddAProjectLabel();
+		if(flag)
+		{
+			//ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(flag);
+		}
+		else
+			Assert.assertTrue(flag);
+		
+		log.info("Check_Add_A_Project method ends here ........... ");
+		
+	}
+	
+	
+	
+	
 }

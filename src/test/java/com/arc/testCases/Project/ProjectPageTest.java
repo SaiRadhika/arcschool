@@ -44,7 +44,7 @@ public class ProjectPageTest extends BaseClass {
 		log.info("Setup method of ProjectPageTest class completed ");
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", priority = 3)
+	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 3)
 	public void CheckProjectListing() {
 		log.info("CheckProjectListing method started ");
 			int ProjectCount;
