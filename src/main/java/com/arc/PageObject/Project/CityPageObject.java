@@ -20,6 +20,8 @@ public class CityPageObject extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(CityPageObject.class);
 
+	
+	
 	@FindBy(xpath = "(//*[text()='Manage' and @class='ml10'])[1]")
 	WebElement ManageMenu;
 
@@ -28,11 +30,14 @@ public class CityPageObject extends BaseClass {
 
 	@FindBy(xpath = "//table[@class='building-settings']/tbody/tr/td[2]/div")
 	WebElement ProjectSettingButton;
+	
+	@FindBy(xpath = "(//table[@class='meterListByType--wrapper']/tbody/tr[2])[1]/td[2]/div")
+	WebElement GHGEmission;
 
 	@FindBy(xpath = "//*[text()='Population']")
 	WebElement PopulationTab;
 
-	@FindBy(xpath = "//*[text()='Project area']")
+	@FindBy(xpath = "//*[@id='meter_item']/ul/li[2]/span")
 	WebElement ProjectAreaTab;
 
 	@FindBy(xpath = "//*[@class='meterData-btn--addRowTitle']")
@@ -54,6 +59,7 @@ public class CityPageObject extends BaseClass {
 	WebElement Population_DeleteButton;
 	
 	
+	
 	@FindBy(xpath = "//table[@id='readingsTable']/thead/tr/th[1]")
 	WebElement ProjectAreaEffectiveYearHeading;
 
@@ -73,12 +79,26 @@ public class CityPageObject extends BaseClass {
 
 	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")
 	WebElement Population_populationTextBox;
+	
+	
 
 	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")
 	WebElement Population_EffectiveYearTextBox;
+	
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")
+	WebElement ProjectArea_EffectiveYearTextBox;
+	
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")
+	WebElement ProjectAreaTextBox;
 
 	@FindBy(xpath = "//*[text()='Energy']//parent::td//parent::tr//following-sibling::tr[1]/td[2]/div")
 	WebElement EnergyMeter;
+	
+	@FindBy(xpath = "//span[text()='Data']")
+	WebElement GHGEmission_DataTab;
+	
+	@FindBy(xpath = "(//ul[@class='meterNav'])[2]/li[2]/span")
+	WebElement GHGEmission_DetailsTab;
 
 	@FindBy(xpath = "//table[@class='table arcTbl cityTable']/tbody/tr[1]/td[2]/input")
 	WebElement AddYearbutton;
@@ -158,6 +178,20 @@ public class CityPageObject extends BaseClass {
 		}
 	}
 
+	// This method will click on Energy --> GHG Emissions
+	public void ClickonGHGEmiissions() {
+		try {
+
+			driver.switchTo().frame("datainput-widget");
+			waithelper.WaitForElementVisibleWithPollingTime(GHGEmission,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			GHGEmission.click();
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("(//*[contains(text(),'GHG Emissions')])[4]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void getCityProjectID() {
 		try {
 			ManageMenu.click();
@@ -261,6 +295,7 @@ public class CityPageObject extends BaseClass {
 		return flag;
 
 	}
+	
 	// This method will add one row in DI - > Project Setting - > Project Area and checks the Header
 	public boolean checkProjectArea_AddRow_Header_Display() {
 		log.info("checkProjectArea_AddRow_Header_Display  starts here........");
@@ -311,7 +346,7 @@ public class CityPageObject extends BaseClass {
 		  Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		 
 		  String DecadeCal = DecadeCalenderHeader.getText();
-		driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/tbody/tr/td/span[2]")).click();
+		driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/tbody/tr/td/span[3]")).click();
 
 		
 		String[] s1 = DecadeCal.split("-");
@@ -331,7 +366,7 @@ public class CityPageObject extends BaseClass {
 		
 		
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -343,13 +378,110 @@ public class CityPageObject extends BaseClass {
 
 	}
 	
+	
+	public boolean checkUpdatedByUserName(String Username)
+	{
+		log.info("checkUpdatedByUserName method starts here............");
+		driver.switchTo().frame("datainput-widget");
+		boolean flag=false;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		System.out.println("Total Rows displaying is --"+rows);
+		for(int i=0;i<rows.size();i++)
+		{
+			int rownum=i+1;
+			String CurrentUpdatedBy=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" +rownum+ "]/td[3]/div")).getText();
+			System.out.println(CurrentUpdatedBy+" ----------------- "+Username);
+			if(CurrentUpdatedBy.contains(Username))
+			{
+				
+				flag=true;
+				break;
+			}
+			
+		}
+		
+		if(flag)
+		{
+			log.info("Found Updated By --- "+Username);
+		}
+		else
+		{
+			log.info("Not found Updated By --- "+Username);
+		}
+		log.info("checkUpdatedByUserName method ends here............");
+		return flag;
+	}
+	
+	// This method will add new row and save the record
+	// It also checks whether decade Calender is opening or not
+	
+	public boolean checkProjectArea_Save_New_Row(String PArea) {
+		log.info("checkProjectArea_Save_New_Row method starts here .........");
+		boolean decadeCalenderflag = false;
+		
+		JSHelper.clickElement(ProjectAreaTab);
+		/*
+		 * waithelper.WaitForElementClickable(PopulationTab,
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 * 
+		 * PopulationTab.click();
+		 */
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ProjectSettingAddRowButton.click();
+		ProjectArea_EffectiveYearTextBox.click();
+		
+		  waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+		  Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 
+		  String DecadeCal = DecadeCalenderHeader.getText();
+		driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/tbody/tr/td/span[3]")).click();
+
+		
+		String[] s1 = DecadeCal.split("-");
+		int Start_Year = Integer.parseInt(s1[0]);
+		int End_Year = Integer.parseInt(s1[1]);
+		if (End_Year - Start_Year == 9) {
+			//log.info("Decade Calender for Effective Year is showing proper..........");
+			decadeCalenderflag = true;
+		} else {
+		//	log.info("Decade Calender for Effective Year is not showing proper..........");
+			decadeCalenderflag = false;
+		}
+
+		ProjectAreaTextBox.sendKeys(PArea);
+		ProjectArea_SaveButton.click();
+		//JSHelper.clickElement(ProjectArea_SaveButton);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		log.info("checkProjectArea_Save_New_Row method ends here .........");
+		return decadeCalenderflag;
+		
+
+	}
+	
 	// This method will check whether newly added row in Population is saved successfully or not
 	
 	public boolean verifyAddedProject_Setting_PopulationRow()
 	{
 		log.info("verifyAddedProject_Setting_Row starts here ................" );
 		
-		//PopulationTab.click();
+		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -358,6 +490,7 @@ public class CityPageObject extends BaseClass {
 		}
 		boolean AddedRowFlag = false;
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		System.out.println("Total Row display is ---  "+rows.size());
 		if (rows.size() > 0) {
 			log.info("Added Row showing proper----");
 			AddedRowFlag = true;
@@ -373,6 +506,42 @@ public class CityPageObject extends BaseClass {
 			return false;
 		}
 	}
+	
+	
+	// This method will check whether newly added row in Population is saved successfully or not
+	
+		public boolean verifyAddedProject_Setting_ProjectAreaRow()
+		{
+			log.info("verifyAddedProject_Setting_ProjectAreaRow starts here ................" );
+			
+			JSHelper.clickElement(ProjectAreaTab);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			boolean AddedRowFlag = false;
+			List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+			System.out.println("Total Row display is ---  "+rows.size());
+			if (rows.size() > 1) {
+				log.info("Added Row showing proper----");
+				AddedRowFlag = true;
+			} else {
+				log.info("Added Row is not showing proper----");
+				AddedRowFlag = false;
+			}
+			if  (AddedRowFlag) {
+				log.info("verifyAddedProject_Setting_ProjectAreaRow method ends here .........");
+				return true;
+			} else {
+				log.info("verifyAddedProject_Setting_ProjectAreaRow method ends here .........");
+				return false;
+			}
+		}
+		
+		
+	
 	
 	// This method will check whether population field contains comma or not
 	
@@ -396,6 +565,33 @@ public class CityPageObject extends BaseClass {
 		
 		} else {
 			log.info("verifyPopulationField_Contains_Comma method ends here .........");
+			return false;
+		}
+	}
+	
+	public boolean verifyProjectAreaField_Contains_Comma()
+	{
+		log.info("verifyProjectAreaField_Contains_Comma starts here ................" );
+		waithelper.WaitForElementClickable(ProjectAreaTab,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(ProjectAreaTab);
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String ProjectAreaValue=ProjectAreaTextBox.getAttribute("value");
+		System.out.println("Project Area Value is --"+ProjectAreaValue);
+		if(ProjectAreaValue.contains(","))
+		{
+			log.info("verifyProjectAreaField_Contains_Comma method ends here .........");
+			return true;
+		
+		} else {
+			log.info("verifyProjectAreaField_Contains_Comma method ends here .........");
 			return false;
 		}
 	}
@@ -492,6 +688,25 @@ public class CityPageObject extends BaseClass {
 		return null;
 
 	}
+	
+	// Verify Energy meter shows GHG emissions meter with data and detals tab. 
+	
+		public boolean CheckGHGEmission_Data_DetailsTab_Display() {
+			log.info("CheckGHGEmission_Data_DetailsTab_Display  starts here........");
+			boolean flag = false;
+			if(GHGEmission_DataTab.isDisplayed() && GHGEmission_DetailsTab.isDisplayed())
+			{
+				log.info("CheckGHGEmission_Data_DetailsTab_Display  ends here........");
+				return true;
+			}
+			else
+			{
+				log.info("CheckGHGEmission_Data_DetailsTab_Display  ends here........");
+				return false;
+			}
+			
+
+		}
 
 	
 
