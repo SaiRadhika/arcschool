@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +47,7 @@ public class CommonMethod extends BaseClass {
 
 	public static String takeScreenshotTest(String MethodName) {
 		log.info("takeScreenshotTest method starts here ......");
+		JSHelper.zoomInBy60Percent();
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
 		
@@ -56,6 +58,7 @@ public class CommonMethod extends BaseClass {
 			FileUtils.copyFile(scrFile, new File(ScreenshotPath + ".png"));
 			log.info("Screenshot captured successfully for Method ...." + MethodName);
 			log.info("takeScreenshotTest method ends here ......");
+			JSHelper.zoomInBy100Percent();
 			return ScreenshotPath + ".png";
 
 		} catch (IOException e) {
@@ -84,6 +87,17 @@ public class CommonMethod extends BaseClass {
 		}
 		log.info("takeScreenshotFullPageTest method ends here ......");
 		return null;
+	}
+
+	
+	//This method will return current year 
+	
+	public static int getCurrentYear() {
+		log.info("getCurrentYear method starts here ......");
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		log.info("getCurrentYear method ends here ......");
+		return year;
+		
 	}
 
 	public static long CheckDownloadedFile() {
@@ -486,8 +500,10 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		driver.findElement(By.xpath("//input[@name='input']")).clear();
+		//driver.findElement(By.xpath("//input[@name='input']")).clear();
 
+		
+		
 		driver.findElement(By.xpath("//input[@name='input']")).sendKeys(EmailAddress);
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")),
