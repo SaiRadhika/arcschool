@@ -387,18 +387,13 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	}
 
 	public boolean CheckGeoLocation() {
-		try{
-			
-			Thread.sleep(3000);
-		if (!(LongitudeTextbox.getAttribute("value").isBlank() && LatitudeTextbox.getAttribute("value").isBlank())) {
-			return true;
-		} else
-			return false;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		/*
+		 * try{
+		 * 
+		 * Thread.sleep(3000); if (!(LongitudeTextbox.getAttribute("value").isBlank() &&
+		 * LatitudeTextbox.getAttribute("value").isBlank())) { return true; } else
+		 * return false; } catch(Exception e) { e.printStackTrace(); }
+		 */
 		return false;
 	}
 
