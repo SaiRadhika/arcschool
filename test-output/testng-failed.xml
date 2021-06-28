@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [ARC Essential Test Suite ]" guice-stage="DEVELOPMENT">
+<suite name="Failed suite [ARC Essential City Regression Suite ]" guice-stage="DEVELOPMENT">
   <listeners>
     <listener class-name="com.arc.commonMethods.ExtentReportListener"/>
   </listeners>
-  <test name="ARC_Reboot_Test(failed)">
+  <test name="City RegressionTest Cases(failed)">
     <parameter name="browserName" value="chrome"/>
     <groups>
       <run>
-        <include name="Reboot"/>
+        <include name="Regression"/>
       </run>
     </groups>
     <classes>
-      <class name="com.arc.testCases.Project.CommunitiesPageTest">
-        <methods>
-          <include name="Community_Team_Delete_Member"/>
-          <include name="Community_Team_Add_Member"/>
-        </methods>
-      </class> <!-- com.arc.testCases.Project.CommunitiesPageTest -->
       <class name="com.arc.testCases.LoginPageTest">
         <methods>
           <include name="initializtion"/>
@@ -25,6 +19,16 @@
           <include name="closeBrowser"/>
         </methods>
       </class> <!-- com.arc.testCases.LoginPageTest -->
+      <class name="com.arc.testCases.Project.CityPageTest">
+        <methods>
+          <include name="City_Energy_GHGEmission_With_DataAndDetails_Display"/>
+          <include name="City_Energy_GHGEmission_SavePreviousYearData_CheckScore"/>
+          <include name="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display"/>
+          <include name="City_Energy_GHGEmission_AddYear_AddNewLine"/>
+          <include name="City_Energy_GHGEmission_Edit_Row"/>
+          <include name="City_Energy_GHGEmission_Delete_Row"/>
+        </methods>
+      </class> <!-- com.arc.testCases.Project.CityPageTest -->
     </classes>
-  </test> <!-- ARC_Reboot_Test(failed) -->
-</suite> <!-- Failed suite [ARC Essential Test Suite ] -->
+  </test> <!-- City RegressionTest Cases(failed) -->
+</suite> <!-- Failed suite [ARC Essential City Regression Suite ] -->

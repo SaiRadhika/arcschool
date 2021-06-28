@@ -54,6 +54,21 @@ public class LoginPageObjects extends BaseClass{
 	}
 	
 	
+	// This method will login into application in between the test suites
+	
+	public HomePageObjects loginLater(String email,String pass)
+	{
+			
+			loginLink.click();
+			
+			emailAddress.sendKeys(email);
+			password.sendKeys(pass);
+			loginButton.click();
+				
+		return new HomePageObjects();
+	}
+	
+	
 	
 	
 

@@ -17,7 +17,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	// Verify allowed special characters for Project name are - & + / : ' , - . #
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = false)
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = false, description = "Verify Project Name should allow special character (-&+/:',-.#)")
 	public void ProjectName_With_Valid_SpecialCharacters() {
 		log.info("ProjectName_With_Valid_SpecialCharacters method started ........... ");
 		try {
@@ -54,7 +54,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	
 	// Verify with Invalid special characters for Project name are !~$%^*()
 
-		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = false)
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = false, description = "Verify with Invalid special characters for Project name are !~$%^*()")
 		public void ProjectName_With_Invalid_SpecialCharacters() {
 			log.info("ProjectName_With_Invalid_SpecialCharacters method started ........... ");
 			try {
@@ -94,7 +94,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	// Verify Project Type as 'Cities' available in dropdown or not
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = true)
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = true, description = "Verify Project Type as 'Cities' available in dropdown or not")
 	public void Check_ProjectType_City_Value() {
 		log.info("Check_ProjectType_City_Value method started ........... ");
 		try {
@@ -137,7 +137,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify City adding Gross area - limit allowed is Max: 19,305 square miles
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+			"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = "Verify City adding Gross area - limit allowed is Max: 19,305 square miles")
 	public void City_GrossArea_Valid_19305_SQ_Miles() {
 		log.info("City_GrossArea_Max_19305_SQ_Miles method started ........... ");
 		try {
@@ -185,7 +185,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify City adding invalid Gross area - limit  19,306 square miles
 
 		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-				"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+				"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = "Verify City adding invalid Gross area - limit  19,306 square miles")
 		public void City_GrossArea_Invalid_19306_SQ_Miles() {
 			log.info("City_GrossArea_Invalid_19306_SQ_Miles method started ........... ");
 			try {
@@ -237,7 +237,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		// Verify City adding Gross area - limit allowed is Max: 50000 square kilometers
 
 		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-				"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+				"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = "Verify City adding Gross area - limit allowed is Max: 50000 square kilometers")
 		public void City_GrossArea_Valid_50000_SQ_KM() {
 			log.info("City_GrossArea_Valid_50000_SQ_KM method started ........... ");
 			try {
@@ -285,7 +285,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		// Verify City adding invalid Gross area - limit  50001 square Kilometer
 
 			@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-					"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+					"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = " Verify City adding invalid Gross area - limit  50001 square Kilometer")
 			public void City_GrossArea_Invalid_50001_SQ_KM() {
 				log.info("City_GrossArea_Invalid_50001_SQ_KM method started ........... ");
 				try {
@@ -349,7 +349,13 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	 * 
 	 */
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+			"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = "Verify if 'Are you registering for a LEED CERTIFICATION' is selected as 'Yes', opens a new modal window with text as below:\r\n"
+					+ "\"If you're interested in registering this project for LEED certification, please select the \"Register for LEED certification now\" button below and you’ll be routed to LEED Online.\r\n"
+					+ "\r\n"
+					+ "Otherwise, you can get started now with Arc for free. Just select the \"Not now\" button below.\r\n"
+					+ "\r\n"
+					+ "You can enter your performance data in Arc and choose to register for LEED later. Your performance data will get you most of the way, but you'll need to complete the LEED prerequisites, and possibly other requirements before submitting for certification.\"\r\n"
+					+ "")
 	public void City_LEED_Registration_Yes_CheckMessage() {
 		log.info("City_LEED_Registration_Yes_CheckMessage method started ........... ");
 		try {
@@ -388,7 +394,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// certification now' and 'Not now'
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, enabled = true)
+			"Check_ProjectType_City_Value" }, enabled = true, description = "Verify the new modal window shows two buttons- 'Register for LEED certification now' and 'Not now'")
 	public void City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow() {
 		log.info("City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow method started ........... ");
 		try {
@@ -428,7 +434,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"Check_ProjectType_City_Value",
-			"City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow" }, priority = 3, enabled = false)
+			"City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow" }, priority = 3, enabled = true, description = "Verify clicking on 'Register for LEED certification now' redirects to Leed Online portal.")
 	public void City_LEED_Regis_Redirects_LeedOnlineportal() {
 		log.info("City_LEED_Regis_Redirects_LeedOnlineportal method started ........... ");
 		try {
@@ -483,7 +489,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"Check_ProjectType_City_Value",
-			"City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow" }, priority = 3, enabled = false)
+			"City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow" }, priority = 3, enabled = true, description = "Verify clicking on 'Not now' closes the modal window and keeps the user at the registration page. \r\n"
+					+ "	// Verify clicking on 'Not now' closes the modal window and selects the 'No' radio button.")
 	public void City_LEED_Registration_Not_Now_Test() {
 		log.info("City_LEED_Registration_Not_Now_Test method started ........... ");
 		try {
@@ -526,7 +533,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// code
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 3, enabled = true)
+			"Check_ProjectType_City_Value" }, priority = 3, enabled = true, description = "Verify address field auto populates the address(this address is being pulled using google maps API).\r\n"
+					+ "	Verify auto pulled address populates all the fields -City, County,States,zipcode")
 	public void City_AutoPopulate_Address_City_Country_State_ZipCode() {
 		log.info("City_AutoPopulate_Address_City_Country_State_ZipCode method started ........... ");
 		try {
@@ -562,7 +570,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"Check_ProjectType_City_Value",
-			"City_AutoPopulate_Address_City_Country_State_ZipCode" }, priority = 3, enabled = true)
+			"City_AutoPopulate_Address_City_Country_State_ZipCode" }, priority = 3, enabled = true, description = "Verify after address is auto pulled, geo location gets auto -populated.")
 	public void City_AutoPopulate_Latitude_Longitude() {
 		log.info("City_AutoPopulate_Latitude_Longitude method started ........... ");
 		try {
@@ -598,7 +606,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify able to download service agreement successfully.
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+			"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = " Verify able to download service agreement successfully.")
 	public void City_Download_Service_Agreement() {
 		log.info("City_Download_Service_Agreement method started ........... ");
 		try {
@@ -649,7 +657,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// button gets enabled.
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 3, enabled = false)
+			"Check_ProjectType_City_Value" }, priority = 3, enabled = false, description = "Verify when 'I agree to … agreement' checkbox is selected, 'Add project' button gets enabled.")
 	public void City_Agreement_Check_AddButtonEnabled() {
 		log.info("City_Agreement_Check_AddButtonEnabled method started ........... ");
 		try {
@@ -687,7 +695,10 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify that the population field is optional.
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value","City_AutoPopulate_Address_City_Country_State_ZipCode","City_AutoPopulate_Latitude_Longitude" }, priority = 3, enabled = true)
+			"Check_ProjectType_City_Value","City_AutoPopulate_Address_City_Country_State_ZipCode","City_AutoPopulate_Latitude_Longitude" }, priority = 3, enabled = true, description = "Verify clicking on checkbox for 'This is a test project' creates a test project and the same gets populated after project creation under  manage-project.\r\n"
+					+ "	\r\n"
+					+ "	// Verify clicking on 'Add project' button registers the project with non-leed id.\r\n"
+					+ "	")
 	public void City_TestProject_NonLEED_Creation() {
 		log.info("City_TestProject_NonLEED_Creation method started ........... ");
 		String ProjectCityID=null;
@@ -765,7 +776,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	
 
 		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-				"Check_ProjectType_City_Value","City_AutoPopulate_Address_City_Country_State_ZipCode","City_AutoPopulate_Latitude_Longitude" }, priority = 3, enabled = false)
+				"Check_ProjectType_City_Value","City_AutoPopulate_Address_City_Country_State_ZipCode","City_AutoPopulate_Latitude_Longitude" }, priority = 3, enabled = true
+						,description = "Verify if 'project is private' is selected, shows private as 'Yes' under Manage--project. \r\n Verify clicking on 'Add project' button opens the 'Performance' Tab.")
 		public void City_Project_Is_Private_Creation_Opens_Performance_Screen() {
 			log.info("City_Project_Is_Private_Creation_Opens_Performance_Screen method started ........... ");
 			String ProjectCityID="";

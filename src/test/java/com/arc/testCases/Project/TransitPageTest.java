@@ -16,7 +16,7 @@ public class TransitPageTest extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(TransitPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 7, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Transit_Agreement_Display() {
 		log.info("Transit_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -37,7 +37,8 @@ public class TransitPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", groups={"Reboot"}, 
+			enabled = true, priority = 7, description = "Verify able to download the agreement successfully.")
 	public void Transit_Agreement_Download() {
 		log.info("Transit_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -64,7 +65,7 @@ public class TransitPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = false,  groups={"Reboot"},priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = false,  groups={"Reboot"},priority = 7, description = "Verify able to download and upload credit for file successfully under any credit.")
 	public void Transit_CreditForm_Download_Upload_Document() {
 		log.info("Transit_Credits_Download_Upload_Document method started ");
 		String DownloadedFilePath = "";
@@ -117,7 +118,7 @@ public class TransitPageTest extends BaseClass {
 	}
 	
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = false, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = false, priority = 7, description = "Verify able to download and upload file successfully under any credit.")
 	public void Transit_File_Upload_Remove() {
 		log.info("Transit_File_Upload_Remove method started ");
 		String DownloadedFilePath = "";
@@ -165,7 +166,7 @@ public class TransitPageTest extends BaseClass {
 		
 	}
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 7)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 7, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void Transit_LEEDIDProject_Download_Invoice() {
 		
 			log.info("Transit_LEEDIDProject_Download_Invoice method started ");
@@ -202,7 +203,7 @@ public class TransitPageTest extends BaseClass {
 	
 	// Verify Manage-->Teams should show team members added to the project.
 
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 7)
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 7, description = "Verify able to add a team-member successfully.")
 		public void Transit_Team_Add_Member() {
 
 			log.info("Transit_Team_Add_Member method started ");
@@ -248,7 +249,7 @@ public class TransitPageTest extends BaseClass {
 		// Verify Manage-->It should allow to delete member from the added list
 
 		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"Reboot" }, dependsOnMethods = "Transit_Team_Add_Member", enabled = true, priority = 7)
+				"Reboot" }, dependsOnMethods = "Transit_Team_Add_Member", enabled = true, priority = 7, description = "Verify able to remove a team-member successfully.")
 		public void Transit_Team_Delete_Member() {
 
 			log.info("Transit_Team_Delete_Member method started .......................");

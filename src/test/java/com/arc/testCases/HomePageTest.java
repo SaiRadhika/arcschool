@@ -62,7 +62,7 @@ public class HomePageTest extends BaseClass {
 	 * }
 	 */
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", priority = 2,groups={"Reboot"}, enabled = true)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", priority = 2,groups={"Reboot"}, enabled = true,description = "Verify if Essential user, profile icon-->Billing-->billing and payments tab-->able to download the invoice and receipts successfully.")
 	public void EssentialUser_Download_Invoice() {
 
 		HomePage.setHomePageApplication();
@@ -103,7 +103,7 @@ public class HomePageTest extends BaseClass {
 		
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 100)
+	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 100, description = "Verify able to Logout Successfully.")
 	public void Logout_Test() {
 
 		
@@ -120,7 +120,7 @@ public class HomePageTest extends BaseClass {
 	
 	//Verify clicking on add a project at RHS button opens the registration form successfully.
 	
-	@Test(groups = "Regression" ,dependsOnGroups= "LoginMethodTCGroup",priority = 2, enabled = false)
+	@Test(groups = "Regression" ,dependsOnGroups= "LoginMethodTCGroup",priority = 2, enabled = false, description = "Verify clicking on add a project at RHS button opens the registration form successfully.")
 	public void Check_Add_A_Project() {		
 		log.info("Check_Add_A_Project method started ........... ");
 		

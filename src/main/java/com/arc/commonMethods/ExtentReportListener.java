@@ -27,7 +27,7 @@ public class ExtentReportListener extends TestListenerAdapter{
 		//htmlReporter=new ExtentHtmlReporter(System.getProperty("user.dir")+ "/Reports/"+"ARC_Reboot_TestReport"+".html");
 		//htmlReporter.loadXMLConfig(System.getProperty("user.dir")+ "/extent-config.xml");
 		
-		htmlReporter=new ExtentHtmlReporter("Reports/"+"ARC_Reboot_TestReport"+".html");
+		htmlReporter=new ExtentHtmlReporter("Reports/"+"ARC_Automation_TestReport"+".html");
 		htmlReporter.loadXMLConfig("extent-config.xml");
 		
 		extent=new ExtentReports();
@@ -36,7 +36,7 @@ public class ExtentReportListener extends TestListenerAdapter{
 		
 		
 		htmlReporter.config().setDocumentTitle("ARC Essential Project"); // Tile of report
-		htmlReporter.config().setReportName("Reboot Test Automation Report"); // name of the report
+		htmlReporter.config().setReportName("Test Automation Report"); // name of the report
 		
 		
 		htmlReporter.config().setTheme(Theme.DARK);
@@ -49,21 +49,21 @@ public class ExtentReportListener extends TestListenerAdapter{
 		
 		
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		logger=extent.createTest(tr.getName());
+		
+		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.PASS,MarkupHelper.createLabel(tr.getName(),ExtentColor.GREEN)); // send the passed information to the report with GREEN color highlighted
 	}
 	
 	public void onTestFailure(ITestResult tr)
 	{
-		System.out.println("Test Name in TestNG.xml is  ----------"+tr.getTestName());
+		//System.out.println("Test Name in TestNG.xml is  ----------"+tr.getTestName());
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		logger=extent.createTest(tr.getName());
+		System.out.println("=============="+tr.getAttribute("description"));
+		System.out.println("=============="+tr.getAttributeNames());
+		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.FAIL,MarkupHelper.createLabel(tr.getName(),ExtentColor.RED)); // send the passed information to the report with GREEN color highlighted
 		
 		String ScreenShotFile=CommonMethod.takeScreenshotTest(tr.getName());
-		
-		 
-		
 			logger.log(Status.FAIL,tr.getThrowable());
 			
 			try {
@@ -79,13 +79,17 @@ public class ExtentReportListener extends TestListenerAdapter{
 	{
 		
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		logger=extent.createTest(tr.getName());
+		System.out.println("=============="+tr.getAttribute("description"));
+		System.out.println("=============="+tr.getAttributeNames());
+		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.SKIP,MarkupHelper.createLabel(tr.getName(),ExtentColor.ORANGE));
 	}
 	
 	
 	public void onFinish(ITestContext testContext)
 	{
+		System.out.println("=============="+testContext.getAttribute("description"));
+		System.out.println("=============="+testContext.getAttributeNames());
 		extent.flush();
 	}
 }

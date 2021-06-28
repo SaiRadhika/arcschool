@@ -2,6 +2,7 @@ package com.arc.commonMethods;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -134,6 +135,8 @@ public class ExcelHelper {
 		{
 			  
 			  String cellText  = String.valueOf(cell.getNumericCellValue());
+			  Object o = cell.getNumericCellValue();
+			  System.out.println(new BigDecimal(o.toString()).toPlainString());
 			  if (HSSFDateUtil.isCellDateFormatted(cell))
 			  {
 		           // format in form of M/D/YY

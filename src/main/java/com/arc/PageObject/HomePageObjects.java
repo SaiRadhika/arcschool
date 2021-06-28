@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.arc.PageObject.Project.ProjectPageObjects;
+import com.arc.commonMethods.CommonMethod;
 import com.arc.testBase.BaseClass;
 
 public class HomePageObjects extends BaseClass {
@@ -37,6 +38,9 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "//*[@class='user-dropdown dropdown-menu left']/li[4]")
 	WebElement ProfileBillingMenu;
+	
+	@FindBy(xpath = "//ul[@class='user-dropdown dropdown-menu left']/li/div")
+	WebElement ProfileUserName;
 	
 	@FindBy(xpath = "//*[@class='user-dropdown dropdown-menu left']/li[5]")
 	WebElement ProfileSignOut;
@@ -104,6 +108,21 @@ public class HomePageObjects extends BaseClass {
 		return new ProjectPageObjects();
 	}
 
+public String getCurrentProfileUserName() {
+		CommonMethod.switchToDefaultContent();
+		String username = null;
+		try {
+			ProfileIcon.click();
+			Thread.sleep(3000);
+			username=ProfileUserName.getText();
+			ProfileUserName.click();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return username;
+	}
+
 	public void clickOnBuildingSubMenu() {
 		
 		
@@ -144,6 +163,7 @@ public class HomePageObjects extends BaseClass {
 	
 	public void closeProjectSearchTextBox() {
 		try {
+			CommonMethod.switchToDefaultContent();
 			CloseSearchTextboxIcon.click();
 		}
 		catch(Exception e)

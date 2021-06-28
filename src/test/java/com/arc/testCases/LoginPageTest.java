@@ -43,7 +43,7 @@ public class LoginPageTest extends BaseClass{
 	 * Title); log.info("LoginPageTitleTest completed"); }
 	 */
 	
-	@Test(groups={"LoginMethodTCGroup","Reboot","Regression" }, priority = 1)
+	@Test(groups={"LoginMethodTCGroup","Reboot","Regression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
 	
 	public void Login_ApplicationTest()
 	{

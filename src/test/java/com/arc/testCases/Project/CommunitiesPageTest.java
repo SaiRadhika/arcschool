@@ -14,7 +14,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 	private static Logger log = LoggerHelper.getLogger(CommunitiesPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 8)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 8, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Communities_Agreement_Display() {
 		log.info("Communities_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -33,7 +33,7 @@ public class CommunitiesPageTest extends BaseClass{
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Communities_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 8)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Communities_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 8, description = "Verify able to download the agreement successfully.")
 	public void Communities_Agreement_Download() {
 		log.info("Communities_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -60,7 +60,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 	}
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, enabled = true, priority = 8)
+	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, enabled = true, priority = 8, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void Community_LEEDIDProject_Download_Invoice() {
 		
 			log.info("Community_LEEDIDProject_Download_Invoice method started ");
@@ -96,7 +96,7 @@ public class CommunitiesPageTest extends BaseClass{
 	
 	// Verify Manage-->Teams should show team members added to the project.
 
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 8)
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 8, description = "Verify able to add a team-member successfully.")
 		public void Community_Team_Add_Member() {
 
 			log.info("Community_Team_Add_Member method started ");
@@ -142,7 +142,7 @@ public class CommunitiesPageTest extends BaseClass{
 		// Verify Manage-->It should allow to delete member from the added list
 
 		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"Reboot" }, dependsOnMethods = "Community_Team_Add_Member", enabled = true, priority = 8)
+				"Reboot" }, dependsOnMethods = "Community_Team_Add_Member", enabled = true, priority = 8, description = "Verify able to remove a team-member successfully.")
 		public void Community_Team_Delete_Member() {
 
 			log.info("Community_Team_Delete_Member method started .......................");

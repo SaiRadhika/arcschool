@@ -48,12 +48,12 @@ public class BuildingPageTest extends BaseClass {
 	 * 
 	 * log.info("Setup method of BuildingPageTest class completed "); }
 	 */
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, groups = { "Reboot" }, priority = 4)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, groups = { "Reboot" }, priority = 4, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Building_Agreement_Display() {
 		log.info("Building_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		System.out.println(data.getCellData("Reboot", 0, 2));
+		System.out.println(data.getCellData("Reboot", "BuildingProjectID", 2));
 		BuildingPage = ProjectPage.SearchAndClickOnProject(data.getCellData("Reboot", 0, 2));
 		BuildingPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
@@ -69,7 +69,7 @@ public class BuildingPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Building_Agreement_Display", groups = {
-			"Reboot" }, enabled = true, priority = 4)
+			"Reboot" }, enabled = true, priority = 4, description = "Verify able to download the agreement successfully.")
 	public void Building_Agreement_Download() {
 		log.info("Building_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -97,7 +97,7 @@ public class BuildingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
 	public void Building_PerformanceCertificate_Download_Invoice_Receipt() {
 
 		log.info("Building_PerformanceCertificate_Download_Invoice_Receipt method started ");
@@ -129,7 +129,7 @@ public class BuildingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void Building_LEEDIDProject_Download_Invoice() {
 
 		log.info("Building_LEEDIDProject_Download_Invoice method started ");
@@ -163,7 +163,7 @@ public class BuildingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify if project submitted for recertification, billing--> Invoice and receipt are downloaded successfully.")
 	public void Building_Recertification_Download_Invoice() {
 
 		log.info("Building_Recertification_Download_Invoice method started ");
@@ -198,7 +198,7 @@ public class BuildingPageTest extends BaseClass {
 	
 	// Verify Manage-->Teams should show team members added to the project.
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4)
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify able to add a team-member successfully.")
 	public void Building_Team_Add_Member() {
 
 		log.info("Building_Team_Add_Member method started ");
@@ -208,7 +208,6 @@ public class BuildingPageTest extends BaseClass {
 		BuildingPage = ProjectPage.SearchAndClickOnProject(data.getCellData("Reboot", 0, 2));
 		BuildingPage.ClickonTeamInManage();
 		HomePage.closeProjectSearchTextBox();
-		System.out.println();
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
 		System.out.println(username + "-----------existence is----" + emailexist);
@@ -244,7 +243,7 @@ public class BuildingPageTest extends BaseClass {
 	// Verify Manage-->It should allow to delete member from the added list
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, dependsOnMethods = "Building_Team_Add_Member", enabled = true, priority = 4)
+			"Reboot" }, dependsOnMethods = "Building_Team_Add_Member", enabled = true, priority = 4, description = "Verify able to delete  team-member successfully.")
 	public void Building_Team_Delete_Member() {
 
 		log.info("Building_Team_Delete_Member method started .......................");
