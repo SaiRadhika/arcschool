@@ -110,7 +110,7 @@ public class BaseClass {
 			//CommonMethod.deleteAllPreviousScreenshotsFiles();
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// System.out.println(System.getProperty("user.dir"));
-			DownloadFolder = new File("DownLoadedFiles\\" + UUID.randomUUID().toString());
+			DownloadFolder = new File("DownLoadedFiles/" + UUID.randomUUID().toString());
 			// DownloadFolder.mkdir();
 
 			ChromeOptions options = new ChromeOptions();
@@ -122,7 +122,7 @@ public class BaseClass {
 			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
 			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "\\DriverFiles\\chromedriver.exe");
+					System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
 
