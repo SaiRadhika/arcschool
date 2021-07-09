@@ -13,7 +13,8 @@ private static boolean root=false;
 		{
 			return Logger.getLogger(cls);
 		}
-		PropertyConfigurator.configure(System.getProperty("user.dir") + "\\src\\main\\java\\com\\arc\\config\\log4j.properties");
+		//PropertyConfigurator.configure(System.getProperty("user.dir") + "\\src\\main\\java\\com\\arc\\config\\log4j.properties");
+		PropertyConfigurator.configure(System.getProperty("user.dir") + "/src/main/java/com/arc/config/log4j.properties");
 		root=true;
 		return Logger.getLogger(cls);
 	}
