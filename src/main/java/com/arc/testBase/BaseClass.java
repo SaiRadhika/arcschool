@@ -93,7 +93,8 @@ public class BaseClass {
 			 * "\\src\\main\\java\\com\\arc\\config\\config.properties");
 			 */
 			
-			FileInputStream fis = new FileInputStream("src\\main\\java\\com\\arc\\config\\config.properties");
+			//FileInputStream fis = new FileInputStream("src\\main\\java\\com\\arc\\config\\config.properties");
+			FileInputStream fis = new FileInputStream("src/main/java/com/arc/config/config.properties");
 			prop.load(fis);
 			//data = new ExcelHelper(System.getProperty("user.dir") + "/TestData/RebootTest.xlsx");
 			data = new ExcelHelper( "TestData/RebootTest.xlsx");
