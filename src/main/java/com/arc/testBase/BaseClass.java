@@ -122,7 +122,7 @@ public class BaseClass {
 			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
 			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
+					System.getProperty("user.dir") + "/DriverFiles/chromedriver");
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
 
