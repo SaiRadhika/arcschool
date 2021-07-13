@@ -121,8 +121,11 @@ public class BaseClass {
 			options.setExperimentalOption("prefs", Pref);
 			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
+			log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+			
 			System.setProperty("webdriver.chrome.driver",
 					System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+			
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
 
