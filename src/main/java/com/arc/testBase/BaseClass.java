@@ -115,7 +115,6 @@ public class BaseClass {
 
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--start-maximized");
-			options.addArguments("--no-sandbox");
 			//options.addArguments("headless");
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);
