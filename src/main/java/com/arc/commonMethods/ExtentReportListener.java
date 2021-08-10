@@ -1,6 +1,8 @@
 package com.arc.commonMethods;
 
 import java.io.IOException;
+
+import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
@@ -17,7 +19,7 @@ public class ExtentReportListener extends TestListenerAdapter{
 	public ExtentHtmlReporter htmlReporter;
 	public ExtentReports extent;
 	public ExtentTest logger;
-	
+	private static Logger log = LoggerHelper.getLogger(ExtentReportListener.class);
 	
 	public void onStart(ITestContext testContext)
 	{
@@ -26,7 +28,7 @@ public class ExtentReportListener extends TestListenerAdapter{
 		
 		//htmlReporter=new ExtentHtmlReporter(System.getProperty("user.dir")+ "/Reports/"+"ARC_Reboot_TestReport"+".html");
 		//htmlReporter.loadXMLConfig(System.getProperty("user.dir")+ "/extent-config.xml");
-		
+		log.info(" Extent Report onStart method started......");
 		htmlReporter=new ExtentHtmlReporter("Reports/"+"ARC_Automation_TestReport"+".html");
 		htmlReporter.loadXMLConfig("extent-config.xml");
 		
@@ -41,6 +43,7 @@ public class ExtentReportListener extends TestListenerAdapter{
 		
 		htmlReporter.config().setTheme(Theme.DARK);
 		System.out.println(testContext.getSuite().getName());
+		log.info(" Extent Report onStart method ends......");
 		
 	}
 	
@@ -49,20 +52,23 @@ public class ExtentReportListener extends TestListenerAdapter{
 		
 		
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		
+		log.info(" Extent Report onTestSuccess method started......");
 		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.PASS,MarkupHelper.createLabel(tr.getName(),ExtentColor.GREEN)); // send the passed information to the report with GREEN color highlighted
+		log.info(tr.getName()+" method got success...");
+		log.info(" Extent Report onTestSuccess method ends......");
 	}
 	
 	public void onTestFailure(ITestResult tr)
 	{
+		log.info(" Extent Report onTestFailure method starts......");
 		//System.out.println("Test Name in TestNG.xml is  ----------"+tr.getTestName());
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		System.out.println("=============="+tr.getAttribute("description"));
-		System.out.println("=============="+tr.getAttributeNames());
+		//System.out.println("=============="+tr.getAttribute("description"));
+		//System.out.println("=============="+tr.getAttributeNames());
 		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.FAIL,MarkupHelper.createLabel(tr.getName(),ExtentColor.RED)); // send the passed information to the report with GREEN color highlighted
-		
+		log.info(tr.getThrowable());
 		String ScreenShotFile=CommonMethod.takeScreenshotTest(tr.getName());
 			logger.log(Status.FAIL,tr.getThrowable());
 			
@@ -72,24 +78,31 @@ public class ExtentReportListener extends TestListenerAdapter{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			log.info(tr.getName()+" method got Failed...");
+			log.info(" Extent Report onTestFailure method ends......");
 			
 	}
 	
 	public void onTestSkipped(ITestResult tr)
 	{
-		
+		log.info(" Extent Report onTestSkipped method starts......");
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		System.out.println("=============="+tr.getAttribute("description"));
-		System.out.println("=============="+tr.getAttributeNames());
+		//System.out.println("=============="+tr.getAttribute("description"));
+		//System.out.println("=============="+tr.getAttributeNames());
 		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.SKIP,MarkupHelper.createLabel(tr.getName(),ExtentColor.ORANGE));
+		log.info(tr.getName()+" method got skipped...");
+		log.info(" Extent Report onTestSkipped method ends......");
 	}
 	
 	
 	public void onFinish(ITestContext testContext)
 	{
+		log.info(" Extent Report onFinish method starts......");
 		System.out.println("=============="+testContext.getAttribute("description"));
 		System.out.println("=============="+testContext.getAttributeNames());
 		extent.flush();
+	
+		log.info(" Extent Report onFinish method ends......");
 	}
 }
