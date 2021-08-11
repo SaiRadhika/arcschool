@@ -8,6 +8,8 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
@@ -72,10 +74,14 @@ public class ExtentReportListener extends TestListenerAdapter{
 		log.info(tr.getThrowable());
 		String ScreenShotFile=CommonMethod.takeScreenshotTest(tr.getName());
 		log.info("Screen Shot Path is ---"+ScreenShotFile);	
-		logger.log(Status.FAIL,tr.getThrowable());
+		//logger.log(Status.FAIL,tr.getThrowable());
 			
 			try {
-				logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
+				MediaEntityModelProvider mediaModel = MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
+				logger.fail(tr.getThrowable(), mediaModel);
+				
+				//MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
+				//logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
