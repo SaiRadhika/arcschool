@@ -10,6 +10,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
@@ -70,10 +71,12 @@ public class ExtentReportListener extends TestListenerAdapter{
 		logger.log(Status.FAIL,MarkupHelper.createLabel(tr.getName(),ExtentColor.RED)); // send the passed information to the report with GREEN color highlighted
 		log.info(tr.getThrowable());
 		String ScreenShotFile=CommonMethod.takeScreenshotTest(tr.getName());
-			logger.log(Status.FAIL,tr.getThrowable());
+		log.info("Screen Shot Path is ---"+ScreenShotFile);	
+		logger.log(Status.FAIL,tr.getThrowable());
 			
 			try {
 				logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
