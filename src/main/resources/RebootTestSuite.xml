@@ -20,8 +20,8 @@
 			<class name="com.arc.testCases.HomePageTest" />
 			<!-- <class name="com.arc.testCases.Project.ProjectPageTest"/> -->
 			<class name="com.arc.testCases.Project.BuildingPageTest" />
-			<!-- <class name="com.arc.testCases.Project.SchoolPageTest" />
-			<class name="com.arc.testCases.Project.CityPageTest" />
+			 <class name="com.arc.testCases.Project.SchoolPageTest" />
+			<!-- <class name="com.arc.testCases.Project.CityPageTest" />
 			<class name="com.arc.testCases.Project.TransitPageTest" />
 			 <class name="com.arc.testCases.Project.CommunitiesPageTest" />
 			<class name="com.arc.testCases.Project.ParkingPageTest" />  -->
