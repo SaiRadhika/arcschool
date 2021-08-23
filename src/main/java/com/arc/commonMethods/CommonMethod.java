@@ -47,7 +47,6 @@ public class CommonMethod extends BaseClass {
 
 	public static String takeScreenshotTest(String MethodName) {
 		log.info("takeScreenshotTest method starts here ......");
-		JSHelper.zoomInBy60Percent();
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
 		
@@ -58,7 +57,6 @@ public class CommonMethod extends BaseClass {
 			FileUtils.copyFile(scrFile, new File(ScreenshotPath + ".png"));
 			log.info("Screenshot captured successfully for Method ...." + MethodName);
 			log.info("takeScreenshotTest method ends here ......");
-			JSHelper.zoomInBy100Percent();
 			return ScreenshotPath + ".png";
 
 		} catch (IOException e) {
