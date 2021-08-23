@@ -75,18 +75,25 @@ public class ExtentReportListener extends TestListenerAdapter{
 		String ScreenShotFile=CommonMethod.takeScreenshotTest(tr.getName());
 		log.info("Screen Shot Path is ---"+ScreenShotFile);	
 		//logger.log(Status.FAIL,tr.getThrowable());
+		MediaEntityModelProvider mediaModel = null;
+		try {
+			mediaModel = MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		logger.log(Status.FAIL, tr.getThrowable(), mediaModel);
 			
-			try {
-				MediaEntityModelProvider mediaModel = MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
-				logger.fail(tr.getThrowable(), mediaModel);
-				
-				//MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
-				//logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		/*
+		 * try { //MediaEntityModelProvider mediaModel =
+		 * MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
+		 * //logger.fail(tr.getThrowable(), mediaModel);
+		 * 
+		 * //logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
+		 * 
+		 * } catch (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 			log.info(tr.getName()+" method got Failed...");
 			log.info(" Extent Report onTestFailure method ends......");
 			
