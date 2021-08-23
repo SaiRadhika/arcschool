@@ -71,23 +71,17 @@ public class HomePageTest extends BaseClass {
 		
 		if(flag)
 		{
-			boolean FilesDownloaded = CommonMethod.CheckDownloadedForTwoFile();
+			boolean FilesDownloaded = CommonMethod.CheckReceiptAndInvoiceFile();
 			if(FilesDownloaded==true)
 			{
-				for(File file:DownloadFolder.listFiles())
-				{
-					file.delete();
-				}
+				CommonMethod.DeleteAllFiles();
 				DownloadFolder.delete();
 				log.info("EssentialUser_Download_Invoice method completed ");
 				Assert.assertTrue(FilesDownloaded);
 			}
 			else 
 			{
-				for(File file:DownloadFolder.listFiles())
-				{
-					file.delete();
-				}
+				CommonMethod.DeleteAllFiles();
 				DownloadFolder.delete();
 				log.info("EssentialUser_Download_Invoice method completed ");
 				Assert.assertTrue(false);
@@ -103,7 +97,7 @@ public class HomePageTest extends BaseClass {
 		
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 100, description = "Verify able to Logout Successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 1000, description = "Verify able to Logout Successfully.")
 	public void Logout_Test() {
 
 		
@@ -123,6 +117,7 @@ public class HomePageTest extends BaseClass {
 	@Test(groups = "Regression" ,dependsOnGroups= "LoginMethodTCGroup",priority = 2, enabled = false, description = "Verify clicking on add a project at RHS button opens the registration form successfully.")
 	public void Check_Add_A_Project() {		
 		log.info("Check_Add_A_Project method started ........... ");
+		
 		
 		boolean flag=false;
 		HomePage.setHomePageApplication();
