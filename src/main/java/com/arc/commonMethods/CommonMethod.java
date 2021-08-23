@@ -624,12 +624,13 @@ public class CommonMethod extends BaseClass {
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
 		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
-		System.out.println("Size of the Table is ----- "+TeamMemberRow.size());
+		log.info("Size of the Table is ----- "+TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
 			int row = i + 1;
 			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
 			try {
 				 email = driver.findElement(By.xpath(EmailXpath)).getText();
+				 log.info("Current email address is --"+email );
 			}
 			catch(StaleElementReferenceException e)
 			{
@@ -665,7 +666,7 @@ public class CommonMethod extends BaseClass {
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
 		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
-		System.out.println("Size of the Table is ----- "+TeamMemberRow.size());
+		log.info("Size of the Table is ----- "+TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
 			int row = i + 1;
 			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
@@ -677,7 +678,7 @@ public class CommonMethod extends BaseClass {
 				e.printStackTrace();
 			}
 			String email = driver.findElement(By.xpath(EmailXpath)).getText();
-			log.info(EmailXpath + "--------" + email);
+			log.info("Current email xpath is --"+EmailXpath + "and email address is --" + email);
 			if (EmailAddress.equals(email)) {
 				String deletexpath = Rowxpath + "[" + row + "]/td[5]/div[1]";
 				try {
@@ -689,14 +690,14 @@ public class CommonMethod extends BaseClass {
 				}
 				waithelper.WaitForElementClickable(driver.findElement(By.xpath(deletexpath)),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				System.out.println("Before clicking on delete button*********************************");
+				log.info("Before clicking on delete button*********************************");
 				driver.findElement(By.xpath(deletexpath)).click();
-				System.out.println("After clicking on delete button*********************************");
+				log.info("After clicking on delete button*********************************");
 				
 				try {
 					
 					Thread.sleep(3000);
-					System.out.println("-----Wait Method--------------------------------------------------------");
+					log.info("-----Wait Method--------------------------------------------------------");
 					
 					waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -712,7 +713,7 @@ public class CommonMethod extends BaseClass {
 				}
 				try {
 					msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
-					System.out.println("Displayed Message is -----" + msgText);
+					log.info("Displayed Message is -----" + msgText);
 				
 				} catch (Exception e) {
 					e.printStackTrace();
