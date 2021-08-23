@@ -103,13 +103,12 @@ public class CommonMethod extends BaseClass {
 	public static long CheckDownloadedFile() {
 		log.info("CheckDownloadedFile method starts here ......");
 		// DownloadFolder=new File(UUID.randomUUID().toString());
-		System.out.println(DownloadFolder);
+		log.info("Temporary folder name is ---"+DownloadFolder);
 		File ListOfFiles[] = DownloadFolder.listFiles();
 		// make sure the directory is not empty
 		log.info("Total file downloaded ...." + ListOfFiles.length);
 		if (ListOfFiles.length != 0) {
 			for (File file : ListOfFiles) {
-
 				log.info("Size of the file - " + file.getName() + " is  " + file.length());
 				log.info("CheckDownloadedFile method ends here ......");
 				return file.length();
@@ -119,29 +118,85 @@ public class CommonMethod extends BaseClass {
 		return 0;
 	}
 
-	public static boolean CheckDownloadedForTwoFile() {
-		log.info("CheckDownloadedForTwoFile method starts here ......");
+	// Checks that whether Receipt and Invoice file downloaded or not.
+	
+	public static boolean CheckReceiptAndInvoiceFile() {
+		log.info("CheckReceiptAndInvoiceFile method starts here ......");
 		boolean flag = false;
+		boolean InvoiceFlag=false;
+		boolean ReceiptFlag=false;
 		// DownloadFolder=new File(UUID.randomUUID().toString());
-		System.out.println(DownloadFolder);
+		log.info("Temporary folder name is ---"+DownloadFolder);
 		File ListOfFiles[] = DownloadFolder.listFiles();
 		// make sure the directory is not empty
-		System.out.println(ListOfFiles.length);
-		if (ListOfFiles.length == 2) {
+		
+		log.info("number of files are --"+ListOfFiles.length);
+		
 			for (File file : ListOfFiles) {
 
-				log.info("Size of the file - " + file.getName() + " is  " + file.length());
-
-				if (file.length() == 0) {
-					flag = false;
-					break;
+				if(file.getName().contains("Receipt"))
+				{	
+					log.info("Receipt file found....");
+					log.info("Size of the file - " + file.getName() + " is  " + file.length());
+					if (file.length() == 0) {
+						ReceiptFlag = false;
+						log.info("Receipt file size is zero....");
+					
+					} else
+					{
+						log.info("Receipt file size is Non zero....");
+						ReceiptFlag = true;
+					}
+						
+				}
+				else if(file.getName().contains("Invoice"))
+				{
+						log.info("Invoice file found....");
+						log.info("Size of the file - " + file.getName() + " is  " + file.length());
+						if (file.length() == 0) {
+							InvoiceFlag = false;
+							log.info("Invoice file size is zero....");
+						
+						} else
+						{
+							log.info("Invoice file size is Non zero....");
+							InvoiceFlag = true;
+						}
+							
+					}
+				else
+					log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				}
+				if (ReceiptFlag ==true && InvoiceFlag==true) {
+					flag=true;
+					log.info("Both Receipt and Invoice file are exist ...");
 				} else
-					flag = true;
-			}
-		}
-		log.info("CheckDownloadedForTwoFile method ends here ......");
+				{
+					log.info("Both Receipt and Invoice file doesn't exist ...");
+					flag = false;
+				}
+		
+			
+		log.info("CheckReceiptAndInvoiceFile method ends here ......");
 		return flag;
 	}
+
+
+	// Delete all downloaded files from temporaray folder.
+	
+		public static void DeleteAllFiles() {
+			log.info("DeleteAllFiles method starts here ......");
+			log.info("number of files are --"+DownloadFolder.listFiles().length);
+			for(File file:DownloadFolder.listFiles())
+			{
+				log.info("Going to delete - " + file.getName() + " with size of  " + file.length());
+				file.delete();
+				log.info("File Name - " + file.getName() +" deleted successfully");
+			}
+			log.info("DeleteAllFiles method ends here ......");
+
+		}
+
 
 	// Checks that whether Agreement is displayed under Manage - > Agreement Menu
 
@@ -150,15 +205,17 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Agreement Table is ---"+AgreementTable.size());
 		if (AgreementTable.size() > 0) {
 			Iterator itr = AgreementTable.iterator();
-			String OrderTypePath;
+			String OrderTypePath="";
 			for (int i = 0; i < AgreementTable.size(); i++) {
 				int rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[2]";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-				System.out.println(OrderTypePath + "......." + OrderType);
+				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("Registration")) {
+					log.info("Order Type Registration found and skipping rest of the rows..");
 					flag = true;
 					break;
 				}
@@ -182,6 +239,7 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Agreement Table is ---"+AgreementTable.size());
 		if (AgreementTable.size() > 0) {
 			Iterator itr = AgreementTable.iterator();
 			String OrderTypePath;
@@ -189,8 +247,9 @@ public class CommonMethod extends BaseClass {
 				int rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[2]";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-				System.out.println(OrderTypePath + "......." + OrderType);
+				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("Registration")) {
+					log.info("Order Type Registration found and skipping the rest of rows..");
 					flag = true;
 					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[3]")).click();
 					try {
@@ -220,6 +279,7 @@ public class CommonMethod extends BaseClass {
 		String mainwindow = driver.getWindowHandle();
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Billing Table is ---"+BillingTable.size());
 		if (BillingTable.size() > 0) {
 			Iterator itr = BillingTable.iterator();
 			String OrderTypePath;
@@ -228,7 +288,7 @@ public class CommonMethod extends BaseClass {
 				rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-				System.out.println(OrderTypePath + "......." + OrderType);
+				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("SUBSCRIPTION")) {
 					SubscriptionLinkExist = true;
 					log.info("Order Type SUBSCRIPTION found ...");
@@ -286,15 +346,17 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Billing Table is ---"+BillingTable.size());
 		if (BillingTable.size() > 0) {
 			Iterator itr = BillingTable.iterator();
-			String OrderTypePath;
+			String OrderTypePath=null;
 			for (int i = 0; i < BillingTable.size(); i++) {
 				int rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-				System.out.println(OrderTypePath + "......." + OrderType);
+				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("REGISTRATION")) {
+					log.info("Order Type REGISTRATION found and skipping rest of rows...");
 					flag = true;
 					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
 					try {
@@ -324,6 +386,7 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Billing Table is ---"+BillingTable.size());
 		if (BillingTable.size() > 0) {
 			Iterator itr = BillingTable.iterator();
 			String OrderTypePath;
@@ -331,9 +394,10 @@ public class CommonMethod extends BaseClass {
 				int rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-				System.out.println(OrderTypePath + "......." + OrderType);
+				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("REVIEW\nLEED Certification")) {
 					flag = true;
+					log.info("Order Type REVIEW\\nLEED Certification found and skipping rest of rows...");
 					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
 					try {
 						Thread.sleep(10000);
@@ -455,7 +519,21 @@ public class CommonMethod extends BaseClass {
 	
 	public static void switchToDefaultContent()
 	{
+		log.info("switchToDefaultContent method starts here......");
 		driver.switchTo().defaultContent();
+		log.info("switchToDefaultContent method ends here......");
+    }
+	
+	
+	
+
+	// This method will switch to Data Input Frame
+	
+	public static void switchToDataInputFrame()
+	{
+		log.info("switchToDataInputFrame method starts here......");
+		driver.switchTo().frame("datainput-widget");
+		log.info("switchToDataInputFrame method ends here......");
     }
 	
 	
@@ -463,6 +541,7 @@ public class CommonMethod extends BaseClass {
 	
 	public static void  RefreshPagewaitForPageLoaded(WebDriver driver)
 	{
+		 log.info("RefreshPagewaitForPageLoaded method starts here......");
 		driver.get(driver.getCurrentUrl());;
 	    ExpectedCondition<Boolean> expectation = new
 	ExpectedCondition<Boolean>() 
@@ -510,9 +589,6 @@ public class CommonMethod extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
-
-		
-
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 				Integer.parseInt(prop.getProperty("explicitTime")));
 		String msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
@@ -548,6 +624,7 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String email=null;
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
 		System.out.println("Size of the Table is ----- "+TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
@@ -568,11 +645,12 @@ public class CommonMethod extends BaseClass {
 			}
 				if (EmailAddress.equals(email)) {
 				log.info(EmailAddress + "  found in this project.....");
+				log.info("Team_checkEmailExistOrNot Method ends with true here.............................................");
 				return true;
 			}
 		}
 
-		log.info("Team_checkEmailExistOrNot Method ends here.............................................");
+		log.info("Team_checkEmailExistOrNot Method ends with false here.............................................");
 		return flag;
 
 	}
@@ -587,20 +665,21 @@ public class CommonMethod extends BaseClass {
 		String msgText = null;
 		
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
 		System.out.println("Size of the Table is ----- "+TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
 			int row = i + 1;
 			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
 			String email = driver.findElement(By.xpath(EmailXpath)).getText();
-			System.out.println(EmailXpath + "--------" + email);
+			log.info(EmailXpath + "--------" + email);
 			if (EmailAddress.equals(email)) {
 				String deletexpath = Rowxpath + "[" + row + "]/td[5]/div[1]";
 				try {

@@ -47,6 +47,8 @@ public class LoginPageTest extends BaseClass{
 	
 	public void Login_ApplicationTest()
 	{
+		//System.setProperty("PrivateProjectProjectID", "8000004441");
+		//System.setProperty("NonLEEDCItyProjectID", "8000004442");
 		LoginPage=new LoginPageObjects();
 		HomePage=new HomePageObjects();
 		log.info("LoginApplicationTest started");

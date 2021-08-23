@@ -83,9 +83,7 @@ public class BuildingPageTest extends BaseClass {
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
 			log.info("Size of the downloaded file is ... " + FileLength);
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_Agreement_Download method completed ");
 			Assert.assertTrue(FileLength > 0);
@@ -110,18 +108,14 @@ public class BuildingPageTest extends BaseClass {
 		HomePage.closeProjectSearchTextBox();
 		CommonMethod.ClikOnBillingDownloadForSubScriptionLink();
 		// BuildingPage.ClikOnBillingDownloadForSubScriptionLink();
-		boolean FileLength = CommonMethod.CheckDownloadedForTwoFile();
-		if (FileLength == true) {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+		boolean flag = CommonMethod.CheckReceiptAndInvoiceFile();
+		if (flag == true) {
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_PerformanceCertificate_Download_Invoice_Receipt method completed ");
-			Assert.assertTrue(FileLength);
+			Assert.assertTrue(flag);
 		} else {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_PerformanceCertificate_Download_Invoice_Receipt method completed ");
 			Assert.assertTrue(false);

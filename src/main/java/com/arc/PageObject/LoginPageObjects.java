@@ -64,7 +64,12 @@ public class LoginPageObjects extends BaseClass{
 			emailAddress.sendKeys(email);
 			password.sendKeys(pass);
 			loginButton.click();
-				
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return new HomePageObjects();
 	}
 	

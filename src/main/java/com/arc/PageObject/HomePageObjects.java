@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,9 +12,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.arc.PageObject.Project.ProjectPageObjects;
 import com.arc.commonMethods.CommonMethod;
+import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
+
 public class HomePageObjects extends BaseClass {
+	private static Logger log = LoggerHelper.getLogger(HomePageObjects.class);
 
 	@FindBy(xpath = "//*[@href='/app/projects/my-projects/?project-type=all' and text()='Projects']")
 	WebElement ProjectHeader;
@@ -23,6 +27,9 @@ public class HomePageObjects extends BaseClass {
 	
 	@FindBy(xpath = "(//*[@class='ml10' and text()='Cities'])[1]")
 	WebElement CitiesSubMenu;
+	
+	@FindBy(xpath = "(//*[@class='ml10' and text()='Communities'])[1]")
+	WebElement CommunitiesSubMenu;
 
 	@FindBy(xpath = "//table[@class='table table-striped arc-table']//child::tr[1]/td[3]/div/span")
 	WebElement BuildingName;
@@ -99,6 +106,7 @@ public class HomePageObjects extends BaseClass {
 	public ProjectPageObjects clickOnProject() {
 		
 		try {
+			CommonMethod.switchToDefaultContent();
 			ProjectHeader.click();
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -146,10 +154,23 @@ public String getCurrentProfileUserName() {
 		}
 		
 	}
+	
+
+	public void clickOnCommunitiesSubMenu() {
+		try {
+			CommunitiesSubMenu.click();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void setHomePageApplication() {
 		
 		try {
+			CommonMethod.switchToDefaultContent();
 			HomeHeader.click();
 		}
 		catch(Exception e)
@@ -189,6 +210,7 @@ public String getCurrentProfileUserName() {
 	}
 
 	public boolean ProfileBillingInvoice() {
+		log.info("ProfileBillingInvoice method started--------------");
 		ProfileIcon.click();
 		ProfileBillingMenu.click();
 		BillingAndPaymentsTab.click();
@@ -207,6 +229,7 @@ public String getCurrentProfileUserName() {
 			System.out.println(OrderTypePath + "......." + OrderType);
 			if (OrderType.equals("Monthly")) {
 				MonthlyLinkExist = true;
+				log.info("Order Type monthly found--------------");
 				break;
 			}
 		}
@@ -218,9 +241,10 @@ public String getCurrentProfileUserName() {
 				String childwindow = itr1.next().toString();
 				if (!MainHandle.equals(childwindow)) {
 					driver.switchTo().window(childwindow);
-
+					log.info("Switched to another Tab--------------");
 					try {
 						DownloadInvoice.click();
+						log.info("Downloading Invoice--------------");
 						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -229,6 +253,7 @@ public String getCurrentProfileUserName() {
 
 					try {
 						DownloadReceipt.click();
+						log.info("Downloading Receipt--------------");
 						Thread.sleep(5000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -237,6 +262,7 @@ public String getCurrentProfileUserName() {
 
 					driver.close();
 					driver.switchTo().window(MainHandle);
+					log.info("Switched to Main Tab--------------");
 					break;
 
 				}
@@ -245,6 +271,7 @@ public String getCurrentProfileUserName() {
 
 		}
 
+		log.info("ProfileBillingInvoice method completed--------------");
 		return MonthlyLinkExist;
 
 	}

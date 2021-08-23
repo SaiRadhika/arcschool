@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.arc.PageObject.Project.CityPageObject;
+import com.arc.PageObject.Project.CommunitiesPageObject;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
@@ -287,6 +288,19 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		}
 		return flag;
 	}
+	
+	public boolean SelectCommunitiesProjectType() {
+		boolean flag = false;
+
+		try {
+			//System.out.println(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
+			if(dropdownhelper.getSelectedValue(ProjectType).equals("Communities"))
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 
 	public void enterProjectName(String PName) {
 		ProjectNameTextBox.clear();
@@ -340,6 +354,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	}
 
 	public boolean CheckAddress_City_Country_State_ZipCode(String Address) {
+		log.info("CheckAddress_City_Country_State_ZipCode starts here..................");
 		AddressTextBox.clear();
 		AddressTextBox.sendKeys(Address);
 		try {
@@ -374,26 +389,46 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			}
 		}
 
-		if (AddressTextBox.getAttribute("value").equals(data.getCellData("City", 3, 2))
-				&& CityTextBox.getAttribute("value").equals(data.getCellData("City", 4, 2))
-				&& dropdownhelper.getSelectedValue(CountryDropDown).equals(data.getCellData("City", 5, 2))
-				&& dropdownhelper.getSelectedValue(StateDropDown).equals(data.getCellData("City", 6, 2))
-				&& ZipTextBox.getAttribute("value").equals(data.getCellData("City", 7, 2))) {
+		log.info("Actual Address Value is --"+AddressTextBox.getAttribute("value"));
+		log.info("Expected Address Value is --"+data.getCellData("ProjectRegistration", 3, 2));
+		log.info("Actual City Value is --"+CityTextBox.getAttribute("value"));
+		log.info("Expected City Value is --"+data.getCellData("ProjectRegistration", 4, 2));
+		log.info("Actual Country Value is --"+dropdownhelper.getSelectedValue(CountryDropDown));
+		log.info("Expected Country Value is --"+data.getCellData("ProjectRegistration", 5, 2));
+		log.info("Actual State Value is --"+dropdownhelper.getSelectedValue(StateDropDown));
+		log.info("Expected State Value is --"+data.getCellData("ProjectRegistration", 6, 2));
+		log.info("Actual Zip Value is --"+ZipTextBox.getAttribute("value"));
+		log.info("Expected Zip Value is --"+data.getCellData("ProjectRegistration", 7, 2));
+		if (AddressTextBox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 3, 2))
+				&& CityTextBox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 4, 2))
+				&& dropdownhelper.getSelectedValue(CountryDropDown).equals(data.getCellData("ProjectRegistration", 5, 2))
+				&& dropdownhelper.getSelectedValue(StateDropDown).equals(data.getCellData("ProjectRegistration", 6, 2))
+				&& ZipTextBox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 7, 2))) {
+			log.info("Address matched--------------");
+			log.info("CheckAddress_City_Country_State_ZipCode starts ends with true..................");
 			return true;
 		} else
+		{
+			log.info("Address not maching--------------");
+			log.info("CheckAddress_City_Country_State_ZipCode ends with false..................");
 			return false;	
-	
+		}
 
 	}
 
 	public boolean CheckGeoLocation() {
-		/*
-		 * try{
-		 * 
-		 * Thread.sleep(3000); if (!(LongitudeTextbox.getAttribute("value").isBlank() &&
-		 * LatitudeTextbox.getAttribute("value").isBlank())) { return true; } else
-		 * return false; } catch(Exception e) { e.printStackTrace(); }
-		 */
+		try{
+			
+			Thread.sleep(3000);
+		if (!(LongitudeTextbox.getAttribute("value").isBlank() && LatitudeTextbox.getAttribute("value").isBlank())) {
+			return true;
+		} else
+			return false;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -419,7 +454,10 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	
 
 	public boolean DownLoadServiceAgreement() {
+		log.info("DownLoadServiceAgreement  method starts here -----");
 		String handle = driver.getWindowHandle();
+		
+		waithelper.WaitForElementClickable(ServiceAgreementLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ServiceAgreementLink.click();
 		try {
 			Thread.sleep(5000);
@@ -439,14 +477,17 @@ public class ProjectRegistrationPageObject extends BaseClass {
 					if (url.contains("registration_agreement.pdf")) {
 						driver.close();
 						driver.switchTo().window(handle);
+						log.info("DownLoadServiceAgreement  method ends with true here -----");
 						return true;
 					} else
+						log.info("DownLoadServiceAgreement  method ends with false here -----");
 						return false;
 
 				}
 			}
 
 		}
+		log.info("DownLoadServiceAgreement  method ends with false here -----");
 		return false;
 	}
 
@@ -465,7 +506,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		return flag;
 	}
 
-	public CityPageObject ClickonAddProjectButton() {
+	public CityPageObject ClickonCityAddProjectButton() {
 
 		try {
 			AddProjectButton.click();
@@ -476,6 +517,21 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		return new CityPageObject();
+
+	}
+	
+	
+	public CommunitiesPageObject ClickonCommunitiesAddProjectButton() {
+
+		try {
+			AddProjectButton.click();
+			//Thread.sleep(2000);
+			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new CommunitiesPageObject();
 
 	}
 

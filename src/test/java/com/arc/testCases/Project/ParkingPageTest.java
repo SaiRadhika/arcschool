@@ -49,9 +49,7 @@ public class ParkingPageTest extends BaseClass{
 		// BuildingPage.ClikOnAgreementDownloadLink();
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Parking_Agreement_Download method completed ");
 			Assert.assertTrue(FileLength > 0);

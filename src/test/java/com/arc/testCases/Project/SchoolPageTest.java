@@ -83,9 +83,7 @@ public class SchoolPageTest extends BaseClass {
 		// SchoolPage.ClikOnAgreementRegistrationDownloadLink();
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("School_Agreement_Download method completed ");
 			Assert.assertTrue(FileLength > 0);
@@ -110,18 +108,14 @@ public class SchoolPageTest extends BaseClass {
 
 		CommonMethod.ClikOnBillingDownloadForSubScriptionLink();
 		// SchoolPage.ClikOnBillingDownloadForSubScriptionLink();
-		boolean FileLength = CommonMethod.CheckDownloadedForTwoFile();
+		boolean FileLength = CommonMethod.CheckReceiptAndInvoiceFile();
 		if (FileLength == true) {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("School_PerformanceCertificate_Download_Invoice_Receipt method completed ");
 			Assert.assertTrue(FileLength);
 		} else {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("School_PerformanceCertificate_Download_Invoice_Receipt method completed ");
 			Assert.assertTrue(false);
