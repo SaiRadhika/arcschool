@@ -24,7 +24,7 @@
 			 <class name="com.arc.testCases.Project.CityPageTest" />
 			<class name="com.arc.testCases.Project.TransitPageTest" />
 			 <class name="com.arc.testCases.Project.CommunitiesPageTest" />
-			<class name="com.arc.testCases.Project.ParkingPageTest" /> --> 
+			<class name="com.arc.testCases.Project.ParkingPageTest" />  -->
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
