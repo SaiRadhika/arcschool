@@ -63,7 +63,7 @@ public class TransitPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = false,  groups={"Reboot"},priority = 7, description = "Verify able to download and upload credit for file successfully under any credit.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true,  groups={"Reboot"},priority = 7, description = "Verify able to download and upload credit form file successfully under any credit.")
 	public void Transit_CreditForm_Download_Upload_Document() {
 		log.info("Transit_Credits_Download_Upload_Document method started ");
 		String DownloadedFilePath = "";
@@ -72,25 +72,36 @@ public class TransitPageTest extends BaseClass {
 		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
 		TransitPage.AllActionSubMenu();
 		HomePage.closeProjectSearchTextBox();
-		
 		TransitPage.ClickonActionName("Site Development - Protect or Restore Habitat");
 		TransitPage.ClickonCreditFormDownLoadButton();
-
+		boolean downloadFlag=false;
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
+			downloadFlag=true;
+			log.info("Credit form Downloaded successfully..............");
 			for (File file : DownloadFolder.listFiles()) {
-				System.out.println(file.getPath());
-				System.out.println(System.getProperty("user.dir") + "\\" + file.getPath());
-				DownloadedFilePath = System.getProperty("user.dir") + "\\" + file.getPath();
-				TransitPage.ClickonCreditFormUpLoadButton();
+				log.info(file.getPath());
+				log.info(System.getProperty("user.dir") + "/" + file.getPath());
+				DownloadedFilePath = System.getProperty("user.dir") + "/" + file.getPath();
+				log.info("Path to upload credit form is .. "+DownloadedFilePath);
 				
-				System.out.println("Path to upload credit form is .. "+DownloadedFilePath);
-				CommonMethod.UploadFile(DownloadedFilePath);
-				boolean flag = TransitPage.CreditFormuploadStatus();
-				if (flag) {
+				boolean uploadflag = TransitPage.CheckCreditFormupload(DownloadedFilePath);
+				if (uploadflag) {
+					log.info("Credit form uploaded successfully..............");
 					
+				}
+				else
+				{
+					log.info("Credit form is not uploaded successfully..............");
+				}
+				
+				CommonMethod.DeleteAllFiles();
+				DownloadFolder.delete();
+				
+				if(downloadFlag==true && uploadflag== true)
+				{
 					log.info("Transit_Credits_Download_Upload_Document method completed ");
-					Assert.assertTrue(flag);
+					Assert.assertTrue(true);
 				}
 
 				else {
@@ -98,11 +109,7 @@ public class TransitPageTest extends BaseClass {
 					Assert.assertTrue(false);
 				}
 				
-				for (File file1 : DownloadFolder.listFiles()) {
-
-					file1.delete();
-				}
-				DownloadFolder.delete();
+				
 
 			}
 			
@@ -110,13 +117,14 @@ public class TransitPageTest extends BaseClass {
 			
 		}
 		else {
+			log.info("Credit Form is not downloaded successfully.....");
 			log.info("Transit_Credits_Download_Upload_Document method completed ");
 			Assert.assertTrue(false);
 		}
 	}
 	
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = false, priority = 7, description = "Verify able to download and upload file successfully under any credit.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 7, description = "Verify able to upload and Remove file with option Upload Using Computer")
 	public void Transit_File_Upload_Remove() {
 		log.info("Transit_File_Upload_Remove method started ");
 		String DownloadedFilePath = "";
@@ -124,42 +132,42 @@ public class TransitPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
 		TransitPage.AllActionSubMenu();
-		HomePage.closeProjectSearchTextBox();
-		
+		HomePage.closeProjectSearchTextBox();		
 		TransitPage.ClickonActionName("Site Development - Protect or Restore Habitat");
-		TransitPage.ClickonFileUpLoadUsingComputerButton();
-		String UploadPath=System.getProperty("user.dir")+"\\"+"UploadDocument";
-		System.out.println("Path to upload File upload is .. "+UploadPath);
-		File upload=new File(UploadPath);
-		for(File f: upload.listFiles())
-		{
+		//TransitPage.ClickonFileUpLoadUsingComputerButton();
+		String UploadPath=System.getProperty("user.dir")+"/UploadDocument/File1.pdf";
+		boolean deletedflag=false;
+		boolean uploadflag = TransitPage.CheckFileUploadUsingComputer(UploadPath);
+		if (uploadflag) {
+			log.info("File upload using Computer completed successfully..............");	
+			File f=new File(UploadPath);
 			String filepath=f.getPath();
-			System.out.println(filepath);
+			deletedflag=TransitPage.ClickonFileDeleButton(f.getName());
+			if(deletedflag)
+			{				
+			log.info("File deleted successfully...... ");
 			
-			CommonMethod.UploadFile(filepath);
-			boolean flag = TransitPage.FileuploadStatus();
-			System.out.println("Flag is....................."+flag);
-			boolean deleted=false;
-			if (flag) {
-				
-				deleted=TransitPage.ClickonFileDeleButton(f.getName());
-				System.out.println("deleted is....................."+deleted);
-				if(deleted)
-				{				
-				log.info("Transit_File_Upload_Remove method ends...... ");
-				Assert.assertTrue(true);
-				}
-				else
-				{
-					log.info("Transit_File_Upload_Remove method ends...... ");
-					Assert.assertTrue(false);
-				}
 			}
+			else
+			{
+				log.info("Unable to delete File...... ");
+			}
+			
+		}
+		else
+		{
+			log.info("Unable to upload file File using Computer ..............");
+		}
+		
+		if(uploadflag==true && deletedflag== true)
+		{
+			log.info("Transit_File_Upload_Remove method completed ");
+			Assert.assertTrue(true);
+		}
 
-			else {
-				
-				Assert.assertTrue(false);
-			}
+		else {
+			log.info("Transit_File_Upload_Remove method completed ");
+			Assert.assertTrue(false);
 		}
 		
 	}

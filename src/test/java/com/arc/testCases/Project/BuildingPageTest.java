@@ -140,16 +140,12 @@ public class BuildingPageTest extends BaseClass {
 		// BuildingPage.ClikOnBillingDownloadForRegistrationLink();
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_LEEDIDProject_Download_Invoice method completed ");
 			Assert.assertTrue(FileLength > 0);
 		} else {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_LEEDIDProject_Download_Invoice method completed ");
 			Assert.assertTrue(false);
@@ -174,16 +170,12 @@ public class BuildingPageTest extends BaseClass {
 		// BuildingPage.ClikOnBillingDownloadForRegistrationLink();
 		long FileLength = CommonMethod.CheckDownloadedFile();
 		if (FileLength > 0) {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_Recertification_Download_Invoice method completed ");
 			Assert.assertTrue(FileLength > 0);
 		} else {
-			for (File file : DownloadFolder.listFiles()) {
-				file.delete();
-			}
+			CommonMethod.DeleteAllFiles();
 			DownloadFolder.delete();
 			log.info("Building_Recertification_Download_Invoice method completed ");
 			Assert.assertTrue(false);

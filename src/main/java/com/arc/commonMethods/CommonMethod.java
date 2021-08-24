@@ -446,6 +446,8 @@ public class CommonMethod extends BaseClass {
 		log.info("UploadFile method ends here ......");
 	}
 	
+	
+	
 	public static void PerformTabout() {
 		log.info("PerformTabout method starts here ......");
 		Robot robot = null;

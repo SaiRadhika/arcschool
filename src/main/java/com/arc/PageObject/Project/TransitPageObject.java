@@ -1,5 +1,6 @@
 package com.arc.PageObject.Project;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,7 +179,7 @@ public class TransitPageObject extends BaseClass {
 	}
 	
 	public boolean ClickonFileDeleButton(String fname) {
-
+		log.info("ClickonFileDeleButton method starts here ...");
 		boolean flag=false;
 		
 		WebElement ele=driver.findElement(By.xpath("//*[text()='"+fname+"']"));
@@ -205,6 +206,7 @@ public class TransitPageObject extends BaseClass {
 				System.out.println("=====================NoSuchElementException=====================");
 				flag=false;
 			}
+			log.info("ClickonFileDeleButton method starts here ...");
 			if(flag==true)
 			{
 				return false;
@@ -214,19 +216,7 @@ public class TransitPageObject extends BaseClass {
 			}
 		return false;
 			
-			/*try {
-			if(FileDeletebutton.isDisplayed())
-			return true;
-			else
-				return false;
-			}
 		
-		catch(NoSuchElementException e)
-		{
-			
-		}
-		else
-			return false;*/
 	}
 
 	public boolean CreditFormuploadStatus() {
@@ -241,6 +231,61 @@ public class TransitPageObject extends BaseClass {
 		}
 		return false;
 	}
+	
+	public boolean CheckCreditFormupload(String filePath) {
+		
+		try {
+			log.info("Credit Form file path is --"+filePath);
+			waithelper.WaitForElementClickable(CreditFormUploadButton,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			
+			driver.findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(filePath);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		waithelper.WaitForElementVisibleWithPollingTime(CreditFormUploadSuccessMsg,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			boolean flag = CreditFormUploadSuccessMsg.isDisplayed();
+			return flag;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+	
+	
+public boolean CheckFileUploadUsingComputer(String filePath) {
+		
+		try {
+			log.info("File uploading using computer path is --"+filePath);
+			waithelper.WaitForElementClickable(FileUploadButtonUsingComputer,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			
+			driver.findElement(By.xpath("(//input[@type='file'])[1]")).sendKeys(filePath);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		waithelper.WaitForElementVisibleWithPollingTime(FileUploadSuccessMsg,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			boolean flag = FileUploadSuccessMsg.isDisplayed();
+			Thread.sleep(3000);
+			return flag;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+	
 	
 	public boolean FileuploadStatus() {
 		waithelper.WaitForElementVisibleWithPollingTime(FileUploadSuccessMsg,
