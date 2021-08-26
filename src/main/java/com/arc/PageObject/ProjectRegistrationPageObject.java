@@ -226,7 +226,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 					try {
 						waithelper.waitForElement(driver.findElement(By.xpath("//ul[@class='breadcrumb' ]/li[2][text()='City Registration']")), Integer.parseInt(prop.getProperty("explicitTime")));
 						String title = driver.findElement(By.xpath("//ul[@class='breadcrumb' ]/li[2]")).getText();
-						System.out.println(title);
+						log.info(title);
 						driver.close();
 						driver.switchTo().window(handle);
 						return title;
@@ -252,7 +252,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 				waithelper.WaitForElementInvisible(RegisterLEEDCertificationNowPopUpButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				if (!(RegisterLEEDCertificationNowPopUpButton.isDisplayed() && NotNowPopUpButton.isDisplayed())) {
 					if (RegisterLEEDNoRadioBtn.isSelected()) {
-						System.out.println(driver.findElement(By.xpath(
+						log.info(driver.findElement(By.xpath(
 								"//div[text()='This project has to register for LEED Certification later by going to the certifications page in Arc.']"))
 								.isDisplayed());
 						flag = driver.findElement(By.xpath(
@@ -280,7 +280,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		boolean flag = false;
 
 		try {
-			//System.out.println(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
+			//log.info(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
 			if(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"))
 				flag = true;
 		} catch (Exception e) {
@@ -293,7 +293,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		boolean flag = false;
 
 		try {
-			//System.out.println(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
+			//log.info(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
 			if(dropdownhelper.getSelectedValue(ProjectType).equals("Communities"))
 				flag = true;
 		} catch (Exception e) {
@@ -375,7 +375,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i).getText());
+			log.info(list.get(i).getText());
 			if (list.get(i).getText()
 					.equals("2101 L St NW - 2101 L St NW, Washington, DC 20037, USA")) {
 				list.get(i).click();
@@ -473,7 +473,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 				if (!handle.equals(window)) {
 					driver.switchTo().window(window);
 					String url = driver.getCurrentUrl();
-					System.out.println("Second URL is ---------------" + url);
+					log.info("Second URL is ---------------" + url);
 					if (url.contains("registration_agreement.pdf")) {
 						driver.close();
 						driver.switchTo().window(handle);

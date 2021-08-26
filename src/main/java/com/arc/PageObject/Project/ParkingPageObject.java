@@ -35,13 +35,17 @@ public class ParkingPageObject extends BaseClass{
 	
 
 	public void ClickonAgreementInManage() {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
 
 	}
 
 	public void ClickonBillingInManage() {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
 
 	}
@@ -51,16 +55,18 @@ public class ParkingPageObject extends BaseClass{
 	
 	public void ClickonTeamInManage()
 	{
-		try {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(TeamSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		TeamSubmenu.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Thread.sleep(3000);
-		}
-		catch (Exception e) {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Unable to traverse Team Submenu");
 		}
+		
 		
 	}
 	

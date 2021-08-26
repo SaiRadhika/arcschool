@@ -43,11 +43,16 @@ public class LoginPageObjects extends BaseClass{
 	}
 	public HomePageObjects login(String email,String pass)
 	{
+			waithelper.WaitForElementClickable(acceptAndClose, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			acceptAndClose.click();
+			waithelper.WaitForElementClickable(loginLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			loginLink.click();
+			waithelper.WaitForElementClickable(acceptAndCloseonLoginPage, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			acceptAndCloseonLoginPage.click();
+			
 			emailAddress.sendKeys(email);
 			password.sendKeys(pass);
+			waithelper.WaitForElementClickable(loginButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			loginButton.click();
 				
 		return new HomePageObjects();
@@ -58,11 +63,11 @@ public class LoginPageObjects extends BaseClass{
 	
 	public HomePageObjects loginLater(String email,String pass)
 	{
-			
+			waithelper.WaitForElementClickable(loginLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			loginLink.click();
-			
 			emailAddress.sendKeys(email);
 			password.sendKeys(pass);
+			waithelper.WaitForElementClickable(loginButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			loginButton.click();
 			try {
 				Thread.sleep(5000);

@@ -61,8 +61,9 @@ public class BuildingPageObject extends BaseClass {
 	}
 
 	public void ClickonAgreementInManage() {
-
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Agreements']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -76,8 +77,9 @@ public class BuildingPageObject extends BaseClass {
 	}
 
 	public void ClickonBillingInManage() {
-
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Billing']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -91,8 +93,9 @@ public class BuildingPageObject extends BaseClass {
 	}
 
 	public void ClickonTeamInManage() {
-
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(TeamSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		TeamSubmenu.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);

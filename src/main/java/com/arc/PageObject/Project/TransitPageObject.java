@@ -72,13 +72,17 @@ public class TransitPageObject extends BaseClass {
 	}
 
 	public void ClickonAgreementInManage() {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
 
 	}
 
 	public void ClickonBillingInManage() {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
 
 	}
@@ -86,37 +90,38 @@ public class TransitPageObject extends BaseClass {
 	
 
 	public void AllActionSubMenu() {
+		waithelper.WaitForElementClickable(CreditActionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		CreditActionSubmenu.click();
+		waithelper.WaitForElementClickable(AllActionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AllActionSubmenu.click();
 	}
 
 	
 	public void ClickonProjectInManage()
 	{
-		try {
-	
-		ManageMenu.click();
-		ProjectSubmenu.click();
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
+			waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ManageMenu.click();
+			waithelper.WaitForElementClickable(ProjectSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ProjectSubmenu.click();
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		
 	}
 	
 	public void ClickonTeamInManage()
 	{
 		try {
-		ManageMenu.click();
-		TeamSubmenu.click();
-		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Thread.sleep(3000);
+			waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ManageMenu.click();
+			waithelper.WaitForElementClickable(TeamSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			TeamSubmenu.click();
+		
+			waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			Thread.sleep(3000);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Unable to traverse Team Submenu");
+			log.info("Unable to traverse Team Submenu");
 		}
 	}
 	public boolean ClickonActionName(String Action) {
@@ -191,19 +196,19 @@ public class TransitPageObject extends BaseClass {
 			try {
 				waithelper.WaitForElementInvisible(ele, 30, 2);
 				flag=ele.isDisplayed();
-				System.out.println(flag+"This is ele.isDisplayed() value;");
-				System.out.println();
+				log.info(flag+"This is ele.isDisplayed() value;");
+				
 			}
 			catch(StaleElementReferenceException e)
 			{
 				flag=false;
-				System.out.println("=====================StaleElementReferenceException=====================");
+				log.info("=====================StaleElementReferenceException=====================");
 				e.printStackTrace();
 				
 			}
 			catch(NoSuchElementException e)
 			{
-				System.out.println("=====================NoSuchElementException=====================");
+				log.info("=====================NoSuchElementException=====================");
 				flag=false;
 			}
 			log.info("ClickonFileDeleButton method starts here ...");

@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.impl.values.JavaStringHolderEx;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -52,6 +53,9 @@ public class CityPageObject extends BaseClass {
 	
 	@FindBy(xpath = "(//table[@class='meterListByType--wrapper']/tbody)[2]/tr[1]/td[3]/div/span/span")
 	WebElement WaterScore;
+	
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span/span")
+	WebElement QualityScore;
 
 	@FindBy(xpath = "(//table[@class='meterListByType--wrapper']/tbody)[3]/tr[1]/td[3]/div/span/span")
 	WebElement WasteScore;
@@ -203,6 +207,9 @@ public class CityPageObject extends BaseClass {
 	@FindBy(xpath = "//span[text()='Add Year']/parent::button")
 	WebElement WaterConsum_Data_AddYearBtn;
 
+	@FindBy(xpath = "//span[text()='Add Year']/parent::button")
+	WebElement Additional_Data_AddYearBtn;
+	
 	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")
 	WebElement GHGEmission_Data_Save_EditBtn;
 
@@ -557,28 +564,30 @@ public class CityPageObject extends BaseClass {
 
 				@FindBy(xpath = "//span[text()='Activity']")
 				WebElement HealthAndSafetyVoilentCrime_ActivityButton;
-		
+				
+				//*******************************Additional Data *****************************************
+				
+				@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr[2]/td[2]/div")
+				WebElement AdditionalData;
 	//************************************************************************
 	public CityPageObject() {
 		PageFactory.initElements(driver, this);
 	}
 
 	public void ClickonAgreementInManage() {
-		try {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			ManageMenu.click();
+			waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			AgreementSubmenu.click();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void ClickonBillingInManage() {
-		try {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			ManageMenu.click();
+			waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			BillingSubmenu.click();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	public void ClickonDataInput() {
@@ -858,6 +867,28 @@ public class CityPageObject extends BaseClass {
 						log.info("ClickonHealthAndSafetyVoilentCrime method ends here.....");
 					
 				}
+				
+				// This method will click on Additional Data --> Data
+				public void ClickonAdditionalData() {
+					
+					log.info("ClickonAdditionalData method started here.....");
+						
+						try {
+						waithelper.WaitForElementVisibleWithPollingTime(AdditionalData,
+								Integer.parseInt(prop.getProperty("explicitTime")), 2);
+						}
+						catch(Exception e)
+						{
+							e.printStackTrace();
+							
+						}
+						AdditionalData.click();
+						waithelper.WaitForElementVisibleWithPollingTime(
+								driver.findElement(By.xpath("(//*[contains(text(),'Additional Data')])[3]")),
+								Integer.parseInt(prop.getProperty("explicitTime")), 2);
+						log.info("ClickonAdditionalData method ends here.....");
+					
+				}
 	// This method will click on Water --> Water Consumption
 	public void ClickonWaterConsumption() {
 		log.info("ClickonWaterConsumption method started .............");
@@ -957,7 +988,7 @@ public class CityPageObject extends BaseClass {
 			Thread.sleep(4000);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Unable to traverse Team Submenu");
+			log.info("Unable to traverse Team Submenu");
 		}
 
 	}
@@ -971,7 +1002,7 @@ public class CityPageObject extends BaseClass {
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			if (driver.findElement(By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div/h4"))
 					.getText().contains(PName)) {
-				System.out.println("Project Name showing---------" + driver
+				log.info("Project Name showing---------" + driver
 						.findElement(By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div/h4"))
 						.getText());
 				return true;
@@ -992,7 +1023,7 @@ public class CityPageObject extends BaseClass {
 		log.info("getEnergyScore method starts here........");
 
 		int score = Integer.parseInt(EnergyScore.getText());
-		System.out.println("Energy Score is -----" + score);
+		log.info("Energy Score is -----" + score);
 		log.info("Energy Score is -----" + score);
 		log.info("getEnergyScore method ends here........");
 		return score;
@@ -1007,7 +1038,7 @@ public class CityPageObject extends BaseClass {
 			log.info("getTransportScore method starts here........");
 
 			int score = Integer.parseInt(TransportScore.getText());
-			System.out.println("Transport Score is -----" + score);
+			log.info("Transport Score is -----" + score);
 			log.info("Transport Score is -----" + score);
 			log.info("getTransportScore method ends here........");
 			return score;
@@ -1020,7 +1051,7 @@ public class CityPageObject extends BaseClass {
 			log.info("getWasteScore method starts here........");
 
 			int score = Integer.parseInt(WasteScore.getText());
-			System.out.println("Waste Score is -----" + score);
+			log.info("Waste Score is -----" + score);
 			log.info("Waste Score is -----" + score);
 			log.info("getWasteScore method ends here........");
 			return score;
@@ -1033,9 +1064,21 @@ public class CityPageObject extends BaseClass {
 
 		log.info("getWaterScore method starts here........");
 		int score = Integer.parseInt(WaterScore.getText());
-		System.out.println("Water Score is -----" + score);
+		log.info("Water Score is -----" + score);
 		log.info("Water Score is -----" + score);
 		log.info("getWaterScore method ends here........");
+		return score;
+
+	}
+	
+	// This method will return the Quality Of Life score
+	public int getQualityOfLifeScore() {
+
+		log.info("getQualityOfLifeScore method starts here........");
+		int score = Integer.parseInt(QualityScore.getText());
+		log.info("Quality Of Life Score is -----" + score);
+		log.info("Quality Of Life Score -----" + score);
+		log.info("getQualityOfLifeScore method ends here........");
 		return score;
 
 	}
@@ -1104,7 +1147,7 @@ public class CityPageObject extends BaseClass {
 	    LocalTime localTime = LocalTime.now();
 	    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 	    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-	    //System.out.println(localTime.format(dateTimeFormatter));
+	    //log.info(localTime.format(dateTimeFormatter));
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -1172,7 +1215,7 @@ public class CityPageObject extends BaseClass {
 		    LocalTime localTime = LocalTime.now();
 		    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 		    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-		    //System.out.println(localTime.format(dateTimeFormatter));
+		    //log.info(localTime.format(dateTimeFormatter));
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -1246,7 +1289,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1319,7 +1362,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1392,7 +1435,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1466,7 +1509,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1512,6 +1555,115 @@ public class CityPageObject extends BaseClass {
 
 				}
 	
+				
+				// This method will add record for each items of Additional Data Dropdown box
+				
+				public boolean checkAdditionalData_SaveRecords() {
+					log.info("checkAdditionalData_SaveRecords  starts here........");
+					boolean flag=false;
+					List<String> ItemList=new ArrayList<>();
+					JSHelper.clickElement(AdditionalData);
+					List<WebElement> AdditionalItems = driver.findElements(By.xpath("//*[@class='water_unit add_item ng-scope']/span"));
+					log.info("Total number of items is ---"+AdditionalItems.size());
+					int row=1;
+					int value=100;
+					int unit=100;
+					String UnitValue="Unit"+unit;
+					for(WebElement ele:AdditionalItems)
+					{
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						//JSHelper.scrollToElement(driver.findElement(By.xpath("//*[@id='addtional_data']")));
+						JavascriptExecutor js = (JavascriptExecutor) driver;
+						//js.executeScript("window.scrollBy(0,-400);");
+						if(row>5)
+						{
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						   JSHelper.scrollIntoView(driver.findElement(By.xpath("(//*[contains(text(),'Additional Data')])[3]")));
+						}
+						log.info("Goint to add record number -- "+row);
+						driver.findElement(By.xpath("//*[@id='addtional_data']")).click();
+						ele.click();
+						String itemname=driver.findElement(By.xpath("//*[@id='addtional_data']/span")).getText();
+						//log.info(itemname);
+						ItemList.add(itemname);	
+						
+						waithelper.WaitForElementClickable(Additional_Data_AddYearBtn,Integer.parseInt(prop.getProperty("explicitTime")), 2);
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						Additional_Data_AddYearBtn.click();
+						try {
+							Thread.sleep(3000);
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						log.info("Row number is --"+row);
+						int Selected_Year = Integer.parseInt(driver
+								.findElement(By.xpath("//table[@class='table arcTbl cityTable']/tbody/tr["+row+"]/td[1]/input")).getAttribute("value"));
+						log.info("Selected Year is ---" + Selected_Year);
+						if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+							driver.findElement(By.xpath("//table[@class='table arcTbl cityTable']/tbody/tr["+row+"]/td[3]/input"))
+									.sendKeys(Integer.toString(value));
+							driver.findElement(By.xpath("//table[@class='table arcTbl cityTable']/tbody/tr["+row+"]/td[4]/input")).sendKeys(UnitValue);
+							driver.findElement(By.xpath("//table[@class='table arcTbl cityTable']/tbody/tr["+row+"]/td[5]/button")).click();
+							try {
+							waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//table[@class='table arcTbl cityTable']/tbody/tr["+row+"]/td[6]/div/*")),
+									Integer.parseInt(prop.getProperty("explicitTime")), 2);
+							}
+							catch(Exception e)
+							{
+								log.info("Loading symbol is not showing...........");
+								e.printStackTrace();
+								e.getMessage();
+							}
+							flag = driver.findElement(By.xpath("//table[@class='table arcTbl cityTable']/tbody/tr[1]/td[5]/button/span[text()='Edit']")).isDisplayed();
+							if(flag)
+							{
+								log.info("Record added for --"+itemname);
+							}
+							else
+							{
+								log.info("Unable to add Record for --"+itemname);
+							}
+								
+						}
+						row++;
+						value=value+1;
+						unit=unit+1;
+						UnitValue="Unit"+unit;
+					}
+					
+					/*
+					 * for(String s:ItemList) { log.info(s); }
+					 */
+					
+					if (flag ) {
+						log.info("Comments and activity showing proper");
+						log.info("checkAdditionalData_SaveRecords  ends here........");
+						return true;
+					} else {
+						log.info("Comments and activity not showing proper");
+						log.info("checkAdditionalData_SaveRecords  ends here........");
+						return false;
+					}
+
+				}
+	
 				// This method will add comment and check in activity section DI - >Quality Of Life--> Health And Safety
 				// - Details Tab and check it in Activity
 				public boolean checkHealthAndSafetyCommentAndActivity(String comment, String uname) {
@@ -1539,7 +1691,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1609,7 +1761,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1682,7 +1834,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1752,7 +1904,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1821,7 +1973,7 @@ public class CityPageObject extends BaseClass {
 				    LocalTime localTime = LocalTime.now();
 				    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 				    String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-				    //System.out.println(localTime.format(dateTimeFormatter));
+				    //log.info(localTime.format(dateTimeFormatter));
 					try {
 						Thread.sleep(3000);
 					} catch (InterruptedException e) {
@@ -1972,12 +2124,12 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		System.out.println("Total Rows displaying is --" + rows);
+		log.info("Total Rows displaying is --" + rows);
 		for (int i = 0; i < rows.size(); i++) {
 			int rownum = i + 1;
 			String CurrentUpdatedBy = driver
 					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + rownum + "]/td[3]/div")).getText();
-			System.out.println(CurrentUpdatedBy + " ----------------- " + Username);
+			log.info(CurrentUpdatedBy + " ----------------- " + Username);
 			if (CurrentUpdatedBy.contains(Username)) {
 
 				flag = true;
@@ -2019,12 +2171,12 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		System.out.println("Total Rows displaying is --" + rows);
+		log.info("Total Rows displaying is --" + rows);
 		for (int i = 0; i < rows.size(); i++) {
 			int rownum = i + 1;
 			String CurrentUpdatedBy = driver
 					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + rownum + "]/td[3]/div")).getText();
-			System.out.println(CurrentUpdatedBy + " ----------------- " + Username);
+			log.info(CurrentUpdatedBy + " ----------------- " + Username);
 			if (CurrentUpdatedBy.contains(Username)) {
 
 				flag = true;
@@ -2125,7 +2277,7 @@ public class CityPageObject extends BaseClass {
 		}
 		boolean AddedRowFlag = false;
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		System.out.println("Total Row display is ---  " + rows.size());
+		log.info("Total Row display is ---  " + rows.size());
 		
 		log.info("Total Row display is ---  " + rows.size());
 		if (rows.size() > 0) {
@@ -2222,7 +2374,7 @@ public class CityPageObject extends BaseClass {
 				}
 				population=population+100;
 			}
-			System.out.println("Total Row display is ---  " + rows.size());
+			log.info("Total Row display is ---  " + rows.size());
 			
 			log.info("Total Row display is ---  " + rows.size());
 			int beforeFilter=rows.size();
@@ -2391,7 +2543,7 @@ public class CityPageObject extends BaseClass {
 						}
 						PArea=PArea+100;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -2593,7 +2745,7 @@ public class CityPageObject extends BaseClass {
 						
 						tons=tons+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -2791,7 +2943,7 @@ public class CityPageObject extends BaseClass {
 						
 						Miles=Miles+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -2968,7 +3120,7 @@ public class CityPageObject extends BaseClass {
 						
 						Miles=Miles+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -3142,7 +3294,7 @@ public class CityPageObject extends BaseClass {
 						
 						Percent=Percent+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -3311,7 +3463,7 @@ public class CityPageObject extends BaseClass {
 						
 						//Percent=Percent+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -3493,7 +3645,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -3671,7 +3823,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+10;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -3849,7 +4001,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+10;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -4027,7 +4179,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+5;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -4206,7 +4358,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+5;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -4384,7 +4536,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+5;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -4564,7 +4716,7 @@ public class CityPageObject extends BaseClass {
 						}
 						tons=tons+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -4766,7 +4918,7 @@ public class CityPageObject extends BaseClass {
 						
 						percent=percent+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -4964,7 +5116,7 @@ public class CityPageObject extends BaseClass {
 						
 						value=value+2;
 					}
-					System.out.println("Total Row display is ---  " + rows.size());
+					log.info("Total Row display is ---  " + rows.size());
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
@@ -5079,7 +5231,7 @@ public class CityPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		boolean AddedRowFlag = false;
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		System.out.println("Total Row display is ---  " + rows.size());
+		log.info("Total Row display is ---  " + rows.size());
 		log.info("Total Row display is ---  " + rows.size());
 		if (rows.size() > 1) {
 			log.info("Added Row showing proper----");
@@ -5110,7 +5262,7 @@ public class CityPageObject extends BaseClass {
 		}
 
 		String PopulationValue = Population_populationTextBox.getAttribute("value");
-		System.out.println("Population Value is --" + PopulationValue);
+		log.info("Population Value is --" + PopulationValue);
 		if (PopulationValue.contains(",")) {
 			log.info("verifyPopulationField_Contains_Comma method ends here .........");
 			return true;
@@ -5136,7 +5288,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		String ProjectAreaValue = ProjectAreaTextBox.getAttribute("value");
-		System.out.println("Project Area Value is --" + ProjectAreaValue);
+		log.info("Project Area Value is --" + ProjectAreaValue);
 		if (ProjectAreaValue.contains(",")) {
 			log.info("verifyProjectAreaField_Contains_Comma method ends here .........");
 			return true;
@@ -5232,7 +5384,7 @@ public class CityPageObject extends BaseClass {
 			waithelper.WaitForElementVisibleWithPollingTime(PerformanceHeaderText,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
-			System.out.println("PerformanceHeaderText.getText() value is ---- " + PerformanceHeaderText.isDisplayed());
+			log.info("PerformanceHeaderText.getText() value is ---- " + PerformanceHeaderText.isDisplayed());
 			return PerformanceHeaderText.getText();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -5966,10 +6118,11 @@ public class CityPageObject extends BaseClass {
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
+		waithelper.WaitForElementClickable(GHGEmission_Data_AddYearBtn,Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		GHGEmission_Data_AddYearBtn.click();
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		System.out.println("Selected Year is ---" + Selected_Year);
+		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 					.sendKeys(data.getCellData("City", 4, 2));
@@ -5994,7 +6147,7 @@ public class CityPageObject extends BaseClass {
 			VMT_Data_AddYearBtn.click();
 			int Selected_Year = Integer.parseInt(driver
 					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-			System.out.println("Selected Year is ---" + Selected_Year);
+			log.info("Selected Year is ---" + Selected_Year);
 			if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 						.sendKeys(data.getCellData("City", 14, 2));
@@ -6042,7 +6195,7 @@ public class CityPageObject extends BaseClass {
 					
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 26, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6087,7 +6240,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 18, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6131,7 +6284,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 20, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6179,7 +6332,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 22, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6225,7 +6378,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 24, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6272,7 +6425,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 26, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6319,7 +6472,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 28, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6375,7 +6528,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 30, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6423,7 +6576,7 @@ public class CityPageObject extends BaseClass {
 					}
 					int Selected_Year = Integer.parseInt(driver
 							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-					System.out.println("Selected Year is ---" + Selected_Year);
+					log.info("Selected Year is ---" + Selected_Year);
 					log.info("Selected Year is ---" + Selected_Year);
 					log.info(data.getCellData("City", 32, 2));
 					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
@@ -6472,7 +6625,7 @@ public class CityPageObject extends BaseClass {
 					String Miles_Days_Capita = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
 					int Miles_Days_CapitaNew = Integer.parseInt(Miles_Days_Capita);
 					Miles_Days_CapitaNew=Miles_Days_CapitaNew+5;
-					System.out.println(Miles_Days_CapitaNew);
+					log.info(Miles_Days_CapitaNew);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(Miles_Days_CapitaNew));
 					VMT_Data_Save_EditBtn.click();
@@ -6516,7 +6669,7 @@ public class CityPageObject extends BaseClass {
 					String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
 					int value = Integer.parseInt(OldValue);
 					value=value+100;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					HealthAndSafety_Data_Save_EditBtn.click();
@@ -6560,7 +6713,7 @@ public class CityPageObject extends BaseClass {
 					String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
 					int value = Integer.parseInt(OldValue);
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					Education_BachelorPopulation_Data_Save_EditBtn.click();
@@ -6609,7 +6762,7 @@ public class CityPageObject extends BaseClass {
 					else
 						value=1;
 					//value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					Equitability_Gini_Coefficient_Data_Save_EditBtn.click();
@@ -6654,7 +6807,7 @@ public class CityPageObject extends BaseClass {
 					int value = Integer.parseInt(OldValue);
 					
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					Education_HighSchoolPopulation_Data_Save_EditBtn.click();
@@ -6698,7 +6851,7 @@ public class CityPageObject extends BaseClass {
 					int value = Integer.parseInt(OldValue);
 					
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					ProsperityMedianIncome_Data_Save_EditBtn.click();
@@ -6742,7 +6895,7 @@ public class CityPageObject extends BaseClass {
 					int value = Integer.parseInt(OldValue);
 					
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					ProsperityMedianIncome_Data_Save_EditBtn.click();
@@ -6788,7 +6941,7 @@ public class CityPageObject extends BaseClass {
 					int value = Integer.parseInt(OldValue);
 					
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					ProsperityMedianIncome_Data_Save_EditBtn.click();
@@ -6834,7 +6987,7 @@ public class CityPageObject extends BaseClass {
 					int value = Integer.parseInt(OldValue);
 					
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					HealthAndSafetySensitiveGroup_Data_Save_EditBtn.click();
@@ -6880,7 +7033,7 @@ public class CityPageObject extends BaseClass {
 					int value = Integer.parseInt(OldValue);
 					
 					value=value+10;
-					System.out.println(value);
+					log.info(value);
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(value));
 					HealthAndSafetyVoilentCrime_Data_Save_EditBtn.click();
@@ -6899,11 +7052,11 @@ public class CityPageObject extends BaseClass {
 		log.info("CheckGHGEmission_EditRow  starts here........");
 		boolean flag = false;
 		GHGEmission_Data_Save_EditBtn.click();
-		System.out.println(data.getCellData("City", 4, 2));
-		System.out.println(Integer.parseInt(data.getCellData("City", 4, 2)) + 5);
-		System.out.println(Integer.toString(Integer.parseInt(data.getCellData("City", 4, 2)) + 5));
+		log.info(data.getCellData("City", 4, 2));
+		log.info(Integer.parseInt(data.getCellData("City", 4, 2)) + 5);
+		log.info(Integer.toString(Integer.parseInt(data.getCellData("City", 4, 2)) + 5));
 		String Tons_Year_Capita = Integer.toString(Integer.parseInt(data.getCellData("City", 4, 2)) + 5);
-		System.out.println(Tons_Year_Capita);
+		log.info(Tons_Year_Capita);
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Tons_Year_Capita);
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
@@ -7799,7 +7952,7 @@ public class CityPageObject extends BaseClass {
 		if (prev_flag && Next_flag) {
 			List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 			int TableRowCount = TableRow.size();
-			System.out.println("Total rows showing is ----" + TableRowCount);
+			log.info("Total rows showing is ----" + TableRowCount);
 			if (TableRowCount == 3) {
 				log.info("CheckGHGEmission_SavePreviousAndNextYearRecord  ends here........");
 				return true;
@@ -7829,7 +7982,7 @@ public class CityPageObject extends BaseClass {
 		if (CommonMethod.getCurrentYear() - selected_year == 2) {
 			WasteTons = Integer.parseInt(data.getCellData("City", 10, 2));
 			WasteTons = WasteTons - 5;
-			System.out.println("Previous Year TONs Value is ---" + WasteTons);
+			log.info("Previous Year TONs Value is ---" + WasteTons);
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 					.sendKeys(Integer.toString(WasteTons));
@@ -7852,7 +8005,7 @@ public class CityPageObject extends BaseClass {
 		if (CommonMethod.getCurrentYear() == selected_year) {
 			WasteTons = Integer.parseInt(data.getCellData("City", 10, 2));
 			WasteTons = WasteTons + 5;
-			System.out.println("Next Year TONs Value is ---" + WasteTons);
+			log.info("Next Year TONs Value is ---" + WasteTons);
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 					.sendKeys(Integer.toString(WasteTons));
@@ -7872,7 +8025,7 @@ public class CityPageObject extends BaseClass {
 		if (prev_flag && Next_flag) {
 			List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 			int TableRowCount = TableRow.size();
-			System.out.println("Total rows showing is ----" + TableRowCount);
+			log.info("Total rows showing is ----" + TableRowCount);
 			if (TableRowCount == 3) {
 				log.info("CheckWaste_Generation_SavePreviousAndNextYearRecord  ends here........");
 				return true;
@@ -7903,7 +8056,7 @@ public class CityPageObject extends BaseClass {
 			if (CommonMethod.getCurrentYear() - selected_year == 2) {
 				WastePercent = Integer.parseInt(data.getCellData("City", 12, 2));
 				WastePercent = WastePercent - 5;
-				System.out.println("Previous Year TONs Value is ---" + WastePercent);
+				log.info("Previous Year TONs Value is ---" + WastePercent);
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 						.sendKeys(Integer.toString(WastePercent));
@@ -7926,7 +8079,7 @@ public class CityPageObject extends BaseClass {
 			if (CommonMethod.getCurrentYear() == selected_year) {
 				WastePercent = Integer.parseInt(data.getCellData("City", 12, 2));
 				WastePercent = WastePercent + 5;
-				System.out.println("Next Year TONs Value is ---" + WastePercent);
+				log.info("Next Year TONs Value is ---" + WastePercent);
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 						.sendKeys(Integer.toString(WastePercent));
@@ -7946,7 +8099,7 @@ public class CityPageObject extends BaseClass {
 			if (prev_flag && Next_flag) {
 				List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 				int TableRowCount = TableRow.size();
-				System.out.println("Total rows showing is ----" + TableRowCount);
+				log.info("Total rows showing is ----" + TableRowCount);
 				if (TableRowCount == 3) {
 					log.info("CheckWaste_Generation_SavePreviousAndNextYearRecord  ends here........");
 					return true;
@@ -7976,7 +8129,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						TransportMiles = Integer.parseInt(data.getCellData("City", 14, 2));
 						TransportMiles = TransportMiles - 5;
-						System.out.println("Previous Year TONs Value is ---" + TransportMiles);
+						log.info("Previous Year TONs Value is ---" + TransportMiles);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(TransportMiles));
@@ -7999,7 +8152,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						TransportMiles = Integer.parseInt(data.getCellData("City", 14, 2));
 						TransportMiles = TransportMiles + 5;
-						System.out.println("Next Year TONs Value is ---" + TransportMiles);
+						log.info("Next Year TONs Value is ---" + TransportMiles);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(TransportMiles));
@@ -8019,7 +8172,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8065,7 +8218,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 16, 2));
 						value = value - 10;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8095,7 +8248,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 16, 2));
 						value = value + 5;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8115,7 +8268,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8156,7 +8309,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 18, 2));
 						value = value - 5;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8178,7 +8331,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 18, 2));
 						value = value + 5;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8198,7 +8351,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8237,7 +8390,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 20, 2));
 						value = value - 1;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8273,7 +8426,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 20, 2));
 						value = value + 0;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8293,7 +8446,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8332,7 +8485,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 22, 2));
 						value = value - 5;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8362,7 +8515,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 22, 2));
 						value = value + 5;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8382,7 +8535,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8420,7 +8573,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 24, 2));
 						value = value - 10;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8450,7 +8603,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 24, 2));
 						value = value + 10;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8470,7 +8623,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8508,7 +8661,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 26, 2));
 						value = value - 10;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8538,7 +8691,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 26, 2));
 						value = value + 10;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8558,7 +8711,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8597,7 +8750,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 28, 2));
 						value = value - 10;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8627,7 +8780,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 28, 2));
 						value = value + 10;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8647,7 +8800,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8687,7 +8840,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 30, 2));
 						value = value - 10;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8717,7 +8870,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 30, 2));
 						value = value + 10;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8737,7 +8890,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8782,7 +8935,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() - selected_year == 2) {
 						value = Integer.parseInt(data.getCellData("City", 32, 2));
 						value = value - 10;
-						System.out.println("Previous Year Value is ---" + value);
+						log.info("Previous Year Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8818,7 +8971,7 @@ public class CityPageObject extends BaseClass {
 					if (CommonMethod.getCurrentYear() == selected_year) {
 						value = Integer.parseInt(data.getCellData("City", 32, 2));
 						value = value + 10;
-						System.out.println("Next Year TONs Value is ---" + value);
+						log.info("Next Year TONs Value is ---" + value);
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 								.sendKeys(Integer.toString(value));
@@ -8838,7 +8991,7 @@ public class CityPageObject extends BaseClass {
 					if (prev_flag && Next_flag) {
 						List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 						int TableRowCount = TableRow.size();
-						System.out.println("Total rows showing is ----" + TableRowCount);
+						log.info("Total rows showing is ----" + TableRowCount);
 						log.info("Total rows showing is ----" + TableRowCount);
 						if (TableRowCount == 3) {
 							log.info("Previous Year and Next Year row are added successfully");
@@ -8935,7 +9088,7 @@ public class CityPageObject extends BaseClass {
 		if (prev_flag && Next_flag) {
 			List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 			int TableRowCount = TableRow.size();
-			System.out.println("Total rows showing is ----" + TableRowCount);
+			log.info("Total rows showing is ----" + TableRowCount);
 			if (TableRowCount == 3) {
 				log.info("CheckWaterConsum_SavePreviousAndNextYearRecord  ends here........");
 				return true;
@@ -8964,7 +9117,7 @@ public class CityPageObject extends BaseClass {
 		WaterConsum_Data_AddYearBtn.click();
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		System.out.println("Selected Year is ---" + Selected_Year);
+		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 					.sendKeys(data.getCellData("City", 6, 2));
@@ -8998,7 +9151,7 @@ public class CityPageObject extends BaseClass {
 		Waste_AddYearButton.click();
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		System.out.println("Selected Year is ---" + Selected_Year);
+		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 					.sendKeys(data.getCellData("City", 10, 2));
@@ -9039,7 +9192,7 @@ public class CityPageObject extends BaseClass {
 			Waste_AddYearButton.click();
 			int Selected_Year = Integer.parseInt(driver
 					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-			System.out.println("Selected Year is ---" + Selected_Year);
+			log.info("Selected Year is ---" + Selected_Year);
 			if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 						.sendKeys(data.getCellData("City", 12, 2));
@@ -9085,7 +9238,7 @@ public class CityPageObject extends BaseClass {
 		Iterator itr = units.iterator();
 		while (itr.hasNext()) {
 			String unit = (String) itr.next();
-			System.out.println("Unit Type--" + unit + "   is going to add.....");
+			log.info("Unit Type--" + unit + "   is going to add.....");
 			log.info("Unit Type--" + unit + "   is going to add.....");
 			driver.findElement(By.xpath("//span[text()='Next Year']/parent::button")).click();
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
@@ -9155,7 +9308,7 @@ public class CityPageObject extends BaseClass {
 		Iterator itr = Durations.iterator();
 		while (itr.hasNext()) {
 			String Duration = (String) itr.next();
-			System.out.println("Unit Type--" + Duration + "   is going to add.....");
+			log.info("Unit Type--" + Duration + "   is going to add.....");
 			driver.findElement(By.xpath("//span[text()='Next Year']/parent::button")).click();
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 					.sendKeys(data.getCellData("City", 6, 2));

@@ -134,36 +134,24 @@ public String getCurrentProfileUserName() {
 	public void clickOnBuildingSubMenu() {
 		
 		
-		try {
+		waithelper.WaitForElementClickable(BuildingSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			BuildingSubMenu.click();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
 
 	}
 
 	public void clickOnCitiesSubMenu() {
-		try {
+		waithelper.WaitForElementClickable(CitiesSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			CitiesSubMenu.click();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
 		
 	}
 	
 
 	public void clickOnCommunitiesSubMenu() {
-		try {
+		waithelper.WaitForElementClickable(CommunitiesSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			CommunitiesSubMenu.click();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		
 		
 	}
 
@@ -196,23 +184,22 @@ public String getCurrentProfileUserName() {
 	// This project clicks on Profile --> Sign out button and returns the page title.
 	
 	public String checkSignOut() {
-		try {
+		waithelper.WaitForElementClickable(ProfileIcon, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileIcon.click();
+		waithelper.WaitForElementClickable(ProfileSignOut, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileSignOut.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@id='login-box-trigger-lg']")), Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		return driver.getTitle();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return null;
+		
 	}
 
 	public boolean ProfileBillingInvoice() {
 		log.info("ProfileBillingInvoice method started--------------");
+		waithelper.WaitForElementClickable(ProfileIcon, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileIcon.click();
+		waithelper.WaitForElementClickable(ProfileBillingMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileBillingMenu.click();
+		waithelper.WaitForElementClickable(BillingAndPaymentsTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingAndPaymentsTab.click();
 		String MainHandle = driver.getWindowHandle();
 
@@ -226,7 +213,7 @@ public String getCurrentProfileUserName() {
 			rownum = i + 1;
 			OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
 			String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-			System.out.println(OrderTypePath + "......." + OrderType);
+			log.info(OrderTypePath + "......." + OrderType);
 			if (OrderType.equals("Monthly")) {
 				MonthlyLinkExist = true;
 				log.info("Order Type monthly found--------------");

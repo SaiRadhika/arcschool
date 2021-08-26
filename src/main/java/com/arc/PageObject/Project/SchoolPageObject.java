@@ -53,45 +53,51 @@ public class SchoolPageObject extends BaseClass{
 	
 	public void ClickonAgreementInManage()
 	{
-		try {
-		
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Agreements']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Thread.sleep(3000);
-		}
-		catch (Exception e) {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Unable to traverse Agreement Submenu");
 		}
+		
 	}
 	
 	public void ClickonBillingInManage()
 	{
-		try {
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Billing']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Thread.sleep(3000);
-		}
-		catch (Exception e) {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Unable to traverse Billing Submenu");
 		}
+		
 	}
 	
 	public void ClickonTeamInManage()
 	{
+		
+			waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ManageMenu.click();
+			waithelper.WaitForElementClickable(TeamSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			TeamSubmenu.click();
+			waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-		ManageMenu.click();
-		TeamSubmenu.click();
-		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Thread.sleep(3000);
-		}
-		catch (Exception e) {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Unable to traverse Team Submenu");
 		}
+		
 		
 	}
 	
