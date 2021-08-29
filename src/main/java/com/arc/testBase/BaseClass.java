@@ -82,9 +82,9 @@ public class BaseClass {
 	 * 
 	 * }
 	 */
-	@Parameters("browserName")
+	@Parameters({"browserName" , "URL"})
 	@BeforeTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
-	public static void initializtion(String browserName) {
+	public static void initializtion(String browserName, String url) {
 		log.info("Initialization method started");
 		try {
 			prop = new Properties();
@@ -108,18 +108,21 @@ public class BaseClass {
 		// String browserName = prop.getProperty("browserName");
 			//CommonMethod.deleteAllDownloadedFiles();
 			//CommonMethod.deleteAllPreviousScreenshotsFiles();
+		log.info("Opearting System is --"+System.getProperty("os.name"));
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// System.out.println(System.getProperty("user.dir"));
 			DownloadFolder = new File("DownLoadedFiles/" + UUID.randomUUID().toString());
 			// DownloadFolder.mkdir();
-
+			log.info("DownloadFolder path is --"+DownloadFolder);
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--start-maximized");
-			options.addArguments("--no-sandbox");
-			options.addArguments("--disable-dev-shm-usage");
-			options.addArguments("--headless");
-			options.addArguments("--disable-gpu");
-			options.addArguments("window-size=1382x754");
+			
+			
+			  options.addArguments("--no-sandbox");
+			  options.addArguments("--disable-dev-shm-usage");
+			  options.addArguments("--headless"); options.addArguments("--disable-gpu");
+			  options.addArguments("window-size=1382x754");
+			 
 
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);
@@ -130,7 +133,7 @@ public class BaseClass {
 			log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver");
 			
 			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+					System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
 			
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
@@ -164,8 +167,17 @@ public class BaseClass {
 		 * driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		 * driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		 */
-		driver.get(prop.getProperty("QAurl"));
-		log.info("URL navigated to .. " + prop.getProperty("QAurl"));
+		if(url.equalsIgnoreCase("QAS"))
+		{
+			driver.get(prop.getProperty("QAurl"));
+			log.info("URL navigated to .. " + prop.getProperty("QAurl"));
+		}
+		else if(url.equalsIgnoreCase("STG"))
+		{
+			driver.get(prop.getProperty("STGurl"));
+			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
+		}
+				
 		log.info("Initialization method ends");
 
 	}
