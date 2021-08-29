@@ -82,7 +82,7 @@ public class BaseClass {
 	 * 
 	 * }
 	 */
-	@Parameters({"browserName" , "URL"})
+	
 	@BeforeTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
 	public static void initializtion(String browserName, String url) {
 		log.info("Initialization method started");
