@@ -82,9 +82,9 @@ public class BaseClass {
 	 * 
 	 * }
 	 */
-	
+	@Parameters("browserName")
 	@BeforeTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
-	public static void initializtion(String browserName, String url) {
+	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
 		try {
 			prop = new Properties();
@@ -167,17 +167,8 @@ public class BaseClass {
 		 * driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		 * driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		 */
-		if(url.equalsIgnoreCase("QAS"))
-		{
-			driver.get(prop.getProperty("QAurl"));
-			log.info("URL navigated to .. " + prop.getProperty("QAurl"));
-		}
-		else if(url.equalsIgnoreCase("STG"))
-		{
-			driver.get(prop.getProperty("STGurl"));
-			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
-		}
-				
+		driver.get(prop.getProperty("QAurl"));
+		log.info("URL navigated to .. " + prop.getProperty("QAurl"));
 		log.info("Initialization method ends");
 
 	}

@@ -142,9 +142,6 @@
 					 -->	<suiteXmlFiles>
 							<suiteXmlFile>src/main/resources/RebootTestSuite.xml</suiteXmlFile>
 						</suiteXmlFiles>
-						<systemPropertyVariables>
-						<EnvironmentURL>${URL}</EnvironmentURL>
-						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 				<plugin>
