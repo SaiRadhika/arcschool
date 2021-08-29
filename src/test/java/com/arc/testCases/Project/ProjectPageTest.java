@@ -30,12 +30,12 @@ public class ProjectPageTest extends BaseClass {
 	 */
 
 	@BeforeMethod
-	@Parameters("browserName")
-	public void setup(String browserName)
+	@Parameters({"browserName" , "URL"})
+	public void setup(String browserName, String url)
 	
 	 {
 		log.info("Setup method of ProjectPageTest class started ");
-		initializtion(browserName);
+		initializtion(browserName, url);
 		LoginPage = new LoginPageObjects();
 		HomePage = new HomePageObjects();
 		ProjectPage = new ProjectPageObjects();
