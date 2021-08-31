@@ -122,8 +122,8 @@ public class BaseClass {
 			  options.addArguments("--disable-dev-shm-usage");
 			  options.addArguments("--headless"); options.addArguments("--disable-gpu");
 			  options.addArguments("window-size=1382x754");
+			  
 			 
-
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);
 			Pref.put("download.default_directory", DownloadFolder.getAbsolutePath());
@@ -171,8 +171,8 @@ public class BaseClass {
 		waithelper.setImplicitWait(Long.parseLong(prop.getProperty("implicitTime")), TimeUnit.SECONDS);
 		waithelper.pageLoadTime(Long.parseLong(prop.getProperty("pageloadtime")), TimeUnit.SECONDS);
 		
-		driver.get(prop.getProperty("QAurl"));
-		log.info("URL navigated to .. " + prop.getProperty("QAurl"));
+		driver.get(prop.getProperty("STGurl"));
+		log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		log.info("Initialization method ends");
 
 	}
