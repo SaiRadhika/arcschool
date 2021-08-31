@@ -33,13 +33,12 @@ import com.arc.PageObject.Project.ProjectPageObjects;
 import com.arc.PageObject.Project.SchoolPageObject;
 import com.arc.PageObject.Project.TransitPageObject;
 import com.arc.commonMethods.ActionsHelper;
-import com.arc.commonMethods.CommonMethod;
+import com.arc.commonMethods.DropDownHelper;
 import com.arc.commonMethods.ExcelHelper;
 import com.arc.commonMethods.JavaScriptHelper;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.commonMethods.WaitHelper;
 import com.arc.commonMethods.WebEventListener;
-import com.arc.commonMethods.DropDownHelper;
 
 public class BaseClass {
 
@@ -82,7 +81,7 @@ public class BaseClass {
 	 * 
 	 * }
 	 */
-	@Parameters("browserName")
+	@Parameters({"browserName"})
 	@BeforeTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
 	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
@@ -108,7 +107,8 @@ public class BaseClass {
 		// String browserName = prop.getProperty("browserName");
 			//CommonMethod.deleteAllDownloadedFiles();
 			//CommonMethod.deleteAllPreviousScreenshotsFiles();
-		log.info("Opearting System is --"+System.getProperty("os.name"));
+		String OS_Name=System.getProperty("os.name");
+		log.info("Opearting System is --"+OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// System.out.println(System.getProperty("user.dir"));
 			DownloadFolder = new File("DownLoadedFiles/" + UUID.randomUUID().toString());
@@ -130,10 +130,17 @@ public class BaseClass {
 			options.setExperimentalOption("prefs", Pref);
 			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
-			log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+			if(OS_Name.equalsIgnoreCase("Linux"))
+			{
+				log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+			}
+			else
+			{
+				log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
+			}
 			
-			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
 			
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
@@ -163,10 +170,7 @@ public class BaseClass {
 		System.out.println(Long.parseLong(prop.getProperty("implicitTime")));
 		waithelper.setImplicitWait(Long.parseLong(prop.getProperty("implicitTime")), TimeUnit.SECONDS);
 		waithelper.pageLoadTime(Long.parseLong(prop.getProperty("pageloadtime")), TimeUnit.SECONDS);
-		/*
-		 * driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-		 * driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		 */
+		
 		driver.get(prop.getProperty("QAurl"));
 		log.info("URL navigated to .. " + prop.getProperty("QAurl"));
 		log.info("Initialization method ends");
