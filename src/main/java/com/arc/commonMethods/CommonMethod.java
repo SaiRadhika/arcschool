@@ -1,7 +1,5 @@
 package com.arc.commonMethods;
 
-import static org.testng.Assert.assertFalse;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -589,6 +587,12 @@ public class CommonMethod extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 				Integer.parseInt(prop.getProperty("explicitTime")));
 		String msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
