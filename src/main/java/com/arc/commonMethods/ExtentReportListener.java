@@ -77,14 +77,11 @@ public class ExtentReportListener extends TestListenerAdapter{
 		logger.log(Status.FAIL,tr.getThrowable());
 				
 		  try { 
-			  logger.fail("Hello",MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build());
-		 // logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
 		  
-		  } catch (IOException e) { 
-			  // TODO Auto-generated catch block
-			  log.info("Unable to attach the Screenshot File to Extent Report");
-			  e.printStackTrace();
-		  }
+		  logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
+		  
+		  } catch (IOException e) { // TODO Auto-generated catch block
+		  e.printStackTrace(); }
 		 
 			log.info(tr.getName()+" method got Failed...");
 			log.info(" Extent Report onTestFailure method ends......");
