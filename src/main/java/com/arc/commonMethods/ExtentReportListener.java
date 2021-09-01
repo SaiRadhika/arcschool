@@ -45,7 +45,7 @@ public class ExtentReportListener extends TestListenerAdapter{
 		
 		
 		htmlReporter.config().setTheme(Theme.DARK);
-		System.out.println(testContext.getSuite().getName());
+		log.info(testContext.getSuite().getName());
 		log.info(" Extent Report onStart method ends......");
 		
 	}
@@ -65,35 +65,27 @@ public class ExtentReportListener extends TestListenerAdapter{
 	public void onTestFailure(ITestResult tr)
 	{
 		log.info(" Extent Report onTestFailure method starts......");
-		//System.out.println("Test Name in TestNG.xml is  ----------"+tr.getTestName());
+		//log.info("Test Name in TestNG.xml is  ----------"+tr.getTestName());
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		//System.out.println("=============="+tr.getAttribute("description"));
-		//System.out.println("=============="+tr.getAttributeNames());
+		//log.info("=============="+tr.getAttribute("description"));
+		//log.info("=============="+tr.getAttributeNames());
 		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.FAIL,MarkupHelper.createLabel(tr.getName(),ExtentColor.RED)); // send the passed information to the report with GREEN color highlighted
 		log.info(tr.getThrowable());
 		String ScreenShotFile=CommonMethod.takeScreenshotTest(tr.getName());
 		log.info("Screen Shot Path is ---"+ScreenShotFile);	
-		//logger.log(Status.FAIL,tr.getThrowable());
-		MediaEntityModelProvider mediaModel = null;
-		try {
-			mediaModel = MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		logger.log(Status.FAIL, tr.getThrowable(), mediaModel);
-			
-		/*
-		 * try { //MediaEntityModelProvider mediaModel =
-		 * MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build();
-		 * //logger.fail(tr.getThrowable(), mediaModel);
-		 * 
-		 * //logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
-		 * 
-		 * } catch (IOException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); }
-		 */
+		logger.log(Status.FAIL,tr.getThrowable());
+				
+		  try { 
+			  logger.fail("Hello",MediaEntityBuilder.createScreenCaptureFromPath(ScreenShotFile).build());
+		 // logger.addScreenCaptureFromPath(ScreenShotFile,"Testing Purpose");
+		  
+		  } catch (IOException e) { 
+			  // TODO Auto-generated catch block
+			  log.info("Unable to attach the Screenshot File to Extent Report");
+			  e.printStackTrace();
+		  }
+		 
 			log.info(tr.getName()+" method got Failed...");
 			log.info(" Extent Report onTestFailure method ends......");
 			
@@ -103,8 +95,8 @@ public class ExtentReportListener extends TestListenerAdapter{
 	{
 		log.info(" Extent Report onTestSkipped method starts......");
 		//logger=extent.createTest(tr.getTestContext().getName()+"::"+tr.getName()); // create new entry in the report
-		//System.out.println("=============="+tr.getAttribute("description"));
-		//System.out.println("=============="+tr.getAttributeNames());
+		//log.info("=============="+tr.getAttribute("description"));
+		//log.info("=============="+tr.getAttributeNames());
 		logger=extent.createTest(tr.getName(),tr.getMethod().getDescription());
 		logger.log(Status.SKIP,MarkupHelper.createLabel(tr.getName(),ExtentColor.ORANGE));
 		log.info(tr.getName()+" method got skipped...");
@@ -115,8 +107,8 @@ public class ExtentReportListener extends TestListenerAdapter{
 	public void onFinish(ITestContext testContext)
 	{
 		log.info(" Extent Report onFinish method starts......");
-		System.out.println("=============="+testContext.getAttribute("description"));
-		System.out.println("=============="+testContext.getAttributeNames());
+		log.info("=============="+testContext.getAttribute("description"));
+		log.info("=============="+testContext.getAttributeNames());
 		extent.flush();
 	
 		log.info(" Extent Report onFinish method ends......");
