@@ -30,7 +30,7 @@ public class ProjectPageTest extends BaseClass {
 	 */
 
 	@BeforeMethod
-	@Parameters("browserName")
+	@Parameters({"browserName"})
 	public void setup(String browserName)
 	
 	 {

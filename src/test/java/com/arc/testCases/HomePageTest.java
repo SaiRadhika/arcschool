@@ -1,23 +1,14 @@
 package com.arc.testCases;
 
-import java.io.File;
+import static org.testng.Assert.assertTrue;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import com.arc.PageObject.HomePageObjects;
-import com.arc.PageObject.LoginPageObjects;
-import com.arc.PageObject.Project.ProjectPageObjects;
+import com.arc.PageObject.InsightPageObject;
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
-
 import com.arc.testBase.BaseClass;
 
 public class HomePageTest extends BaseClass {
@@ -104,9 +95,25 @@ public class HomePageTest extends BaseClass {
 		log.info("Logout_Test method started ");
 		HomePage.setHomePageApplication();
 		String Title=HomePage.checkSignOut();
-		System.out.println(Title);
 		Assert.assertEquals(Title,"Arc Skoru | Sustainability performance platform" );
 		
+	}
+	
+	
+
+	@Test(dependsOnGroups = "LoginMethodTCGroup",groups={"Reboot"}, priority = 40, description = "Verify able to Login into Insight.")
+	public void Login_To_Insight() {
+		log.info("InsightLoginTest method started here ... ");
+		HomePage.setHomePageApplication();
+		InsightPage=HomePage.LoginToInsight();
+		if(InsightPage==null)
+		{
+			HomePage.closeInsightModelWindow();
+			Assert.assertTrue(false);
+		}
+		else
+		Assert.assertTrue(true);
+		log.info("InsightLoginTest method ends here ");
 		
 	}
 

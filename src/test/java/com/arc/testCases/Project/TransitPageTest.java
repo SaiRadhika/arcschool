@@ -16,7 +16,7 @@ public class TransitPageTest extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(TransitPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 7, description = "Verify Manage-->Agreements should show the project agreement.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 23, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Transit_Agreement_Display() {
 		log.info("Transit_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -38,7 +38,7 @@ public class TransitPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Transit_Agreement_Display", groups={"Reboot"}, 
-			enabled = true, priority = 7, description = "Verify able to download the agreement successfully.")
+			enabled = true, priority = 24, description = "Verify able to download the agreement successfully.")
 	public void Transit_Agreement_Download() {
 		log.info("Transit_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -63,7 +63,7 @@ public class TransitPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true,  groups={"Reboot"},priority = 7, description = "Verify able to download and upload credit form file successfully under any credit.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true,  groups={"Reboot"},priority = 25, description = "Verify able to download and upload credit form file successfully under any credit.")
 	public void Transit_CreditForm_Download_Upload_Document() {
 		log.info("Transit_Credits_Download_Upload_Document method started ");
 		String DownloadedFilePath = "";
@@ -124,7 +124,7 @@ public class TransitPageTest extends BaseClass {
 	}
 	
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 7, description = "Verify able to upload and Remove file with option Upload Using Computer")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 26, description = "Verify able to upload and Remove file with option Upload Using Computer")
 	public void Transit_File_Upload_Remove() {
 		log.info("Transit_File_Upload_Remove method started ");
 		String DownloadedFilePath = "";
@@ -172,7 +172,7 @@ public class TransitPageTest extends BaseClass {
 		
 	}
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 7, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 27, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void Transit_LEEDIDProject_Download_Invoice() {
 		
 			log.info("Transit_LEEDIDProject_Download_Invoice method started ");
@@ -209,7 +209,7 @@ public class TransitPageTest extends BaseClass {
 	
 	// Verify Manage-->Teams should show team members added to the project.
 
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 7, description = "Verify able to add a team-member successfully.")
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 28, description = "Verify able to add a team-member successfully.")
 		public void Transit_Team_Add_Member() {
 
 			log.info("Transit_Team_Add_Member method started ");
@@ -255,7 +255,7 @@ public class TransitPageTest extends BaseClass {
 		// Verify Manage-->It should allow to delete member from the added list
 
 		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"Reboot" }, dependsOnMethods = "Transit_Team_Add_Member", enabled = true, priority = 7, description = "Verify able to remove a team-member successfully.")
+				"Reboot" }, dependsOnMethods = "Transit_Team_Add_Member", enabled = true, priority = 29, description = "Verify able to remove a team-member successfully.")
 		public void Transit_Team_Delete_Member() {
 
 			log.info("Transit_Team_Delete_Member method started .......................");

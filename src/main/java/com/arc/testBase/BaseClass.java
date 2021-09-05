@@ -23,6 +23,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import com.arc.PageObject.HomePageObjects;
+import com.arc.PageObject.InsightPageObject;
 import com.arc.PageObject.LoginPageObjects;
 import com.arc.PageObject.ProjectRegistrationPageObject;
 import com.arc.PageObject.Project.BuildingPageObject;
@@ -65,6 +66,7 @@ public class BaseClass {
 	public static CommunitiesPageObject CommunitiesPage;
 	public static ParkingPageObject ParkingPage;
 	public static ProjectRegistrationPageObject ProjectRegistrationPage;
+	public static InsightPageObject InsightPage;
 
 	/*
 	 * public BaseClass() {
@@ -122,7 +124,7 @@ public class BaseClass {
 			  options.addArguments("--disable-dev-shm-usage");
 			  options.addArguments("--headless"); options.addArguments("--disable-gpu");
 			  options.addArguments("window-size=1382x754");
-			  
+			 
 			 
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);

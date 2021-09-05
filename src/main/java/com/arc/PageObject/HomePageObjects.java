@@ -21,6 +21,24 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "//*[@href='/app/projects/my-projects/?project-type=all' and text()='Projects']")
 	WebElement ProjectHeader;
+	
+	@FindBy(xpath = "//span[ text()='Insight']")
+	WebElement InsightMenu;
+	
+	@FindBy(xpath = "//*[@class='insight_login modal fade in']")
+	WebElement InsightModelWindow;
+	
+	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[3]/div/input")
+	WebElement InsightLoginTextBox;
+	
+	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[4]/div/input")
+	WebElement InsightPassTextBox;
+	
+	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[5]/div/button[text()='Login']")
+	WebElement InsightLoginButton;
+	
+	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[5]/div/button[text()='Close']")
+	WebElement InsightCloseButton;
 
 	@FindBy(xpath = "//body/div[@id='app']/nav[1]/div[1]/div[1]/div[1]/div[2]/span[1]")
 	WebElement BuildingSubMenu;
@@ -115,7 +133,77 @@ public class HomePageObjects extends BaseClass {
 		}
 		return new ProjectPageObjects();
 	}
+	
+	
+public InsightPageObject clickOnInsight() {
+	log.info("clickOnInsight method started....");
+			CommonMethod.switchToDefaultContent();
+			InsightMenu.click();
+		
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			log.info("clickOnInsight method ends here....");
+			return new InsightPageObject();
+	}
 
+public InsightPageObject LoginToInsight() {
+	log.info("LoginToInsight method started....");
+	boolean flag=false;
+	CommonMethod.switchToDefaultContent();
+	InsightMenu.click();
+	waithelper.WaitForElementVisibleWithPollingTime(InsightModelWindow, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+	try {
+		Thread.sleep(2000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	InsightLoginTextBox.sendKeys(prop.getProperty("InsightUser"));
+	InsightPassTextBox.sendKeys(prop.getProperty("InsightPassword"));
+	waithelper.WaitForElementClickable(InsightLoginButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+	InsightLoginButton.click();
+	
+	try {
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h3[@class='fw-500 line_height_32 mt24 mb24']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		Thread.sleep(8000);
+		flag = driver.findElement(By.xpath("//h3[@class='fw-500 line_height_32 mt24 mb24']")).isDisplayed();
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	log.info("LoginToInsight method ends here....");
+	if(flag)
+	return new InsightPageObject();
+	else
+		return null;
+	
+}
+
+
+public void closeInsightModelWindow()
+{
+	try {
+		if(InsightModelWindow.isDisplayed())
+		{
+			InsightCloseButton.click();
+			log.info("Insight Model Window remains showing.. now closing it");
+		}
+	}
+	catch(Exception e)
+	{
+		log.info("Unable to close Insight Model Window");
+		e.printStackTrace();
+	}
+}
 public String getCurrentProfileUserName() {
 		CommonMethod.switchToDefaultContent();
 		String username = null;

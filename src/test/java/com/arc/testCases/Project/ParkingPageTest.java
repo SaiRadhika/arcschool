@@ -14,7 +14,7 @@ public class ParkingPageTest extends BaseClass{
 	
 	private static Logger log = LoggerHelper.getLogger(ParkingPageTest.class);
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 9, description = "Verify Manage-->Agreements should show the project agreement.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"},enabled = true, priority = 35, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Parking_Agreement_Display() {
 		log.info("Parking_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -35,7 +35,7 @@ public class ParkingPageTest extends BaseClass{
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Parking_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 9, description = "Verify able to download the agreement successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Parking_Agreement_Display", groups={"Reboot"}, enabled = true, priority = 36, description = "Verify able to download the agreement successfully.")
 	public void Parking_Agreement_Download() {
 		log.info("Parking_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -60,7 +60,7 @@ public class ParkingPageTest extends BaseClass{
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 9, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups={"Reboot"}, enabled = true, priority = 37, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void Parking_LEEDID_Project_Download_Invoice() {
 		
 			log.info("Parking_LEEDID_Project_Download_Invoice method started ");
@@ -88,7 +88,7 @@ public class ParkingPageTest extends BaseClass{
 	
 	// Verify Manage-->Teams should show team members added to the project.
 
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 9,description = "Verify able to add a team-member successfully.")
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 38,description = "Verify able to add a team-member successfully.")
 		public void Parking_Team_Add_Member() {
 
 			log.info("Parking_Team_Add_Member method started ");
@@ -134,7 +134,7 @@ public class ParkingPageTest extends BaseClass{
 		// Verify Manage-->It should allow to delete member from the added list
 
 		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"Reboot" }, dependsOnMethods = "Parking_Team_Add_Member", enabled = true, priority = 9, description = "Verify able to remove a team-member successfully.")
+				"Reboot" }, dependsOnMethods = "Parking_Team_Add_Member", enabled = true, priority = 39, description = "Verify able to remove a team-member successfully.")
 		public void Parking_Team_Delete_Member() {
 
 			log.info("Parking_Team_Delete_Member method started .......................");

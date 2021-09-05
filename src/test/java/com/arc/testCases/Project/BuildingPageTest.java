@@ -48,7 +48,7 @@ public class BuildingPageTest extends BaseClass {
 	 * 
 	 * log.info("Setup method of BuildingPageTest class completed "); }
 	 */
-	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, groups = { "Reboot" }, priority = 4, description = "Verify Manage-->Agreements should show the project agreement.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, groups = { "Reboot" }, priority = 5, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Building_Agreement_Display() {
 		log.info("Building_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -69,7 +69,7 @@ public class BuildingPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Building_Agreement_Display", groups = {
-			"Reboot" }, enabled = true, priority = 4, description = "Verify able to download the agreement successfully.")
+			"Reboot" }, enabled = true, priority = 6, description = "Verify able to download the agreement successfully.")
 	public void Building_Agreement_Download() {
 		log.info("Building_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -95,7 +95,7 @@ public class BuildingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 7, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
 	public void Building_PerformanceCertificate_Download_Invoice_Receipt() {
 
 		log.info("Building_PerformanceCertificate_Download_Invoice_Receipt method started ");
@@ -123,7 +123,7 @@ public class BuildingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 8, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void Building_LEEDIDProject_Download_Invoice() {
 
 		log.info("Building_LEEDIDProject_Download_Invoice method started ");
@@ -153,7 +153,7 @@ public class BuildingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify if project submitted for recertification, billing--> Invoice and receipt are downloaded successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 9, description = "Verify if project submitted for recertification, billing--> Invoice and receipt are downloaded successfully.")
 	public void Building_Recertification_Download_Invoice() {
 
 		log.info("Building_Recertification_Download_Invoice method started ");
@@ -184,7 +184,7 @@ public class BuildingPageTest extends BaseClass {
 	
 	// Verify Manage-->Teams should show team members added to the project.
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 4, description = "Verify able to add a team-member successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 10, description = "Verify able to add a team-member successfully.")
 	public void Building_Team_Add_Member() {
 
 		log.info("Building_Team_Add_Member method started ");
@@ -229,7 +229,7 @@ public class BuildingPageTest extends BaseClass {
 	// Verify Manage-->It should allow to delete member from the added list
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, dependsOnMethods = "Building_Team_Add_Member", enabled = true, priority = 4, description = "Verify able to delete  team-member successfully.")
+			"Reboot" }, dependsOnMethods = "Building_Team_Add_Member", enabled = true, priority = 11, description = "Verify able to delete  team-member successfully.")
 	public void Building_Team_Delete_Member() {
 
 		log.info("Building_Team_Delete_Member method started .......................");

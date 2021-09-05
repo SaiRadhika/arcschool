@@ -605,7 +605,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify able to download service agreement successfully.
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 16, enabled = true, description = " Verify able to download service agreement successfully.")
+			"Check_ProjectType_City_Value" }, priority = 16, enabled = false, description = " Verify able to download service agreement successfully.")
 	public void ProjectRegistration_Download_Service_Agreement() {
 		log.info("ProjectRegistration_Download_Service_Agreement method started ........... ");
 		try {

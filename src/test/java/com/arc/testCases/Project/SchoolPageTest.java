@@ -46,7 +46,7 @@ public class SchoolPageTest extends BaseClass {
 	 * 
 	 * log.info("Setup method of SchoolPageTest class completed "); }
 	 */
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 5, description = "Verify Manage-->Agreements should show the project agreement.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 12, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void School_Agreement_Display() {
 
 		log.info("School_Agreement_Display method started ");
@@ -69,7 +69,7 @@ public class SchoolPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "School_Agreement_Display", groups = {
-			"Reboot" }, enabled = true, priority = 5, description = "Verify able to download the agreement successfully.")
+			"Reboot" }, enabled = true, priority = 13, description = "Verify able to download the agreement successfully.")
 	public void School_Agreement_Download() {
 
 		log.info("School_Agreement_Download method started ");
@@ -93,7 +93,7 @@ public class SchoolPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 5, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 14, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
 	public void School_PerformanceCertificate_Download_Invoice_Receipt() {
 
 		log.info("School_PerformanceCertificate_Download_Invoice_Receipt method started ");
@@ -123,7 +123,7 @@ public class SchoolPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 5, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 15, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void School_LEEDProject_DownloadInvoice() {
 
 		log.info("School_LEEDProject_DownloadInvoice method started ");
@@ -166,7 +166,7 @@ public class SchoolPageTest extends BaseClass {
 
 	// Verify Manage-->Teams should show team members added to the project.
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 5, description = "Verify able to add a team-member successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 16, description = "Verify able to add a team-member successfully.")
 	public void School_Team_Add_Member() {
 
 		log.info("School_Team_Add_Member method started ");
@@ -205,7 +205,7 @@ public class SchoolPageTest extends BaseClass {
 	// Verify Manage-->It should allow to delete member from the added list
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, dependsOnMethods = "School_Team_Add_Member", enabled = true, priority = 5, description = "Verify able to remove a team-member successfully.")
+			"Reboot" }, dependsOnMethods = "School_Team_Add_Member", enabled = true, priority = 17, description = "Verify able to remove a team-member successfully.")
 	public void School_Team_Delete_Member() {
 
 		log.info("School_Team_Delete_Member method started .......................");

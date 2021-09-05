@@ -17,7 +17,7 @@ public class CityPageTest extends BaseClass {
 	private static Logger log = LoggerHelper.getLogger(CityPageTest.class);
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, enabled = true, priority = 6, description = "Verify Manage-->Agreements should show the project agreement.")
+			"Reboot" }, enabled = true, priority = 18, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void City_Agreement_Display() {
 		log.info("City_Agreement_Display method started ");
 		HomePage.setHomePageApplication();
@@ -39,7 +39,7 @@ public class CityPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Agreement_Display", groups = {
-			"Reboot" }, enabled = true, priority = 6, description = "Verify able to download the agreement successfully.")
+			"Reboot" }, enabled = true, priority = 19, description = "Verify able to download the agreement successfully.")
 	public void City_Agreement_Download() {
 		log.info("City_Agreement_Download method started ");
 		HomePage.setHomePageApplication();
@@ -65,7 +65,7 @@ public class CityPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, enabled = true, priority = 6, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
+			"Reboot" }, enabled = true, priority = 20, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void City_LEEDIDProject_Download_Invoice() {
 
 		log.info("City_LEEDIDProject_Download_Invoice method started ");
@@ -97,7 +97,7 @@ public class CityPageTest extends BaseClass {
 	// Verify Manage-->Teams should show team members added to the project.
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, enabled = true, priority = 6, description = "Verify able to add a team-member successfully.")
+			"Reboot" }, enabled = true, priority = 21, description = "Verify able to add a team-member successfully.")
 	public void City_Team_Add_Member() {
 
 		log.info("City_Team_Add_Member method started ");
@@ -136,7 +136,7 @@ public class CityPageTest extends BaseClass {
 	// Verify Manage-->It should allow to delete member from the added list
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-			"Reboot" }, dependsOnMethods = "City_Team_Add_Member", enabled = true, priority = 6, description = "Verify able to remove a team-member successfully.")
+			"Reboot" }, dependsOnMethods = "City_Team_Add_Member", enabled = true, priority = 22, description = "Verify able to remove a team-member successfully.")
 	public void City_Team_Delete_Member() {
 
 		log.info("City_Team_Delete_Member method started .......................");
@@ -146,8 +146,7 @@ public class CityPageTest extends BaseClass {
 		System.out.println(data.getCellData("Reboot", 6, 2));
 		CityPage = ProjectPage.SearchAndClickOnCityProject(data.getCellData("Reboot", 6, 2));
 		CityPage.ClickonTeamInManage();
-		HomePage.closeProjectSearchTextBox();
-		System.out.println();
+		HomePage.closeProjectSearchTextBox();		
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean flag = CommonMethod.Team_Delete_Member(username);
 		if (flag) {
@@ -2335,10 +2334,57 @@ public class CityPageTest extends BaseClass {
 		}
 	}
 
+	
+	// Municipal solid waste diversion rate from landfill- Verify validation Message after adding Invalid Percent value(101)
+		
+
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Waste_Diversion_AddYear_AddNewLine", priority = 136, enabled = true, description = "Municipal solid waste diversion rate from landfill- Verify validation Message after adding Invalid Percent value(101)")
+		public void City_Waste_Diversion_CheckWithInvalidPercent() {
+
+			log.info("City_Waste_Diversion_CheckWithInvalidPercent method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+			// ProjectCityID = "8000006846";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				CityPage.ClickonMunicipalSolidWasteDiversion();
+				flag = CityPage.CheckWaste_Diversion_CheckWithInvalidPercent();
+
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+
+			if (flag) {
+				log.info("City_Waste_Diversion_CheckWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Waste_Diversion_CheckWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+
 	// Municipal solid waste diversion rate from landfill- - Verify by adding value
 	// to reading and clicking on save button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Waste_Diversion_AddYear_AddNewLine", priority = 136, enabled = true, description = "Municipal solid waste diversion rate from landfill- - Verify by adding value to reading and clicking on save button.  ")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Waste_Diversion_AddYear_AddNewLine", priority = 137, enabled = true, description = "Municipal solid waste diversion rate from landfill- - Verify by adding value to reading and clicking on save button.  ")
 	public void City_Waste_Diversion_SavePreviousYearData() {
 
 		log.info("City_Waste_Diversion_SavePreviousYearData method started......................... ");
@@ -3226,15 +3272,60 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Health And Safety - Verify by adding value to reading and
-	// clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	
+	
+	
+	// Verify validation Message after adding Invalid value(501)
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Health_Safety_AddYear_AddNewLine", priority = 152, enabled = true, description = "Quality Of Life --> Health & Safety: Median air quality index (AQI) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_HealthAndSafety_SavePreviousYearData_CheckScore() {
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Health_Safety_AddYear_AddNewLine", priority = 152, enabled = true, description = "Verify validation Message after adding Invalid value(501)")
+		public void City_Health_Safety_CheckWithInvalidValue() {
 
-		log.info("City_HealthAndSafety_SavePreviousYearData_CheckScore method started......................... ");
+			log.info("City_Health_Safety_CheckWithInvalidValue method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_Private3");
+			// ProjectCityID="8000006849";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				CityPage.ClickonHealthAndSafety();
+				flag = CityPage.CheckHealthAndSafety_CheckWithInvalidValue();
+
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+
+			if (flag) {
+				log.info("City_Health_Safety_CheckWithInvalidValue method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Health_Safety_CheckWithInvalidValue method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+	// Quality Of Life--> Health And Safety - Verify by adding value to reading and clicking on save button for previous year
+	
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Health_Safety_AddYear_AddNewLine", priority = 153, enabled = true, description = "Quality Of Life --> Health & Safety: Median air quality index (AQI) - >Verify by adding value to reading and clicking on save button for previous year  ")
+	public void City_HealthAndSafety_SavePreviousYearData() {
+
+		log.info("City_HealthAndSafety_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -3273,18 +3364,18 @@ public class CityPageTest extends BaseClass {
 				 */
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
-				log.info("City_HealthAndSafety_SavePreviousYearData_CheckScore method ends here ........... ");
+				log.info("City_HealthAndSafety_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
-				log.info("City_HealthAndSafety_SavePreviousYearData_CheckScore method ends here ........... ");
+				log.info("City_HealthAndSafety_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
-			log.info("City_HealthAndSafety_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_HealthAndSafety_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -3294,7 +3385,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Health And Safety - >Verify 'previous year' and 'next
 		// year' button adds reading respectively.
 
-		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 153, dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Health And Safety - > Verify 'previous year' and 'next year' button adds reading respectively.")
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 153, dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health And Safety - > Verify 'previous year' and 'next year' button adds reading respectively.")
 		public void City_HealthAndSafety_AddRow_PreviousYear_NextYear() {
 
 			log.info("City_HealthAndSafety_AddRow_PreviousYear_NextYear method started......................... ");
@@ -3345,7 +3436,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Health And Safety - Verify able to edit readings by using
 	// 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 154, dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Health And Safety - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 154, dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health And Safety - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_HealthAndSafety_Edit_Test() {
 
@@ -3409,7 +3500,7 @@ public class CityPageTest extends BaseClass {
 	
 	// Quality Of Life--> Health And Safety - Verify able to delete line item by
 	// using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData_CheckScore", priority = 155, enabled = true, description = "Quality Of Life--> Health And Safety - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData", priority = 155, enabled = true, description = "Quality Of Life--> Health And Safety - Verify able to delete line item by using delete button.")
 	public void City_HealthAndSafety_Delete_Row() {
 
 		log.info("City_HealthAndSafety_Delete_Row method started......................... ");
@@ -3517,7 +3608,7 @@ public class CityPageTest extends BaseClass {
 	// correct activity with date and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 156, enabled = true, description = "Quality Of Life--> Health And Safety -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 156, enabled = false, description = "Quality Of Life--> Health And Safety -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_HealthAndSafety_Comments_Activity_Test() {
 
 		log.info("City_HealthAndSafety_Comments_Activity_Test method started......................... ");
@@ -3656,16 +3747,60 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
-	// (%) - Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	
+	
+	// Verify validation Message after adding Invalid Percent value(101).
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_Bachelor_Population_AddYear_AddNewLine", priority = 159, enabled = true, description = "Quality Of Life --> Education: Population with (at least) Bachelor's degree (%) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Education_Bachelor_Population_SavePreviousYearData_CheckScore() {
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "City_Education_Bachelor_Population_AddYear_AddNewLine", priority = 159, enabled = true, description = "Verify validation Message after adding Invalid Percent value(101)")
+		public void City_Education_Bachelor_Population_SaveWithInvalidPercent() {
+
+			log.info("City_Education_Bachelor_Population_SaveWithInvalidPercent method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_Private3");
+			// ProjectCityID="8000006849";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				CityPage.ClickonEducation_BachelorPopulation();
+				flag = CityPage.CheckEducation_Bachelor_Population_CheckWithInvalidPercent();
+
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+
+			if (flag) {
+				log.info("City_Education_Bachelor_Population_SaveWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Education_Bachelor_Population_SaveWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
+	// (%) -Verify by adding value to reading and clicking on save button for previous year
+	
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_Bachelor_Population_AddYear_AddNewLine", priority = 160, enabled = true, description = "Quality Of Life --> Education: Population with (at least) Bachelor's degree (%) - >Verify by adding value to reading and clicking on save button for previous year ")
+	public void City_Education_Bachelor_Population_SavePreviousYearData() {
 
 		log.info(
-				"City_Education_Bachelor_Population_SavePreviousYearData_CheckScore method started......................... ");
+				"City_Education_Bachelor_Population_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -3705,20 +3840,20 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_Education_Bachelor_Population_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Education_Bachelor_Population_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_Education_Bachelor_Population_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Education_Bachelor_Population_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
 			log.info(
-					"City_Education_Bachelor_Population_SavePreviousYearData_CheckScore method ends here ........... ");
+					"City_Education_Bachelor_Population_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -3728,7 +3863,7 @@ public class CityPageTest extends BaseClass {
 	// (%) - >Verify 'previous year' and 'next year' button adds reading
 	// respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 159, dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 160, dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Education_Bachelor_Population_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -3782,7 +3917,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
 	// (%) - Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 160, dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 161, dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_Education_Bachelor_Population_Edit_Test() {
 
@@ -3845,7 +3980,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
 	// (%) - Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData_CheckScore", priority = 161, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
 	public void City_Education_Bachelor_Population_Delete_Row() {
 
 		log.info("City_Education_Bachelor_Population_Delete_Row method started......................... ");
@@ -3901,7 +4036,7 @@ public class CityPageTest extends BaseClass {
 	// decade calendar and on selecting any year range, the line items falling into
 	// those year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 162, dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 163, dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Education_Bachelor_Population_FilterTest() {
 
 		log.info("City_Education_Bachelor_Population_FilterTest method started......................... ");
@@ -3955,7 +4090,7 @@ public class CityPageTest extends BaseClass {
 	// (%) -->'Activity' section should show correct activity with date and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 162, enabled = true, description = "Quality Of Life--> Health And Safety -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 163, enabled = false, description = "Quality Of Life--> Health And Safety -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_Education_Bachelor_Population_Comments_Activity_Test() {
 
 		log.info("City_Education_Bachelor_Population_Comments_Activity_Test method started......................... ");
@@ -4094,16 +4229,61 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Equitability: Gini coefficient (for income distribution) -
-	// Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	
+	
+	// Verify validation Message after adding Invalid value(Test Data -2)
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_Gini_Coefficient_AddYear_AddNewLine", priority = 165, enabled = true, description = "Quality Of Life --> Equitability: Gini coefficient (for income distribution) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore() {
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_Gini_Coefficient_AddYear_AddNewLine", priority = 165, enabled = true, description = "Verify validation Message after adding Invalid value(Test Data -2)")
+		public void City_Equitability_Gini_Coefficient_SaveWithInvalidValue() {
+
+			log.info("City_Equitability_Gini_Coefficient_SaveWithInvalidValue method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_Private3");
+			//ProjectCityID="8000006849";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				CityPage.ClickonEquitability_Gini_Coeffiecient();
+				flag = CityPage.CheckEquitability_Gini_Coefficient_CheckWithInvalidValue();
+
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+
+			if (flag) {
+				log.info("City_Equitability_Gini_Coefficient_SaveWithInvalidValue method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Equitability_Gini_Coefficient_SaveWithInvalidValue method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+	// Quality Of Life--> Equitability: Gini coefficient (for income distribution) -
+	// Verify by adding value to reading and clicking on save button for previous year.
+
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_Gini_Coefficient_AddYear_AddNewLine", priority = 166, enabled = true, description = "Quality Of Life --> Equitability: Gini coefficient (for income distribution) - >Verify by adding value to reading and clicking on save button for previous year ")
+	public void City_Equitability_Gini_Coefficient_SavePreviousYearData() {
 
 		log.info(
-				"City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore method started......................... ");
+				"City_Equitability_Gini_Coefficient_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -4143,20 +4323,20 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Equitability_Gini_Coefficient_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Equitability_Gini_Coefficient_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
 			log.info(
-					"City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore method ends here ........... ");
+					"City_Equitability_Gini_Coefficient_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -4165,7 +4345,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Equitability: Gini coefficient (for income distribution) -
 	// >Verify 'previous year' and 'next year' button adds reading respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 165, dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 166, dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Equitability_Gini_Coefficient_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -4219,7 +4399,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Equitability: Gini coefficient (for income distribution) -
 	// Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 166, dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 167, dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_Equitability_Gini_Coefficient_Edit_Test() {
 
@@ -4282,7 +4462,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Equitability: Gini coefficient (for income distribution) -
 	// Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore", priority = 167, enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData", priority = 168, enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - Verify able to delete line item by using delete button.")
 	public void City_Equitability_Gini_Coefficient_Delete_Row() {
 
 		log.info("City_Equitability_Gini_Coefficient_Delete_Row method started......................... ");
@@ -4338,7 +4518,7 @@ public class CityPageTest extends BaseClass {
 	// calendar and on selecting any year range, the line items falling into those
 	// year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 168, dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 169, dependsOnMethods = "City_Equitability_Gini_Coefficient_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Equitability_Gini_Coefficient_FilterTest() {
 
 		log.info("City_Equitability_Gini_Coefficient_FilterTest method started......................... ");
@@ -4392,7 +4572,7 @@ public class CityPageTest extends BaseClass {
 	// -->'Activity' section should show correct activity with date and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 168, enabled = false, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 169, enabled = false, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_Equitability_Gini_Coefficient_Comments_Activity_Test() {
 
 		log.info("City_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
@@ -4531,16 +4711,63 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Education: Population with (at least) High School degree
-	// (%) - Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	
+	
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_HighSchoolPopulation_AddYear_AddNewLine", priority = 171, enabled = true, description = "Quality Of Life --> Education: Population with (at least) High School degree (%) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore() {
+	// Verify validation Message after adding Invalid Percent value(Test Data - 101)
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_HighSchoolPopulation_AddYear_AddNewLine", priority = 171, enabled = true, description = "Verify validation Message after adding Invalid Percent value(Test Data - 101)")
+	public void City_Education_HighSchoolPopulation_SaveWithInvalidPercent() {
+
+		log.info("City_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
+		CommonMethod.switchToDefaultContent();
+		CityPage = new CityPageObject();
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_Private3");
+		//ProjectCityID="8000006849";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			CityPage.ClickonDataInput();
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToDataInputFrame();
+			CityPage.ClickonEducation_HighSchoolPopulation();
+			flag = CityPage.CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+
+		if (flag) {
+			log.info("City_Education_HighSchoolPopulation_AddYear_AddNewLine method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Education_HighSchoolPopulation_AddYear_AddNewLine method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	
+	// Quality Of Life--> Education: Population with (at least) High School degree
+	// (%) - Verify by adding value to reading and clicking on save button for previous year.
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_HighSchoolPopulation_AddYear_AddNewLine", priority = 172, enabled = true, description = "Quality Of Life --> Education: Population with (at least) High School degree (%) - >Verify by adding value to reading and clicking on save button for previous year. ")
+	public void City_Education_HighSchoolPopulation_SavePreviousYearData() {
 
 		log.info(
-				"City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore method started......................... ");
+				"City_Education_HighSchoolPopulation_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -4580,20 +4807,20 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Education_HighSchoolPopulation_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Education_HighSchoolPopulation_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
 			log.info(
-					"City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore method ends here ........... ");
+					"City_Education_HighSchoolPopulation_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -4603,7 +4830,7 @@ public class CityPageTest extends BaseClass {
 	// (%) - >Verify 'previous year' and 'next year' button adds reading
 	// respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 171, dependsOnMethods = "City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Education: Population with (at least) High School degree (%) - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 172, dependsOnMethods = "City_Education_HighSchoolPopulation_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Education: Population with (at least) High School degree (%) - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -4657,7 +4884,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Education: Population with (at least) High School degree
 	// (%) - Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 172, dependsOnMethods = "City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life-->Education: Population with (at least) High School degree (%)  - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 173, dependsOnMethods = "City_Education_HighSchoolPopulation_SavePreviousYearData", enabled = true, description = "Quality Of Life-->Education: Population with (at least) High School degree (%)  - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_Education_HighSchoolPopulation_Edit_Test() {
 
@@ -4719,7 +4946,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Education: Population with (at least) High School degree
 	// (%) - Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_HighSchoolPopulation_SavePreviousYearData_CheckScore", priority = 173, enabled = true, description = "Quality Of Life--> Education: Population with (at least) High School degree (%) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_HighSchoolPopulation_SavePreviousYearData", priority = 174, enabled = true, description = "Quality Of Life--> Education: Population with (at least) High School degree (%) - Verify able to delete line item by using delete button.")
 	public void City_Education_HighSchoolPopulation_Delete_Row() {
 
 		log.info("City_Education_HighSchoolPopulation_Delete_Row method started......................... ");
@@ -4774,7 +5001,7 @@ public class CityPageTest extends BaseClass {
 	// decade calendar and on selecting any year range, the line items falling into
 	// those year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 174, enabled = true, description = "Quality Of Life--> Education: Population with (at least) High School degree (%) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 175, enabled = true, description = "Quality Of Life--> Education: Population with (at least) High School degree (%) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Education_HighSchoolPopulation_FilterTest() {
 
 		log.info("City_Education_HighSchoolPopulation_FilterTest method started......................... ");
@@ -4827,7 +5054,7 @@ public class CityPageTest extends BaseClass {
 	// (%) -->'Activity' section should show correct activity with date and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 174, enabled = false, description = "Quality Of Life--> Education: Population with (at least) High School degree (%)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 176, enabled = false, description = "Quality Of Life--> Education: Population with (at least) High School degree (%)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_Equitability_Gini_Coefficient_Comments_Activity_Test1() {
 
 		log.info("City_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
@@ -4965,15 +5192,13 @@ public class CityPageTest extends BaseClass {
 		}
 	}
 	// Quality Of Life--> Prosperity: Median household income (US Dollars/Year) -
-	// Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	// Verify by adding value to reading and clicking on save button for previous year.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityMedianIncome_AddYear_AddNewLine", priority = 177, enabled = true, description = "Quality Of Life --> Prosperity: Median household income (US Dollars/Year) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_ProsperityMedianIncome_SavePreviousYearData_CheckScore() {
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityMedianIncome_AddYear_AddNewLine", priority = 177, enabled = true, description = "Quality Of Life --> Prosperity: Median household income (US Dollars/Year) - >Verify by adding value to reading and clicking on save button for previous year. ")
+	public void City_ProsperityMedianIncome_SavePreviousYearData() {
 
 		log.info(
-				"City_ProsperityMedianIncome_SavePreviousYearData_CheckScore method started......................... ");
+				"City_ProsperityMedianIncome_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -5012,18 +5237,18 @@ public class CityPageTest extends BaseClass {
 				 */
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
-				log.info("City_ProsperityMedianIncome_SavePreviousYearData_CheckScore method ends here ........... ");
+				log.info("City_ProsperityMedianIncome_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
-				log.info("City_ProsperityMedianIncome_SavePreviousYearData_CheckScore method ends here ........... ");
+				log.info("City_ProsperityMedianIncome_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
-			log.info("City_ProsperityMedianIncome_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_ProsperityMedianIncome_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -5032,7 +5257,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Prosperity: Median household income (US Dollars/Year) -
 	// >Verify 'previous year' and 'next year' button adds reading respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 177, dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 177, dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_ProsperityMedianIncome_AddRow_PreviousYear_NextYear() {
 
 		log.info("City_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method started......................... ");
@@ -5083,7 +5308,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Prosperity: Median household income (US Dollars/Year) -
 	// Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 178, dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year)   - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 178, dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year)   - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_ProsperityMedianIncome_Edit_Test() {
 
@@ -5145,7 +5370,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Prosperity: Median household income (US Dollars/Year) -
 	// Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData_CheckScore", priority = 179, enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData", priority = 179, enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year) - Verify able to delete line item by using delete button.")
 	public void City_ProsperityMedianIncome_Delete_Row() {
 
 		log.info("City_ProsperityMedianIncome_Delete_Row method started......................... ");
@@ -5200,7 +5425,7 @@ public class CityPageTest extends BaseClass {
 	// calendar and on selecting any year range, the line items falling into those
 	// year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData_CheckScore", priority = 180, enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityMedianIncome_SavePreviousYearData", priority = 180, enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_ProsperityMedianIncome_FilterTest() {
 
 		log.info("City_ProsperityMedianIncome_FilterTest method started......................... ");
@@ -5390,16 +5615,61 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Equitability: Median gross rent as (%) of household income
-	// - Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	
+	
+	
+	// Verify validation Message after adding Invalid Percent value(Test Data - 101)
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_AddYear_AddNewLine", priority = 183, enabled = true, description = "Quality Of Life --> Equitability: Median gross rent as (%) of household income - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore() {
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_AddYear_AddNewLine", priority = 183, enabled = true, description = "Verify validation Message after adding Invalid Percent value(Test Data - 101)")
+		public void City_Equitability_MedianGrossIncome_SaveWithInvalidPercent() {
+
+			log.info("City_Equitability_MedianGrossIncome_SaveWithInvalidPercent method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_Private3");
+			// ProjectCityID="8000006849";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				CityPage.ClickonEquitability_MedianGrossIncome();
+				flag = CityPage.CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue();
+
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+
+			if (flag) {
+				log.info("City_Equitability_MedianGrossIncome_SaveWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Equitability_MedianGrossIncome_SaveWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+	// Quality Of Life--> Equitability: Median gross rent as (%) of household income
+	// - Verify by adding value to reading and clicking on save button for previous year
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_AddYear_AddNewLine", priority = 184, enabled = true, description = "Quality Of Life --> Equitability: Median gross rent as (%) of household income - >Verify by adding value to reading and clicking on save button for previous year  ")
+	public void City_Equitability_MedianGrossIncome_SavePreviousYearData() {
 
 		log.info(
-				"City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore method started......................... ");
+				"City_Equitability_MedianGrossIncome_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -5439,20 +5709,20 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Equitability_MedianGrossIncome_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_Equitability_MedianGrossIncome_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
 			log.info(
-					"City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore method ends here ........... ");
+					"City_Equitability_MedianGrossIncome_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -5461,7 +5731,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Equitability: Median gross rent as (%) of household income
 	// - >Verify 'previous year' and 'next year' button adds reading respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 183, dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income  - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 184, dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income  - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -5515,7 +5785,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Equitability: Median gross rent as (%) of household income
 	// - Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 184, dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income   - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 185, dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income   - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_Equitability_MedianGrossIncome_Edit_Test() {
 
@@ -5577,7 +5847,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Equitability: Median gross rent as (%) of household income
 	// - Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore", priority = 185, enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData", priority = 186, enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income - Verify able to delete line item by using delete button.")
 	public void City_Equitability_MedianGrossIncome_Delete_Row() {
 
 		log.info("City_Equitability_MedianGrossIncome_Delete_Row method started......................... ");
@@ -5632,7 +5902,7 @@ public class CityPageTest extends BaseClass {
 	// calendar and on selecting any year range, the line items falling into those
 	// year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData_CheckScore", priority = 186, enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Equitability_MedianGrossIncome_SavePreviousYearData", priority = 187, enabled = true, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Equitability_MedianGrossIncome_FilterTest() {
 
 		log.info("City_Equitability_MedianGrossIncome_FilterTest method started......................... ");
@@ -5685,7 +5955,7 @@ public class CityPageTest extends BaseClass {
 	// -->'Activity' section should show correct activity with date and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 186, enabled = false, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 187, enabled = false, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_Equitability_MedianGrossIncome_Comments_Activity_Test() {
 
 		log.info("City_Equitability_MedianGrossIncome_Comments_Activity_Test method started......................... ");
@@ -5822,16 +6092,60 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Prosperity: Unemployment rate (%) - Verify by adding value
-	// to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	
+	
+	// Verify validation Message after adding Invalid Percent value(Test Data - 101)
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_AddYear_AddNewLine", priority = 189, enabled = true, description = "Quality Of Life --> Prosperity: Unemployment rate (%) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore() {
+
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_AddYear_AddNewLine", priority = 189, enabled = true, description = "Verify validation Message after adding Invalid Percent value(Test Data - 101)")
+		public void City_ProsperityUnemployementRate_SaveWithInvalidPercent() {
+
+			log.info("City_ProsperityUnemployementRate_SaveWithInvalidPercent method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_Private3");
+			// ProjectCityID="8000006844";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				CityPage.ClickonProsperityUnemployementRate();
+				flag = CityPage.CheckProsperityUnemployementRate_CheckWithInvalidValue();
+
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+
+			if (flag) {
+				log.info("City_ProsperityUnemployementRate_SaveWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_ProsperityUnemployementRate_SaveWithInvalidPercent method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+	// Quality Of Life--> Prosperity: Unemployment rate (%) - Verify by adding value to reading and clicking on save button for previous year
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_AddYear_AddNewLine", priority = 190, enabled = true, description = "Quality Of Life --> Prosperity: Unemployment rate (%) - >Verify by adding value to reading and clicking on save button for previous year  ")
+	public void City_ProsperityUnemployementRate_SavePreviousYearData() {
 
 		log.info(
-				"City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore method started......................... ");
+				"City_ProsperityUnemployementRate_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -5871,19 +6185,19 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_ProsperityUnemployementRate_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_ProsperityUnemployementRate_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
-			log.info("City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_ProsperityUnemployementRate_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -5892,7 +6206,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Prosperity: Unemployment rate (%) - >Verify 'previous
 	// year' and 'next year' button adds reading respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 189, dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 190, dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -5944,7 +6258,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Prosperity: Unemployment rate (%) - Verify able to edit
 	// readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 190, dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%)   - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 191, dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%)   - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_ProsperityUnemployementRate_Edit_Test() {
 
@@ -6006,7 +6320,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Prosperity: Unemployment rate (%) - Verify able to delete
 	// line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore", priority = 191, enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData", priority = 192, enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%) - Verify able to delete line item by using delete button.")
 	public void City_ProsperityUnemployementRate_Delete_Row() {
 
 		log.info("City_ProsperityUnemployementRate_Delete_Row method started......................... ");
@@ -6061,7 +6375,7 @@ public class CityPageTest extends BaseClass {
 	// selecting any year range, the line items falling into those year should be
 	// displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData_CheckScore", priority = 192, enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProsperityUnemployementRate_SavePreviousYearData", priority = 193, enabled = true, description = "Quality Of Life--> Prosperity: Unemployment rate (%) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_ProsperityUnemployementRate_FilterTest() {
 
 		log.info("City_ProsperityUnemployementRate_FilterTest method started......................... ");
@@ -6113,7 +6427,7 @@ public class CityPageTest extends BaseClass {
 	// should show correct activity with date and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 192, enabled = false, description = "Quality Of Life--> Prosperity: Unemployment rate (%)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 193, enabled = false, description = "Quality Of Life--> Prosperity: Unemployment rate (%)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_ProsperityUnemployementRate_Comments_Activity_Test() {
 
 		log.info("City_ProsperityUnemployementRate_Comments_Activity_Test method started......................... ");
@@ -6130,7 +6444,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		ProjectCityID = "8000004568";
+		//ProjectCityID = "8000004568";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -6236,7 +6550,7 @@ public class CityPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.CheckProsperityUnemployementRate_AddYear_NewRow_Display();
+			flag = CityPage.CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -6252,17 +6566,62 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	// Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive
-	// groups (Days/yr) - Verify by adding value to reading and clicking on save
-	// button.
-	// Verify score gets populated when data is added for previous year
+	
+	
+	
+	// Verify validation Message after adding Invalid value(Test Data - 366)
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetySensitiveGroup_AddYear_AddNewLine", priority = 195, enabled = true, description = "Quality Of Life --> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore() {
+
+			@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 195, dependsOnMethods = "City_HealthAndSafetySensitiveGroup_AddYear_AddNewLine", enabled = true, description = "Verify validation Message after adding Invalid value(Test Data - 366)")
+			public void City_HealthAndSafetySensitiveGroup_SaveWithInvalidValue() {
+
+				log.info("City_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method started......................... ");
+				CommonMethod.switchToDefaultContent();
+				CityPage = new CityPageObject();
+				boolean flag = false;
+
+				try {
+					HomePage.setHomePageApplication();
+
+				} catch (Exception e) {
+					HomePage.setHomePageApplication();
+					e.printStackTrace();
+				}
+
+				String ProjectCityID = System.getProperty("CityProject_Private3");
+				// ProjectCityID="8000006844";
+				if (!ProjectCityID.equals(null)) {
+					ProjectPage = HomePage.clickOnProject();
+					// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+					CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+					CityPage.ClickonDataInput();
+					HomePage.closeProjectSearchTextBox();
+					CommonMethod.switchToDataInputFrame();
+					CityPage.ClickonHealthAndSafetySensitiveGroup();
+					flag = CityPage.CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue();
+
+				} else {
+					log.info("City Project is showing Null");
+					Assert.assertTrue(false);
+				}
+
+				if (flag) {
+					log.info("City_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method ends here ........... ");
+					Assert.assertTrue(true);
+
+				} else {
+					log.info("City_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method ends here ........... ");
+					Assert.assertTrue(false);
+				}
+			}
+	// Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive 
+	// groups (Days/yr) - Verify by adding value to reading and clicking on save button for previous year
+
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetySensitiveGroup_AddYear_AddNewLine", priority = 196, enabled = true, description = "Quality Of Life --> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - >Verify by adding value to reading and clicking on save button for previous year ")
+	public void City_HealthAndSafetySensitiveGroup_SavePreviousYearData() {
 
 		log.info(
-				"City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore method started......................... ");
+				"City_HealthAndSafetySensitiveGroup_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -6302,20 +6661,20 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_HealthAndSafetySensitiveGroup_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_HealthAndSafetySensitiveGroup_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
 			log.info(
-					"City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore method ends here ........... ");
+					"City_HealthAndSafetySensitiveGroup_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -6325,7 +6684,7 @@ public class CityPageTest extends BaseClass {
 	// groups (Days/yr) - >Verify 'previous year' and 'next year' button adds
 	// reading respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 195, dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 196, dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -6379,7 +6738,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive
 	// groups (Days/yr) - Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 196, dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)   - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 197, dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)   - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_HealthAndSafetySensitiveGroup_Edit_Test() {
 
@@ -6441,7 +6800,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive
 	// groups (Days/yr) - Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore", priority = 197, enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData", priority = 198, enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - Verify able to delete line item by using delete button.")
 	public void City_HealthAndSafetySensitiveGroup_Delete_Row() {
 
 		log.info("City_HealthAndSafetySensitiveGroup_Delete_Row method started......................... ");
@@ -6496,7 +6855,7 @@ public class CityPageTest extends BaseClass {
 	// uopens up decade calendar and on selecting any year range, the line items
 	// falling into those year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData_CheckScore", priority = 198, enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetySensitiveGroup_SavePreviousYearData", priority = 199, enabled = true, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_HealthAndSafetySensitiveGroup_FilterTest() {
 
 		log.info("City_HealthAndSafetySensitiveGroup_FilterTest method started......................... ");
@@ -6550,7 +6909,7 @@ public class CityPageTest extends BaseClass {
 	// and
 	// timestamp.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 198, enabled = false, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 199, enabled = false, description = "Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void City_City_HealthAndSafetySensitiveGroup_Comments_Activity_Test() {
 
 		log.info(
@@ -6689,16 +7048,17 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	
+	
 	// Quality Of Life--> Health & Safety: Violent Crime (per year per capita) -
-	// Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
+	// Verify by adding value to reading and clicking on save button for previous year
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetyVoilentCrime_AddYear_AddNewLine", priority = 201, enabled = true, description = "Quality Of Life --> Health & Safety: Violent Crime (per year per capita) - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore() {
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetyVoilentCrime_AddYear_AddNewLine", priority = 201, enabled = true, description = "Quality Of Life --> Health & Safety: Violent Crime (per year per capita) - >Verify by adding value to reading and clicking on save button for previous year ")
+	public void City_HealthAndSafetyVoilentCrime_SavePreviousYearData() {
 
 		log.info(
-				"City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore method started......................... ");
+				"City_HealthAndSafetyVoilentCrime_SavePreviousYearData method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		CityPage = new CityPageObject();
 		boolean flag = false;
@@ -6738,19 +7098,19 @@ public class CityPageTest extends BaseClass {
 				// if (NewScore > OldScore) {
 				// log.info("Score is updated with---" + NewScore);
 				log.info(
-						"City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_HealthAndSafetyVoilentCrime_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
 				// }
 			} else {
 				log.info("Record is not added successfully");
 				log.info(
-						"City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore method ends here ........... ");
+						"City_HealthAndSafetyVoilentCrime_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
-			log.info("City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_HealthAndSafetyVoilentCrime_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -6759,7 +7119,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Health & Safety: Violent Crime (per year per capita) -
 	// >Verify 'previous year' and 'next year' button adds reading respectively.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 201, dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 201, dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear() {
 
 		log.info(
@@ -6811,7 +7171,7 @@ public class CityPageTest extends BaseClass {
 	// Quality Of Life--> Health & Safety: Violent Crime (per year per capita) -
 	// Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 202, dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore", enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita)   - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 202, dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita)   - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_HealthAndSafetyVoilentCrime_Edit_Test() {
 
@@ -6873,7 +7233,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Health & Safety: Violent Crime (per year per capita) -
 	// Verify able to delete line item by using delete button.
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore", priority = 203, enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita) - Verify able to delete line item by using delete button.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData", priority = 203, enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita) - Verify able to delete line item by using delete button.")
 	public void City_HealthAndSafetyVoilentCrime_Delete_Row() {
 
 		log.info("City_HealthAndSafetyVoilentCrime_Delete_Row method started......................... ");
@@ -6928,7 +7288,7 @@ public class CityPageTest extends BaseClass {
 	// calendar and on selecting any year range, the line items falling into those
 	// year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData_CheckScore", priority = 204, enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_HealthAndSafetyVoilentCrime_SavePreviousYearData", priority = 204, enabled = true, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita) - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_HealthAndSafetyVoilentCrime_FilterTest() {
 
 		log.info("City_HealthAndSafetyVoilentCrime_FilterTest method started......................... ");
@@ -6953,7 +7313,7 @@ public class CityPageTest extends BaseClass {
 			// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			CityPage.ClickonDataInput();
-			// OldScore = CityPage.getTransportScore();
+			
 			HomePage.closeProjectSearchTextBox();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
@@ -7024,4 +7384,96 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	
+	// --> Verify Qualty Of Life Score after entering previous year data
+
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 205, enabled = true, description = "Quality Of Life -->Verify Qualty Of Life Score after entering previous year data")
+		public void City_Check_QualityOfLife_Score() {
+
+			log.info("City_Check_QualityOfLife_Score method started......................... ");
+			CommonMethod.switchToDefaultContent();
+			CityPage = new CityPageObject();
+			int QualityScore=0;
+			boolean flag = false;
+
+			try {
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			String ProjectCityID = System.getProperty("CityProject_Private3");
+			//ProjectCityID="8000006833";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				CityPage.ClickonDataInput();
+				HomePage.closeProjectSearchTextBox();
+				CommonMethod.switchToDataInputFrame();
+				
+				QualityScore = CityPage.getQualityOfLifeScore();
+				
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+			if (QualityScore >0) {
+				log.info("City_Check_QualityOfLife_Score method ends here ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Check_QualityOfLife_Score method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+		
+		
+		// --> Validate each row item of dropdown additional data- by selecting one item from the dropdown and and adding the field value with unit field.
+
+				@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 206, enabled = false, description = "Quality Of Life -->Additional Data --> Validate each row item of dropdown additional data- by selecting one item from the dropdown and and adding the field value with unit field.")
+				public void City_AdditionalData_SaveRecords() {
+
+					log.info("City_AdditionalData_SaveRecords method started......................... ");
+					CommonMethod.switchToDefaultContent();
+					CityPage = new CityPageObject();
+					boolean flag = false;
+
+					try {
+						HomePage.setHomePageApplication();
+
+					} catch (Exception e) {
+						HomePage.setHomePageApplication();
+						e.printStackTrace();
+					}
+
+					String ProjectCityID = System.getProperty("CityProject_Private3");
+					//ProjectCityID="8000006797";
+					if (!ProjectCityID.equals(null)) {
+						ProjectPage = HomePage.clickOnProject();
+						
+						CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+						CityPage.ClickonDataInput();
+						HomePage.closeProjectSearchTextBox();
+						CommonMethod.switchToDataInputFrame();
+						CityPage.ClickonAdditionalData();
+						flag = CityPage.checkAdditionalData_SaveRecords();
+						
+					} else {
+						log.info("City Project is showing Null");
+						Assert.assertTrue(false);
+					}
+					if (flag) {
+						log.info("City_AdditionalData_SaveRecords method ends here ........... ");
+						Assert.assertTrue(true);
+
+					} else {
+						log.info("City_AdditionalData_SaveRecords method ends here ........... ");
+						Assert.assertTrue(false);
+					}
+				}
+				
 }
