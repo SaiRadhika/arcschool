@@ -5783,6 +5783,51 @@ public class CityPageObject extends BaseClass {
 
 		}
 
+		
+		public boolean CheckHealthAndSafety_CheckWithInvalidValue() {
+			log.info("CheckWaste_Diversion_CheckWithInvalidPercent  starts here........");
+			List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+			int Prev_TableRowCount = TableRow.size();
+			log.info("Before adding number of row showing is ---" + TableRow.size());
+			boolean flag = false;
+			boolean ValidationMsg=false;
+			waithelper.WaitForElementClickable(HealthAndSafety_Data_AddYearBtn,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			HealthAndSafety_Data_AddYearBtn.click();
+			int Selected_Year = Integer.parseInt(driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+			log.info("Selected Year is ---" + Selected_Year);
+			if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+						.sendKeys("501");
+				
+				ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+				if(ValidationMsg)
+				{
+					String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+					log.info("Validation Message displayed ---"+ActualValMsg);
+					if(ActualValMsg.equals("Invalid Reading (Min:0, Max; 500)"))
+						flag=true;
+					else
+						flag=false;
+				}
+				else
+				{
+					log.info("Validation Message not displayed.."); 
+				}
+				log.info("CheckHealthAndSafety_CheckWithInvalidValue  ends here........");
+				return flag;
+			}
+			return flag;
+			
+
+		}
 		// This method will check on clicking Add Year button, new row should be listed
 				// with previous year (Data Input - > Quality of Life -- >	Education: Population with (at least) Bachelor's degree (%)--> Data/Details Tab
 
@@ -5813,6 +5858,53 @@ public class CityPageObject extends BaseClass {
 					}
 
 				}
+				
+				public boolean CheckEducation_Bachelor_Population_CheckWithInvalidPercent() {
+					log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					waithelper.WaitForElementClickable(Education_BachelorPopulation_Data_AddYearBtn,
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Education_BachelorPopulation_Data_AddYearBtn.click();
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("101");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+								flag=true;
+							else
+								flag=false;
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  ends here........");
+						return flag;
+					}
+					return flag;
+					
+					
+
+				}
+
 				// This method will check on clicking Add Year button, new row should be listed
 				// with previous year (Data Input - > Quality of Life -- >	Equitability: Gini coefficient (for income distribution)--> Data/Details Tab
 
@@ -5843,6 +5935,51 @@ public class CityPageObject extends BaseClass {
 					}
 
 				}
+				
+				public boolean CheckEquitability_Gini_Coefficient_CheckWithInvalidValue() {
+					log.info("CheckEquitability_Gini_Coefficient_CheckWithInvalidValue  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					waithelper.WaitForElementClickable(Equitability_Gini_Coefficient_Data_AddYearBtn,
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Equitability_Gini_Coefficient_Data_AddYearBtn.click();
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("2");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Invalid Reading (Min:0, Max; 1)"))
+								flag=true;
+							else
+								flag=false;
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  ends here........");
+						return flag;
+					}
+					return flag;
+					
+
+				}
 				// This method will check on clicking Add Year button, new row should be listed
 				// with previous year (Data Input - > Quality of Life -- >	Education: Population with (at least) High School degree (%)--> Data/Details Tab
 
@@ -5871,6 +6008,52 @@ public class CityPageObject extends BaseClass {
 						log.info("CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display  ends here........");
 						return false;
 					}
+
+				}
+				
+				public boolean CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent() {
+					log.info("CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_AddYearBtn,
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Education_HighSchoolPopulation_Data_AddYearBtn.click();
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("101");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+								flag=true;
+							else
+								flag=false;
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent  ends here........");
+						return flag;
+					}
+					return flag;
+					
 
 				}
 				
@@ -5918,7 +6101,14 @@ public class CityPageObject extends BaseClass {
 					}
 					waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					Equitability_MedianGrossIncome_Data_AddYearBtn.click();
+					
 					waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 					int CurrentYear = CommonMethod.getCurrentYear();
@@ -5932,6 +6122,53 @@ public class CityPageObject extends BaseClass {
 						log.info("CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display  ends here........");
 						return false;
 					}
+
+				}
+				
+				public boolean CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue() {
+					log.info("CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Equitability_MedianGrossIncome_Data_AddYearBtn.click();
+					
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("101");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+								flag=true;
+							else
+								flag=false;
+							
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue  ends here........");
+						return flag;
+					}
+					return flag;
+					
 
 				}
 				
@@ -5949,7 +6186,14 @@ public class CityPageObject extends BaseClass {
 					}
 					waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_AddYearBtn,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					ProsperityUnemployementRate_Data_AddYearBtn.click();
+					
 					waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 					int CurrentYear = CommonMethod.getCurrentYear();
@@ -5963,6 +6207,53 @@ public class CityPageObject extends BaseClass {
 						log.info("CheckProsperityUnemployementRate_AddYear_NewRow_Display  ends here........");
 						return false;
 					}
+
+				}
+				
+				public boolean CheckProsperityUnemployementRate_CheckWithInvalidValue() {
+					log.info("CheckProsperityUnemployementRate_CheckWithInvalidValue  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_AddYearBtn,
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					ProsperityUnemployementRate_Data_AddYearBtn.click();
+					
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("101");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+								flag=true;
+							else
+								flag=false;
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckProsperityUnemployementRate_CheckWithInvalidValue  ends here........");
+						return flag;
+					}
+					return flag;
+					
 
 				}
 				// This method will check on clicking Add Year button, new row should be listed
@@ -5979,6 +6270,12 @@ public class CityPageObject extends BaseClass {
 					}
 					waithelper.WaitForElementClickable(HealthAndSafetyVoilentCrime_Data_AddYearBtn,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					HealthAndSafetyVoilentCrime_Data_AddYearBtn.click();
 					waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -5996,6 +6293,53 @@ public class CityPageObject extends BaseClass {
 
 				}
 				
+				
+				public boolean CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue() {
+					log.info("CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					
+					waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_AddYearBtn,
+							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					HealthAndSafetySensitiveGroup_Data_AddYearBtn.click();
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("366");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Invalid Reading (Min:0, Max; 365)"))
+								flag=true;
+							else
+								flag=false;
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue  ends here........");
+						return flag;
+					}
+					return flag;
+					
+
+				}
 				// This method will check on clicking Add Year button, new row should be listed
 				// with previous year (Data Input - > Quality of Life -- >	Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)--> Data/Details Tab
 
@@ -6032,6 +6376,7 @@ public class CityPageObject extends BaseClass {
 	public boolean CheckWatwr_Consumption_AddYear_NewRow_Display() {
 		log.info("CheckWatwr_Consumption_AddYear_NewRow_Display  starts here........");
 		boolean flag = false;
+		waithelper.WaitForElementClickable(WaterConsum_Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		WaterConsum_Data_AddYearBtn.click();
 		try {
 			Thread.sleep(3000);
@@ -6060,6 +6405,7 @@ public class CityPageObject extends BaseClass {
 	public boolean CheckWaste_Generation_AddYear_NewRow_Display() {
 		log.info("CheckWaste_Generation_AddYear_NewRow_Display  starts here........");
 		boolean flag = false;
+		waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Waste_AddYearButton.click();
 		try {
 			Thread.sleep(3000);
@@ -6088,6 +6434,7 @@ public class CityPageObject extends BaseClass {
 		public boolean CheckWaste_Diversion_AddYear_NewRow_Display() {
 			log.info("CheckWaste_Diversion_AddYear_NewRow_Display  starts here........");
 			boolean flag = false;
+			waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			Waste_AddYearButton.click();
 			try {
 				Thread.sleep(3000);
@@ -6108,6 +6455,49 @@ public class CityPageObject extends BaseClass {
 			}
 
 		}
+		
+		
+		// This method will check on clicking Add Year button, new row should be listed
+				// with previous year (Data Input - > Waste - >Municipal solid waste diversion rate from landfill- Data ->
+				// Check with Percentage value 101
+
+				public boolean CheckWaste_Diversion_CheckWithInvalidPercent() {
+					log.info("CheckWaste_Diversion_CheckWithInvalidPercent  starts here........");
+					List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+					int Prev_TableRowCount = TableRow.size();
+					log.info("Before adding number of row showing is ---" + TableRow.size());
+					boolean flag = false;
+					boolean ValidationMsg=false;
+					waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					Waste_AddYearButton.click();
+					int Selected_Year = Integer.parseInt(driver
+							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+					log.info("Selected Year is ---" + Selected_Year);
+					if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+								.sendKeys("101");
+						
+						ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
+						if(ValidationMsg)
+						{
+							String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+							log.info("Validation Message displayed ---"+ActualValMsg);
+							if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+								flag=true;
+							else
+								flag=false;
+						}
+						else
+						{
+							log.info("Validation Message not displayed.."); 
+						}
+						log.info("CheckWaste_Diversion_CheckWithInvalidPercent  ends here........");
+						return flag;
+					}
+					return flag;
+					
+
+				}
 
 	// This method will add one row with previous year in Data Input - > GHG
 	// Emission - > Data Tab
@@ -6144,6 +6534,7 @@ public class CityPageObject extends BaseClass {
 			int Prev_TableRowCount = TableRow.size();
 			log.info("Before adding number of row showing is ---" + TableRow.size());
 			boolean flag = false;
+			waithelper.WaitForElementClickable(VMT_Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			VMT_Data_AddYearBtn.click();
 			int Selected_Year = Integer.parseInt(driver
 					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));

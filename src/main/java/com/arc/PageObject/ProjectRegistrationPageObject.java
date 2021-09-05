@@ -420,7 +420,8 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		try{
 			
 			Thread.sleep(3000);
-		if (!(LongitudeTextbox.getAttribute("value").isBlank() && LatitudeTextbox.getAttribute("value").isBlank())) {
+			
+		if (!(LongitudeTextbox.getAttribute("value")=="" && LatitudeTextbox.getAttribute("value")=="")) {
 			return true;
 		} else
 			return false;
