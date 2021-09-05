@@ -668,7 +668,12 @@ public class CommonMethod extends BaseClass {
 		CommonMethod.RefreshPagewaitForPageLoaded(driver);
 		
 		String msgText = null;
-		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
 		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
