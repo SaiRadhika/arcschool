@@ -97,8 +97,20 @@ public class BaseClass {
 			//FileInputStream fis = new FileInputStream("src\\main\\java\\com\\arc\\config\\config.properties");
 			FileInputStream fis = new FileInputStream("src/main/java/com/arc/config/config.properties");
 			prop.load(fis);
-			//data = new ExcelHelper(System.getProperty("user.dir") + "/TestData/RebootTest.xlsx");
-			data = new ExcelHelper( "TestData/RebootTest.xlsx");
+			
+			String testSuite = System.getProperty("suiteXmlFile");
+			log.info("Test Suite File is ---"+testSuite);
+			
+			if(testSuite !=null && testSuite.equalsIgnoreCase("QAS_RebootTestSuite.xml"))
+				data = new ExcelHelper( "TestData/QAS_RebootTestData.xlsx");
+			else if(testSuite !=null && testSuite.equalsIgnoreCase("STG_RebootTestSuite.xml"))
+				data = new ExcelHelper( "TestData/STG_RebootTestData.xlsx");
+			else if (testSuite !=null && testSuite.equalsIgnoreCase("RegressionTestSuite.xml"))
+				data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
+			/*
+			 * else data = new ExcelHelper( "TestData/STG_RebootTestData.xlsx");
+			 */
+				
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			log.info("Config.properties file not found");
@@ -173,8 +185,31 @@ public class BaseClass {
 		waithelper.setImplicitWait(Long.parseLong(prop.getProperty("implicitTime")), TimeUnit.SECONDS);
 		waithelper.pageLoadTime(Long.parseLong(prop.getProperty("pageloadtime")), TimeUnit.SECONDS);
 		
-		driver.get(prop.getProperty("STGurl"));
-		log.info("URL navigated to .. " + prop.getProperty("STGurl"));
+		log.info("Environment Name is ---"+System.getProperty("environment"));
+		String env = System.getProperty("environment");
+		
+		if(env !=null && env.equalsIgnoreCase("QAS"))
+		{
+			driver.get(prop.getProperty("QAurl"));
+			log.info("URL navigated to .. " + prop.getProperty("QAurl"));
+		}
+		else if(env !=null && env.equalsIgnoreCase("STG"))
+		{
+			driver.get(prop.getProperty("STGurl"));
+			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
+		}
+		/*
+		 * else {
+		 * log.info("Environment is not provided or wrong environment entered......");
+		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
+		 * prop.getProperty("STGurl")); }
+		 */
+				
+		
+		/*
+		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
+		 * prop.getProperty("STGurl"));
+		 */
 		log.info("Initialization method ends");
 
 	}

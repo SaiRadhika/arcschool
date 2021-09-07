@@ -148,11 +148,9 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.22.1</version>
 					<configuration>
-					<!-- <systemPropertyVariables>
-					<browserName>${browserName}</browserName>
-					</systemPropertyVariables>
-					 -->	<suiteXmlFiles>
-							<suiteXmlFile>src/main/resources/RebootTestSuite.xml</suiteXmlFile>
+						<suiteXmlFiles>
+							<!-- <suiteXmlFile>src/main/resources/RebootTestSuite.xml</suiteXmlFile> -->
+							<suiteXmlFile>src/main/resources/${suiteXmlFile}</suiteXmlFile>
 						</suiteXmlFiles>
 						<systemPropertyVariables>
 						<EnvironmentURL>${environment}</EnvironmentURL>
