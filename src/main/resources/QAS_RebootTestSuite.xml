@@ -27,7 +27,6 @@
 			<class name="com.arc.testCases.Project.CommunitiesPageTest" />
 			<class name="com.arc.testCases.Project.ParkingPageTest" /> 
 			<class name="com.arc.testCases.InsightPageTest" /> 
-			
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
