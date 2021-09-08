@@ -107,8 +107,10 @@ public class BaseClass {
 				data = new ExcelHelper( "TestData/STG_RebootTestData.xlsx");
 			else if (testSuite !=null && testSuite.equalsIgnoreCase("RegressionTestSuite.xml"))
 				data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
+			else if (testSuite !=null && testSuite.equalsIgnoreCase("CityRegressionTestSuite.xml"))
+				data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
 			/*
-			 * else data = new ExcelHelper( "TestData/STG_RebootTestData.xlsx");
+			 * else data = new ExcelHelper( "TestData/QAS_RebootTestData.xlsx");
 			 */
 				
 		} catch (FileNotFoundException e) {
@@ -201,15 +203,15 @@ public class BaseClass {
 		/*
 		 * else {
 		 * log.info("Environment is not provided or wrong environment entered......");
-		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
+		 * driver.get(prop.getProperty("QAurl")); log.info("URL navigated to .. " +
 		 * prop.getProperty("STGurl")); }
-		 */
-				
-		
-		/*
+		 * 
+		 * 
+		 * 
 		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
 		 * prop.getProperty("STGurl"));
 		 */
+		 
 		log.info("Initialization method ends");
 
 	}
