@@ -102,8 +102,8 @@ public class CommunitiesPageTest extends BaseClass{
 			log.info("Community_Team_Add_Member method started ");
 			HomePage.setHomePageApplication();
 			ProjectPage = HomePage.clickOnProject();
-			System.out.println(data.getCellData("Reboot", 11, 2));
-			CommunitiesPage=ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 11, 2));
+			System.out.println(data.getCellData("Reboot", 10, 2));
+			CommunitiesPage=ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 10, 2));
 			CommunitiesPage.ClickonTeamInManage();
 			HomePage.closeProjectSearchTextBox();
 			System.out.println();
@@ -148,8 +148,8 @@ public class CommunitiesPageTest extends BaseClass{
 			log.info("Community_Team_Delete_Member method started .......................");
 			HomePage.setHomePageApplication();
 			ProjectPage = HomePage.clickOnProject();
-			System.out.println(data.getCellData("Reboot", 11, 2));
-			CommunitiesPage=ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 11, 2));
+			System.out.println(data.getCellData("Reboot", 10, 2));
+			CommunitiesPage=ProjectPage.SearchAndClickOnCommunitiesProject(data.getCellData("Reboot", 10, 2));
 			CommunitiesPage.ClickonTeamInManage();
 			HomePage.closeProjectSearchTextBox();
 			System.out.println();
