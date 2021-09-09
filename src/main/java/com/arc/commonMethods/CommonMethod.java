@@ -596,6 +596,9 @@ public class CommonMethod extends BaseClass {
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 				Integer.parseInt(prop.getProperty("explicitTime")));
 		String msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+		
+		waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+				Integer.parseInt(prop.getProperty("explicitTime")),2);
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -629,6 +632,12 @@ public class CommonMethod extends BaseClass {
 		String email=null;
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
 		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
 		log.info("Size of the Table is ----- "+TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
@@ -734,6 +743,8 @@ public class CommonMethod extends BaseClass {
 			}
 		}
 		try {
+			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")),2);
 			
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
