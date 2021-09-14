@@ -188,7 +188,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_DI_ProjectSetting_Population_Add_Row method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			try {
 				HomePage.setHomePageApplication();
@@ -234,7 +234,7 @@ public class CommunitiesPageTest extends BaseClass{
 			log.info(
 					"Communities_ProjectSetting_Population_Save_Row_DecadeCalender_Display method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean RowAddflag = false;
 			boolean DecadeCalenderflag = false;
 			try {
@@ -311,7 +311,7 @@ public class CommunitiesPageTest extends BaseClass{
 						log.info("Team Member added-----------------");
 						HomePage.checkSignOut();
 						HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
-						CommunitiesPage = new CommunitiesPageObject();
+						//CommunitiesPage = new CommunitiesPageObject();
 						boolean Updatedflag = false;
 
 						try {
@@ -390,7 +390,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_ProjectSetting_Population_Comments_Activity_Test method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 
 			try {
@@ -436,7 +436,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_Population_Field_Comma_Display method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -493,7 +493,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_Population_Filter_Test method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -541,7 +541,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_ProjectSetting_ProjectArea_Add_Row method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			try {
 				HomePage.setHomePageApplication();
@@ -586,7 +586,7 @@ public class CommunitiesPageTest extends BaseClass{
 			log.info(
 					"Communities_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean DecadeCalenderflag = false;
 			boolean RowAddflag = false;
 			try {
@@ -642,7 +642,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_ProjectArea_Field_Comma_Display method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -689,7 +689,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_ProjectSetting_ProjectArea_Comments_Activity_Test method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 
 			try {
@@ -736,7 +736,7 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_Project_Area_GrossArea_SquareMiles_Display() {
 			log.info("Communities_Project_Area_GrossArea_SquareMiles_Display method started ........... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			try {
 				HomePage.setHomePageApplication();
@@ -783,7 +783,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info("Communities_ProjectArea_Filter_Test method started......................... ");
 			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -857,7 +857,7 @@ public class CommunitiesPageTest extends BaseClass{
 							log.info("Team Member added-----------------");
 							HomePage.checkSignOut();
 							HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
-							CommunitiesPage = new CommunitiesPageObject();
+							//CommunitiesPage = new CommunitiesPageObject();
 							boolean Updatedflag = false;
 
 							try {
@@ -1869,7 +1869,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_Waste_Gen_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1915,7 +1915,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Generation_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1961,7 +1961,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Generation_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2010,7 +2010,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Generation_AddRow_PreviousYear_NextYear method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2058,7 +2058,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Generation_Edit_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2106,7 +2106,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Generation_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2162,7 +2162,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Generation_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2212,7 +2212,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_Waste_Generation_FilterTest method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2259,7 +2259,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_Waste_Diversion_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2305,7 +2305,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2352,7 +2352,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_CheckWithInvalidPercent method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2398,7 +2398,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2448,7 +2448,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_AddRow_PreviousYear_NextYear method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2497,7 +2497,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_Edit_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2546,7 +2546,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2603,7 +2603,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Waste_Score_SavePreviousYearDataForGenerationAndDiversion method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2666,7 +2666,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Waste_Diversion_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2715,7 +2715,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_Waste_Diversion_FilterTest method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2764,7 +2764,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_Transportation_VMT_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2809,7 +2809,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Transportation_VMT_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2856,7 +2856,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Transportation_SavePreviousYearData_CheckScore method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2922,7 +2922,7 @@ public class CommunitiesPageTest extends BaseClass{
 					log.info("Communities_Transportation_VMT_AddRow_PreviousYear_NextYear method started......................... ");
 					int OldScore;
 					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommunitiesPage = new CommunitiesPageObject();
 					boolean flag = false;
 
 					try {
@@ -2974,7 +2974,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Transportation_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3037,7 +3037,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Transportation_VMT_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3096,7 +3096,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3148,7 +3148,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Transportation_VMT_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3201,7 +3201,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_Health_Safety_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3246,7 +3246,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Health_Safety_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3291,7 +3291,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Health_Safety_CheckWithInvalidValue method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3335,7 +3335,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafety_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3399,7 +3399,7 @@ public class CommunitiesPageTest extends BaseClass{
 					log.info("Communities_HealthAndSafety_AddRow_PreviousYear_NextYear method started......................... ");
 					int OldScore;
 					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommunitiesPage = new CommunitiesPageObject();
 					boolean flag = false;
 
 					try {
@@ -3450,7 +3450,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafety_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3513,7 +3513,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafety_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3570,7 +3570,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3621,7 +3621,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafety_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3673,7 +3673,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Education_Bachelor_Population_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3718,7 +3718,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_Bachelor_Population_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3764,7 +3764,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_Bachelor_Population_SaveWithInvalidPercent method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3809,7 +3809,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Education_Bachelor_Population_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3877,7 +3877,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Education_Bachelor_Population_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3930,7 +3930,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_Bachelor_Population_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3992,7 +3992,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_Bachelor_Population_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4050,7 +4050,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4102,7 +4102,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_Bachelor_Population_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4154,7 +4154,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Equitability_Gini_Coefficient_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4199,7 +4199,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4245,7 +4245,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_SaveWithInvalidValue method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4291,7 +4291,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Equitability_Gini_Coefficient_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4358,7 +4358,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Equitability_Gini_Coefficient_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4411,7 +4411,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4473,7 +4473,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4531,7 +4531,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4583,7 +4583,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4635,7 +4635,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Education_HighSchoolPopulation_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4680,7 +4680,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4726,7 +4726,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_HighSchoolPopulation_SaveWithInvalidPercent method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4772,7 +4772,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Education_HighSchoolPopulation_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4840,7 +4840,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4893,7 +4893,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_HighSchoolPopulation_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4954,7 +4954,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_HighSchoolPopulation_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5011,7 +5011,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5062,7 +5062,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5112,7 +5112,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5157,7 +5157,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5203,7 +5203,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_ProsperityMedianIncome_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5266,7 +5266,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info("Communities_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5317,7 +5317,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5378,7 +5378,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5435,7 +5435,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5485,7 +5485,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5536,7 +5536,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Equitability_MedianGrossIncome_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5581,7 +5581,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_MedianGrossIncome_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5627,7 +5627,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_MedianGrossIncome_SaveWithInvalidPercent method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5673,7 +5673,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Equitability_MedianGrossIncome_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5740,7 +5740,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5793,7 +5793,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_MedianGrossIncome_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5854,7 +5854,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_MedianGrossIncome_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5911,7 +5911,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5962,7 +5962,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_MedianGrossIncome_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6012,7 +6012,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_ProsperityUnemployementRate_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6057,7 +6057,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityUnemployementRate_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6104,7 +6104,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 					log.info("Communities_ProsperityUnemployementRate_SaveWithInvalidPercent method started......................... ");
 					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommunitiesPage = new CommunitiesPageObject();
 					boolean flag = false;
 
 					try {
@@ -6149,7 +6149,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_ProsperityUnemployementRate_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6215,7 +6215,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6266,7 +6266,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityUnemployementRate_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6327,7 +6327,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityUnemployementRate_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6384,7 +6384,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6434,7 +6434,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityUnemployementRate_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6486,7 +6486,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_HealthAndSafetySensitiveGroup_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6531,7 +6531,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6577,7 +6577,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 							log.info("Communities_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method started......................... ");
 							CommonMethod.switchToDefaultContent();
-							CommunitiesPage = new CommunitiesPageObject();
+							//CommunitiesPage = new CommunitiesPageObject();
 							boolean flag = false;
 
 							try {
@@ -6623,7 +6623,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_HealthAndSafetySensitiveGroup_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6691,7 +6691,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6744,7 +6744,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6805,7 +6805,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6862,7 +6862,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6915,7 +6915,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Communities_HealthAndSafetySensitiveGroup_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6966,7 +6966,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_HealthAndSafetyVoilentCrime_With_DataAndDetails_Display method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7011,7 +7011,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_AddYear_AddNewLine method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7057,7 +7057,7 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_HealthAndSafetyVoilentCrime_SavePreviousYearData method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -7123,7 +7123,7 @@ public class CommunitiesPageTest extends BaseClass{
 						"Communities_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7174,7 +7174,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_Edit_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -7235,7 +7235,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_Delete_Row method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -7292,7 +7292,7 @@ public class CommunitiesPageTest extends BaseClass{
 				int OldScore;
 				CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7342,7 +7342,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_Comments_Activity_Test method started......................... ");
 				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7386,7 +7386,7 @@ public class CommunitiesPageTest extends BaseClass{
 
 					log.info("Communities_Check_QualityOfLife_Score method started......................... ");
 					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommunitiesPage = new CommunitiesPageObject();
 					int QualityScore=0;
 					boolean flag = false;
 

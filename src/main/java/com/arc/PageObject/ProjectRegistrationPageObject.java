@@ -204,6 +204,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	public void clickOnNotNowPopUpButton() {
 		try {
 			NotNowPopUpButton.click();
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -213,7 +214,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		String handle = driver.getWindowHandle();
 		try {
 			RegisterLEEDCertificationNowPopUpButton.click();
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
