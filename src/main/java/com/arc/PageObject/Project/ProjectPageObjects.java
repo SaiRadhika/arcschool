@@ -102,11 +102,12 @@ public class ProjectPageObjects extends BaseClass {
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends for Building Project---- "+ProjectID+"  .........");
 		return new BuildingPageObject();
@@ -122,13 +123,13 @@ public class ProjectPageObjects extends BaseClass {
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		
-		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends for School Project---- "+ProjectID+"  .........");
 		return new SchoolPageObject();
@@ -145,11 +146,12 @@ public class ProjectPageObjects extends BaseClass {
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends for City Project---- "+ProjectID+"  .........");
 		return new CityPageObject();
@@ -166,11 +168,12 @@ public class ProjectPageObjects extends BaseClass {
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends for Transit Project---- "+ProjectID+"  .........");
 		return new TransitPageObject();
@@ -187,11 +190,12 @@ public class ProjectPageObjects extends BaseClass {
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends for Communities Project---- "+ProjectID+"  .........");
 		return new CommunitiesPageObject();
@@ -208,11 +212,12 @@ public class ProjectPageObjects extends BaseClass {
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		log.info("SearchAndClickOnProject method ends for Parking Project---- "+ProjectID+"  .........");
 		return new ParkingPageObject();
