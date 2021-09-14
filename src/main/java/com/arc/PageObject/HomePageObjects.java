@@ -124,7 +124,7 @@ public class HomePageObjects extends BaseClass {
 	public ProjectPageObjects clickOnProject() {
 		
 		try {
-			CommonMethod.switchToDefaultContent();
+			//CommonMethod.switchToDefaultContent();
 			ProjectHeader.click();
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -205,7 +205,7 @@ public void closeInsightModelWindow()
 	}
 }
 public String getCurrentProfileUserName() {
-		CommonMethod.switchToDefaultContent();
+		//CommonMethod.switchToDefaultContent();
 		String username = null;
 		try {
 			ProfileIcon.click();
@@ -260,7 +260,7 @@ public String getCurrentProfileUserName() {
 	
 	public void closeProjectSearchTextBox() {
 		try {
-			CommonMethod.switchToDefaultContent();
+			//CommonMethod.switchToDefaultContent();
 			CloseSearchTextboxIcon.click();
 		}
 		catch(Exception e)

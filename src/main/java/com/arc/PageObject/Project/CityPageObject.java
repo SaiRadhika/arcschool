@@ -1024,7 +1024,6 @@ public class CityPageObject extends BaseClass {
 
 		int score = Integer.parseInt(EnergyScore.getText());
 		log.info("Energy Score is -----" + score);
-		log.info("Energy Score is -----" + score);
 		log.info("getEnergyScore method ends here........");
 		return score;
 
@@ -1039,7 +1038,6 @@ public class CityPageObject extends BaseClass {
 
 			int score = Integer.parseInt(TransportScore.getText());
 			log.info("Transport Score is -----" + score);
-			log.info("Transport Score is -----" + score);
 			log.info("getTransportScore method ends here........");
 			return score;
 
@@ -1051,7 +1049,6 @@ public class CityPageObject extends BaseClass {
 			log.info("getWasteScore method starts here........");
 
 			int score = Integer.parseInt(WasteScore.getText());
-			log.info("Waste Score is -----" + score);
 			log.info("Waste Score is -----" + score);
 			log.info("getWasteScore method ends here........");
 			return score;
@@ -1065,7 +1062,6 @@ public class CityPageObject extends BaseClass {
 		log.info("getWaterScore method starts here........");
 		int score = Integer.parseInt(WaterScore.getText());
 		log.info("Water Score is -----" + score);
-		log.info("Water Score is -----" + score);
 		log.info("getWaterScore method ends here........");
 		return score;
 
@@ -1077,7 +1073,6 @@ public class CityPageObject extends BaseClass {
 		log.info("getQualityOfLifeScore method starts here........");
 		int score = Integer.parseInt(QualityScore.getText());
 		log.info("Quality Of Life Score is -----" + score);
-		log.info("Quality Of Life Score -----" + score);
 		log.info("getQualityOfLifeScore method ends here........");
 		return score;
 
