@@ -1816,7 +1816,7 @@ public class CityPageTest extends BaseClass {
 	// (End date) uopens up decade calendar and on selecting any year range, the
 	// line items falling into those year should be displayed.
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 126, enabled = true, description = "Water - Water Consumption - > - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData_CheckScore", priority = 126, enabled = true, description = "Water - Water Consumption - > - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Water_FilterTest() {
 
 		log.info("City_Water_FilterTest method started......................... ");
@@ -1834,7 +1834,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000004513";
+		// ProjectCityID="8000007096";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2220,7 +2220,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		//ProjectCityID = "8000006971";
+		//ProjectCityID = "8000007096";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2604,7 +2604,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID = "8000004454";
+		// ProjectCityID = "8000007095";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);

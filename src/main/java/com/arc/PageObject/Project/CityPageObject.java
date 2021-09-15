@@ -4716,6 +4716,8 @@ public class CityPageObject extends BaseClass {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					ClickonGHGEmiissions();
+					ClickonMunicipalSolidwastegeneration();
 					
 					waithelper.WaitForElementClickable(YearFilterButton,Integer.parseInt(prop.getProperty("explicitTime")), 2);
 					YearFilterButton.click();
@@ -4917,7 +4919,8 @@ public class CityPageObject extends BaseClass {
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
-					
+					ClickonGHGEmiissions();
+					ClickonMunicipalSolidWasteDiversion();
 									
 					waithelper.WaitForElementClickable(YearFilterButton,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -5131,6 +5134,8 @@ public class CityPageObject extends BaseClass {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					ClickonGHGEmiissions();
+					ClickonWaterConsumption();
 					YearFilterButton.click();
 					
 					YearStartDateTextBox.click();
