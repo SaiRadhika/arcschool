@@ -20,7 +20,7 @@
 			<class name="com.arc.testCases.LoginPageTest" />
 			<class name="com.arc.testCases.HomePageTest" />
 			 <class name="com.arc.testCases.ProjectRegistrationPageTest" />  
-			<!--  <class name="com.arc.testCases.Project.CityPageTest" /> -->
+			 <class name="com.arc.testCases.Project.CityPageTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
