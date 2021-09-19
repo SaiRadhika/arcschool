@@ -187,8 +187,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_DI_ProjectSetting_Population_Add_Row() {
 
 			log.info("Communities_DI_ProjectSetting_Population_Add_Row method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			try {
 				HomePage.setHomePageApplication();
@@ -233,8 +233,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info(
 					"Communities_ProjectSetting_Population_Save_Row_DecadeCalender_Display method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean RowAddflag = false;
 			boolean DecadeCalenderflag = false;
 			try {
@@ -287,11 +287,11 @@ public class CommunitiesPageTest extends BaseClass{
 		// member and add line item to this tab and check if his name s updated in
 		// 'Updated by column }
 
-		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Communities_ProjectSetting_Population_Save_Row_DecadeCalender_Display", priority = 250, enabled = true, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Communities_ProjectSetting_Population_Save_Row_DecadeCalender_Display", priority = 250, enabled = false, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
 		public void Communities_ProjectSetting_Population_UpdatedBy_Test() {
 
 			log.info("Communities_ProjectSetting_Population_UpdatedBy_Test method started......................... ");
-			CommonMethod.switchToDefaultContent();
+			//CommonMethod.switchToDefaultContent();
 
 			HomePage.setHomePageApplication();
 			ProjectPage = HomePage.clickOnProject();
@@ -311,7 +311,7 @@ public class CommunitiesPageTest extends BaseClass{
 						log.info("Team Member added-----------------");
 						HomePage.checkSignOut();
 						HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
-						CommunitiesPage = new CommunitiesPageObject();
+						//CommunitiesPage = new CommunitiesPageObject();
 						boolean Updatedflag = false;
 
 						try {
@@ -389,8 +389,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_ProjectSetting_Population_Comments_Activity_Test() {
 
 			log.info("Communities_ProjectSetting_Population_Comments_Activity_Test method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 
 			try {
@@ -405,11 +405,10 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004489";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				String ProfileUserName = HomePage.getCurrentProfileUserName();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
+				HomePage.closeProjectSearchTextBox();				
+				CommunitiesPage.ClickonDataInput();				
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 
@@ -435,8 +434,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_Population_Field_Comma_Display() {
 
 			log.info("Communities_Population_Field_Comma_Display method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -451,10 +450,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004341";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				flag = CommunitiesPage.verifyAddedProject_Setting_PopulationRow();
@@ -492,8 +490,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_Population_Filter_Test() {
 
 			log.info("Communities_Population_Filter_Test method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -508,10 +506,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004498";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				flag = CommunitiesPage.CheckPopulationFilter();
@@ -540,8 +537,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_ProjectSetting_ProjectArea_Add_Row() {
 
 			log.info("Communities_ProjectSetting_ProjectArea_Add_Row method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			try {
 				HomePage.setHomePageApplication();
@@ -555,10 +552,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004332";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				flag = CommunitiesPage.checkProjectArea_AddRow_Header_Display();
@@ -585,8 +581,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 			log.info(
 					"Communities_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean DecadeCalenderflag = false;
 			boolean RowAddflag = false;
 			try {
@@ -601,10 +597,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004554";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				DecadeCalenderflag = CommunitiesPage.checkProjectArea_Save_New_Row("10000");
@@ -616,8 +611,8 @@ public class CommunitiesPageTest extends BaseClass{
 				HomePage.setHomePageApplication();
 				ProjectPage = HomePage.clickOnProject();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				RowAddflag = CommunitiesPage.verifyAddedProject_Setting_ProjectAreaRow();
@@ -641,8 +636,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_ProjectArea_Field_Comma_Display() {
 
 			log.info("Communities_ProjectArea_Field_Comma_Display method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -657,10 +652,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004355";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				Commaflag = CommunitiesPage.verifyProjectAreaField_Contains_Comma();
@@ -688,8 +682,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_ProjectSetting_ProjectArea_Comments_Activity_Test() {
 
 			log.info("Communities_ProjectSetting_ProjectArea_Comments_Activity_Test method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 
 			try {
@@ -704,11 +698,10 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004423";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				String ProfileUserName = HomePage.getCurrentProfileUserName();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
+				HomePage.closeProjectSearchTextBox();				
+				CommunitiesPage.ClickonDataInput();				
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 
@@ -735,8 +728,8 @@ public class CommunitiesPageTest extends BaseClass{
 		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 257, enabled = true, description = "Verify after creating Communities Project with Gross Area as \"Square Miles unit\", check in Data Input – Project Setting - > Project Area Tab -> Unit Drop down by default value. ")
 		public void Communities_Project_Area_GrossArea_SquareMiles_Display() {
 			log.info("Communities_Project_Area_GrossArea_SquareMiles_Display method started ........... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			try {
 				HomePage.setHomePageApplication();
@@ -750,10 +743,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004319";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				flag = CommunitiesPage.checkUnitTypeInProjectAreaUnderDataInput("sq miles");
@@ -782,8 +774,8 @@ public class CommunitiesPageTest extends BaseClass{
 		public void Communities_ProjectArea_Filter_Test() {
 
 			log.info("Communities_ProjectArea_Filter_Test method started......................... ");
-			CommonMethod.switchToDefaultContent();
-			CommunitiesPage = new CommunitiesPageObject();
+			//CommonMethod.switchToDefaultContent();
+			//CommunitiesPage = new CommunitiesPageObject();
 			boolean flag = false;
 			boolean Commaflag = false;
 			try {
@@ -798,10 +790,9 @@ public class CommunitiesPageTest extends BaseClass{
 			// ProjectCommunitiesID="8000004498";
 			if (!ProjectCommunitiesID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
-				// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+				HomePage.closeProjectSearchTextBox();				
 				CommunitiesPage.ClickonDataInput();
-				HomePage.closeProjectSearchTextBox();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				flag = CommunitiesPage.CheckProjectAreaFilter();
@@ -827,11 +818,11 @@ public class CommunitiesPageTest extends BaseClass{
 			// member and add line item to this tab and check if his name s updated in
 			// 'Updated by column }
 
-			@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 259, enabled = true, description = "Project Setting -> Project Area \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+			@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 259, enabled = false, description = "Project Setting -> Project Area \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
 			public void Communities_ProjectSetting_ProjectArea_UpdatedBy_Test() {
 
 				log.info("Communities_ProjectSetting_ProjectArea_UpdatedBy_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
 				HomePage.setHomePageApplication();
 				ProjectPage = HomePage.clickOnProject();
@@ -857,7 +848,7 @@ public class CommunitiesPageTest extends BaseClass{
 							log.info("Team Member added-----------------");
 							HomePage.checkSignOut();
 							HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
-							CommunitiesPage = new CommunitiesPageObject();
+							//CommunitiesPage = new CommunitiesPageObject();
 							boolean Updatedflag = false;
 
 							try {
@@ -931,9 +922,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_GHGEmission_With_DataAndDetails_Display() {
 
 				log.info("Communities_Energy_GHGEmission_DataAndDetailsTab_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage=new CommunitiesPageObject();
+				////CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -948,9 +939,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					 CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
 					flag = CommunitiesPage.CheckGHGEmission_Data_DetailsTab_Display();
@@ -977,8 +968,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_GHGEmission_AddYear_AddNewLine() {
 
 				log.info("Communities_Energy_GHGEmission_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				////CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -993,10 +984,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
 					flag = CommunitiesPage.CheckGHGEmission_AddYear_NewRow_Display();
@@ -1025,8 +1015,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_GHGEmission_SavePreviousYearData_CheckScore() {
 
 				log.info("Communities_Energy_GHGEmission_SavePreviousYearData_CheckScore method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				////CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1042,15 +1032,12 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-				
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
 					OldScore = CommunitiesPage.getEnergyScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonGHGEmiissions();
 					flag = CommunitiesPage.CheckGHGEmission_SaveNewRecord();
 
 					if (flag) {
@@ -1087,8 +1074,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_GHGEmission_Edit_Row() {
 
 				log.info("Communities_Energy_GHGEmission_Edit_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1104,9 +1091,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
@@ -1114,6 +1100,7 @@ public class CommunitiesPageTest extends BaseClass{
 					flag = CommunitiesPage.CheckGHGEmission_EditRow();
 
 					if (flag) {
+						CommonMethod.switchToDefaultContent();
 						HomePage.clickOnProject();
 						ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 						HomePage.closeProjectSearchTextBox();
@@ -1145,8 +1132,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_GHGEmission_Delete_Row() {
 
 				log.info("Communities_Energy_GHGEmission_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1162,9 +1149,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
@@ -1174,6 +1160,7 @@ public class CommunitiesPageTest extends BaseClass{
 					flag = CommunitiesPage.CheckGHGEmission_DeleteRow();
 
 					if (flag) {
+						CommonMethod.switchToDefaultContent();
 						HomePage.clickOnProject();
 						ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 						HomePage.closeProjectSearchTextBox();
@@ -1208,8 +1195,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_AddRow_PreviousYear_NextYear() {
 
 				log.info("Communities_Energy_AddRow_PreviousYear_NextYear method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1224,9 +1211,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006731";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
@@ -1260,8 +1246,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_DetailsTab_Comments_Activity_Test() {
 
 				log.info("Communities_Energy_DetailsTab_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1276,11 +1262,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonGHGEmiissions();
 					flag = CommunitiesPage.checkEnergyCommentAndActivity(data.getCellData("Communities", 5, 2), ProfileUserName);
@@ -1308,9 +1293,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Energy_FilterTest() {
 
 				log.info("Communities_Energy_FilterTest method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1325,11 +1310,11 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006732";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonGHGEmiissions();
 					flag = CommunitiesPage.CheckEnergyFilter();
 
@@ -1353,9 +1338,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_DataAndDetails_Display() {
 
 				log.info("Communities_Water_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1370,11 +1355,11 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID = "8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
 					flag = CommunitiesPage.CheckWaterConsumption_Data_DetailsTab_Display();
 
@@ -1399,8 +1384,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_Consum_AddYear_AddNewLine() {
 
 				log.info("Communities_Water_Consum_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1415,11 +1400,11 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID = "8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
 					flag = CommunitiesPage.CheckWatwr_Consumption_AddYear_NewRow_Display();
 
@@ -1446,8 +1431,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_Consum_SavePreviousYearData_CheckScore() {
 
 				log.info("Communities_Water_Consum_SavePreviousYearData_CheckScore method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1464,13 +1449,11 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonWaterConsumption();
 					OldScore = CommunitiesPage.getWaterScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonWaterConsumption();
 					flag = CommunitiesPage.CheckWaterConsumption_SaveNewRecord();
 
 					if (flag) {
@@ -1507,9 +1490,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_AddRows_With_Gallons_Litres() {
 
 				log.info("Communities_Water_AddRows_With_Gallons_Litres method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1526,13 +1509,13 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
 					OldScore = CommunitiesPage.getWaterScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonWaterConsumption();
+					
 					flag = CommunitiesPage.CheckWaterConsumption_AddRow_UnitTypes();
 
 					if (flag) {
@@ -1561,9 +1544,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_AddRows_With_Duration_Types() {
 
 				log.info("Communities_Water_AddRows_With_Duration_Types method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1580,13 +1563,13 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
 					OldScore = CommunitiesPage.getWaterScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonWaterConsumption();
+					
 					flag = CommunitiesPage.CheckWaterConsumption_AddRow_DurationTypes();
 
 					if (flag) {
@@ -1615,8 +1598,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_AddRow_PreviousYear_NextYear() {
 
 				log.info("Communities_Water_AddRow_PreviousYear_NextYear method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1631,11 +1614,11 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006731";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
 					CommunitiesPage.CheckWaterConsumption_SaveNewRecord();
 					flag = CommunitiesPage.CheckWaterConsum_SavePreviousAndNextYearRecord();
@@ -1663,8 +1646,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_Edit_Row() {
 
 				log.info("Communities_Water_Edit_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1680,13 +1663,12 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
-					// OldScore = CommunitiesPage.getWaterScore();
 					flag = CommunitiesPage.CheckWaterConsum_EditRow();
 
 					if (flag) {
@@ -1713,8 +1695,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_Delete_Row() {
 
 				log.info("Communities_Water_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1730,11 +1712,11 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
+
 					CommunitiesPage.ClickonWaterConsumption();
 					;
 					// OldScore = CommunitiesPage.getEnergyScore();
@@ -1770,8 +1752,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_Comments_Activity_Test() {
 
 				log.info("Communities_Water_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1786,11 +1768,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006730";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonWaterConsumption();
 					flag = CommunitiesPage.checkWaterCommentAndActivity(data.getCellData("Communities", 9, 2), ProfileUserName);
@@ -1817,9 +1798,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Water_FilterTest() {
 
 				log.info("Communities_Water_FilterTest method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage=new CommunitiesPageObject();
+				//CommunitiesPage=new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1834,10 +1815,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006732";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonWaterConsumption();
 					flag = CommunitiesPage.CheckWaterFilter();
@@ -1867,9 +1847,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Gen_DataAndDetails_Display() {
 
 				log.info("Communities_Waste_Gen_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1884,10 +1864,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID = "8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					flag = CommunitiesPage.CheckWasteGeneration_Data_DetailsTab_Display();
@@ -1914,8 +1893,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_AddYear_AddNewLine() {
 
 				log.info("Communities_Waste_Generation_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -1930,10 +1909,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID = "8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					flag = CommunitiesPage.CheckWaste_Generation_AddYear_NewRow_Display();
@@ -1960,8 +1938,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_SavePreviousYearData() {
 
 				log.info("Communities_Waste_Generation_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -1978,8 +1956,8 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					flag = CommunitiesPage.CheckWaste_Generation_SaveNewRecord();
@@ -2009,8 +1987,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_AddRow_PreviousYear_NextYear() {
 
 				log.info("Communities_Waste_Generation_AddRow_PreviousYear_NextYear method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2025,11 +2003,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					flag = CommunitiesPage.CheckWaste_Generation_SavePreviousAndNextYearRecord();
@@ -2057,8 +2033,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_Edit_Row() {
 
 				log.info("Communities_Waste_Generation_Edit_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2074,9 +2050,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
@@ -2105,8 +2080,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_Delete_Row() {
 
 				log.info("Communities_Waste_Generation_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2122,9 +2097,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
@@ -2161,8 +2135,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_Comments_Activity_Test() {
 
 				log.info("Communities_Waste_Generation_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+			//	CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2177,11 +2151,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004465";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					flag = CommunitiesPage.checkWasteGenerationCommentAndActivity(data.getCellData("Communities", 11, 2), ProfileUserName);
@@ -2210,9 +2183,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Generation_FilterTest() {
 
 				log.info("Communities_Waste_Generation_FilterTest method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2227,10 +2200,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004566";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					flag = CommunitiesPage.CheckWaste_GenerationFilter();
@@ -2257,9 +2229,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_DataAndDetails_Display() {
 
 				log.info("Communities_Waste_Diversion_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2274,10 +2246,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID = "8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.CheckWasteDiversion_Data_DetailsTab_Display();
@@ -2304,8 +2275,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_AddYear_AddNewLine() {
 
 				log.info("Communities_Waste_Diversion_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2320,10 +2291,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID = "8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.CheckWaste_Diversion_AddYear_NewRow_Display();
@@ -2351,8 +2321,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_CheckWithInvalidPercent() {
 
 				log.info("Communities_Waste_Diversion_CheckWithInvalidPercent method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2367,10 +2337,9 @@ public class CommunitiesPageTest extends BaseClass{
 				//ProjectCommunitiesID = "8000006850";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.CheckWaste_Diversion_CheckWithInvalidPercent();
@@ -2397,8 +2366,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_SavePreviousYearData() {
 
 				log.info("Communities_Waste_Diversion_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2415,8 +2384,8 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.CheckWaste_Diversion_SaveNewRecord();
@@ -2447,8 +2416,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_AddRow_PreviousYear_NextYear() {
 
 				log.info("Communities_Waste_Diversion_AddRow_PreviousYear_NextYear method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2463,11 +2432,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.CheckWaste_Diversion_SavePreviousAndNextYearRecord();
@@ -2496,8 +2463,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_Edit_Row() {
 
 				log.info("Communities_Waste_Diversion_Edit_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2513,9 +2480,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
@@ -2545,8 +2511,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_Delete_Row() {
 
 				log.info("Communities_Waste_Diversion_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2562,9 +2528,8 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
@@ -2602,8 +2567,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Waste_Score_SavePreviousYearDataForGenerationAndDiversion method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2620,8 +2585,8 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidwastegeneration();
 					OldScore = CommunitiesPage.getWasteScore();
@@ -2665,8 +2630,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_Comments_Activity_Test() {
 
 				log.info("Communities_Waste_Diversion_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2681,11 +2646,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004466";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.checkWasteDiversionCommentAndActivity(data.getCellData("Communities", 13, 2), ProfileUserName);
@@ -2713,9 +2677,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Waste_Diversion_FilterTest() {
 
 				log.info("Communities_Waste_Diversion_FilterTest method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2730,10 +2694,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004510";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
 					flag = CommunitiesPage.CheckWaste_DiversionFilter();
@@ -2762,9 +2725,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Transportation_VMT_With_DataAndDetails_Display() {
 
 				log.info("Communities_Transportation_VMT_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2779,10 +2742,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004456";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
 					flag = CommunitiesPage.CheckVMT_Data_DetailsTab_Display();
@@ -2808,8 +2770,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Transportation_VMT_AddYear_AddNewLine() {
 
 				log.info("Communities_Transportation_VMT_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -2824,10 +2786,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004456";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
 					flag = CommunitiesPage.CheckTransport_VMT_AddYear_NewRow_Display();
@@ -2855,8 +2816,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Transportation_SavePreviousYearData_CheckScore() {
 
 				log.info("Communities_Transportation_SavePreviousYearData_CheckScore method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2872,15 +2833,12 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004377";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
 					OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonVMT();
 					flag = CommunitiesPage.CheckTransportation_SaveNewRecord();
 
 					if (flag) {
@@ -2921,8 +2879,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 					log.info("Communities_Transportation_VMT_AddRow_PreviousYear_NextYear method started......................... ");
 					int OldScore;
-					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommonMethod.switchToDefaultContent();
+					//CommunitiesPage = new CommunitiesPageObject();
 					boolean flag = false;
 
 					try {
@@ -2937,15 +2895,12 @@ public class CommunitiesPageTest extends BaseClass{
 					// ProjectCommunitiesID="8000004525";
 					if (!ProjectCommunitiesID.equals(null)) {
 						ProjectPage = HomePage.clickOnProject();
-
 						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+						HomePage.closeProjectSearchTextBox();				
 						CommunitiesPage.ClickonDataInput();
 						CommonMethod.switchToDataInputFrame();
 						CommunitiesPage.ClickonVMT();
 						OldScore = CommunitiesPage.getTransportScore();
-						HomePage.closeProjectSearchTextBox();
-						CommonMethod.switchToDataInputFrame();
-						CommunitiesPage.ClickonVMT();
 						flag = CommunitiesPage.Transportation_VMT_SavePreviousAndNextYearRecord();
 						if (flag) {
 							log.info("Communities_Transportation_VMT_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -2973,8 +2928,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Transportation_Edit_Test() {
 
 				log.info("Communities_Transportation_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -2990,15 +2945,13 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004525";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
-					OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonVMT();
+					//OldScore = CommunitiesPage.getTransportScore();
+					
 					flag = CommunitiesPage.CheckTransportation_EditRecord();
 
 					if (flag) {
@@ -3036,8 +2989,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Transportation_VMT_Delete_Row() {
 
 				log.info("Communities_Transportation_VMT_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3053,15 +3006,13 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004409";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
-					OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonVMT();
+					//OldScore = CommunitiesPage.getTransportScore();
+					
 					flag = CommunitiesPage.Transportation_VMT_DeleteRow();
 
 					if (flag) {
@@ -3094,9 +3045,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Transportation_VMT_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3111,15 +3062,12 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004525";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
-					OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonVMT();
+					//OldScore = CommunitiesPage.getTransportScore();
 					flag = CommunitiesPage.CheckTransportationFilter();
 
 				} else {
@@ -3147,8 +3095,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Transportation_VMT_Comments_Activity_Test() {
 
 				log.info("Communities_Transportation_VMT_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3163,16 +3111,13 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonVMT();
 					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonVMT();
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 15, 2), ProfileUserName);
 
 				} else {
@@ -3199,9 +3144,9 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Health_Safety_With_DataAndDetails_Display() {
 
 				log.info("Communities_Health_Safety_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3216,10 +3161,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.CheckHealthAndSafety_Data_DetailsTab_Display();
@@ -3245,8 +3189,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Health_Safety_AddYear_AddNewLine() {
 
 				log.info("Communities_Health_Safety_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3261,10 +3205,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.CheckHealthAndSafety_AddYear_NewRow_Display();
@@ -3290,8 +3233,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Health_Safety_CheckWithInvalidValue() {
 
 				log.info("Communities_Health_Safety_CheckWithInvalidValue method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3306,10 +3249,9 @@ public class CommunitiesPageTest extends BaseClass{
 				//ProjectCommunitiesID="8000006844";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.CheckHealthAndSafety_CheckWithInvalidValue();
@@ -3334,8 +3276,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafety_SavePreviousYearData() {
 
 				log.info("Communities_HealthAndSafety_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3351,12 +3293,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.CheckHealthAndSafety_SaveNewRecord();
@@ -3398,8 +3337,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 					log.info("Communities_HealthAndSafety_AddRow_PreviousYear_NextYear method started......................... ");
 					int OldScore;
-					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommonMethod.switchToDefaultContent();
+					//CommunitiesPage = new CommunitiesPageObject();
 					boolean flag = false;
 
 					try {
@@ -3414,12 +3353,9 @@ public class CommunitiesPageTest extends BaseClass{
 					// ProjectCommunitiesID="8000004564";
 					if (!ProjectCommunitiesID.equals(null)) {
 						ProjectPage = HomePage.clickOnProject();
-
 						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+						HomePage.closeProjectSearchTextBox();				
 						CommunitiesPage.ClickonDataInput();
-
-						// OldScore = CommunitiesPage.getTransportScore();
-						HomePage.closeProjectSearchTextBox();
 						CommonMethod.switchToDataInputFrame();
 						CommunitiesPage.ClickonHealthAndSafety();
 						flag = CommunitiesPage.HealthAndSafety_SavePreviousAndNextYearRecord();
@@ -3449,8 +3385,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafety_Edit_Test() {
 
 				log.info("Communities_HealthAndSafety_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3466,12 +3402,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.CheckHealthAndSafety_EditRecord();
@@ -3512,8 +3445,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafety_Delete_Row() {
 
 				log.info("Communities_HealthAndSafety_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3529,12 +3462,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.HealthAndSafety_DeleteRow();
@@ -3568,9 +3498,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafey_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3585,12 +3515,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.CheckHealthAndSafetyFilter();
@@ -3620,8 +3547,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafety_Comments_Activity_Test() {
 
 				log.info("Communities_HealthAndSafety_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3636,13 +3563,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafety();
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 17, 2), ProfileUserName);
@@ -3671,9 +3595,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Education_Bachelor_Population_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3688,10 +3612,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.CheckEducation_BachelorPopulation_Data_DetailsTab_Display();
@@ -3717,8 +3640,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_Bachelor_Population_AddYear_AddNewLine() {
 
 				log.info("Communities_Education_Bachelor_Population_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3733,10 +3656,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.CheckEducation_Bachelor_Population_AddYear_NewRow_Display();
@@ -3763,8 +3685,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_Bachelor_Population_SaveWithInvalidPercent() {
 
 				log.info("Communities_Education_Bachelor_Population_SaveWithInvalidPercent method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3780,8 +3702,8 @@ public class CommunitiesPageTest extends BaseClass{
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.CheckEducation_Bachelor_Population_CheckWithInvalidPercent();
@@ -3808,8 +3730,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Education_Bachelor_Population_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3825,12 +3747,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.CheckEductaion_Bachelor_Population_SaveNewRecord();
@@ -3876,8 +3795,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Education_Bachelor_Population_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -3892,12 +3811,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.Education_Bachelor_Population_SavePreviousAndNextYearRecord();
@@ -3929,8 +3845,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_Bachelor_Population_Edit_Test() {
 
 				log.info("Communities_Education_Bachelor_Population_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -3946,12 +3862,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.CheckEducation_Bachelor_population_EditRecord();
@@ -3991,8 +3904,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_Bachelor_Population_Delete_Row() {
 
 				log.info("Communities_Education_Bachelor_Population_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4008,12 +3921,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.Education_Bachelor_Population_DeleteRow();
@@ -4048,9 +3958,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_Bachelor_Population_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4065,12 +3975,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.CheckEducation_Bachelor_Population_Filter();
@@ -4101,8 +4008,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_Bachelor_Population_Comments_Activity_Test() {
 
 				log.info("Communities_Education_Bachelor_Population_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4117,13 +4024,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_BachelorPopulation();
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 19, 2), ProfileUserName);
@@ -4152,9 +4056,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Equitability_Gini_Coefficient_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//	CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4169,10 +4073,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display();
@@ -4198,8 +4101,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_Gini_Coefficient_AddYear_AddNewLine() {
 
 				log.info("Communities_Equitability_Gini_Coefficient_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4214,10 +4117,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display();
@@ -4244,8 +4146,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_Gini_Coefficient_SaveWithInvalidValue() {
 
 				log.info("Communities_Equitability_Gini_Coefficient_SaveWithInvalidValue method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4260,10 +4162,9 @@ public class CommunitiesPageTest extends BaseClass{
 				//ProjectCommunitiesID="8000006868";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_CheckWithInvalidValue();
@@ -4290,8 +4191,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Equitability_Gini_Coefficient_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4307,12 +4208,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_SaveNewRecord();
@@ -4357,8 +4255,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Equitability_Gini_Coefficient_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4373,12 +4271,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.Equitability_Gini_Coefficient_SavePreviousAndNextYearRecord();
@@ -4410,8 +4305,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_Gini_Coefficient_Edit_Test() {
 
 				log.info("Communities_Equitability_Gini_Coefficient_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4427,12 +4322,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_EditRecord();
@@ -4472,8 +4364,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_Gini_Coefficient_Delete_Row() {
 
 				log.info("Communities_Equitability_Gini_Coefficient_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4489,12 +4381,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.Equitability_Gini_Coefficient_DeleteRow();
@@ -4529,9 +4418,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_Gini_Coefficient_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4546,12 +4435,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_Filter();
@@ -4582,8 +4468,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_Gini_Coefficient_Comments_Activity_Test() {
 
 				log.info("Communities_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4598,14 +4484,12 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
+					
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 21, 2), ProfileUserName);
 
@@ -4633,9 +4517,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Education_HighSchoolPopulation_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4650,10 +4534,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display();
@@ -4679,8 +4562,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_HighSchoolPopulation_AddYear_AddNewLine() {
 
 				log.info("Communities_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4695,10 +4578,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display();
@@ -4725,8 +4607,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_HighSchoolPopulation_SaveWithInvalidPercent() {
 
 				log.info("Communities_Education_HighSchoolPopulation_SaveWithInvalidPercent method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4741,10 +4623,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006868";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent();
@@ -4771,8 +4652,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Education_HighSchoolPopulation_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4788,12 +4669,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_SaveNewRecord();
@@ -4839,8 +4717,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -4855,12 +4733,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.Education_HighSchoolPopulation_SavePreviousAndNextYearRecord();
@@ -4892,8 +4767,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_HighSchoolPopulation_Edit_Test() {
 
 				log.info("Communities_Education_HighSchoolPopulation_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4909,11 +4784,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_EditRecord();
@@ -4953,8 +4826,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Education_HighSchoolPopulation_Delete_Row() {
 
 				log.info("Communities_Education_HighSchoolPopulation_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -4970,11 +4843,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004564";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.Education_HighSchoolPopulation_DeleteRow();
@@ -5009,9 +4880,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Education_HighSchoolPopulation_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5026,11 +4897,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004565";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEducation_HighSchoolPopulation();
 					flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_Filter();
@@ -5061,8 +4930,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_Gini_Coefficient_Comments_Activity_Test1() {
 
 				log.info("Communities_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5077,16 +4946,14 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
 					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
+			
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 23, 2), ProfileUserName);
 
 				} else {
@@ -5111,8 +4978,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityMedianIncome_With_DataAndDetails_Display() {
 
 				log.info("Communities_ProsperityMedianIncome_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+			//	CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5127,10 +4994,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.CheckProsperityMedianIncome_Data_DetailsTab_Display();
@@ -5156,8 +5022,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityMedianIncome_AddYear_AddNewLine() {
 
 				log.info("Communities_ProsperityMedianIncome_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5172,10 +5038,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.CheckProsperityMedianIncome_AddYear_NewRow_Display();
@@ -5202,8 +5067,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_ProsperityMedianIncome_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5219,12 +5084,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.CheckProsperityMedianIncome_SaveNewRecord();
@@ -5265,8 +5127,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5281,12 +5143,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.ProsperityMedianIncome_SavePreviousAndNextYearRecord();
@@ -5316,8 +5175,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityMedianIncome_Edit_Test() {
 
 				log.info("Communities_ProsperityMedianIncome_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5333,11 +5192,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.CheckProsperityMedianIncome_EditRecord();
@@ -5377,8 +5234,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityMedianIncome_Delete_Row() {
 
 				log.info("Communities_ProsperityMedianIncome_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5394,11 +5251,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.ProsperityMedianIncome_DeleteRow();
@@ -5433,9 +5288,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityMedianIncome_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5450,11 +5305,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperity_MedianIncome();
 					flag = CommunitiesPage.CheckProsperityMedianIncome_Filter();
@@ -5484,8 +5337,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityMedianIncome_Comments_Activity_Test() {
 
 				log.info("Communities_ProsperityMedianIncome_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5500,16 +5353,13 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
+					
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 25, 2), ProfileUserName);
 
 				} else {
@@ -5535,8 +5385,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Equitability_MedianGrossIncome_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5551,10 +5401,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display();
@@ -5580,8 +5429,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_MedianGrossIncome_AddYear_AddNewLine() {
 
 				log.info("Communities_Equitability_MedianGrossIncome_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5596,10 +5445,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display();
@@ -5626,8 +5474,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_MedianGrossIncome_SaveWithInvalidPercent() {
 
 				log.info("Communities_Equitability_MedianGrossIncome_SaveWithInvalidPercent method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5642,10 +5490,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006868";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue();
@@ -5672,8 +5519,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Equitability_MedianGrossIncome_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5689,12 +5536,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_SaveNewRecord();
@@ -5739,8 +5583,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5755,12 +5599,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord();
@@ -5792,8 +5633,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_MedianGrossIncome_Edit_Test() {
 
 				log.info("Communities_Equitability_MedianGrossIncome_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5809,11 +5650,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_EditRecord();
@@ -5853,8 +5692,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_MedianGrossIncome_Delete_Row() {
 
 				log.info("Communities_Equitability_MedianGrossIncome_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -5870,11 +5709,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.Equitability_MedianGrossIncome_DeleteRow();
@@ -5909,9 +5746,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_Equitability_MedianGrossIncome_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5926,11 +5763,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_Filter();
@@ -5961,8 +5796,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_Equitability_MedianGrossIncome_Comments_Activity_Test() {
 
 				log.info("Communities_Equitability_MedianGrossIncome_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -5977,13 +5812,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004527";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonEquitability_MedianGrossIncome();
 					flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 27, 2), ProfileUserName);
@@ -6011,8 +5843,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_ProsperityUnemployementRate_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6027,10 +5859,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006625";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.CheckProsperityUnemployementRate_Data_DetailsTab_Display();
@@ -6056,8 +5887,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityUnemployementRate_AddYear_AddNewLine() {
 
 				log.info("Communities_ProsperityUnemployementRate_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6072,10 +5903,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006625";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.CheckProsperityUnemployementRate_AddYear_NewRow_Display();
@@ -6103,8 +5933,8 @@ public class CommunitiesPageTest extends BaseClass{
 				public void Communities_ProsperityUnemployementRate_SaveWithInvalidPercent() {
 
 					log.info("Communities_ProsperityUnemployementRate_SaveWithInvalidPercent method started......................... ");
-					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommonMethod.switchToDefaultContent();
+					//CommunitiesPage = new CommunitiesPageObject();
 					boolean flag = false;
 
 					try {
@@ -6119,10 +5949,9 @@ public class CommunitiesPageTest extends BaseClass{
 					//ProjectCommunitiesID="8000006848";
 					if (!ProjectCommunitiesID.equals(null)) {
 						ProjectPage = HomePage.clickOnProject();
-						// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+						HomePage.closeProjectSearchTextBox();				
 						CommunitiesPage.ClickonDataInput();
-						HomePage.closeProjectSearchTextBox();
 						CommonMethod.switchToDataInputFrame();
 						CommunitiesPage.ClickonProsperityUnemployementRate();
 						flag = CommunitiesPage.CheckProsperityUnemployementRate_CheckWithInvalidValue();
@@ -6148,8 +5977,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_ProsperityUnemployementRate_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6165,12 +5994,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006625";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.CheckProsperityUnemployementRate_SaveNewRecord();
@@ -6214,8 +6040,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6230,12 +6056,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006795";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.ProsperityUnemployementRate_SavePreviousAndNextYearRecord();
@@ -6265,8 +6088,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityUnemployementRate_Edit_Test() {
 
 				log.info("Communities_ProsperityUnemployementRate_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6282,11 +6105,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006625";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.CheckProsperityUnemployementRate_EditRecord();
@@ -6326,8 +6147,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityUnemployementRate_Delete_Row() {
 
 				log.info("Communities_ProsperityUnemployementRate_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6343,11 +6164,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006625";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.ProsperityUnemployementRate_DeleteRow();
@@ -6382,9 +6201,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_ProsperityUnemployementRate_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6399,11 +6218,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000006626";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.CheckProsperityUnemployementRate_Filter();
@@ -6433,8 +6250,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_ProsperityUnemployementRate_Comments_Activity_Test() {
 
 				log.info("Communities_ProsperityUnemployementRate_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6449,13 +6266,10 @@ public class CommunitiesPageTest extends BaseClass{
 				//ProjectCommunitiesID = "8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonProsperityUnemployementRate();
 					flag = CommunitiesPage.checkProsperityUnemployementRate(data.getCellData("Communities", 29, 2), ProfileUserName);
@@ -6485,8 +6299,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_HealthAndSafetySensitiveGroup_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6501,10 +6315,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_Data_DetailsTab_Display();
@@ -6530,8 +6343,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetySensitiveGroup_AddYear_AddNewLine() {
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6546,10 +6359,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display();
@@ -6576,8 +6388,8 @@ public class CommunitiesPageTest extends BaseClass{
 						public void Communities_HealthAndSafetySensitiveGroup_SaveWithInvalidValue() {
 
 							log.info("Communities_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method started......................... ");
-							CommonMethod.switchToDefaultContent();
-							CommunitiesPage = new CommunitiesPageObject();
+							//CommonMethod.switchToDefaultContent();
+							//CommunitiesPage = new CommunitiesPageObject();
 							boolean flag = false;
 
 							try {
@@ -6592,10 +6404,9 @@ public class CommunitiesPageTest extends BaseClass{
 							// ProjectCommunitiesID="8000006844";
 							if (!ProjectCommunitiesID.equals(null)) {
 								ProjectPage = HomePage.clickOnProject();
-								// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 								CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+								HomePage.closeProjectSearchTextBox();				
 								CommunitiesPage.ClickonDataInput();
-								HomePage.closeProjectSearchTextBox();
 								CommonMethod.switchToDataInputFrame();
 								CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 								flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue();
@@ -6622,8 +6433,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_HealthAndSafetySensitiveGroup_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6639,12 +6450,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_SaveNewRecord();
@@ -6690,8 +6498,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6706,12 +6514,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord();
@@ -6743,8 +6548,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetySensitiveGroup_Edit_Test() {
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6760,11 +6565,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_EditRecord();
@@ -6804,8 +6607,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetySensitiveGroup_Delete_Row() {
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -6821,11 +6624,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.HealthAndSafetySensitiveGroup_DeleteRow();
@@ -6860,9 +6661,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetySensitiveGroup_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6877,11 +6678,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_Filter();
@@ -6914,8 +6713,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_Communities_HealthAndSafetySensitiveGroup_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6930,13 +6729,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
 					flag = CommunitiesPage.checkHealthAndSafetySensitiveGroup(data.getCellData("Communities", 31, 2), ProfileUserName);
@@ -6965,8 +6761,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_HealthAndSafetyVoilentCrime_With_DataAndDetails_Display method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -6981,10 +6777,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display();
@@ -7010,8 +6805,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetyVoilentCrime_AddYear_AddNewLine() {
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_AddYear_AddNewLine method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7026,10 +6821,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_AddYear_NewRow_Display();
@@ -7056,8 +6850,8 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info(
 						"Communities_HealthAndSafetyVoilentCrime_SavePreviousYearData method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -7073,12 +6867,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					/// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_SaveNewRecord();
@@ -7122,8 +6913,8 @@ public class CommunitiesPageTest extends BaseClass{
 				log.info(
 						"Communities_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7138,12 +6929,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord();
@@ -7173,8 +6961,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetyVoilentCrime_Edit_Test() {
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_Edit_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -7190,11 +6978,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_EditRecord();
@@ -7234,8 +7020,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetyVoilentCrime_Delete_Row() {
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_Delete_Row method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 				int OldScore, NewScore;
 
@@ -7251,11 +7037,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004567";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.HealthAndSafetyVoilentCrime_DeleteRow();
@@ -7290,9 +7074,9 @@ public class CommunitiesPageTest extends BaseClass{
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_FilterTest method started......................... ");
 				int OldScore;
-				CommonMethod.switchToDefaultContent();
+				//CommonMethod.switchToDefaultContent();
 
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7307,11 +7091,9 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+					HomePage.closeProjectSearchTextBox();				
 					CommunitiesPage.ClickonDataInput();
-					// OldScore = CommunitiesPage.getTransportScore();
-					HomePage.closeProjectSearchTextBox();
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_Filter();
@@ -7341,8 +7123,8 @@ public class CommunitiesPageTest extends BaseClass{
 			public void Communities_HealthAndSafetyVoilentCrime_Comments_Activity_Test() {
 
 				log.info("Communities_HealthAndSafetyVoilentCrime_Comments_Activity_Test method started......................... ");
-				CommonMethod.switchToDefaultContent();
-				CommunitiesPage = new CommunitiesPageObject();
+				//CommonMethod.switchToDefaultContent();
+				//CommunitiesPage = new CommunitiesPageObject();
 				boolean flag = false;
 
 				try {
@@ -7357,11 +7139,10 @@ public class CommunitiesPageTest extends BaseClass{
 				// ProjectCommunitiesID="8000004568";
 				if (!ProjectCommunitiesID.equals(null)) {
 					ProjectPage = HomePage.clickOnProject();
-					// CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
 					String ProfileUserName = HomePage.getCurrentProfileUserName();
 					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
+					HomePage.closeProjectSearchTextBox();				
+					CommunitiesPage.ClickonDataInput();				
 					CommonMethod.switchToDataInputFrame();
 					CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
 					flag = CommunitiesPage.checkHealthAndSafetyVoilentCrime(data.getCellData("Communities", 33, 2), ProfileUserName);
@@ -7385,8 +7166,8 @@ public class CommunitiesPageTest extends BaseClass{
 				public void Communities_Check_QualityOfLife_Score() {
 
 					log.info("Communities_Check_QualityOfLife_Score method started......................... ");
-					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = new CommunitiesPageObject();
+					//CommonMethod.switchToDefaultContent();
+					//CommunitiesPage = new CommunitiesPageObject();
 					int QualityScore=0;
 					boolean flag = false;
 
@@ -7403,8 +7184,8 @@ public class CommunitiesPageTest extends BaseClass{
 					if (!ProjectCommunitiesID.equals(null)) {
 						ProjectPage = HomePage.clickOnProject();
 						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunitiesID);
+						HomePage.closeProjectSearchTextBox();				
 						CommunitiesPage.ClickonDataInput();
-						HomePage.closeProjectSearchTextBox();
 						CommonMethod.switchToDataInputFrame();
 						QualityScore = CommunitiesPage.getQualityOfLifeScore();
 						

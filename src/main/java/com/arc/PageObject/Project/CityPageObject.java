@@ -1024,7 +1024,6 @@ public class CityPageObject extends BaseClass {
 
 		int score = Integer.parseInt(EnergyScore.getText());
 		log.info("Energy Score is -----" + score);
-		log.info("Energy Score is -----" + score);
 		log.info("getEnergyScore method ends here........");
 		return score;
 
@@ -1039,7 +1038,6 @@ public class CityPageObject extends BaseClass {
 
 			int score = Integer.parseInt(TransportScore.getText());
 			log.info("Transport Score is -----" + score);
-			log.info("Transport Score is -----" + score);
 			log.info("getTransportScore method ends here........");
 			return score;
 
@@ -1051,7 +1049,6 @@ public class CityPageObject extends BaseClass {
 			log.info("getWasteScore method starts here........");
 
 			int score = Integer.parseInt(WasteScore.getText());
-			log.info("Waste Score is -----" + score);
 			log.info("Waste Score is -----" + score);
 			log.info("getWasteScore method ends here........");
 			return score;
@@ -1065,7 +1062,6 @@ public class CityPageObject extends BaseClass {
 		log.info("getWaterScore method starts here........");
 		int score = Integer.parseInt(WaterScore.getText());
 		log.info("Water Score is -----" + score);
-		log.info("Water Score is -----" + score);
 		log.info("getWaterScore method ends here........");
 		return score;
 
@@ -1077,7 +1073,6 @@ public class CityPageObject extends BaseClass {
 		log.info("getQualityOfLifeScore method starts here........");
 		int score = Integer.parseInt(QualityScore.getText());
 		log.info("Quality Of Life Score is -----" + score);
-		log.info("Quality Of Life Score -----" + score);
 		log.info("getQualityOfLifeScore method ends here........");
 		return score;
 
@@ -4639,9 +4634,6 @@ public class CityPageObject extends BaseClass {
 						e.printStackTrace();
 						
 					}
-					
-					
-					
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys(Integer.toString(tons));
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
 					
@@ -4717,8 +4709,6 @@ public class CityPageObject extends BaseClass {
 						tons=tons+2;
 					}
 					log.info("Total Row display is ---  " + rows.size());
-					
-					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
 					try {
 						Thread.sleep(2000);
@@ -4726,9 +4716,10 @@ public class CityPageObject extends BaseClass {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					ClickonGHGEmiissions();
+					ClickonMunicipalSolidwastegeneration();
 					
-					waithelper.WaitForElementClickable(YearFilterButton,
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					waithelper.WaitForElementClickable(YearFilterButton,Integer.parseInt(prop.getProperty("explicitTime")), 2);
 					YearFilterButton.click();
 					
 					
@@ -4745,7 +4736,7 @@ public class CityPageObject extends BaseClass {
 					  
 					  }
 					  
-					  YearEndDateTextBox.click();
+					  //YearEndDateTextBox.click();
 					  waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath(
 					  "(//table[@class='table-condensed'])[2]")),
 					  Integer.parseInt(prop.getProperty("explicitTime")), 2); String Endxpath =
@@ -4770,7 +4761,13 @@ public class CityPageObject extends BaseClass {
 					}
 					
 					YearUpdateBtn.click();
-					
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")),Integer.parseInt(prop.getProperty("explicitTime")), 2);
 					int j=1;
 					log.info("FilterEndYears is --"+filterEndYear+"    Filter start year is  "+filterStartYear);
 					for(int i=filterEndYear;i>=filterStartYear;i--)
@@ -4922,7 +4919,8 @@ public class CityPageObject extends BaseClass {
 					
 					log.info("Total Row display is ---  " + rows.size());
 					int beforeFilter=rows.size();
-					
+					ClickonGHGEmiissions();
+					ClickonMunicipalSolidWasteDiversion();
 									
 					waithelper.WaitForElementClickable(YearFilterButton,
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -4969,7 +4967,13 @@ public class CityPageObject extends BaseClass {
 						e1.printStackTrace();
 					}
 					YearUpdateBtn.click();
-					
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")),Integer.parseInt(prop.getProperty("explicitTime")), 2);
 					int j=1;
 					log.info("FilterEndYears is --"+filterEndYear+"    Filter start year is  "+filterStartYear);
 					for(int i=filterEndYear;i>=filterStartYear;i--)
@@ -5130,6 +5134,8 @@ public class CityPageObject extends BaseClass {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					ClickonGHGEmiissions();
+					ClickonWaterConsumption();
 					YearFilterButton.click();
 					
 					YearStartDateTextBox.click();

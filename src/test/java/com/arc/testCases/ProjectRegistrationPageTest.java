@@ -17,7 +17,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	// Verify allowed special characters for Project name are - & + / : ' , - . #
 
-	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = false, description = "Verify Project Name should allow special character (-&+/:',-.#)")
+	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 3, enabled = true, description = "Verify Project Name should allow special character (-&+/:',-.#)")
 	public void ProjectName_With_Valid_SpecialCharacters() {
 		log.info("ProjectName_With_Valid_SpecialCharacters method started ........... ");
 		try {
@@ -54,7 +54,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	
 	// Verify with Invalid special characters for Project name are !~$%^*()
 
-		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 4, enabled = false, description = "Verify with Invalid special characters for Project name are !~$%^*()")
+		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", priority = 4, enabled = true, description = "Verify with Invalid special characters for Project name are !~$%^*()")
 		public void ProjectName_With_Invalid_SpecialCharacters() {
 			log.info("ProjectName_With_Invalid_SpecialCharacters method started ........... ");
 			try {
@@ -137,7 +137,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify City adding Gross area - limit allowed is Max: 19,305 square miles
 
 	@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Check_ProjectType_City_Value" }, priority = 6,  enabled = false, description = "Verify City adding Gross area - limit allowed is Max: 19,305 square miles")
+			"Check_ProjectType_City_Value" }, priority = 6,  enabled = true, description = "Verify City adding Gross area - limit allowed is Max: 19,305 square miles")
 	public void ProjectRegistration_GrossArea_Valid_19305_SQ_Miles() {
 		log.info("ProjectRegistration_GrossArea_Valid_19305_SQ_Miles method started ........... ");
 		try {
@@ -185,7 +185,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify City adding invalid Gross area - limit  19,306 square miles
 
 		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-				"Check_ProjectType_City_Value" }, priority = 7, enabled = false, description = "Verify City adding invalid Gross area - limit  19,306 square miles")
+				"Check_ProjectType_City_Value" }, priority = 7, enabled = true, description = "Verify City adding invalid Gross area - limit  19,306 square miles")
 		public void ProjectRegistration_GrossArea_Invalid_19306_SQ_Miles() {
 			log.info("ProjectRegistration_GrossArea_Invalid_19306_SQ_Miles method started ........... ");
 			try {
@@ -237,7 +237,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		// Verify City adding Gross area - limit allowed is Max: 50000 square kilometers
 
 		@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-				"Check_ProjectType_City_Value" }, priority = 8, enabled = false, description = "Verify City adding Gross area - limit allowed is Max: 50000 square kilometers")
+				"Check_ProjectType_City_Value" }, priority = 8, enabled = true, description = "Verify City adding Gross area - limit allowed is Max: 50000 square kilometers")
 		public void ProjectRegistration_GrossArea_Valid_50000_SQ_KM() {
 			log.info("ProjectRegistration_GrossArea_Valid_50000_SQ_KM method started ........... ");
 			try {
@@ -285,7 +285,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		// Verify City adding invalid Gross area - limit  50001 square Kilometer
 
 			@Test(groups = "Regression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-					"Check_ProjectType_City_Value" }, priority = 9, enabled = false, description = " Verify City adding invalid Gross area - limit  50001 square Kilometer")
+					"Check_ProjectType_City_Value" }, priority = 9, enabled = true, description = " Verify City adding invalid Gross area - limit  50001 square Kilometer")
 			public void ProjectRegistration_GrossArea_Invalid_50001_SQ_KM() {
 				log.info("ProjectRegistration_GrossArea_Invalid_50001_SQ_KM method started ........... ");
 				try {

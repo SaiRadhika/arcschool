@@ -138,7 +138,7 @@ public class ProjectPageObjects extends BaseClass {
 	public CityPageObject SearchAndClickOnCityProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnProject method started for City Project---- "+ProjectID+"  .........");
-		CommonMethod.switchToDefaultContent();
+		//CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);
@@ -160,7 +160,7 @@ public class ProjectPageObjects extends BaseClass {
 	public TransitPageObject SearchAndClickOnTransitProject(String ProjectID)
 	{
 		log.info("SearchAndClickOnProject method started for Transit Project---- "+ProjectID+"  .........");
-		CommonMethod.switchToDefaultContent();
+		//CommonMethod.switchToDefaultContent();
 		if(!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		//actionhelper.mouseOverElementAndClick(SearchIcon);
