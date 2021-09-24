@@ -7,6 +7,7 @@ import javax.naming.spi.DirStateFactory.Result;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -44,7 +45,20 @@ public class InsightPageObject extends BaseClass {
 	@FindBy(xpath = "//h1[@class='fw-500 mt0 fs40 ng-binding']")
 	WebElement NumberOfProjects;
 	
+	@FindBy(xpath = "(//*[text()='Manage' and @class='ml10'])[1]")
+	WebElement ManageMenu;
 	
+	@FindBy(xpath = "(//a[@class='pl50' and contains(text(),'Model')])[2]")
+	WebElement ModelSubMenu;
+	
+	@FindBy(xpath = "//*[@class='widget pl0']/div/ul/li[3]/span")
+	WebElement ReductionView;
+	
+	@FindBy(xpath = "(//*[@class='pull-left mr10'])[1]/span[contains(@style,'rgb(223, 223, 223)')]")
+	WebElement NetZeroToggleUnchecked;
+	
+	@FindBy(xpath = "(//*[@class='pull-left mr10'])[1]/span[contains(@style,'rgb(149, 195, 249)')]")
+	WebElement NetZeroTogglechecked;
 	
 	public InsightPageObject() {
 		PageFactory.initElements(driver, this);
@@ -167,9 +181,57 @@ public class InsightPageObject extends BaseClass {
 	}
 	
 	
+	public void ClickonModelInManage() {
+		log.info("ClickonModelInManage method starts here.....");
+			ModelSubMenu.click();
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//h3[@class='fw-500 black-color pl32 mb15 pt5']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			log.info("ClickonModelInManage method ends here.....");
+	}
+	
+	public boolean CheckNetZeroEnergyFlag()
+	{
+		log.info("CheckNetZeroEnergyFlag method starts here...");
+		boolean flag=false;
+		ReductionView.click();
+		try {
+			flag=NetZeroToggleUnchecked.isDisplayed();
+			log.info("Net Zero flag is already unchecked..");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		if(flag==false)
+		{
+			log.info("Net Zero flag is Checked..");
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			NetZeroTogglechecked.click();
+			
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			flag=NetZeroToggleUnchecked.isDisplayed();
+			log.info("Now Net Zero flag is unchecked..");
+		}
+		log.info("CheckNetZeroEnergyFlag method ends here...");
+		return flag;
+	}
 	public Float getReductions_zEPI_Score()
 	{
 		log.info("getReductions_zEPI_Score method starts here...");
+		
+		
 		List<WebElement> TableRows = driver.findElements(By.xpath("//*[@class='models_list_row']"));
 		int totalRows = TableRows.size();
 		log.info("Total number of records is ---"+totalRows);
@@ -203,6 +265,16 @@ public class InsightPageObject extends BaseClass {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
+			
+			 ClickonModelInManage();
+			 CheckNetZeroEnergyFlag();
+			 ClickOnReductionsSubMenu();
+			 try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			ZipCodeTextBox.clear();
 			ZipCodeTextBox.sendKeys(data.getCellData("Reboot", 16, 2));
 			String mileage=data.getCellData("Reboot", 17, 2);
