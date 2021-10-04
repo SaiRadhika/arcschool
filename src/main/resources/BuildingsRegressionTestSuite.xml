@@ -14,14 +14,14 @@
 		<groups>
 		<run>
 		<include name="ProjectRegsRegression"/> 
-		<include name="CityRegression"/> 
+		<include name="BuildingsRegression"/> 
 		</run>
 		</groups>
 		<classes>
 			<class name="com.arc.testCases.LoginPageTest" />
 			<class name="com.arc.testCases.HomePageTest" />
 			 <class name="com.arc.testCases.ProjectRegistrationPageTest" />  
-			 <class name="com.arc.testCases.Project.CityPageTest" />
+			<class name="com.arc.testCases.Project.BuildingPageTest" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

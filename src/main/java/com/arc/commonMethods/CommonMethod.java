@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.TimeZone;
 
 import javax.imageio.ImageIO;
 
@@ -47,10 +48,9 @@ public class CommonMethod extends BaseClass {
 		log.info("takeScreenshotTest method starts here ......");
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
-		
-		
+
 		ScreenshotPath = currentDir + "/Screenshots/" + MethodName;
-		//ScreenshotPath ="Screenshots/" + MethodName;
+		// ScreenshotPath ="Screenshots/" + MethodName;
 		try {
 			FileUtils.copyFile(scrFile, new File(ScreenshotPath + ".png"));
 			log.info("Screenshot captured successfully for Method ...." + MethodName);
@@ -85,21 +85,45 @@ public class CommonMethod extends BaseClass {
 		return null;
 	}
 
-	
-	//This method will return current year 
-	
+	// This method will return current year
+
 	public static int getCurrentYear() {
 		log.info("getCurrentYear method starts here ......");
 		int year = Calendar.getInstance().get(Calendar.YEAR);
+		log.info("Current year is --" + year);
 		log.info("getCurrentYear method ends here ......");
 		return year;
-		
+
+	}
+
+	// This method will return current day
+
+	public static int getCurrentDay() {
+		log.info("getCurrentDay method starts here ......");
+		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+		int day = calendar.get(Calendar.DATE);
+		log.info("Current day is --" + day);
+		log.info("getCurrentDay method ends here ......");
+		return day;
+
+	}
+
+	// This method will return current Month
+
+	public static int getCurrentMonth() {
+		log.info("getCurrentMonth method starts here ......");
+		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+		int month = calendar.get(Calendar.MONTH);
+		log.info("Current Month is --" + month);
+		log.info("getCurrentMonth method ends here ......");
+		return month;
+
 	}
 
 	public static long CheckDownloadedFile() {
 		log.info("CheckDownloadedFile method starts here ......");
 		// DownloadFolder=new File(UUID.randomUUID().toString());
-		log.info("Temporary folder name is ---"+DownloadFolder);
+		log.info("Temporary folder name is ---" + DownloadFolder);
 		File ListOfFiles[] = DownloadFolder.listFiles();
 		// make sure the directory is not empty
 		log.info("Total file downloaded ...." + ListOfFiles.length);
@@ -115,84 +139,73 @@ public class CommonMethod extends BaseClass {
 	}
 
 	// Checks that whether Receipt and Invoice file downloaded or not.
-	
+
 	public static boolean CheckReceiptAndInvoiceFile() {
 		log.info("CheckReceiptAndInvoiceFile method starts here ......");
 		boolean flag = false;
-		boolean InvoiceFlag=false;
-		boolean ReceiptFlag=false;
+		boolean InvoiceFlag = false;
+		boolean ReceiptFlag = false;
 		// DownloadFolder=new File(UUID.randomUUID().toString());
-		log.info("Temporary folder name is ---"+DownloadFolder);
+		log.info("Temporary folder name is ---" + DownloadFolder);
 		File ListOfFiles[] = DownloadFolder.listFiles();
 		// make sure the directory is not empty
-		
-		log.info("number of files are --"+ListOfFiles.length);
-		
-			for (File file : ListOfFiles) {
 
-				if(file.getName().contains("Receipt"))
-				{	
-					log.info("Receipt file found....");
-					log.info("Size of the file - " + file.getName() + " is  " + file.length());
-					if (file.length() == 0) {
-						ReceiptFlag = false;
-						log.info("Receipt file size is zero....");
-					
-					} else
-					{
-						log.info("Receipt file size is Non zero....");
-						ReceiptFlag = true;
-					}
-						
+		log.info("number of files are --" + ListOfFiles.length);
+
+		for (File file : ListOfFiles) {
+
+			if (file.getName().contains("Receipt")) {
+				log.info("Receipt file found....");
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.length() == 0) {
+					ReceiptFlag = false;
+					log.info("Receipt file size is zero....");
+
+				} else {
+					log.info("Receipt file size is Non zero....");
+					ReceiptFlag = true;
 				}
-				else if(file.getName().contains("Invoice"))
-				{
-						log.info("Invoice file found....");
-						log.info("Size of the file - " + file.getName() + " is  " + file.length());
-						if (file.length() == 0) {
-							InvoiceFlag = false;
-							log.info("Invoice file size is zero....");
-						
-						} else
-						{
-							log.info("Invoice file size is Non zero....");
-							InvoiceFlag = true;
-						}
-							
-					}
-				else
-					log.info("Size of the file - " + file.getName() + " is  " + file.length());
+
+			} else if (file.getName().contains("Invoice")) {
+				log.info("Invoice file found....");
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.length() == 0) {
+					InvoiceFlag = false;
+					log.info("Invoice file size is zero....");
+
+				} else {
+					log.info("Invoice file size is Non zero....");
+					InvoiceFlag = true;
 				}
-				if (ReceiptFlag ==true && InvoiceFlag==true) {
-					flag=true;
-					log.info("Both Receipt and Invoice file are exist ...");
-				} else
-				{
-					log.info("Both Receipt and Invoice file doesn't exist ...");
-					flag = false;
-				}
-		
-			
+
+			} else
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+		}
+		if (ReceiptFlag == true && InvoiceFlag == true) {
+			flag = true;
+			log.info("Both Receipt and Invoice file are exist ...");
+		} else {
+			log.info("Both Receipt and Invoice file doesn't exist ...");
+			flag = false;
+		}
+
 		log.info("CheckReceiptAndInvoiceFile method ends here ......");
 		return flag;
 	}
 
-
 	// Delete all downloaded files from temporaray folder.
-	
-		public static void DeleteAllFiles() {
-			log.info("DeleteAllFiles method starts here ......");
-			log.info("number of files are --"+DownloadFolder.listFiles().length);
-			for(File file:DownloadFolder.listFiles())
-			{
-				log.info("Going to delete - " + file.getName() + " with size of  " + file.length());
-				file.delete();
-				log.info("File Name - " + file.getName() +" deleted successfully");
-			}
-			log.info("DeleteAllFiles method ends here ......");
 
+	public static void DeleteAllFiles() {
+		log.info("DeleteAllFiles method starts here ......");
+		log.info("number of files are --" + DownloadFolder.listFiles().length);
+		for (File file : DownloadFolder.listFiles()) {
+			log.info("Going to delete - " + file.getName() + " with size of  " + file.length());
+			file.delete();
+			log.info("File Name - " + file.getName() + " deleted successfully");
 		}
+		log.info("DeleteAllFiles method ends here ......");
 
+	}
 
 	// Checks that whether Agreement is displayed under Manage - > Agreement Menu
 
@@ -201,10 +214,10 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
-		log.info("Size of the Agreement Table is ---"+AgreementTable.size());
+		log.info("Size of the Agreement Table is ---" + AgreementTable.size());
 		if (AgreementTable.size() > 0) {
 			Iterator itr = AgreementTable.iterator();
-			String OrderTypePath="";
+			String OrderTypePath = "";
 			for (int i = 0; i < AgreementTable.size(); i++) {
 				int rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[2]";
@@ -235,7 +248,7 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
-		log.info("Size of the Agreement Table is ---"+AgreementTable.size());
+		log.info("Size of the Agreement Table is ---" + AgreementTable.size());
 		if (AgreementTable.size() > 0) {
 			Iterator itr = AgreementTable.iterator();
 			String OrderTypePath;
@@ -275,7 +288,7 @@ public class CommonMethod extends BaseClass {
 		String mainwindow = driver.getWindowHandle();
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
-		log.info("Size of the Billing Table is ---"+BillingTable.size());
+		log.info("Size of the Billing Table is ---" + BillingTable.size());
 		if (BillingTable.size() > 0) {
 			Iterator itr = BillingTable.iterator();
 			String OrderTypePath;
@@ -342,10 +355,10 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
-		log.info("Size of the Billing Table is ---"+BillingTable.size());
+		log.info("Size of the Billing Table is ---" + BillingTable.size());
 		if (BillingTable.size() > 0) {
 			Iterator itr = BillingTable.iterator();
-			String OrderTypePath=null;
+			String OrderTypePath = null;
 			for (int i = 0; i < BillingTable.size(); i++) {
 				int rownum = i + 1;
 				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
@@ -382,7 +395,7 @@ public class CommonMethod extends BaseClass {
 		boolean flag = false;
 		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
-		log.info("Size of the Billing Table is ---"+BillingTable.size());
+		log.info("Size of the Billing Table is ---" + BillingTable.size());
 		if (BillingTable.size() > 0) {
 			Iterator itr = BillingTable.iterator();
 			String OrderTypePath;
@@ -416,8 +429,6 @@ public class CommonMethod extends BaseClass {
 
 	}
 
-	
-	
 	public static void setClipBoard(String file) {
 		log.info("setClipBoard method starts here ......");
 		StringSelection obj = new StringSelection(file);
@@ -443,9 +454,7 @@ public class CommonMethod extends BaseClass {
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		log.info("UploadFile method ends here ......");
 	}
-	
-	
-	
+
 	public static void PerformTabout() {
 		log.info("PerformTabout method starts here ......");
 		Robot robot = null;
@@ -453,8 +462,6 @@ public class CommonMethod extends BaseClass {
 		robot.keyRelease(KeyEvent.VK_TAB);
 		log.info("PerformTabout method ends here ......");
 	}
-	
-	
 
 	public static void deleteAllDownloadedFiles() {
 		log.info("deleteALlDownloadedFiles method starts here ......");
@@ -492,80 +499,144 @@ public class CommonMethod extends BaseClass {
 		}
 		log.info("deleteAllPreviousScreenshotsFiles method ends here ......");
 	}
-	
-	
-	public static String generateRandomString(int n)
-	{
+
+	public static String generateRandomString(int n) {
 		String AlphabeticalString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuilder sb = new StringBuilder(n);
-		  
-        for (int i = 0; i < n; i++) {  
-           
-            int index
-                = (int)(AlphabeticalString.length()
-                        * Math.random());
-  
-            sb.append(AlphabeticalString
-                          .charAt(index));
-        }
-  
-        return sb.toString();
-    }
-	
-	
+
+		for (int i = 0; i < n; i++) {
+
+			int index = (int) (AlphabeticalString.length() * Math.random());
+
+			sb.append(AlphabeticalString.charAt(index));
+		}
+
+		return sb.toString();
+	}
+
 	// This method will switch to defautl content from any frame
-	
-	public static void switchToDefaultContent()
-	{
+
+	public static void switchToDefaultContent() {
 		log.info("switchToDefaultContent method starts here......");
 		driver.switchTo().defaultContent();
 		log.info("switchToDefaultContent method ends here......");
-    }
-	
-	
-	
+	}
 
 	// This method will switch to Data Input Frame
-	
-	public static void switchToDataInputFrame()
-	{
+
+	public static void switchToDataInputFrame() {
 		log.info("switchToDataInputFrame method starts here......");
 		driver.switchTo().frame("datainput-widget");
 		log.info("switchToDataInputFrame method ends here......");
-    }
-	
-	
-	// This method will refresh the page and wait till page loaded successfully
-	
-	public static void  RefreshPagewaitForPageLoaded(WebDriver driver)
-	{
-		 log.info("RefreshPagewaitForPageLoaded method starts here......");
-		driver.get(driver.getCurrentUrl());;
-	    ExpectedCondition<Boolean> expectation = new
-	ExpectedCondition<Boolean>() 
-	    {
-	        public Boolean apply(WebDriver driver)
-	        {
-	            return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
-	        }
-	    };
-	    Wait<WebDriver> wait = new WebDriverWait(driver,30);
-	    try
-	    {
-	        wait.until(expectation);
-	    }
-	    catch(Throwable error)
-	    {
-	        log.info("Timeout waiting for Page Load Request to complete.");
-	    }
-	    log.info("Page Rerreshed and waited till page load completed successfully......");
 	}
-	
-  // This method will add one team member 
-	
+
+	// This method will switch to ShowOverviewFrame Frame
+
+	public static void switchToShowOverviewFrame() {
+		log.info("switchToShowOverviewFrame method starts here......");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[(contains(@src,'overview/projectoverview'))]")));
+		log.info("switchToShowOverviewFrame method ends here......");
+	}
+
+	// This method will switch to switchToArcAverageFrame Frame
+
+	public static void switchToArcAverageFrame() {
+		log.info("switchToArcAverageFrame method starts here......");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[(contains(@src,'overview/arcaveragescore'))]")));
+		log.info("switchToArcAverageFrame method ends here......");
+	}
+
+	// This method will switch to switchToAverageEmissionsFrame Frame
+
+	public static void switchToAverageEmissionsFrame() {
+		log.info("switchToAverageEmissionsFrame method starts here......");
+		driver.switchTo()
+				.frame(driver.findElement(By.xpath("//iframe[(contains(@src,'overview/arcaverageemissions'))]")));
+		log.info("switchToAverageEmissionsFrame method ends here......");
+	}
+
+	// This method will switch to switchToArcAverageCategoryUsageFrame Frame
+
+	public static void switchToTransportationCategoryUsageFrame() {
+		log.info("switchToArcAverageCategoryUsageFrame method starts here......");
+		driver.switchTo().frame(
+				driver.findElement(By.xpath("(//iframe[(contains(@src,'overview/arcaveragecategoryusage'))])[1]")));
+		log.info("switchToArcAverageCategoryUsageFrame method ends here......");
+	}
+
+// This method will switch to switchToArcAverageCategoryUsageFrame Frame
+
+	public static void switchToOccupantCategoryUsageFrame() {
+		log.info("switchToArcAverageCategoryUsageFrame method starts here......");
+		driver.switchTo().frame(
+				driver.findElement(By.xpath("(//iframe[(contains(@src,'overview/arcaveragecategoryusage'))])[2]")));
+		log.info("switchToArcAverageCategoryUsageFrame method ends here......");
+	}
+
+	// This method will switch to switchToPlaqueFrame Frame
+
+	public static void switchToPlaqueFrame() {
+		log.info("switchToPlaqueFrame method starts here......");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[(contains(@src,'overview/plaque'))]")));
+		log.info("switchToPlaqueFrame method ends here......");
+	}
+
+	// This method will switch to switchToPlaqueFrame Frame
+
+	public static void switchToArcPartnerFrame() {
+		log.info("switchToArcPartnerFrame method starts here......");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[(contains(@src,'overview/arcpartner'))]")));
+		log.info("switchToArcPartnerFrame method ends here......");
+	}
+
+	// This method will switch to switchArcImprovementFrame Frame
+
+	public static void switchArcImprovementFrame() {
+		log.info("switchArcImprovementFrame method starts here......");
+		driver.switchTo()
+				.frame(driver.findElement(By.xpath("//iframe[(contains(@src,'overview/arcimprovementscore'))]")));
+		log.info("switchArcImprovementFrame method ends here......");
+	}
+
+	// This method will wait until Circular Loader display on the page
+
+	public static void waitUntilLoadElement() {
+		log.info("waitUntilLoadElement method starts here......");
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[name()='svg']//*[local-name()='circle' ])[2]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		log.info("waitUntilLoadElement method ends here......");
+	}
+	// This method will refresh the page and wait till page loaded successfully
+
+	public static void RefreshPagewaitForPageLoaded(WebDriver driver) {
+		log.info("RefreshPagewaitForPageLoaded method starts here......");
+		driver.get(driver.getCurrentUrl());
+		;
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
+		try {
+			wait.until(expectation);
+		} catch (Throwable error) {
+			log.info("Timeout waiting for Page Load Request to complete.");
+		}
+		log.info("Page Rerreshed and waited till page load completed successfully......");
+	}
+
+	// This method will add one team member
+
 	public static boolean Team_Add_Member(String EmailAddress) {
 		log.info("Team_Add_Member Method starts here.............................................");
 		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		CommonMethod.waitUntilLoadElement();
 		boolean flag = false;
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//input[@name='input']")),
@@ -577,18 +648,17 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//driver.findElement(By.xpath("//input[@name='input']")).clear();
+		// driver.findElement(By.xpath("//input[@name='input']")).clear();
 
-		
-		
 		driver.findElement(By.xpath("//input[@name='input']")).sendKeys(EmailAddress);
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
+		CommonMethod.waitUntilLoadElement();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -596,21 +666,17 @@ public class CommonMethod extends BaseClass {
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 				Integer.parseInt(prop.getProperty("explicitTime")));
 		String msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
-		
+
 		waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-				Integer.parseInt(prop.getProperty("explicitTime")),2);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated
-		}
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		CommonMethod.waitUntilLoadElement();
 
 		if (msgText.equals("Team member added successfully.")) {
-			flag=true;
+			flag = true;
 			log.info(msgText + "  .........  displaying");
-			
+
 		} else {
-			flag=false;
+			flag = false;
 			log.info(msgText + " .........  displaying");
 		}
 
@@ -629,9 +695,9 @@ public class CommonMethod extends BaseClass {
 	public static boolean Team_checkEmailExistOrNot(String EmailAddress) {
 		log.info("Team_checkEmailExistOrNot Method starts here.............................................");
 		boolean flag = false;
-		String email=null;
+		String email = null;
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
-		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
+		// String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e1) {
@@ -639,27 +705,24 @@ public class CommonMethod extends BaseClass {
 			e1.printStackTrace();
 		}
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
-		log.info("Size of the Table is ----- "+TeamMemberRow.size());
+		log.info("Size of the Table is ----- " + TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
 			int row = i + 1;
 			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
 			try {
-				 email = driver.findElement(By.xpath(EmailXpath)).getText();
-				 log.info("Current email address is --"+email );
-			}
-			catch(StaleElementReferenceException e)
-			{
-				log.info("StaleElementReferenceException exception showing for--"+EmailXpath);
-				
+				email = driver.findElement(By.xpath(EmailXpath)).getText();
+				log.info("Current email address is --" + email);
+			} catch (StaleElementReferenceException e) {
+				log.info("StaleElementReferenceException exception showing for--" + EmailXpath);
+
+				e.printStackTrace();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-				if (EmailAddress.equals(email)) {
+			if (EmailAddress.equals(email)) {
 				log.info(EmailAddress + "  found in this project.....");
-				log.info("Team_checkEmailExistOrNot Method ends with true here.............................................");
+				log.info(
+						"Team_checkEmailExistOrNot Method ends with true here.............................................");
 				return true;
 			}
 		}
@@ -668,14 +731,13 @@ public class CommonMethod extends BaseClass {
 		return flag;
 
 	}
-	
+
 	// This method will delete one team member
 
 	public static boolean Team_Delete_Member(String EmailAddress) {
 		log.info("Team_Delete_Member Method starts here.............................................");
-		
 		CommonMethod.RefreshPagewaitForPageLoaded(driver);
-		
+		CommonMethod.waitUntilLoadElement();
 		String msgText = null;
 		try {
 			Thread.sleep(10000);
@@ -684,48 +746,45 @@ public class CommonMethod extends BaseClass {
 			e1.printStackTrace();
 		}
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
-		//String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
+		// String Rowxpath ="//*[@id='content']/descendant::table[1]/tbody/tr";
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
-		log.info("Size of the Table is ----- "+TeamMemberRow.size());
+		log.info("Size of the Table is ----- " + TeamMemberRow.size());
 		for (int i = 0; i < TeamMemberRow.size(); i++) {
 			int row = i + 1;
 			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
 			try {
 				Thread.sleep(3000);
-			}
-			catch(Exception e)
-			{
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			String email = driver.findElement(By.xpath(EmailXpath)).getText();
-			log.info("Current email xpath is --"+EmailXpath + "and email address is --" + email);
+			log.info("Current email xpath is --" + EmailXpath + "and email address is --" + email);
 			if (EmailAddress.equals(email)) {
 				String deletexpath = Rowxpath + "[" + row + "]/td[5]/div[1]";
 				try {
 					Thread.sleep(3000);
-				}
-				catch(Exception e)
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				waithelper.WaitForElementClickable(driver.findElement(By.xpath(deletexpath)),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				log.info("Before clicking on delete button*********************************");
 				driver.findElement(By.xpath(deletexpath)).click();
+				CommonMethod.waitUntilLoadElement();
 				log.info("After clicking on delete button*********************************");
-				
+
 				try {
-					
+
 					Thread.sleep(3000);
 					log.info("-----Wait Method--------------------------------------------------------");
-					
-					waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+
+					waithelper.WaitForElementVisibleWithPollingTime(
+							driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					
-				
+
 				} catch (StaleElementReferenceException e) {
-					
-					log.info("StaleElementReferenceException exception showing for--"+deletexpath);
+
+					log.info("StaleElementReferenceException exception showing for--" + deletexpath);
 					e.printStackTrace();
 
 				} catch (Exception e) {
@@ -734,7 +793,7 @@ public class CommonMethod extends BaseClass {
 				try {
 					msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
 					log.info("Displayed Message is -----" + msgText);
-				
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -744,8 +803,8 @@ public class CommonMethod extends BaseClass {
 		}
 		try {
 			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-					Integer.parseInt(prop.getProperty("explicitTime")),2);
-			
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -762,5 +821,4 @@ public class CommonMethod extends BaseClass {
 
 	}
 
-	
 }

@@ -46,7 +46,8 @@ public class SchoolPageTest extends BaseClass {
 	 * 
 	 * log.info("Setup method of SchoolPageTest class completed "); }
 	 */
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 12, description = "Verify Manage-->Agreements should show the project agreement.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"Reboot" }, enabled = true, priority = 12, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void School_Agreement_Display() {
 
 		log.info("School_Agreement_Display method started ");
@@ -54,8 +55,8 @@ public class SchoolPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		SchoolPage = new SchoolPageObject();
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 1, 2));
-		SchoolPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
+		SchoolPage.ClickonAgreementInManage();
 		boolean flag = CommonMethod.CheckAgreementDisplay();
 		// boolean flag = SchoolPage.CheckAgreementDisplay();
 		if (flag) {
@@ -77,8 +78,8 @@ public class SchoolPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		SchoolPage = new SchoolPageObject();
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 1, 2));
-		SchoolPage.ClickonAgreementInManage();
 		HomePage.closeProjectSearchTextBox();
+		SchoolPage.ClickonAgreementInManage();
 		CommonMethod.ClikOnAgreementRegistrationDownloadLink();
 		// SchoolPage.ClikOnAgreementRegistrationDownloadLink();
 		long FileLength = CommonMethod.CheckDownloadedFile();
@@ -93,7 +94,8 @@ public class SchoolPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 14, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"Reboot" }, enabled = true, priority = 14, description = "Verify if performance certificates is purchased, able to download the invoice and receipt successfully from Manage-->Billing tab.")
 	public void School_PerformanceCertificate_Download_Invoice_Receipt() {
 
 		log.info("School_PerformanceCertificate_Download_Invoice_Receipt method started ");
@@ -102,10 +104,8 @@ public class SchoolPageTest extends BaseClass {
 		SchoolPage = new SchoolPageObject();
 		System.out.println(data.getCellData("Reboot", 4, 2));
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 4, 2));
-		// BuildingPage=ProjectPage.clickOnFirstProject();
-		SchoolPage.ClickonBillingInManage();
 		HomePage.closeProjectSearchTextBox();
-
+		SchoolPage.ClickonBillingInManage();
 		CommonMethod.ClikOnBillingDownloadForSubScriptionLink();
 		// SchoolPage.ClikOnBillingDownloadForSubScriptionLink();
 		boolean FileLength = CommonMethod.CheckReceiptAndInvoiceFile();
@@ -123,7 +123,8 @@ public class SchoolPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 15, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"Reboot" }, enabled = true, priority = 15, description = "Verify if leed id project, able to download the registration invoice and receipt successfully from Manage-->Billing tab.")
 	public void School_LEEDProject_DownloadInvoice() {
 
 		log.info("School_LEEDProject_DownloadInvoice method started ");
@@ -132,10 +133,8 @@ public class SchoolPageTest extends BaseClass {
 		SchoolPage = new SchoolPageObject();
 		System.out.println(data.getCellData("Reboot", 5, 2));
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 5, 2));
-		// BuildingPage=ProjectPage.clickOnFirstProject();
-		SchoolPage.ClickonBillingInManage();
 		HomePage.closeProjectSearchTextBox();
-
+		SchoolPage.ClickonBillingInManage();
 		CommonMethod.ClikOnBillingDownloadForRegistrationLink();
 		// SchoolPage.ClikOnBillingDownloadForRegistrationLink();
 		long FileLength = CommonMethod.CheckDownloadedFile();
@@ -166,7 +165,8 @@ public class SchoolPageTest extends BaseClass {
 
 	// Verify Manage-->Teams should show team members added to the project.
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = { "Reboot" }, enabled = true, priority = 16, description = "Verify able to add a team-member successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"Reboot" }, enabled = true, priority = 16, description = "Verify able to add a team-member successfully.")
 	public void School_Team_Add_Member() {
 
 		log.info("School_Team_Add_Member method started ");
@@ -174,9 +174,8 @@ public class SchoolPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		System.out.println(data.getCellData("Reboot", 0, 2));
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 1, 2));
-		SchoolPage.ClickonTeamInManage();
 		HomePage.closeProjectSearchTextBox();
-		System.out.println();
+		SchoolPage.ClickonTeamInManage();
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
 		System.out.println(username + "-----------existence is----" + emailexist);
@@ -213,9 +212,8 @@ public class SchoolPageTest extends BaseClass {
 		ProjectPage = HomePage.clickOnProject();
 		System.out.println(data.getCellData("Reboot", 1, 2));
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 1, 2));
-		SchoolPage.ClickonTeamInManage();
 		HomePage.closeProjectSearchTextBox();
-		System.out.println();
+		SchoolPage.ClickonTeamInManage();
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean flag = CommonMethod.Team_Delete_Member(username);
 		if (flag) {

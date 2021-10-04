@@ -15,164 +15,164 @@ public class WebEventListener extends BaseClass implements WebDriverEventListene
 	@Override
 	public void beforeAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterAlertDismiss(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeAlertDismiss(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeNavigateTo(String url, WebDriver driver) {
-		System.out.println("Before Navigating to   "+ url);
-		
+		System.out.println("Before Navigating to   " + url);
+
 	}
 
 	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
-		System.out.println("After Navigated to   "+ url);
-		
+		System.out.println("After Navigated to   " + url);
+
 	}
 
 	@Override
 	public void beforeNavigateBack(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterNavigateBack(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeNavigateForward(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterNavigateForward(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeNavigateRefresh(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterNavigateRefresh(WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
 		System.out.println("Trying to find Element By : " + by.toString());
-		
+
 	}
 
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
 		System.out.println("Found Element By : " + by.toString());
-		
+
 	}
 
 	@Override
 	public void beforeClickOn(WebElement element, WebDriver driver) {
-		System.out.println("Before Clicking on    "+ element.toString());
-		
+		System.out.println("Before Clicking on    " + element.toString());
+
 	}
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		System.out.println("After Clicked on    "+ element.toString());
-		
+		System.out.println("After Clicked on    " + element.toString());
+
 	}
 
 	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
 		System.out.println("Value of the:" + element.toString() + " before changes made");
-		
+
 	}
 
 	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
 		System.out.println("Element value changed to: " + element.toString());
-		
+
 	}
 
 	@Override
 	public void beforeScript(String script, WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterScript(String script, WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeSwitchToWindow(String windowName, WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterSwitchToWindow(String windowName, WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onException(Throwable throwable, WebDriver driver) {
 		System.out.println("Exception occured: " + throwable);
-		//CommonMethod.takeScreenshotTest();
-		
+		// CommonMethod.takeScreenshotTest();
+
 	}
 
 	@Override
 	public <X> void beforeGetScreenshotAs(OutputType<X> target) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public <X> void afterGetScreenshotAs(OutputType<X> target, X screenshot) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void beforeGetText(WebElement element, WebDriver driver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void afterGetText(WebElement element, WebDriver driver, String text) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

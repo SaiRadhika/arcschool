@@ -68,53 +68,34 @@ public class BaseClass {
 	public static ProjectRegistrationPageObject ProjectRegistrationPage;
 	public static InsightPageObject InsightPage;
 
-	/*
-	 * public BaseClass() {
-	 * 
-	 * try { log.info("Base class constructor started"); prop = new Properties();
-	 * FileInputStream fis = new FileInputStream( System.getProperty("user.dir") +
-	 * "\\src\\main\\java\\com\\arc\\config\\config.properties"); prop.load(fis);
-	 * data = new ExcelHelper(System.getProperty("user.dir") +
-	 * "/TestData/RebootTest.xlsx");
-	 * 
-	 * } catch (FileNotFoundException e) { e.printStackTrace();
-	 * log.info("Config.properties file not found"); } catch (IOException e) {
-	 * e.printStackTrace(); } log.info("Base class constructor ends");
-	 * 
-	 * }
-	 */
-	@Parameters({"browserName"})
-	@BeforeTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
+	@Parameters({ "browserName" })
+	@BeforeTest(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
+			"ProjectRegsRegression" })
 	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
 		try {
 			prop = new Properties();
-			/*
-			 * FileInputStream fis = new FileInputStream( System.getProperty("user.dir") +
-			 * "\\src\\main\\java\\com\\arc\\config\\config.properties");
-			 */
-			
-			//FileInputStream fis = new FileInputStream("src\\main\\java\\com\\arc\\config\\config.properties");
 			FileInputStream fis = new FileInputStream("src/main/java/com/arc/config/config.properties");
 			prop.load(fis);
-			
+
 			String testSuite = System.getProperty("suiteXmlFile");
-			log.info("Test Suite File is ---"+testSuite);
-			
-			if(testSuite !=null && testSuite.equalsIgnoreCase("QAS_RebootTestSuite.xml"))
-				data = new ExcelHelper( "TestData/QAS_RebootTestData.xlsx");
-			else if(testSuite !=null && testSuite.equalsIgnoreCase("STG_RebootTestSuite.xml"))
-				data = new ExcelHelper( "TestData/STG_RebootTestData.xlsx");
-			else if (testSuite !=null && testSuite.equalsIgnoreCase("RegressionTestSuite.xml"))
-				data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
-			else if (testSuite !=null && testSuite.equalsIgnoreCase("CityRegressionTestSuite.xml"))
-				data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
-			else if (testSuite !=null && testSuite.equalsIgnoreCase("CommunitiesRegressionTestSuite.xml"))
-				data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
+			log.info("Test Suite File is ---" + testSuite);
+
+			if (testSuite != null && testSuite.equalsIgnoreCase("QAS_RebootTestSuite.xml"))
+				data = new ExcelHelper("TestData/QAS_RebootTestData.xlsx");
+			else if (testSuite != null && testSuite.equalsIgnoreCase("STG_RebootTestSuite.xml"))
+				data = new ExcelHelper("TestData/STG_RebootTestData.xlsx");
+			else if (testSuite != null && testSuite.equalsIgnoreCase("RegressionTestSuite.xml"))
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
+			else if (testSuite != null && testSuite.equalsIgnoreCase("CityRegressionTestSuite.xml"))
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
+			else if (testSuite != null && testSuite.equalsIgnoreCase("CommunitiesRegressionTestSuite.xml"))
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
+			else if (testSuite != null && testSuite.equalsIgnoreCase("BuildingsRegressionTestSuite.xml"))
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			/*
-			 * else data = new ExcelHelper( "TestData/RegressionTestData.xlsx");
+			 * else data = new ExcelHelper("TestData/QAS_RebootTestData.xlsx");
 			 */
-				
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			log.info("Config.properties file not found");
@@ -123,24 +104,22 @@ public class BaseClass {
 		}
 
 		// String browserName = prop.getProperty("browserName");
-			//CommonMethod.deleteAllDownloadedFiles();
-			//CommonMethod.deleteAllPreviousScreenshotsFiles();
-		String OS_Name=System.getProperty("os.name");
-		log.info("Opearting System is --"+OS_Name);
+		// CommonMethod.deleteAllDownloadedFiles();
+		// CommonMethod.deleteAllPreviousScreenshotsFiles();
+		String OS_Name = System.getProperty("os.name");
+		log.info("Opearting System is --" + OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
 			// System.out.println(System.getProperty("user.dir"));
 			DownloadFolder = new File("DownLoadedFiles/" + UUID.randomUUID().toString());
 			// DownloadFolder.mkdir();
-			log.info("DownloadFolder path is --"+DownloadFolder);
+			log.info("DownloadFolder path is --" + DownloadFolder);
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--start-maximized");
-			
 			
 			  options.addArguments("--no-sandbox");
 			  options.addArguments("--disable-dev-shm-usage");
 			  options.addArguments("--headless"); options.addArguments("--disable-gpu");
 			  options.addArguments("window-size=1382x754");
-			 
 			 
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);
@@ -148,18 +127,17 @@ public class BaseClass {
 			options.setExperimentalOption("prefs", Pref);
 			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
-			if(OS_Name.equalsIgnoreCase("Linux"))
-			{
-				log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver");
-				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+			if (OS_Name.equalsIgnoreCase("Linux")) {
+				log.info("Chrome EXE file path is --" + System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+				System.setProperty("webdriver.chrome.driver",
+						System.getProperty("user.dir") + "/DriverFiles/chromedriver");
+			} else {
+				log.info("Chrome EXE file path is --" + System.getProperty("user.dir")
+						+ "/DriverFiles/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver",
+						System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
 			}
-			else
-			{
-				log.info("Chrome EXE file path is --"+System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
-				System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir") + "/DriverFiles/chromedriver.exe");
-			}
-			
-			
+
 			driver = new ChromeDriver(cap);
 			log.info("Chrome browser launched successfully");
 
@@ -183,43 +161,40 @@ public class BaseClass {
 		waithelper = new WaitHelper();
 		actionhelper = new ActionsHelper();
 		JSHelper = new JavaScriptHelper();
-		dropdownhelper=new DropDownHelper();
+		dropdownhelper = new DropDownHelper();
 		System.out.println(prop.getProperty("implicitTime"));
 		System.out.println(Long.parseLong(prop.getProperty("implicitTime")));
 		waithelper.setImplicitWait(Long.parseLong(prop.getProperty("implicitTime")), TimeUnit.SECONDS);
 		waithelper.pageLoadTime(Long.parseLong(prop.getProperty("pageloadtime")), TimeUnit.SECONDS);
-		
-		log.info("Environment Name is ---"+System.getProperty("environment"));
+
+		log.info("Environment Name is ---" + System.getProperty("environment"));
 		String env = System.getProperty("environment");
-		
-		if(env !=null && env.equalsIgnoreCase("QAS"))
-		{
+
+		if (env != null && env.equalsIgnoreCase("QAS")) {
 			driver.get(prop.getProperty("QAurl"));
 			log.info("URL navigated to .. " + prop.getProperty("QAurl"));
-		}
-		else if(env !=null && env.equalsIgnoreCase("STG"))
-		{
+		} else if (env != null && env.equalsIgnoreCase("STG")) {
 			driver.get(prop.getProperty("STGurl"));
 			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		}
+
 		/*
 		 * else {
 		 * log.info("Environment is not provided or wrong environment entered......");
-		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
+		 * driver.get(prop.getProperty("QAurl")); log.info("URL navigated to .. " +
 		 * prop.getProperty("STGurl")); }
-		 * 
-		 * 
-		 * 
-		 * 
+		 */
+
+		/*
 		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
 		 * prop.getProperty("STGurl"));
 		 */
-		 
+
 		log.info("Initialization method ends");
 
 	}
 
-	@AfterTest(groups={"LoginMethodTCGroup","Reboot","Regression" })
+	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression" })
 	public void closeBrowser() {
 
 		driver.close();

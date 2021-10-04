@@ -47,7 +47,7 @@ public class CommunitiesPageObject extends BaseClass {
 
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span/span")
 	WebElement QualityScore;
-	
+
 	@FindBy(xpath = "//*[text()='Population']")
 	WebElement PopulationTab;
 
@@ -533,19 +533,23 @@ public class CommunitiesPageObject extends BaseClass {
 	}
 
 	public void ClickonAgreementInManage() {
+		log.info("ClickonAgreementInManage method starts here ...");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
 		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
-
+		CommonMethod.waitUntilLoadElement();
+		log.info("ClickonAgreementInManage method ends here ...");
 	}
 
 	public void ClickonBillingInManage() {
+		log.info("ClickonBillingInManage method starts here ...");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
 		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
-
+		CommonMethod.waitUntilLoadElement();
+		log.info("ClickonBillingInManage method ends here ...");
 	}
 
 	public boolean checkCommunitiesProjectCreation(String PName) {
@@ -922,30 +926,31 @@ public class CommunitiesPageObject extends BaseClass {
 	}
 
 	public void ClickonProjectInManage() {
-		try {
+		log.info("ClickonProjectInManage method starts here ...");
+		ManageMenu.click();
+		ProjectSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
-			ManageMenu.click();
-			ProjectSubmenu.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		log.info("ClickonProjectInManage method starts here ...");
 	}
 
 	public void ClickonTeamInManage() {
+		log.info("ClickonTeamInManage method starts here ...");
+		ManageMenu.click();
+		TeamSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			ManageMenu.click();
-			TeamSubmenu.click();
-			waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			Thread.sleep(4000);
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.info("Unable to traverse Team Submenu");
 		}
+		log.info("ClickonTeamInManage method ends here ...");
 
 	}
 
@@ -1027,16 +1032,17 @@ public class CommunitiesPageObject extends BaseClass {
 	}
 
 	// This method will return the Quality Of Life score
-		public int getQualityOfLifeScore() {
+	public int getQualityOfLifeScore() {
 
-			log.info("getQualityOfLifeScore method starts here........");
-			int score = Integer.parseInt(QualityScore.getText());
-			log.info("Quality Of Life Score is -----" + score);
-			log.info("Quality Of Life Score -----" + score);
-			log.info("getQualityOfLifeScore method ends here........");
-			return score;
+		log.info("getQualityOfLifeScore method starts here........");
+		int score = Integer.parseInt(QualityScore.getText());
+		log.info("Quality Of Life Score is -----" + score);
+		log.info("Quality Of Life Score -----" + score);
+		log.info("getQualityOfLifeScore method ends here........");
+		return score;
 
-		}
+	}
+
 	public boolean checkUnitTypeInProjectAreaUnderDataInput(String UnitType) {
 
 		boolean flag = false;
@@ -4466,8 +4472,6 @@ public class CommunitiesPageObject extends BaseClass {
 			tons = tons + 2;
 		}
 		log.info("Total Row display is ---  " + rows.size());
-
-		log.info("Total Row display is ---  " + rows.size());
 		int beforeFilter = rows.size();
 		try {
 			Thread.sleep(2000);
@@ -4476,6 +4480,8 @@ public class CommunitiesPageObject extends BaseClass {
 			e1.printStackTrace();
 		}
 
+		ClickonWaterConsumption();
+		ClickonMunicipalSolidwastegeneration();
 		waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		YearFilterButton.click();
 
@@ -4657,14 +4663,12 @@ public class CommunitiesPageObject extends BaseClass {
 			percent = percent + 2;
 		}
 		log.info("Total Row display is ---  " + rows.size());
-
-		log.info("Total Row display is ---  " + rows.size());
 		int beforeFilter = rows.size();
-
+		ClickonWaterConsumption();
+		ClickonMunicipalSolidWasteDiversion();
 		waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		YearFilterButton.click();
 
-		waithelper.WaitForElementClickable(YearStartDateTextBox, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		YearStartDateTextBox.click();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
@@ -4843,10 +4847,10 @@ public class CommunitiesPageObject extends BaseClass {
 			value = value + 2;
 		}
 		log.info("Total Row display is ---  " + rows.size());
-
-		log.info("Total Row display is ---  " + rows.size());
 		int beforeFilter = rows.size();
 
+		ClickonGHGEmiissions();
+		ClickonWaterConsumption();
 		waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		YearFilterButton.click();
 
@@ -5833,53 +5837,48 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
-	
 	public boolean CheckWaste_Diversion_CheckWithInvalidPercent() {
 		log.info("CheckWaste_Diversion_CheckWithInvalidPercent  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Waste_AddYearButton.click();
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("101");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag=true;
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
+
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckWaste_Diversion_CheckWithInvalidPercent  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
-	
-	
+
 	public boolean CheckHealthAndSafety_CheckWithInvalidValue() {
 		log.info("CheckWaste_Diversion_CheckWithInvalidPercent  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(HealthAndSafety_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -5893,38 +5892,35 @@ public class CommunitiesPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("501");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Invalid Reading (Min:0, Max; 500)"))
-					flag=true;
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("501");
+
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Invalid Reading (Min:0, Max; 500)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckHealthAndSafety_CheckWithInvalidValue  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
-	
+
 	public boolean CheckEducation_Bachelor_Population_CheckWithInvalidPercent() {
 		log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(Education_BachelorPopulation_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -5938,40 +5934,35 @@ public class CommunitiesPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("101");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag=true;
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
+
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  ends here........");
 			return flag;
 		}
 		return flag;
-		
-		
 
 	}
-	
-	
+
 	public boolean CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent() {
 		log.info("CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -5985,40 +5976,36 @@ public class CommunitiesPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("101");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
 
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag=true;
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
-	
-	
+
 	public boolean CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue() {
 		log.info("CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -6028,37 +6015,33 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		Equitability_MedianGrossIncome_Data_AddYearBtn.click();
-		
+
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("101");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag=true;
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
+
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+					flag = true;
 				else
-					flag=false;
-				
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
-	
 
 	public boolean CheckProsperityUnemployementRate_CheckWithInvalidValue() {
 		log.info("CheckProsperityUnemployementRate_CheckWithInvalidValue  starts here........");
@@ -6066,7 +6049,7 @@ public class CommunitiesPageObject extends BaseClass {
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -6076,45 +6059,42 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		ProsperityUnemployementRate_Data_AddYearBtn.click();
-		
+
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("101");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
 
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag=true;
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckProsperityUnemployementRate_CheckWithInvalidValue  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
-	
+
 	public boolean CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue() {
 		log.info("CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
-		
+		boolean ValidationMsg = false;
+
 		waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -6128,39 +6108,36 @@ public class CommunitiesPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("366");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("366");
 
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Invalid Reading (Min:0, Max; 365)"))
-					flag=true;
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Invalid Reading (Min:0, Max; 365)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
-	
+
 	public boolean CheckEquitability_Gini_Coefficient_CheckWithInvalidValue() {
 		log.info("CheckEquitability_Gini_Coefficient_CheckWithInvalidValue  starts here........");
 		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int Prev_TableRowCount = TableRow.size();
 		log.info("Before adding number of row showing is ---" + TableRow.size());
 		boolean flag = false;
-		boolean ValidationMsg=false;
+		boolean ValidationMsg = false;
 		waithelper.WaitForElementClickable(Equitability_Gini_Coefficient_Data_AddYearBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -6174,28 +6151,25 @@ public class CommunitiesPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys("501");
-			
-			ValidationMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).isDisplayed();
-			if(ValidationMsg)
-			{
-				String ActualValMsg=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---"+ActualValMsg);
-				if(ActualValMsg.equals("Invalid Reading (Min:0, Max; 1)"))
-					flag=true;
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("501");
+
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Invalid Reading (Min:0, Max; 1)"))
+					flag = true;
 				else
-					flag=false;
-			}
-			else
-			{
-				log.info("Validation Message not displayed.."); 
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
 			}
 			log.info("CheckEquitability_Gini_Coefficient_CheckWithInvalidValue  ends here........");
 			return flag;
 		}
 		return flag;
-		
 
 	}
 

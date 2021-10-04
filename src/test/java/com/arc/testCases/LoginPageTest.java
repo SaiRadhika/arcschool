@@ -9,20 +9,18 @@ import com.arc.PageObject.LoginPageObjects;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
-
-
-public class LoginPageTest extends BaseClass{
+public class LoginPageTest extends BaseClass {
 	/*
 	 * LoginPageObjects LoginPage; HomePageObjects HomePage;
 	 */
-	
-	private static Logger log= LoggerHelper.getLogger(LoginPageTest.class);
-	
+
+	private static Logger log = LoggerHelper.getLogger(LoginPageTest.class);
+
 	/*
 	 * public LoginPageTest() { //super();
 	 * log.info("LoginPageTest constructor is called"); }
 	 */
-	
+
 	/*
 	 * @BeforeMethod
 	 * 
@@ -32,8 +30,7 @@ public class LoginPageTest extends BaseClass{
 	 * HomePageObjects();
 	 * log.info("Setup method of LoginPageTest class completed "); }
 	 */
-	
-	
+
 	/*
 	 * @Test(enabled=false) public void LoginPageTitleTest() { LoginPage=new
 	 * LoginPageObjects(); HomePage=new HomePageObjects();
@@ -42,31 +39,25 @@ public class LoginPageTest extends BaseClass{
 	 * Assert.assertEquals("Arc Skoru | Sustainability performance platform",
 	 * Title); log.info("LoginPageTitleTest completed"); }
 	 */
-	
-	@Test(groups={"LoginMethodTCGroup","Reboot","Regression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
-	
-	public void Login_ApplicationTest()
-	{
-		//System.setProperty("PrivateProjectProjectID", "8000004441");
-		//System.setProperty("NonLEEDCItyProjectID", "8000004442");
-		LoginPage=new LoginPageObjects();
-		HomePage=new HomePageObjects();
+
+	@Test(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
+			"ProjectRegsRegression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
+
+	public void Login_ApplicationTest() {
+		LoginPage = new LoginPageObjects();
+		HomePage = new HomePageObjects();
 		log.info("LoginApplicationTest started");
-		HomePage=LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
+		HomePage = LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
 		boolean flag = HomePage.CheckHomePageLabel();
-		if(flag)
-		{
+		if (flag) {
 			log.info("LoginApplicationTest completed");
 			Assert.assertTrue(true);
-		}
-		else
-		{
+		} else {
 			log.info("LoginApplicationTest completed");
 			Assert.assertTrue(false);
 		}
 	}
-	
-	
+
 	/*
 	 * @Test(groups={"LoginMethodTCGroupR","Regression" }, priority = 1)
 	 * 
