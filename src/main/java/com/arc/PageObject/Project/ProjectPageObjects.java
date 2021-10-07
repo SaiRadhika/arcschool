@@ -101,6 +101,12 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		waithelper.WaitForElementVisibleWithPollingTime(driver
 				.findElement(
 						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -137,6 +143,13 @@ public class ProjectPageObjects extends BaseClass {
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
 		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		waithelper.WaitForElementVisibleWithPollingTime(driver
 				.findElement(
 						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -171,6 +184,12 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		waithelper.WaitForElementVisibleWithPollingTime(driver
 				.findElement(
 						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -204,6 +223,12 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		waithelper.WaitForElementVisibleWithPollingTime(driver
 				.findElement(
 						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -238,6 +263,12 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		waithelper.WaitForElementVisibleWithPollingTime(driver
 				.findElement(
 						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -271,6 +302,12 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		SearchedProject.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		waithelper.WaitForElementVisibleWithPollingTime(driver
 				.findElement(
 						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
