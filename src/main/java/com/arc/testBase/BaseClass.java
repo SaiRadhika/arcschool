@@ -105,8 +105,8 @@ public class BaseClass {
 		}
 
 		// String browserName = prop.getProperty("browserName");
-		CommonMethod.deleteAllDownloadedFiles();
-		CommonMethod.deleteAllPreviousScreenshotsFiles();
+		//CommonMethod.deleteAllDownloadedFiles();
+		//CommonMethod.deleteAllPreviousScreenshotsFiles();
 		String OS_Name = System.getProperty("os.name");
 		log.info("Opearting System is --" + OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
