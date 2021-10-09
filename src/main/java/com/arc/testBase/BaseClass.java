@@ -105,8 +105,8 @@ public class BaseClass {
 		}
 
 		// String browserName = prop.getProperty("browserName");
-		//CommonMethod.deleteAllDownloadedFiles();
-		//CommonMethod.deleteAllPreviousScreenshotsFiles();
+		CommonMethod.deleteAllDownloadedFiles();
+		CommonMethod.deleteAllPreviousScreenshotsFiles();
 		String OS_Name = System.getProperty("os.name");
 		log.info("Opearting System is --" + OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -186,7 +186,7 @@ public class BaseClass {
 		  log.info("URL navigated to .. " + prop.getProperty("STGurl")); }
 		 
 
-		
+		/*
 		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
 		 * prop.getProperty("STGurl"));
 		 */

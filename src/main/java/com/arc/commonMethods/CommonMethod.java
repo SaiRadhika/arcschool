@@ -491,7 +491,7 @@ public class CommonMethod extends BaseClass {
 		log.info("deleteALlDownloadedFiles method starts here ......");
 		String filepath = System.getProperty("user.dir") + "\\DownLoadedFiles";
 		log.info("Directory path is " + filepath);
-		File file = new File(filepath);
+		File file = new File("DownLoadedFiles");
 		if (file.listFiles().length > 0) {
 			log.info("Total Number of Sub Folders are " + file.listFiles().length);
 			for (File f : file.listFiles()) {
@@ -509,6 +509,7 @@ public class CommonMethod extends BaseClass {
 				}
 			}
 		}
+		log.info("There is no any file/folder(s).....");
 		log.info("deleteALlDownloadedFiles method ends here ......");
 	}
 
@@ -516,7 +517,7 @@ public class CommonMethod extends BaseClass {
 		log.info("deleteAllPreviousScreenshotsFiles method starts here ......");
 		String filepath = System.getProperty("user.dir") + "\\Screenshots";
 		log.info("Directory path is " + filepath);
-		File file = new File(filepath);
+		File file = new File("Screenshots");
 		if (file.listFiles().length > 0) {
 			log.info("Total Number of Sub Folders are " + file.listFiles().length);
 			for (File f : file.listFiles()) {
@@ -534,6 +535,7 @@ public class CommonMethod extends BaseClass {
 				}
 			}
 		}
+		log.info("There is no any file/folder(s).....");
 		log.info("deleteAllPreviousScreenshotsFiles method ends here ......");
 	}
 

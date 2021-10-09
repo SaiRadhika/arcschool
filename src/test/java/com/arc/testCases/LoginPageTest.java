@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import com.arc.PageObject.HomePageObjects;
 import com.arc.PageObject.LoginPageObjects;
-import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
@@ -47,8 +46,6 @@ public class LoginPageTest extends BaseClass {
 	public void Login_ApplicationTest() {
 		LoginPage = new LoginPageObjects();
 		HomePage = new HomePageObjects();
-		CommonMethod.deleteAllDownloadedFiles();
-		CommonMethod.deleteAllPreviousScreenshotsFiles();
 		log.info("LoginApplicationTest started");
 		HomePage = LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
 		boolean flag = HomePage.CheckHomePageLabel();
