@@ -99,18 +99,16 @@ public class CityPageTest extends BaseClass {
 		log.info("City_Team_Add_Member method started ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		System.out.println(data.getCellData("Reboot", 6, 2));
+		log.info(data.getCellData("Reboot", 6, 2));
 		CityPage = ProjectPage.SearchAndClickOnCityProject(data.getCellData("Reboot", 6, 2));
 		CityPage.ClickonTeamInManage();
 		HomePage.closeProjectSearchTextBox();
-		System.out.println();
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
-		System.out.println(username + "-----------existence is----" + emailexist);
-		boolean flag = false;
-		flag = CommonMethod.Team_Add_Member(username);
-		if (flag) {
-			log.info(username + "  added successfully");
+		log.info(username + "-----------existence is----" + emailexist);
+		if(emailexist==false)
+		{
+			CommonMethod.Team_Add_Member(username);
 			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
 			if (UserNamePresent) {
 				log.info(username + "  exists in the team member");
@@ -121,10 +119,22 @@ public class CityPageTest extends BaseClass {
 				log.info("City_Team_Add_Member method completed .......................");
 				Assert.assertTrue(false);
 			}
-		} else {
-			log.info(username + "  is not added successfully");
-			log.info("City_Team_Add_Member method completed .......................");
-			Assert.assertTrue(false);
+		}
+		else
+		{
+			log.info("First deleting the email and then will add the same email...");
+			CommonMethod.Team_Delete_Member(username);
+			CommonMethod.Team_Add_Member(username);
+			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
+			if (UserNamePresent) {
+				log.info(username + "  exists in the team member");
+				log.info("City_Team_Add_Member method completed .......................");
+				Assert.assertTrue(true);
+			} else {
+				log.info(username + "  does not exist in the team member");
+				log.info("City_Team_Add_Member method completed .......................");
+				Assert.assertTrue(false);
+			}
 		}
 
 	}
@@ -139,29 +149,22 @@ public class CityPageTest extends BaseClass {
 		CommonMethod.RefreshPagewaitForPageLoaded(driver);
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		System.out.println(data.getCellData("Reboot", 6, 2));
+		log.info(data.getCellData("Reboot", 6, 2));
 		CityPage = ProjectPage.SearchAndClickOnCityProject(data.getCellData("Reboot", 6, 2));
 		HomePage.closeProjectSearchTextBox();
 		CityPage.ClickonTeamInManage();
 		String username = data.getCellData("Reboot", 15, 2);
-		boolean flag = CommonMethod.Team_Delete_Member(username);
-		if (flag) {
-			boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
-			if (!emailexist) {
-				log.info(username + "  does not exist as team member");
-				log.info("City_Team_Delete_Member method completed.......................");
-				Assert.assertTrue(true);
-			} else {
-				log.info(username + " still exist as team member");
-				log.info("City_Team_Delete_Member method completed.......................");
-				Assert.assertTrue(false);
-			}
+		CommonMethod.Team_Delete_Member(username);
+		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
+		if (!emailexist) {
+			log.info(username + "  does not exist as team member");
+			log.info("City_Team_Delete_Member method completed.......................");
+			Assert.assertTrue(true);
 		} else {
-			log.info(username + " is not deleted successfully .......................");
+			log.info(username + " still exist as team member");
+			log.info("City_Team_Delete_Member method completed.......................");
 			Assert.assertTrue(false);
-
 		}
-
 	}
 
 	// *************************Regression Test

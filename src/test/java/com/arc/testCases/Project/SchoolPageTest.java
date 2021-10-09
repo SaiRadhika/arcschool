@@ -172,17 +172,15 @@ public class SchoolPageTest extends BaseClass {
 		log.info("School_Team_Add_Member method started ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		System.out.println(data.getCellData("Reboot", 0, 2));
+		log.info(data.getCellData("Reboot", 0, 2));
 		SchoolPage = ProjectPage.SearchAndClickOnSchoolProject(data.getCellData("Reboot", 1, 2));
 		HomePage.closeProjectSearchTextBox();
 		SchoolPage.ClickonTeamInManage();
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
-		System.out.println(username + "-----------existence is----" + emailexist);
-		boolean flag = false;
-		flag = CommonMethod.Team_Add_Member(username);
-		if (flag) {
-			log.info(username + "  added successfully");
+		log.info(username + "-----------existence is----" + emailexist);
+		if (emailexist == false) {
+			CommonMethod.Team_Add_Member(username);
 			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
 			if (UserNamePresent) {
 				log.info(username + "  exists in the team member");
@@ -194,11 +192,20 @@ public class SchoolPageTest extends BaseClass {
 				Assert.assertTrue(false);
 			}
 		} else {
-			log.info(username + "  is not added successfully");
-			log.info("School_Team_Add_Member method completed .......................");
-			Assert.assertTrue(false);
+			log.info("First deleting the email and then will add the same email...");
+			CommonMethod.Team_Delete_Member(username);
+			CommonMethod.Team_Add_Member(username);
+			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
+			if (UserNamePresent) {
+				log.info(username + "  exists in the team member");
+				log.info("School_Team_Add_Member method completed .......................");
+				Assert.assertTrue(true);
+			} else {
+				log.info(username + "  does not exist in the team member");
+				log.info("School_Team_Add_Member method completed .......................");
+				Assert.assertTrue(false);
+			}
 		}
-
 	}
 
 	// Verify Manage-->It should allow to delete member from the added list

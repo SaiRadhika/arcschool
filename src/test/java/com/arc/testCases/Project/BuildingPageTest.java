@@ -190,17 +190,15 @@ public class BuildingPageTest extends BaseClass {
 		log.info("Building_Team_Add_Member method started ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		System.out.println(data.getCellData("Reboot", 0, 2));
+		log.info(data.getCellData("Reboot", 0, 2));
 		BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(data.getCellData("Reboot", 0, 2));
 		HomePage.closeProjectSearchTextBox();
 		BuildingPage.ClickonTeamInManage();
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
-		System.out.println(username + "-----------existence is----" + emailexist);
-		boolean flag = false;
-		flag = CommonMethod.Team_Add_Member(username);
-		if (flag) {
-			log.info(username + "  added successfully");
+		log.info(username + "-----------existence is----" + emailexist);
+		if (emailexist == false) {
+			CommonMethod.Team_Add_Member(username);
 			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
 			if (UserNamePresent) {
 				log.info(username + "  exists in the team member");
@@ -212,9 +210,19 @@ public class BuildingPageTest extends BaseClass {
 				Assert.assertTrue(false);
 			}
 		} else {
-			log.info(username + "  is not added successfully");
-			log.info("Building_Team_Add_Member method completed .......................");
-			Assert.assertTrue(false);
+			log.info("First deleting the email and then will add the same email...");
+			CommonMethod.Team_Delete_Member(username);
+			CommonMethod.Team_Add_Member(username);
+			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
+			if (UserNamePresent) {
+				log.info(username + "  exists in the team member");
+				log.info("Building_Team_Add_Member method completed .......................");
+				Assert.assertTrue(true);
+			} else {
+				log.info(username + "  does not exist in the team member");
+				log.info("Building_Team_Add_Member method completed .......................");
+				Assert.assertTrue(false);
+			}
 		}
 
 	}
@@ -228,26 +236,20 @@ public class BuildingPageTest extends BaseClass {
 		log.info("Building_Team_Delete_Member method started .......................");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
-		System.out.println(data.getCellData("Reboot", 0, 2));
+		log.info(data.getCellData("Reboot", 0, 2));
 		BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(data.getCellData("Reboot", 0, 2));
 		HomePage.closeProjectSearchTextBox();
 		BuildingPage.ClickonTeamInManage();
-		System.out.println();
 		String username = data.getCellData("Reboot", 15, 2);
-		boolean flag = CommonMethod.Team_Delete_Member(username);
-		if (flag) {
-			boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
-			if (!emailexist) {
-				log.info(username + "  does not exist as team member");
-				log.info("Building_Team_Delete_Member method completed.......................");
-				Assert.assertTrue(true);
-			} else {
-				log.info(username + " still exist as team member");
-				log.info("Building_Team_Delete_Member method completed.......................");
-				Assert.assertTrue(false);
-			}
+		CommonMethod.Team_Delete_Member(username);
+		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
+		if (!emailexist) {
+			log.info(username + "  does not exist as team member");
+			log.info("Building_Team_Delete_Member method completed.......................");
+			Assert.assertTrue(true);
 		} else {
-			log.info(username + " is not deleted successfully .......................");
+			log.info(username + " still exist as team member");
+			log.info("Building_Team_Delete_Member method completed.......................");
 			Assert.assertTrue(false);
 
 		}
@@ -275,12 +277,12 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		ProjectBuildingID = "8000011060";
+		// ProjectBuildingID = "8000011060";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-
+			CommonMethod.switchToShowOverviewFrame();
 			flag = BuildingPage.CheckAddEnergyDataModelWindow();
 		}
 		if (flag) {
@@ -316,6 +318,7 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
 			flag = BuildingPage.ClickOnBuildingSetting();
 		}
 		if (flag) {
@@ -350,6 +353,7 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
 			flag = BuildingPage.CheckSendASurvey();
 		}
 		if (flag) {
@@ -384,6 +388,7 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
 			flag = BuildingPage.CheckUpdateAppsToCollectData();
 		}
 		if (flag) {
@@ -418,6 +423,7 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
 			flag = BuildingPage.CheckGetNotified();
 		}
 		if (flag) {
@@ -574,7 +580,7 @@ public class BuildingPageTest extends BaseClass {
 
 	// Verify in Overview Tab, RHS-- all partner apps show up with linear scrolling.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 419, enabled = false, description = "Verify in Overview Tab, RHS-- all partner apps show up with linear scrolling.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 459, enabled = false, description = "Verify in Overview Tab, RHS-- all partner apps show up with linear scrolling.")
 	public void Buildings_Overview_RHS_All_Partners_App() {
 
 		log.info("Buildings_Overview_RHS_All_Partners_App method started......................... ");
@@ -588,7 +594,7 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		ProjectBuildingID = "8000011146";
+		// ProjectBuildingID = "8000011146";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -821,7 +827,7 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID = "8000011146";
+		// ProjectBuildingID = "8000011194";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -840,7 +846,7 @@ public class BuildingPageTest extends BaseClass {
 
 	// Verify Building Settings-->Operating hours tab-- clicking on 'Add Row' adds a
 	// new line item.
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 416, enabled = true, description = "Verify Building Settings-->Operating hours tab-- clicking on 'Add Row' adds a new line item.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 467, enabled = true, description = "Verify Building Settings-->Operating hours tab-- clicking on 'Add Row' adds a new line item.")
 	public void Buildings_MeterSurvey_OperatingHours_AddRow() {
 		log.info("Buildings_MeterSurvey_OperatingHours_AddRow method started......................... ");
 		boolean flag = false;
@@ -853,12 +859,13 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		ProjectBuildingID = "8000011146";
+		// ProjectBuildingID = "8000011194";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
 			String UserName = HomePage.getCurrentProfileUserName();
+			CommonMethod.switchToShowOverviewFrame();
 			BuildingPage.ClickOnBuildingSetting();
 			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
 			flag = BuildingPage.BuildingSetting_OperatingHours_AddRow(UserName);
@@ -869,6 +876,328 @@ public class BuildingPageTest extends BaseClass {
 
 		} else {
 			log.info("Buildings_MeterSurvey_OperatingHours_AddRow method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Operating hours tab -->Verify Clicking on effective date
+	// opens up calendar and allows to select dates successfully.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 468, enabled = true, description = "Building Settings-->Operating hours tab -->Verify Clicking on effective date opens up calendar and allows to select dates successfully.")
+	public void Buildings_MeterSurvey_OperatingHours_SelectEffectiveDate() {
+		log.info("Buildings_MeterSurvey_OperatingHours_SelectEffectiveDate method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011194";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
+			flag = BuildingPage.BuildingSetting_SelectEffectiveDate();
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_OperatingHours_SelectEffectiveDate method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_OperatingHours_SelectEffectiveDate method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify clicking on 'Upload' button opens up with four options- 'Computer
+	// File', 'Dropbox, OneDrive,Google Drive.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 469, enabled = true, description = "Verify clicking on 'Upload' button opens up with four options- 'Computer File', 'Dropbox, OneDrive,Google Drive. ")
+	public void Buildings_MeterSurvey_OperatingHours_CheckUploadOprions() {
+		log.info("Buildings_MeterSurvey_OperatingHours_CheckUploadOprions method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011056";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
+			flag = BuildingPage.BuildingSetting_CheckUploadOprions();
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_OperatingHours_CheckUploadOprions method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_OperatingHours_CheckUploadOprions method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Operating hours field by selecting hours from the dropdown.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 470, enabled = true, description = "Verify Operating hours field by selecting hours from the dropdown.")
+	public void Buildings_MeterSurvey_OperatingHours_SelectHours() {
+		log.info("Buildings_MeterSurvey_OperatingHours_SelectHours method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011055";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
+			flag = BuildingPage.BuildingSetting_SelectOperatingHours();
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_OperatingHours_SelectHours method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_OperatingHours_SelectHours method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Operating hours tab - >Verify filter and reset
+	// functionalities.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 471, enabled = true, description = "Building Settings-->Operating hours tab ->Verify filter and reset functionalities.")
+	public void Buildings_MeterSurvey_OperatingHours_CheckFilterAndReset() {
+		log.info("Buildings_MeterSurvey_OperatingHours_CheckFilterAndReset method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Private2");
+		// ProjectBuildingID = "1000103746";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
+			flag = BuildingPage.BuildingSetting_CheckFilterAndReset();
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_OperatingHours_CheckFilterAndReset method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_OperatingHours_CheckFilterAndReset method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Operating hours tab - > Verify comments and activity..
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 472, enabled = true, description = " Building Settings-->Operating hours tab - > Verify comments and activity.")
+	public void Buildings_MeterSurvey_OperatingHours_Comments_Activity() {
+
+		log.info("Buildings_MeterSurvey_OperatingHours_Comments_Activity method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Private2");
+		// ProjectBuildingID="8000011194";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			String ProfileUserName = HomePage.getCurrentProfileUserName();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
+			flag = BuildingPage.BuildingSetting_CheckCommentAndActivity(data.getCellData("Building", 1, 2),
+					ProfileUserName);
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_OperatingHours_Comments_Activity method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_OperatingHours_Comments_Activity method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Gross Floor Area tab-- Verify clicking on 'Add Row' adds
+	// a new line item.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 474, enabled = true, description = " Building Settings-->Gross Floor Area tab-- Verify clicking on 'Add Row' adds a new line item.")
+	public void Buildings_MeterSurvey_GrossFloorArea_AddRow() {
+		log.info("Buildings_MeterSurvey_GrossFloorArea_AddRow method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011299";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			String UserName = HomePage.getCurrentProfileUserName();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_GrossFloorAreaTab();
+			flag = BuildingPage.BuildingSetting_GrossFloorArea_AddRow(UserName);
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_GrossFloorArea_AddRow method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_GrossFloorArea_AddRow method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Gross Floor Area tab-- -->Verify Clicking on effective
+	// date opens up calendar and allows to select dates successfully.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 475, enabled = true, description = "Building Settings-->Gross Floor Area tab-- -->Verify Clicking on effective date opens up calendar and allows to select dates successfully.")
+	public void Buildings_MeterSurvey_GrossFloorArea_SelectEffectiveDate() {
+		log.info("Buildings_MeterSurvey_GrossFloorArea_SelectEffectiveDate method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011299";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_GrossFloorAreaTab();
+			flag = BuildingPage.BuildingSetting_GrossFloorArea_SelectEffectiveDate();
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_GrossFloorArea_SelectEffectiveDate method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_GrossFloorArea_SelectEffectiveDate method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Gross Floor Area tab-- -->Verify Gross Area field allows
+	// to add only numeric value.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 476, enabled = true, description = "Building Settings-->Gross Floor Area tab-- -->Verify Gross Area field allows to add only numeric value.")
+	public void Buildings_MeterSurvey_GrossFloorArea_GrossAreaField_AllowNumericOnly() {
+		log.info(
+				"Buildings_MeterSurvey_GrossFloorArea_GrossAreaField_AllowNumericOnly method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		ProjectBuildingID = "8000011299";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_GrossFloorAreaTab();
+			flag = BuildingPage.BuildingSetting_GrossAreaField_AllowNumericOnly();
+		}
+		if (flag) {
+			log.info(
+					"Buildings_MeterSurvey_GrossFloorArea_GrossAreaField_AllowNumericOnly method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_MeterSurvey_GrossFloorArea_GrossAreaField_AllowNumericOnly method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building Settings-->Operating hours tab - >Verify Unit field gives two
+	// options- IP units(Square feet) and SI units(Square meters) to select from.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 477, enabled = false, description = "Building Settings-->Operating hours tab ->Verify Unit field gives two options- IP units(Square feet) and SI units(Square meters) to select from.")
+	public void Buildings_MeterSurvey_OperatingHours_CheckUnits() {
+		log.info("Buildings_MeterSurvey_OperatingHours_CheckUnits method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectBuildingID = System.getProperty("BuildingProject_Private2");
+		// ProjectBuildingID = "1000103746";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			CommonMethod.switchToShowOverviewFrame();
+			BuildingPage.ClickOnBuildingSetting();
+			BuildingPage.ClickOnBuildingSetting_OperatingHoursTab();
+			flag = BuildingPage.BuildingSetting_CheckFilterAndReset();
+		}
+		if (flag) {
+			log.info("Buildings_MeterSurvey_OperatingHours_CheckUnits method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_MeterSurvey_OperatingHours_CheckUnits method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}

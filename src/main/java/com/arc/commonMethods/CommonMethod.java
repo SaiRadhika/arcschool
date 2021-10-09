@@ -108,6 +108,18 @@ public class CommonMethod extends BaseClass {
 
 	}
 
+	// This method will return current day
+
+	public static String getCurrentDayIn2Digit() {
+		log.info("getCurrentDayIn2Digit method starts here ......");
+		SimpleDateFormat f = new SimpleDateFormat("dd");
+		String strDay = f.format(new Date());
+		log.info("Current day is --" + strDay);
+		log.info("getCurrentDayIn2Digit method ends here ......");
+		return strDay;
+
+	}
+
 	// This method will return current Month
 
 	public static int getCurrentMonth() {
@@ -117,6 +129,18 @@ public class CommonMethod extends BaseClass {
 		log.info("Current Month is --" + month);
 		log.info("getCurrentMonth method ends here ......");
 		return month;
+
+	}
+
+	// This method will return current day
+
+	public static String getCurrentMonthIn2Digit() {
+		log.info("getCurrentDayIn2Digit method starts here ......");
+		SimpleDateFormat f = new SimpleDateFormat("MM");
+		String strMonth = f.format(new Date());
+		log.info("Current day is --" + strMonth);
+		log.info("getCurrentMonthIn2Digit method ends here ......");
+		return strMonth;
 
 	}
 
@@ -466,17 +490,23 @@ public class CommonMethod extends BaseClass {
 	public static void deleteAllDownloadedFiles() {
 		log.info("deleteALlDownloadedFiles method starts here ......");
 		String filepath = System.getProperty("user.dir") + "\\DownLoadedFiles";
+		log.info("Directory path is " + filepath);
 		File file = new File(filepath);
-
 		if (file.listFiles().length > 0) {
+			log.info("Total Number of Sub Folders are " + file.listFiles().length);
 			for (File f : file.listFiles()) {
+				log.info("Sub Folder name is  " + f.getName());
 				if (f.isDirectory()) {
 					for (File f1 : f.listFiles()) {
 						f1.delete();
+						log.info(f1.getName() + " is deleted successfully...");
 					}
 					f.delete();
+					log.info(f.getName() + " is deleted successfully...");
+				} else {
+					f.delete();
+					log.info(f.getName() + " is deleted successfully...");
 				}
-				f.delete();
 			}
 		}
 		log.info("deleteALlDownloadedFiles method ends here ......");
@@ -485,16 +515,23 @@ public class CommonMethod extends BaseClass {
 	public static void deleteAllPreviousScreenshotsFiles() {
 		log.info("deleteAllPreviousScreenshotsFiles method starts here ......");
 		String filepath = System.getProperty("user.dir") + "\\Screenshots";
+		log.info("Directory path is " + filepath);
 		File file = new File(filepath);
 		if (file.listFiles().length > 0) {
+			log.info("Total Number of Sub Folders are " + file.listFiles().length);
 			for (File f : file.listFiles()) {
+				log.info("Sub Folder name is  " + f.getName());
 				if (f.isDirectory()) {
 					for (File f1 : f.listFiles()) {
 						f1.delete();
+						log.info(f1.getName() + " is deleted successfully...");
 					}
 					f.delete();
+					log.info(f.getName() + " is deleted successfully...");
+				} else {
+					f.delete();
+					log.info(f.getName() + " is deleted successfully...");
 				}
-				f.delete();
 			}
 		}
 		log.info("deleteAllPreviousScreenshotsFiles method ends here ......");
@@ -638,7 +675,7 @@ public class CommonMethod extends BaseClass {
 		CommonMethod.RefreshPagewaitForPageLoaded(driver);
 		CommonMethod.waitUntilLoadElement();
 		boolean flag = false;
-
+		String msgText = "";
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//input[@name='input']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
@@ -665,7 +702,7 @@ public class CommonMethod extends BaseClass {
 		}
 		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 				Integer.parseInt(prop.getProperty("explicitTime")));
-		String msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+		msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
 
 		waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -738,7 +775,7 @@ public class CommonMethod extends BaseClass {
 		log.info("Team_Delete_Member Method starts here.............................................");
 		CommonMethod.RefreshPagewaitForPageLoaded(driver);
 		CommonMethod.waitUntilLoadElement();
-		String msgText = null;
+		String msgText = "";
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e1) {
