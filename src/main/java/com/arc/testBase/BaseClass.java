@@ -34,6 +34,7 @@ import com.arc.PageObject.Project.ProjectPageObjects;
 import com.arc.PageObject.Project.SchoolPageObject;
 import com.arc.PageObject.Project.TransitPageObject;
 import com.arc.commonMethods.ActionsHelper;
+import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.DropDownHelper;
 import com.arc.commonMethods.ExcelHelper;
 import com.arc.commonMethods.JavaScriptHelper;
@@ -104,8 +105,8 @@ public class BaseClass {
 		}
 
 		// String browserName = prop.getProperty("browserName");
-		// CommonMethod.deleteAllDownloadedFiles();
-		// CommonMethod.deleteAllPreviousScreenshotsFiles();
+		CommonMethod.deleteAllDownloadedFiles();
+		CommonMethod.deleteAllPreviousScreenshotsFiles();
 		String OS_Name = System.getProperty("os.name");
 		log.info("Opearting System is --" + OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -179,13 +180,13 @@ public class BaseClass {
 		}
 
 		/*
-		 * else {
-		 * log.info("Environment is not provided or wrong environment entered......");
-		 * driver.get(prop.getProperty("QAurl")); log.info("URL navigated to .. " +
-		 * prop.getProperty("STGurl")); }
-		 */
+		  else {
+		  log.info("Environment is not provided or wrong environment entered......");
+		  driver.get(prop.getProperty("QAurl")); 
+		  log.info("URL navigated to .. " + prop.getProperty("STGurl")); }
+		 
 
-		/*
+		
 		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
 		 * prop.getProperty("STGurl"));
 		 */
