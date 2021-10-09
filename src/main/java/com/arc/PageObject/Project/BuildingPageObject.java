@@ -1,7 +1,10 @@
 package com.arc.PageObject.Project;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -158,6 +161,33 @@ public class BuildingPageObject extends BaseClass {
 
 	@FindBy(xpath = "//span[text()='Add Row']")
 	WebElement BuildingSetting_AddRow_button;
+
+	@FindBy(xpath = "//button[@class='dropdown-toggle meterDataYearsFilter-btn']")
+	WebElement BuildingSetting_FilterButton;
+
+	@FindBy(xpath = "//p[@class='startDateFrom--label']/following-sibling::input")
+	WebElement BuildingSetting_FilterStartDate;
+
+	@FindBy(xpath = "//p[@class='endDateFrom--label']/following-sibling::input")
+	WebElement BuildingSetting_FilterEndDate;
+
+	@FindBy(xpath = "//button[@class='btn btn-success']")
+	WebElement BuildingSetting_UpdateButton;
+
+	@FindBy(xpath = "//h6[@class='reset-filter']")
+	WebElement BuildingSetting_ResetButton;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[3]/tr[2]/td[2]/div")
+	WebElement Waste_Data;
+
+	@FindBy(xpath = "(//*[@id='comment_box'])[1]")
+	WebElement BuildingSetting_CommentTextBox;
+
+	@FindBy(xpath = "(//button[text()='Post'])[1]")
+	WebElement BuildingSetting_PostButton;
+
+	@FindBy(xpath = "//span[text()='Activity']")
+	WebElement BuildingSetting_ActivityButton;
 
 	public BuildingPageObject() {
 		PageFactory.initElements(driver, this);
@@ -325,10 +355,13 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify in Overview tab, Under Actions- clicking on Add a meter should
+	// redirect to 'meters and surveys' and opens up 'Add Energy data' pop-up
+	// window.
 	public boolean CheckAddEnergyDataModelWindow() {
 		log.info("CheckAddEnergyDataModelWindow  method starts here.........");
 		boolean PopUpflag = false;
-		CommonMethod.switchToShowOverviewFrame();
+
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -337,6 +370,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		OverviewAddAMeter.click();
 		CommonMethod.waitUntilLoadElement();
+		CommonMethod.switchToDefaultContent();
 		CommonMethod.switchToDataInputFrame();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//div[@class='modal fade in']/div/div/div[1]/h4")),
@@ -357,10 +391,13 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify in Overview tab, Under Actions- clicking on 'Building Settings'
+	// should redirect to 'meters and surveys' and highlights up 'Building settings'
+	// tab
 	public boolean ClickOnBuildingSetting() {
 		log.info("ClickOnBuildingSetting  method starts here.........");
 		boolean BuldingSettingTab = false;
-		CommonMethod.switchToShowOverviewFrame();
+
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -374,8 +411,13 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		CommonMethod.switchToDefaultContent();
 		CommonMethod.switchToDataInputFrame();
 		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By
+						.xpath("//div[@class='meterNameInfo--wrapper pt5']/div[contains(text(),'Building Settings')]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BuldingSettingTab = driver
 				.findElement(By
 						.xpath("//div[@class='meterNameInfo--wrapper pt5']/div[contains(text(),'Building Settings')]"))
@@ -392,19 +434,84 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	public boolean ClickOnWaste_Data() {
+		log.info("ClickOnWaste_Data  method starts here.........");
+		boolean Waste_DataTab = false;
+		CommonMethod.switchToDefaultContent();
+		CommonMethod.switchToDataInputFrame();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Waste_Data.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommonMethod.switchToDataInputFrame();
+		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(
+						By.xpath("(//div[@class='meterNameInfo--wrapper']/div[contains(text(),'Waste Data')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		Waste_DataTab = driver
+				.findElement(By.xpath("(//div[@class='meterNameInfo--wrapper']/div[contains(text(),'Waste Data')])[2]"))
+				.isDisplayed();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("MetersAndSurveyTab flag is --" + MetersAndSurveyTab);
+		log.info("Waste_DataTab flag is --" + Waste_DataTab);
+		if (Waste_DataTab == true && MetersAndSurveyTab == true) {
+			log.info("ClickOnWaste_Data  method ends here with true .........");
+			return true;
+		} else {
+			log.info("ClickOnWaste_Data  method ends here with false.........");
+			return false;
+		}
+
+	}
+
 	public void ClickOnBuildingSetting_OperatingHoursTab() {
 		log.info("ClickOnBuildingSetting_OperatingHoursTab  method starts here.........");
 		BuildingSetting_OperatingHourTab.click();
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		log.info("ClickOnBuildingSetting_OperatingHoursTab  method ends here with false.........");
 	}
 
+	public void ClickOnBuildingSetting_GrossFloorAreaTab() {
+		log.info("ClickOnBuildingSetting_GrossFloorAreaTab  method starts here.........");
+		BuildingSetting_GrossFloorAreaTab.click();
+		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnBuildingSetting_GrossFloorAreaTab  method ends here with false.........");
+	}
+
+	// --> Verify in Overview tab, Under Actions- clicking on 'Send A Survey' should
+	// redirect to 'meters and surveys' and highlights up 'Transportation Survey'
 	public boolean CheckSendASurvey() {
 		log.info("CheckSendASurvey  method starts here.........");
 		boolean TransportationSurevyTab = false;
-		CommonMethod.switchToShowOverviewFrame();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -418,6 +525,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		CommonMethod.switchToDefaultContent();
 		CommonMethod.switchToDataInputFrame();
 		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
 		TransportationSurevyTab = driver
@@ -436,10 +544,12 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify in Overview tab, Under Actions- clicking on 'Update Apps to
+	// collect data' should redirect to Manage--> 'Apps' .
+
 	public boolean CheckUpdateAppsToCollectData() {
 		log.info("CheckUpdateAppsToCollectData  method starts here.........");
 		boolean AppsTab = false;
-		CommonMethod.switchToShowOverviewFrame();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -453,6 +563,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		CommonMethod.switchToDefaultContent();
 		AppsTab = driver.findElement(By.xpath("//main[@id='content']/h1/span[2][text()='Apps']")).isDisplayed();
 		log.info("AppsTab flag is --" + AppsTab);
 		if (AppsTab == true) {
@@ -465,10 +576,11 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify in Overview tab, Under Actions- clicking on 'Get Certified' should
+	// redirect to Project Tools--> 'Leed Certification'
 	public boolean CheckGetNotified() {
 		log.info("CheckGetNotified  method starts here.........");
 		boolean LEEDCertificationsTab = false;
-		CommonMethod.switchToShowOverviewFrame();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -482,6 +594,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		CommonMethod.switchToDefaultContent();
 		LEEDCertificationsTab = driver.findElement(By.xpath("//main[@id='content']/h1/span[text()='Certifications']"))
 				.isDisplayed();
 		log.info("LEEDCertificationsTab flag is --" + LEEDCertificationsTab);
@@ -495,6 +608,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify in Overview Tab, By default Top RHS dropdown should show 'Last 12
+	// months'
 	public boolean CheckRHS_ShowLast12Months() {
 		log.info("CheckRHS_ShowLast12Months  method starts here.........");
 		boolean RHS_Last12Months = false;
@@ -519,6 +634,11 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
+
+	// --> If Last 12 months is selected in dropdown- Under Scores and Metrics-->
+	// Arc Scores should show date window as per the following- End Date- with
+	// respect to the current date - last month end date || Start date- one year
+	// prior to the end date.
 
 	public boolean CheckRHS_Last12Months_DateRange() {
 		log.info("CheckRHS_Last12Months_ARC_Score  method starts here.........");
@@ -611,6 +731,10 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> If End of calendar is selected in dropdown- Under Scores and Metrics-->
+	// Arc Scores should show date window as per the following- End Date- with
+	// respect to the current date - last month end date || Start date- one year
+	// prior to the end date.
 	public boolean CheckRHS_EndOfCalender_DateRange() {
 		log.info("CheckRHS_EndOfCalender_DateRange  method starts here.........");
 		boolean RHS_EndOfCalender = false;
@@ -710,6 +834,10 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> If Custom Date Range is selected in dropdown- Under Scores and Metrics-->
+	// Arc Scores should show date window as per the following- End Date- with
+	// respect to the current date - last month end date || Start date- one year
+	// prior to the end date.
 	public boolean CheckRHS_CustomDateRange() {
 		log.info("CheckRHS_EndOfCalender_DateRange  method starts here.........");
 		boolean Arcs_Score_Date_Range_Flag = false;
@@ -805,6 +933,9 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify in Arc Scores- Just above score- we have dropdown' Total' .
+	// Selecting each category from that dropdown should allow to change the graph
+	// with respect to the category selected.
 	public boolean CheckTotalDropDownWithZeroScore() {
 		log.info("CheckTotalDropDownWithZeroScore  method starts here.........");
 		boolean ScoreFlag = false;
@@ -858,6 +989,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// --> Verify Current Arc Scores racetrack should be blank with 0 scores and
+	// will show Project address at the bottom of the racetrack.
 	public boolean CheckRaceTrackWithZeroScore() {
 		log.info("CheckRaceTrackWithZeroScore  method starts here.........");
 
@@ -891,6 +1024,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// Verify Current Arc Scores Top right corner has dropdown- 'Graphic' should
+	// show Racetrack and 'Table view' should show Tabular view of each category.
 	public boolean CheckGraphicDropDownWithZeroScore() {
 		log.info("CheckGraphicDropDownWithZeroScore  method starts here.........");
 		boolean RaceImageflag = false;
@@ -964,6 +1099,9 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// Verify 'LEED Pandemic Response Options'- clicking on Learn more link navgates
+	// the user to -
+	// "https://www.arcskoru.com/managing-occupancy-arc-leed-certification-during-covid-19"
 	public boolean CheckLEEDPandemicResponseOptions() {
 		log.info("CheckLEEDPandemicResponseOptions  method starts here.........");
 		String title = "";
@@ -991,7 +1129,7 @@ public class BuildingPageObject extends BaseClass {
 				break;
 			}
 		}
-
+		driver.switchTo().window(handle);
 		if (title.equals("Managing Occupancy in Arc for LEED Certification during COVID-19 | Arc Skoru")) {
 			log.info("Learn more link is working properly");
 			log.info("CheckLEEDPandemicResponseOptions  method ends here with true.........");
@@ -1006,6 +1144,7 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// Verify Scope 1 and 2 emissions- graphs are blank with 0 MTCO2e.
 	public boolean CheckScope1And2emissions_ZeroScore() {
 		log.info("CheckScope1And2emissions_ZeroScore  method starts here.........");
 		CommonMethod.switchToAverageEmissionsFrame();
@@ -1037,6 +1176,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// Verify Arc Improvement Scores show values for all performance categories-
+	// 0/100
 	public boolean CheckArcImprovementWithZeroScores() {
 		log.info("CheckArcImprovementWithZeroScores  method starts here.........");
 		boolean EnergyFlag = false;
@@ -1088,6 +1229,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
+	// Verify Transportation GHG emissions graph are blank with 0 lbs.
 	public boolean CheckTransportation_GHGEmission_ZeroScores() {
 		log.info("CheckTransportation_GHGEmission_ZeroScores  method starts here.........");
 		CommonMethod.switchToTransportationCategoryUsageFrame();
@@ -1118,6 +1260,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
+	// Verify in Overview Tab, RHS-- all partner apps show up with linear scrolling.
 	public boolean CheckRHS_All_Partners_App() {
 		log.info("CheckRHS_All_Partners_App  method starts here.........");
 		CommonMethod.switchToArcPartnerFrame();
@@ -1169,6 +1312,8 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
+	// Verify Building Settings-->Operating hours tab-- clicking on 'Add Row' adds a
+	// new line item.
 	public boolean BuildingSetting_OperatingHours_AddRow(String UserName) {
 		log.info("BuildingSetting_OperatingHours_AddRow  method starts here.........");
 		boolean EffectiveTextBoxflag = false;
@@ -1236,6 +1381,636 @@ public class BuildingPageObject extends BaseClass {
 		} else {
 			log.info("All the fields are not displaying properly.");
 			log.info("BuildingSetting_OperatingHours_AddRow  method ends here with false.........");
+			return false;
+		}
+	}
+
+	// Building Settings-->Operating Hours tab --> Verify Clicking on effective date
+	// opens up calendar and allows to select dates successfully.
+	public boolean BuildingSetting_SelectEffectiveDate() {
+		log.info("BuildingSetting_SelectEffectiveDate  method starts here.........");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String today = CommonMethod.getCurrentDayIn2Digit();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
+		String xpath = "//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'" + today + " day" + "')]";
+		driver.findElement(By.xpath(xpath)).click();
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		String EffectiveDate = dtf.format(now); // Aug 01, 2020
+		String EnteredEffectiveDate = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input"))
+				.getAttribute("value");
+		log.info("Selected Effective Date is  " + EnteredEffectiveDate + " and expected effective date is "
+				+ EffectiveDate);
+		if (EnteredEffectiveDate.equals(EffectiveDate)) {
+			log.info("Actual and expected effective dates are macthing.  ");
+			log.info("BuildingSetting_SelectEffectiveDate method ends here with true.........");
+			return true;
+		} else {
+			log.info("Actual and expected effective dates are not macthing.  ");
+			log.info("BuildingSetting_SelectEffectiveDate method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	// Building Settings-->Gross Floor Area tab --> Verify Clicking on effective
+	// date opens up calendar and allows to select dates successfully.
+	public boolean BuildingSetting_GrossFloorArea_SelectEffectiveDate() {
+		log.info("BuildingSetting_GrossFloorArea_SelectEffectiveDate  method starts here.........");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String today = CommonMethod.getCurrentDayIn2Digit();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
+		String xpath = "//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'" + today + " day" + "')]";
+		driver.findElement(By.xpath(xpath)).click();
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		String EffectiveDate = dtf.format(now); // Aug 01, 2020
+		String EnteredEffectiveDate = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input"))
+				.getAttribute("value");
+		log.info("Selected Effective Date is  " + EnteredEffectiveDate + " and expected effective date is "
+				+ EffectiveDate);
+		if (EnteredEffectiveDate.equals(EffectiveDate)) {
+			log.info("Actual and expected effective dates are macthing.  ");
+			log.info("BuildingSetting_GrossFloorArea_SelectEffectiveDate method ends here with true.........");
+			return true;
+		} else {
+			log.info("Actual and expected effective dates are not macthing.  ");
+			log.info("BuildingSetting_GrossFloorArea_SelectEffectiveDate method ends here with false.........");
+			return false;
+		}
+
+	}
+
+//  Building Settings-->Gross Floor Area tab-- -->Verify Gross Area field allows to add only numeric value.
+	public boolean BuildingSetting_GrossAreaField_AllowNumericOnly() {
+		log.info("BuildingSetting_GrossAreaField_AllowNumericOnly  method starts here.........");
+		boolean AlphaFlag = false;
+		boolean SpecialCharFlag = false;
+		boolean NumericFlag = false;
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		WebElement GroosArea = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"));
+		GroosArea.sendKeys("Alphabets");
+		String typedValue = GroosArea.getAttribute("value");
+		int len = typedValue.length();
+		if (len == 0) {
+			AlphaFlag = true;
+			log.info("Alphabets are not allowed..");
+		} else {
+			log.info("Alphabets are allowed..");
+		}
+		GroosArea.clear();
+		GroosArea.sendKeys("!@#$%^&*()_+-=`~[]{}/|<>?");
+		typedValue = GroosArea.getAttribute("value");
+		len = typedValue.length();
+		if (len == 0) {
+			SpecialCharFlag = true;
+			log.info("Special Character are not allowed..");
+		} else {
+			SpecialCharFlag = false;
+			log.info("Special Character are allowed..");
+		}
+
+		GroosArea.clear();
+		GroosArea.sendKeys("12345");
+		typedValue = GroosArea.getAttribute("value");
+		len = typedValue.length();
+		if (len > 0) {
+			NumericFlag = true;
+			log.info("Numeric is allowed..");
+		} else {
+			log.info("Numeric is not allowed..");
+		}
+
+		if (AlphaFlag == true && SpecialCharFlag == true && NumericFlag == true) {
+			log.info("Gross Area Text box allows only Numeric value....");
+			log.info("BuildingSetting_GrossAreaField_AllowNumericOnly method ends here with true.........");
+			return true;
+		} else {
+			log.info("Gross Area Text box allows other than Numeric value also....");
+			log.info("BuildingSetting_GrossAreaField_AllowNumericOnly method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	// Verify Operating hours field by selecting hours from the dropdown.
+	public boolean BuildingSetting_SelectOperatingHours() {
+		log.info("BuildingSetting_SelectOperatingHours  method starts here.........");
+		boolean HourSelectionflag = false;
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String today = CommonMethod.getCurrentDayIn2Digit();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
+		String xpath = "//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'" + today + " day" + "')]";
+		driver.findElement(By.xpath(xpath)).click();
+
+		driver.findElement(By.xpath("//div[@class='dropdown display-inline ml10 cursor-pointer']/button")).click();
+		List<WebElement> HoursList = driver
+				.findElements(By.xpath("//div[@class='dropdown display-inline ml10 cursor-pointer open']/ul/li/a"));
+		log.info("Total Number of items present in Hours dropdown is  " + HoursList.size());
+		String ExpHours = data.getCellData("Building", 0, 2);
+		for (WebElement ele : HoursList) {
+			String HoursText = ele.getText();
+			log.info("Current Hours is " + HoursText);
+			if (HoursText.equals(ExpHours)) {
+				ele.click();
+				waithelper.WaitForElementVisibleWithPollingTime(
+						driver.findElement(By.xpath(
+								"//table[@id='readingsTable']/tbody/tr[1]/td[5]/*[@class='fade-out saved_symbol']")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				try {
+					waithelper.WaitForElementInvisible(driver.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/*[@class='fade-out saved_symbol']")),
+							Integer.parseInt(prop.getProperty("explicitTime")), 1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				log.info("Operating Hour selected successfully....");
+				HourSelectionflag = true;
+				break;
+			}
+		} /*
+			 * if(HourSelectionflag) { driver.findElement(By.xpath(
+			 * "//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
+			 * String UploadPath = System.getProperty("user.dir") +
+			 * "/UploadDocument/File1.pdf"; try { Thread.sleep(5000); } catch
+			 * (InterruptedException e1) { // TODO Auto-generated catch block
+			 * e1.printStackTrace(); } driver.findElement(By.
+			 * xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/span[text()='Computer File']"
+			 * )).sendKeys(UploadPath); try { waithelper.WaitForElementInvisible(
+			 * driver.findElement(By.xpath(
+			 * "//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/div/span[starts-with(text(),'Uploading')]"
+			 * )), Integer.parseInt(prop.getProperty("explicitTime")), 1);
+			 * DocumentUploadflag=driver.findElement(By.xpath(
+			 * "//table[@id='readingsTable']/tbody/tr[1]/td[3]/div[1]/span")).isDisplayed();
+			 * log.info("Document is uploaded successfully...."); } catch(Exception e) {
+			 * e.printStackTrace(); }
+			 * 
+			 * 
+			 * }
+			 */
+		if ((HourSelectionflag)) {
+			// log.info("Hours is selected and document is uploaded successfully... ");
+			log.info("BuildingSetting_SelectOperatingHours method ends here with true.........");
+			return true;
+		} else {
+			// log.info("Unable to select Hours... ");
+			log.info("BuildingSetting_SelectOperatingHours method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	// Building Settings-->Operating hours tab - >Verify filter and reset
+	// functionalities.
+	public boolean BuildingSetting_CheckFilterAndReset() {
+		log.info("BuildingSetting_CheckFilterAndReset  method starts here.........");
+		boolean RowsAddedFlag = false;
+		boolean FilterFlag = false;
+		boolean Resetflag = false;
+		int i;
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		for (i = 1; i < 5; i++) {
+			BuildingSetting_AddRow_button.click();
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+			String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='" + i + "'])[1]";
+			driver.findElement(By.xpath(CalXpath)).click();
+			int hour = i + 1;
+			driver.findElement(By.xpath("//div[@class='dropdown display-inline ml10 cursor-pointer']/button")).click();
+			String HourXpath = "//div[@class='dropdown display-inline ml10 cursor-pointer open']/ul/li/a[text()='"
+					+ hour + " Hours']";
+			driver.findElement(By.xpath(HourXpath)).click();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/*[@class='fade-out saved_symbol']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@id='readingsTable']/tbody/tr[1]/td[5]/*[@class='fade-out saved_symbol']")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			List<WebElement> ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+			log.info("Total number of rows are ..." + ListOfRows.size());
+			if (i == ListOfRows.size()) {
+				RowsAddedFlag = true;
+			} else {
+				RowsAddedFlag = false;
+				break;
+			}
+
+		}
+		if (RowsAddedFlag) {
+			log.info("All rows are added successfully..");
+
+			/*
+			 * ClickOnWaste_Data(); ClickOnBuildingSetting();
+			 * ClickOnBuildingSetting_OperatingHoursTab();
+			 */
+			ClickOnBuildingSetting_GrossFloorAreaTab();
+			ClickOnBuildingSetting_OperatingHoursTab();
+			BuildingSetting_FilterButton.click();
+			BuildingSetting_FilterStartDate.click();
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("(//table[contains(@class,'table-condensed')])[1]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+			String StartDateXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='" + (i - 3) + "'])[1]";
+			String EndDateXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='" + (i - 2) + "'])[1]";
+			driver.findElement(By.xpath(StartDateXpath)).click();
+			BuildingSetting_FilterEndDate.click();
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+			driver.findElement(By.xpath(EndDateXpath)).click();
+			BuildingSetting_UpdateButton.click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			List<WebElement> ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+			log.info("Total number of rows are ..." + ListOfRows.size());
+			if (ListOfRows.size() == 2) {
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+				LocalDateTime now = LocalDateTime.now();
+				String FirstRowEffectiveDate = dtf.format(now.minusMonths(1).withDayOfMonth(1).plusDays(2));
+				String SecondRowEffectiveDate = dtf.format(now.minusMonths(1).withDayOfMonth(1).plusDays(1));
+
+				String TextBox1EffectiveDate = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input"))
+						.getAttribute("value");
+				String TextBox2EffectiveDate = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input"))
+						.getAttribute("value");
+
+				log.info("FirstRowEffectiveDate is --" + FirstRowEffectiveDate + " and TextBox1EffectiveDate is  "
+						+ TextBox1EffectiveDate);
+				log.info("SecondRowEffectiveDate is --" + SecondRowEffectiveDate + " and TextBox2EffectiveDate is  "
+						+ TextBox2EffectiveDate);
+				if (FirstRowEffectiveDate.equals(TextBox1EffectiveDate)
+						&& SecondRowEffectiveDate.equals(TextBox2EffectiveDate)) {
+					log.info("Filter is working properly...");
+					FilterFlag = true;
+				}
+			}
+
+			if (FilterFlag) {
+				BuildingSetting_FilterButton.click();
+				BuildingSetting_ResetButton.click();
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				i = 4;
+				int row = 1;
+				List<WebElement> EffectiveDateList = driver
+						.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input"));
+				log.info("Total rows displaying after Reset is " + EffectiveDateList.size());
+				for (WebElement ele : EffectiveDateList) {
+					ele.click();
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					String Hourxpath = "//table[@id='readingsTable']/tbody/tr[" + row + "]/td[2]/div/button";
+					int days = Integer.parseInt(driver.findElement(By.xpath(
+							"//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'active day operating_hours_active_day')]"))
+							.getText());
+					driver.findElement(By.xpath(Hourxpath)).click();
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (days == i) {
+						Resetflag = true;
+						log.info("Calender Days value is " + days + " and Loop I value is " + i);
+					} else {
+						Resetflag = false;
+						break;
+					}
+					i--;
+					row++;
+				}
+
+			} else {
+				log.info("Filter is not working properly..");
+				log.info("BuildingSetting_CheckFilterAndReset method ends with false here.........");
+				return false;
+			}
+
+		} else {
+			log.info("Row is not added successfully..");
+			log.info("BuildingSetting_CheckFilterAndReset method ends with false here.........");
+			return false;
+
+		}
+		if ((RowsAddedFlag) && (FilterFlag) && (Resetflag)) {
+			log.info("Filter and Reset are working fine...");
+			log.info("BuildingSetting_CheckFilterAndReset method ends with true here.........");
+			return true;
+		} else {
+			log.info("Filter and Reset are working fine...");
+			log.info("BuildingSetting_CheckFilterAndReset method ends with false here.........");
+			return false;
+		}
+
+	}
+
+	// Verify clicking on 'Upload' button opens up with four options- 'Computer
+	// File', 'Dropbox, OneDrive,Google Drive.
+	public boolean BuildingSetting_CheckUploadOprions() {
+		log.info("BuildingSetting_CheckUploadOprions  method starts here.........");
+		boolean ComputerFileFlag = false;
+		boolean Dropboxflag = false;
+		boolean OneDriveflag = false;
+		boolean GDriveflag = false;
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
+
+		String ComputerFile = driver
+				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/span")).getText();
+		if (ComputerFile.equals("Computer File")) {
+			ComputerFileFlag = true;
+			log.info("Current Option showing is  " + ComputerFile);
+		}
+
+		List<WebElement> DocumentList = driver
+				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/div"));
+		for (WebElement ele : DocumentList) {
+			String optionText = ele.getText();
+			log.info("Current Option showing is  " + optionText);
+			if (optionText.contains("Dropbox")) {
+				Dropboxflag = true;
+			} else if (optionText.contains("OneDrive")) {
+				OneDriveflag = true;
+			} else if (optionText.contains("Google Drive")) {
+				GDriveflag = true;
+			}
+		}
+
+		if ((ComputerFileFlag) && (Dropboxflag) && (OneDriveflag) && (GDriveflag)) {
+			log.info("All four options are showing properly");
+			log.info("BuildingSetting_CheckUploadOprions method ends here with true.........");
+			return true;
+
+		} else {
+			log.info("All four options are not showing properly");
+			log.info("BuildingSetting_CheckUploadOprions method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	// Building Settings-->Operating hours tab - > Verify comments and activity..
+	public boolean BuildingSetting_CheckCommentAndActivity(String comment, String uname) {
+		log.info("BuildingSetting_CheckCommentAndActivity  starts here........");
+		boolean Commentflag = false;
+		BuildingSetting_CommentTextBox.sendKeys(comment);
+		waithelper.WaitForElementClickable(BuildingSetting_PostButton,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(BuildingSetting_PostButton);
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		LocalTime localTime = LocalTime.now();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+		String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
+		// log.info(localTime.format(dateTimeFormatter));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Commentflag = driver.findElement(By.xpath("(//p[text()='" + comment + "'])[1]")).isDisplayed();
+		log.info(" Comment display in Comment Tab is --" + Commentflag);
+		waithelper.WaitForElementClickable(BuildingSetting_ActivityButton,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		BuildingSetting_ActivityButton.click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String ActivityDate = driver.findElement(By.xpath("//th[@class='activity_date']/p")).getText();
+		String ActivityTime = driver.findElement(By.xpath("(//table[@class='mb10 ng-scope']/tbody/tr/td[1]/span)[1]"))
+				.getText().toLowerCase();
+		String ActivtyComment = driver.findElement(By.xpath("(//table[@class='mb10 ng-scope']/tbody/tr/td[2]/p)[1]"))
+				.getText();
+
+		String ExpComment = uname + " commented in Operating Hours";
+
+		log.info("Displayed Activity Date is ---" + ActivityDate);
+		log.info("Displayed Activity Time is ---" + ActivityTime);
+		log.info("Displayed Activity comment is ---" + ActivtyComment);
+		log.info("Expected Activity Time is ---" + currentTime);
+		log.info("Expected Activity Date is ---" + strDate);
+		log.info("Expected Activity Comment is ---" + ExpComment);
+		if ((Commentflag) && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+				&& (ActivtyComment.equals(ExpComment))) {
+			log.info("BuildingSetting_CheckCommentAndActivity  ends here........");
+			return true;
+		} else {
+			log.info("BuildingSetting_CheckCommentAndActivity  ends here........");
+			return false;
+		}
+
+	}
+
+	// Verify Building Settings-->Gross Floor Area tab-- Verify clicking on 'Add
+	// Row' adds a new line item.
+	public boolean BuildingSetting_GrossFloorArea_AddRow(String UserName) {
+		log.info("BuildingSetting_GrossFloorArea_AddRow  method starts here.........");
+		boolean EffectiveTextBoxflag = false;
+		boolean GrossAreaTextBoxflag = false;
+		boolean Unitflag = false;
+		boolean DocumentationFlag = false;
+		boolean SaveBtnFlag = false;
+		boolean UpdatedByFlag = false;
+		boolean DeleteBtnFlag = false;
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		int Total_Rows = ListOfRows.size();
+		log.info("Total number of rows are ..." + Total_Rows);
+
+		BuildingSetting_AddRow_button.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		Total_Rows = ListOfRows.size();
+		log.info("Total number of rows after clicking on AddRow button are ..." + Total_Rows);
+		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).isDisplayed()) {
+			EffectiveTextBoxflag = true;
+			log.info("EffectiveTextBoxflag is " + EffectiveTextBoxflag);
+		}
+		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).isDisplayed()) {
+			GrossAreaTextBoxflag = true;
+			log.info("GrossAreaTextBoxflag is " + GrossAreaTextBoxflag);
+		}
+		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/button")).isDisplayed()) {
+			Unitflag = true;
+			log.info("Unitflag is " + Unitflag);
+		}
+		if (driver.findElement(By
+				.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/div/button/span[@class='upload-doc--icon']"))
+				.isDisplayed()) {
+			DocumentationFlag = true;
+			log.info("DocumentationFlag is " + DocumentationFlag);
+		}
+
+		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div")).getText()
+				.contains(UserName)) {
+			UpdatedByFlag = true;
+			log.info("UpdatedByFlag is " + UpdatedByFlag);
+		}
+
+		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button/span[text()='Save']"))
+				.isDisplayed()) {
+			SaveBtnFlag = true;
+			log.info("SaveBtnFlag is " + SaveBtnFlag);
+		}
+
+		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[8]/span")).isDisplayed()) {
+			DeleteBtnFlag = true;
+			log.info("DeleteBtnFlag is " + DeleteBtnFlag);
+		}
+
+		if ((EffectiveTextBoxflag) && (GrossAreaTextBoxflag) && (Unitflag) && (DocumentationFlag) && (UpdatedByFlag)
+				&& (SaveBtnFlag) && (DeleteBtnFlag)) {
+			log.info("All the fields are displaying properly.");
+			log.info("BuildingSetting_GrossFloorArea_AddRow  method ends here with true.........");
+			return true;
+		} else {
+			log.info("All the fields are not displaying properly.");
+			log.info("BuildingSetting_GrossFloorArea_AddRow  method ends here with false.........");
 			return false;
 		}
 	}
