@@ -49,8 +49,9 @@ public class CommonMethod extends BaseClass {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
 
-		ScreenshotPath = currentDir + "/Screenshots/" + MethodName;
-		// ScreenshotPath ="Screenshots/" + MethodName;
+		ScreenshotPath = currentDir + "\\Screenshots\\" + MethodName;
+		//ScreenshotPath = currentDir + File.separator+"Screenshots" +File.separator+ MethodName;
+		 //ScreenshotPath ="Screenshots/" + MethodName;
 		try {
 			FileUtils.copyFile(scrFile, new File(ScreenshotPath + ".png"));
 			log.info("Screenshot captured successfully for Method ...." + MethodName);
@@ -521,18 +522,9 @@ public class CommonMethod extends BaseClass {
 		if (file.listFiles().length > 0) {
 			log.info("Total Number of Sub Folders are " + file.listFiles().length);
 			for (File f : file.listFiles()) {
-				log.info("Sub Folder name is  " + f.getName());
-				if (f.isDirectory()) {
-					for (File f1 : f.listFiles()) {
-						f1.delete();
-						log.info(f1.getName() + " is deleted successfully...");
-					}
-					f.delete();
-					log.info(f.getName() + " is deleted successfully...");
-				} else {
-					f.delete();
-					log.info(f.getName() + " is deleted successfully...");
-				}
+				log.info("Current Filename is  " + f.getName());
+				f.delete();
+				log.info(f.getName() + " is deleted successfully...");
 			}
 		}
 		log.info("There is no any file/folder(s).....");
