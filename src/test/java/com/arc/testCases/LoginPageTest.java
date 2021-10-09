@@ -2,10 +2,12 @@ package com.arc.testCases;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.arc.PageObject.HomePageObjects;
 import com.arc.PageObject.LoginPageObjects;
+import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
@@ -40,6 +42,15 @@ public class LoginPageTest extends BaseClass {
 	 * Title); log.info("LoginPageTitleTest completed"); }
 	 */
 
+	@BeforeClass(groups = { "Reboot"})
+	public void CleanupMethod()
+	{
+		log.info("CleanupMethod method started...... ");
+		CommonMethod.deleteAllDownloadedFiles();
+		CommonMethod.deleteAllPreviousScreenshotsFiles();
+		log.info("CleanupMethod method ended...... ");
+	}
+	
 	@Test(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
 			"ProjectRegsRegression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
 
