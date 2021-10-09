@@ -2,7 +2,6 @@ package com.arc.testCases;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.arc.PageObject.HomePageObjects;
@@ -42,22 +41,14 @@ public class LoginPageTest extends BaseClass {
 	 * Title); log.info("LoginPageTitleTest completed"); }
 	 */
 
-	@BeforeClass(groups = { "Reboot"})
-	public void CleanupMethod()
-	{
-		LoginPage = new LoginPageObjects();
-		log.info("CleanupMethod method started...... ");
-		CommonMethod.deleteAllDownloadedFiles();
-		CommonMethod.deleteAllPreviousScreenshotsFiles();
-		log.info("CleanupMethod method ended...... ");
-	}
-	
 	@Test(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
 			"ProjectRegsRegression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
 
 	public void Login_ApplicationTest() {
-		//LoginPage = new LoginPageObjects();
+		LoginPage = new LoginPageObjects();
 		HomePage = new HomePageObjects();
+		CommonMethod.deleteAllDownloadedFiles();
+		CommonMethod.deleteAllPreviousScreenshotsFiles();
 		log.info("LoginApplicationTest started");
 		HomePage = LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
 		boolean flag = HomePage.CheckHomePageLabel();
