@@ -45,6 +45,7 @@ public class LoginPageTest extends BaseClass {
 	@BeforeClass(groups = { "Reboot"})
 	public void CleanupMethod()
 	{
+		LoginPage = new LoginPageObjects();
 		log.info("CleanupMethod method started...... ");
 		CommonMethod.deleteAllDownloadedFiles();
 		CommonMethod.deleteAllPreviousScreenshotsFiles();
@@ -55,7 +56,7 @@ public class LoginPageTest extends BaseClass {
 			"ProjectRegsRegression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
 
 	public void Login_ApplicationTest() {
-		LoginPage = new LoginPageObjects();
+		//LoginPage = new LoginPageObjects();
 		HomePage = new HomePageObjects();
 		log.info("LoginApplicationTest started");
 		HomePage = LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
