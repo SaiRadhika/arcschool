@@ -84,8 +84,10 @@ public class ExtentReportListener extends TestListenerAdapter {
 		try {
 
 			logger.addScreenCaptureFromPath(ScreenShotFile, "Testing Purpose");
+			log.info("ScreenShot attached successfully to Extent Report....");
 
 		} catch (IOException e) { // TODO Auto-generated catch block
+			log.info("Unable to attch Screenshot in Extent Report....");
 			e.printStackTrace();
 		}
 
