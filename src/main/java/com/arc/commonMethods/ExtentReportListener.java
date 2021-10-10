@@ -1,5 +1,6 @@
 package com.arc.commonMethods;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
@@ -81,16 +82,17 @@ public class ExtentReportListener extends TestListenerAdapter {
 		log.info("Screen Shot Path is ---" + ScreenShotFile);
 		logger.log(Status.FAIL, tr.getThrowable());
 
-		try {
+		if (ScreenShotFile != null) {
+			try {
 
-			logger.addScreenCaptureFromPath(ScreenShotFile, "Testing Purpose");
-			log.info("ScreenShot attached successfully to Extent Report....");
+				logger.addScreenCaptureFromPath(ScreenShotFile, "Testing Purpose");
+				log.info("ScreenShot attached successfully to Extent Report....");
 
-		} catch (IOException e) { // TODO Auto-generated catch block
-			log.info("Unable to attch Screenshot in Extent Report....");
-			e.printStackTrace();
+			} catch (IOException e) { // TODO Auto-generated catch block
+				log.info("Unable to attch Screenshot in Extent Report....");
+				e.printStackTrace();
+			}
 		}
-
 		log.info(tr.getName() + " method got Failed...");
 		log.info(" Extent Report onTestFailure method ends......");
 
