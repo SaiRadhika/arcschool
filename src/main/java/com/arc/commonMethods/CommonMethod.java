@@ -48,16 +48,13 @@ public class CommonMethod extends BaseClass {
 		log.info("takeScreenshotTest method starts here ......");
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
-		//ScreenshotPath = currentDir + "\\Screenshots\\" + MethodName;
-		ScreenshotPath=System.getProperty("user.dir")+File.separator+"Screenshots"+File.separator+MethodName;
-		//ScreenshotPath = currentDir + File.separator+"Screenshots" +File.separator+ MethodName;
-		// ScreenshotPath ="\\Screenshots\\" + MethodName;
+		ScreenshotPath = currentDir + "\\Screenshots\\" + MethodName;
 		try {
 			FileUtils.copyFile(scrFile, new File(ScreenshotPath + ".png"));
 			log.info("Screenshot captured successfully for Method ...." + MethodName);
 			log.info("takeScreenshotTest method ends here ......");
 			return ScreenshotPath + ".png";
-
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
