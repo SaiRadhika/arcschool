@@ -49,9 +49,9 @@ public class CommonMethod extends BaseClass {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
 
-		ScreenshotPath = currentDir + "\\Screenshots\\" + MethodName;
+		//ScreenshotPath = currentDir + "\\Screenshots\\" + MethodName;
 		//ScreenshotPath = currentDir + File.separator+"Screenshots" +File.separator+ MethodName;
-		 //ScreenshotPath ="Screenshots/" + MethodName;
+		 ScreenshotPath ="\\Screenshots\\" + MethodName;
 		try {
 			FileUtils.copyFile(scrFile, new File(ScreenshotPath + ".png"));
 			log.info("Screenshot captured successfully for Method ...." + MethodName);
