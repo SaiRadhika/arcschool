@@ -47,9 +47,9 @@ public class CommonMethod extends BaseClass {
 	public static String takeScreenshotTest(String MethodName) {
 		log.info("takeScreenshotTest method starts here ......");
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String currentDir = System.getProperty("user.dir");
+		//String currentDir = System.getProperty("user.dir");
 
-		ScreenshotPath = currentDir + "/Screenshots/" + MethodName+".png";
+		ScreenshotPath = System.getProperty("user.dir") + "\\Screenshots\\" + MethodName+".png";
 		
 		// ScreenshotPath ="Screenshots/" + MethodName;
 		try {
