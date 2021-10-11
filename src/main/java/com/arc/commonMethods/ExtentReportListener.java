@@ -82,7 +82,7 @@ public class ExtentReportListener extends TestListenerAdapter {
 		String ScreenShotFile = CommonMethod.takeScreenshotTest(tr.getName());
 		
 		log.info("Screen Shot Path is ---" + ScreenShotFile);
-		String path="Screenshots"+File.separator+tr.getName()+".png";
+		String path="Screenshots"+"\\"+tr.getName()+".png";
 		log.info(path);
 		logger.log(Status.FAIL, tr.getThrowable());
 
