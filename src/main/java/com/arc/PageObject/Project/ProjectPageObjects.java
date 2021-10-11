@@ -100,6 +100,12 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SearchedProject.click();
 		try {
 			Thread.sleep(5000);
@@ -141,6 +147,12 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SearchedProject.click();
 		
 		try {
@@ -183,6 +195,12 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SearchedProject.click();
 		try {
 			Thread.sleep(5000);
@@ -222,6 +240,12 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SearchedProject.click();
 		try {
 			Thread.sleep(5000);
@@ -262,6 +286,12 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SearchedProject.click();
 		try {
 			Thread.sleep(5000);
@@ -301,6 +331,12 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SearchedProject.click();
 		try {
 			Thread.sleep(5000);
