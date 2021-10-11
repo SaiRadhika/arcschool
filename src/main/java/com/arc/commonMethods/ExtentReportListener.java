@@ -90,6 +90,7 @@ public class ExtentReportListener extends TestListenerAdapter {
 				{
 					//String path=System.getProperty("user.dir") + "/Screenshots/"+tr.getName()+".png";
 					String path= "\\Screenshots\\"+tr.getName()+".png";
+					log.info("Linux Path is .."+path);
 					log.info("Linux Screenshot path is "+path);
 					logger.addScreenCaptureFromPath(path, "Testing Purpose");
 					log.info("Screenshot attached to Extent Report Successfully on Linux...");
@@ -98,6 +99,7 @@ public class ExtentReportListener extends TestListenerAdapter {
 			else
 			{
 				String path= "\\Screenshots\\"+tr.getName()+".png";
+				log.info("Windows Path is .."+path);
 				logger.addScreenCaptureFromPath(path, "Testing Purpose");
 				log.info("Screenshot attached to Extent Report Successfully on windows...");
 			}
