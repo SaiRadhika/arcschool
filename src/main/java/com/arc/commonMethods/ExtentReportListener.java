@@ -88,7 +88,8 @@ public class ExtentReportListener extends TestListenerAdapter {
 			String OS_Name = System.getProperty("os.name");
 			if (OS_Name.equalsIgnoreCase("Linux")) {
 				{
-					String path=System.getProperty("user.dir") + "/Screenshots/"+tr.getName()+".png";
+					//String path=System.getProperty("user.dir") + "/Screenshots/"+tr.getName()+".png";
+					String path= "\\Screenshots\\"+tr.getName()+".png";
 					log.info("Linux Screenshot path is "+path);
 					logger.addScreenCaptureFromPath(path, "Testing Purpose");
 					log.info("Screenshot attached to Extent Report Successfully on Linux...");
@@ -96,7 +97,8 @@ public class ExtentReportListener extends TestListenerAdapter {
 			}
 			else
 			{
-				logger.addScreenCaptureFromPath(ScreenShotFile, "Testing Purpose");
+				String path= "\\Screenshots\\"+tr.getName()+".png";
+				logger.addScreenCaptureFromPath(path, "Testing Purpose");
 				log.info("Screenshot attached to Extent Report Successfully on windows...");
 			}
 
