@@ -106,7 +106,7 @@ public class BaseClass {
 
 		// String browserName = prop.getProperty("browserName");
 		CommonMethod.deleteAllDownloadedFiles();
-		CommonMethod.deleteAllPreviousScreenshotsFiles();
+		//CommonMethod.deleteAllPreviousScreenshotsFiles();
 		String OS_Name = System.getProperty("os.name");
 		log.info("Opearting System is --" + OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -178,19 +178,15 @@ public class BaseClass {
 			driver.get(prop.getProperty("STGurl"));
 			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		}
-
-		/*
+		
+		  /*
 		  else {
 		  log.info("Environment is not provided or wrong environment entered......");
 		  driver.get(prop.getProperty("QAurl")); 
-		  log.info("URL navigated to .. " + prop.getProperty("STGurl")); }
+		  log.info("URL navigated to .. " + prop.getProperty("STGurl"));
+		   }
+		  */
 		 
-
-		/*
-		 * driver.get(prop.getProperty("STGurl")); log.info("URL navigated to .. " +
-		 * prop.getProperty("STGurl"));
-		 */
-
 		log.info("Initialization method ends");
 
 	}
