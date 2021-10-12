@@ -15,37 +15,36 @@ import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
-
 public class HomePageObjects extends BaseClass {
 	private static Logger log = LoggerHelper.getLogger(HomePageObjects.class);
 
 	@FindBy(xpath = "//*[@href='/app/projects/my-projects/?project-type=all' and text()='Projects']")
 	WebElement ProjectHeader;
-	
+
 	@FindBy(xpath = "//span[ text()='Insight']")
 	WebElement InsightMenu;
-	
+
 	@FindBy(xpath = "//*[@class='insight_login modal fade in']")
 	WebElement InsightModelWindow;
-	
+
 	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[3]/div/input")
 	WebElement InsightLoginTextBox;
-	
+
 	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[4]/div/input")
 	WebElement InsightPassTextBox;
-	
+
 	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[5]/div/button[text()='Login']")
 	WebElement InsightLoginButton;
-	
+
 	@FindBy(xpath = "//*[@class='insight_login modal fade in']/div/div/div[2]/form/div[5]/div/button[text()='Close']")
 	WebElement InsightCloseButton;
 
 	@FindBy(xpath = "//body/div[@id='app']/nav[1]/div[1]/div[1]/div[1]/div[2]/span[1]")
 	WebElement BuildingSubMenu;
-	
+
 	@FindBy(xpath = "(//*[@class='ml10' and text()='Cities'])[1]")
 	WebElement CitiesSubMenu;
-	
+
 	@FindBy(xpath = "(//*[@class='ml10' and text()='Communities'])[1]")
 	WebElement CommunitiesSubMenu;
 
@@ -63,10 +62,10 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "//*[@class='user-dropdown dropdown-menu left']/li[4]")
 	WebElement ProfileBillingMenu;
-	
+
 	@FindBy(xpath = "//ul[@class='user-dropdown dropdown-menu left']/li/div")
 	WebElement ProfileUserName;
-	
+
 	@FindBy(xpath = "//*[@class='user-dropdown dropdown-menu left']/li[5]")
 	WebElement ProfileSignOut;
 
@@ -84,16 +83,17 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "//span[@class='close']")
 	WebElement CloseSearchTextboxIcon;
-	
+
 	@FindBy(xpath = "//*[text()='Add a Project']")
 	WebElement AddAProjectButton;
+
+	@FindBy(xpath = "(//*[name()='svg']//*[local-name()='circle' ])[2]")
+	WebElement CircularLoader;
 
 	public boolean CheckHomePageLabel() {
 		try {
 			return HomePageLabel.isDisplayed();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -106,111 +106,100 @@ public class HomePageObjects extends BaseClass {
 	public String checkHomePageTitle() {
 		return driver.getTitle();
 	}
-	
-	// This method click on Add a Project from RHS and returns the Project Registration page.
-	
+
+	// This method click on Add a Project from RHS and returns the Project
+	// Registration page.
+
 	public ProjectRegistrationPageObject ClickOnAddAProjectButton() {
 		try {
 			AddAProjectButton.click();
 			return new ProjectRegistrationPageObject();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	public ProjectPageObjects clickOnProject() {
-		
+		ProjectHeader.click();
+		// CommonMethod.waitUntilLoadElement();
+		return new ProjectPageObjects();
+	}
+
+	public InsightPageObject clickOnInsight() {
+		log.info("clickOnInsight method started....");
+		// CommonMethod.switchToDefaultContent();
+		InsightMenu.click();
+		CommonMethod.waitUntilLoadElement();
 		try {
-			//CommonMethod.switchToDefaultContent();
-			ProjectHeader.click();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ProjectPageObjects();
+		log.info("clickOnInsight method ends here....");
+		return new InsightPageObject();
 	}
-	
-	
-public InsightPageObject clickOnInsight() {
-	log.info("clickOnInsight method started....");
-			CommonMethod.switchToDefaultContent();
-			InsightMenu.click();
-		
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			log.info("clickOnInsight method ends here....");
+
+	public InsightPageObject LoginToInsight() {
+		log.info("LoginToInsight method started....");
+		boolean flag = false;
+		CommonMethod.switchToDefaultContent();
+		InsightMenu.click();
+		waithelper.WaitForElementVisibleWithPollingTime(InsightModelWindow,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		InsightLoginTextBox.sendKeys(prop.getProperty("InsightUser"));
+		InsightPassTextBox.sendKeys(prop.getProperty("InsightPassword"));
+		waithelper.WaitForElementClickable(InsightLoginButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		InsightLoginButton.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//h3[@class='fw-500 line_height_32 mt24 mb24']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			Thread.sleep(8000);
+			flag = driver.findElement(By.xpath("//h3[@class='fw-500 line_height_32 mt24 mb24']")).isDisplayed();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		log.info("LoginToInsight method ends here....");
+		if (flag)
 			return new InsightPageObject();
+		else
+			return null;
+
 	}
 
-public InsightPageObject LoginToInsight() {
-	log.info("LoginToInsight method started....");
-	boolean flag=false;
-	CommonMethod.switchToDefaultContent();
-	InsightMenu.click();
-	waithelper.WaitForElementVisibleWithPollingTime(InsightModelWindow, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-	try {
-		Thread.sleep(2000);
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	InsightLoginTextBox.sendKeys(prop.getProperty("InsightUser"));
-	InsightPassTextBox.sendKeys(prop.getProperty("InsightPassword"));
-	waithelper.WaitForElementClickable(InsightLoginButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-	InsightLoginButton.click();
-	
-	try {
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h3[@class='fw-500 line_height_32 mt24 mb24']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Thread.sleep(8000);
-		flag = driver.findElement(By.xpath("//h3[@class='fw-500 line_height_32 mt24 mb24']")).isDisplayed();
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	log.info("LoginToInsight method ends here....");
-	if(flag)
-	return new InsightPageObject();
-	else
-		return null;
-	
-}
-
-
-public void closeInsightModelWindow()
-{
-	try {
-		if(InsightModelWindow.isDisplayed())
-		{
-			InsightCloseButton.click();
-			log.info("Insight Model Window remains showing.. now closing it");
+	public void closeInsightModelWindow() {
+		try {
+			if (InsightModelWindow.isDisplayed()) {
+				InsightCloseButton.click();
+				log.info("Insight Model Window remains showing.. now closing it");
+			}
+		} catch (Exception e) {
+			log.info("Unable to close Insight Model Window");
+			e.printStackTrace();
 		}
 	}
-	catch(Exception e)
-	{
-		log.info("Unable to close Insight Model Window");
-		e.printStackTrace();
-	}
-}
-public String getCurrentProfileUserName() {
-		//CommonMethod.switchToDefaultContent();
+
+	public String getCurrentProfileUserName() {
+		// CommonMethod.switchToDefaultContent();
 		String username = null;
 		try {
 			ProfileIcon.click();
 			Thread.sleep(3000);
-			username=ProfileUserName.getText();
+			username = ProfileUserName.getText();
 			ProfileUserName.click();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -220,65 +209,76 @@ public String getCurrentProfileUserName() {
 	}
 
 	public void clickOnBuildingSubMenu() {
-		
-		
+
 		waithelper.WaitForElementClickable(BuildingSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			BuildingSubMenu.click();
-		
+		BuildingSubMenu.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	public void clickOnCitiesSubMenu() {
 		waithelper.WaitForElementClickable(CitiesSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			CitiesSubMenu.click();
-		
-		
+		CitiesSubMenu.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-	
 
 	public void clickOnCommunitiesSubMenu() {
 		waithelper.WaitForElementClickable(CommunitiesSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			CommunitiesSubMenu.click();
-		
-		
+		CommunitiesSubMenu.click();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void setHomePageApplication() {
-		
+
 		try {
 			CommonMethod.switchToDefaultContent();
 			HomeHeader.click();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	// This method closes the Project Searching text box
-	
+
 	public void closeProjectSearchTextBox() {
 		try {
-			//CommonMethod.switchToDefaultContent();
+			// CommonMethod.switchToDefaultContent();
 			CloseSearchTextboxIcon.click();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	// This project clicks on Profile --> Sign out button and returns the page title.
-	
+
+	// This project clicks on Profile --> Sign out button and returns the page
+	// title.
+
 	public String checkSignOut() {
 		waithelper.WaitForElementClickable(ProfileIcon, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileIcon.click();
 		waithelper.WaitForElementClickable(ProfileSignOut, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileSignOut.click();
-		waithelper.waitForElement(driver.findElement(By.xpath("//*[@id='login-box-trigger-lg']")), Integer.parseInt(prop.getProperty("explicitTime")), 1);
+		waithelper.waitForElement(driver.findElement(By.xpath("//*[@id='login-box-trigger-lg']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		return driver.getTitle();
-		
+
 	}
 
 	public boolean ProfileBillingInvoice() {
@@ -287,7 +287,9 @@ public String getCurrentProfileUserName() {
 		ProfileIcon.click();
 		waithelper.WaitForElementClickable(ProfileBillingMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProfileBillingMenu.click();
-		waithelper.WaitForElementClickable(BillingAndPaymentsTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		CommonMethod.waitUntilLoadElement();
+		waithelper.WaitForElementClickable(BillingAndPaymentsTab, Integer.parseInt(prop.getProperty("explicitTime")),
+				2);
 		BillingAndPaymentsTab.click();
 		String MainHandle = driver.getWindowHandle();
 

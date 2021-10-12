@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.arc.PageObject.Project.BuildingPageObject;
 import com.arc.PageObject.Project.CityPageObject;
 import com.arc.PageObject.Project.CommunitiesPageObject;
 import com.arc.commonMethods.LoggerHelper;
@@ -31,12 +32,30 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	@FindBy(xpath = "//div[@class='checkbox test_project pl20 ng-scope']/input")
 	WebElement ThisIsTestProjectCheckBox;
-	
+
 	@FindBy(xpath = "(//input[@type='checkbox'])[2]")
 	WebElement ProjectIsPrivateCheckBox;
 
 	@FindBy(xpath = "(//table[1]/tbody/tr[3]/td[1]/div[1]/select)[1]")
 	WebElement ProjectType;
+
+	@FindBy(xpath = "//label[text()='Space Type']/parent::div/select")
+	WebElement BuildingSpaceType;
+
+	@FindBy(xpath = "//label[text()='Owner Type']/parent::div/select")
+	WebElement BuildingOwnerType;
+
+	@FindBy(xpath = "//label[text()='Owner Country/Region']/parent::div/select")
+	WebElement BuildingCountryName;
+
+	@FindBy(xpath = "//label[text()='Owner Email']/parent::div/input")
+	WebElement BuildingOwnerEmail;
+
+	@FindBy(xpath = "//input[@id='organization']")
+	WebElement BuildingOwnerOrg;
+
+	@FindBy(xpath = "//label[text()='Owner Email']//following-sibling::span")
+	WebElement BuildingEmailValidation;
 
 	@FindBy(xpath = "//input[@id='gross_area']")
 	WebElement GrossAreaTextBox;
@@ -177,7 +196,8 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	public boolean CheckRegisterforLEEDPopupButtonsExists() {
 		boolean flag = false;
 		try {
-			waithelper.waitForElement(RegisterLEEDCertificationNowPopUpButton, Integer.parseInt(prop.getProperty("explicitTime")));
+			waithelper.waitForElement(RegisterLEEDCertificationNowPopUpButton,
+					Integer.parseInt(prop.getProperty("explicitTime")));
 			if (RegisterLEEDCertificationNowPopUpButton.isDisplayed() && NotNowPopUpButton.isDisplayed())
 				flag = true;
 
@@ -225,15 +245,16 @@ public class ProjectRegistrationPageObject extends BaseClass {
 				if (!handle.equals(window)) {
 					driver.switchTo().window(window);
 					try {
-						waithelper.waitForElement(driver.findElement(By.xpath("//ul[@class='breadcrumb' ]/li[2][text()='City Registration']")), Integer.parseInt(prop.getProperty("explicitTime")));
+						waithelper.waitForElement(
+								driver.findElement(
+										By.xpath("//ul[@class='breadcrumb' ]/li[2][text()='City Registration']")),
+								Integer.parseInt(prop.getProperty("explicitTime")));
 						String title = driver.findElement(By.xpath("//ul[@class='breadcrumb' ]/li[2]")).getText();
 						log.info(title);
 						driver.close();
 						driver.switchTo().window(handle);
 						return title;
-					}
-					catch(Exception e)
-					{
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
@@ -249,8 +270,9 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		Set<String> handles = driver.getWindowHandles();
 		if (handles.size() == 1) {
 			try {
-				
-				waithelper.WaitForElementInvisible(RegisterLEEDCertificationNowPopUpButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+				waithelper.WaitForElementInvisible(RegisterLEEDCertificationNowPopUpButton,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				if (!(RegisterLEEDCertificationNowPopUpButton.isDisplayed() && NotNowPopUpButton.isDisplayed())) {
 					if (RegisterLEEDNoRadioBtn.isSelected()) {
 						log.info(driver.findElement(By.xpath(
@@ -281,21 +303,34 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		boolean flag = false;
 
 		try {
-			//log.info(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
-			if(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"))
+			// log.info(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
+			if (dropdownhelper.getSelectedValue(ProjectType).equals("Cities"))
 				flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return flag;
 	}
-	
+
 	public boolean SelectCommunitiesProjectType() {
 		boolean flag = false;
 
 		try {
-			//log.info(dropdownhelper.getSelectedValue(ProjectType).equals("Cities"));
-			if(dropdownhelper.getSelectedValue(ProjectType).equals("Communities"))
+
+			if (dropdownhelper.getSelectedValue(ProjectType).equals("Communities"))
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	public boolean SelectBuildingProjectType() {
+		boolean flag = false;
+
+		try {
+
+			if (dropdownhelper.getSelectedValue(ProjectType).equals("Buildings"))
 				flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -306,6 +341,87 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	public void enterProjectName(String PName) {
 		ProjectNameTextBox.clear();
 		ProjectNameTextBox.sendKeys(PName);
+	}
+
+	public void selectSpaceType(String Stype) {
+		dropdownhelper.selectUsingVisibleText(BuildingSpaceType, Stype);
+	}
+
+	public void selectOwnerType(String Otype) {
+		dropdownhelper.selectUsingVisibleText(BuildingOwnerType, Otype);
+	}
+
+	public void selectOwnerOrg(String OwnerOrg) {
+		BuildingOwnerOrg.sendKeys(OwnerOrg);
+		BuildingOwnerOrg.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//div[@class='searchDropdownOrganization']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//div[@class='searchDropdownOrganization']/div[1]/div/span")).click();
+
+	}
+
+	public int CheckOwnerOrgAutoSuggetion(String OwnerOrg) {
+		BuildingOwnerOrg.sendKeys(OwnerOrg);
+		BuildingOwnerOrg.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//div[@class='searchDropdownOrganization']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		int totalSuggestions = driver.findElements(By.xpath("//div[@class='searchDropdownOrganization']/div/div/span"))
+				.size();
+		return totalSuggestions;
+	}
+
+	public boolean CheckInvalidEmail() {
+		boolean flag = false;
+		String mail[] = { "amit.gmail.com", "amit@gmail.c3" };
+		for (String s1 : mail) {
+			BuildingOwnerEmail.clear();
+			BuildingOwnerEmail.sendKeys(s1);
+			if (BuildingEmailValidation.getText().equals("Please enter valid email.")) {
+				flag = true;
+				log.info("Validation message displayed is --- " + BuildingEmailValidation.getText());
+			} else {
+				flag = false;
+				log.info("Validation message not displayed---");
+				break;
+			}
+		}
+		return flag;
+	}
+
+	public int CheckLocationAutoPopulate(String address) {
+		log.info("CheckLocationAutoPopulate method starts here....");
+		boolean flag = false;
+
+		AddressTextBox.clear();
+		AddressTextBox.sendKeys(address);
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(
+						By.xpath("//ul[@class='dropdown-menu address normal dropdown-menu-fixed address_dropdown']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		List<WebElement> list = driver.findElements(
+				By.xpath("//ul[@class='dropdown-menu address normal dropdown-menu-fixed address_dropdown']/li"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		log.info("CheckLocationAutoPopulate method ends here....");
+		return list.size();
+
+	}
+
+	public void selectCountry(String CName) {
+		dropdownhelper.selectUsingVisibleText(BuildingCountryName, CName);
+	}
+
+	public void enterOwnerEmail(String email) {
+		BuildingOwnerEmail.sendKeys(email);
 	}
 
 	public void enterGrossArea(String Area) {
@@ -377,8 +493,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		}
 		for (int i = 0; i < list.size(); i++) {
 			log.info(list.get(i).getText());
-			if (list.get(i).getText()
-					.equals("2101 L St NW - 2101 L St NW, Washington, DC 20037, USA")) {
+			if (list.get(i).getText().equals("2101 L St NW - 2101 L St NW, Washington, DC 20037, USA")) {
 				list.get(i).click();
 				try {
 					Thread.sleep(3000);
@@ -390,48 +505,54 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			}
 		}
 
-		log.info("Actual Address Value is --"+AddressTextBox.getAttribute("value"));
-		log.info("Expected Address Value is --"+data.getCellData("ProjectRegistration", 3, 2));
-		log.info("Actual City Value is --"+CityTextBox.getAttribute("value"));
-		log.info("Expected City Value is --"+data.getCellData("ProjectRegistration", 4, 2));
-		log.info("Actual Country Value is --"+dropdownhelper.getSelectedValue(CountryDropDown));
-		log.info("Expected Country Value is --"+data.getCellData("ProjectRegistration", 5, 2));
-		log.info("Actual State Value is --"+dropdownhelper.getSelectedValue(StateDropDown));
-		log.info("Expected State Value is --"+data.getCellData("ProjectRegistration", 6, 2));
-		log.info("Actual Zip Value is --"+ZipTextBox.getAttribute("value"));
-		log.info("Expected Zip Value is --"+data.getCellData("ProjectRegistration", 7, 2));
+		log.info("Actual Address Value is --" + AddressTextBox.getAttribute("value"));
+		log.info("Expected Address Value is --" + data.getCellData("ProjectRegistration", 3, 2));
+		log.info("Actual City Value is --" + CityTextBox.getAttribute("value"));
+		log.info("Expected City Value is --" + data.getCellData("ProjectRegistration", 4, 2));
+		log.info("Actual Country Value is --" + dropdownhelper.getSelectedValue(CountryDropDown));
+		log.info("Expected Country Value is --" + data.getCellData("ProjectRegistration", 5, 2));
+		log.info("Actual State Value is --" + dropdownhelper.getSelectedValue(StateDropDown));
+		log.info("Expected State Value is --" + data.getCellData("ProjectRegistration", 6, 2));
+		log.info("Actual Zip Value is --" + ZipTextBox.getAttribute("value"));
+		log.info("Expected Zip Value is --" + data.getCellData("ProjectRegistration", 7, 2));
 		if (AddressTextBox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 3, 2))
 				&& CityTextBox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 4, 2))
-				&& dropdownhelper.getSelectedValue(CountryDropDown).equals(data.getCellData("ProjectRegistration", 5, 2))
+				&& dropdownhelper.getSelectedValue(CountryDropDown)
+						.equals(data.getCellData("ProjectRegistration", 5, 2))
 				&& dropdownhelper.getSelectedValue(StateDropDown).equals(data.getCellData("ProjectRegistration", 6, 2))
 				&& ZipTextBox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 7, 2))) {
 			log.info("Address matched--------------");
 			log.info("CheckAddress_City_Country_State_ZipCode starts ends with true..................");
 			return true;
-		} else
-		{
+		} else {
 			log.info("Address not maching--------------");
 			log.info("CheckAddress_City_Country_State_ZipCode ends with false..................");
-			return false;	
+			return false;
 		}
 
 	}
 
 	public boolean CheckGeoLocation() {
-		try{
-			
+		try {
+
 			Thread.sleep(3000);
-			
-		if (!(LongitudeTextbox.getAttribute("value")=="" && LatitudeTextbox.getAttribute("value")=="")) {
-			return true;
-		} else
-			return false;
-		}
-		catch(Exception e)
-		{
+
+			if (!(LongitudeTextbox.getAttribute("value") == "" && LatitudeTextbox.getAttribute("value") == "")) {
+				return true;
+			} else
+				return false;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public boolean CheckAddButtonEnabled() {
+
+		boolean flag = AddProjectButton.getAttribute("class").equals("pl20 pr20 btn btn-primary");
+		log.info("Add button enabled flag is --" + flag);
+
+		return flag;
 	}
 
 	public void SelectThisIsTestProjectCheckBox() {
@@ -442,7 +563,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void SelectProjectIsPrivateCheckBox() {
 
 		try {
@@ -450,15 +571,13 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
 
 	public boolean DownLoadServiceAgreement() {
 		log.info("DownLoadServiceAgreement  method starts here -----");
 		String handle = driver.getWindowHandle();
-		
+
 		waithelper.WaitForElementClickable(ServiceAgreementLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ServiceAgreementLink.click();
 		try {
@@ -483,7 +602,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 						return true;
 					} else
 						log.info("DownLoadServiceAgreement  method ends with false here -----");
-						return false;
+					return false;
 
 				}
 			}
@@ -512,8 +631,10 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 		try {
 			AddProjectButton.click();
-			//Thread.sleep(2000);
-			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			// Thread.sleep(2000);
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			Thread.sleep(5000);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -521,14 +642,31 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		return new CityPageObject();
 
 	}
-	
-	
+
+	public BuildingPageObject ClickonBuildingsAddProjectButton() {
+
+		try {
+			AddProjectButton.click();
+			// Thread.sleep(2000);
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new BuildingPageObject();
+
+	}
+
 	public CommunitiesPageObject ClickonCommunitiesAddProjectButton() {
 
 		try {
 			AddProjectButton.click();
-			//Thread.sleep(2000);
-			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			// Thread.sleep(2000);
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			Thread.sleep(5000);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -546,9 +684,5 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		}
 
 	}
-
-	
-
-	
 
 }

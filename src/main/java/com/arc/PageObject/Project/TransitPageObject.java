@@ -17,7 +17,7 @@ import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
 public class TransitPageObject extends BaseClass {
-	private static Logger log= LoggerHelper.getLogger(TransitPageObject.class);
+	private static Logger log = LoggerHelper.getLogger(TransitPageObject.class);
 
 	@FindBy(xpath = "(//*[text()='Manage' and @class='ml10'])[1]")
 	WebElement ManageMenu;
@@ -27,7 +27,7 @@ public class TransitPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//a[text()=' Billing '])[1]")
 	WebElement BillingSubmenu;
-	
+
 	@FindBy(xpath = "(//a[text()=' Project '])[1]")
 	WebElement ProjectSubmenu;
 
@@ -39,7 +39,7 @@ public class TransitPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//*[text()='Credit form successfully saved.'])[1]")
 	WebElement CreditFormUploadSuccessMsg;
-	
+
 	@FindBy(xpath = "(//*[text()='File successfully uploaded.'])[1]")
 	WebElement FileUploadSuccessMsg;
 
@@ -51,16 +51,16 @@ public class TransitPageObject extends BaseClass {
 
 	@FindBy(xpath = "//*[@class='viewUpload laptop']")
 	WebElement FileUploadButtonUsingComputer;
-	
-	@FindBy(xpath="//div[@id='uploaded_files']/p/span")
+
+	@FindBy(xpath = "//div[@id='uploaded_files']/p/span")
 	WebElement FileDeletebutton;
-	
-	@FindBy(xpath="//span[@class='uploadLoaderSpinner ng-scope']")
+
+	@FindBy(xpath = "//span[@class='uploadLoaderSpinner ng-scope']")
 	WebElement FileProcessing;
-	
-	@FindBy(xpath="(//a[text()=' Team '])[1]")
+
+	@FindBy(xpath = "(//a[text()=' Team '])[1]")
 	WebElement TeamSubmenu;
-	
+
 	@FindBy(xpath = "//form[@name='Fileform']/p/a")
 	WebElement CreditFormDownloadButton;
 
@@ -72,58 +72,67 @@ public class TransitPageObject extends BaseClass {
 	}
 
 	public void ClickonAgreementInManage() {
+		log.info("ClickonAgreementInManage method starts here ....");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
 		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		log.info("ClickonAgreementInManage method ends here ....");
 
 	}
 
 	public void ClickonBillingInManage() {
+		log.info("ClickonBillingInManage method starts here ....");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
 		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
-
+		CommonMethod.waitUntilLoadElement();
+		log.info("ClickonBillingInManage method ends here ....");
 	}
 
-	
-
 	public void AllActionSubMenu() {
+		log.info("AllActionSubMenu method starts here ....");
 		waithelper.WaitForElementClickable(CreditActionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		CreditActionSubmenu.click();
 		waithelper.WaitForElementClickable(AllActionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AllActionSubmenu.click();
+		log.info("AllActionSubMenu method ends here ....");
 	}
 
-	
-	public void ClickonProjectInManage()
-	{
-		
-			waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			ManageMenu.click();
-			waithelper.WaitForElementClickable(ProjectSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			ProjectSubmenu.click();
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
+	public void ClickonProjectInManage() {
+		log.info("ClickonProjectInManage method starts here ....");
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ManageMenu.click();
+		waithelper.WaitForElementClickable(ProjectSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ProjectSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		log.info("ClickonProjectInManage method ends here ....");
 	}
-	
-	public void ClickonTeamInManage()
-	{
+
+	public void ClickonTeamInManage() {
+		log.info("ClickonTeamInManage method starts here ....");
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ManageMenu.click();
+		waithelper.WaitForElementClickable(TeamSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		TeamSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			ManageMenu.click();
-			waithelper.WaitForElementClickable(TeamSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			TeamSubmenu.click();
-		
-			waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			Thread.sleep(3000);
-		}
-		catch (Exception e) {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			log.info("Unable to traverse Team Submenu");
 		}
+		log.info("ClickonTeamInManage method starts here ....");
+
 	}
+
 	public boolean ClickonActionName(String Action) {
 		boolean flag = false;
 		List<WebElement> ActionNames = driver
@@ -139,7 +148,7 @@ public class TransitPageObject extends BaseClass {
 				break;
 			}
 		}
-		
+
 		return flag;
 
 	}
@@ -148,7 +157,7 @@ public class TransitPageObject extends BaseClass {
 
 		try {
 
-			JSHelper.clickElement(CreditFormDownloadButton);		
+			JSHelper.clickElement(CreditFormDownloadButton);
 			Thread.sleep(8000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -168,12 +177,13 @@ public class TransitPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void ClickonFileUpLoadUsingComputerButton() {
 
 		try {
 
-			waithelper.WaitForElementClickable(FileUploadButtonUsingComputer, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			waithelper.WaitForElementClickable(FileUploadButtonUsingComputer,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			FileUploadButtonUsingComputer.click();
 			JSHelper.clickElement(FileUploadButtonUsingComputer);
 			Thread.sleep(3000);
@@ -182,46 +192,37 @@ public class TransitPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean ClickonFileDeleButton(String fname) {
 		log.info("ClickonFileDeleButton method starts here ...");
-		boolean flag=false;
-		
-		WebElement ele=driver.findElement(By.xpath("//*[text()='"+fname+"']"));
-		if(ele.isDisplayed())
-			{
+		boolean flag = false;
+
+		WebElement ele = driver.findElement(By.xpath("//*[text()='" + fname + "']"));
+		if (ele.isDisplayed()) {
 			FileDeletebutton.click();
-			
-			
+
 			try {
 				waithelper.WaitForElementInvisible(ele, 30, 2);
-				flag=ele.isDisplayed();
-				log.info(flag+"This is ele.isDisplayed() value;");
-				
-			}
-			catch(StaleElementReferenceException e)
-			{
-				flag=false;
+				flag = ele.isDisplayed();
+				log.info(flag + "This is ele.isDisplayed() value;");
+
+			} catch (StaleElementReferenceException e) {
+				flag = false;
 				log.info("=====================StaleElementReferenceException=====================");
 				e.printStackTrace();
-				
-			}
-			catch(NoSuchElementException e)
-			{
+
+			} catch (NoSuchElementException e) {
 				log.info("=====================NoSuchElementException=====================");
-				flag=false;
+				flag = false;
 			}
 			log.info("ClickonFileDeleButton method starts here ...");
-			if(flag==true)
-			{
+			if (flag == true) {
 				return false;
-			}
-			else
+			} else
 				return true;
-			}
+		}
 		return false;
-			
-		
+
 	}
 
 	public boolean CreditFormuploadStatus() {
@@ -236,21 +237,21 @@ public class TransitPageObject extends BaseClass {
 		}
 		return false;
 	}
-	
+
 	public boolean CheckCreditFormupload(String filePath) {
-		
+
 		try {
-			log.info("Credit Form file path is --"+filePath);
+			log.info("Credit Form file path is --" + filePath);
 			waithelper.WaitForElementClickable(CreditFormUploadButton,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			
+
 			driver.findElement(By.xpath("(//input[@type='file'])[2]")).sendKeys(filePath);
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		waithelper.WaitForElementVisibleWithPollingTime(CreditFormUploadSuccessMsg,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -262,22 +263,21 @@ public class TransitPageObject extends BaseClass {
 		}
 		return false;
 	}
-	
-	
-public boolean CheckFileUploadUsingComputer(String filePath) {
-		
+
+	public boolean CheckFileUploadUsingComputer(String filePath) {
+
 		try {
-			log.info("File uploading using computer path is --"+filePath);
+			log.info("File uploading using computer path is --" + filePath);
 			waithelper.WaitForElementClickable(FileUploadButtonUsingComputer,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			
+
 			driver.findElement(By.xpath("(//input[@type='file'])[1]")).sendKeys(filePath);
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		waithelper.WaitForElementVisibleWithPollingTime(FileUploadSuccessMsg,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -290,8 +290,7 @@ public boolean CheckFileUploadUsingComputer(String filePath) {
 		}
 		return false;
 	}
-	
-	
+
 	public boolean FileuploadStatus() {
 		waithelper.WaitForElementVisibleWithPollingTime(FileUploadSuccessMsg,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -304,7 +303,5 @@ public boolean CheckFileUploadUsingComputer(String filePath) {
 		}
 		return false;
 	}
-	
-	
 
 }
