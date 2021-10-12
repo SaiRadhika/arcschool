@@ -196,7 +196,12 @@ public class TransitPageObject extends BaseClass {
 	public boolean ClickonFileDeleButton(String fname) {
 		log.info("ClickonFileDeleButton method starts here ...");
 		boolean flag = false;
-
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		WebElement ele = driver.findElement(By.xpath("//*[text()='" + fname + "']"));
 		if (ele.isDisplayed()) {
 			FileDeletebutton.click();
@@ -215,7 +220,7 @@ public class TransitPageObject extends BaseClass {
 				log.info("=====================NoSuchElementException=====================");
 				flag = false;
 			}
-			log.info("ClickonFileDeleButton method starts here ...");
+			log.info("ClickonFileDeleButton method ends here ...");
 			if (flag == true) {
 				return false;
 			} else
@@ -223,6 +228,34 @@ public class TransitPageObject extends BaseClass {
 		}
 		return false;
 
+	}
+
+	public boolean CheckFileUploadedStatus(String fname) {
+		log.info("CheckFileUploadedStatus method starts here ...");
+		try {
+		WebElement ele = driver.findElement(By.xpath("//*[text()='" + fname + "']"));
+		if (ele.isDisplayed()) 
+		{
+			log.info(" File is displaying ...");
+			log.info("CheckFileUploadedStatus method ends with here true  ...");
+			return true;
+		}
+			else 
+				{
+				log.info(" File is not displaying ...");
+				log.info("CheckFileUploadedStatus method ends with here false  ...");
+				return false;
+				}
+		}
+		catch(NoSuchElementException e)
+		{
+			log.info("Unable to locate uploaded file...");
+			log.info(e.getMessage());
+			e.printStackTrace();
+		}
+		return false;
+		
+		
 	}
 
 	public boolean CreditFormuploadStatus() {

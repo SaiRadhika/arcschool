@@ -124,6 +124,8 @@ public class TransitPageTest extends BaseClass {
 	public void Transit_File_Upload_Remove() {
 		log.info("Transit_File_Upload_Remove method started ");
 		String DownloadedFilePath = "";
+		boolean deletedflag = false;
+		boolean uploadflag=false;
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
 		TransitPage = ProjectPage.SearchAndClickOnTransitProject(data.getCellData("Reboot", 8, 2));
@@ -132,22 +134,45 @@ public class TransitPageTest extends BaseClass {
 		TransitPage.ClickonActionName("Site Development - Protect or Restore Habitat");
 		// TransitPage.ClickonFileUpLoadUsingComputerButton();
 		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-		boolean deletedflag = false;
-		boolean uploadflag = TransitPage.CheckFileUploadUsingComputer(UploadPath);
-		if (uploadflag) {
-			log.info("File upload using Computer completed successfully..............");
-			File f = new File(UploadPath);
-			String filepath = f.getPath();
-			deletedflag = TransitPage.ClickonFileDeleButton(f.getName());
-			if (deletedflag) {
-				log.info("File deleted successfully...... ");
-
-			} else {
-				log.info("Unable to delete File...... ");
+		File f = new File(UploadPath);
+		boolean FileExisted = TransitPage.CheckFileUploadedStatus(f.getName());		
+		if (FileExisted == false) {
+			uploadflag = TransitPage.CheckFileUploadUsingComputer(UploadPath);
+			if (uploadflag) {
+				log.info("File upload using Computer completed successfully..............");
+				deletedflag = TransitPage.ClickonFileDeleButton(f.getName());
+				if (deletedflag) {
+					log.info("File deleted successfully...... ");
+				} else {
+					log.info("Unable to delete File...... ");
+				}
+			}
+			else
+			{
+				log.info("Unable to upload file File using Computer ..............");
+				uploadflag=false;				
 			}
 
 		} else {
-			log.info("Unable to upload file File using Computer ..............");
+			log.info("File is already uloaded, Firstly deleteing the File and then perform the Test Cases...");
+			CommonMethod.RefreshPagewaitForPageLoaded(driver);
+			deletedflag = TransitPage.ClickonFileDeleButton(f.getName());
+			if (deletedflag) {
+				log.info("File deleted successfully...... ");
+			} else {
+				log.info("Unable to delete File...... ");
+			}
+			uploadflag = TransitPage.CheckFileUploadUsingComputer(UploadPath);
+			if (uploadflag) {
+				log.info("File upload using Computer completed successfully..............");
+				deletedflag = TransitPage.ClickonFileDeleButton(f.getName());
+				if (deletedflag) {
+					log.info("File deleted successfully...... ");
+				} else {
+					log.info("Unable to delete File...... ");
+				}
+			}
+			
 		}
 
 		if (uploadflag == true && deletedflag == true) {

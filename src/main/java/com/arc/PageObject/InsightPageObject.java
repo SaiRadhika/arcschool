@@ -377,13 +377,14 @@ public class InsightPageObject extends BaseClass {
 
 	public void MarketsSearchProjectAndExport() {
 		log.info("MarketsSearchProjectAndExport method starts here...");
+		CommonMethod.waitUntilLoadElement();
 		try {
 			Thread.sleep(12000);
 		} catch (InterruptedException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-
+		
 		int ProjectCount = Integer.parseInt(NumberOfProjects.getText());
 		log.info("Number of Project before searching is ---" + ProjectCount);
 		ZipCodeTextBox.clear();

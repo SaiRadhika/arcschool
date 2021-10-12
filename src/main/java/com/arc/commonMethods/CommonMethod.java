@@ -22,6 +22,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
@@ -693,12 +694,19 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-				Integer.parseInt(prop.getProperty("explicitTime")));
-		msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+		try {
+			waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")));
+			msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
 
-		waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (NoSuchElementException e) {
+			log.info("Success/Failure message is not displaying..");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		CommonMethod.waitUntilLoadElement();
 
 		if (msgText.equals("Team member added successfully.")) {
@@ -716,6 +724,7 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		log.info("Team_Add_Member Method ends here.............................................");
 		return flag;
 
@@ -838,6 +847,8 @@ public class CommonMethod extends BaseClass {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if (msgText.equals("Team member removed successfully.")) {
