@@ -89,8 +89,8 @@ public class ExtentReportListener extends TestListenerAdapter {
 			if (OS_Name.equalsIgnoreCase("Linux")) {
 				{
 					System.out.println("Temp path is "+System.getProperty("user.dir") +File.separator+"Screenshots"+File.separator+tr.getName()+".png");
-					String path=System.getProperty("user.dir") + "\\Screenshots\\"+tr.getName()+".png";
-					//String path= "./Screenshots/"+tr.getName()+".png";
+					//String path=System.getProperty("user.dir") + "\\Screenshots\\"+tr.getName()+".png";
+					String path= System.getProperty("user.dir") +File.separator+"Screenshots"+File.separator+tr.getName()+".png";
 					log.info("Linux Path is .."+path);
 					log.info("Linux Screenshot path is "+path);
 					logger.addScreenCaptureFromPath(path, "Testing Purpose");
