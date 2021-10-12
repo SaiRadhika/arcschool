@@ -90,7 +90,7 @@ public class ProjectPageObjects extends BaseClass {
 		CommonMethod.switchToDefaultContent();
 		if (!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
-		//SearchProjectTextBox.clear();
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		try {
@@ -101,7 +101,7 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,7 +148,7 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,7 +185,7 @@ public class ProjectPageObjects extends BaseClass {
 		// CommonMethod.switchToDefaultContent();
 		if (!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
-		//SearchProjectTextBox.clear();
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		try {
@@ -196,7 +196,7 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -230,7 +230,7 @@ public class ProjectPageObjects extends BaseClass {
 		// CommonMethod.switchToDefaultContent();
 		if (!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
-		//SearchProjectTextBox.clear();
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
@@ -241,7 +241,7 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -287,7 +287,7 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -321,7 +321,7 @@ public class ProjectPageObjects extends BaseClass {
 		CommonMethod.switchToDefaultContent();
 		if (!SearchProjectTextBox.isDisplayed())
 			actionhelper.mouseOverElementAndClick(SearchIcon);
-		//SearchProjectTextBox.clear();
+		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
@@ -332,7 +332,7 @@ public class ProjectPageObjects extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
