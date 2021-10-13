@@ -89,6 +89,8 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "(//*[name()='svg']//*[local-name()='circle' ])[2]")
 	WebElement CircularLoader;
+	@FindBy(xpath = "//input[@id='search-input']")
+	WebElement SearchProjectTextBox;
 
 	public boolean CheckHomePageLabel() {
 		try {
@@ -249,6 +251,8 @@ public class HomePageObjects extends BaseClass {
 
 		try {
 			CommonMethod.switchToDefaultContent();
+			if (SearchProjectTextBox.isDisplayed())
+				closeProjectSearchTextBox();
 			HomeHeader.click();
 		} catch (Exception e) {
 			e.printStackTrace();

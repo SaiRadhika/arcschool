@@ -5,6 +5,8 @@
 	<listeners>
 		<listener
 			class-name="com.arc.commonMethods.ExtentReportListener"></listener>
+			<listener
+			class-name="com.arc.commonMethods.RetryListener"></listener>
 		
 	</listeners>
 
