@@ -22,6 +22,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
@@ -244,7 +245,7 @@ public class CommonMethod extends BaseClass {
 			String OrderTypePath = "";
 			for (int i = 0; i < AgreementTable.size(); i++) {
 				int rownum = i + 1;
-				OrderTypePath = RowPath + "[" + rownum + "]/td[2]";
+				OrderTypePath = RowPath + "[" + rownum + "]/td[2]/span";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
 				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("Registration")) {
@@ -278,13 +279,13 @@ public class CommonMethod extends BaseClass {
 			String OrderTypePath;
 			for (int i = 0; i < AgreementTable.size(); i++) {
 				int rownum = i + 1;
-				OrderTypePath = RowPath + "[" + rownum + "]/td[2]";
+				OrderTypePath = RowPath + "[" + rownum + "]/td[2]/span";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
 				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("Registration")) {
 					log.info("Order Type Registration found and skipping the rest of rows..");
 					flag = true;
-					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[3]")).click();
+					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[3]/button")).click();
 					try {
 						Thread.sleep(10000);
 					} catch (InterruptedException e) {
@@ -319,7 +320,7 @@ public class CommonMethod extends BaseClass {
 
 			for (int i = 0; i < BillingTable.size(); i++) {
 				rownum = i + 1;
-				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
+				OrderTypePath = RowPath + "[" + rownum + "]/td[3]/span";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
 				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("SUBSCRIPTION")) {
@@ -331,7 +332,7 @@ public class CommonMethod extends BaseClass {
 			}
 		}
 		if (SubscriptionLinkExist) {
-			driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
+			driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]/button")).click();
 			Set<String> AllWindow = driver.getWindowHandles();
 			Iterator itr1 = AllWindow.iterator();
 			while (itr1.hasNext()) {
@@ -385,13 +386,13 @@ public class CommonMethod extends BaseClass {
 			String OrderTypePath = null;
 			for (int i = 0; i < BillingTable.size(); i++) {
 				int rownum = i + 1;
-				OrderTypePath = RowPath + "[" + rownum + "]/td[3]";
+				OrderTypePath = RowPath + "[" + rownum + "]/td[3]/span";
 				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
 				log.info(OrderTypePath + "......." + OrderType);
 				if (OrderType.equals("REGISTRATION")) {
 					log.info("Order Type REGISTRATION found and skipping rest of rows...");
 					flag = true;
-					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
+					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]/button")).click();
 					try {
 						Thread.sleep(10000);
 					} catch (InterruptedException e) {
@@ -431,7 +432,7 @@ public class CommonMethod extends BaseClass {
 				if (OrderType.equals("REVIEW\nLEED Certification")) {
 					flag = true;
 					log.info("Order Type REVIEW\\nLEED Certification found and skipping rest of rows...");
-					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]")).click();
+					driver.findElement(By.xpath(RowPath + "[" + rownum + "]/td[6]/button")).click();
 					try {
 						Thread.sleep(10000);
 					} catch (InterruptedException e) {
@@ -693,12 +694,19 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-				Integer.parseInt(prop.getProperty("explicitTime")));
-		msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+		try {
+			waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")));
+			msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
 
-		waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (NoSuchElementException e) {
+			log.info("Success/Failure message is not displaying..");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		CommonMethod.waitUntilLoadElement();
 
 		if (msgText.equals("Team member added successfully.")) {
@@ -716,6 +724,7 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		log.info("Team_Add_Member Method ends here.............................................");
 		return flag;
 
@@ -838,6 +847,8 @@ public class CommonMethod extends BaseClass {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if (msgText.equals("Team member removed successfully.")) {

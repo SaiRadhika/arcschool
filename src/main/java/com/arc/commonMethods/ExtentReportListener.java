@@ -88,8 +88,9 @@ public class ExtentReportListener extends TestListenerAdapter {
 			String OS_Name = System.getProperty("os.name");
 			if (OS_Name.equalsIgnoreCase("Linux")) {
 				{
-					//String path=System.getProperty("user.dir") + "/Screenshots/"+tr.getName()+".png";
-					String path= "\\Screenshots\\"+tr.getName()+".png";
+					System.out.println("Temp path is "+System.getProperty("user.dir") +File.separator+"Screenshots"+File.separator+tr.getName()+".png");
+					//String path=System.getProperty("user.dir") + "\\Screenshots\\"+tr.getName()+".png";
+					String path= System.getProperty("user.dir") +File.separator+"Screenshots"+File.separator+tr.getName()+".png";
 					log.info("Linux Path is .."+path);
 					log.info("Linux Screenshot path is "+path);
 					logger.addScreenCaptureFromPath(path, "Testing Purpose");
@@ -100,7 +101,7 @@ public class ExtentReportListener extends TestListenerAdapter {
 			{
 				String path= "\\Screenshots\\"+tr.getName()+".png";
 				log.info("Windows Path is .."+path);
-				logger.addScreenCaptureFromPath(path, "Testing Purpose");
+				logger.addScreenCaptureFromPath(ScreenShotFile, "Testing Purpose");
 				log.info("Screenshot attached to Extent Report Successfully on windows...");
 			}
 
@@ -129,10 +130,7 @@ public class ExtentReportListener extends TestListenerAdapter {
 
 	public void onFinish(ITestContext testContext) {
 		log.info(" Extent Report onFinish method starts......");
-		log.info("==============" + testContext.getAttribute("description"));
-		log.info("==============" + testContext.getAttributeNames());
 		extent.flush();
-
 		log.info(" Extent Report onFinish method ends......");
 	}
 }
