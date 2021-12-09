@@ -1,19 +1,12 @@
 package com.arc.PageObject.Project;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.arc.commonMethods.ActionsHelper;
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
@@ -113,23 +106,29 @@ public class ProjectPageObjects extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		if(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")).getText().equals(ProjectID))
-		{
-			log.info("SearchAndClickOnProject method ends with true for Building Project---- " + ProjectID + "  .........");
-			return new BuildingPageObject();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Project ID..");
+			// TODO: handle exception
 		}
-		else
-		{
-			log.info("SearchAndClickOnProject method ends with false for Building Project---- " + ProjectID + "  .........");
+		if (driver
+				.findElement(
+						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+				.getText().equals(ProjectID)) {
+			log.info("SearchAndClickOnProject method ends with true for Building Project---- " + ProjectID
+					+ "  .........");
+			return new BuildingPageObject();
+		} else {
+			log.info("SearchAndClickOnProject method ends with false for Building Project---- " + ProjectID
+					+ "  .........");
 			return null;
 		}
-		
-		
+
 	}
 
 	public SchoolPageObject SearchAndClickOnSchoolProject(String ProjectID) {
@@ -154,30 +153,37 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		SearchedProject.click();
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		waithelper.WaitForElementVisibleWithPollingTime(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		if(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")).getText().equals(ProjectID))
-		{
-			log.info("SearchAndClickOnProject method ends with true for School Project---- " + ProjectID + "  .........");
-			return new SchoolPageObject();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Project ID..");
+			// TODO: handle exception
 		}
-		else
-		{
-			log.info("SearchAndClickOnProject method ends with false for School Project---- " + ProjectID + "  .........");
+		if (driver
+				.findElement(
+						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+				.getText().equals(ProjectID)) {
+			log.info("SearchAndClickOnProject method ends with true for School Project---- " + ProjectID
+					+ "  .........");
+			return new SchoolPageObject();
+		} else {
+			log.info("SearchAndClickOnProject method ends with false for School Project---- " + ProjectID
+					+ "  .........");
 			return null;
 		}
-		
+
 	}
 
 	public CityPageObject SearchAndClickOnCityProject(String ProjectID) {
@@ -208,19 +214,26 @@ public class ProjectPageObjects extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Project ID..");
+			// TODO: handle exception
+		}
+		if (driver
 				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		if(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")).getText().equals(ProjectID))
-		{
+						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+				.getText().equals(ProjectID)) {
 			log.info("SearchAndClickOnProject method ends with true for City Project---- " + ProjectID + "  .........");
 			return new CityPageObject();
-		}
-		else
-		{
-			log.info("SearchAndClickOnProject method ends with false for City Project---- " + ProjectID + "  .........");
+		} else {
+			log.info(
+					"SearchAndClickOnProject method ends with false for City Project---- " + ProjectID + "  .........");
 			return null;
 		}
 	}
@@ -253,22 +266,29 @@ public class ProjectPageObjects extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		if(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")).getText().equals(ProjectID))
-		{
-			log.info("SearchAndClickOnProject method ends with true for Transit Project---- " + ProjectID + "  .........");
-			return new TransitPageObject();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Project ID..");
+			// TODO: handle exception
 		}
-		else
-		{
-			log.info("SearchAndClickOnProject method ends with false for Transit Project---- " + ProjectID + "  .........");
+		if (driver
+				.findElement(
+						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+				.getText().equals(ProjectID)) {
+			log.info("SearchAndClickOnProject method ends with true for Transit Project---- " + ProjectID
+					+ "  .........");
+			return new TransitPageObject();
+		} else {
+			log.info("SearchAndClickOnProject method ends with false for Transit Project---- " + ProjectID
+					+ "  .........");
 			return null;
 		}
-		
+
 	}
 
 	public CommunitiesPageObject SearchAndClickOnCommunitiesProject(String ProjectID) {
@@ -299,19 +319,27 @@ public class ProjectPageObjects extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		if(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")).getText().equals(ProjectID))
-		{
-			log.info("SearchAndClickOnProject method ends with true for Communities Project---- " + ProjectID + "  .........");
-			return new CommunitiesPageObject();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Project ID..");
+			// TODO: handle exception
 		}
-		else
-		{
-			log.info("SearchAndClickOnProject method ends with false for Communities Project---- " + ProjectID + "  .........");
+		if (driver
+				.findElement(
+						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+				.getText().equals(ProjectID)) {
+			log.info("SearchAndClickOnProject method ends with true for Communities Project---- " + ProjectID
+					+ "  .........");
+			return new CommunitiesPageObject();
+		} else {
+			log.info("SearchAndClickOnProject method ends with false for Communities Project---- " + ProjectID
+					+ "  .........");
 			return null;
 		}
 	}
@@ -344,19 +372,26 @@ public class ProjectPageObjects extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")), Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		if(driver
-				.findElement(
-						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")).getText().equals(ProjectID))
-		{
-			log.info("SearchAndClickOnProject method ends with true for Parking Project---- " + ProjectID + "  .........");
-			return new ParkingPageObject();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Project ID..");
+			// TODO: handle exception
 		}
-		else
-		{
-			log.info("SearchAndClickOnProject method ends with false for Parking Project---- " + ProjectID + "  .........");
+		if (driver
+				.findElement(
+						By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+				.getText().equals(ProjectID)) {
+			log.info("SearchAndClickOnProject method ends with true for Parking Project---- " + ProjectID
+					+ "  .........");
+			return new ParkingPageObject();
+		} else {
+			log.info("SearchAndClickOnProject method ends with false for Parking Project---- " + ProjectID
+					+ "  .........");
 			return null;
 		}
 	}

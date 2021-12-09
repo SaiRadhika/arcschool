@@ -42,7 +42,6 @@ public class CommonMethod extends BaseClass {
 
 	static Format formatter = new SimpleDateFormat("YYYY-MM-dd");
 	static Date date = new Date();
-	private static boolean root = false;
 	private static Logger log = LoggerHelper.getLogger(CommonMethod.class);
 
 	public static String takeScreenshotTest(String MethodName) {
@@ -145,6 +144,25 @@ public class CommonMethod extends BaseClass {
 
 	}
 
+	// This method takes the xpath and returns the number of rows of the respective table
+public static int getTotalRowCount(String xpath)
+{
+	log.info("getTotalRowCount method starts here...");
+	int TotalRow = 0;
+	List<WebElement> RowList = driver.findElements(By.xpath(xpath+"/td"));	
+	if(RowList.size()==1)
+	{
+		log.info("getTotalRowCount method ends here...");
+		return TotalRow;
+	}
+	else
+	{
+		RowList = driver.findElements(By.xpath(xpath));
+		TotalRow=RowList.size();
+		log.info("getTotalRowCount method ends here...");
+		return TotalRow;
+	}
+}
 	public static long CheckDownloadedFile() {
 		log.info("CheckDownloadedFile method starts here ......");
 		// DownloadFolder=new File(UUID.randomUUID().toString());
@@ -163,6 +181,30 @@ public class CommonMethod extends BaseClass {
 		return 0;
 	}
 
+	// Checks that whether Export Data excel file downloaded or not.
+	public static boolean CheckExportDataDownloadedFile() {
+		log.info("CheckExportDataDownloadedFile method starts here ......");
+		// DownloadFolder=new File(UUID.randomUUID().toString());
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if(file.getName().equals("Export Data.xlsx") && file.length()>0) {
+					log.info("Export Data.xlsx file downloaded successfully with size of "+file.length());
+					log.info("CheckDownloadedFile method ends here ......");
+					return true;
+				}
+				
+			}
+			log.info("CheckDownloadedFile method ends here ......");
+			return false;
+		}
+		log.info("CheckExportDataDownloadedFile method ends here ......");
+		return false;
+	}
 	// Checks that whether Receipt and Invoice file downloaded or not.
 
 	public static boolean CheckReceiptAndInvoiceFile() {
@@ -241,7 +283,7 @@ public class CommonMethod extends BaseClass {
 		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
 		log.info("Size of the Agreement Table is ---" + AgreementTable.size());
 		if (AgreementTable.size() > 0) {
-			Iterator itr = AgreementTable.iterator();
+			AgreementTable.iterator();
 			String OrderTypePath = "";
 			for (int i = 0; i < AgreementTable.size(); i++) {
 				int rownum = i + 1;
@@ -275,7 +317,7 @@ public class CommonMethod extends BaseClass {
 		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
 		log.info("Size of the Agreement Table is ---" + AgreementTable.size());
 		if (AgreementTable.size() > 0) {
-			Iterator itr = AgreementTable.iterator();
+			AgreementTable.iterator();
 			String OrderTypePath;
 			for (int i = 0; i < AgreementTable.size(); i++) {
 				int rownum = i + 1;
@@ -315,7 +357,7 @@ public class CommonMethod extends BaseClass {
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
 		log.info("Size of the Billing Table is ---" + BillingTable.size());
 		if (BillingTable.size() > 0) {
-			Iterator itr = BillingTable.iterator();
+			BillingTable.iterator();
 			String OrderTypePath;
 
 			for (int i = 0; i < BillingTable.size(); i++) {
@@ -382,7 +424,7 @@ public class CommonMethod extends BaseClass {
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
 		log.info("Size of the Billing Table is ---" + BillingTable.size());
 		if (BillingTable.size() > 0) {
-			Iterator itr = BillingTable.iterator();
+			BillingTable.iterator();
 			String OrderTypePath = null;
 			for (int i = 0; i < BillingTable.size(); i++) {
 				int rownum = i + 1;
@@ -422,7 +464,7 @@ public class CommonMethod extends BaseClass {
 		List<WebElement> BillingTable = driver.findElements(By.xpath(RowPath));
 		log.info("Size of the Billing Table is ---" + BillingTable.size());
 		if (BillingTable.size() > 0) {
-			Iterator itr = BillingTable.iterator();
+			BillingTable.iterator();
 			String OrderTypePath;
 			for (int i = 0; i < BillingTable.size(); i++) {
 				int rownum = i + 1;
@@ -642,6 +684,27 @@ public class CommonMethod extends BaseClass {
 		}
 		log.info("waitUntilLoadElement method ends here......");
 	}
+
+	// This method will select the values from Unlisted Dropdown
+	
+	public static void selectValuesFromDropDown(List<WebElement> ItemList, String value) {
+		log.info("selectValuesFromDropDown method starts here......");
+		for(WebElement item :ItemList)
+		{
+			String temp = item.getText();
+			log.info("Current value is "+temp);
+			if(value.equalsIgnoreCase(temp))
+			{
+				item.click();
+				log.info(temp+ " seleceted successfully");
+				break;
+			}
+		}
+		log.info("selectValuesFromDropDown method ends here......");
+	}
+
+	
+	
 	// This method will refresh the page and wait till page loaded successfully
 
 	public static void RefreshPagewaitForPageLoaded(WebDriver driver) {
