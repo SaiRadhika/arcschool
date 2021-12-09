@@ -182,12 +182,11 @@ public class BaseClass {
 		  
 		  else {
 		  log.info("Environment is not provided or wrong environment entered......");
-		  driver.get(prop.getProperty("QAurl")); 
-		  BaseWindow = driver.getWindowHandle();
+		  driver.get(prop.getProperty("QAurl")); 		 
 		  log.info("URL navigated to .. " + prop.getProperty("QAurl"));
 		   }
 		  
-		 
+		 BaseWindow = driver.getWindowHandle();
 		log.info("Initialization method ends");
 
 	}
