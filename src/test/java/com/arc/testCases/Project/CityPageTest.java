@@ -106,8 +106,7 @@ public class CityPageTest extends BaseClass {
 		String username = data.getCellData("Reboot", 15, 2);
 		boolean emailexist = CommonMethod.Team_checkEmailExistOrNot(username);
 		log.info(username + "-----------existence is----" + emailexist);
-		if(emailexist==false)
-		{
+		if (emailexist == false) {
 			CommonMethod.Team_Add_Member(username);
 			boolean UserNamePresent = CommonMethod.Team_checkEmailExistOrNot(username);
 			if (UserNamePresent) {
@@ -119,9 +118,7 @@ public class CityPageTest extends BaseClass {
 				log.info("City_Team_Add_Member method completed .......................");
 				Assert.assertTrue(false);
 			}
-		}
-		else
-		{
+		} else {
 			log.info("First deleting the email and then will add the same email...");
 			CommonMethod.Team_Delete_Member(username);
 			CommonMethod.Team_Add_Member(username);
@@ -175,9 +172,9 @@ public class CityPageTest extends BaseClass {
 	// Save and delete button
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 101, enabled = true, description = "Verify in DI, Project settings - population tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button ")
-	public void City_DI_ProjectSetting_Population_Add_Row() {
+	public void City_ProjectSetting_Population_Add_Row() {
 
-		log.info("City_DI_ProjectSetting_Population_Add_Row method started......................... ");
+		log.info("City_ProjectSetting_Population_Add_Row method started......................... ");
 		// CommonMethod.switchToDefaultContent();
 		// CityPage = new CityPageObject();
 		boolean flag = false;
@@ -207,9 +204,9 @@ public class CityPageTest extends BaseClass {
 		}
 		if (flag) {
 			Assert.assertTrue(true);
-			log.info("City_DI_ProjectSetting_Population_Add_Row method ends here ........... ");
+			log.info("City_ProjectSetting_Population_Add_Row method ends here ........... ");
 		} else {
-			log.info("City_DI_ProjectSetting_Population_Add_Row method ends here ........... ");
+			log.info("City_ProjectSetting_Population_Add_Row method ends here ........... ");
 			Assert.assertTrue(false);
 
 		}
@@ -219,14 +216,13 @@ public class CityPageTest extends BaseClass {
 	// Verify Effective year opens up decade calendar and gives the option to select
 	// any year.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 101, dependsOnMethods = "City_DI_ProjectSetting_Population_Add_Row", enabled = true, description = "Project Setting -> Population \r\n Verify in DI, Project settings - population tab- Save One row button \r\n"
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 101, dependsOnMethods = "City_ProjectSetting_Population_Add_Row", enabled = true, description = "Project Setting -> Population \r\n Verify in DI, Project settings - population tab- Save One row button \r\n"
 			+ "		Verify Effective year opens up decade calendar and gives the option to select any year.")
 	public void City_ProjectSetting_Population_Save_Row_DecadeCalender_Display() {
 
 		log.info(
 				"City_ProjectSetting_Population_Save_Row_DecadeCalender_Display method started......................... ");
-		boolean RowAddflag = false;
-		boolean DecadeCalenderflag = false;
+		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
 
@@ -235,8 +231,8 @@ public class CityPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004341";
+		String ProjectCityID = System.getProperty("CityProject_Test1");
+		// ProjectCityID="8000011510";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
@@ -245,24 +241,13 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProjectSetting();
-			DecadeCalenderflag = CityPage.checkPopulation_Save_New_Row("1000");
-			if (DecadeCalenderflag) {
-				log.info("Decade Calender for Effective Year is showing proper..........");
-			} else {
-				log.info("Decade Calender for Effective Year is not showing proper..........");
-			}
-			HomePage.setHomePageApplication();
-			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-			CityPage.ClickonDataInput();
-			HomePage.closeProjectSearchTextBox();
-			CommonMethod.switchToDataInputFrame();
-			CityPage.ClickonProjectSetting();
-			RowAddflag = CityPage.verifyAddedProject_Setting_PopulationRow();
+			flag = CityPage.checkPopulation_Save_New_Row("1000");
+
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
 		}
-		if ((RowAddflag) && (DecadeCalenderflag)) {
+		if (flag) {
 			log.info("City_ProjectSetting_Population_Save_Row_DecadeCalender_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
@@ -428,7 +413,7 @@ public class CityPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+		String ProjectCityID = System.getProperty("CityProject_Test1");
 		// ProjectCityID="8000004341";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
@@ -481,7 +466,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000004498";
+		// ProjectCityID="8000011415";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
@@ -556,8 +541,8 @@ public class CityPageTest extends BaseClass {
 
 		log.info(
 				"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method started......................... ");
-		boolean DecadeCalenderflag = false;
-		boolean RowAddflag = false;
+
+		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
 
@@ -567,7 +552,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000004554";
+		// ProjectCityID="8000011415";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
@@ -576,25 +561,13 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProjectSetting();
-			DecadeCalenderflag = CityPage.checkProjectArea_Save_New_Row("10000");
-			if (DecadeCalenderflag) {
-				log.info("Decade Calender for Effective Year is showing proper..........");
-			} else {
-				log.info("Decade Calender for Effective Year is not showing proper..........");
-			}
-			HomePage.setHomePageApplication();
-			ProjectPage = HomePage.clickOnProject();
-			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-			CityPage.ClickonDataInput();
-			HomePage.closeProjectSearchTextBox();
-			CommonMethod.switchToDataInputFrame();
-			CityPage.ClickonProjectSetting();
-			RowAddflag = CityPage.verifyAddedProject_Setting_ProjectAreaRow();
+			flag = CityPage.checkProjectArea_Save_New_Row("10000");
+
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
 		}
-		if ((RowAddflag) && (DecadeCalenderflag)) {
+		if (flag) {
 			log.info("City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
@@ -754,7 +727,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004498";
+		// ProjectCityID="8000011415";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
@@ -769,12 +742,9 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 		if (flag) {
-
-			// log.info("Population field contains Comma");
 			log.info("City_ProjectArea_Filter_Test method ends here ........... ");
 			Assert.assertTrue(true);
 		} else {
-			// log.info("Population field does not contains Comma");
 			log.info("City_ProjectArea_Filter_Test method ends here ........... ");
 			Assert.assertTrue(false);
 		}
@@ -970,16 +940,59 @@ public class CityPageTest extends BaseClass {
 	}
 
 	// Verify by adding value to reading and clicking on save button.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"City_Energy_GHGEmission_AddYear_AddNewLine" }, priority = 115, enabled = true, description = "Verify by adding value to reading and clicking on save button. ")
+	public void City_Energy_GHGEmission_SavePreviousYearData() {
+
+		log.info("City_Energy_GHGEmission_SavePreviousYearData method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+		// ProjectCityID="8000011415";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CityPage.ClickonGHGEmiissions();
+			flag = CityPage.CheckGHGEmission_SaveNewRecord();
+			if (flag) {
+				log.info("Record is added successfully");
+				log.info(
+						"City_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag + " ........... ");
+				Assert.assertTrue(true);
+			} else {
+				log.info("Record is not added successfully");
+				log.info(
+						"City_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag + " ........... ");
+				Assert.assertTrue(false);
+			}
+		}
+
+		else {
+			log.info("City Project is showing Null");
+			log.info("City_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag + " ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
 	// Verify score gets populated when data is added for previous year
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_Energy_GHGEmission_AddYear_AddNewLine" }, priority = 115, enabled = true, description = "Verify by adding value to reading and clicking on save button. \r\n"
-					+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Energy_GHGEmission_SavePreviousYearData_CheckScore() {
+			"City_Energy_GHGEmission_SavePreviousYearData" }, priority = 115, enabled = true, description = " Verify score gets populated when data is added for previous year  ")
+	public void City_Energy_GHGEmission_CheckScore() {
 
-		log.info("City_Energy_GHGEmission_SavePreviousYearData_CheckScore method started......................... ");
-		boolean flag = false;
-		int OldScore, NewScore;
+		log.info("City_Energy_GHGEmission_CheckScore method started......................... ");
+		int Score;
 
 		try {
 			HomePage.setHomePageApplication();
@@ -990,7 +1003,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004377";
+		// ProjectCityID="8000011415";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -998,33 +1011,20 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			OldScore = CityPage.getEnergyScore();
-			CityPage.ClickonGHGEmiissions();
-			flag = CityPage.CheckGHGEmission_SaveNewRecord();
-
-			if (flag) {
-				HomePage.setHomePageApplication();
-				ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonDataInput();
-				CommonMethod.switchToDataInputFrame();
-				CityPage.ClickonGHGEmiissions();
-
-				NewScore = CityPage.getEnergyScore();
-				if (NewScore > OldScore) {
-					log.info("Score is updated with---" + NewScore);
-					log.info("City_Energy_GHGEmission_SavePreviousYearData_CheckScore method ends here ........... ");
-					Assert.assertTrue(true);
-				}
+			Score = CityPage.getEnergyScore();
+			if (Score > 0) {
+				log.info("Score is updated with---" + Score);
+				log.info("City_Energy_GHGEmission_CheckScore method ends here ........... ");
+				Assert.assertTrue(true);
 			} else {
-				log.info("Record is not added successfully");
-				log.info("City_Energy_GHGEmission_SavePreviousYearData_CheckScore method ends here ........... ");
+				log.info("City_Energy_GHGEmission_CheckScore method ends here ........... ");
 				Assert.assertTrue(false);
 			}
+		}
 
-		} else {
+		else {
 			log.info("City Project is showing Null");
-			log.info("City_Energy_GHGEmission_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_Energy_GHGEmission_CheckScore method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -1032,13 +1032,11 @@ public class CityPageTest extends BaseClass {
 
 	// Verify able to Edit line item by using Edit button..
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Energy_GHGEmission_SavePreviousYearData_CheckScore", priority = 115, enabled = true, description = "Verify able to Edit line item by using Edit button..")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Energy_GHGEmission_SavePreviousYearData", priority = 116, enabled = true, description = "Verify able to Edit line item by using Edit button..")
 	public void City_Energy_GHGEmission_Edit_Row() {
 
 		log.info("City_Energy_GHGEmission_Edit_Row method started......................... ");
 		boolean flag = false;
-		int OldScore, NewScore;
-
 		try {
 			HomePage.setHomePageApplication();
 
@@ -1057,23 +1055,21 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			OldScore = CityPage.getEnergyScore();
+			// OldScore = CityPage.getEnergyScore();
 			flag = CityPage.CheckGHGEmission_EditRow();
-
+			/*
+			 * if (flag) { CommonMethod.switchToDefaultContent(); ProjectPage =
+			 * HomePage.clickOnProject(); CityPage =
+			 * ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			 * HomePage.closeProjectSearchTextBox(); CityPage.ClickonDataInput();
+			 * CommonMethod.switchToDataInputFrame(); CityPage.ClickonGHGEmiissions();
+			 */
+			// NewScore = CityPage.getEnergyScore();
 			if (flag) {
-				CommonMethod.switchToDefaultContent();
-				ProjectPage = HomePage.clickOnProject();
-				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonDataInput();
-				CommonMethod.switchToDataInputFrame();
-				CityPage.ClickonGHGEmiissions();
-				NewScore = CityPage.getEnergyScore();
-				if (NewScore != OldScore) {
-					log.info(OldScore + " is updated with---" + NewScore);
-					log.info("City_Energy_GHGEmission_Edit_Row method ends here ........... ");
-					Assert.assertTrue(true);
-				}
+				// log.info(OldScore + " is updated with---" + NewScore);
+				log.info("Record is updated successfully");
+				log.info("City_Energy_GHGEmission_Edit_Row method ends here ........... ");
+				Assert.assertTrue(true);
 			} else {
 				log.info("Record is not updated successfully");
 				log.info("City_Energy_GHGEmission_Edit_Row method ends here ........... ");
@@ -1089,13 +1085,12 @@ public class CityPageTest extends BaseClass {
 	}
 
 	// Verify able to delete line item by using delete button.
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Energy_GHGEmission_SavePreviousYearData_CheckScore", priority = 116, enabled = true, description = "Verify able to delete line item by using delete button.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Energy_GHGEmission_SavePreviousYearData", priority = 117, enabled = true, description = "Verify able to delete line item by using delete button.")
 	public void City_Energy_GHGEmission_Delete_Row() {
 
 		log.info("City_Energy_GHGEmission_Delete_Row method started......................... ");
 		boolean flag = false;
-		int OldScore, NewScore;
-
+		// int OldScore, NewScore;
 		try {
 			HomePage.setHomePageApplication();
 
@@ -1114,26 +1109,13 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			OldScore = CityPage.getEnergyScore();
+			// OldScore = CityPage.getEnergyScore();
 			flag = CityPage.CheckGHGEmission_DeleteRow();
 
 			if (flag) {
-				CommonMethod.switchToDefaultContent();
-				ProjectPage = HomePage.clickOnProject();
-				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonDataInput();
-				CommonMethod.switchToDataInputFrame();
-				CityPage.ClickonGHGEmiissions();
-
-				NewScore = CityPage.getEnergyScore();
-				if (NewScore != OldScore) {
-					log.info(OldScore + " is updated with---" + NewScore);
-					log.info("City_Energy_GHGEmission_Delete_Row method ends here ........... ");
-					Assert.assertTrue(true);
-				}
+				log.info("City_Energy_GHGEmission_Delete_Row method ends here ........... ");
+				Assert.assertTrue(true);
 			} else {
-				log.info("Record is not deleted successfully");
 				log.info("City_Energy_GHGEmission_Delete_Row method ends here ........... ");
 				Assert.assertTrue(false);
 			}
@@ -1149,7 +1131,7 @@ public class CityPageTest extends BaseClass {
 	// Verify 'previous year' and 'next year' button adds reading respectively.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 117, dependsOnMethods = {
-			"City_Energy_GHGEmission_SavePreviousYearData_CheckScore" }, enabled = true, description = "Verify 'previous year' and 'next year' button adds reading respectively.")
+			"City_Energy_GHGEmission_SavePreviousYearData" }, enabled = true, description = "Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Energy_AddRow_PreviousYear_NextYear() {
 
 		log.info("City_Energy_AddRow_PreviousYear_NextYear method started......................... ");
@@ -1288,7 +1270,7 @@ public class CityPageTest extends BaseClass {
 	// those year should be displayed.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_Energy_GHGEmission_SavePreviousYearData_CheckScore" }, priority = 120, enabled = true, description = "Energy - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+			"City_Energy_GHGEmission_SavePreviousYearData" }, priority = 120, enabled = true, description = "Energy - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Energy_FilterTest() {
 
 		log.info("City_Energy_FilterTest method started......................... ");
@@ -1303,7 +1285,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000006732";
+		//ProjectCityID="8000011512";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -1412,15 +1394,12 @@ public class CityPageTest extends BaseClass {
 	}
 
 	// Verify by adding value to reading and clicking on save button.
-	// Verify score gets populated when data is added for previous year
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_AddYear_AddNewLine", priority = 121, enabled = true, description = "Verify by adding value to reading and clicking on save button. . \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Water_Consum_SavePreviousYearData_CheckScore() {
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_AddYear_AddNewLine", priority = 121, enabled = true, description = "Verify by adding value to reading and clicking on save button. . ")
+	public void City_Water_Consum_SavePreviousYearData() {
 
-		log.info("City_Water_Consum_SavePreviousYearData_CheckScore method started......................... ");
+		log.info("City_Water_Consum_SavePreviousYearData method started......................... ");
 		boolean flag = false;
-		int OldScore, NewScore;
 
 		try {
 			HomePage.setHomePageApplication();
@@ -1440,47 +1419,81 @@ public class CityPageTest extends BaseClass {
 			CommonMethod.switchToDataInputFrame();
 
 			CityPage.ClickonWaterConsumption();
-			OldScore = CityPage.getWaterScore();
+			/*OldScore = CityPage.getWaterScore();
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			HomePage.closeProjectSearchTextBox();
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
-			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonWaterConsumption();*/
 			flag = CityPage.CheckWaterConsumption_SaveNewRecord();
 
 			if (flag) {
-				HomePage.setHomePageApplication();
-				ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonDataInput();
-				CommonMethod.switchToDataInputFrame();
-				CityPage.ClickonWaterConsumption();
+				log.info("Record is added successfully");
+				log.info("City_Water_Consum_SavePreviousYearData method ends here  ........... ");
+				Assert.assertTrue(true);
 
-				NewScore = CityPage.getWaterScore();
-				if (NewScore > OldScore) {
-					log.info("Score is updated with---" + NewScore);
-					log.info("City_Water_Consum_SavePreviousYearData_CheckScore method ends here ........... ");
-					Assert.assertTrue(true);
-				}
 			} else {
 				log.info("Record is not added successfully");
-				log.info("City_Water_Consum_SavePreviousYearData_CheckScore method ends here ........... ");
+				log.info("City_Water_Consum_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
-			log.info("City_Water_Consum_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_Water_Consum_SavePreviousYearData method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
 	}
 
+	// Verify score gets populated when data is added for previous year
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData", priority = 121, enabled = true, description = "Verify score gets populated when data is added for previous year  ")
+	public void City_Water_Consum_CheckScore() {
+
+		log.info("City_Water_Consum_CheckScore method started......................... ");
+		int Score;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+		// ProjectCityID = "8000004553";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CityPage.ClickonWaterConsumption();
+			Score = CityPage.getWaterScore();
+			if (Score > 0) {
+				log.info("Score is updated with---" + Score);
+				log.info("City_Water_Consum_CheckScore method ends here ........... ");
+				Assert.assertTrue(true);
+			} else {
+				log.info("Score is not generated successfully");
+				log.info("City_Water_Consum_CheckScore method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+
+		} else {
+			log.info("City Project is showing Null");
+			log.info("City_Water_Consum_CheckScore method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
 	// Verify 'Unit' dropdown allows to select unit 'Gallons' or 'Litre'.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData_CheckScore", priority = 121, enabled = true, description = "Verify 'Unit' dropdown allows to select unit 'Gallons' or 'Litre'.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData", priority = 121, enabled = true, description = "Verify 'Unit' dropdown allows to select unit 'Gallons' or 'Litre'.")
 	public void City_Water_AddRows_With_Gallons_Litres() {
 
 		log.info("City_Water_AddRows_With_Gallons_Litres method started......................... ");
@@ -1494,7 +1507,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID = "8000004489";
+		// ProjectCityID = "8000011517";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -1502,7 +1515,6 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
-			CityPage.getWaterScore();
 			flag = CityPage.CheckWaterConsumption_AddRow_UnitTypes();
 
 			if (flag) {
@@ -1527,7 +1539,7 @@ public class CityPageTest extends BaseClass {
 	// Verify 'Duration' dropdown allows to select unit 'Per Year' or 'Per Month' or
 	// 'Per week' or 'Per day' .
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 122, dependsOnMethods = "City_Water_Consum_SavePreviousYearData_CheckScore", enabled = true, description = "Verify 'Duration' dropdown allows to select unit 'Per Year' or 'Per Month' or 'Per week' or 'Per day' .")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 122, dependsOnMethods = "City_Water_Consum_SavePreviousYearData", enabled = true, description = "Verify 'Duration' dropdown allows to select unit 'Per Year' or 'Per Month' or 'Per week' or 'Per day' .")
 	public void City_Water_AddRows_With_Duration_Types() {
 
 		log.info("City_Water_AddRows_With_Duration_Types method started......................... ");
@@ -1549,7 +1561,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
-			CityPage.getWaterScore();
+			//CityPage.getWaterScore();
 			flag = CityPage.CheckWaterConsumption_AddRow_DurationTypes();
 
 			if (flag) {
@@ -1574,7 +1586,7 @@ public class CityPageTest extends BaseClass {
 	// Verify 'previous year' and 'next year' button adds reading respectively.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_Water_Consum_SavePreviousYearData_CheckScore" }, priority = 123, enabled = true, description = "Verify 'previous year' and 'next year' button adds reading respectively.")
+			"City_Water_Consum_SavePreviousYearData" }, priority = 123, enabled = true, description = "Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Water_AddRow_PreviousYear_NextYear() {
 
 		log.info("City_Water_AddRow_PreviousYear_NextYear method started......................... ");
@@ -1589,7 +1601,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000004395";
+		// ProjectCityID="8000011517";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -1619,7 +1631,7 @@ public class CityPageTest extends BaseClass {
 
 	// Verify able to Edit line item by using Edit button..
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData_CheckScore", priority = 124, enabled = true, description = "Verify able to Edit line item by using Edit button..")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData", priority = 124, enabled = true, description = "Verify able to Edit line item by using Edit button..")
 	public void City_WaterConsum_Edit_Row() {
 
 		log.info("City_WaterConsum_Edit_Row method started......................... ");
@@ -1633,7 +1645,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004487";
+		// ProjectCityID="8000011517";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -1663,7 +1675,7 @@ public class CityPageTest extends BaseClass {
 	}
 
 	// Verify able to delete line item by using delete button.
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData_CheckScore", priority = 125, enabled = true, description = "Verify able to delete line item by using delete button.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData", priority = 125, enabled = true, description = "Verify able to delete line item by using delete button.")
 	public void City_WaterConsum_Delete_Row() {
 
 		log.info("City_WaterConsum_Delete_Row method started......................... ");
@@ -1799,7 +1811,7 @@ public class CityPageTest extends BaseClass {
 	// (End date) uopens up decade calendar and on selecting any year range, the
 	// line items falling into those year should be displayed.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData_CheckScore", priority = 128, enabled = true, description = "Water - Water Consumption - > - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Water_Consum_SavePreviousYearData", priority = 128, enabled = true, description = "Water - Water Consumption - > - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_Water_FilterTest() {
 
 		log.info("City_Water_FilterTest method started......................... ");
@@ -1814,7 +1826,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000007096";
+		// ProjectCityID="8000011513";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2034,7 +2046,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004409";
+		// ProjectCityID="8000011537";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2077,7 +2089,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004409";
+		// ProjectCityID="8000011537";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2219,7 +2231,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID = "8000007096";
+		// ProjectCityID = "8000011517";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2837,15 +2849,58 @@ public class CityPageTest extends BaseClass {
 	}
 	// Transportation - Verify by adding value to reading and clicking on save
 	// button.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_VMT_AddYear_AddNewLine", priority = 144, enabled = true, description = "Transportation - >Verify by adding value to reading and clicking on save button. ")
+	public void City_Transportation_SavePreviousYearData() {
+
+		log.info("City_Transportation_SavePreviousYearData method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+		// ProjectCityID="8000011540";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CityPage.ClickonVMT();
+			//OldScore = CityPage.getTransportScore();
+			flag = CityPage.CheckTransportation_SaveNewRecord();
+
+			if (flag) {
+					log.info("City_Transportation_SavePreviousYearData method ends here ........... ");
+					Assert.assertTrue(true);
+				
+			} else {
+				log.info("Record is not added successfully");
+				log.info("City_Transportation_SavePreviousYearData method ends here ........... ");
+				Assert.assertTrue(false);
+			}
+
+		} else {
+			log.info("City Project is showing Null");
+			log.info("City_Transportation_SavePreviousYearData method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
+	
+	
 	// Verify score gets populated when data is added for previous year
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_VMT_AddYear_AddNewLine", priority = 144, enabled = true, description = "Transportation - >Verify by adding value to reading and clicking on save button. \r\n"
-			+ "				 Verify score gets populated when data is added for previous year  ")
-	public void City_Transportation_SavePreviousYearData_CheckScore() {
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_SavePreviousYearData", priority = 144, enabled = true, description = "Transportation - >Verify score gets populated when data is added for previous year  ")
+	public void City_Transportation_CheckScore() {
 
-		log.info("City_Transportation_SavePreviousYearData_CheckScore method started......................... ");
-		boolean flag = false;
-		int OldScore, NewScore;
+		log.info("City_Transportation_CheckScore method started......................... ");
+		int Score;
 
 		try {
 			HomePage.setHomePageApplication();
@@ -2864,34 +2919,21 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			OldScore = CityPage.getTransportScore();
-			flag = CityPage.CheckTransportation_SaveNewRecord();
-
-			if (flag) {
-
-				HomePage.setHomePageApplication();
-				ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonDataInput();
-				CommonMethod.switchToDataInputFrame();
-				CityPage.ClickonGHGEmiissions();
-
-				NewScore = CityPage.getEnergyScore();
-
-				if (NewScore > OldScore) {
-					log.info("Score is updated with---" + NewScore);
-					log.info("City_Transportation_SavePreviousYearData_CheckScore method ends here ........... ");
+			Score = CityPage.getTransportScore();
+			
+				if (Score>0) {
+					log.info("Score is updated with---" + Score);
+					log.info("City_Transportation_CheckScore method ends here ........... ");
 					Assert.assertTrue(true);
 				}
-			} else {
-				log.info("Record is not added successfully");
-				log.info("City_Transportation_SavePreviousYearData_CheckScore method ends here ........... ");
+			 else {
+				log.info("City_Transportation_CheckScore method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("City Project is showing Null");
-			log.info("City_Transportation_SavePreviousYearData_CheckScore method ends here ........... ");
+			log.info("City_Transportation_CheckScore method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -2900,7 +2942,7 @@ public class CityPageTest extends BaseClass {
 	// Transportation - VMT - >Verify 'previous year' and 'next year' button adds
 	// reading respectively.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 145, dependsOnMethods = "City_Transportation_SavePreviousYearData_CheckScore", enabled = true, description = "Transportation - VMT - > Verify 'previous year' and 'next year' button adds reading respectively.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 145, dependsOnMethods = "City_Transportation_SavePreviousYearData", enabled = true, description = "Transportation - VMT - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void City_Transportation_VMT_AddRow_PreviousYear_NextYear() {
 
 		log.info("City_Transportation_VMT_AddRow_PreviousYear_NextYear method started......................... ");
@@ -2915,7 +2957,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004525";
+		// ProjectCityID="8000011540";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2923,7 +2965,6 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			// OldScore = CityPage.getTransportScore();
 			flag = CityPage.Transportation_VMT_SavePreviousAndNextYearRecord();
 			if (flag) {
 				log.info("City_Transportation_VMT_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -2945,7 +2986,7 @@ public class CityPageTest extends BaseClass {
 
 	// Transportation - Verify able to edit readings by using 'Edit' button.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_SavePreviousYearData_CheckScore", priority = 146, enabled = true, description = "Transportation - >Verify able to edit readings by using 'Edit' button.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_SavePreviousYearData", priority = 146, enabled = true, description = "Transportation - >Verify able to edit readings by using 'Edit' button.")
 
 	public void City_Transportation_Edit_Test() {
 
@@ -2991,7 +3032,7 @@ public class CityPageTest extends BaseClass {
 
 	// Transportation - VMT - Verify able to delete line item by using delete
 	// button.
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_SavePreviousYearData_CheckScore", priority = 147, enabled = true, description = "Transportation - VMT - Verify able to delete line item by using delete button.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_SavePreviousYearData", priority = 147, enabled = true, description = "Transportation - VMT - Verify able to delete line item by using delete button.")
 	public void City_Transportation_VMT_Delete_Row() {
 
 		log.info("City_Transportation_VMT_Delete_Row method started......................... ");
@@ -3083,8 +3124,8 @@ public class CityPageTest extends BaseClass {
 	// items falling into those year should be displayed.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_Transportation_SavePreviousYearData_CheckScore" }, priority = 149, enabled = true, description = "Transportation->VMT - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
-	public void Transportation_VMT_FilterTest() {
+			"City_Transportation_SavePreviousYearData" }, priority = 149, enabled = true, description = "Transportation->VMT - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	public void City_Transportation_VMT_FilterTest() {
 
 		log.info("City_Transportation_VMT_FilterTest method started......................... ");
 		boolean flag = false;
@@ -3098,7 +3139,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000004525";
+		// ProjectCityID="8000011517";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3314,7 +3355,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000004564";
+		// ProjectCityID="8000011537";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3764,7 +3805,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000004565";
+		// ProjectCityID="8000011537";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3842,7 +3883,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
 	// (%) - Verify able to delete line item by using delete button.
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
 	public void City_Education_Bachelor_Population_Delete_Row() {
 
 		log.info("City_Education_Bachelor_Population_Delete_Row method started......................... ");
@@ -3856,7 +3897,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000004565";
+		// ProjectCityID="8000011545";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -4722,7 +4763,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000004565";
+		// ProjectCityID="8000011517";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);

@@ -249,6 +249,13 @@ public class HomePageObjects extends BaseClass {
 
 	public void setHomePageApplication() {
 
+		//log.info(driver.getWindowHandle());
+		//log.info(BaseWindow);
+		if(!driver.getWindowHandle().equals(BaseWindow))
+		{
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		}
 		try {
 			CommonMethod.switchToDefaultContent();
 			if (SearchProjectTextBox.isDisplayed())
@@ -258,6 +265,17 @@ public class HomePageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void SwichToMainWindow()
+	{
+		log.info(driver.getWindowHandle());
+		log.info(BaseWindow);
+		if(!driver.getWindowHandle().equals(BaseWindow))
+		{
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		}
 	}
 
 	// This method closes the Project Searching text box

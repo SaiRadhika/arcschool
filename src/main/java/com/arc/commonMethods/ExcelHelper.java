@@ -1,8 +1,11 @@
 package com.arc.commonMethods;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -269,6 +272,87 @@ public class ExcelHelper {
 			e.printStackTrace();
 			return "row " + rowNum + " or column " + colNum + " does not exist  in xlsx";
 		}
+	}
+
+	
+	/**
+	 * This method takes Excel File Path, Sheet Name and column number
+	 * 
+	 * @param sheetName
+	 * @param colNum
+	 * @param rowNum
+	 * @return String Array - containing all the Cell text of specific Cell number.
+	 */
+
+	public ArrayList<String> getAllStringDataFromColumn(String ExcelPath,String sheetName, int colNum) {
+		FileInputStream fs = null;
+		try {
+			fs = new FileInputStream(ExcelPath); 
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		XSSFWorkbook wb = null;
+		ArrayList<String> ColumnData=new ArrayList<String>();
+		
+		try {
+			wb = new XSSFWorkbook(fs);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		XSSFSheet sh = wb.getSheet(sheetName);
+		int TotalRow=sh.getLastRowNum();
+		for(int i=1;i<=TotalRow;i++)
+		{
+			//Row row = sh.getRow(i);
+			//Cell cell = row.getCell(colNum);
+			String CellText=sh.getRow(i).getCell(colNum).getStringCellValue();
+			ColumnData.add(CellText);
+		}
+		System.out.println(ColumnData);
+		return ColumnData;
+		
+	}
+
+	/**
+	 * This method takes Excel File Path, Sheet Name and column number
+	 * 
+	 * @param sheetName
+	 * @param colNum
+	 * @param rowNum
+	 * @return String Array - containing all the Cell text(Numeric) of specific Cell number.
+	 */
+
+	public ArrayList<Integer> getAllNumericDataFromColumn(String ExcelPath,String sheetName, int colNum) {
+		FileInputStream fs = null;
+		try {
+			fs = new FileInputStream(ExcelPath); 
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		XSSFWorkbook wb = null;
+		ArrayList<Integer> ColumnData=new ArrayList<Integer>();
+		
+		try {
+			wb = new XSSFWorkbook(fs);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		XSSFSheet sh = wb.getSheet(sheetName);
+		int TotalRow=sh.getLastRowNum();
+		for(int i=1;i<=TotalRow;i++)
+		{
+			//Row row = sh.getRow(i);
+			//Cell cell = row.getCell(13);
+			int CellText=(int) sh.getRow(i).getCell(colNum).getNumericCellValue();
+			ColumnData.add(CellText);
+		}
+		System.out.println(ColumnData);
+		return ColumnData;
+		
 	}
 
 }

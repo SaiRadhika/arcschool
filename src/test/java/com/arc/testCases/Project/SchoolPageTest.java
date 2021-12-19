@@ -4,15 +4,8 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.arc.PageObject.HomePageObjects;
-import com.arc.PageObject.LoginPageObjects;
-import com.arc.PageObject.Project.BuildingPageObject;
-import com.arc.PageObject.Project.ProjectPageObjects;
 import com.arc.PageObject.Project.SchoolPageObject;
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;

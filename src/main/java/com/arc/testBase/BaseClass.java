@@ -68,6 +68,7 @@ public class BaseClass {
 	public static ParkingPageObject ParkingPage;
 	public static ProjectRegistrationPageObject ProjectRegistrationPage;
 	public static InsightPageObject InsightPage;
+	public static String BaseWindow=null;  // This will capture the base window handle
 
 	@Parameters({ "browserName" })
 	@BeforeTest(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
@@ -94,9 +95,8 @@ public class BaseClass {
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			else if (testSuite != null && testSuite.equalsIgnoreCase("BuildingsRegressionTestSuite.xml"))
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
-			/*
-			 * else data = new ExcelHelper("TestData/QAS_RebootTestData.xlsx");
-			 */
+			  else data = new ExcelHelper("TestData/RegressionTestData.xlsx");
+			 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			log.info("Config.properties file not found");
@@ -179,19 +179,19 @@ public class BaseClass {
 			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		}
 		
-		  /*
+		  
 		  else {
 		  log.info("Environment is not provided or wrong environment entered......");
-		  driver.get(prop.getProperty("QAurl")); 
-		  log.info("URL navigated to .. " + prop.getProperty("STGurl"));
+		  driver.get(prop.getProperty("QAurl")); 		 
+		  log.info("URL navigated to .. " + prop.getProperty("QAurl"));
 		   }
-		  */
-		 
+		  
+		 BaseWindow = driver.getWindowHandle();
 		log.info("Initialization method ends");
 
 	}
 
-	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression" })
+	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression","BuildingsRegression","CityRegression","CommunityRegression" })
 	public void closeBrowser() {
 
 		driver.close();

@@ -1,12 +1,9 @@
 package com.arc.testCases;
 
-import static org.testng.Assert.assertTrue;
-
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.arc.PageObject.InsightPageObject;
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;

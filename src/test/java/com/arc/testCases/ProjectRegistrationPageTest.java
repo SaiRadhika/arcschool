@@ -1,6 +1,5 @@
 package com.arc.testCases;
 
-import java.io.File;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -96,7 +95,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	public void ProjectRegistration_ProjectType_City_Value() {
 		log.info("ProjectRegistration_ProjectType_City_Value method started ........... ");
 		try {
-			ProjectRegistrationPage.closeProjectButton();
+			//ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
 		} catch (Exception e) {
 			HomePage.setHomePageApplication();
@@ -604,7 +603,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
@@ -638,7 +637,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(6);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
@@ -694,7 +693,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(6);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
@@ -748,7 +747,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
@@ -801,7 +800,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
@@ -895,7 +894,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
 				+ CommonMethod.generateRandomString(6);
@@ -951,7 +950,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
 				+ CommonMethod.generateRandomString(6);
@@ -1004,7 +1003,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
 				+ CommonMethod.generateRandomString(5);
@@ -1056,7 +1055,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		String handle = driver.getWindowHandle();
+		driver.getWindowHandle();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
 				+ CommonMethod.generateRandomString(5);
@@ -1340,7 +1339,6 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 
-		boolean flag = false;
 		HomePage.clickOnProject();
 		HomePage.clickOnBuildingSubMenu();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
@@ -1418,7 +1416,6 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 
-		boolean flag = false;
 		HomePage.clickOnProject();
 		HomePage.clickOnBuildingSubMenu();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
@@ -1534,6 +1531,9 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			ProjectBuildingID = BuildingPage.getProjectID(BuildingProjectName);
 			System.setProperty("BuildingProject_Test1", ProjectBuildingID);
 			log.info("  BuildingProject_Test1 is ---" + ProjectBuildingID);
+			
+			System.setProperty("BuildingProject_Test1_Name", BuildingProjectName);
+			log.info("  BuildingProject_Test1_Name is ---" + BuildingProjectName);
 
 			if (BuildingPage.CheckThisIsTestProjectCheckBox(ProjectBuildingID)) {
 				log.info("This is test project creation done successfully ........... ");
@@ -1595,8 +1595,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		if (flag) {
 			BuildingPage.ClickonProjectInManage();
 			ProjectBuildingID = BuildingPage.getProjectID(BuildingProjectName);
-			System.setProperty("BuildingProject_Private3", ProjectBuildingID);
-			log.info("  BuildingProject_Private3 is ---" + ProjectBuildingID);
+			System.setProperty("BuildingProject_Private2", ProjectBuildingID);
+			log.info("  BuildingProject_Private2 is ---" + ProjectBuildingID);
 
 			if (BuildingPage.CheckProjectIsPrivateFlagUnderManage(ProjectBuildingID)) {
 				log.info("This is Private project creation done successfully ........... ");
@@ -1657,8 +1657,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		if (flag) {
 			BuildingPage.ClickonProjectInManage();
 			ProjectBuildingID = BuildingPage.getProjectID(BuildingProjectName);
-			System.setProperty("BuildingProject_Perf4", ProjectBuildingID);
-			log.info("  BuildingProject_Perf4 is ---" + ProjectBuildingID);
+			System.setProperty("BuildingProject_Perf3", ProjectBuildingID);
+			log.info("  BuildingProject_Perf3 is ---" + ProjectBuildingID);
 			if (HeaderText.equals("Overview")) {
 				Assert.assertTrue(true);
 			} else {
@@ -1672,6 +1672,65 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		}
 
 		log.info("Buildings_Project_Creation_Opens_Overview_Screen method ends here ........... ");
+	}
+
+	
+	
+	// Verify clicking on 'Add project' button registers the project with non-leed id.
+
+	@Test(groups = {
+			"BuildingsRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 42, enabled = true, description = "Verify clicking on 'Add project' button registers the project with non-leed id.")
+	public void Buildings_Project_Creation_NonLEEDID() {
+		log.info("Buildings_Project_Creation_NonLEEDID method started ........... ");
+		String ProjectBuildingID = "";
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		HomePage.clickOnProject();
+		HomePage.clickOnBuildingSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String BuildingProjectName = data.getCellData("ProjectRegistration", 9, 2)
+				+ CommonMethod.generateRandomString(5);
+		ProjectRegistrationPage.enterProjectName(BuildingProjectName);
+		ProjectRegistrationPage.SelectBuildingProjectType();
+		ProjectRegistrationPage.enterGrossArea("1904514");
+		ProjectRegistrationPage.SelectUnitType("square meters");
+
+		ProjectRegistrationPage.clickNoLEEDRegistration();
+		ProjectRegistrationPage.selectSpaceType(data.getCellData("ProjectRegistration", 11, 2));
+		ProjectRegistrationPage.selectOwnerType(data.getCellData("ProjectRegistration", 12, 2));
+		ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 13, 2));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 14, 2));
+		ProjectRegistrationPage.selectCountry(data.getCellData("ProjectRegistration", 15, 2));
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+
+		BuildingPage = ProjectRegistrationPage.ClickonBuildingsAddProjectButton();
+
+		boolean flag = BuildingPage.checkBuildingProjectCreation(BuildingProjectName);
+		//String HeaderText = BuildingPage.CheckOverviewHeaderShowing();
+		if (flag) {
+			BuildingPage.ClickonProjectInManage();
+			ProjectBuildingID = BuildingPage.getProjectID(BuildingProjectName);
+			System.setProperty("BuildingProject_NonLEED4", ProjectBuildingID);
+			log.info("  BuildingProject_NonLEED4 is ---" + ProjectBuildingID);
+			if (ProjectBuildingID.substring(0, 4).equals("8000")) {
+				log.info("Non LEED ID Project creation successful..................");
+				Assert.assertTrue(true);
+			} else {
+				log.info("Non LEED ID Project creation failed..................");
+				Assert.assertTrue(false);
+			}
+		} else {
+			log.info("Project Creation gets failed..........");
+			Assert.assertTrue(false);
+		}
+
+		log.info("Buildings_Project_Creation_NonLEEDID method ends here ........... ");
 	}
 
 }
