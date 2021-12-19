@@ -5,8 +5,12 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,6 +24,8 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -162,6 +168,47 @@ public static int getTotalRowCount(String xpath)
 		log.info("getTotalRowCount method ends here...");
 		return TotalRow;
 	}
+}
+
+
+
+// This method will take pdf url and return pdf conetnt
+
+public static String getPDFContent(String pdfURL) {
+	log.info("getPDFContent method starts here ......");
+	URL url = null;
+	try {
+		url=new URL(pdfURL);
+	} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	InputStream is = null;
+	try {
+		is = url.openStream();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	BufferedInputStream fileparse=new BufferedInputStream(is);
+	PDDocument document=null;
+	try {
+		document=PDDocument.load(fileparse);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	String pdfcontent = null;
+	try {
+		pdfcontent=new PDFTextStripper().getText(document);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	log.info(pdfcontent);
+	log.info("getPDFContent method ends here ......");
+	return pdfcontent;
+
 }
 	public static long CheckDownloadedFile() {
 		log.info("CheckDownloadedFile method starts here ......");

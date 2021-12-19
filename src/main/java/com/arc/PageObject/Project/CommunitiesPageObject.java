@@ -2296,7 +2296,7 @@ public class CommunitiesPageObject extends BaseClass {
 
 	public boolean checkPopulationUpdatedByUserName(String Username) {
 		log.info("checkPopulationUpdatedByUserName method starts here............");
-		driver.switchTo().frame("datainput-widget");
+		// driver.switchTo().frame("datainput-widget");
 		boolean flag = false;
 		try {
 			Thread.sleep(2000);
@@ -2330,7 +2330,7 @@ public class CommunitiesPageObject extends BaseClass {
 
 	public boolean checkProjectAreaUpdatedByUserName(String Username) {
 		log.info("checkProjectAreaUpdatedByUserName method starts here............");
-		driver.switchTo().frame("datainput-widget");
+		// driver.switchTo().frame("datainput-widget");
 		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(ProjectAreaTab);
 
@@ -9432,6 +9432,113 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
+	
+	// Project Setting - > Population - > Verify delete button deletes the line item
+		// successfully.
+
+		public boolean CheckPopulationDeleteRow() {
+			log.info("CheckPopulationDeleteRow  starts here........");
+			int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
+
+			try {
+				driver.findElement(
+						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
+						.click();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+			
+			try {
+				waithelper.WaitForElementInvisible(driver.findElement(
+						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Circular Image");
+			}
+
+			int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
+			if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
+				log.info("CheckPopulationDeleteRow  ends here with true........");
+				return true;
+			} else {
+				log.info("CheckPopulationDeleteRow  ends here with false........");
+				return false;
+			}
+
+		}
+		
+		
+		// Project Setting - > Project Area - > Verify delete button deletes the line item
+		// successfully.
+
+		public boolean CheckProjectAreaDeleteRow() {
+			log.info("CheckProjectAreaDeleteRow  starts here........");
+			waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			JSHelper.clickElement(ProjectAreaTab);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
+
+			try {
+				driver.findElement(
+						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
+						.click();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+			
+			try {
+				waithelper.WaitForElementInvisible(driver.findElement(
+						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Circular Image");
+			}
+
+			int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
+			if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
+				log.info("CheckProjectAreaDeleteRow  ends here with true........");
+				return true;
+			} else {
+				log.info("CheckProjectAreaDeleteRow  ends here with false........");
+				return false;
+			}
+
+		}
 	// This method will Delete Row in Data Input - > GHG Emission - > Data Tab
 
 	public boolean CheckGHGEmission_DeleteRow() {

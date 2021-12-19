@@ -261,7 +261,7 @@ public class CommunitiesPageTest extends BaseClass {
 	// member and add line item to this tab and check if his name s updated in
 	// 'Updated by column }
 
-	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display", priority = 102, enabled = false, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display", priority = 102, enabled = true, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
 	public void Community_ProjectSetting_Population_UpdatedBy_Test() {
 
 		log.info("Community_ProjectSetting_Population_UpdatedBy_Test method started......................... ");
@@ -282,7 +282,6 @@ public class CommunitiesPageTest extends BaseClass {
 				log.info("Team Member added-----------------");
 				HomePage.checkSignOut();
 				HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
-				// CommunitiesPage = new CommunitiesPageObject();
 				boolean Updatedflag = false;
 
 				try {
@@ -296,19 +295,14 @@ public class CommunitiesPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
 				HomePage.closeProjectSearchTextBox();
+				String ProfileName=HomePage.getCurrentProfileUserName();
 				CommunitiesPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
-
 				boolean RecordAdded = CommunitiesPage.checkPopulation_Save_New_Row("1400");
 				if (RecordAdded) {
 					log.info("RecordAdded flag is true  --------------");
-					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonProjectSetting();
-					Updatedflag = CommunitiesPage.checkPopulationUpdatedByUserName(HomePage.getCurrentProfileUserName());
+					Updatedflag = CommunitiesPage.checkPopulationUpdatedByUserName(ProfileName);
 					CommonMethod.switchToDefaultContent();
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
@@ -489,6 +483,46 @@ public class CommunitiesPageTest extends BaseClass {
 
 	}
 
+	// Project Setting - > Population - > Verify delete button deletes the line item successfully.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display" }, priority = 105, enabled = true, description = "Project Setting - > Population - > Verify delete button deletes the line item successfully. ")
+	public void Community_Population_DeleteRecord() {
+
+		log.info("Community_Population_DeleteRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+		// ProjectCommunityID="8000011588";
+		if (!ProjectCommunityID.equals(null)) {
+			CommonMethod.switchToDefaultContent();
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CommunitiesPage.ClickonProjectSetting();
+			flag = CommunitiesPage.CheckPopulationDeleteRow();
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Population_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(true);
+		} else {
+			log.info("Community_Population_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}	
 	// Verify in DI, Project settings - ProjectArea tab- Add row button adds a new
 	// line item with fields- 'Effective year', Population, Updated by followed by
 	// Save and delete button
@@ -749,6 +783,47 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 
 	}
+	
+	// Project Setting - > Project Area - > Verify delete button deletes the line item successfully.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 113, enabled = true, description = "Project Setting - > Project Area - > Verify delete button deletes the line item successfully. ")
+	public void Community_ProjectArea_DeleteRecord() {
+
+		log.info("Community_ProjectArea_DeleteRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_NonLeed2");
+		// ProjectCommunityID="8000011588";
+		if (!ProjectCommunityID.equals(null)) {
+			CommonMethod.switchToDefaultContent();
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CommunitiesPage.ClickonProjectSetting();
+			flag = CommunitiesPage.CheckProjectAreaDeleteRow();
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ProjectArea_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(true);
+		} else {
+			log.info("Community_ProjectArea_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
 
 	// Project Area--- Verify Updated by shows the correct team-member/admin
 	// name.{To
@@ -757,7 +832,7 @@ public class CommunitiesPageTest extends BaseClass {
 	// 'Updated by column }
 
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 112, enabled = false, description = "Project Setting -> Project Area \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+			"Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 112, enabled = true, description = "Project Setting -> Project Area \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
 	public void Community_ProjectSetting_ProjectArea_UpdatedBy_Test() {
 
 		log.info("Community_ProjectSetting_ProjectArea_UpdatedBy_Test method started......................... ");
@@ -797,19 +872,14 @@ public class CommunitiesPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
 				HomePage.closeProjectSearchTextBox();
+				String ProfileName=HomePage.getCurrentProfileUserName();
 				CommunitiesPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
 				boolean RecordAdded = CommunitiesPage.checkProjectArea_Save_New_Row("1400");
 				if (RecordAdded) {
 					log.info("RecordAdded flag is true  --------------");
-					CommonMethod.switchToDefaultContent();
-					CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-					CommunitiesPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CommunitiesPage.ClickonProjectSetting();
-					Updatedflag = CommunitiesPage.checkProjectAreaUpdatedByUserName(HomePage.getCurrentProfileUserName());
+					Updatedflag = CommunitiesPage.checkProjectAreaUpdatedByUserName(ProfileName);
 					CommonMethod.switchToDefaultContent();
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
