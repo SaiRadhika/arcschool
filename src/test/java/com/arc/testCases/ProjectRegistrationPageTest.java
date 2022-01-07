@@ -280,6 +280,45 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("ProjectRegistration_CityGrossArea_Invalid_50001_SQ_KM method ends here ........... ");
 
 	}
+	
+	// Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message "This field is required."
+
+		@Test(groups = {
+				"CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 10, enabled = true, description = "Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message \"This field is required.\"")
+		public void ProjectRegistration_LEED_Certification_NotSelectedRadioButton() {
+			log.info(
+					"ProjectRegistration_LEED_Certification_NotSelectedRadioButton method started ........... ");
+			try {
+				ProjectRegistrationPage.closeProjectButton();
+				HomePage.setHomePageApplication();
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			boolean flag = false;
+			HomePage.clickOnProject();
+			HomePage.clickOnCitiesSubMenu();
+			ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+			ProjectRegistrationPage
+					.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
+			//ProjectRegistrationPage.SelectCityProjectType();
+			ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
+			//ProjectRegistrationPage.clickYesLEEDRegistration();
+			ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
+			ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+			ProjectRegistrationPage.ClickonCityAddProjectButton();
+			flag = ProjectRegistrationPage.CheckRegisterforLEEDValidationMessage();
+
+			if (flag) {
+				// ProjectRegistrationPage.closeProjectButton();
+				Assert.assertTrue(true);
+			} else
+				Assert.assertTrue(false);
+			log.info(
+					"ProjectRegistration_LEED_Certification_NotSelectedRadioButton method ends here ........... ");
+
+		}
 
 	/*
 	 * Verify if 'Are you registering for a LEED CERTIFICATION' is selected as
@@ -987,6 +1026,46 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	}
 
+	
+	// Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message "This field is required."
+
+	@Test(groups = {
+			"CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 10, enabled = true, description = "Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message \"This field is required.\"")
+	public void ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton() {
+		log.info(
+				"ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+		HomePage.clickOnProject();
+		HomePage.clickOnCommunitiesSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
+		//ProjectRegistrationPage.SelectCityProjectType();
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
+		//ProjectRegistrationPage.clickYesLEEDRegistration();
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		ProjectRegistrationPage.ClickonCommunitiesAddProjectButton();
+		flag = ProjectRegistrationPage.CheckRegisterforLEEDValidationMessage();
+
+		if (flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info(
+				"ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton method ends here ........... ");
+
+	}
+	
 	/*
 	 * Verify if 'Are you registering for a LEED CERTIFICATION' is selected as
 	 * 'Yes', opens a new modal window with text as below:
