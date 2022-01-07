@@ -14,6 +14,7 @@ import org.testng.Assert;
 import com.arc.PageObject.Project.BuildingPageObject;
 import com.arc.PageObject.Project.CityPageObject;
 import com.arc.PageObject.Project.CommunitiesPageObject;
+import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
@@ -230,7 +231,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		}
 	}
 
-	public String checkLEEDOnLinePortal() {
+	public String checkCityLEEDOnLinePortal() {
 		String handle = driver.getWindowHandle();
 		try {
 			RegisterLEEDCertificationNowPopUpButton.click();
@@ -248,6 +249,41 @@ public class ProjectRegistrationPageObject extends BaseClass {
 						waithelper.waitForElement(
 								driver.findElement(
 										By.xpath("//ul[@class='breadcrumb' ]/li[2][text()='City Registration']")),
+								Integer.parseInt(prop.getProperty("explicitTime")));
+						String title = driver.findElement(By.xpath("//ul[@class='breadcrumb' ]/li[2]")).getText();
+						log.info(title);
+						driver.close();
+						driver.switchTo().window(handle);
+						return title;
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+
+	public String checkCommunityLEEDOnLinePortal() {
+		String handle = driver.getWindowHandle();
+		try {
+			RegisterLEEDCertificationNowPopUpButton.click();
+			Thread.sleep(10000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Set<String> handles = driver.getWindowHandles();
+		if (handles.size() == 2) {
+			for (String window : handles) {
+				if (!handle.equals(window)) {
+					driver.switchTo().window(window);
+					try {
+						waithelper.waitForElement(
+								driver.findElement(
+										By.xpath("//ul[@class='breadcrumb' ]/li[2][text()='Community Registration']")),
 								Integer.parseInt(prop.getProperty("explicitTime")));
 						String title = driver.findElement(By.xpath("//ul[@class='breadcrumb' ]/li[2]")).getText();
 						log.info(title);
@@ -299,7 +335,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		return flag;
 	}
 
-	public boolean SelectCityProjectType() {
+	public boolean CheckCityProjectType() {
 		boolean flag = false;
 
 		try {
@@ -576,9 +612,15 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	public boolean DownLoadServiceAgreement() {
 		log.info("DownLoadServiceAgreement  method starts here -----");
-		String handle = driver.getWindowHandle();
-
+		String pdfcontent=null;
 		waithelper.WaitForElementClickable(ServiceAgreementLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
 		ServiceAgreementLink.click();
 		try {
 			Thread.sleep(5000);
@@ -587,17 +629,17 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			e.printStackTrace();
 
 		}
-
+		
 		Set<String> handles = driver.getWindowHandles();
-		if (handles.size() == 2) {
 			for (String window : handles) {
-				if (!handle.equals(window)) {
+				if (!BaseWindow.equals(window)) {
 					driver.switchTo().window(window);
-					String url = driver.getCurrentUrl();
-					log.info("Second URL is ---------------" + url);
-					if (url.contains("registration_agreement.pdf")) {
+					String Agreementurl = "https://"+(System.getProperty("environment")).toLowerCase()+".app.arconline.io/assets/pdf/registration_agreement.pdf";
+					log.info("Agreement URL is "+Agreementurl);
+					pdfcontent=CommonMethod.getPDFContent(Agreementurl);
+					if (pdfcontent.contains("ARC FOR ALL SERVICES AGREEMENT")) {
 						driver.close();
-						driver.switchTo().window(handle);
+						driver.switchTo().window(BaseWindow);
 						log.info("DownLoadServiceAgreement  method ends with true here -----");
 						return true;
 					} else
@@ -607,7 +649,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 				}
 			}
 
-		}
+		
 		log.info("DownLoadServiceAgreement  method ends with false here -----");
 		return false;
 	}
@@ -616,7 +658,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		boolean flag = false;
 		ServiceAgreementCheckBox.click();
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			if (AddProjectButton.getAttribute("class").equals("pl20 pr20 btn btn-primary"))
 				flag = true;
 

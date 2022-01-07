@@ -578,6 +578,12 @@ public class CityPageObject extends BaseClass {
 		// driver.switchTo().frame("datainput-widget");
 		waithelper.WaitForElementVisibleWithPollingTime(ProjectSettingButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ProjectSettingButton.click();
 		CommonMethod.waitUntilLoadElement();
 		waithelper.WaitForElementVisibleWithPollingTime(PopulationTab,
@@ -2211,15 +2217,13 @@ public class CityPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// List<WebElement> ListOfRows =
-		// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+
 		int TotalRowbeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total row is ---" + TotalRowbeforeAdding);
 		waithelper.WaitForElementClickable(ProjectSettingAddRowButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProjectSettingAddRowButton.click();
 		Population_EffectiveYearTextBox.click();
-
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -2297,7 +2301,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean checkPopulationUpdatedByUserName(String Username) {
 		log.info("checkPopulationUpdatedByUserName method starts here............");
-		driver.switchTo().frame("datainput-widget");
+		// driver.switchTo().frame("datainput-widget");
 		boolean flag = false;
 		try {
 			Thread.sleep(2000);
@@ -2331,7 +2335,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean checkProjectAreaUpdatedByUserName(String Username) {
 		log.info("checkProjectAreaUpdatedByUserName method starts here............");
-		driver.switchTo().frame("datainput-widget");
+		// driver.switchTo().frame("datainput-widget");
 		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(ProjectAreaTab);
 
@@ -3839,7 +3843,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -3895,8 +3900,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -4053,7 +4058,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4108,8 +4114,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -4266,7 +4272,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4320,8 +4327,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -4479,7 +4486,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4537,8 +4545,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -4703,7 +4711,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4760,8 +4769,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -4924,7 +4933,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -4981,8 +4991,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -5145,7 +5155,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -5201,8 +5212,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -5368,7 +5379,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -5424,8 +5436,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -5590,7 +5602,8 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -5647,8 +5660,8 @@ public class CityPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 							Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -7805,7 +7818,8 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -7878,7 +7892,8 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -7950,7 +7965,8 @@ public class CityPageObject extends BaseClass {
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -8025,7 +8041,8 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -8063,7 +8080,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean CheckProsperityMedianIncome_SaveNewRecord() {
 		log.info("CheckProsperityMedianIncome_SaveNewRecord  starts here........");
-		
+
 		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
 		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
@@ -8098,7 +8115,8 @@ public class CityPageObject extends BaseClass {
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -8173,7 +8191,8 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -8329,7 +8348,8 @@ public class CityPageObject extends BaseClass {
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -8482,7 +8502,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8548,13 +8568,14 @@ public class CityPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8620,13 +8641,14 @@ public class CityPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8634,8 +8656,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -8698,24 +8720,24 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Row Circular Image");
 		}
-		
+
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if ( (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
+		if ((driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
 
 			log.info("CheckEquitability_Gini_Coefficient_EditRecord  ends here with true ........");
@@ -8771,13 +8793,14 @@ public class CityPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8785,8 +8808,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -8849,13 +8872,14 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8863,8 +8887,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -8921,14 +8945,14 @@ public class CityPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8936,8 +8960,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -9001,13 +9025,14 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9015,8 +9040,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -9081,13 +9106,14 @@ public class CityPageObject extends BaseClass {
 
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9095,8 +9121,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -9153,15 +9179,15 @@ public class CityPageObject extends BaseClass {
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-		waithelper.WaitForElementInvisible(
-				driver.findElement(
-						By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9169,8 +9195,8 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
+		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+				.getAttribute("value");
 		if (ActValue.equals(ExpValue) && (driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
@@ -9218,7 +9244,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Energy Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9281,7 +9307,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9346,7 +9372,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9410,7 +9436,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9433,6 +9459,112 @@ public class CityPageObject extends BaseClass {
 
 	}
 
+	// Project Setting - > Population - > Verify delete button deletes the line item
+	// successfully.
+
+	public boolean CheckPopulationDeleteRow() {
+		log.info("CheckPopulationDeleteRow  starts here........");
+		int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
+
+		try {
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
+					.click();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		try {
+			waithelper.WaitForElementInvisible(driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Circular Image");
+		}
+
+		int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
+		if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
+			log.info("CheckPopulationDeleteRow  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckPopulationDeleteRow  ends here with false........");
+			return false;
+		}
+
+	}
+	
+	
+	// Project Setting - > Project Area - > Verify delete button deletes the line item
+	// successfully.
+
+	public boolean CheckProjectAreaDeleteRow() {
+		log.info("CheckProjectAreaDeleteRow  starts here........");
+		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(ProjectAreaTab);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
+
+		try {
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
+					.click();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		try {
+			waithelper.WaitForElementInvisible(driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Circular Image");
+		}
+
+		int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
+		if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
+			log.info("CheckProjectAreaDeleteRow  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckProjectAreaDeleteRow  ends here with false........");
+			return false;
+		}
+
+	}
 	// This method will Delete Row in Data Input - > GHG Emission - > Data Tab
 
 	public boolean CheckGHGEmission_DeleteRow() {
@@ -9457,7 +9589,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Energy Circular Image");
 		}
-		
+
 		int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
 		if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
@@ -9497,8 +9629,6 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-
-			
 
 		} else {
 			log.info("There is no any row to delete..");
@@ -9542,7 +9672,6 @@ public class CityPageObject extends BaseClass {
 				log.info("Unable to locate  Circular Image");
 			}
 
-			
 		} else {
 			log.info("There is no any row to delete..");
 		}
@@ -9584,7 +9713,6 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
 
 		} else {
 			log.info("There is no any row to delete..");
@@ -9627,14 +9755,13 @@ public class CityPageObject extends BaseClass {
 			}
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-
-			
 
 		} else {
 			log.info("There is no any row to delete..");
@@ -9676,17 +9803,15 @@ public class CityPageObject extends BaseClass {
 			}
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
 
-			
-
-		}
-		else {
+		} else {
 			log.info("There is no any row to delete..");
 		}
 		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -9717,7 +9842,6 @@ public class CityPageObject extends BaseClass {
 				log.info("Unable to delete the row..");
 				// TODO: handle exception
 			}
-			
 
 			try {
 				waithelper.WaitForElementInvisible(
@@ -9730,17 +9854,15 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
 
-			
-
-		}
-		else {
+		} else {
 			log.info("There is no any row to delete..");
 		}
 		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -9760,7 +9882,7 @@ public class CityPageObject extends BaseClass {
 		boolean flag = false;
 		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
+
 		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Row showing is --" + RowCountBefore);
 		if (RowCountBefore > 1) {
@@ -9783,17 +9905,15 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
 
-			
-
-		}
-		else {
+		} else {
 			log.info("There is no any row to delete..");
 		}
 		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -9815,48 +9935,46 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				log.info("Total Row showing is --" + RowCountBefore);
-				if (RowCountBefore > 1) {
-					try {
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to delete the row..");
-						// TODO: handle exception
-					}
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate Row Circular Image");
-					}
-
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate  Circular Image");
-					}
-
-					
-
-				}
-				else {
-					log.info("There is no any row to delete..");
-				}
-				int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				log.info("Row count after deleting is ---" + RowCountAfter);
-				if (RowCountBefore - RowCountAfter == 1)
-					flag = true;
-				log.info("ProsperityMedianIncome_DeleteRow  ends here........");
-				return flag;
-
+		log.info("Total Row showing is --" + RowCountBefore);
+		if (RowCountBefore > 1) {
+			try {
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to delete the row..");
+				// TODO: handle exception
 			}
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Row Circular Image");
+			}
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+
+		} else {
+			log.info("There is no any row to delete..");
+		}
+		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+
+		log.info("Row count after deleting is ---" + RowCountAfter);
+		if (RowCountBefore - RowCountAfter == 1)
+			flag = true;
+		log.info("ProsperityMedianIncome_DeleteRow  ends here........");
+		return flag;
+
+	}
 	// This method will Delete Row in Data Input - > Quality Of Life-->
 	// Equitability: Median gross rent as (%) of household income
 
@@ -9866,48 +9984,46 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				log.info("Total Row showing is --" + RowCountBefore);
-				if (RowCountBefore > 1) {
-					try {
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to delete the row..");
-						// TODO: handle exception
-					}
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate Row Circular Image");
-					}
-
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate  Circular Image");
-					}
-
-					
-
-				}
-				else {
-					log.info("There is no any row to delete..");
-				}
-				int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				log.info("Row count after deleting is ---" + RowCountAfter);
-				if (RowCountBefore - RowCountAfter == 1)
-					flag = true;
-				log.info("CheckWasteGeneration_DeleteRow  ends here........");
-				return flag;
-
+		log.info("Total Row showing is --" + RowCountBefore);
+		if (RowCountBefore > 1) {
+			try {
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to delete the row..");
+				// TODO: handle exception
 			}
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Row Circular Image");
+			}
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+
+		} else {
+			log.info("There is no any row to delete..");
+		}
+		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+
+		log.info("Row count after deleting is ---" + RowCountAfter);
+		if (RowCountBefore - RowCountAfter == 1)
+			flag = true;
+		log.info("CheckWasteGeneration_DeleteRow  ends here........");
+		return flag;
+
+	}
 
 	// This method will Delete Row in Data Input - > Quality Of Life--> Prosperity:
 	// Unemployment rate (%)
@@ -9927,7 +10043,7 @@ public class CityPageObject extends BaseClass {
 				log.info("Unable to delete the row..");
 				// TODO: handle exception
 			}
-	
+
 			try {
 				waithelper.WaitForElementInvisible(
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
@@ -9939,16 +10055,15 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
 
-		}
-		else {
+		} else {
 			log.info("There is no any row to delete..");
 		}
 		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -9969,7 +10084,7 @@ public class CityPageObject extends BaseClass {
 		boolean flag = false;
 		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
+
 		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Row showing is --" + RowCountBefore);
 		if (RowCountBefore > 1) {
@@ -9992,16 +10107,15 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
 
-		}
-		else {
+		} else {
 			log.info("There is no any row to delete..");
 		}
 		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -10022,7 +10136,7 @@ public class CityPageObject extends BaseClass {
 		boolean flag = false;
 		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
+
 		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Row showing is --" + RowCountBefore);
 		if (RowCountBefore > 1) {
@@ -10034,7 +10148,6 @@ public class CityPageObject extends BaseClass {
 				// TODO: handle exception
 			}
 
-	
 			try {
 				waithelper.WaitForElementInvisible(
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
@@ -10046,15 +10159,15 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
 
-		}
-		else {
+		} else {
 			log.info("There is no any row to delete..");
 		}
 		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -10153,7 +10266,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Energy Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10203,7 +10316,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Energy Circular Image");
 			}
-		
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -10383,7 +10496,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Waste Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -10428,7 +10541,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Waste Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10436,7 +10549,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 			}
 
-			int  TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
 			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
 				Next_flag = true;
@@ -10495,14 +10608,14 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Transport Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			int  TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
 			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
 				prev_flag = true;
@@ -10540,7 +10653,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Transport Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10615,13 +10728,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -10668,13 +10782,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10708,7 +10823,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean Education_Bachelor_Population_SavePreviousAndNextYearRecord() {
 		log.info("Education_Bachelor_Population_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -10744,13 +10859,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -10804,7 +10920,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Transport Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10837,7 +10953,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean Equitability_Gini_Coefficient_SavePreviousAndNextYearRecord() {
 		log.info("Equitability_Gini_Coefficient_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -10873,13 +10989,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
@@ -10894,7 +11011,7 @@ public class CityPageObject extends BaseClass {
 			} else {
 				log.info("Previous year record not added successfully...");
 			}
-		
+
 		}
 		try {
 			Thread.sleep(3000);
@@ -10934,13 +11051,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10956,7 +11074,7 @@ public class CityPageObject extends BaseClass {
 			} else {
 				log.info("Next year record not added successfully...");
 			}
-		
+
 		}
 		if (prev_flag && Next_flag) {
 
@@ -11010,13 +11128,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11066,13 +11185,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11120,7 +11240,6 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		
 		int selected_year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
 		if (CommonMethod.getCurrentYear() - selected_year == 2) {
@@ -11142,13 +11261,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11196,13 +11316,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11235,7 +11356,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord() {
 		log.info("Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -11249,7 +11370,6 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		
 		int selected_year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
 		if (CommonMethod.getCurrentYear() - selected_year == 2) {
@@ -11270,7 +11390,8 @@ public class CityPageObject extends BaseClass {
 			}
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -11284,7 +11405,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11332,13 +11453,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11372,7 +11494,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean ProsperityUnemployementRate_SavePreviousAndNextYearRecord() {
 		log.info("ProsperityUnemployementRate_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -11386,7 +11508,6 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		
 		int selected_year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
 		if (CommonMethod.getCurrentYear() - selected_year == 2) {
@@ -11408,13 +11529,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11461,13 +11583,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11501,7 +11624,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord() {
 		log.info("HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -11515,7 +11638,6 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-	
 		int selected_year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
 		if (CommonMethod.getCurrentYear() - selected_year == 2) {
@@ -11537,13 +11659,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11591,13 +11714,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11631,7 +11755,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord() {
 		log.info("HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -11645,7 +11769,6 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		
 		int selected_year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
 		if (CommonMethod.getCurrentYear() - selected_year == 2) {
@@ -11667,13 +11790,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11726,13 +11850,14 @@ public class CityPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11766,7 +11891,7 @@ public class CityPageObject extends BaseClass {
 		log.info("CheckWaterConsum_SavePreviousAndNextYearRecord  starts here........");
 
 		boolean prev_flag = false;
-		boolean Next_flag = false; 
+		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		PreviousYearbutton.click();
 		log.info("Total Number of record showing before adding..." + TotalRowBeforeAdding);
@@ -11800,7 +11925,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate water Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11850,7 +11975,7 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate water Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -11890,7 +12015,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean CheckWaterConsumption_SaveNewRecord() {
 		log.info("CheckWaterConsumption_SaveNewRecord  starts here........");
-		
+
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of row before adding.. " + TotalRowBeforeAdding);
 		WaterConsum_Data_AddYearBtn.click();
@@ -12017,7 +12142,7 @@ public class CityPageObject extends BaseClass {
 
 	public boolean CheckWaste_Diversion_SaveNewRecord() {
 		log.info("CheckWaste_Diversion_SaveNewRecord  starts here........");
-		
+
 		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
 		Waste_AddYearButton.click();
@@ -12112,7 +12237,6 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Water Circular Image");
 			}
-			
 
 			TotalRowAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of record showing after adding..." + TotalRowAfterAdding);
@@ -12182,7 +12306,6 @@ public class CityPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Water Circular Image");
 			}
-			
 
 			TotalRowAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of record showing after adding..." + TotalRowAfterAdding);

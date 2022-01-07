@@ -262,14 +262,14 @@ public class CityPageTest extends BaseClass {
 	// member and add line item to this tab and check if his name s updated in
 	// 'Updated by column }
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ProjectSetting_Population_Save_Row_DecadeCalender_Display", priority = 102, enabled = false, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 102,dependsOnMethods = "City_ProjectSetting_Population_Save_Row_DecadeCalender_Display", enabled = true, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
 	public void City_ProjectSetting_Population_UpdatedBy_Test() {
 
 		log.info("City_ProjectSetting_Population_UpdatedBy_Test method started......................... ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000006647";
+		 //ProjectCityID="8000011584";
 		if (!ProjectCityID.equals(null)) {
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			CityPage.ClickonTeamInManage();
@@ -283,7 +283,6 @@ public class CityPageTest extends BaseClass {
 				log.info("Team Member added-----------------");
 				HomePage.checkSignOut();
 				HomePage = LoginPage.loginLater(data.getCellData("City", 0, 2), data.getCellData("City", 1, 2));
-				// CityPage = new CityPageObject();
 				boolean Updatedflag = false;
 
 				try {
@@ -297,19 +296,14 @@ public class CityPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 				HomePage.closeProjectSearchTextBox();
+				String ProfileName=HomePage.getCurrentProfileUserName();
 				CityPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CityPage.ClickonProjectSetting();
-
 				boolean RecordAdded = CityPage.checkPopulation_Save_New_Row("1400");
 				if (RecordAdded) {
 					log.info("RecordAdded flag is true  --------------");
-					CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-					CityPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CityPage.ClickonProjectSetting();
-					Updatedflag = CityPage.checkPopulationUpdatedByUserName(HomePage.getCurrentProfileUserName());
+					Updatedflag = CityPage.checkPopulationUpdatedByUserName(ProfileName);
 					CommonMethod.switchToDefaultContent();
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
@@ -485,6 +479,47 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(true);
 		} else {
 			log.info("City_Population_Filter_Test method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
+	
+	// Project Setting - > Population - > Verify delete button deletes the line item successfully.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" }, priority = 105, enabled = true, description = "Project Setting - > Population - > Verify delete button deletes the line item successfully. ")
+	public void City_Population_DeleteRecord() {
+
+		log.info("City_Population_DeleteRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_Perf4");
+		// ProjectCityID="8000011588";
+		if (!ProjectCityID.equals(null)) {
+			CommonMethod.switchToDefaultContent();
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CityPage.ClickonProjectSetting();
+			flag = CityPage.CheckPopulationDeleteRow();
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Population_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(true);
+		} else {
+			log.info("City_Population_DeleteRecord method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -751,6 +786,47 @@ public class CityPageTest extends BaseClass {
 
 	}
 
+	
+	// Project Setting - > Project Area - > Verify delete button deletes the line item successfully.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 113, enabled = true, description = "Project Setting - > Project Area - > Verify delete button deletes the line item successfully. ")
+	public void City_ProjectArea_DeleteRecord() {
+
+		log.info("City_ProjectArea_DeleteRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+		// ProjectCityID="8000011588";
+		if (!ProjectCityID.equals(null)) {
+			CommonMethod.switchToDefaultContent();
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonDataInput();
+			CommonMethod.switchToDataInputFrame();
+			CityPage.ClickonProjectSetting();
+			flag = CityPage.CheckProjectAreaDeleteRow();
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ProjectArea_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(true);
+		} else {
+			log.info("City_ProjectArea_DeleteRecord method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
 	// Project Area--- Verify Updated by shows the correct team-member/admin
 	// name.{To
 	// check this, add any team-member in teams section and login using that team
@@ -758,15 +834,15 @@ public class CityPageTest extends BaseClass {
 	// 'Updated by column }
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 112, enabled = false, description = "Project Setting -> Project Area \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
-	public void City_ProjectSetting_ProjectArea_UpdatedBy_Test() {
+			"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 114, enabled = true, description = "Project Setting -> Project Area \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+	public void City_ProjectSetting_ProjectArea_UpdatedBy() {
 
-		log.info("City_ProjectSetting_ProjectArea_UpdatedBy_Test method started......................... ");
+		log.info("City_ProjectSetting_ProjectArea_UpdatedBy method started......................... ");
 		CommonMethod.switchToDefaultContent();
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
 		String ProjectCityID = System.getProperty("CityProject_Test1");
-		// ProjectCityID="8000006651";
+		// ProjectCityID="8000011584";
 		if (!ProjectCityID.equals(null)) {
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			CityPage.ClickonTeamInManage();
@@ -794,34 +870,28 @@ public class CityPageTest extends BaseClass {
 					HomePage.setHomePageApplication();
 					e.printStackTrace();
 				}
-
 				ProjectPage = HomePage.clickOnProject();
 				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 				HomePage.closeProjectSearchTextBox();
+				String ProfileName=HomePage.getCurrentProfileUserName();
 				CityPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CityPage.ClickonProjectSetting();
 				boolean RecordAdded = CityPage.checkProjectArea_Save_New_Row("1400");
 				if (RecordAdded) {
 					log.info("RecordAdded flag is true  --------------");
-					CommonMethod.switchToDefaultContent();
-					CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-					CityPage.ClickonDataInput();
-					HomePage.closeProjectSearchTextBox();
-					CommonMethod.switchToDataInputFrame();
-					CityPage.ClickonProjectSetting();
-					Updatedflag = CityPage.checkProjectAreaUpdatedByUserName(HomePage.getCurrentProfileUserName());
+					Updatedflag = CityPage.checkProjectAreaUpdatedByUserName(ProfileName);
 					CommonMethod.switchToDefaultContent();
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
 					if (Updatedflag) {
 						log.info(
-								"City_ProjectSetting_ProjectArea_UpdatedBy_Test method ends with true here ........... ");
+								"City_ProjectSetting_ProjectArea_UpdatedBy method ends with true here ........... ");
 						Assert.assertTrue(true);
 
 					} else {
 						log.info(
-								"City_ProjectSetting_ProjectArea_UpdatedBy_Test method ends ends with false here ........... ");
+								"City_ProjectSetting_ProjectArea_UpdatedBy method ends ends with false here ........... ");
 						Assert.assertTrue(false);
 					}
 				} else {
@@ -830,13 +900,13 @@ public class CityPageTest extends BaseClass {
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
 					log.info(
-							"City_ProjectSetting_ProjectArea_UpdatedBy_Test method ends ends with false here ........... ");
+							"City_ProjectSetting_ProjectArea_UpdatedBy method ends ends with false here ........... ");
 					Assert.assertTrue(false);
 				}
 
 			} else {
 				log.info("Unable to add the team member.-----------------");
-				log.info("City_ProjectSetting_ProjectArea_UpdatedBy_Test method ends with false here ........... ");
+				log.info("City_ProjectSetting_ProjectArea_UpdatedBy method ends with false here ........... ");
 				Assert.assertTrue(false);
 			}
 
