@@ -75,6 +75,12 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//input[@type='radio'])[2]")
 	WebElement RegisterLEEDNoRadioBtn;
+	
+	@FindBy(xpath = "//span[@class='head fs16 lh30']/following-sibling::div[2]")
+	WebElement RegisterLEED_ValidationMSG;
+	
+	@FindBy(xpath = "//table/tbody/tr[@class='hide900']/descendant::p")
+	WebElement AddProject_ValidationMSG;
 
 	@FindBy(xpath = "//button[text()='Register for LEED certification now']")
 	WebElement RegisterLEEDCertificationNowPopUpButton;
@@ -194,6 +200,18 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		return flag;
 	}
 
+	public boolean CheckRegisterforLEEDValidationMessage() {
+		if(AddProject_ValidationMSG.isDisplayed() && RegisterLEED_ValidationMSG.isDisplayed())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
 	public boolean CheckRegisterforLEEDPopupButtonsExists() {
 		boolean flag = false;
 		try {
