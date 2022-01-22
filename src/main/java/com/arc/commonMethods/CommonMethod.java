@@ -13,6 +13,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -150,66 +152,62 @@ public class CommonMethod extends BaseClass {
 
 	}
 
-	// This method takes the xpath and returns the number of rows of the respective table
-public static int getTotalRowCount(String xpath)
-{
-	log.info("getTotalRowCount method starts here...");
-	int TotalRow = 0;
-	List<WebElement> RowList = driver.findElements(By.xpath(xpath+"/td"));	
-	if(RowList.size()==1)
-	{
-		log.info("getTotalRowCount method ends here...");
-		return TotalRow;
+	// This method takes the xpath and returns the number of rows of the respective
+	// table
+	public static int getTotalRowCount(String xpath) {
+		log.info("getTotalRowCount method starts here...");
+		int TotalRow = 0;
+		List<WebElement> RowList = driver.findElements(By.xpath(xpath + "/td"));
+		if (RowList.size() == 1) {
+			log.info("getTotalRowCount method ends here...");
+			return TotalRow;
+		} else {
+			RowList = driver.findElements(By.xpath(xpath));
+			TotalRow = RowList.size();
+			log.info("getTotalRowCount method ends here...");
+			return TotalRow;
+		}
 	}
-	else
-	{
-		RowList = driver.findElements(By.xpath(xpath));
-		TotalRow=RowList.size();
-		log.info("getTotalRowCount method ends here...");
-		return TotalRow;
-	}
-}
-
-
 
 // This method will take pdf url and return pdf conetnt
 
-public static String getPDFContent(String pdfURL) {
-	log.info("getPDFContent method starts here ......");
-	URL url = null;
-	try {
-		url=new URL(pdfURL);
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	InputStream is = null;
-	try {
-		is = url.openStream();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	BufferedInputStream fileparse=new BufferedInputStream(is);
-	PDDocument document=null;
-	try {
-		document=PDDocument.load(fileparse);
-	} catch (IOException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	String pdfcontent = null;
-	try {
-		pdfcontent=new PDFTextStripper().getText(document);
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	log.info(pdfcontent);
-	log.info("getPDFContent method ends here ......");
-	return pdfcontent;
+	public static String getPDFContent(String pdfURL) {
+		log.info("getPDFContent method starts here ......");
+		URL url = null;
+		try {
+			url = new URL(pdfURL);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		InputStream is = null;
+		try {
+			is = url.openStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BufferedInputStream fileparse = new BufferedInputStream(is);
+		PDDocument document = null;
+		try {
+			document = PDDocument.load(fileparse);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String pdfcontent = null;
+		try {
+			pdfcontent = new PDFTextStripper().getText(document);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(pdfcontent);
+		log.info("getPDFContent method ends here ......");
+		return pdfcontent;
 
-}
+	}
+
 	public static long CheckDownloadedFile() {
 		log.info("CheckDownloadedFile method starts here ......");
 		// DownloadFolder=new File(UUID.randomUUID().toString());
@@ -228,6 +226,31 @@ public static String getPDFContent(String pdfURL) {
 		return 0;
 	}
 
+	public static boolean CheckDownloadedFileName(String fname) {
+		log.info("CheckDownloadedFile method starts here ......");
+		// DownloadFolder=new File(UUID.randomUUID().toString());
+		boolean Flag = false;
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.getName().contains(fname)) {
+					Flag = true;
+					break;
+				} else {
+					Flag = false;
+				}
+
+			}
+			log.info("File found flag is " + Flag);
+		}
+		log.info("CheckDownloadedFile method ends here ......");
+		return Flag;
+	}
+
 	// Checks that whether Export Data excel file downloaded or not.
 	public static boolean CheckExportDataDownloadedFile() {
 		log.info("CheckExportDataDownloadedFile method starts here ......");
@@ -239,12 +262,12 @@ public static String getPDFContent(String pdfURL) {
 		if (ListOfFiles.length != 0) {
 			for (File file : ListOfFiles) {
 				log.info("Size of the file - " + file.getName() + " is  " + file.length());
-				if(file.getName().equals("Export Data.xlsx") && file.length()>0) {
-					log.info("Export Data.xlsx file downloaded successfully with size of "+file.length());
+				if (file.getName().equals("Export Data.xlsx") && file.length() > 0) {
+					log.info("Export Data.xlsx file downloaded successfully with size of " + file.length());
 					log.info("CheckDownloadedFile method ends here ......");
 					return true;
 				}
-				
+
 			}
 			log.info("CheckDownloadedFile method ends here ......");
 			return false;
@@ -733,25 +756,21 @@ public static String getPDFContent(String pdfURL) {
 	}
 
 	// This method will select the values from Unlisted Dropdown
-	
+
 	public static void selectValuesFromDropDown(List<WebElement> ItemList, String value) {
 		log.info("selectValuesFromDropDown method starts here......");
-		for(WebElement item :ItemList)
-		{
+		for (WebElement item : ItemList) {
 			String temp = item.getText();
-			log.info("Current value is "+temp);
-			if(value.equalsIgnoreCase(temp))
-			{
+			log.info("Current value is " + temp);
+			if (value.equalsIgnoreCase(temp)) {
 				item.click();
-				log.info(temp+ " seleceted successfully");
+				log.info(temp + " seleceted successfully");
 				break;
 			}
 		}
 		log.info("selectValuesFromDropDown method ends here......");
 	}
 
-	
-	
 	// This method will refresh the page and wait till page loaded successfully
 
 	public static void RefreshPagewaitForPageLoaded(WebDriver driver) {
@@ -969,6 +988,88 @@ public static String getPDFContent(String pdfURL) {
 
 		log.info("Team_Delete_Member Method ends here.............................................");
 		return false;
+
+	}
+
+	// (Building-->Occupant Survey) This method will take Environment Slider
+	// Webelement and Satisfcation Level return boolean value whther satisfcation
+	// level selected or not
+	public static boolean SelectEnvironmentSlider(WebElement ele, String SatisfactionLevel) {
+		log.info("SelectEnvironmentSlider Method starts here...........");
+		boolean flag = false;
+		int k = 0;
+		int Environment_Xwidth = ele.getSize().getWidth();
+		actionhelper.dragAndDrop(ele, Environment_Xwidth - 150, 0);
+		for (int i = 0; i <= 6; i++) {
+			String EnvironmentSatisfaction = driver
+					.findElement(By.xpath("//h4[@class='slider_heading ng-binding ng-scope']")).getText();
+			log.info("Current Satisfaction level showing is " + EnvironmentSatisfaction + " ..");
+			if (EnvironmentSatisfaction.equals(SatisfactionLevel)) {
+				flag = true;
+				break;
+			}
+			actionhelper.dragAndDrop(ele, Environment_Xwidth + k, 0);
+			k = 25;
+		}
+		if (flag) {
+			log.info(SatisfactionLevel + " selected successfully..");
+		} else {
+			log.info("Unable to select " + SatisfactionLevel);
+		}
+		log.info("SelectEnvironmentSlider Method ends here...........");
+		return flag;
+	}
+
+	// (Building-->Occupant Survey) This method will take Environment Slider
+	// Webelement and Satisfcation Level return boolean value whther satisfcation
+	// level selected or not
+	public static boolean SelectDiseaseControlSlider(WebElement Slider, WebElement Header, String SatisfactionLevel) {
+		log.info("SelectDiseaseControlSlider Method starts here...........");
+		boolean flag = false;
+		int k = 0;
+		int Slider_Xwidth = Slider.getSize().getWidth();
+		actionhelper.dragAndDrop(Slider, Slider_Xwidth - 150, 0);
+		for (int i = 0; i <= 6; i++) {
+			String HeaderMSG = Header.getText();
+			log.info("Current Satisfaction level showing is " + HeaderMSG + " ..");
+			if (HeaderMSG.equals(SatisfactionLevel)) {
+				flag = true;
+				break;
+			}
+			actionhelper.dragAndDrop(Slider, Slider_Xwidth + k, 0);
+			k = 25;
+		}
+		if (flag) {
+			log.info(SatisfactionLevel + " selected successfully..");
+		} else {
+			log.info("Unable to select " + SatisfactionLevel);
+		}
+		log.info("SelectDiseaseControlSlider Method ends here...........");
+		return flag;
+	}
+
+	public static ArrayList<String> getStateList(String Country) {
+		ArrayList<String> StateList = null;
+		String[] USStates = { "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado",
+				"Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho",
+				"Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+				"Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+				"New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Isl",
+				"Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina",
+				"South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington",
+				"West Virginia", "Wisconsin", "Wyoming" };
+		String[] IndiaStates = { "Andaman and Nico.In.", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar",
+				"Chandigarh", "Chhaattisgarh", "Dadra and Nagar Hav.", "Daman and Diu", "Delhi", "Goa", "Gujarat",
+				"Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep",
+				"Madhya Pradesh", "Maharashtra", "Manipur", "Megalaya", "Mizoram", "Nagaland", "Orissa", "Pondicherry",
+				"Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttaranchal",
+				"West Bengal" };
+		if (Country.equals("United States")) {
+			 StateList = (ArrayList<String>) Arrays.asList(USStates);
+		} else if (Country.equals("India")) {
+			 StateList = (ArrayList<String>) Arrays.asList(IndiaStates);
+		}		
+		return StateList;
 
 	}
 

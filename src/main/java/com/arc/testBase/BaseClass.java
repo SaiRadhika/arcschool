@@ -11,6 +11,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -41,6 +42,7 @@ import com.arc.commonMethods.JavaScriptHelper;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.commonMethods.WaitHelper;
 import com.arc.commonMethods.WebEventListener;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 
 public class BaseClass {
 
@@ -68,7 +70,8 @@ public class BaseClass {
 	public static ParkingPageObject ParkingPage;
 	public static ProjectRegistrationPageObject ProjectRegistrationPage;
 	public static InsightPageObject InsightPage;
-	public static String BaseWindow=null;  // This will capture the base window handle
+	public static String BaseWindow = null; // This will capture the base window handle
+	public static NgWebDriver ngWebDriver;
 
 	@Parameters({ "browserName" })
 	@BeforeTest(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
@@ -95,8 +98,9 @@ public class BaseClass {
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			else if (testSuite != null && testSuite.equalsIgnoreCase("BuildingsRegressionTestSuite.xml"))
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
-			  else data = new ExcelHelper("TestData/RegressionTestData.xlsx");
-			 
+			else
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			log.info("Config.properties file not found");
@@ -106,7 +110,7 @@ public class BaseClass {
 
 		// String browserName = prop.getProperty("browserName");
 		CommonMethod.deleteAllDownloadedFiles();
-		//CommonMethod.deleteAllPreviousScreenshotsFiles();
+		// CommonMethod.deleteAllPreviousScreenshotsFiles();
 		String OS_Name = System.getProperty("os.name");
 		log.info("Opearting System is --" + OS_Name);
 		if (browserName.equalsIgnoreCase("chrome")) {
@@ -116,12 +120,13 @@ public class BaseClass {
 			log.info("DownloadFolder path is --" + DownloadFolder);
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--start-maximized");
-			
-			  options.addArguments("--no-sandbox");
-			  options.addArguments("--disable-dev-shm-usage");
-			  options.addArguments("--headless"); options.addArguments("--disable-gpu");
-			  options.addArguments("window-size=1382x754");
-			 
+
+			options.addArguments("--no-sandbox");
+			options.addArguments("--disable-dev-shm-usage");
+			options.addArguments("--headless");
+			options.addArguments("--disable-gpu");
+			options.addArguments("window-size=1382x754");
+
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);
 			Pref.put("download.default_directory", DownloadFolder.getAbsolutePath());
@@ -157,6 +162,10 @@ public class BaseClass {
 		e_driver.register(eventListener);
 
 		driver = e_driver;
+		// NgWebDriver ngWebDriver;
+		JavascriptExecutor jsDriver;
+		jsDriver = (JavascriptExecutor) driver;
+		ngWebDriver = new NgWebDriver(jsDriver);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		waithelper = new WaitHelper();
@@ -178,20 +187,21 @@ public class BaseClass {
 			driver.get(prop.getProperty("STGurl"));
 			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		}
-		
-		  
-		  else {
-		  log.info("Environment is not provided or wrong environment entered......");
-		  driver.get(prop.getProperty("QAurl")); 		 
-		  log.info("URL navigated to .. " + prop.getProperty("QAurl"));
-		   }
-		  
-		 BaseWindow = driver.getWindowHandle();
+
+		else {
+			log.info("Environment is not provided or wrong environment entered......");
+			System.setProperty("environment", "QAS");
+			driver.get(prop.getProperty("QAurl"));
+			log.info("URL navigated to .. " + prop.getProperty("QAurl"));
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		BaseWindow = driver.getWindowHandle();
 		log.info("Initialization method ends");
 
 	}
 
-	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression","BuildingsRegression","CityRegression","CommunityRegression" })
+	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression", "BuildingsRegression", "CityRegression",
+			"CommunityRegression" })
 	public void closeBrowser() {
 
 		driver.close();

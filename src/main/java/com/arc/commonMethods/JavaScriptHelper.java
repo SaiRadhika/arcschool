@@ -1,6 +1,7 @@
 package com.arc.commonMethods;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -86,5 +87,14 @@ public class JavaScriptHelper extends BaseClass {
 	public void clickElement(WebElement element) {
 		executeScript("arguments[0].click();", element);
 	}
+	
+	public void displayHiddenElement(WebElement element) {
+		executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+	}
+	
+	public String getCurrentURL() {
+		return executeScript("return document.URL;").toString();
+	}
+	
 
 }
