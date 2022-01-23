@@ -6951,8 +6951,8 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
-
+			//String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 			try {
 				Thread.sleep(3000);
@@ -7043,7 +7043,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/div/button")).click();
 			try {
@@ -7136,7 +7136,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 			try {
@@ -7220,7 +7220,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 			try {
@@ -7303,7 +7303,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7399,7 +7399,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Total Number of rows showing are  " + BeforeTotalRows);
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 
 			try {
@@ -7500,7 +7500,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 			try {
@@ -7602,7 +7602,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 			try {
@@ -7704,7 +7704,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7806,7 +7806,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7909,7 +7909,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8009,7 +8009,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8109,7 +8109,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8209,7 +8209,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8310,7 +8310,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8411,7 +8411,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8512,7 +8512,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8613,7 +8613,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8715,7 +8715,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8827,7 +8827,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 			try {
@@ -8945,7 +8945,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//div[@class='dropdown dropDownuploadOptions']/button")).click();
 			try {
@@ -13125,7 +13125,7 @@ public class BuildingPageObject extends BaseClass {
 			Transportation_OpenNewTabWithCopiedURL();
 			driver.findElement(
 					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/descendant::input[1]")).click();
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 			js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", driver.findElement(
 					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/input[@type='file']")));
 			driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/span"))
@@ -13251,7 +13251,7 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(
 				By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[1]"))
 				.click();
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		// driver.findElement(
 		// By.xpath("(//div[@class='survey-question radio-button'])[" + QNo +
 		// "]/div[2]/div[2]/div[2]/span")).click();
@@ -13397,7 +13397,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 disease_comm_signage']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 disease_comm_signage']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 disease_comm_signage']/descendant::div[@class='icon_deleteDoc']";
@@ -13465,7 +13465,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 clean_disinfactant']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 clean_disinfactant']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 clean_disinfactant']/descendant::div[@class='icon_deleteDoc']";
@@ -13533,7 +13533,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 ppe_facility']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 ppe_facility']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 ppe_facility']/descendant::div[@class='icon_deleteDoc']";
@@ -13602,7 +13602,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify(int QNo, String QLink) {
 		log.info("FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 social_distance']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 social_distance']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 social_distance']/descendant::div[@class='icon_deleteDoc']";
@@ -13670,7 +13670,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_HVACSystemOperation_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_HVACSystemOperation_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 hvac_system']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 hvac_system']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 hvac_system']/descendant::div[@class='icon_deleteDoc']";
@@ -13737,7 +13737,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 hvac_ventilation']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 hvac_ventilation']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 hvac_ventilation']/descendant::div[@class='icon_deleteDoc']";
@@ -13806,7 +13806,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 hvac_filtration']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 hvac_filtration']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 hvac_filtration']/descendant::div[@class='icon_deleteDoc']";
@@ -13874,7 +13874,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_Elevatormanagement_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_Elevatormanagement_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 elevator_man']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 elevator_man']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 elevator_man']/descendant::div[@class='icon_deleteDoc']";
@@ -13942,7 +13942,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_PortableWaterManagement_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_PortableWaterManagement_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 potable_water']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 potable_water']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 potable_water']/descendant::div[@class='icon_deleteDoc']";
@@ -14017,7 +14017,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_IAQAssessment_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_IAQAssessment_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 iaq_assessment']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 iaq_assessment']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 iaq_assessment']/descendant::div[@class='icon_deleteDoc']";
@@ -14085,7 +14085,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 hvac_outdoor']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 hvac_outdoor']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 hvac_outdoor']/descendant::div[@class='icon_deleteDoc']";
@@ -14152,7 +14152,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_OccupantScreening_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_OccupantScreening_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 occupant_screening']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 occupant_screening']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 occupant_screening']/descendant::div[@class='icon_deleteDoc']";
@@ -14221,7 +14221,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 sick_leave']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 sick_leave']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 sick_leave']/descendant::div[@class='icon_deleteDoc']";
@@ -14321,7 +14321,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink(int QNo, String QLink) {
 		log.info("FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink method starts here...");
-		String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 		String YesXpath = "//div[@class='mb30 health_insurance']/descendant::span[contains(text(),'Yes')]/input";
 		String UploadXpath = "//div[@class='mb30 health_insurance']/descendant::span[contains(text(),'Upload file')]";
 		String DeleteXpath = "//div[@class='mb30 health_insurance']/descendant::div[@class='icon_deleteDoc']";
