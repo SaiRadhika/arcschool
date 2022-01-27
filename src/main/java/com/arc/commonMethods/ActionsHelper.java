@@ -23,6 +23,11 @@ public class ActionsHelper extends BaseClass {
 
 	}
 	
+	public void mouseOverElementAndDoubleClick(WebElement ele) {
+
+		action.doubleClick(ele).build().perform();
+
+	}
 	public void dragAndDrop(WebElement ele,int x, int y) {
 
 		action.dragAndDropBy(ele, x, y);

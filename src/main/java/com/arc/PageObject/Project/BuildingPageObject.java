@@ -1,10 +1,17 @@
 package com.arc.PageObject.Project;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.InputEvent;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,15 +27,25 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.xmlbeans.impl.values.JavaStringHolderEx;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
+import com.paulhammant.ngwebdriver.ByAngular;
+import com.paulhammant.ngwebdriver.ByAngularButtonText;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 
 public class BuildingPageObject extends BaseClass {
 
@@ -304,13 +321,13 @@ public class BuildingPageObject extends BaseClass {
 	WebElement Transportation_SatisfactionMSG;
 
 	@FindBy(xpath = "//p[text()='Comments (Optional)']/following-sibling::input[1]")
-	WebElement Transportation_CommentOptional;
+	WebElement BuildingSurvey_CommentOptional;
 
 	@FindBy(xpath = "//p[text()='Comments (Optional)']/following-sibling::input[2]")
-	WebElement Transportation_Location;
+	WebElement BuildingSurvey_Location;
 
 	@FindBy(xpath = "//p[text()='Comments (Optional)']/following-sibling::input[3]")
-	WebElement Transportation_NameOptional;
+	WebElement BuildingSurvey_NameOptional;
 
 	@FindBy(xpath = "//button[text()='Submit']")
 	WebElement Transportation_SubmitBtn;
@@ -318,47 +335,86 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(xpath = "//h4[text()='Thank you for taking our survey! Your responses:']")
 	WebElement Transportation_SubmitResponseText;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[2]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Occupant Satisfaction Survey')]")
 	WebElement HE_Occupant_Satisfaction_Survey;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[3]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Carbon Dioxide')]")
 	WebElement HE_CarbonDioxide;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[4]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Total Volatile Organic Compounds')]")
 	WebElement HE_TVOC;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[13]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'PM2.5')]")
 	WebElement HE_PM2_5;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[14]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Ozone')]")
 	WebElement HE_Ozone;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[15]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Carbon Monoxide')]")
 	WebElement HE_CarbonMonoOxide;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[12]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Acetaldehyde')]")
 	WebElement HE_Acetaldehyde;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[11]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Benzene')]")
 	WebElement HE_Benzene;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[10]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Styrene')]")
 	WebElement HE_Styrene;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[9]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Toluene')]")
 	WebElement HE_Toluene;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[8]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Naphthalene')]")
 	WebElement HE_Naphthalene;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[7]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Dichlorobenzene')]")
 	WebElement HE_DichloroBenzene;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[6]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Xylenes-total')]")
 	WebElement HE_XylenesTotal;
 
-	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[5]/td[2]/div")
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::div[contains(text(),'Formaldehyde')]")
 	WebElement HE_FormalDehype;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/descendant::span[contains(text(),'Show more')]")
+	WebElement HE_ShowMore;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Facility Management Survey')]")
+	WebElement ReEntry_FMS;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Occupant Survey')]")
+	WebElement ReEntry_OccupantSurvey;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Relative Humidity')]")
+	WebElement ReEntry_RelativeHumidity;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::span[contains(text(),'Show more')]")
+	WebElement ReEntry_ShowMore;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-0']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_Environment_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-1']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_DiseaseControl_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-2']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_OccupantScreening_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-3']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_HandWashing_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-4']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_SupportSocialDistancing_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-5']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_ManintainSocialDistancing_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-6']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_ProtectedDiseaseTransmission_Slider;
+
+	@FindBy(xpath = "//div[@id='js-rangeslider-7']/div[@class='rangeslider__handle']")
+	WebElement ReEntry_StaffUsePPE_Slider;
 
 	public BuildingPageObject() {
 		PageFactory.initElements(driver, this);
@@ -709,6 +765,13 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			HE_ShowMore.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Show More text");
+			// TODO: handle exception
+		}
 		waithelper.WaitForElementClickable(HE_Occupant_Satisfaction_Survey,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Occupant_Satisfaction_Survey.click();
@@ -725,6 +788,13 @@ public class BuildingPageObject extends BaseClass {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		try {
+			HE_ShowMore.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Show More text");
+			// TODO: handle exception
 		}
 		waithelper.WaitForElementClickable(HE_CarbonDioxide, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_CarbonDioxide.click();
@@ -750,6 +820,13 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			HE_ShowMore.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Show More text");
+			// TODO: handle exception
+		}
 		waithelper.WaitForElementClickable(HE_TVOC, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_TVOC.click();
 
@@ -774,7 +851,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -805,7 +882,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -836,7 +913,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -867,7 +944,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -898,7 +975,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -929,7 +1006,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -960,7 +1037,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -991,7 +1068,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -1022,7 +1099,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -1053,7 +1130,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -1084,7 +1161,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		try {
-			driver.findElement(By.xpath("(//span[text()='Show more'])[3]")).click();
+			HE_ShowMore.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Show More text");
@@ -1104,6 +1181,55 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		log.info("ClickOnHE_XyleneTotal  method ends here.........");
+	}
+
+	public void ClickOnReEntry_FMS() {
+		log.info("ClickOnReEntry_FMS  method starts here.........");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_FMS, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ReEntry_FMS.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_FMS  method ends here.........");
+	}
+
+	public void ClickOnReEntry_OccupantSurvey() {
+		log.info("ClickOnReEntry_OccupantSurvey  method starts here.........");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_OccupantSurvey, Integer.parseInt(prop.getProperty("explicitTime")),
+				2);
+		ReEntry_OccupantSurvey.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//h4[contains(text(),'Re-Entry Survey Responses')]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_OccupantSurvey  method ends here.........");
 	}
 
 	public boolean ClickOnWaste_Data() {
@@ -3792,7 +3918,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 
 		try {
@@ -3851,7 +3977,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/div/button")).click();
 		try {
 			Thread.sleep(3000);
@@ -3892,8 +4018,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building Settings-->Emissions Factor tab -->Verify clicking on 'Upload'
 	// button opens up with four options- 'Computer
 	// File', 'Dropbox, OneDrive,Google Drive.
@@ -3909,7 +4034,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 		try {
 			Thread.sleep(3000);
@@ -3950,8 +4075,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building Settings-->Operational Days tab -->Verify clicking on 'Upload'
 	// button opens up with four options- 'Computer
 	// File', 'Dropbox, OneDrive,Google Drive.
@@ -3967,7 +4091,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 		try {
 			Thread.sleep(3000);
@@ -4008,7 +4132,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
+
 	// Building Settings-->Occupant tab -->Verify clicking on 'Upload'
 	// button opens up with four options- 'Computer
 	// File', 'Dropbox, OneDrive,Google Drive.
@@ -4024,7 +4148,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 		try {
 			Thread.sleep(3000);
@@ -4679,13 +4803,14 @@ public class BuildingPageObject extends BaseClass {
 		Units.add("IP units (sq feet)");
 		Units.add("SI units (sq meters)");
 		int i = 1;
-		//List<WebElement> ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		int Total_Rows=CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		// List<WebElement> ListOfRows =
+		// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		int Total_Rows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		int grossArea = Integer.parseInt(data.getCellData("Building", 2, 2));
 		log.info("Total number of rows are ..." + Total_Rows);
 		for (String unit : Units) {
-			//int Total_Rows = ListOfRows.size();
-			Total_Rows=CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			// int Total_Rows = ListOfRows.size();
+			Total_Rows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			BuildingSetting_AddRow_button.click();
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
@@ -4732,8 +4857,9 @@ public class BuildingPageObject extends BaseClass {
 				e.printStackTrace();
 			}
 
-			//ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-			int TotalRow_afterAdding =CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			// ListOfRows =
+			// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+			int TotalRow_afterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total number of rows are ..." + TotalRow_afterAdding);
 			if (TotalRow_afterAdding - Total_Rows == 1) {
 				log.info("Row is added successfully....");
@@ -5850,7 +5976,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
+
 	// Building -> HE- Xylenes-total -> --> Verify if Start date is greater than
 	// end
 	// date, gives Overlapping dates error.
@@ -5906,8 +6032,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building -> HE- Formaldehyde -> --> Verify if Start date is greater than
 	// end
 	// date, gives Overlapping dates error.
@@ -6445,8 +6570,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building -> HE- Xylenes-total -> --> Verify Delete button allows you to
 	// delete line item.
 	public boolean HE_XylenesTotal_DeleteRecord() {
@@ -6494,8 +6618,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building -> HE- Formaldehyde -> --> Verify Delete button allows you to
 	// delete line item.
 	public boolean HE_Formaldehyde_DeleteRecord() {
@@ -6811,8 +6934,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
-	
-	// Building -> Operating Hours-> Verify able to upload file successfully using Documentation dropdown using Computer upload option.
+	// Building -> Operating Hours-> Verify able to upload file successfully using
+	// Documentation dropdown using Computer upload option.
 	public boolean OperatingHours_ValidateDocument() {
 		log.info("OperatingHours_ValidateDocument  method starts here.........");
 		boolean flag = false;
@@ -6828,8 +6951,8 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
-
+			//String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 			try {
 				Thread.sleep(3000);
@@ -6846,39 +6969,53 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 * 
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); } // TODO: handle exception
+			 */
 		}
 
 		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")),
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String FileCount=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")).getText();
-			log.info("File Count showing is "+FileCount);
-			flag=true;
-			
-		}
-		catch (Exception e) {
+			String FileCount = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span"))
+					.getText();
+			log.info("File Count showing is " + FileCount);
+			flag = true;
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Uploaded File Count...");
-			flag=false;
+			flag = false;
 		}
-		
-		
-		
-		
+
 		if (flag) {
 			log.info("OperatingHours_ValidateDocument method ends here with true.........");
 			return true;
@@ -6888,8 +7025,9 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	// Building -> Gross Floor Area-> Verify able to upload file successfully using Documentation dropdown using Computer upload option.
+
+	// Building -> Gross Floor Area-> Verify able to upload file successfully using
+	// Documentation dropdown using Computer upload option.
 	public boolean GrossFloorArea_ValidateDocument() {
 		log.info("GrossFloorArea_ValidateDocument  method starts here.........");
 		boolean flag = false;
@@ -6905,7 +7043,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/div/button")).click();
 			try {
@@ -6924,38 +7062,53 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 * 
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); } // TODO: handle exception
+			 */
 		}
 
 		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/span")),
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String FileCount=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/span")).getText();
-			log.info("File Count showing is "+FileCount);
-			flag=true;
-			
-		}
-		catch (Exception e) {
+			String FileCount = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/span"))
+					.getText();
+			log.info("File Count showing is " + FileCount);
+			flag = true;
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Uploaded File Count...");
-			flag=false;
+			flag = false;
 		}
-		
-		
-		
-		
+
 		if (flag) {
 			log.info("GrossFloorArea_ValidateDocument method ends here with true.........");
 			return true;
@@ -6965,9 +7118,9 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
-	// Building -> Emissions Factor-> Verify able to upload file successfully using Documentation dropdown using Computer upload option.
+
+	// Building -> Emissions Factor-> Verify able to upload file successfully using
+	// Documentation dropdown using Computer upload option.
 	public boolean EmissionsFactor_ValidateDocument() {
 		log.info("EmissionsFactor_ValidateDocument  method starts here.........");
 		boolean flag = false;
@@ -6983,7 +7136,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 			try {
@@ -7002,38 +7155,44 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")),
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String FileCount=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")).getText();
-			log.info("File Count showing is "+FileCount);
-			flag=true;
-			
-		}
-		catch (Exception e) {
+			String FileCount = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span"))
+					.getText();
+			log.info("File Count showing is " + FileCount);
+			flag = true;
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Uploaded File Count...");
-			flag=false;
+			flag = false;
 		}
-		
-		
-		
-		
+
 		if (flag) {
 			log.info("EmissionsFactor_ValidateDocument method ends here with true.........");
 			return true;
@@ -7043,8 +7202,9 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	// Building -> Operational Days-> Verify able to upload file successfully using Documentation dropdown using Computer upload option.
+
+	// Building -> Operational Days-> Verify able to upload file successfully using
+	// Documentation dropdown using Computer upload option.
 	public boolean OperationalDays_ValidateDocument() {
 		log.info("OperationalDays_ValidateDocument  method starts here.........");
 		boolean flag = false;
@@ -7060,7 +7220,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 			try {
@@ -7079,38 +7239,43 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); } // TODO: handle exception
+			 */
 		}
 
 		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")),
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String FileCount=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span")).getText();
-			log.info("File Count showing is "+FileCount);
-			flag=true;
-			
-		}
-		catch (Exception e) {
+			String FileCount = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/span"))
+					.getText();
+			log.info("File Count showing is " + FileCount);
+			flag = true;
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Uploaded File Count...");
-			flag=false;
+			flag = false;
 		}
-		
-		
-		
-		
+
 		if (flag) {
 			log.info("OperationalDays_ValidateDocument method ends here with true.........");
 			return true;
@@ -7120,8 +7285,9 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	// Building -> Occupant-> Verify able to upload file successfully using Documentation dropdown using Computer upload option.
+
+	// Building -> Occupant-> Verify able to upload file successfully using
+	// Documentation dropdown using Computer upload option.
 	public boolean Occupant_ValidateDocument() {
 		log.info("Occupant_ValidateDocument  method starts here.........");
 		boolean flag = false;
@@ -7137,7 +7303,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7156,38 +7322,45 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
+
 		}
 
 		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/span")),
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String FileCount=driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/span")).getText();
-			log.info("File Count showing is "+FileCount);
-			flag=true;
-			
-		}
-		catch (Exception e) {
+			String FileCount = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/span"))
+					.getText();
+			log.info("File Count showing is " + FileCount);
+			flag = true;
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate Uploaded File Count...");
-			flag=false;
+			flag = false;
 		}
-		
-		
-		
-		
+
 		if (flag) {
 			log.info("Occupant_ValidateDocument method ends here with true.........");
 			return true;
@@ -7197,6 +7370,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
+
 	// Building Settings--> Energy --> Validate documents added in the row item are
 	// displayed under Documents tab.
 	public boolean Energy_ValidateDocument() {
@@ -7210,7 +7384,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		String EnergyMeterName = System.getProperty("EnergyMeterName");
-		// EnergyMeterName="E1";
+		// EnergyMeterName = "E-BPWFKT";
 		driver.findElement(By.xpath(
 				"//div[@class='fw600 mb5' and text()='Energy']/ancestor::tr/following-sibling::tr[1]/td[2]/div[contains(text(),'"
 						+ EnergyMeterName + "')]"))
@@ -7225,10 +7399,9 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Total Number of rows showing are  " + BeforeTotalRows);
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
-
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
@@ -7244,20 +7417,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7320,7 +7500,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 			try {
@@ -7339,19 +7519,27 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7376,6 +7564,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7413,7 +7602,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 			try {
@@ -7431,20 +7620,28 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
+
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7459,7 +7656,7 @@ public class BuildingPageObject extends BaseClass {
 						.findElement(
 								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
 						.getText().equals("Total Volatile Organic Compounds")) {
-					log.info("Carbon Dioxide row found...");
+					log.info("Total Volatile Organic Compounds row found...");
 					String FileName = driver
 							.findElement(By
 									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
@@ -7469,6 +7666,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7506,7 +7704,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7525,19 +7723,27 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7562,6 +7768,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7599,7 +7806,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7618,19 +7825,27 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7655,6 +7870,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7693,7 +7909,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7711,20 +7927,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7749,6 +7972,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7785,7 +8009,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7803,20 +8027,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7841,6 +8072,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7877,7 +8109,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7895,20 +8127,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -7933,6 +8172,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -7969,7 +8209,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -7987,20 +8227,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8025,6 +8272,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -8062,7 +8310,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8080,20 +8328,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8118,6 +8373,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -8155,7 +8411,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8173,20 +8429,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8211,6 +8474,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -8229,9 +8493,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
-	
+
 	// Building -> HE- Xylenes-total -> --> Validate documents added in the row
 	// item are
 	// displayed under Documents tab.
@@ -8250,7 +8512,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8268,20 +8530,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8306,6 +8575,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -8324,7 +8594,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
+
 	// Building -> HE- Formaldehyde -> --> Validate documents added in the row
 	// item are
 	// displayed under Documents tab.
@@ -8343,7 +8613,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8361,20 +8631,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8399,6 +8676,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -8437,7 +8715,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
 			try {
@@ -8455,20 +8733,27 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8493,6 +8778,7 @@ public class BuildingPageObject extends BaseClass {
 						flag = true;
 						break;
 					} else {
+						log.info("Document found with other name.." + FileName);
 						flag = false;
 					}
 				} else {
@@ -8541,7 +8827,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
 			try {
@@ -8560,19 +8846,36 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 * 
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); } // TODO: handle exception
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -8642,7 +8945,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
 			driver.findElement(By.xpath("//div[@class='dropdown dropDownuploadOptions']/button")).click();
 			try {
@@ -8659,19 +8962,37 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			CommonMethod.setClipBoard(UploadPath);
-			CommonMethod.UploadFile(UploadPath);
+			WebElement element = driver
+					.findElement(By.xpath("//table[@id='wasteTable']/tbody/tr[1]/td/input[@name='action_file']"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
+				Thread.sleep(6000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			// TODO: handle exception
+
+			/*
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 * 
+			 * try { waithelper.WaitForElementVisibleWithPollingTime(
+			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			 * 
+			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
+			 * "//span[contains(text(),'Uploading')]")),
+			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
+			 * { e.printStackTrace(); } // TODO: handle exception
+			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
@@ -9749,8 +10070,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building -> HE- Xylenes-total -> Verify Clicking on add row allows to add
 	// start
 	// date,end date, reading, and documents.
@@ -9843,8 +10163,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Building -> HE- Formaldehyde -> Verify Clicking on add row allows to add
 	// start
 	// date,end date, reading, and documents.
@@ -10135,6 +10454,40 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	public boolean OccupantSurvey_SurveyPage_ProjectNameAndAddress(String PAddress) {
+		log.info("OccupantSurvey_SurveyPage_ProjectNameAndAddress  method starts here.........");
+		boolean flag = false;
+		String ExpProjectName_Address = null;
+		String ActProjectName_Address = null;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
+		ActProjectName_Address = driver
+				.findElement(By.xpath("//div[@class='survey-logo']/parent::div/following-sibling::div[1]")).getText();
+		log.info("Expected Project Name and Project Address are.. " + ExpProjectName_Address);
+		log.info("Actual Project Name and Project Address are.. " + ActProjectName_Address);
+		//driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//driver.switchTo().window(BaseWindow);
+		if (ExpProjectName_Address.equals(ActProjectName_Address)) {
+			log.info("OccupantSurvey_SurveyPage_ProjectNameAndAddress method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SurveyPage_ProjectNameAndAddress method ends here with false.........");
+			return false;
+		}
+
+	}
+
 //Building -> Transportation-> Validate clicking on Question 1. Route-1-Select Travel method open up the section to add modes of transport.
 	public boolean Transportation_ValidateRoute_1_Questions() {
 		log.info("Transportation_ValidateRoute_1_Questions  method starts here.........");
@@ -10274,13 +10627,39 @@ public class BuildingPageObject extends BaseClass {
 				.findElements(By.xpath("(//div[@class='dropdown-toggle'])[2]/following-sibling::ul/li/a"));
 		List<WebElement> LanguageCopy = driver.findElements(
 				By.xpath("(//div[@class='dropdown-toggle'])[2]/following-sibling::ul/li/span[text()='Copied!']"));
-		for (int i = 0; i < LanguageList.size(); i++) {
 
+		for (int i = 0; i < LanguageList.size(); i++) {
 			if (LanguageList.get(i).getText().equals(language)) {
+				// waithelper.WaitForElementClickable(LanguageList.get(i),
+				// Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				waithelper.WaitForElementClickable(LanguageList.get(i),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				JSHelper.clickElement(LanguageList.get(i));
-				//LanguageList.get(i).click();
+
+				WebElement ele = driver.findElement(By.xpath("(//a[text()='English'])[2]/following-sibling::span"));
+				JSHelper.displayHiddenElement(ele);
+				actionhelper.mouseOverElement(driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")));
+				actionhelper.mouseOverElementAndDoubleClick(
+						driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")));
+
+				actionhelper.mouseOverElement(driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")));
+				waithelper.WaitForElementClickable(
+						driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				// JSHelper.clickElement(LanguageList.get(i));
+				actionhelper.mouseOverElement(driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")));
+				driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")).sendKeys(Keys.ENTER);
+
+				// driver.findElement(ByAngular.buttonText("English")).click();
+
+				// Thread.sleep(2000);
+				actionhelper.mouseOverElement(driver.findElement(By.xpath("(//a[text()='English'])[2]/parent::li")));
+				LanguageList.get(i).click();
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -10306,7 +10685,7 @@ public class BuildingPageObject extends BaseClass {
 					flag = false;
 					break;
 				}
-				
+
 			} else {
 				// log.info("English Language not found....");
 				flag = false;
@@ -10333,7 +10712,10 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText + "\")");
+		log.info("Copied text from ClipBoard is " + copiedText);
+		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
+		// "\")");
+		((JavascriptExecutor) driver).executeScript("window.open('" + copiedText + "')");
 		Set<String> handles = driver.getWindowHandles();
 		for (String window : handles) {
 			if (!window.equals(BaseWindow)) {
@@ -10352,6 +10734,50 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		log.info("Transportation_OpenNewTabWithCopiedURL method ends here ...");
+		return flag;
+
+	}
+
+	// Occupant Survey -->This method will open new tab and paste the url from
+	// system clipboard.
+
+	public boolean OcupantSurvey_OpenNewTabWithCopiedURL() {
+		log.info("OcupantSurvey_OpenNewTabWithCopiedURL method starts here ...");
+		boolean flag = false;
+		Object copiedText = null;
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		// String handle = driver.getWindowHandle();
+		try {
+			copiedText = clipboard.getData(DataFlavor.stringFlavor);
+		} catch (UnsupportedFlavorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("Copied text from ClipBoard is " + copiedText);
+		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
+		// "\")");
+		((JavascriptExecutor) driver).executeScript("window.open('" + copiedText + "')");
+		Set<String> handles = driver.getWindowHandles();
+		for (String window : handles) {
+			if (!window.equals(BaseWindow)) {
+				driver.switchTo().window(window);
+				log.info("Switched to new window....");
+				break;
+			}
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@class='survey-logo']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		flag = driver.findElement(By.xpath("//div[@class='survey-logo']")).isDisplayed();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("OcupantSurvey_OpenNewTabWithCopiedURL method ends here ...");
 		return flag;
 
 	}
@@ -10510,9 +10936,9 @@ public class BuildingPageObject extends BaseClass {
 			SliderFlag = Transportation_SelectAll_SurveyOptions(Message);
 			log.info(SliderFlag);
 			log.info("  ---- " + Message);
-			Transportation_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
-			Transportation_Location.sendKeys(data.getCellData("Building", 37, 2));
-			Transportation_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+			BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+			BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+			BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
 			String Occupant = data.getCellData("Building", 39, 2);
 
 			driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
@@ -10604,9 +11030,9 @@ public class BuildingPageObject extends BaseClass {
 			SliderFlag = Transportation_SelectAll_SurveyOptions(Message);
 			log.info(SliderFlag);
 			log.info("  ---- " + Message);
-			Transportation_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
-			Transportation_Location.sendKeys(data.getCellData("Building", 37, 2));
-			Transportation_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+			BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+			BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+			BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
 			String Occupant = data.getCellData("Building", 39, 2);
 
 			driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
@@ -10736,9 +11162,9 @@ public class BuildingPageObject extends BaseClass {
 				log.info("  ---- " + Message);
 				if (Message.equals("Extremely Satisfied"))
 					z = 0;
-				Transportation_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
-				Transportation_Location.sendKeys(data.getCellData("Building", 37, 2));
-				Transportation_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+				BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+				BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+				BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
 				String Occupant = data.getCellData("Building", 39, 2);
 
 				waithelper.WaitForElementClickable(driver.findElement(By.xpath("//select[@id='occupant_category']")),
@@ -11361,9 +11787,9 @@ public class BuildingPageObject extends BaseClass {
 				SliderFlag = Transportation_SelectAll_SurveyOptions(Message);
 				log.info(SliderFlag);
 				log.info("  ---- " + Message);
-				Transportation_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
-				Transportation_Location.sendKeys(data.getCellData("Building", 37, 2));
-				Transportation_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+				BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+				BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+				BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
 				String Occupant = data.getCellData("Building", 39, 2);
 
 				driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
@@ -11485,9 +11911,9 @@ public class BuildingPageObject extends BaseClass {
 		SliderFlag = Transportation_SelectAll_SurveyOptions(Message);
 		log.info(SliderFlag);
 		log.info("  ---- " + Message);
-		Transportation_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
-		Transportation_Location.sendKeys(data.getCellData("Building", 37, 2));
-		Transportation_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
 		String Occupant = data.getCellData("Building", 39, 2);
 
 		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
@@ -11555,8 +11981,7 @@ public class BuildingPageObject extends BaseClass {
 			if (Question3.equals(
 					"3. We're sorry to hear that. Please select the options below that significantly reduce your satisfaction:")) {
 				log.info("Question 3 showing properly...");
-				driver
-						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/input"));
+				driver.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/input"));
 				UnsatisfiedCheckBoxLabelList = driver
 						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/label"));
 				log.info("Total Number of Labels showing for " + Message + " are "
@@ -11609,8 +12034,7 @@ public class BuildingPageObject extends BaseClass {
 			if (Question3.equals(
 					"3. We're glad to hear that. Please select the options below that significantly enhance your satisfaction:")) {
 				log.info("Question 3 showing properly...");
-				driver
-						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/input"));
+				driver.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/input"));
 				satisfiedCheckBoxLabelList = driver
 						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/label"));
 				log.info("Total Number of Labels showing for " + Message + " are " + satisfiedCheckBoxLabelList.size());
@@ -12602,5 +13026,3349 @@ public class BuildingPageObject extends BaseClass {
 			return false;
 		}
 
+	}
+
+	// Building -> Re-Entry -->FMS -> --> Go to Survey Tools and Resources- Send
+	// Survey- Copy link and paste it to another browser.
+	public boolean ReEntry_FMS_OpenSurveyLinkInNewTab() {
+		log.info("ReEntry_FMS_OpenSurveyLinkInNewTab  method starts here.........");
+		boolean flag = false;
+		boolean OpenSurveyTab = false;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("//a[text()='Send Survey']")).click();
+		CommonMethod.switchToDefaultContent();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//div[text()='Facilities and Management Survey']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
+		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
+		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
+		if (flag) {
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+		}
+
+		if (OpenSurveyTab) {
+			log.info("ReEntry_FMS_OpenSurveyLinkInNewTab method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_FMS_OpenSurveyLinkInNewTab method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	// Building -> Re-Entry -->FMS -> In F & M survey, If question 1 Is a specific
+	// individual responsible for the development and implementation of infectious
+	// disease control policies, plans, and procedures for this facility?" is
+	// selected as Yes, gives option to upload file, paste link and Enter 'Contact
+	// information'
+	public boolean ReEntry_FMS_Question1_WithYesOption() {
+		log.info("ReEntry_FMS_Question1_WithYesOption  method starts here.........");
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 53, 2);
+		String Question_Contact = data.getCellData("Building", 54, 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("//a[text()='Send Survey']")).click();
+		CommonMethod.switchToDefaultContent();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//div[text()='Facilities and Management Survey']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
+		CommonMethod.setClipBoard(url);
+		// js.executeScript("document.querySelector("'#copy-link-button'")
+		// driver.findElement(By.xpath("//a[text()='Copy
+		// Link']/parent::button")).click();
+		// driver.findElement(By.xpath("//div[@class='w60p']/following-sibling::div[1]/*")).click();
+		// actionhelper.mouseOverElementAndClick(driver.findElement(By.xpath("//a[text()='Copy
+		// Link']")));
+		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
+		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		log.info("Copied flag is " + flag);
+		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
+		if (flag) {
+			Transportation_OpenNewTabWithCopiedURL();
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/descendant::input[1]")).click();
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+			js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/input[@type='file']")));
+			driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/span"))
+					.click();
+			driver.findElement(By.xpath("//input[@id='infectious_control_upload_picker']")).sendKeys(UploadPath);
+
+			/*
+			 * driver.findElement(By.
+			 * xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/span"
+			 * )) .click(); try { Thread.sleep(5000); } catch (InterruptedException e1) { //
+			 * TODO Auto-generated catch block e1.printStackTrace(); }
+			 * 
+			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+			 */
+
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath(
+					"(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/div[@class='icon_deleteDoc']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			driver.findElement(By.xpath("(//div[@class='mt16 ng-scope'])[2]/descendant::input"))
+					.sendKeys(Question_Link);
+			try {
+				driver.findElement(By.xpath(
+						"(//div[@class='radio_buttons'])[1]/following-sibling::div[2]/descendant::div[text()='Add link']"))
+						.click();
+
+			} catch (Exception e) {
+				log.info("Unable to click on Add Link");
+			}
+			driver.findElement(By.xpath("(//div[@class='mt16 ng-scope'])[3]/descendant::input"))
+					.sendKeys(Question_Contact);
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//button[text()='Submit']")).click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		flag = FMS_Verify(1, Question_Link);
+		return flag;
+	}
+
+	public boolean ReEntry_FMS_Question2_WithYesOption() {
+		log.info("ReEntry_FMS_Question2_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 55, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_SelectYes_UploadFile_AddLink(2, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(2, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question2_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question2_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			log.info("ReEntry_FMS_Question2_WithYesOption method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean FMS_CopySurveyLink() {
+		log.info("FMS_CopySurveyLink method starts here...");
+		boolean flag = false;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("//a[text()='Send Survey']")).click();
+		CommonMethod.switchToDefaultContent();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//div[text()='Facilities and Management Survey']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
+		CommonMethod.setClipBoard(url);
+		log.info("Copied url is " + url);
+		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
+		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
+		log.info("Copied flag is " + flag);
+		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
+		log.info("FMS_CopySurveyLink method ends here with " + flag + "  ...");
+		return flag;
+	}
+
+	public void FMS_SelectYes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_SelectYes_UploadFile_AddLink method starts here...");
+		driver.findElement(
+				By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[1]"))
+				.click();
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		// driver.findElement(
+		// By.xpath("(//div[@class='survey-question radio-button'])[" + QNo +
+		// "]/div[2]/div[2]/div[2]/span")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(
+				By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/div[2]/input"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[" + QNo
+				+ "]/div[2]/div[2]/descendant::span[text()='Upload file']")).click();
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])["
+		 * + QNo + "]/div[2]/div[2]/div[2]/div[@class='icon_deleteDoc']")),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(
+				By.xpath("(//div[@class='radio_buttons'])[" + QNo + "]/following-sibling::div[2]/descendant::input"))
+				.sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_SelectYes_UploadFile_AddLink method ends here...");
+	}
+
+	public boolean FMS_Verify(int QNo, String QLink) {
+		log.info("FMS_Verify method starts here....");
+		driver.switchTo().window(BaseWindow);
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		ClickOnMetersAndSurveyMenu();
+		ClickOnReEntry_FMS();
+
+		boolean ResponseFlag = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo
+				+ "]/td[2]/span[contains(@class,'mr5 saved_symbol saved_symbol')]")).isDisplayed();
+		String ResponseText = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[2]"))
+				.getText();
+		String DocumentCount = driver
+				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/div/span")).getText();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/div")).click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JSHelper.scrollIntoView(
+				driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")));
+		String DocumentName = driver
+				.findElement(By.xpath("(//table[@class='file-explorer'])[2]/tbody/tr[1]/td[1]/span")).getText();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		driver.findElement(By.xpath(
+				"(//table[@class='file-explorer'])[2]/ancestor::div[@class='modal-body']/following-sibling::div/button"))
+				.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String LinkCount = driver
+				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/div/span")).getText();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/div")).click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JSHelper.scrollIntoView(
+				driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")));
+		String LinkURL = driver.findElement(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[1]/td[1]"))
+				.getText();
+		JSHelper.clickElement(driver.findElement(By.xpath(
+				"(//table[@class='file-explorer'])[1]/ancestor::div[@class='modal-body']/following-sibling::div/button")));
+		log.info("Response Flag is  " + ResponseFlag);
+		log.info("ResponseText is  " + ResponseText);
+		log.info("DocumentCount is  " + DocumentCount);
+		log.info("DocumentName is  " + DocumentName);
+		log.info("LinkCount is  " + LinkCount);
+		log.info("LinkURL is  " + LinkURL);
+
+		if ((ResponseFlag) && (ResponseText.equals("Yes")) && (DocumentCount.equals("1"))
+				&& (DocumentName.equals("File1.pdf")) && (LinkCount.equals("1")) && (LinkURL.equals(QLink))) {
+			log.info("FMS_Verify method ends here with true  ...");
+			return true;
+		} else {
+			log.info("FMS_Verify method ends here with false.........");
+			return false;
+		}
+	}
+
+	public void FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 disease_comm_signage']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 disease_comm_signage']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 disease_comm_signage']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 disease_comm_signage']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='disease_comm_signage_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink method ends here...");
+
+	}
+
+	public void FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 clean_disinfactant']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 clean_disinfactant']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 clean_disinfactant']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 clean_disinfactant']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='clean_disinfactant_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public void FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 ppe_facility']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 ppe_facility']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 ppe_facility']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 ppe_facility']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='ppe_facility_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		log.info("FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink method ends here...");
+
+	}
+
+	public void FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify(int QNo, String QLink) {
+		log.info("FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 social_distance']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 social_distance']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 social_distance']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 social_distance']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='social_distance_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify method ends here...");
+	}
+
+	public void FMS_HVACSystemOperation_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_HVACSystemOperation_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 hvac_system']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 hvac_system']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 hvac_system']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 hvac_system']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='hvac_system_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_HVACSystemOperation_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public void FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 hvac_ventilation']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 hvac_ventilation']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 hvac_ventilation']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 hvac_ventilation']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='hvac_ventilation_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink method ends here...");
+
+	}
+
+	public void FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 hvac_filtration']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 hvac_filtration']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 hvac_filtration']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 hvac_filtration']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='hvac_filtration_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink method starts here...");
+	}
+
+	public void FMS_Elevatormanagement_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_Elevatormanagement_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 elevator_man']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 elevator_man']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 elevator_man']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 elevator_man']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='elevator_man_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_Elevatormanagement_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public void FMS_PortableWaterManagement_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_PortableWaterManagement_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 potable_water']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 potable_water']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 potable_water']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 potable_water']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='potable_water_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_PortableWaterManagement_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public void FMS_IAQAssessment_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_IAQAssessment_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 iaq_assessment']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 iaq_assessment']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 iaq_assessment']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 iaq_assessment']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='iaq_assessment_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_IAQAssessment_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public void FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 hvac_outdoor']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 hvac_outdoor']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 hvac_outdoor']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 hvac_outdoor']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='hvac_system_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public void FMS_OccupantScreening_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_OccupantScreening_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 occupant_screening']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 occupant_screening']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 occupant_screening']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 occupant_screening']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='occupant_screening_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_OccupantScreening_Yes_UploadFile_AddLink method ends here...");
+
+	}
+
+	public void FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 sick_leave']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 sick_leave']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 sick_leave']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 sick_leave']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		boolean FacilityVanueStaff = driver.findElement(By.xpath(
+				"//div[@class='mb30 sick_leave']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/label[text()='Facility or venue staff']"))
+				.isDisplayed();
+		boolean Contractors = driver.findElement(By.xpath(
+				"//div[@class='mb30 sick_leave']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/label[text()='Contractors']"))
+				.isDisplayed();
+		log.info("FacilityVanueStaff displays flag is  " + FacilityVanueStaff);
+		log.info("Contractors displays flag is  " + Contractors);
+		boolean FacilitySelected = false;
+		boolean ContractorSelected = false;
+		if ((FacilityVanueStaff) && (Contractors)) {
+			driver.findElement(By.xpath(
+					"(//div[@class='mb30 sick_leave']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[1]"))
+					.click();
+			driver.findElement(By.xpath(
+					"(//div[@class='mb30 sick_leave']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[2]"))
+					.click();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			FacilitySelected = driver.findElement(By.xpath(
+					"(//div[@class='mb30 sick_leave']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[1]"))
+					.isSelected();
+			ContractorSelected = driver.findElement(By.xpath(
+					"(//div[@class='mb30 sick_leave']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[2]"))
+					.isSelected();
+		}
+
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='sick_leave_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink method ends here...");
+
+	}
+
+	public void FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink(int QNo, String QLink) {
+		log.info("FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink method starts here...");
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		String YesXpath = "//div[@class='mb30 health_insurance']/descendant::span[contains(text(),'Yes')]/input";
+		String UploadXpath = "//div[@class='mb30 health_insurance']/descendant::span[contains(text(),'Upload file')]";
+		String DeleteXpath = "//div[@class='mb30 health_insurance']/descendant::div[@class='icon_deleteDoc']";
+		String LinkXpath = "//div[@class='mb30 health_insurance']/descendant::input[starts-with(@class,'link_value')]";
+		driver.findElement(By.xpath(YesXpath)).click();
+		boolean FacilityVanueStaff = driver.findElement(By.xpath(
+				"//div[@class='mb30 health_insurance']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/label[text()='Facility or venue staff']"))
+				.isDisplayed();
+		boolean Contractors = driver.findElement(By.xpath(
+				"//div[@class='mb30 health_insurance']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/label[text()='Contractors']"))
+				.isDisplayed();
+		log.info("FacilityVanueStaff displays flag is  " + FacilityVanueStaff);
+		log.info("Contractors displays flag is  " + Contractors);
+		boolean FacilitySelected = false;
+		boolean ContractorSelected = false;
+		if ((FacilityVanueStaff) && (Contractors)) {
+			driver.findElement(By.xpath(
+					"(//div[@class='mb30 health_insurance']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[1]"))
+					.click();
+			driver.findElement(By.xpath(
+					"(//div[@class='mb30 health_insurance']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[2]"))
+					.click();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			FacilitySelected = driver.findElement(By.xpath(
+					"(//div[@class='mb30 health_insurance']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[1]"))
+					.isSelected();
+			ContractorSelected = driver.findElement(By.xpath(
+					"(//div[@class='mb30 health_insurance']/descendant::div[@class='ml20 pl0 checkbox ng-scope']/input)[2]"))
+					.isSelected();
+		}
+
+		driver.findElement(By.xpath(UploadXpath)).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//input[@id='health_insurance_upload_picker']"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		element.sendKeys(UploadPath);
+		/*
+		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
+		 * 
+		 * waithelper.WaitForElementClickable(
+		 * driver.findElement(By.xpath(DeleteXpath)),
+		 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		 */
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//button[text()='Submit']")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.close();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink method ends here...");
+	}
+
+	public boolean FMS_SelectYes_No_NA_Verify(int QNo, String Option) {
+		log.info("FMS_SelectYes_UploadFile_AddLink_Verify method starts here with " + Option + "  . ..");
+		if (Option.equals("Yes")) {
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[1]"))
+					.click();
+
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//button[text()='Submit']")).click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			CommonMethod.RefreshPagewaitForPageLoaded(driver);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
+
+			boolean ResponseFlag = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo
+					+ "]/td[2]/span[contains(@class,'mr5 saved_symbol saved_symbol')]")).isDisplayed();
+			String ResponseText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[2]")).getText();
+			String DocumentText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/span")).getText();
+			String LinkText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/span")).getText();
+			log.info("Response Flag is  " + ResponseFlag);
+			log.info("ResponseText is  " + ResponseText);
+			log.info("DocumentText is  " + DocumentText);
+			log.info("LinkText is  " + LinkText);
+			log.info("FMS_SelectYes_UploadFile_AddLink_Verify method ends here with " + Option + "  . ..");
+			if ((ResponseFlag) && (ResponseText.equals("Yes")) && (DocumentText.equals("NA"))
+					&& (LinkText.equals("NA"))) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if (Option.equals("No")) {
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[2]"))
+					.click();
+
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//button[text()='Submit']")).click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			CommonMethod.RefreshPagewaitForPageLoaded(driver);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
+
+			boolean ResponseFlag = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo
+					+ "]/td[2]/span[contains(@class,'mr5 error_symbol error_symbol')]")).isDisplayed();
+			String ResponseText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[2]")).getText();
+
+			String DocumentText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/span")).getText();
+			String LinkText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/span")).getText();
+			log.info("Response Flag is  " + ResponseFlag);
+			log.info("ResponseText is  " + ResponseText);
+			log.info("DocumentText is  " + DocumentText);
+			log.info("LinkText is  " + LinkText);
+			log.info("FMS_SelectYes_UploadFile_AddLink_Verify method ends here with " + Option + "  . ..");
+			if ((ResponseFlag) && (ResponseText.contains("No")) && (DocumentText.equals("NA"))
+					&& (LinkText.equals("NA"))) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		else if (Option.equals("NA")) {
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[3]"))
+					.click();
+
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.findElement(By.xpath("//button[text()='Submit']")).click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			CommonMethod.RefreshPagewaitForPageLoaded(driver);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
+
+			boolean ResponseFlag = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo
+					+ "]/td[2]/span[contains(@class,'mr5 error_symbol error_symbol')]")).isDisplayed();
+			String ResponseText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[2]")).getText();
+
+			String DocumentText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/span")).getText();
+			String LinkText = driver
+					.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/span")).getText();
+			log.info("Response Flag is  " + ResponseFlag);
+			log.info("ResponseText is  " + ResponseText);
+			log.info("DocumentText is  " + DocumentText);
+			log.info("LinkText is  " + LinkText);
+			log.info("FMS_SelectYes_UploadFile_AddLink_Verify method ends here with " + Option + "  . ..");
+			if ((ResponseFlag) && (ResponseText.contains("No")) && (DocumentText.equals("NA"))
+					&& (LinkText.equals("NA"))) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+
+	}
+
+	public boolean ReEntry_FMS_Question3_WithYesOption() {
+		log.info("ReEntry_FMS_Question3_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 56, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_SelectYes_UploadFile_AddLink(3, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(3, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question3_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question3_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question4_WithYes_NO_NA_Option() {
+		log.info("ReEntry_FMS_Question4_WithYes_NO_NA_Option  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean Yesflag = false;
+		boolean Noflag = false;
+		boolean NAflag = false;
+		// String Question_Link = data.getCellData("Building", 56, 2);
+		FMS_CopySurveyLink();
+		for (int i = 0; i < 3; i++) {
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			if (OpenSurveyTab) {
+				Yesflag = FMS_SelectYes_No_NA_Verify(4, "Yes");// takes row number and URL to paste in that particular
+																// question
+				Transportation_OpenNewTabWithCopiedURL();
+				Noflag = FMS_SelectYes_No_NA_Verify(4, "No");
+				Transportation_OpenNewTabWithCopiedURL();
+				NAflag = FMS_SelectYes_No_NA_Verify(4, "No");
+				log.info("Value of Yes Flag is " + Yesflag);
+				log.info("Value of No Flag is " + Noflag);
+				log.info("Value of NA Flag is " + NAflag);
+				if ((Yesflag) && (Noflag) && (NAflag)) {
+					log.info("ReEntry_FMS_Question4_WithYes_NO_NA_Option method ends here with true.........");
+					return true;
+				} else {
+					log.info("ReEntry_FMS_Question4_WithYes_NO_NA_Option method ends here with false.........");
+					return false;
+				}
+			} else {
+				log.info("Unable to open new tab with copied URL...");
+				return false;
+			}
+		}
+		return false;
+
+	}
+
+	// Building -> Re-Entry -->FMS -> Verify 'CDC guideline' redirects to the
+	// following link- "https://stg.app.arconline.io/assets/pdf/CDC%20Guidance.pdf"
+	public boolean ReEntry_FMS_Question5_CheckCDC_GuideLine() {
+		log.info("ReEntry_FMS_Question5_CheckCDC_GuideLine  method starts here.........");
+		boolean OpenSurveyTab = false;
+		String pdfcontent = null;
+		String url = null;
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			String SurveyWindow = driver.getWindowHandle();
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[5]/div[2]/descendant::input[1]")).click();
+			driver.findElement(By.xpath("//a[text()='CDC guidance']")).click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Set<String> handles = driver.getWindowHandles();
+			for (String window : handles) {
+				if (!BaseWindow.equals(window) && !SurveyWindow.equals(window)) {
+					driver.switchTo().window(window);
+					String cdcURl = "https://" + (System.getProperty("environment")).toLowerCase()
+							+ ".app.arconline.io/assets/pdf/CDC%20Guidance.pdf";
+					log.info("PDF URL is " + cdcURl);
+					pdfcontent = CommonMethod.getPDFContent(cdcURl);
+					driver.close();
+					driver.switchTo().window(SurveyWindow);
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+				}
+			}
+
+			if (pdfcontent.contains("GUIDANCE FOR CLEANING AND DISINFECTING")) {
+				log.info("ReEntry_FMS_Question5_CheckCDC_GuideLine method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question5_CheckCDC_GuideLine method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Verify USGBC credits link redirects to
+	// "https://www.usgbc.org/credits/safety-first-136-v4.1?return=/credits/Existing%20Buildings/v4.1"
+	public boolean ReEntry_FMS_Question5_USGBC_CreditLink() {
+		log.info("ReEntry_FMS_Question5_USGBC_CreditLink  method starts here.........");
+		boolean OpenSurveyTab = false;
+		String PageTitle = null;
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			String SurveyWindow = driver.getWindowHandle();
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[5]/div[2]/descendant::input[1]")).click();
+			driver.findElement(By.xpath(
+					"//a[@href='https://www.usgbc.org/credits/safety-first-136-v4.1?return=/credits/Existing%20Buildings/v4.1']"))
+					.click();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Set<String> handles = driver.getWindowHandles();
+			for (String window : handles) {
+				if (!BaseWindow.equals(window) && !SurveyWindow.equals(window)) {
+					driver.switchTo().window(window);
+					PageTitle = driver.getTitle();
+					driver.close();
+					driver.switchTo().window(SurveyWindow);
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+				}
+			}
+
+			if (PageTitle.equals("Safety First: Re-Enter Your Workspace | U.S. Green Building Council")) {
+				log.info("ReEntry_FMS_Question5_USGBC_CreditLink method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question5_USGBC_CreditLink method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question5_WithYesOption() {
+		log.info("ReEntry_FMS_Question5_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 57, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_SelectYes_UploadFile_AddLink(5, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(5, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question5_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question5_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question6_WithYesOption() {
+		log.info("ReEntry_FMS_Question6_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 58, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);// takes row number and URL to
+																						// paste in
+			flag = FMS_Verify(6, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question6_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question6_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question7_WithYesOption() {
+		log.info("ReEntry_FMS_Question7_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 59, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(7, Question_Link);// takes row number and URL to paste
+																					// in
+			flag = FMS_Verify(7, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question7_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question7_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question10_WithYesOption() {
+		log.info("ReEntry_FMS_Question10_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 62, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(10, Question_Link);// takes row number and URL to paste
+																					// in
+			flag = FMS_Verify(10, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question10_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question10_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question11_WithYesOption() {
+		log.info("ReEntry_FMS_Question11_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 63, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink(11, Question_Link);// takes row number and URL to
+																							// paste in
+			flag = FMS_Verify(11, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question11_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question11_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question9_WithYesOption() {
+		log.info("ReEntry_FMS_Question9_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 61, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_OccupantScreening_Yes_UploadFile_AddLink(9, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(9, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question9_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question9_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question8_WithYesOption() {
+		log.info("ReEntry_FMS_Question8_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 60, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(8, Question_Link);// takes row number and URL to paste
+																					// in
+			flag = FMS_Verify(8, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question8_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question8_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question12_WithYesOption() {
+		log.info("ReEntry_FMS_Question12_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 64, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify(12, Question_Link);// takes row number and URL to paste
+																					// in
+			flag = FMS_Verify(12, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question12_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question12_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question13_WithYesOption() {
+		log.info("ReEntry_FMS_Question13_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 65, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_HVACSystemOperation_Yes_UploadFile_AddLink(13, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(13, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question13_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question13_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question14_WithYesOption() {
+		log.info("ReEntry_FMS_Question14_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 66, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink(14, Question_Link);// takes row number and URL to
+																							// paste in
+			flag = FMS_Verify(14, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question14_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question14_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question15_WithYesOption() {
+		log.info("ReEntry_FMS_Question15_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 67, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink(15, Question_Link);// takes row number and URL to
+																						// paste in
+			flag = FMS_Verify(15, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question15_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question15_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question16_WithYesOption() {
+		log.info("ReEntry_FMS_Question16_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 68, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(16, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(16, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question16_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question16_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question17_WithYesOption() {
+		log.info("ReEntry_FMS_Question17_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 69, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_Elevatormanagement_Yes_UploadFile_AddLink(17, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(17, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question17_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question17_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question18_WithYesOption() {
+		log.info("ReEntry_FMS_Question18_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 70, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_PortableWaterManagement_Yes_UploadFile_AddLink(18, Question_Link);// takes row number and URL to paste
+																					// in
+			flag = FMS_Verify(18, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question18_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question18_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Question19_WithYesOption() {
+		log.info("ReEntry_FMS_Question19_WithYesOption  method starts here.........");
+		boolean OpenSurveyTab = false;
+		boolean flag = false;
+		String Question_Link = data.getCellData("Building", 71, 2);
+		FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		if (OpenSurveyTab) {
+			FMS_IAQAssessment_Yes_UploadFile_AddLink(19, Question_Link);// takes row number and URL to paste in
+			flag = FMS_Verify(19, Question_Link); // that particular question
+			if (flag) {
+				log.info("ReEntry_FMS_Question19_WithYesOption method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Question19_WithYesOption method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_DownloadArcGuideToReEntry() {
+		log.info("ReEntry_FMS_DownloadArcGuideToReEntry  method starts here.........");
+		boolean flag = false;
+
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("//a[text()='Arc Re-Entry Guide']")).click();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		flag = CommonMethod.CheckDownloadedFileName("Re-Entry.pdf");
+		if (flag) {
+			log.info("ReEntry_FMS_DownloadArcGuideToReEntry method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_FMS_DownloadArcGuideToReEntry method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	public boolean ReEntry_OccupantSurvey_OpenSurvey_NewTab(String Scope, String Group) {
+		log.info("ReEntry_OccupantSurvey_OpenSurvey_NewTab  method starts here.........");
+		boolean flag = false;
+
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("//a[text()='Send Survey']")).click();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommonMethod.switchToDefaultContent();
+		WebElement DropScope = driver.findElement(By.xpath("//select[@name='scope']"));
+		dropdownhelper.selectUsingVisibleText(DropScope, Scope);
+		WebElement DropGroup = driver.findElement(By.xpath("//select[@name='group']"));
+		dropdownhelper.selectUsingVisibleText(DropGroup, Group);
+		driver.findElement(ByAngular.model("tenant")).sendKeys(Scope + "_" + Group);
+		String url = driver.findElement(ByAngular.model("oe_link")).getAttribute("value");
+		CommonMethod.setClipBoard(url);
+		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
+		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		log.info("Copied flag is " + flag);
+		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
+		flag = OcupantSurvey_OpenNewTabWithCopiedURL();
+		if (flag) {
+			log.info("ReEntry_OccupantSurvey_OpenSurvey_NewTab method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_OccupantSurvey_OpenSurvey_NewTab method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	public boolean ReEntry_OccupantSurvey_DownloadArcGuideToReEntry() {
+		log.info("ReEntry_FMS_DownloadArcGuideToReEntry  method starts here.........");
+		boolean flag = false;
+
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("//a[text()='Arc Re-Entry Guide']")).click();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		flag = CommonMethod.CheckDownloadedFileName("Re-Entry.pdf");
+		if (flag) {
+			log.info("ReEntry_FMS_DownloadArcGuideToReEntry method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_FMS_DownloadArcGuideToReEntry method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithCommonSpace_Management() {
+		log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Management  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Extremely Unsatisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Extremely Unsatisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='Yes ']/input[@name='infection_control']")).click();
+		driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building", 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Never");
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Never");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Never");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Never");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Never");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Never");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Never");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Management method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Management method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithCommonSpace_Tenant() {
+		log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Tenant  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Very Unsatisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Very Unsatisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='Yes ']/input[@name='infection_control']")).click();
+		driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building", 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Tenant method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Tenant method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithTenantSpace_Management() {
+		log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Management  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Neither satisfied nor unsatisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Neither satisfied nor unsatisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Management method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Management method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithTenantSpace_Tenant() {
+		log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Tenant  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Satisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Satisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]")).sendKeys(data.getCellData("Building",
+		// 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]")).sendKeys(data.getCellData("Building",
+		// 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]")).sendKeys(data.getCellData("Building",
+		// 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]")).sendKeys(data.getCellData("Building",
+		// 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]")).sendKeys(data.getCellData("Building",
+		// 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]")).sendKeys(data.getCellData("Building",
+		// 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]")).sendKeys(data.getCellData("Building",
+		// 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Tenant method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Tenant method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithTenantSpace_Visitor() {
+		log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Visitor  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Very Satisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Very Satisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Rarely");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Visitor method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithTenantSpace_Visitor method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithWholeSpace_Management() {
+		log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Management  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Extremely Satisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Extremely Satisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Management method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Management method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithWholeSpace_Tenant() {
+		log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Tenant  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Extremely Unsatisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Extremely Unsatisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Usually");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Tenant method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Tenant method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithWholeSpace_Visitor() {
+		log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Visitor  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Very Unsatisfied");
+		SliderFlag = OccupantSurvey_SelectAll_SurveyOptions("Very Unsatisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
+		// 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]")).sendKeys(data.getCellData("Building",
+		// 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]")).sendKeys(data.getCellData("Building",
+		// 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]")).sendKeys(data.getCellData("Building",
+		// 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]")).sendKeys(data.getCellData("Building",
+		// 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]")).sendKeys(data.getCellData("Building",
+		// 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]")).sendKeys(data.getCellData("Building",
+		// 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Always");
+		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]")).sendKeys(data.getCellData("Building",
+		// 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Visitor method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithWholeSpace_Visitor method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor() {
+		log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor  method starts here.........");
+		boolean SubmitResponseFlag = false;
+		boolean SliderFlag = false;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommonMethod.SelectEnvironmentSlider(ReEntry_Environment_Slider, "Unsatisfied");
+		OccupantSurvey_SelectAll_SurveyOptions("Unsatisfied");
+		BuildingSurvey_CommentOptional.sendKeys(data.getCellData("Building", 36, 2));
+		BuildingSurvey_Location.sendKeys(data.getCellData("Building", 37, 2));
+		BuildingSurvey_NameOptional.sendKeys(data.getCellData("Building", 38, 2));
+		String Occupant = data.getCellData("Building", 39, 2);
+		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
+		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
+		driver.findElement(By.xpath("//span[text()='Yes ']/input[@name='infection_control']")).click();
+		driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building", 72, 2));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
+				.sendKeys(data.getCellData("Building", 73, 2));
+
+		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
+				.sendKeys(data.getCellData("Building", 74, 2));
+
+		WebElement HandWashingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
+				.sendKeys(data.getCellData("Building", 75, 2));
+
+		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+				"Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
+				.sendKeys(data.getCellData("Building", 76, 2));
+
+		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+				MaintainSocialDistancingHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
+				.sendKeys(data.getCellData("Building", 77, 2));
+
+		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+				ProtectedDiseaseTransmissionHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
+				.sendKeys(data.getCellData("Building", 78, 2));
+
+		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
+				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
+		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Sometimes");
+		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
+				.sendKeys(data.getCellData("Building", 79, 2));
+
+		Transportation_SubmitBtn.click();
+		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
+			log.info("Response message displayed.. ");
+			SubmitResponseFlag = true;
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+		} else {
+			log.info("Response message not displayed.. ");
+			SubmitResponseFlag = false;
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			// break;
+		}
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (SubmitResponseFlag) {
+			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor method ends here with false.........");
+			return false;
+		}
+	}
+
+	// Select all the options based on slider selection.
+	public boolean OccupantSurvey_SelectAll_SurveyOptions(String Message) {
+		log.info("OccupantSurvey_SelectAll_SurveyOptions method starts here with option " + Message);
+		String[] UnsatisfiedArray = { "Dirty", "Cold", "Drafty", "Smelly", "Dark", "Bright", "Stuffy", "Glare",
+				"Views to Outdoors", "Acoustics", "Privacy", "Sound", "Hot", "Humid" };
+		ArrayList<String> UnSatisfiedList = new ArrayList<String>(Arrays.asList(UnsatisfiedArray));
+
+		String[] satisfiedArray = { "Thermal Comfort", "Sound", "Air Quality", "Cleanliness", "Light", "Privacy",
+				"Views to Outdoors", "Daylight" };
+		ArrayList<String> SatisfiedList = new ArrayList<String>(Arrays.asList(satisfiedArray));
+
+		List<WebElement> UnsatisfiedCheckBoxeList;
+		List<WebElement> UnsatisfiedCheckBoxLabelList;
+
+		List<WebElement> satisfiedCheckBoxeList;
+		List<WebElement> satisfiedCheckBoxLabelList;
+		boolean flag = false;
+		boolean Question2Flag = false;
+		if (Message.equals("Extremely Unsatisfied") || Message.equals("Very Unsatisfied")
+				|| Message.equals("Unsatisfied")) {
+			log.info(Message + " is selected.");
+			String Question2 = driver.findElement(By.xpath("//span[contains(@class,'question col-md-12 pl0')]"))
+					.getText();
+			// System.out.println(Question3);
+			if (Question2.equals(
+					"2. We're sorry to hear that. Please select the options below that significantly reduce your satisfaction:")) {
+				log.info("Question 2 showing properly...");
+				UnsatisfiedCheckBoxeList = driver
+						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/input"));
+				UnsatisfiedCheckBoxLabelList = driver
+						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/label"));
+				log.info("Total Number of Labels showing for " + Message + " are "
+						+ UnsatisfiedCheckBoxLabelList.size());
+
+				// Validation and checking all Checkboxes.
+				int i = 0;
+				for (WebElement ele : UnsatisfiedCheckBoxLabelList) {
+					if (UnSatisfiedList.contains(ele.getText())) {
+						log.info(ele.getText() + " exists on the page..");
+						UnsatisfiedCheckBoxeList.get(i).click();
+						if (UnsatisfiedCheckBoxeList.get(i).isSelected()) {
+							log.info(ele.getText() + " is selected successfully...");
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) { // TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+							flag = true;
+						} else {
+							log.info("Unable to select " + ele.getText());
+							flag = false;
+							break;
+						}
+					} else {
+						log.info(ele.getText() + " does not exist on the page..");
+						flag = false;
+						break;
+					}
+					i++;
+				}
+			} else {
+				log.info("Question 2 not showing properly...");
+				flag = false;
+			}
+		} else if (Message.equals("Neither satisfied nor unsatisfied")) {
+			log.info(Message + " is selected.");
+			try {
+				Question2Flag = driver.findElement(By.xpath("//span[contains(@class,'question col-md-12 pl0')]"))
+						.isDisplayed();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (Question2Flag == false) {
+				log.info("Question 2 is not displaying...");
+				flag = true;
+			} else {
+				log.info("Question 2 is still displaying...");
+				flag = false;
+			}
+
+		}
+
+		else if (Message.equals("Satisfied") || Message.equals("Very Satisfied")
+				|| Message.equals("Extremely Satisfied")) {
+			log.info(Message + " is selected.");
+			String Question2 = driver.findElement(By.xpath("//span[contains(@class,'question col-md-12 pl0')]"))
+					.getText();
+			// System.out.println(Question3);
+			if (Question2.equals(
+					"2. We're glad to hear that. Please select the options below that significantly enhance your satisfaction:")) {
+				log.info("Question 3 showing properly...");
+				satisfiedCheckBoxeList = driver
+						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/input"));
+				satisfiedCheckBoxLabelList = driver
+						.findElements(By.xpath("//div[contains(@class,'col-md-4 survey-options mt20')]/div/label"));
+				log.info("Total Number of Labels showing for " + Message + " are " + satisfiedCheckBoxLabelList.size());
+
+				// Validation and checking all Checkboxes.
+				int i = 0;
+				for (WebElement ele : satisfiedCheckBoxLabelList) {
+					if (SatisfiedList.contains(ele.getText())) {
+						satisfiedCheckBoxeList.get(i).click();
+						if (satisfiedCheckBoxeList.get(i).isSelected()) {
+							log.info(ele.getText() + " is selected successfully...");
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) { // TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+							flag = true;
+						} else {
+							log.info("Unable to select " + ele.getText());
+							flag = false;
+							break;
+						}
+					} else {
+						log.info(ele.getText() + " does not exist on the page..");
+						flag = false;
+						break;
+					}
+					i++;
+				}
+			} else {
+				log.info("Question 2 not showing properly...");
+				flag = false;
+			}
+		}
+		log.info("OccupantSurvey_SelectAll_SurveyOptions method ends here with option " + Message);
+		return flag;
+	}
+
+	// (Building-->Occupant Survey) This method takes the Satisfaction and verifies
+	// it.
+	public boolean OccupantSurveyVerify(String Scope, String Group, String SatisfactionLevel) {
+		log.info("OccupantSurveyVerify Method starts here...........");
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		BuildingPage.ClickOnMetersAndSurveyMenu();
+		BuildingPage.ClickOnReEntry_OccupantSurvey();
+		BuildingPage.SelectScope_Group(Scope, Group);
+		CommonMethod.waitUntilLoadElement();
+		boolean Responseflag = false;
+		boolean Averageflag = false;
+		List<WebElement> ResponseList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[2]"));
+		List<WebElement> AverageResponseList = driver
+				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[3]"));
+		for (WebElement ele : ResponseList) {
+			if (ele.getText().contains("1")) {
+				Responseflag = true;
+			} else {
+				Responseflag = false;
+				break;
+			}
+		}
+		for (byte i = 1; i < 7; i++) {
+			String AverageText = AverageResponseList.get(i).getAttribute("innerText");
+			if (AverageText.contains(SatisfactionLevel)) {
+				Averageflag = true;
+			} else {
+				Averageflag = false;
+				break;
+			}
+		}
+
+		if ((Averageflag) && (Responseflag)) {
+			log.info("OccupantSurveyVerify Method ends here with true ...........");
+			return true;
+		} else {
+			log.info("OccupantSurveyVerify Method ends here with false ...........");
+			return false;
+		}
+
+	}
+
+	public void SelectScope_Group(String Scope, String Group) {
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		//driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")).click();
+		//driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
+		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		//driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")).click();
+		//driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")).click();
+		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")));
+		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
+		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
