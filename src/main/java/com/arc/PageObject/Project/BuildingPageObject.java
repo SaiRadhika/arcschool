@@ -704,9 +704,9 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(OverviewBuildingSetting, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		OverviewBuildingSetting.click();
-		ngWebDriver.waitForAngularRequestsToFinish();
+		//ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -10426,10 +10426,10 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-
+		String url=null;
 		if (flag) {
 
-			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			driver.close();
 			try {
 				Thread.sleep(3000);
@@ -10476,8 +10476,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
 			ActProjectName_Address = driver
 					.findElement(By.xpath("//div[@class='survey-logo']/parent::div/following-sibling::div[1]"))
@@ -10566,9 +10567,9 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 
 		flag = Transportation_copyLanguage("English");
-
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -10748,10 +10749,10 @@ public class BuildingPageObject extends BaseClass {
 
 	// This method will open new tab and paste the url from system clipboard.
 
-	public boolean Transportation_OpenNewTabWithCopiedURL() {
+	public boolean Transportation_OpenNewTabWithCopiedURL(String newURL) {
 		log.info("Transportation_OpenNewTabWithCopiedURL method starts here ...");
 		boolean flag = false;
-		Object copiedText = null;
+		/*Object copiedText = null;
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		// String handle = driver.getWindowHandle();
 		try {
@@ -10765,8 +10766,8 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Copied text from ClipBoard is " + copiedText);
 		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
-		// "\")");
-		((JavascriptExecutor) driver).executeScript("window.open('" + copiedText + "')");
+		// "\")"); */
+		((JavascriptExecutor) driver).executeScript("window.open('" + newURL + "')");
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e1) {
@@ -10799,10 +10800,10 @@ public class BuildingPageObject extends BaseClass {
 	// Occupant Survey -->This method will open new tab and paste the url from
 	// system clipboard.
 
-	public boolean OcupantSurvey_OpenNewTabWithCopiedURL() {
+	public boolean OcupantSurvey_OpenNewTabWithCopiedURL(String url) {
 		log.info("OcupantSurvey_OpenNewTabWithCopiedURL method starts here ...");
 		boolean flag = false;
-		Object copiedText = null;
+		/*Object copiedText = null;
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		// String handle = driver.getWindowHandle();
 		try {
@@ -10816,8 +10817,8 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Copied text from ClipBoard is " + copiedText);
 		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
-		// "\")");
-		((JavascriptExecutor) driver).executeScript("window.open('" + copiedText + "')");
+		// "\")"); */
+		((JavascriptExecutor) driver).executeScript("window.open('" + url + "')");
 		//ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(10000);
@@ -10878,9 +10879,9 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 
 		flag = Transportation_copyLanguage("English");
-
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -10972,8 +10973,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -11066,8 +11068,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -11178,12 +11181,13 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Total Number of language is " + LanguageList.size());
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		log.info("Language copy flag is .." + flag);
 		int xaxis = 0;
 		int z = 0;
 		if (flag) {
 			for (int i = 0; i < 14; i++) {
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				try {
 					Thread.sleep(4000);
 				} catch (InterruptedException e) {
@@ -11816,10 +11820,11 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
 			int k = 0;
 			for (int i = 1; i <= 7; i++) {
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				try {
 					Thread.sleep(4000);
 				} catch (InterruptedException e) {
@@ -11931,7 +11936,8 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		Transportation_copyLanguage("English");
-		Transportation_OpenNewTabWithCopiedURL();
+		String url=null;
+		Transportation_OpenNewTabWithCopiedURL(url);
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -13120,13 +13126,13 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
 		log.info("Copied URL is "+url);
-		CommonMethod.setClipBoard(url);
+		//CommonMethod.setClipBoard(url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
 		log.info("Flag value is "+flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		if (flag) {
-			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			driver.close();
 			try {
 				Thread.sleep(3000);
@@ -13177,7 +13183,7 @@ public class BuildingPageObject extends BaseClass {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
 		log.info("Copied URL is "+url);
-		CommonMethod.setClipBoard(url);
+		//CommonMethod.setClipBoard(url);
 		// js.executeScript("document.querySelector("'#copy-link-button'")
 		// driver.findElement(By.xpath("//a[text()='Copy
 		// Link']/parent::button")).click();
@@ -13195,7 +13201,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			driver.findElement(
 					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/descendant::input[1]")).click();
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
@@ -13269,8 +13275,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 55, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(2, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(2, Question_Link); // that particular question
@@ -13288,7 +13294,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
-	public boolean FMS_CopySurveyLink() {
+	public String FMS_CopySurveyLink() {
 		log.info("FMS_CopySurveyLink method starts here...");
 		boolean flag = false;
 		try {
@@ -13309,14 +13315,14 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
-		CommonMethod.setClipBoard(url);
+		//CommonMethod.setClipBoard(url);
 		log.info("Copied url is " + url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		log.info("FMS_CopySurveyLink method ends here with " + flag + "  ...");
-		return flag;
+		return url;
 	}
 
 	public void FMS_SelectYes_UploadFile_AddLink(int QNo, String QLink) {
@@ -14642,8 +14648,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 56, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(3, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(3, Question_Link); // that particular question
@@ -14667,15 +14673,15 @@ public class BuildingPageObject extends BaseClass {
 		boolean Noflag = false;
 		boolean NAflag = false;
 		// String Question_Link = data.getCellData("Building", 56, 2);
-		FMS_CopySurveyLink();
+		String url=FMS_CopySurveyLink();
 		for (int i = 0; i < 3; i++) {
-			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			if (OpenSurveyTab) {
 				Yesflag = FMS_SelectYes_No_NA_Verify(4, "Yes");// takes row number and URL to paste in that particular
 																// question
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				Noflag = FMS_SelectYes_No_NA_Verify(4, "No");
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				NAflag = FMS_SelectYes_No_NA_Verify(4, "No");
 				log.info("Value of Yes Flag is " + Yesflag);
 				log.info("Value of No Flag is " + Noflag);
@@ -14702,9 +14708,8 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ReEntry_FMS_Question5_CheckCDC_GuideLine  method starts here.........");
 		boolean OpenSurveyTab = false;
 		String pdfcontent = null;
-		String url = null;
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			String SurveyWindow = driver.getWindowHandle();
 			driver.findElement(
@@ -14751,8 +14756,8 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ReEntry_FMS_Question5_USGBC_CreditLink  method starts here.........");
 		boolean OpenSurveyTab = false;
 		String PageTitle = null;
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			String SurveyWindow = driver.getWindowHandle();
 			driver.findElement(
@@ -14797,8 +14802,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 57, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(5, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(5, Question_Link); // that particular question
@@ -14820,8 +14825,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 58, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);// takes row number and URL to
 																						// paste in
@@ -14844,8 +14849,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 59, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(7, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14868,8 +14873,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 62, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(10, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14892,8 +14897,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 63, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink(11, Question_Link);// takes row number and URL to
 																							// paste in
@@ -14916,8 +14921,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 61, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_OccupantScreening_Yes_UploadFile_AddLink(9, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(9, Question_Link); // that particular question
@@ -14939,8 +14944,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 60, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(8, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14963,8 +14968,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 64, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify(12, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14987,8 +14992,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 65, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACSystemOperation_Yes_UploadFile_AddLink(13, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(13, Question_Link); // that particular question
@@ -15010,8 +15015,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 66, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink(14, Question_Link);// takes row number and URL to
 																							// paste in
@@ -15034,8 +15039,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 67, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink(15, Question_Link);// takes row number and URL to
 																						// paste in
@@ -15058,8 +15063,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 68, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(16, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(16, Question_Link); // that particular question
@@ -15081,8 +15086,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 69, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_Elevatormanagement_Yes_UploadFile_AddLink(17, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(17, Question_Link); // that particular question
@@ -15104,8 +15109,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 70, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_PortableWaterManagement_Yes_UploadFile_AddLink(18, Question_Link);// takes row number and URL to paste
 																					// in
@@ -15128,8 +15133,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 71, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_IAQAssessment_Yes_UploadFile_AddLink(19, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(19, Question_Link); // that particular question
@@ -15214,7 +15219,8 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		String url = driver.findElement(ByAngular.model("oe_link")).getAttribute("value");
-		CommonMethod.setClipBoard(url);
+		//CommonMethod.setClipBoard(url);
+		log.info("Url Copied is "+url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
 		try {
@@ -15225,8 +15231,8 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
-		flag = OcupantSurvey_OpenNewTabWithCopiedURL();
-		CommonMethod.clearClipBoard();
+		flag = OcupantSurvey_OpenNewTabWithCopiedURL(url);
+		//CommonMethod.clearClipBoard();
 		if (flag) {
 			log.info("ReEntry_OccupantSurvey_OpenSurvey_NewTab method ends here with true.........");
 			return true;
