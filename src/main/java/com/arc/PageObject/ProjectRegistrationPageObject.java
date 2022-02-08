@@ -528,6 +528,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		log.info("CheckAddress_City_Country_State_ZipCode starts here..................");
 		AddressTextBox.clear();
 		AddressTextBox.sendKeys(Address);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By
