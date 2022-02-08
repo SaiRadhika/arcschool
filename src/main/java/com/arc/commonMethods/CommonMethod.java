@@ -203,6 +203,14 @@ public class CommonMethod extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		log.info(pdfcontent);
 		log.info("getPDFContent method ends here ......");
 		return pdfcontent;

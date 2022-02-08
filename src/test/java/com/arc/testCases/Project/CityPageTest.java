@@ -167,6 +167,208 @@ public class CityPageTest extends BaseClass {
 	// *************************Regression Test
 	// Cases***********************************************
 
+	// --> Certifications- > Verify Under Certifications- Shows text- "LEED v4.1
+	// Cities Certification".
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 91, enabled = true, description = "Certifications- > Verify Under Certifications- Shows text- \"LEED v4.1 Cities Certification\".")
+	public void City_Certifications_LEED_Certification() {
+
+		log.info("City_Certifications_LEED_Certification method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		//System.setProperty("CityProject_Test1","8000040329");
+		String ProjectCityID = System.getProperty("CityProject_Test1");
+		// ProjectCityID="8000012008";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonCertifications();
+			flag = CityPage.CheckLEEDCitiesCertification();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Certifications_LEED_Certification method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Certifications_LEED_Certification method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Certifications- > Verify Under Certifications-button 'Register for LEED
+	// Certification' redirects to LEED Online page-
+	// "https://leedonline-stg.usgbc.org/"
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 92, enabled = true, description = "Certifications- > Verify Under Certifications-button 'Register for LEED Certification' redirects to LEED Online page- \"https://leedonline-stg.usgbc.org/\"")
+	public void City_Certifications_RegisterForLEEDCertification() {
+
+		log.info("City_Certifications_RegisterForLEEDCertification method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		
+		String ProjectCityID = System.getProperty("CityProject_Test1");
+		//ProjectCityID="8000040324";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonCertifications();
+			flag = CityPage.CheckRegisterForLEEDCertification();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Certifications_RegisterForLEEDCertification method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Certifications_RegisterForLEEDCertification method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' at
+	// Right hand side shows LEED badge with text "Projects achieved LEED
+	// certification since Dec 10, 2021."
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 93, enabled = true, description = "Certifications- > Verify Under Certifications-'Recent certifications' at Right hand side shows LEED badge with text \"Projects achieved LEED certification since Dec 10, 2021.\" ")
+	public void City_Certifications_RecentCertifications() {
+
+		log.info("City_Certifications_RecentCertifications method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_Test1");
+		// ProjectCityID="8000039883";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonCertifications();
+			flag = CityPage.CheckRecentCertifications();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Certifications_RecentCertifications method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Certifications_RecentCertifications method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' -
+	// 'Learn More' link redirects to "https://www.usgbc.org/projects"
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 94, enabled = true, description = "Certifications- > Verify Under Certifications-'Recent certifications' - 'Learn More' link redirects to \"https://www.usgbc.org/projects\"")
+	public void City_Certifications_CheckLearnMoreLink() {
+
+		log.info("City_Certifications_CheckLearnMoreLink method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_Test1");
+		// ProjectCityID="8000039883";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonCertifications();
+			flag = CityPage.CheckLearnMoreLink();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Certifications_CheckLearnMoreLink method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Certifications_CheckLearnMoreLink method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	
+	//Verify Under Certifications-Message is displayed "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites." Followed by individual score given for each performance category.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 95, enabled = true, description = "Verify Under Certifications-Message is displayed \"This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.\" Followed by individual score given for each performance category.")
+	public void City_Certifications_VerifyTextMessage() {
+
+		log.info("City_Certifications_VerifyTextMessage method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_Test1");
+		// ProjectCityID="8000039883";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonCertifications();
+			flag = CityPage.Certifications_VerifyTextMessage();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Certifications_VerifyTextMessage method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Certifications_VerifyTextMessage method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
 	// Verify in DI, Project settings - population tab- Add row button adds a new
 	// line item with fields- 'Effective year', Population, Updated by followed by
 	// Save and delete button
@@ -262,14 +464,14 @@ public class CityPageTest extends BaseClass {
 	// member and add line item to this tab and check if his name s updated in
 	// 'Updated by column }
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 102,dependsOnMethods = "City_ProjectSetting_Population_Save_Row_DecadeCalender_Display", enabled = true, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 102, dependsOnMethods = "City_ProjectSetting_Population_Save_Row_DecadeCalender_Display", enabled = true, description = "Project Setting -> population \r\n Verify Updated by shows the correct team-member/admin name.{To check this, add any team-member in teams section and login using that team member and add line item to this tab and chek if his name s updated in 'Updated by column ")
 	public void City_ProjectSetting_Population_UpdatedBy_Test() {
 
 		log.info("City_ProjectSetting_Population_UpdatedBy_Test method started......................... ");
 		HomePage.setHomePageApplication();
 		ProjectPage = HomePage.clickOnProject();
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		 //ProjectCityID="8000011584";
+		// ProjectCityID="8000011584";
 		if (!ProjectCityID.equals(null)) {
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			CityPage.ClickonTeamInManage();
@@ -296,7 +498,7 @@ public class CityPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 				HomePage.closeProjectSearchTextBox();
-				String ProfileName=HomePage.getCurrentProfileUserName();
+				String ProfileName = HomePage.getCurrentProfileUserName();
 				CityPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CityPage.ClickonProjectSetting();
@@ -483,8 +685,9 @@ public class CityPageTest extends BaseClass {
 		}
 
 	}
-	
-	// Project Setting - > Population - > Verify delete button deletes the line item successfully.
+
+	// Project Setting - > Population - > Verify delete button deletes the line item
+	// successfully.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" }, priority = 105, enabled = true, description = "Project Setting - > Population - > Verify delete button deletes the line item successfully. ")
@@ -786,8 +989,8 @@ public class CityPageTest extends BaseClass {
 
 	}
 
-	
-	// Project Setting - > Project Area - > Verify delete button deletes the line item successfully.
+	// Project Setting - > Project Area - > Verify delete button deletes the line
+	// item successfully.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 113, enabled = true, description = "Project Setting - > Project Area - > Verify delete button deletes the line item successfully. ")
@@ -873,7 +1076,7 @@ public class CityPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 				HomePage.closeProjectSearchTextBox();
-				String ProfileName=HomePage.getCurrentProfileUserName();
+				String ProfileName = HomePage.getCurrentProfileUserName();
 				CityPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CityPage.ClickonProjectSetting();
@@ -885,8 +1088,7 @@ public class CityPageTest extends BaseClass {
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
 					if (Updatedflag) {
-						log.info(
-								"City_ProjectSetting_ProjectArea_UpdatedBy method ends with true here ........... ");
+						log.info("City_ProjectSetting_ProjectArea_UpdatedBy method ends with true here ........... ");
 						Assert.assertTrue(true);
 
 					} else {
@@ -899,8 +1101,7 @@ public class CityPageTest extends BaseClass {
 					CommonMethod.switchToDefaultContent();
 					HomePage.checkSignOut();
 					HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
-					log.info(
-							"City_ProjectSetting_ProjectArea_UpdatedBy method ends ends with false here ........... ");
+					log.info("City_ProjectSetting_ProjectArea_UpdatedBy method ends ends with false here ........... ");
 					Assert.assertTrue(false);
 				}
 
@@ -1355,7 +1556,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		//ProjectCityID="8000011512";
+		// ProjectCityID="8000011512";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -1489,14 +1690,13 @@ public class CityPageTest extends BaseClass {
 			CommonMethod.switchToDataInputFrame();
 
 			CityPage.ClickonWaterConsumption();
-			/*OldScore = CityPage.getWaterScore();
-			CommonMethod.switchToDefaultContent();
-			ProjectPage = HomePage.clickOnProject();
-			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-			HomePage.closeProjectSearchTextBox();
-			CityPage.ClickonDataInput();
-			CommonMethod.switchToDataInputFrame();
-			CityPage.ClickonWaterConsumption();*/
+			/*
+			 * OldScore = CityPage.getWaterScore(); CommonMethod.switchToDefaultContent();
+			 * ProjectPage = HomePage.clickOnProject(); CityPage =
+			 * ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			 * HomePage.closeProjectSearchTextBox(); CityPage.ClickonDataInput();
+			 * CommonMethod.switchToDataInputFrame(); CityPage.ClickonWaterConsumption();
+			 */
 			flag = CityPage.CheckWaterConsumption_SaveNewRecord();
 
 			if (flag) {
@@ -1631,7 +1831,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
-			//CityPage.getWaterScore();
+			// CityPage.getWaterScore();
 			flag = CityPage.CheckWaterConsumption_AddRow_DurationTypes();
 
 			if (flag) {
@@ -2942,13 +3142,13 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			//OldScore = CityPage.getTransportScore();
+			// OldScore = CityPage.getTransportScore();
 			flag = CityPage.CheckTransportation_SaveNewRecord();
 
 			if (flag) {
-					log.info("City_Transportation_SavePreviousYearData method ends here ........... ");
-					Assert.assertTrue(true);
-				
+				log.info("City_Transportation_SavePreviousYearData method ends here ........... ");
+				Assert.assertTrue(true);
+
 			} else {
 				log.info("Record is not added successfully");
 				log.info("City_Transportation_SavePreviousYearData method ends here ........... ");
@@ -2962,8 +3162,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Verify score gets populated when data is added for previous year
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Transportation_SavePreviousYearData", priority = 144, enabled = true, description = "Transportation - >Verify score gets populated when data is added for previous year  ")
@@ -2990,13 +3189,12 @@ public class CityPageTest extends BaseClass {
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
 			Score = CityPage.getTransportScore();
-			
-				if (Score>0) {
-					log.info("Score is updated with---" + Score);
-					log.info("City_Transportation_CheckScore method ends here ........... ");
-					Assert.assertTrue(true);
-				}
-			 else {
+
+			if (Score > 0) {
+				log.info("Score is updated with---" + Score);
+				log.info("City_Transportation_CheckScore method ends here ........... ");
+				Assert.assertTrue(true);
+			} else {
 				log.info("City_Transportation_CheckScore method ends here ........... ");
 				Assert.assertTrue(false);
 			}
@@ -3953,7 +4151,7 @@ public class CityPageTest extends BaseClass {
 
 	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
 	// (%) - Verify able to delete line item by using delete button.
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
 	public void City_Education_Bachelor_Population_Delete_Row() {
 
 		log.info("City_Education_Bachelor_Population_Delete_Row method started......................... ");
@@ -6906,7 +7104,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000006797";
+		// ProjectCityID="8000012008";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -6930,4 +7128,761 @@ public class CityPageTest extends BaseClass {
 		}
 	}
 
+	// --------------------------------------------Manage Section Test
+	// Cases---------------------
+
+	// --> Verify under Manage--Project-- Project Details, Year founded is a
+	// dropdown field with year values ranging from 1900 to current year.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 251, enabled = true, description = " Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. ")
+	public void City_ManageProject_CheckYearRange() {
+
+		log.info("City_ManageProject_CheckYearRange method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		//System.setProperty("CityProject5","8000012010");
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="1000102092";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonProjectInManage();
+			flag = CityPage.ManageProject_CheckYearRange();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageProject_CheckYearRange method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageProject_CheckYearRange method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Verify Managing entity name, address(line 1), address(line 2), entity
+	// city are text field and able to add any value in it.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 252, enabled = true, description = " Verify Managing entity name, address(line 1), address(line 2), entity city are text field and able to add any value in it. ")
+	public void City_ManageProject_CheckEntityFields() {
+
+		log.info("City_ManageProject_CheckEntityFields method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000039417";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonProjectInManage();
+			flag = CityPage.ManageProject_CheckEntityFields();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageProject_CheckEntityFields method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageProject_CheckEntityFields method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Managing entity Country/region is drop down field and able to select
+	// any country value from it.
+	// Verify Managing entity State field is drop down field and the values change
+	// as per the country selected in the country field.
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 253, enabled = true, description = "Verify Managing entity Country/region  is drop down field and able to select any country value from it.\r\n"
+			+ "				Verify Managing entity State field  is drop down field and the values change as per the country selected in the country field.")
+	public void City_ManageProject_SelectCountryAndState() {
+
+		log.info("City_ManageProject_SelectCountryAndState method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040234";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonProjectInManage();
+			flag = CityPage.ManageProject_SelectCountryAndState();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageProject_SelectCountryAndState method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageProject_SelectCountryAndState method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Private is a radio button with options Yes And No. Able to select any
+	// value from it.
+	// Verify 'Intend to precertify?' field has radio button with options- Yes and
+	// No.Able to select any value from it.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 254, enabled = true, description = "Verify Private is a radio button with options Yes And No. Able to select any value from it.\r\n"
+			+ "	 Verify 'Intend to precertify?' field has radio button with options- Yes and No.Able to select any value from it.")
+	public void City_ManageProject_PrivateRadioButton_IntendToPrecertify() {
+
+		log.info("City_ManageProject_PrivateRadioButton_IntendToPrecertify method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000039417";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonProjectInManage();
+			flag = CityPage.ManageProject_PrivateRadioButton_IntendToPrecertify();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"City_ManageProject_PrivateRadioButton_IntendToPrecertify method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"City_ManageProject_PrivateRadioButton_IntendToPrecertify method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Target certification date opens up a Calendar and able to seelct any
+	// date from the calendar.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 255, enabled = true, description = "Verify Target certification date opens up a Calendar and able to seelct any date from the calendar.")
+	public void City_ManageProject_TargetCertificationDate() {
+
+		log.info("City_ManageProject_TargetCertificationDate method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040326";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonProjectInManage();
+			flag = CityPage.ManageProject_TargetCertificationDate();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageProject_TargetCertificationDate method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageProject_TargetCertificationDate method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify ARC Administrator will be created by default when a project is created
+	// Verify that project should have minimum one ARC adminsitrator.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 256, enabled = true, description = "Verify ARC Administrator will be created by default when a project is created. \r\n"
+			+ "	// Verify that project should have minimum one ARC adminsitrator.")
+	public void City_ManageTeam_CheckDefaultARCAdministrator() {
+
+		log.info("City_ManageTeam_CheckDefaultARCAdministrator method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000039597";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_CheckDefaultARCAdministrator();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_CheckDefaultARCAdministrator method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_CheckDefaultARCAdministrator method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// verify under Manage-teams- 'Invite team members' able to add team member
+	// successfully.
+	// Verify team member can be added who is a registered USGBC.org user. Verify
+	// authorization level should be by default as 'Team Member' if added any new
+	// team member
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 257, enabled = true, description = "verify under Manage-teams- 'Invite team members' able to add team member successfully.\r\n"
+			+ "		// Verify team member can be added who is a registered USGBC.org user. Verify authorization level should be by default as 'Team Member' if added any new team member")
+	public void City_ManageTeam_CheckAddNewTeamMember() {
+
+		log.info("City_ManageTeam_CheckAddNewTeamMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040234";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_CheckAddNewTeamMember();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_CheckAddNewTeamMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_CheckAddNewTeamMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify if the team member added is unregistered user, throws error message in
+	// red "a@aa.com is not a registered USGBC.org user, please have the user
+	// register at https://new.usgbc.org/registration/create-user and try again."
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 258, enabled = true, description = "Verify if the team member added is unregistered user, throws error message in red  \"a@aa.com is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.")
+	public void City_ManageTeam_CheckAddUnregisteredTeamMember() {
+
+		log.info("City_ManageTeam_CheckAddUnregisteredTeamMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040234";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_CheckAddUnregisteredTeamMember();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_CheckAddUnregisteredTeamMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_CheckAddUnregisteredTeamMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Adding the same team role for a member again, should give a validation
+	// message like 'ashree511@gmail.com already has the same team role'
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "City_ManageTeam_CheckAddNewTeamMember", priority = 259, enabled = true, description = "Adding the same team role for a member again, should give a validation message like 'ashree511@gmail.com already has the same team role'")
+	public void City_ManageTeam_AddExistingTeamMember() {
+
+		log.info("City_ManageTeam_AddExistingTeamMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040234";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_AddExistingTeamMember();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_AddExistingTeamMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_AddExistingTeamMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify existing ARC administrator can't be edited until another ARC
+	// adminstrator is present. If edited, error message will display as 'Project
+	// should have atleast one ARC Administrator'.
+
+	// Project can also have more than one ARC administrator.
+	// Verify a user with role 'Team member' doesnt have the edit/add/remove access
+	// to the team section.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 260, enabled = true, description = "Verify existing ARC administrator can't be edited until another ARC adminstrator is present. If edited, error message will display as 'Project should have atleast one ARC Administrator'.\r\n"
+			+ "	//  Project can also have more than one ARC administrator. \r\n"
+			+ "	//Verify a user with role 'Team member' doesnt have the edit/add/remove access to the team section.")
+	public void City_ManageTeam_EditARCAdministratorRole() {
+
+		log.info("City_ManageTeam_EditARCAdministratorRole method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040230";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_EditARCAdministratorRole();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_EditARCAdministratorRole method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_EditARCAdministratorRole method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify able to add/update team member.
+	// Verify authorization level Member, etc can be changed and vice-versa.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 261, enabled = true, description = "Verify able to add/update team member.\r\n"
+			+ "	//Verify authorization level Member, etc can be changed and vice-versa.")
+	public void City_ManageTeam_TeamAddEditMember() {
+
+		log.info("City_ManageTeam_TeamAddEditMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCityID = System.getProperty("CityProject_Perf4");
+		// ProjectCityID="8000039597";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_TeamAddEditMember();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_TeamAddEditMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_TeamAddEditMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify able to remove team member
+	// Verify a user should not have access to a project, if that team member is
+	// removed.
+
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 262, enabled = true, description = "Verify able to remove team member\r\n"
+			+ "		//Verify a user should not have access to a project, if that team member is removed.")
+	public void City_ManageTeam_TeamAddRemoveMember() {
+
+		log.info("City_ManageTeam_TeamAddRemoveMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040272");
+		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_TeamAddRemoveMember();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_TeamAddRemoveMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_TeamAddRemoveMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	/*
+	 * Verify Manage-Teams- Right hand side 'How team roles work?' tooltip opens a
+	 * modal window with team roles definition as below:
+	 * 
+	 * Arc Administrator: The Arc Administrator has complete access to the project
+	 * including data entry, submitting for review, and is granted rights to add
+	 * additional team members. The Arc Administrator will also be the point of
+	 * contact for automatic notifications, billing information, and review reports.
+	 * 
+	 * Note: While multiple “Arc Administrators” can exist on a project team, we
+	 * strongly recommend that you designate only one person in this role to avoid
+	 * confusion and so that a single point of contact is receiving notifications
+	 * about billing and certification.
+	 * 
+	 * Team Manager: A Team Manager has access to the project including data entry
+	 * and submitting for review, and can make changes to the project team.
+	 * 
+	 * Team Member: A Team Member has access to the project including data entry and
+	 * submitting for review, but cannot make any changes to the project team.
+	 * 
+	 * Project Administrator: A Project Administrator is the original LEED Project
+	 * Administrator and will only appear on the project team for LEED projects that
+	 * were previously or are currently using LEED Online. The Project Administrator
+	 * has the same rights as the Arc Administrator.
+	 * 
+	 * Read Only: Read Only members can access the project to view data but cannot
+	 * make any changes to the project, data entry or the project team.
+	 * 
+	 * 
+	 * 
+	 */
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 263, enabled = true, description = "Verify Tooltip Text of How Team role works.")
+	public void City_ManageTeam_HowTeamRolesWorkTooltip() {
+
+		log.info("City_ManageTeam_HowTeamRolesWorkTooltip method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040272");
+		String ProjectCityID = System.getProperty("CityProject_Perf4");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonTeamInManage();
+			flag = CityPage.ManageTeam_HowTeamRolesWorkTooltip();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ManageTeam_HowTeamRolesWorkTooltip method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ManageTeam_HowTeamRolesWorkTooltip method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify 'Agreements' tab contains 'Registration' Agreement with date Signed as
+	// the date of registration.
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CityRegression" }, enabled = true, priority = 264, description = "Verify 'Agreements' tab contains 'Registration' Agreement with date Signed as the date of registration.")
+	public void City_Agreement_CheckAgreement() {
+		log.info("City_Agreement_CheckAgreement method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040272");
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonAgreementInManage();
+			flag = CityPage.Manage_Agreement_CheckAgreement();
+
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Agreement_CheckAgreement method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Agreement_CheckAgreement method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify agreement is downloaded successfully.
+
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CityRegression" }, enabled = true, priority = 267, description = "Verify able to download the agreement successfully.")
+	public void City_Agreement_CheckDownloadAgreement() {
+		log.info("City_Agreement_CheckDownloadAgreement method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040272");
+		String ProjectCityID = System.getProperty("CityProject5");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			String username = HomePage.getCurrentProfileUserName();
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonAgreementInManage();
+			CommonMethod.ClikOnAgreementRegistrationDownloadLink();
+			flag = CityPage.CheckAgreementDownloadedFile(username);
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Agreement_CheckDownloadAgreement method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Agreement_CheckDownloadAgreement method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+// Verify links redirect to correct pages: Data guide for buildings -"https://www.usgbc.org/resources/data-management-buildings" and Data review checklst (pdf)downloads the data review checklist file.
+
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CityRegression" }, enabled = true, priority = 268, description = "Verify links redirect to correct pages: Data guide for buildings -\"https://www.usgbc.org/resources/data-management-buildings\" and Data review checklst (pdf)downloads the data review checklist file.")
+	public void City_Settings_DataResourceLinks() {
+		log.info("City_Settings_DataResourceLinks method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		 //System.setProperty("CityProject_Perf4","8000040326");
+		String ProjectCityID = System.getProperty("CityProject_Perf4");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonSettingsInManage();
+			flag = CityPage.CheckSettings_DataResourceLink();
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Settings_DataResourceLinks method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Settings_DataResourceLinks method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	// Verify able to turn the toggle button 'on' and 'off' for "Show the score animation on the Arc app"
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+				"CityRegression" }, enabled = false, priority = 269, description = "Verify able to turn the toggle button 'on' and 'off' for \"Show the score animation on the Arc app\"")
+		public void City_Settings_ScoreAnimationToggleButton() {
+			log.info("City_Settings_ScoreAnimationToggleButton method started ");
+			boolean flag = false;
+			try {
+				HomePage.setHomePageApplication();
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+			 //System.setProperty("CityProject_Perf4","8000040326");
+			String ProjectCityID = System.getProperty("CityProject_Perf4");
+			// ProjectCityID="8000040272";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				HomePage.closeProjectSearchTextBox();
+				CityPage.ClickonSettingsInManage();
+				flag = CityPage.Settings_ScoreAnimationToggleButton();
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+			if (flag) {
+				log.info("City_Settings_ScoreAnimationToggleButton method ends here with true ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_Settings_ScoreAnimationToggleButton method ends here with false........... ");
+				Assert.assertTrue(false);
+			}
+		}	
+	// Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. 
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+				"CityRegression" }, enabled = true, priority = 270, description = "Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. ")
+		public void City_ScoreVersion() {
+			log.info("City_ScoreVersion method started ");
+			boolean flag = false;
+			try {
+				HomePage.setHomePageApplication();
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+			 //System.setProperty("CityProject_Perf4","8000040326");
+			String ProjectCityID = System.getProperty("CityProject_Perf4");
+			// ProjectCityID="8000040272";
+			if (!ProjectCityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+				HomePage.closeProjectSearchTextBox();
+				CityPage.ClickonScoreVersionInManage();
+				flag = CityPage.CheckScoreVersion();
+			} else {
+				log.info("City Project is showing Null");
+				Assert.assertTrue(false);
+			}
+			if (flag) {
+				log.info("City_ScoreVersion method ends here with true ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("City_ScoreVersion method ends here with false........... ");
+				Assert.assertTrue(false);
+			}
+		}
 }

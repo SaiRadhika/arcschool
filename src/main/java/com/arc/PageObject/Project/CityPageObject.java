@@ -1,6 +1,8 @@
 package com.arc.PageObject.Project;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -8,19 +10,25 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
+import com.paulhammant.ngwebdriver.ByAngular;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 
 public class CityPageObject extends BaseClass {
 
@@ -28,6 +36,9 @@ public class CityPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//*[text()='Manage' and @class='ml10'])[1]")
 	WebElement ManageMenu;
+
+	@FindBy(xpath = "(//*[text()='Certifications' and @class='ml10'])[1]")
+	WebElement CertificationsMenu;
 
 	@FindBy(xpath = "(//*[text()='Data Input'])[1]")
 	WebElement DataInputSubMenu;
@@ -235,6 +246,12 @@ public class CityPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//a[text()=' Agreements '])[1]")
 	WebElement AgreementSubmenu;
+
+	@FindBy(xpath = "(//a[text()=' Settings '])[1]")
+	WebElement SettingsSubmenu;
+	
+	@FindBy(xpath = "(//a[text()=' Score Version '])[1]")
+	WebElement ScoreVersionSubmenu;
 
 	@FindBy(xpath = "(//a[text()=' Billing '])[1]")
 	WebElement BillingSubmenu;
@@ -537,6 +554,24 @@ public class CityPageObject extends BaseClass {
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr[2]/td[2]/div")
 	WebElement AdditionalData;
 
+	// *******************************Manage-Project Sections
+
+	@FindBy(xpath = "//input[@name='manageEntityName']")
+	WebElement ManagingEntityName;
+
+	@FindBy(xpath = "//input[@name='manageEntityAdd1']")
+	WebElement ManagingEntityAddress1;
+
+	@FindBy(xpath = "//input[@name='manageEntityAdd2']")
+	WebElement ManagingEntityAddress2;
+
+	@FindBy(xpath = "//input[@name='manageEntityCity']")
+	WebElement ManagingEntityCity;
+
+	@FindBy(xpath = "//input[@name='targetCertDate']")
+	WebElement TargetCertificationDate;
+
+	// *****************************************
 	// ************************************************************************
 	public CityPageObject() {
 		PageFactory.initElements(driver, this);
@@ -546,19 +581,47 @@ public class CityPageObject extends BaseClass {
 		log.info("ClickonAgreementInManage method starts here ....");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("ClickonAgreementInManage method ends here ....");
+	}
+
+	public void ClickonSettingsInManage() {
+		log.info("ClickonSettingsInManage method starts here ....");
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(SettingsSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		SettingsSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("ClickonSettingsInManage method ends here ....");
+	}
+	
+	public void ClickonScoreVersionInManage() {
+		log.info("ClickonScoreVersionInManage method starts here ....");
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(ScoreVersionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ScoreVersionSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("ClickonScoreVersionInManage method ends here ....");
 	}
 
 	public void ClickonBillingInManage() {
 		log.info("ClickonBillingInManage method ends here ....");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("ClickonBillingInManage method ends here ....");
 	}
 
@@ -569,6 +632,7 @@ public class CityPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		DataInputSubMenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("ClickonDataInput method ends here. ...");
 	}
 
@@ -586,6 +650,7 @@ public class CityPageObject extends BaseClass {
 		}
 		ProjectSettingButton.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(PopulationTab,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
@@ -613,6 +678,7 @@ public class CityPageObject extends BaseClass {
 		}
 		GHGEmission.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'GHG Emissions')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -641,6 +707,7 @@ public class CityPageObject extends BaseClass {
 		}
 		Transport_VMT.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),'Vehicle miles traveled on individual vehicles daily (VMT)')])[4]")),
@@ -672,6 +739,7 @@ public class CityPageObject extends BaseClass {
 		}
 		HealthAndSafety.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(
 						By.xpath("(//*[contains(text(),'Health & Safety: Median air quality index (AQI)')])[3]")),
@@ -702,6 +770,7 @@ public class CityPageObject extends BaseClass {
 		}
 		Education_BachelorPopulation.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Education: Population with (at least) Bachelor's degree\")])[3]")),
@@ -732,6 +801,7 @@ public class CityPageObject extends BaseClass {
 		}
 		Equitability_Gini_Coefficient.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Equitability: Gini coefficient (for income distribution)\")])[4]")),
@@ -762,10 +832,12 @@ public class CityPageObject extends BaseClass {
 		}
 		Education_HighSchoolPopulation.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Education: Population with (at least) High School degree (%)\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -791,6 +863,7 @@ public class CityPageObject extends BaseClass {
 		}
 		ProsperityMedianIncome.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By
 						.xpath("(//*[contains(text(),\"Prosperity: Median household income (US Dollars/Year)\")])[4]")),
@@ -821,6 +894,7 @@ public class CityPageObject extends BaseClass {
 		}
 		Equitability_MedianGrossIncome.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Equitability: Median gross rent as (%) of household income\")])[4]")),
@@ -851,6 +925,7 @@ public class CityPageObject extends BaseClass {
 		}
 		ProsperityUnemployementRate.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),\"Prosperity: Unemployment rate (%)\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -880,6 +955,7 @@ public class CityPageObject extends BaseClass {
 		}
 		HealthAndSafetySensitiveGroup.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath(
 				"(//*[contains(text(),\"Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)\")])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -909,6 +985,7 @@ public class CityPageObject extends BaseClass {
 		}
 		HealthAndSafetyVoilentCrime.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By
 						.xpath("(//*[contains(text(),\"Health & Safety: Violent Crime (per year per capita)\")])[3]")),
@@ -936,6 +1013,7 @@ public class CityPageObject extends BaseClass {
 
 		}
 		AdditionalData.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Additional Data')])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -957,6 +1035,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(WaterConsumption,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		WaterConsumption.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Water consumption')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -978,6 +1057,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(Waste_Solid_Generation,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Waste_Solid_Generation.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Municipal solid waste generation intensity')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -998,6 +1078,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(Waste_Solid_Diversion,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Waste_Solid_Diversion.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(
 						By.xpath("(//*[contains(text(),'Municipal solid waste diversion rate from landfill')])[4]")),
@@ -1014,7 +1095,9 @@ public class CityPageObject extends BaseClass {
 	public void getCityProjectID() {
 		try {
 			ManageMenu.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			ProjectSubmenu.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1028,9 +1111,26 @@ public class CityPageObject extends BaseClass {
 		try {
 
 			ManageMenu.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			ProjectSubmenu.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void ClickonCertifications() {
+		try {
+
+			CertificationsMenu.click();
+			CommonMethod.waitUntilLoadElement();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Certifications']")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1042,8 +1142,10 @@ public class CityPageObject extends BaseClass {
 		log.info("ClickonTeamInManage method starts here ....");
 		;
 		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		TeamSubmenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -1144,6 +1246,7 @@ public class CityPageObject extends BaseClass {
 		boolean flag = false;
 		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(ProjectAreaTab);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// ProjectAreaTab.click();
 		try {
 			Thread.sleep(2000);
@@ -1171,6 +1274,7 @@ public class CityPageObject extends BaseClass {
 			waithelper.WaitForElementClickable(ProjectSettingAddRowButton,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			ProjectSettingAddRowButton.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 
 			if (PopulationEffectiveYearHeading.getText().equals("EFFECTIVE YEAR")
 					&& Population_populationHeading.getText().equals("POPULATION")
@@ -1197,6 +1301,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(Population_PostButton, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		JSHelper.clickElement(Population_PostButton);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// Population_PostButton.click();
 		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
 		Date date = new Date();
@@ -1256,6 +1361,7 @@ public class CityPageObject extends BaseClass {
 		log.info("checkEnergyCommentAndActivity  starts here........");
 		boolean Commentflag = false;
 		JSHelper.clickElement(GHGEmission_DetailsTab);
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		try {
 			Thread.sleep(2000);
@@ -1269,7 +1375,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(Energy_PostButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		// Energy_PostButton.click();
 		JSHelper.clickElement(Energy_PostButton);
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
 		Date date = new Date();
 		String strDate = formatter.format(date);
@@ -1352,7 +1458,7 @@ public class CityPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(VMT_PostButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		// Energy_PostButton.click();
 		JSHelper.clickElement(VMT_PostButton);
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
 		Date date = new Date();
 		String strDate = formatter.format(date);
@@ -1378,6 +1484,7 @@ public class CityPageObject extends BaseClass {
 		log.info("Comment displayed flag --" + Commentflag);
 		waithelper.WaitForElementClickable(VMT_ActivityButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		VMT_ActivityButton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -6529,6 +6636,48 @@ public class CityPageObject extends BaseClass {
 
 	}
 
+	public boolean CheckProjectDetails(String PName, String PAddress) {
+		log.info("CheckProjectDetails method starts here......");
+		String City = data.getCellData("ProjectRegistration", 4, 2);
+		String Country = data.getCellData("ProjectRegistration", 5, 2);
+		String State = data.getCellData("ProjectRegistration", 6, 2);
+		// String ZipCode= data.getCellData("ProjectRegistration", 7, 2);
+		String ProjectID = driver.findElement(By.xpath("//div[text()='Project ID']/following-sibling::div")).getText();
+		String ProjectName = driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value");
+		String ProjectAddress = driver.findElement(By.xpath("//div[text()='Project Address']/following-sibling::div"))
+				.getText();
+		String ProjectCity = driver.findElement(By.xpath("//div[text()='Project City']/following-sibling::div"))
+				.getText();
+		String ProjectCountry = driver
+				.findElement(By.xpath("//div[text()='Project Country/Region']/following-sibling::div")).getText();
+		String ProjectState = driver.findElement(By.xpath("//div[text()='Project State']/following-sibling::div"))
+				.getText();
+		boolean TestFlag = CheckThisIsTestProjectCheckBox(ProjectID);
+		log.info("Actual Project ID is " + ProjectID);
+		log.info("Expected Project ID is " + System.getProperty("CityProject5"));
+		log.info("Actual Project Name is " + ProjectName);
+		log.info("Expected Project Name is " + PName);
+		log.info("Actual Project Address " + ProjectAddress);
+		log.info("Expected Project Address is " + PAddress);
+		log.info("Actual Project City " + ProjectCity);
+		log.info("Expected Project City is " + City);
+		log.info("Actual Project State " + ProjectState);
+		log.info("Expected Project State is " + State);
+		log.info("Actual Project Country " + ProjectCountry);
+		log.info("Expected Project Country is " + Country);
+		log.info("Actual Project Country " + ProjectCountry);
+		if (ProjectID.equals(System.getProperty("CityProject5")) && ProjectName.equals(PName)
+				&& ProjectAddress.equals(PAddress) && ProjectCity.equals(City) && ProjectState.equals(State)
+				&& ProjectCountry.equals(Country) && (TestFlag == false)) {
+			log.info("CheckProjectDetails method ends here with true......");
+			return true;
+		} else {
+			log.info("CheckProjectDetails method ends here with false......");
+			return true;
+		}
+
+	}
+
 	public boolean CheckThisIsTestProjectCheckBox(String ProjectID) {
 		try {
 			String path = "(//*[text()='" + ProjectID + "'])[2]";
@@ -7201,6 +7350,7 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		Education_HighSchoolPopulation_Data_AddYearBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		int Selected_Year = Integer.parseInt(driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
@@ -9476,10 +9626,11 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
-		
+
 		try {
-			waithelper.WaitForElementInvisible(driver.findElement(
-					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -9505,9 +9656,9 @@ public class CityPageObject extends BaseClass {
 		}
 
 	}
-	
-	
-	// Project Setting - > Project Area - > Verify delete button deletes the line item
+
+	// Project Setting - > Project Area - > Verify delete button deletes the line
+	// item
 	// successfully.
 
 	public boolean CheckProjectAreaDeleteRow() {
@@ -9536,10 +9687,11 @@ public class CityPageObject extends BaseClass {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
-		
+
 		try {
-			waithelper.WaitForElementInvisible(driver.findElement(
-					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -12340,6 +12492,1176 @@ public class CityPageObject extends BaseClass {
 			return false;
 		}
 
+	}
+
+	// --> Certifications- > Verify Under Certifications- Shows text- "LEED v4.1
+	// Cities Certification".
+
+	public boolean CheckLEEDCitiesCertification() {
+		log.info("CheckLEEDCitiesCertification  starts here........");
+		String CertificationText = driver.findElement(By.xpath("//span[@class='cert_list_rs ng-binding']")).getText();
+		log.info("Text Showing is " + CertificationText);
+
+		if (CertificationText.equals("LEED v4.1 Cities Certification")) {
+			log.info("CheckLEEDCitiesCertification  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckLEEDCitiesCertification  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Certifications- > Verify Under Certifications-button 'Register for LEED
+	// Certification' redirects to LEED Online page-
+	// "https://leedonline-stg.usgbc.org/"
+
+	public boolean CheckRegisterForLEEDCertification() {
+		log.info("CheckRegisterForLEEDCertification  starts here........");
+		String title=null;
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//button[contains(text(),'Register for LEED Certification')]")).click();
+		Set<String> WindowList = driver.getWindowHandles();
+		log.info(WindowList);
+		log.info(WindowList.size());
+		
+		for (String window : WindowList) {
+			if (!window.equals(BaseWindow)) {
+				driver.switchTo().window(window);
+				log.info(JSHelper.getCurrentURL());
+				log.info(driver.getTitle());
+				title=driver.getTitle();
+				break;
+			}
+		}
+		
+		if (title.equals("LEED Online")) {
+			log.info("CheckRegisterForLEEDCertification  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckRegisterForLEEDCertification  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' at
+	// Right hand side shows LEED badge with text "Projects achieved LEED
+	// certification since Dec 10, 2021."
+
+	public boolean CheckRecentCertifications() {
+		log.info("CheckRecentCertifications  starts here........");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDate todaydate = LocalDate.now();
+		String strDate = formatter.format(todaydate.minusMonths(1));
+		String ActText = driver.findElement(By.xpath("//div[@class='certification_number_text']")).getText();
+		// String
+		// SecondLine=driver.findElement(By.xpath("//div[@class='certification_number_text']/span")).getText();
+		String ExpText = "Projects achieved LEED certification since " + strDate + ".";
+		log.info("Actual Text showing is " + ActText);
+		log.info("Expected Text should be is " + ExpText);
+
+		if (ExpText.equals(ActText)) {
+			log.info("CheckRecentCertifications  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckRecentCertifications  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' -
+	// 'Learn More' link redirects to "https://www.usgbc.org/projects"
+
+	public boolean CheckLearnMoreLink() {
+		log.info("CheckLearnMoreLink  starts here........");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//a[contains(text(),'Learn more')]")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Set<String> WindowList = driver.getWindowHandles();
+		for (String window : WindowList) {
+			if (!window.equals(BaseWindow)) {
+				driver.switchTo().window(window);
+				break;
+			}
+		}
+		String currentURL = JSHelper.getCurrentURL();
+		// String env=System.getProperty("environment").toLowerCase();
+		String url = "https://www.usgbc.org/projects";
+		log.info("Current URL is " + currentURL);
+		log.info("Expected URL is " + url);
+		if (currentURL.equals(url)) {
+			log.info("CheckLearnMoreLink  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckLearnMoreLink  ends here with false........");
+			return false;
+		}
+
+	}
+	//Verify Under Certifications-Message is displayed "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites." Followed by individual score given for each performance category.
+
+	public boolean Certifications_VerifyTextMessage() {
+		log.info("Certifications_VerifyTextMessage  starts here........");
+		String ActText=driver.findElement(By.xpath("//div[@id='certification-div']/descendant::div[@class='col-md-12 pl0 pr0 fs16 line_height_24 pt25 ng-binding']")).getText();
+		String ExpText="This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.";
+		log.info("Actual Text is   "+ActText);
+		log.info("Expected Text is   "+ExpText);
+		if (ExpText.equals(ActText)) {
+			log.info("Certifications_VerifyTextMessage  ends here with true........");
+			return true;
+		} else {
+			log.info("Certifications_VerifyTextMessage  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Verify under Manage--Project-- Project Details, Year founded is a
+	// dropdown field with year values ranging from 1900 to current year.
+
+	public boolean ManageProject_CheckYearRange() {
+		log.info("ManageProject_CheckYearRange  starts here........");
+		ArrayList<Integer> year = new ArrayList<Integer>();
+		boolean flag = false;
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> YearList = driver.findElements(ByAngular.repeater("type in year_constructed"));
+		for (WebElement ele : YearList) {
+			year.add(Integer.parseInt(ele.getText()));
+		}
+		int CurrentYear = CommonMethod.getCurrentYear();
+		for (int i = 1900; i <= CurrentYear; i++) {
+			if (year.contains(i)) {
+				log.info(i + " year found");
+				flag = true;
+			} else {
+				log.info(i + " year not found");
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag) {
+			log.info("ManageProject_CheckYearRange  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_CheckYearRange  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Verify Managing entity name, address(line 1), address(line 2), entity
+	// city are text field and able to add any value in it.
+
+	public boolean ManageProject_CheckEntityFields() {
+		log.info("ManageProject_CheckEntityFields  starts here........");
+		String MEntityName = data.getCellData("City", 34, 2);
+		String MEntityAdd1 = data.getCellData("City", 35, 2);
+		String MEntityAdd2 = data.getCellData("City", 36, 2);
+		String MEntityCity = data.getCellData("City", 37, 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ManagingEntityName.sendKeys(MEntityName);
+		ManagingEntityAddress1.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ManagingEntityAddress1.sendKeys(MEntityAdd1);
+		ManagingEntityAddress2.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ManagingEntityAddress2.sendKeys(MEntityAdd2);
+		ManagingEntityCity.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ManagingEntityCity.sendKeys(MEntityCity);
+		ManagingEntityAddress2.click();
+		CommonMethod.waitUntilLoadElement();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CityPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String ActMEntityName = ManagingEntityName.getAttribute("value");
+		String ActMEntityAddress1 = ManagingEntityAddress1.getAttribute("value");
+		String ActMEntityAddress2 = ManagingEntityAddress2.getAttribute("value");
+		String ActMEntityCity = ManagingEntityCity.getAttribute("value");
+
+		log.info("Actual ManagingEntityName showing is " + ActMEntityName);
+		log.info("Actual ManagingEntityAddress1  showing is " + ActMEntityAddress1);
+		log.info("Actual ManagingEntityAddress2  showing is " + ActMEntityAddress2);
+		log.info("Actual ManagingEntityCity  showing is " + ActMEntityCity);
+		if (ActMEntityName.equals(MEntityName) && ActMEntityAddress1.equals(MEntityAdd1)
+				&& ActMEntityAddress2.equals(MEntityAdd2) && ActMEntityCity.equals(MEntityCity)) {
+			log.info("ManageProject_CheckEntityFields  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_CheckEntityFields  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Managing entity Country/region is drop down field and able to select
+	// any country value from it.
+	// Verify Managing entity State field is drop down field and the values change
+	// as per the country selected in the country field.
+
+	public boolean ManageProject_SelectCountryAndState() {
+		log.info("ManageProject_SelectCountryAndState  starts here........");
+		boolean IndiaStateflag = false;
+		boolean USStateflag = false;
+		List<String> USStateList = null;
+		String State = data.getCellData("City", 38, 2);
+		dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")),
+				"India");
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String> IndiaStateList = dropdownhelper
+				.getAllDropdownData(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int ActIndia_NoOfStates = IndiaStateList.size();
+		log.info("Total Number of states listed for India are  " + ActIndia_NoOfStates);
+		List<String> ExpIndiaStateList = CommonMethod.getStateList("India");
+		int India_NoOfStates = ExpIndiaStateList.size();
+		log.info("Total Number of states should be  " + India_NoOfStates);
+		if (India_NoOfStates == ActIndia_NoOfStates && IndiaStateList.equals(ExpIndiaStateList)) {
+			IndiaStateflag = true;
+			log.info("States are showing proper for India...");
+		}
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")),
+				"United States");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		USStateList = dropdownhelper
+				.getAllDropdownData(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
+		int ActUS_NoOfStates = USStateList.size();
+		log.info("Total Number of states listed for India are  " + ActUS_NoOfStates);
+		List<String> ExpUSStateList = CommonMethod.getStateList("United States");
+		int US_NoOfStates = ExpUSStateList.size();
+		log.info("Total Number of states should be  " + US_NoOfStates);
+		if (US_NoOfStates == ActUS_NoOfStates && USStateList.equals(ExpUSStateList)) {
+			USStateflag = true;
+			log.info("States are showing proper for United States...");
+		}
+		dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityState']")),
+				State);
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CityPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String ExpCountry = dropdownhelper
+				.getSelectedValue(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")));
+		String ExpState = dropdownhelper
+				.getSelectedValue(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
+		log.info("US State Flag value is " + USStateflag);
+		log.info("India State Flag value is " + IndiaStateflag);
+		log.info("Selected Country value is " + ExpCountry);
+		log.info("Selected State value is " + ExpState);
+		if ((USStateflag) && (IndiaStateflag) && (ExpCountry.equals("United States") && (ExpState.equals(State)))) {
+			log.info("ManageProject_SelectCountryAndState  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_SelectCountryAndState  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Private is a radio button with options Yes And No. Able to select any
+	// value from it.
+	// Verify 'Intend to precertify?' field has radio button with options- Yes and
+	// No.Able to select any value from it.
+
+	public boolean ManageProject_PrivateRadioButton_IntendToPrecertify() {
+		log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  starts here........");
+		boolean Privateflag = false;
+		boolean IntendToPrecertifyflag = false;
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JSHelper.clickElement(driver.findElement(
+				By.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]")));
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JSHelper.clickElement(driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]")));
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CityPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		log.info("PrivateYes flag is " + driver.findElement(By.xpath(
+				"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("PrivateNo flag is " + driver.findElement(By
+				.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyYes flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyNo flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+
+		if (driver.findElement(By.xpath(
+				"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected()
+				&& driver.findElement(By.xpath(
+						"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+						.isSelected()) {
+			Privateflag = true;
+			IntendToPrecertifyflag = true;
+		} else {
+			Privateflag = false;
+			IntendToPrecertifyflag = false;
+		}
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(
+				By.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]"))
+				.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]"))
+				.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CityPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		log.info("PrivateYes flag is " + driver.findElement(By.xpath(
+				"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("PrivateNo flag is " + driver.findElement(By
+				.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyYes flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyNo flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+
+		if (driver.findElement(By
+				.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected()
+				&& driver.findElement(By.xpath(
+						"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+						.isSelected()) {
+			Privateflag = true;
+			IntendToPrecertifyflag = true;
+		} else {
+			Privateflag = false;
+			IntendToPrecertifyflag = false;
+		}
+
+		if ((Privateflag) && (IntendToPrecertifyflag)) {
+			log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Target certification date opens up a Calendar and able to seelct any
+	// date from the calendar.
+
+	public boolean ManageProject_TargetCertificationDate() {
+		log.info("ManageProject_TargetCertificationDate  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		ManagingEntityAddress1.click();
+		TargetCertificationDate.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		WebElement ele=driver.findElement(By.xpath("(//div[@class='datepicker datepicker-dropdown dropdown-menu']/descendant::table[@class=' table-condensed']/tbody/tr/td[@class='day   active'])[9]"));
+		log.info(ele.getSize().height);
+		log.info(ele.getSize().width);
+		log.info(ele.getSize());
+		log.info(ele.getLocation().x);
+		log.info(ele.getLocation().y);
+		log.info(ele.getLocation().getX());
+		log.info(ele.getLocation().getY());
+		ele.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		CommonMethod.waitUntilLoadElement();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		CityPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ActTargetSelected = TargetCertificationDate.getAttribute("value");
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		log.info("Actual Certification Target Date is " + ActTargetSelected);
+		log.info("Expected Certification Target Date is " + strDate);
+
+		if (ActTargetSelected.equals(strDate)) {
+			log.info("ManageProject_TargetCertificationDate  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_TargetCertificationDate  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify ARC Administrator will be created by default when a project is created
+	// Verify that project should have minimum one ARC adminsitrator.
+
+	public boolean ManageTeam_CheckDefaultARCAdministrator() {
+		log.info("ManageTeam_CheckDefaultARCAdministrator  starts here........");
+		boolean flag = false;
+		String msg = null;
+		boolean deleteFlag = true;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String email = prop.getProperty("email");
+		flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
+		if (flag) {
+			msg = CommonMethod.Team_EditRole(email, "Arc Administrator", "Team Member");
+			deleteFlag = CommonMethod.Team_Delete_Member(email);
+			flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
+		}
+		if (flag == true && msg.equals("Project should have at least one Arc Administrator.") && deleteFlag == false) {
+			log.info("ManageTeam_CheckDefaultARCAdministrator  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_CheckDefaultARCAdministrator  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// verify under Manage-teams- 'Invite team members' able to add team member
+	// successfully.
+	// Verify team member can be added who is a registered USGBC.org user. Verify
+	// authorization level should be by default as 'Team Member' if added any new
+	// team member
+
+	public boolean ManageTeam_CheckAddNewTeamMember() {
+		log.info("ManageTeam_CheckAddNewTeamMember  starts here........");
+		boolean MemberAddedflag = false;
+		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String username = data.getCellData("City", 0, 2);
+		MemberAddedflag = CommonMethod.Team_Add_Member(username);
+		if (MemberAddedflag) {
+			flag = CommonMethod.CheckRoleOfEmail(username, "Team Member");
+		} else {
+			log.info("Member not added..");
+		}
+		if (flag) {
+			log.info("ManageTeam_CheckAddNewTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_CheckAddNewTeamMember  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify if the team member added is unregistered user, throws error message in
+	// red "a@aa.com is not a registered USGBC.org user, please have the user
+	// register at https://new.usgbc.org/registration/create-user and try again."
+
+	public boolean ManageTeam_CheckAddUnregisteredTeamMember() {
+		log.info("ManageTeam_CheckAddNewTeamMember  starts here........");
+		boolean flag = false;
+		boolean Memberflag = false;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String UnRegisteredUsername = data.getCellData("City", 39, 2);
+		Message = CommonMethod.Team_InviteMember(UnRegisteredUsername);
+		String ExpMessage = UnRegisteredUsername
+				+ "is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.";
+		if (Message != null) {
+			if (Message.equals(ExpMessage)) {
+				log.info(Message + " message displaying...");
+				flag = true;
+			} else {
+				log.info(Message + " message displaying...");
+				flag = false;
+			}
+		} else {
+			log.info("No Message showing....");
+			flag = false;
+		}
+
+		if (flag == false) {
+			Memberflag = CommonMethod.Team_checkEmailExistOrNot(UnRegisteredUsername);
+			if (Memberflag) {
+				log.info(UnRegisteredUsername + " added as Team Member..");
+			} else {
+				log.info(UnRegisteredUsername + " not added as Team Member..");
+			}
+		}
+		if (flag) {
+			log.info("ManageTeam_CheckAddUnregisteredTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_CheckAddUnregisteredTeamMember  ends here with false........");
+			return false;
+		}
+	}
+
+	// Adding the same team role for a member again, should give a validation
+	// message like 'ashree511@gmail.com already has the same team role'
+
+	public boolean ManageTeam_AddExistingTeamMember() {
+		log.info("ManageTeam_AddExistingTeamMember  starts here........");
+		boolean flag = false;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String Username = data.getCellData("City", 0, 2);
+		Message = CommonMethod.Team_InviteMember(Username);
+		String ExpMessage = "This ID is already added to the team.";
+		if (Message != null) {
+			if (Message.equals(ExpMessage)) {
+				log.info(Message + " message displaying...");
+				flag = true;
+			} else {
+				log.info(Message + " message displaying...");
+				flag = false;
+			}
+		} else {
+			log.info("No Message showing....");
+			flag = false;
+		}
+
+		if (flag) {
+			log.info("ManageTeam_AddExistingTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_AddExistingTeamMember  ends here with false........");
+			return false;
+		}
+	}
+
+	// Verify existing ARC administrator can't be edited until another ARC
+	// adminstrator is present. If edited, error message will display as 'Project
+	// should have atleast one ARC Administrator'.
+
+	public boolean ManageTeam_EditARCAdministratorRole() {
+		log.info("ManageTeam_EditARCAdministratorRole  starts here........");
+		boolean EditEnabledFlag = false;
+		boolean DeleteEnabledFlag = false;
+		boolean InviteEnabledFlag = false;
+		String ValidationMessage = null;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ExistingUser = prop.getProperty("email");
+		String AltenateUser = data.getCellData("City", 0, 2);
+		ValidationMessage = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// (In case of
+																											// Logged in
+																											// User and
+																											// only one
+																											// ARC
+																											// Admin)
+																											// Project
+																											// should
+																											// have at
+																											// least one
+																											// Arc
+																											// Administrator.
+		String ExpMessage = "Project should have at least one Arc Administrator.";
+		log.info("Validation Message showing " + ValidationMessage);
+		if (ValidationMessage.equals(ExpMessage)) {
+			log.info("Validation Message showing proper..");
+			Message = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Arc Administrator");// Team member
+																									// updated
+																									// successfully.
+			log.info("Alternate email updated with " + Message);
+			if (Message.equals("Team member updated successfully.")) {
+				log.info("Alternate Email is updated with Arc Administrator");
+				Message = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// Team member
+																										// updated
+																										// successfully.
+				log.info("Existing email updated with " + Message);
+				if (Message.equals("Team member updated successfully.")) {
+					CommonMethod.RefreshPagewaitForPageLoaded(driver);
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					log.info("Existing Email is updated with Team Member");
+
+					List<WebElement> EditBtnList = driver.findElements(By.xpath(
+							"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[4]/descendant::button[text()='Edit']"));
+					List<WebElement> DeleteBtnList = driver.findElements(By.xpath(
+							"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[5]/div[@class='ml10 delete_report tippy_init floatNone']"));
+					for (WebElement ele : EditBtnList) {
+						try {
+							ele.click();
+							EditEnabledFlag = false;
+							break;
+						} catch (ElementClickInterceptedException e) {
+							EditEnabledFlag = true;
+						}
+
+					}
+					for (WebElement ele : DeleteBtnList) {
+						try {
+							ele.click();
+							DeleteEnabledFlag = false;
+							break;
+						} catch (ElementClickInterceptedException e) {
+							DeleteEnabledFlag = true;
+						}
+
+					}
+
+					try {
+						driver.findElement(By.xpath("//button[@id='invite_team']")).click();
+						InviteEnabledFlag = false;
+					} catch (ElementClickInterceptedException e) {
+						InviteEnabledFlag = true;
+					}
+
+				}
+			}
+		}
+
+		log.info("Edit button flag is " + EditEnabledFlag);
+		log.info("Delete button flag is " + DeleteEnabledFlag);
+		log.info("Invite button flag is " + InviteEnabledFlag);
+
+		if (EditEnabledFlag == true && InviteEnabledFlag == true && DeleteEnabledFlag == true) {
+			log.info("ManageTeam_EditARCAdministratorRole  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_EditARCAdministratorRole  ends here with false........");
+			return false;
+		}
+	}
+
+	// Verify able to add/update/remove team member.
+	// Verify authorization level Member, etc can be changed and vice-versa.
+
+	public boolean ManageTeam_TeamAddEditMember() {
+		log.info("ManageTeam_TeamAddEditMember  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		boolean AddFlag = false;
+		String Message1 = null;
+		String Message2 = null;
+		String Message3 = null;
+		String ExpMsg = null;
+		String AltenateUser = data.getCellData("City", 0, 2);
+		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
+		log.info("Add Member flag is " + AddFlag);
+		if (AddFlag) {
+			Message1 = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Team Manager");
+			Message2 = CommonMethod.Team_EditRole(AltenateUser, "Team Manager", "Read Only");
+			Message3 = CommonMethod.Team_EditRole(AltenateUser, "Read Only", "Arc Administrator");
+			log.info("Message1 displaying text is " + Message1);
+			log.info("Message2 displaying text is " + Message2);
+			log.info("Message3 displaying text is " + Message3);
+		} else {
+			log.info("Team member is not added successfully..");
+		}
+
+		ExpMsg = "Team member updated successfully.";
+		if (Message1.equals(ExpMsg) && Message2.equals(ExpMsg) && Message3.equals(ExpMsg)) {
+			log.info("ManageTeam_TeamAddEditMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_TeamAddEditMember  ends here with false........");
+			return false;
+		}
+	}
+
+	public boolean ManageTeam_TeamAddRemoveMember() {
+		log.info("ManageTeam_TeamAddRemoveMember  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		boolean AddFlag = false;
+		boolean SearchFlag = false;
+		String AltenateUser = data.getCellData("City", 0, 2);
+		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
+		log.info("Add Member flag is " + AddFlag);
+		if (AddFlag) {
+			CommonMethod.Team_Delete_Member(AltenateUser);
+			HomePage.checkSignOut();
+			HomePage = LoginPage.loginLater(data.getCellData("City", 0, 2), data.getCellData("City", 1, 2));
+			ProjectPage = HomePage.clickOnProject();
+			SearchFlag = ProjectPage.SearchProject(System.getProperty("CityProject_NonLeed2"));
+			HomePage.closeProjectSearchTextBox();
+			HomePage.checkSignOut();
+			HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
+		} else {
+			log.info("Team member is not added successfully..");
+		}
+		log.info("AddFlag is " + AddFlag);
+		log.info("SearchFlag is " + SearchFlag);
+		if (AddFlag == true && SearchFlag == false) {
+			log.info("ManageTeam_TeamAddRemoveMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_TeamAddRemoveMember  ends here with false........");
+			return false;
+		}
+	}
+
+	public boolean ManageTeam_HowTeamRolesWorkTooltip() {
+		log.info("ManageTeam_HowTeamRolesWorkTooltip  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		WebElement TeamTooltip = driver
+				.findElement(By.xpath("//span[text()='How team roles work']/following-sibling::span"));
+		waithelper.WaitForElementClickable(TeamTooltip, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		TeamTooltip.click();
+		String ActToolTipP1 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[1]")).getText();
+		String ActToolTipP2 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[2]")).getText();
+		String ActToolTipP3 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[3]")).getText();
+		String ActToolTipP4 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[4]")).getText();
+		String ActToolTipP5 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[5]")).getText();
+		String ActToolTipP6 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[6]")).getText();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("Tooltip is ");
+		String ExpToolTipP1 = "Arc Administrator:\n"
+				+ "The Arc Administrator has complete access to the project including data entry, submitting for review, and is granted rights to add additional team members. The Arc Administrator will also be the point of contact for automatic notifications, billing information, and review reports.";
+
+		String ExpToolTipP2 = "Note: While multiple “Arc Administrators” can exist on a project team, we strongly recommend that you designate only one person in this role to avoid confusion and so that a single point of contact is receiving notifications about billing and certification.";
+		String ExpToolTipP3 = "Team Manager:\n"
+				+ "A Team Manager has access to the project including data entry and submitting for review, and can make changes to the project team.";
+		String ExpToolTipP4 = "Team Member:\n"
+				+ "A Team Member has access to the project including data entry and submitting for review, but cannot make any changes to the project team.";
+		String ExpToolTipP5 = "Project Administrator:\n"
+				+ "A Project Administrator is the original LEED Project Administrator and will only appear on the project team for LEED projects that were previously or are currently using LEED Online. The Project Administrator has the same rights as the Arc Administrator.";
+		String ExpToolTipP6 = "Read Only:\n"
+				+ "Read Only members can access the project to view data but cannot make any changes to the project, data entry or the project team.";
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(ActToolTipP1);
+		log.info(ExpToolTipP1);
+		log.info("--------------------");
+		log.info(ActToolTipP2);
+		log.info(ExpToolTipP2);
+		log.info("--------------------");
+		log.info(ActToolTipP3);
+		log.info(ExpToolTipP3);
+		log.info("--------------------");
+		log.info(ActToolTipP4);
+		log.info(ExpToolTipP4);
+		log.info("--------------------");
+		log.info(ActToolTipP5);
+		log.info(ExpToolTipP5);
+		log.info("--------------------");
+		log.info(ActToolTipP6);
+		log.info(ExpToolTipP6);
+		log.info("--------------------");
+
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(ExpToolTipP1.equals(ActToolTipP1));
+		log.info(ExpToolTipP2.equals(ActToolTipP2));
+		log.info(ExpToolTipP3.equals(ActToolTipP3));
+		log.info(ExpToolTipP4.equals(ActToolTipP4));
+		log.info(ExpToolTipP5.equals(ActToolTipP5));
+		log.info(ExpToolTipP6.equals(ActToolTipP6));
+		if ((ExpToolTipP1.equals(ActToolTipP1)) && (ExpToolTipP2.equals(ActToolTipP2))
+				&& (ExpToolTipP3.equals(ActToolTipP3)) && (ExpToolTipP4.equals(ActToolTipP4))
+				&& (ExpToolTipP5.equals(ActToolTipP5)) && (ExpToolTipP6.equals(ActToolTipP6))) {
+			log.info("ManageTeam_HowTeamRolesWorkTooltip  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_HowTeamRolesWorkTooltip  ends here with false........");
+			return false;
+		}
+	}
+
+	public boolean Manage_Agreement_CheckAgreement() {
+		log.info("Manage_Agreement_CheckAgreement method starts here ......");
+		boolean flag = false;
+		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
+		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Agreement Table is ---" + AgreementTable.size());
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		log.info(strDate);
+		if (AgreementTable.size() > 0) {
+			AgreementTable.iterator();
+			String OrderTypePath = "";
+			String DateSignedPath = "";
+			for (int i = 0; i < AgreementTable.size(); i++) {
+				int rownum = i + 1;
+				OrderTypePath = RowPath + "[" + rownum + "]/td[2]/span";
+				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
+				log.info(OrderTypePath + "......." + OrderType);
+				if (OrderType.equals("Registration")) {
+					log.info("Order Type Registration found ..");
+					DateSignedPath = RowPath + "[" + rownum + "]/td[1]/span";
+					String DateSigned = driver.findElement(By.xpath(DateSignedPath)).getText();
+					log.info("Date Signed showing is " + DateSigned);
+					if (DateSigned.equals(strDate)) {
+						flag = true;
+						break;
+					}
+
+				}
+
+			}
+		}
+		if (flag) {
+			log.info("Date signes showing proper ...");
+		} else {
+			log.info("Date signes is not showing proper ...");
+		}
+		log.info("Manage_Agreement_CheckAgreement method ends here ......");
+		return flag;
+
+	}
+
+	public boolean CheckAgreementDownloadedFile(String user) {
+		log.info("CheckDownloadedFile method starts here ......");
+		// DownloadFolder=new File(UUID.randomUUID().toString());
+		String userid=null;
+		SimpleDateFormat Formatter = new SimpleDateFormat("EEE");
+		String stringDay = Formatter.format(new Date());
+		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		String ExpDate = stringDay + ", " + strDate;
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		boolean flag = false;
+		String FilePath = null;
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.getName().contains("Agreement")) {
+					FilePath = file.getAbsolutePath();
+					log.info("File Path is ---" + FilePath);
+					flag = true;
+					break;
+				}
+
+			}
+
+		} else {
+			flag = false;
+		}
+		if (flag) {
+			String pdfcontent = CommonMethod.getPDFContent("file:///" + FilePath);
+			String ProjectID = "Project ID : " + System.getProperty("CityProject5");
+			String RatingSystem = "Rating system : none";
+			String UserName = "User Name : " + user;
+			String useremail = "User Email : " + prop.getProperty("email");
+			if(System.getProperty("environment").equals("QAS"))
+			{
+				userid ="User ID : 0010640669";
+			}
+			else if(System.getProperty("environment").equals("STG"))
+			{
+				userid ="User ID : 0010545793";
+			}
+			String DateTime = "Date and Time of Acceptance : " + ExpDate;
+			String ProjectName = "Name of Project : " + System.getProperty("CityProject5_Name");
+			String OwnerEmail = "Owner Email : " + prop.getProperty("email");
+			log.info(pdfcontent);
+			log.info("----------------------------------------");
+			log.info("ProjectID is "+ProjectID);
+			log.info("RatingSystem is "+RatingSystem);
+			log.info("UserName is "+UserName);
+			log.info("useremail is "+useremail);
+			log.info("userid is "+userid);
+			log.info("DateTime is "+DateTime);
+			log.info("ProjectName is "+ProjectName);
+			log.info("OwnerEmail is "+OwnerEmail);
+			if (pdfcontent.contains(ProjectID) && pdfcontent.contains(RatingSystem) && pdfcontent.contains(UserName) && pdfcontent.contains(useremail) && pdfcontent.contains(userid) && pdfcontent.contains(DateTime) && pdfcontent.contains(ProjectName) && pdfcontent.contains(OwnerEmail)) {
+				log.info("DownLoadServiceAgreement  method ends with true here -----");
+				return true;
+			} else
+				log.info("DownLoadServiceAgreement  method ends with false here -----");
+			return false;
+
+		}
+
+		CommonMethod.DeleteAllFiles();
+		DownloadFolder.delete();
+		log.info("CheckDownloadedFile method ends here ......");
+		return flag;
+	}
+
+	public boolean CheckSettings_DataResourceLink() {
+		log.info("CheckSettings_DataResourceLink method starts here ......");
+		String DataGuideURL = null;
+		boolean DataGuideURLFlag = false;
+		boolean DataReviewCheckListFlag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//div[@class='link'][text()='Data guide for buildings']")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Set<String> WindowList = driver.getWindowHandles();
+		if (WindowList.size() > 1) {
+			for (String window : WindowList) {
+				if (!window.equals(BaseWindow)) {
+					driver.switchTo().window(window);
+					DataGuideURL = JSHelper.getCurrentURL();
+					log.info("Current URL is " + DataGuideURL);
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+				}
+			}
+		}
+
+		if (DataGuideURL.equals("https://www.usgbc.org/resources/data-management-buildings")) {
+			DataGuideURLFlag = true;
+		}
+
+		driver.findElement(By.xpath("//div[@class='link'][text()='Data review checklist (pdf)']")).click();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		boolean flag = false;
+		String FilePath = null;
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.getName().contains("Data Review Checklist")) {
+					DataReviewCheckListFlag = true;
+					break;
+				}
+
+			}
+
+		}
+		log.info("DataGuideURLFlag flag value is "+DataGuideURLFlag);
+		log.info("DataReviewCheckListFlag flag value is "+DataReviewCheckListFlag);	
+		if(DataGuideURLFlag==true && DataReviewCheckListFlag==true)
+		{
+			log.info("CheckSettings_DataResourceLink emthod ends with true...");
+			return true;
+		}
+		else
+		{
+			log.info("CheckSettings_DataResourceLink emthod ends with false...");
+			return false;
+		}
+	}
+	
+	
+	public boolean Settings_ScoreAnimationToggleButton() {
+		log.info("Settings_ScoreAnimationToggleButton method starts here ......");
+		String DataGuideURL = null;
+		boolean DataGuideURLFlag = false;
+		boolean DataReviewCheckListFlag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		log.info(driver.findElement(By.xpath("//div[@class='settings_row']/descendant::span/small")).getAttribute("style"));
+		log.info("-------------------------");
+		driver.findElement(By.xpath("//div[@class='settings_row']/descendant::span")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info(driver.findElement(By.xpath("//div[@class='settings_row']/descendant::span/small")).getAttribute("style"));
+		
+		if(DataGuideURLFlag==true && DataReviewCheckListFlag==true)
+		{
+			log.info("Settings_ScoreAnimationToggleButton emthod ends with true...");
+			return true;
+		}
+		else
+		{
+			log.info("Settings_ScoreAnimationToggleButton emthod ends with false...");
+			return false;
+		}
+	}
+	public boolean CheckScoreVersion() {
+		log.info("CheckScoreVersion method starts here ......");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ExpText="Arc score for cities version "+data.getCellData("City", 40, 2);
+		String ActText=driver.findElement(By.xpath("//*[@id='content']/descendant::h3")).getText();	
+		log.info("Actual Text is "+ActText);
+		log.info("Expected Text is "+ExpText);		
+		if(ExpText.equals(ActText))
+		{
+			log.info("CheckScoreVersion emthod ends with true...");
+			return true;
+		}
+		else
+		{
+			log.info("CheckScoreVersion emthod ends with false...");
+			return false;
+		}
 	}
 
 }

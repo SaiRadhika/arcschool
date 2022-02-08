@@ -166,6 +166,207 @@ public class CommunitiesPageTest extends BaseClass {
 	// *************************Regression Test
 	// Cases***********************************************
 
+	// --> Certifications- > Verify Under Certifications- Shows text- "LEED v4.1
+	// Cities Certification".
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 91, enabled = true, description = "Certifications- > Verify Under Certifications- Shows text- \"LEED v4.1 Cities Certification\".")
+	public void Community_Certifications_LEED_Certification() {
+
+		log.info("Community_Certifications_LEED_Certification method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		//System.setProperty("CommunitiesProject_Test1","8000039783");
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Test1");
+		// ProjectCommunityID="8000039783";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonCertifications();
+			flag = CommunitiesPage.CheckLEEDCommunitiesCertification();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Certifications_LEED_Certification method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Certifications_LEED_Certification method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Certifications- > Verify Under Certifications-button 'Register for LEED
+	// Certification' redirects to LEED Online page-
+	// "https://leedonline-stg.usgbc.org/"
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 92, enabled = true, description = "Certifications- > Verify Under Certifications-button 'Register for LEED Certification' redirects to LEED Online page- \"https://leedonline-stg.usgbc.org/\"")
+	public void Community_Certifications_RegisterForLEEDCertification() {
+
+		log.info("Community_Certifications_RegisterForLEEDCertification method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Test1");
+		// ProjectCommunityID="8000039783";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonCertifications();
+			flag = CommunitiesPage.CheckRegisterForLEEDCertification();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Certifications_RegisterForLEEDCertification method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Certifications_RegisterForLEEDCertification method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' at
+	// Right hand side shows LEED badge with text "Projects achieved LEED
+	// certification since Dec 10, 2021."
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 93, enabled = true, description = "Certifications- > Verify Under Certifications-'Recent certifications' at Right hand side shows LEED badge with text \"Projects achieved LEED certification since Dec 10, 2021.\" ")
+	public void Community_Certifications_RecentCertifications() {
+
+		log.info("Community_Certifications_RecentCertifications method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Test1");
+		// ProjectCommunityID="8000039783";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonCertifications();
+			flag = CommunitiesPage.CheckRecentCertifications();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Certifications_RecentCertifications method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Certifications_RecentCertifications method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' -
+	// 'Learn More' link redirects to "https://www.usgbc.org/projects"
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 94, enabled = true, description = "Certifications- > Verify Under Certifications-'Recent certifications' - 'Learn More' link redirects to \"https://www.usgbc.org/projects\"")
+	public void Community_Certifications_CheckLearnMoreLink() {
+
+		log.info("Community_Certifications_CheckLearnMoreLink method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Test1");
+		// ProjectCommunityID="8000039883";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonCertifications();
+			flag = CommunitiesPage.CheckLearnMoreLink();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Certifications_CheckLearnMoreLink method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Certifications_CheckLearnMoreLink method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	//Verify Under Certifications-Message is displayed "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites." Followed by individual score given for each performance category.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 95, enabled = true, description = "Verify Under Certifications-Message is displayed \"This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.\" Followed by individual score given for each performance category.")
+	public void Community_Certifications_VerifyTextMessage() {
+
+		log.info("Community_Certifications_VerifyTextMessage method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Test1");
+		// ProjectCommunityID="8000039883";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonCertifications();
+			flag = CommunitiesPage.Certifications_VerifyTextMessage();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Certifications_VerifyTextMessage method ends here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Certifications_VerifyTextMessage method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
 	// Verify in DI, Project settings - population tab- Add row button adds a new
 	// line item with fields- 'Effective year', Population, Updated by followed by
 	// Save and delete button
@@ -6928,5 +7129,764 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	// --------------------------------------------Manage Section Test
+	// Cases---------------------
 
+
+	// --> Verify under Manage--Project-- Project Details, Year founded is a
+	// dropdown field with year values ranging from 1900 to current year.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 251, enabled = true, description = " Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. ")
+	public void Community_ManageProject_CheckYearRange() {
+
+		log.info("Community_ManageProject_CheckYearRange method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		//System.setProperty("CommunityProject5","8000011995");
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="1000102092";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonProjectInManage();
+			flag = CommunitiesPage.ManageProject_CheckYearRange();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageProject_CheckYearRange method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageProject_CheckYearRange method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --> Verify Managing entity name, address(line 1), address(line 2), entity
+	// city are text field and able to add any value in it.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 252, enabled = true, description = " Verify Managing entity name, address(line 1), address(line 2), entity city are text field and able to add any value in it. ")
+	public void Community_ManageProject_CheckEntityFields() {
+
+		log.info("Community_ManageProject_CheckEntityFields method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000039417";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonProjectInManage();
+			flag = CommunitiesPage.ManageProject_CheckEntityFields();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageProject_CheckEntityFields method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageProject_CheckEntityFields method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Managing entity Country/region is drop down field and able to select
+	// any country value from it.
+	// Verify Managing entity State field is drop down field and the values change
+	// as per the country selected in the country field.
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 253, enabled = true, description = "Verify Managing entity Country/region  is drop down field and able to select any country value from it.\r\n"
+			+ "				Verify Managing entity State field  is drop down field and the values change as per the country selected in the country field.")
+	public void Community_ManageProject_SelectCountryAndState() {
+
+		log.info("Community_ManageProject_SelectCountryAndState method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040234";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonProjectInManage();
+			flag = CommunitiesPage.ManageProject_SelectCountryAndState();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageProject_SelectCountryAndState method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageProject_SelectCountryAndState method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Private is a radio button with options Yes And No. Able to select any
+	// value from it.
+	// Verify 'Intend to precertify?' field has radio button with options- Yes and
+	// No.Able to select any value from it.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 254, enabled = true, description = "Verify Private is a radio button with options Yes And No. Able to select any value from it.\r\n"
+			+ "	 Verify 'Intend to precertify?' field has radio button with options- Yes and No.Able to select any value from it.")
+	public void Community_ManageProject_PrivateRadioButton_IntendToPrecertify() {
+
+		log.info("Community_ManageProject_PrivateRadioButton_IntendToPrecertify method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		//ProjectCommunityID="8000012001";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonProjectInManage();
+			flag = CommunitiesPage.ManageProject_PrivateRadioButton_IntendToPrecertify();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Community_ManageProject_PrivateRadioButton_IntendToPrecertify method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Community_ManageProject_PrivateRadioButton_IntendToPrecertify method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify Target certification date opens up a Calendar and able to seelct any
+	// date from the calendar.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 255, enabled = true, description = "Verify Target certification date opens up a Calendar and able to seelct any date from the calendar.")
+	public void Community_ManageProject_TargetCertificationDate() {
+
+		log.info("Community_ManageProject_TargetCertificationDate method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040306";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonProjectInManage();
+			flag = CommunitiesPage.ManageProject_TargetCertificationDate();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageProject_TargetCertificationDate method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageProject_TargetCertificationDate method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify ARC Administrator will be created by default when a project is created
+	// Verify that project should have minimum one ARC adminsitrator.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 256, enabled = true, description = "Verify ARC Administrator will be created by default when a project is created. \r\n"
+			+ "	// Verify that project should have minimum one ARC adminsitrator.")
+	public void Community_ManageTeam_CheckDefaultARCAdministrator() {
+
+		log.info("Community_ManageTeam_CheckDefaultARCAdministrator method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000039597";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_CheckDefaultARCAdministrator();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_CheckDefaultARCAdministrator method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_CheckDefaultARCAdministrator method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// verify under Manage-teams- 'Invite team members' able to add team member
+	// successfully.
+	// Verify team member can be added who is a registered USGBC.org user. Verify
+	// authorization level should be by default as 'Team Member' if added any new
+	// team member
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 257, enabled = true, description = "verify under Manage-teams- 'Invite team members' able to add team member successfully.\r\n"
+			+ "		// Verify team member can be added who is a registered USGBC.org user. Verify authorization level should be by default as 'Team Member' if added any new team member")
+	public void Community_ManageTeam_CheckAddNewTeamMember() {
+
+		log.info("Community_ManageTeam_CheckAddNewTeamMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040234";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_CheckAddNewTeamMember();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_CheckAddNewTeamMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_CheckAddNewTeamMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify if the team member added is unregistered user, throws error message in
+	// red "a@aa.com is not a registered USGBC.org user, please have the user
+	// register at https://new.usgbc.org/registration/create-user and try again."
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 258, enabled = true, description = "Verify if the team member added is unregistered user, throws error message in red  \"a@aa.com is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.")
+	public void Community_ManageTeam_CheckAddUnregisteredTeamMember() {
+
+		log.info("Community_ManageTeam_CheckAddUnregisteredTeamMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040234";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_CheckAddUnregisteredTeamMember();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_CheckAddUnregisteredTeamMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_CheckAddUnregisteredTeamMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Adding the same team role for a member again, should give a validation
+	// message like 'ashree511@gmail.com already has the same team role'
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_ManageTeam_CheckAddNewTeamMember", priority = 259, enabled = true, description = "Adding the same team role for a member again, should give a validation message like 'ashree511@gmail.com already has the same team role'")
+	public void Community_ManageTeam_AddExistingTeamMember() {
+
+		log.info("Community_ManageTeam_AddExistingTeamMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040234";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_AddExistingTeamMember();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_AddExistingTeamMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_AddExistingTeamMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify existing ARC administrator can't be edited until another ARC
+	// adminstrator is present. If edited, error message will display as 'Project
+	// should have atleast one ARC Administrator'.
+
+	// Project can also have more than one ARC administrator.
+	// Verify a user with role 'Team member' doesnt have the edit/add/remove access
+	// to the team section.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 260, enabled = true, description = "Verify existing ARC administrator can't be edited until another ARC adminstrator is present. If edited, error message will display as 'Project should have atleast one ARC Administrator'.\r\n"
+			+ "	//  Project can also have more than one ARC administrator. \r\n"
+			+ "	//Verify a user with role 'Team member' doesnt have the edit/add/remove access to the team section.")
+	public void Community_ManageTeam_EditARCAdministratorRole() {
+
+		log.info("Community_ManageTeam_EditARCAdministratorRole method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040230";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_EditARCAdministratorRole();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_EditARCAdministratorRole method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_EditARCAdministratorRole method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify able to add/update team member.
+	// Verify authorization level Member, etc can be changed and vice-versa.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 261, enabled = true, description = "Verify able to add/update team member.\r\n"
+			+ "	//Verify authorization level Member, etc can be changed and vice-versa.")
+	public void Community_ManageTeam_TeamAddEditMember() {
+
+		log.info("Community_ManageTeam_TeamAddEditMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+		// ProjectCommunityID="8000039597";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_TeamAddEditMember();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_TeamAddEditMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_TeamAddEditMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify able to remove team member
+	// Verify a user should not have access to a project, if that team member is
+	// removed.
+
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 262, enabled = true, description = "Verify able to remove team member\r\n"
+			+ "		//Verify a user should not have access to a project, if that team member is removed.")
+	public void Community_ManageTeam_TeamAddRemoveMember() {
+
+		log.info("Community_ManageTeam_TeamAddRemoveMember method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CommunitiesProject_Perf4","8000040272");
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_NonLeed2");
+		// ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_TeamAddRemoveMember();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_TeamAddRemoveMember method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_TeamAddRemoveMember method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	/*
+	 * Verify Manage-Teams- Right hand side 'How team roles work?' tooltip opens a
+	 * modal window with team roles definition as below:
+	 * 
+	 * Arc Administrator: The Arc Administrator has complete access to the project
+	 * including data entry, submitting for review, and is granted rights to add
+	 * additional team members. The Arc Administrator will also be the point of
+	 * contact for automatic notifications, billing information, and review reports.
+	 * 
+	 * Note: While multiple “Arc Administrators” can exist on a project team, we
+	 * strongly recommend that you designate only one person in this role to avoid
+	 * confusion and so that a single point of contact is receiving notifications
+	 * about billing and certification.
+	 * 
+	 * Team Manager: A Team Manager has access to the project including data entry
+	 * and submitting for review, and can make changes to the project team.
+	 * 
+	 * Team Member: A Team Member has access to the project including data entry and
+	 * submitting for review, but cannot make any changes to the project team.
+	 * 
+	 * Project Administrator: A Project Administrator is the original LEED Project
+	 * Administrator and will only appear on the project team for LEED projects that
+	 * were previously or are currently using LEED Online. The Project Administrator
+	 * has the same rights as the Arc Administrator.
+	 * 
+	 * Read Only: Read Only members can access the project to view data but cannot
+	 * make any changes to the project, data entry or the project team.
+	 * 
+	 * 
+	 * 
+	 */
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 263, enabled = true, description = "Verify Tooltip Text of How Team role works.")
+	public void Community_ManageTeam_HowTeamRolesWorkTooltip() {
+
+		log.info("Community_ManageTeam_HowTeamRolesWorkTooltip method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CommunitiesProject_Perf4","8000040272");
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+		// ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonTeamInManage();
+			flag = CommunitiesPage.ManageTeam_HowTeamRolesWorkTooltip();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ManageTeam_HowTeamRolesWorkTooltip method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ManageTeam_HowTeamRolesWorkTooltip method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Verify 'Agreements' tab contains 'Registration' Agreement with date Signed as
+	// the date of registration.
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CommunityRegression" }, enabled = true, priority = 264, description = "Verify 'Agreements' tab contains 'Registration' Agreement with date Signed as the date of registration.")
+	public void Community_Agreement_CheckAgreement() {
+		log.info("Community_Agreement_CheckAgreement method started......................... ");
+		boolean flag = false;
+
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CommunitiesProject_Perf4","8000040272");
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		// ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonAgreementInManage();
+			flag = CommunitiesPage.Manage_Agreement_CheckAgreement();
+
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Agreement_CheckAgreement method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Agreement_CheckAgreement method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	//Verify agreement is downloaded successfully.
+	
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CommunityRegression" }, enabled = true, priority = 267, description = "Verify able to download the agreement successfully.")
+	public void Community_Agreement_CheckDownloadAgreement() {
+		log.info("Community_Agreement_CheckDownloadAgreement method started ");
+		boolean flag=false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CommunitiesProject_Perf4","8000040272");
+		String ProjectCommunityID = System.getProperty("CommunityProject5");
+		 //ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			String username=HomePage.getCurrentProfileUserName();
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();			
+			CommunitiesPage.ClickonAgreementInManage();
+			CommonMethod.ClikOnAgreementRegistrationDownloadLink();
+			flag = CommunitiesPage.CheckAgreementDownloadedFile(username);
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}		
+		if (flag) {
+			log.info("Community_Agreement_CheckDownloadAgreement method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_Agreement_CheckDownloadAgreement method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	
+	// Verify links redirect to correct pages: Data guide for buildings -"https://www.usgbc.org/resources/data-management-buildings" and Data review checklst (pdf)downloads the data review checklist file.
+
+		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+				"CommunityRegression" }, enabled = true, priority = 268, description = "Verify links redirect to correct pages: Data guide for buildings -\"https://www.usgbc.org/resources/data-management-buildings\" and Data review checklst (pdf)downloads the data review checklist file.")
+		public void Community_Settings_DataResourceLinks() {
+			log.info("Community_Settings_DataResourceLinks method started ");
+			boolean flag = false;
+			try {
+				HomePage.setHomePageApplication();
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+			 //System.setProperty("CityProject_Perf4","8000040326");
+			String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+			// ProjectCommunityID="8000040272";
+			if (!ProjectCommunityID.equals(null)) {
+				ProjectPage = HomePage.clickOnProject();
+				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+				HomePage.closeProjectSearchTextBox();
+				CommunitiesPage.ClickonSettingsInManage();
+				flag = CommunitiesPage.CheckSettings_DataResourceLink();
+			} else {
+				log.info("Community Project is showing Null");
+				Assert.assertTrue(false);
+			}
+			if (flag) {
+				log.info("Community_Settings_DataResourceLinks method ends here with true ........... ");
+				Assert.assertTrue(true);
+
+			} else {
+				log.info("Community_Settings_DataResourceLinks method ends here with false........... ");
+				Assert.assertTrue(false);
+			}
+		}
+		
+		// Verify able to turn the toggle button 'on' and 'off' for "Show the score animation on the Arc app"
+
+				@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+						"CommunityRegression" }, enabled = false, priority = 269, description = "Verify able to turn the toggle button 'on' and 'off' for \"Show the score animation on the Arc app\"")
+				public void Community_Settings_ScoreAnimationToggleButton() {
+					log.info("Community_Settings_ScoreAnimationToggleButton method started ");
+					boolean flag = false;
+					try {
+						HomePage.setHomePageApplication();
+					} catch (Exception e) {
+						HomePage.setHomePageApplication();
+						e.printStackTrace();
+					}
+					 //System.setProperty("CityProject_Perf4","8000040326");
+					String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+					// ProjectCommunityID="8000040272";
+					if (!ProjectCommunityID.equals(null)) {
+						ProjectPage = HomePage.clickOnProject();
+						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+						HomePage.closeProjectSearchTextBox();
+						CommunitiesPage.ClickonSettingsInManage();
+						flag = CityPage.Settings_ScoreAnimationToggleButton();
+					} else {
+						log.info("Community Project is showing Null");
+						Assert.assertTrue(false);
+					}
+					if (flag) {
+						log.info("Community_Settings_ScoreAnimationToggleButton method ends here with true ........... ");
+						Assert.assertTrue(true);
+
+					} else {
+						log.info("Community_Settings_ScoreAnimationToggleButton method ends here with false........... ");
+						Assert.assertTrue(false);
+					}
+				}	
+			// Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. 
+
+				@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+						"CommunityRegression" }, enabled = true, priority = 270, description = "Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. ")
+				public void Community_ScoreVersion() {
+					log.info("Community_ScoreVersion method started ");
+					boolean flag = false;
+					try {
+						HomePage.setHomePageApplication();
+					} catch (Exception e) {
+						HomePage.setHomePageApplication();
+						e.printStackTrace();
+					}
+					 //System.setProperty("CityProject_Perf4","8000040326");
+					String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+					// ProjectCommunityID="8000040272";
+					if (!ProjectCommunityID.equals(null)) {
+						ProjectPage = HomePage.clickOnProject();
+						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+						HomePage.closeProjectSearchTextBox();
+						CommunitiesPage.ClickonScoreVersionInManage();
+						flag = CommunitiesPage.CheckScoreVersion();
+					} else {
+						log.info("Community Project is showing Null");
+						Assert.assertTrue(false);
+					}
+					if (flag) {
+						log.info("Community_ScoreVersion method ends here with true ........... ");
+						Assert.assertTrue(true);
+
+					} else {
+						log.info("Community_ScoreVersion method ends here with false........... ");
+						Assert.assertTrue(false);
+					}
+				}
 }
