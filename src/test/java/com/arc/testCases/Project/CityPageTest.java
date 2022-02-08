@@ -7301,7 +7301,7 @@ public class CityPageTest extends BaseClass {
 	// Verify Target certification date opens up a Calendar and able to seelct any
 	// date from the calendar.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 255, enabled = true, description = "Verify Target certification date opens up a Calendar and able to seelct any date from the calendar.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 255, enabled = false, description = "Verify Target certification date opens up a Calendar and able to seelct any date from the calendar.")
 	public void City_ManageProject_TargetCertificationDate() {
 
 		log.info("City_ManageProject_TargetCertificationDate method started......................... ");

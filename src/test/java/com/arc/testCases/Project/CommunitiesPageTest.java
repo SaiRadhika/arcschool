@@ -7150,7 +7150,7 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("CommunityProject5","8000011995");
+		System.setProperty("CommunityProject5","8000040382");
 		String ProjectCommunityID = System.getProperty("CommunityProject5");
 		// ProjectCommunityID="1000102092";
 		if (!ProjectCommunityID.equals(null)) {
@@ -7304,7 +7304,7 @@ public class CommunitiesPageTest extends BaseClass {
 	// Verify Target certification date opens up a Calendar and able to seelct any
 	// date from the calendar.
 
-	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 255, enabled = true, description = "Verify Target certification date opens up a Calendar and able to seelct any date from the calendar.")
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 255, enabled = false, description = "Verify Target certification date opens up a Calendar and able to seelct any date from the calendar.")
 	public void Community_ManageProject_TargetCertificationDate() {
 
 		log.info("Community_ManageProject_TargetCertificationDate method started......................... ");

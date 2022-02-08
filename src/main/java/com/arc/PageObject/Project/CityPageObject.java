@@ -13478,7 +13478,7 @@ public class CityPageObject extends BaseClass {
 	}
 
 	public boolean CheckAgreementDownloadedFile(String user) {
-		log.info("CheckDownloadedFile method starts here ......");
+		log.info("CheckAgreementDownloadedFile method starts here ......");
 		// DownloadFolder=new File(UUID.randomUUID().toString());
 		String userid=null;
 		SimpleDateFormat Formatter = new SimpleDateFormat("EEE");
@@ -13497,7 +13497,7 @@ public class CityPageObject extends BaseClass {
 		if (ListOfFiles.length != 0) {
 			for (File file : ListOfFiles) {
 				log.info("Size of the file - " + file.getName() + " is  " + file.length());
-				if (file.getName().contains("Agreement")) {
+				if (file.getName().equals("Agreement.pdf")) {
 					FilePath = file.getAbsolutePath();
 					log.info("File Path is ---" + FilePath);
 					flag = true;
@@ -13526,7 +13526,6 @@ public class CityPageObject extends BaseClass {
 			String DateTime = "Date and Time of Acceptance : " + ExpDate;
 			String ProjectName = "Name of Project : " + System.getProperty("CityProject5_Name");
 			String OwnerEmail = "Owner Email : " + prop.getProperty("email");
-			log.info(pdfcontent);
 			log.info("----------------------------------------");
 			log.info("ProjectID is "+ProjectID);
 			log.info("RatingSystem is "+RatingSystem);
@@ -13536,18 +13535,24 @@ public class CityPageObject extends BaseClass {
 			log.info("DateTime is "+DateTime);
 			log.info("ProjectName is "+ProjectName);
 			log.info("OwnerEmail is "+OwnerEmail);
+			log.info(pdfcontent.contains(ProjectID));
+			log.info(pdfcontent.contains(RatingSystem));
+			log.info(pdfcontent.contains(UserName));
+			log.info(pdfcontent.contains(useremail));
+			log.info(pdfcontent.contains(userid));
+			log.info(pdfcontent.contains(DateTime));
+			log.info(pdfcontent.contains(ProjectName));
+			log.info(pdfcontent.contains(OwnerEmail));
 			if (pdfcontent.contains(ProjectID) && pdfcontent.contains(RatingSystem) && pdfcontent.contains(UserName) && pdfcontent.contains(useremail) && pdfcontent.contains(userid) && pdfcontent.contains(DateTime) && pdfcontent.contains(ProjectName) && pdfcontent.contains(OwnerEmail)) {
-				log.info("DownLoadServiceAgreement  method ends with true here -----");
-				return true;
+				flag=true;
 			} else
-				log.info("DownLoadServiceAgreement  method ends with false here -----");
-			return false;
+				flag=false;
 
 		}
 
 		CommonMethod.DeleteAllFiles();
 		DownloadFolder.delete();
-		log.info("CheckDownloadedFile method ends here ......");
+		log.info("CheckAgreementDownloadedFile method ends here with "+flag+ " ......");
 		return flag;
 	}
 
