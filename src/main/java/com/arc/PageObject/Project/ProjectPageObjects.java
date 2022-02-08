@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -193,6 +195,7 @@ public class ProjectPageObjects extends BaseClass {
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
 		try {
 			Thread.sleep(3000);
@@ -208,6 +211,7 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		SearchedProject.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -237,6 +241,43 @@ public class ProjectPageObjects extends BaseClass {
 			return null;
 		}
 	}
+	
+	// This function takes the project Id and returns whether project found or not in searcch
+	public boolean SearchProject(String ProjectID) {
+		log.info("SearchProject method started for City Project---- " + ProjectID + "  .........");
+		// CommonMethod.switchToDefaultContent();
+		boolean flag=false;
+		if (!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		SearchProjectTextBox.clear();
+		SearchProjectTextBox.sendKeys(ProjectID);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			waithelper.waitForElement(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 1);
+			flag=true;
+		}
+		catch(NoSuchElementException e)
+		{
+			e.printStackTrace();
+			log.info("Unable to search the Project.  Project not found...");
+			flag=false;
+		}
+		catch(TimeoutException e)
+		{
+			e.printStackTrace();
+			log.info("Time Expired.  Project not found...");
+			flag=false;
+		}
+		return flag;
+		
+	}
 
 	public TransitPageObject SearchAndClickOnTransitProject(String ProjectID) {
 		log.info("SearchAndClickOnProject method started for Transit Project---- " + ProjectID + "  .........");
@@ -245,6 +286,7 @@ public class ProjectPageObjects extends BaseClass {
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
 			Thread.sleep(3000);
@@ -260,6 +302,7 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		SearchedProject.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -298,6 +341,7 @@ public class ProjectPageObjects extends BaseClass {
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
 			Thread.sleep(3000);
@@ -313,6 +357,7 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		SearchedProject.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -351,6 +396,7 @@ public class ProjectPageObjects extends BaseClass {
 			actionhelper.mouseOverElementAndClick(SearchIcon);
 		SearchProjectTextBox.clear();
 		SearchProjectTextBox.sendKeys(ProjectID);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
 		try {
 			Thread.sleep(3000);
@@ -366,6 +412,7 @@ public class ProjectPageObjects extends BaseClass {
 			e.printStackTrace();
 		}
 		SearchedProject.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
