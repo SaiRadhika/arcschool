@@ -7150,7 +7150,7 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		System.setProperty("CommunityProject5","8000040382");
+		//System.setProperty("CommunityProject5","8000040382");
 		String ProjectCommunityID = System.getProperty("CommunityProject5");
 		// ProjectCommunityID="1000102092";
 		if (!ProjectCommunityID.equals(null)) {
