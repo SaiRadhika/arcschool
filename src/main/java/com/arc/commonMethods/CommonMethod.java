@@ -41,6 +41,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.arc.testBase.BaseClass;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -201,6 +202,14 @@ public class CommonMethod extends BaseClass {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		log.info(pdfcontent);
 		log.info("getPDFContent method ends here ......");
@@ -572,6 +581,13 @@ public class CommonMethod extends BaseClass {
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(obj, null);
 		log.info("setClipBoard method ends here ......");
 	}
+	
+	public static void clearClipBoard() {
+		log.info("clearClipBoard method starts here ......");
+		StringSelection obj = new StringSelection("");
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(obj, null);
+		log.info("clearClipBoard method ends here ......");
+	}
 
 	public static void UploadFile(String FilePath) {
 		log.info("UploadFile method starts here ......");
@@ -776,7 +792,6 @@ public class CommonMethod extends BaseClass {
 	public static void RefreshPagewaitForPageLoaded(WebDriver driver) {
 		log.info("RefreshPagewaitForPageLoaded method starts here......");
 		driver.get(driver.getCurrentUrl());
-		;
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
 				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
@@ -1023,8 +1038,8 @@ public class CommonMethod extends BaseClass {
 	// (Building-->Occupant Survey) This method will take Environment Slider
 	// Webelement and Satisfcation Level return boolean value whther satisfcation
 	// level selected or not
-	public static boolean SelectDiseaseControlSlider(WebElement Slider, WebElement Header, String SatisfactionLevel) {
-		log.info("SelectDiseaseControlSlider Method starts here...........");
+	public static boolean SelectSliderControl(WebElement Slider, WebElement Header, String SatisfactionLevel) {
+		log.info("SelectSliderControl Method starts here...........");
 		boolean flag = false;
 		int k = 0;
 		int Slider_Xwidth = Slider.getSize().getWidth();
@@ -1044,12 +1059,12 @@ public class CommonMethod extends BaseClass {
 		} else {
 			log.info("Unable to select " + SatisfactionLevel);
 		}
-		log.info("SelectDiseaseControlSlider Method ends here...........");
+		log.info("SelectSliderControl Method ends here...........");
 		return flag;
 	}
 
-	public static ArrayList<String> getStateList(String Country) {
-		ArrayList<String> StateList = null;
+	public static List<String> getStateList(String Country) {
+		List<String> StateList = new ArrayList<String>();
 		String[] USStates = { "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado",
 				"Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho",
 				"Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
@@ -1065,12 +1080,175 @@ public class CommonMethod extends BaseClass {
 				"Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttaranchal",
 				"West Bengal" };
 		if (Country.equals("United States")) {
-			 StateList = (ArrayList<String>) Arrays.asList(USStates);
+			 StateList = Arrays.asList(USStates);
 		} else if (Country.equals("India")) {
-			 StateList = (ArrayList<String>) Arrays.asList(IndiaStates);
+			 StateList = Arrays.asList(IndiaStates);
 		}		
 		return StateList;
 
 	}
+	
+	
+	// This method will take email and role and return whether this email belongs to specific role or not
+	public static boolean CheckRoleOfEmail(String email, String role) {
+		log.info("CheckRoleOfEmail Method starts here...........");
+		boolean Emailflag = false;
+		boolean Roleflag = false;
+		String CurrentEmail=null;
+		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+		ngWebDriver.waitForAngularRequestsToFinish();
+		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
+		log.info("Size of the Table is ----- " + TeamMemberRow.size());
+		for (int i = 0; i < TeamMemberRow.size(); i++) {
+			int row = i + 1;
+			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
+			try {
+				CurrentEmail = driver.findElement(By.xpath(EmailXpath)).getText();
+				log.info("Current email address is --" + CurrentEmail);
+			} catch (StaleElementReferenceException e) {
+				log.info("StaleElementReferenceException exception showing for--" + EmailXpath);
 
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (CurrentEmail.equals(email)) {
+				Emailflag=true;
+				log.info(CurrentEmail + "  found in this project.....");
+				ngWebDriver.waitForAngularRequestsToFinish();
+				String AccessXpath = Rowxpath + "[" + row + "]/td[3]/select";
+				String CurrentRole=dropdownhelper.getSelectedValue(driver.findElement(By.xpath(AccessXpath)));
+				if(CurrentRole.equals(role))
+				{
+					Roleflag=true;
+					log.info(CurrentRole + "  found for the email "+CurrentEmail+" .....");
+					break;
+				}
+				
+			}
+			else {
+				Emailflag=false;
+			}
+		}
+		log.info("CheckRoleOfEmail Method ends here with "+Roleflag+"  ...........");
+		if(!Emailflag)
+		{
+			log.info(email+"  not found in this project.....");
+			return false;
+		}
+		
+		if(Roleflag) {
+			return true;
+		}
+		else
+		{
+			log.info(role + "  not found for the email "+CurrentEmail+" .....");
+			return false;
+		}
+	}
+
+	
+	// This method will take one email and try to add as Team Member and returns the message
+
+		public static String Team_InviteMember(String EmailAddress) {
+			log.info("Team_InviteMember Method starts here.............................................");
+			CommonMethod.RefreshPagewaitForPageLoaded(driver);
+			CommonMethod.waitUntilLoadElement();
+			String msgText = null;
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//input[@name='input']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+			ngWebDriver.waitForAngularRequestsToFinish();
+			driver.findElement(By.xpath("//input[@name='input']")).sendKeys(EmailAddress);
+
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+			driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
+			CommonMethod.waitUntilLoadElement();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			try {
+				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//span[@class='error']/p[2]")),
+						Integer.parseInt(prop.getProperty("explicitTime")),2);
+				msgText = driver.findElement(By.xpath("//span[@class='error']/p[2]")).getText();
+			} catch (NoSuchElementException e) {
+				log.info("Success/Failure message is not displaying..");
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			CommonMethod.waitUntilLoadElement();
+			log.info(msgText + " .........  displaying");
+			log.info("Team_InviteMember Method ends here.............................................");
+			return msgText;
+		}
+		
+		
+		// This method will take email and role then update the role. It returns the Success/Fail message.
+
+		public static String Team_EditRole(String email, String Role, String ExpectedRole) {
+			log.info("Team_EditRole Method starts here.............................................");
+			CommonMethod.RefreshPagewaitForPageLoaded(driver);
+			CommonMethod.waitUntilLoadElement();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			String CurrentEmail=null;
+			boolean flag = false;
+			String msgText = "";	
+			String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+			List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
+			log.info("Size of the Table is ----- " + TeamMemberRow.size());
+			for (int i = 0; i < TeamMemberRow.size(); i++) {
+				int row = i + 1;
+				String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
+				try {
+					CurrentEmail = driver.findElement(By.xpath(EmailXpath)).getText();
+					log.info("Current email address is --" + CurrentEmail);
+				} catch (StaleElementReferenceException e) {
+					log.info("StaleElementReferenceException exception showing for--" + EmailXpath);
+
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				if (CurrentEmail.equals(email)) {
+					log.info(CurrentEmail + "  found in this project.....");					
+					ngWebDriver.waitForAngularRequestsToFinish();
+					String AccessXpath = Rowxpath + "[" + row + "]/td[3]/select";
+					String CurrentRole=dropdownhelper.getSelectedValue(driver.findElement(By.xpath(AccessXpath)));
+					if(CurrentRole.equals(Role))
+					{
+						log.info(CurrentRole + "  found for the email "+CurrentEmail+" .....");
+						String EditBtnXpath=Rowxpath+ "[" + row + "]/td[4]/descendant::button[text()='Edit']";
+						String SaveBtnXpath=Rowxpath+ "[" + row + "]/td[4]/descendant::button[text()='Save']";						
+						driver.findElement(By.xpath(EditBtnXpath)).click();
+						dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath(AccessXpath)),ExpectedRole);
+						driver.findElement(By.xpath(SaveBtnXpath)).click();		
+						ngWebDriver.waitForAngularRequestsToFinish();
+						break;
+					}
+					
+				}
+			}
+					
+			try {
+				waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+						Integer.parseInt(prop.getProperty("explicitTime")));
+				msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+
+				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (NoSuchElementException e) {
+				log.info("Success/Failure message is not displaying..");
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			CommonMethod.waitUntilLoadElement();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			log.info(msgText + "  .........  displaying");
+			
+			log.info("Team_EditRole Method ends here.............................................");
+			return msgText;
+
+		}
 }

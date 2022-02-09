@@ -735,6 +735,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			ProjectCityID = CityPage.getProjectID(CityProjectName);
 			System.setProperty("CityProject_NonLeed2", ProjectCityID);
 			log.info("  CityProject_NonLeed2 is ---" + ProjectCityID);
+			System.setProperty("CityProject_NonLeed2_Name", CityProjectName);
+			log.info("CityProject_NonLeed2_Name is ---" + CityProjectName);
 			if (ProjectCityID.substring(0, 4).equals("8000")) {
 				log.info("Non LEED ID Project creation successful..................");
 				Assert.assertTrue(true);
@@ -791,6 +793,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			ProjectCityID = CityPage.getProjectID(CityProjectName);
 			System.setProperty("CityProject_Private3", ProjectCityID);
 			log.info("  CityProject_Private3 is ---" + ProjectCityID);
+			System.setProperty("CityProject_Private3_Name", CityProjectName);
+			log.info("  CityProject_Private3_Name is ---" + CityProjectName);
 			if ((CityPage.CheckProjectIsPrivateFlagUnderManage(ProjectCityID) == true)) {
 				Assert.assertTrue(true);
 			} else {
@@ -845,6 +849,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			ProjectCityID = CityPage.getProjectID(CityProjectName);
 			System.setProperty("CityProject_Perf4", ProjectCityID);
 			log.info("  CityProject_Perf4 is ---" + ProjectCityID);
+			System.setProperty("CityProject_Perf4_Name", CityProjectName);
+			log.info("  CityProject_Perf4_Name is ---" + CityProjectName);
 			if (HeaderText.equals("Performance")) {
 				Assert.assertTrue(true);
 			} else {
@@ -860,6 +866,80 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("City_Project_Creation_Opens_Performance_Screen method ends here ........... ");
 	}
 
+	
+	// Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.
+	// Verify Manage--Project --Under Project  - Project Address matches with the actual project address through which the project was registered. 
+	// Verify Manage--Project --Under Project  - Project City matches with the actual city through which the project was regsitered.
+	// Verify Manage--Project --Under Project  - Project Country matches with the actual Country value through which the project was regsitered.
+	// Verify Under Project Details-Project name shows the same name used at the time of project registration.
+	// Verify Under Project Details- If Project was marked as Test at time of project registration then checkmark shows selected for "This is a test project" Otherwise checkbox should be unselected.
+	// Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. 
+
+	@Test(groups = { "CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"ProjectRegistration_ProjectType_City_Value",
+			"ProjectRegistration_AutoPopulate_Address_City_Country_State_ZipCode",
+			"ProjectRegistration_AutoPopulate_Latitude_Longitude" }, priority = 250, enabled = true, description = "Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.\r\n"
+					+ "	// Verify Manage--Project --Under Project  - Project Address matches with the actual project address through which the project was registered. \r\n"
+					+ "	// Verify Manage--Project --Under Project  - Project City matches with the actual city through which the project was regsitered.\r\n"
+					+ "	// Verify Manage--Project --Under Project  - Project Country matches with the actual Country value through which the project was regsitered.\r\n"
+					+ "	// Verify Under Project Details-Project name shows the same name used at the time of project registration.\r\n"
+					+ "	// Verify Under Project Details- If Project was marked as Test at time of project registration then checkmark shows selected for \"This is a test project\" Otherwise checkbox should be unselected.\r\n"
+					+ "	// Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. ")
+	public void City_Project_Creation_ValidateProjectDetails() {
+		log.info("City_Project_Creation_ValidateProjectDetails method started ........... ");
+		String ProjectCityID = "";
+		try {
+			//ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		HomePage.clickOnProject();
+		HomePage.clickOnCitiesSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(6);
+		String ProjectAddress=data.getCellData("ProjectRegistration", 3, 2);
+		ProjectRegistrationPage.enterProjectName(CityProjectName);
+		//ProjectRegistrationPage.SelectCityProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
+		ProjectRegistrationPage.SelectUnitType("square miles");
+		ProjectRegistrationPage.enterPopulation(data.getCellData("ProjectRegistration", 2, 2));
+		ProjectRegistrationPage.clickNoLEEDRegistration();
+		// ProjectRegistrationPage.SelectProjectIsPrivateCheckBox();
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(ProjectAddress);	
+		
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		CityPage = ProjectRegistrationPage.ClickonCityAddProjectButton();
+
+		boolean flag = CityPage.checkCityProjectCreation(CityProjectName);
+		//String HeaderText = CityPage.CheckPerformanceHeaderShowing();
+		if (flag) {
+			CityPage.ClickonProjectInManage();
+			ProjectCityID = CityPage.getProjectID(CityProjectName);
+			System.setProperty("CityProject5", ProjectCityID);
+			log.info("  CityProject5 is ---" + ProjectCityID);
+			System.setProperty("CityProject5_Name", CityProjectName);
+			log.info("  CityProject5_Name is ---" + CityProjectName);
+			boolean ProjectDetailsFlag=CityPage.CheckProjectDetails(CityProjectName,ProjectAddress);
+			if(ProjectDetailsFlag)
+			{
+				log.info("Project Details are matching ........... ");
+				Assert.assertTrue(true);
+			}
+			else
+			{
+				log.info("Project Details are not matching ........... ");
+				Assert.assertTrue(false);
+			}
+		} else {
+			log.info("Project Creation gets failed..........");
+			Assert.assertTrue(false);
+		}		
+		ProjectRegistrationPage.closeProjectButton();
+		log.info("City_Project_Creation_ValidateProjectDetails method ends here ........... ");
+	}
 //-----------------------------------------------Communities related Test Cases----------------------------
 	// Verify Community adding Gross area - limit allowed is Max: 19,305 square miles
 
@@ -1657,6 +1737,77 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("Communities_Project_Creation_Opens_Performance_Screen method ends here ........... ");
 	}
 
+	
+	// Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.
+	// Verify Manage--Project --Under Project  - Project Address matches with the actual project address through which the project was registered. 
+	// Verify Manage--Project --Under Project  - Project City matches with the actual city through which the project was regsitered.
+	// Verify Manage--Project --Under Project  - Project Country matches with the actual Country value through which the project was regsitered.
+	// Verify Under Project Details-Project name shows the same name used at the time of project registration.
+	// Verify Under Project Details- If Project was marked as Test at time of project registration then checkmark shows selected for "This is a test project" Otherwise checkbox should be unselected.
+	// Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. 
+
+	@Test(groups = { "CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Community_ProjectType_Communities_Value" }, priority = 250, enabled = true, description = "Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.\r\n"
+					+ "	// Verify Manage--Project --Under Project  - Project Address matches with the actual project address through which the project was registered. \r\n"
+					+ "	// Verify Manage--Project --Under Project  - Project City matches with the actual city through which the project was regsitered.\r\n"
+					+ "	// Verify Manage--Project --Under Project  - Project Country matches with the actual Country value through which the project was regsitered.\r\n"
+					+ "	// Verify Under Project Details-Project name shows the same name used at the time of project registration.\r\n"
+					+ "	// Verify Under Project Details- If Project was marked as Test at time of project registration then checkmark shows selected for \"This is a test project\" Otherwise checkbox should be unselected.\r\n"
+					+ "	// Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. ")
+	public void Community_Project_Creation_ValidateProjectDetails() {
+		log.info("Community_Project_Creation_ValidateProjectDetails method started ........... ");
+		String ProjectCommunityID = "";
+		try {
+			//ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		HomePage.clickOnProject();
+		HomePage.clickOnCommunitiesSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2) + CommonMethod.generateRandomString(6);
+		String ProjectAddress=data.getCellData("ProjectRegistration", 3, 2);
+		ProjectRegistrationPage.enterProjectName(CommunitiesProjectName);
+		//ProjectRegistrationPage.SelectCityProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
+		ProjectRegistrationPage.SelectUnitType("square miles");
+		ProjectRegistrationPage.enterPopulation(data.getCellData("ProjectRegistration", 2, 2));
+		ProjectRegistrationPage.clickNoLEEDRegistration();
+		// ProjectRegistrationPage.SelectProjectIsPrivateCheckBox();
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(ProjectAddress);	
+		
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		CommunitiesPage = ProjectRegistrationPage.ClickonCommunitiesAddProjectButton();
+
+		boolean flag =  CommunitiesPage.checkCommunitiesProjectCreation(CommunitiesProjectName);
+		if (flag) {
+			CommunitiesPage.ClickonProjectInManage();
+			ProjectCommunityID = CommunitiesPage.getProjectID(CommunitiesProjectName);
+			System.setProperty("CommunityProject5", ProjectCommunityID);
+			log.info("  CommunityProject5 is ---" + ProjectCommunityID);
+			System.setProperty("CommunityProject5_Name", CommunitiesProjectName);
+			log.info("  CommunityProject5_Name is ---" + CommunitiesProjectName);
+			boolean ProjectDetailsFlag=CommunitiesPage.CheckProjectDetails(CommunitiesProjectName,ProjectAddress);
+			if(ProjectDetailsFlag)
+			{
+				log.info("Project Details are matching ........... ");
+				Assert.assertTrue(true);
+			}
+			else
+			{
+				log.info("Project Details are not matching ........... ");
+				Assert.assertTrue(false);
+			}
+		} else {
+			log.info("Project Creation gets failed..........");
+			Assert.assertTrue(false);
+		}
+		ProjectRegistrationPage.closeProjectButton();
+		log.info("Community_Project_Creation_ValidateProjectDetails method ends here ........... ");
+	}
 	// -----------------------------------------------Buildings related Test
 	// Cases----------------------------
 

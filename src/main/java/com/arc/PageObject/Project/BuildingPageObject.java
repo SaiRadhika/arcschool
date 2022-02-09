@@ -491,6 +491,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectAddress = driver.findElement(By.xpath("//div[@class='w50p']/div[2]/div[2]")).getText();
+		log.info("Project Address is "+ProjectAddress);
 		log.info("getProjectAddress  method ends here.........");
 		return ProjectAddress;
 	}
@@ -656,7 +657,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean CheckAddEnergyDataModelWindow() {
 		log.info("CheckAddEnergyDataModelWindow  method starts here.........");
 		boolean PopUpflag = false;
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -693,7 +694,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean ClickOnBuildingSetting() {
 		log.info("ClickOnBuildingSetting  method starts here.........");
 		boolean BuldingSettingTab = false;
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -703,8 +704,9 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(OverviewBuildingSetting, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		OverviewBuildingSetting.click();
+		//ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -734,6 +736,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public boolean ClickOnMetersAndSurveyMenu() {
 		log.info("ClickOnMetersAndSurveyMenu  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -742,6 +745,13 @@ public class BuildingPageObject extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(MetersAndSurveyMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		MetersAndSurveyMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// CommonMethod.switchToDefaultContent();
 		CommonMethod.switchToDataInputFrame();
 		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
@@ -759,6 +769,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_OccupantSatisfactionSurvey() {
 		log.info("ClickOnHE_OccupantSatisfactionSurvey  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -775,7 +786,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(HE_Occupant_Satisfaction_Survey,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Occupant_Satisfaction_Survey.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(Transportation_SurveyToolsResource,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		log.info("ClickOnHE_OccupantSatisfactionSurvey  method ends here.........");
@@ -783,6 +794,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_CarbonDioxide() {
 		log.info("ClickOnHE_CarbonDioxide  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -798,7 +810,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(HE_CarbonDioxide, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_CarbonDioxide.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//div[@class='meterNameInfo--wrapper'])[2]/div[2][contains(text(),'Carbon Dioxide')]")),
@@ -814,6 +826,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_TVOC() {
 		log.info("ClickOnHE_TVOC  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -829,7 +842,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		waithelper.WaitForElementClickable(HE_TVOC, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_TVOC.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath(
 				"(//div[@class='meterNameInfo--wrapper'])[2]/div[2][contains(text(),'Total Volatile Organic Compounds')]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -844,6 +857,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_PM2_5() {
 		log.info("ClickOnHE_PM2_5  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -860,7 +874,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_PM2_5, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_PM2_5.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Atmospheric Particulate Matter (PM2.5)')])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -875,6 +889,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_Ozone() {
 		log.info("ClickOnHE_Ozone  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -891,7 +906,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_Ozone, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Ozone.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Ozone')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -906,6 +921,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_CarbonMonoxide() {
 		log.info("ClickOnHE_CarbonMonoxide  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -922,7 +938,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_CarbonMonoOxide, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_CarbonMonoOxide.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Carbon Monoxide')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -937,6 +953,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_AcetalDehyde() {
 		log.info("ClickOnHE_AcetalDehyde  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -953,7 +970,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_Acetaldehyde, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Acetaldehyde.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Acetaldehyde')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -968,6 +985,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_Benzene() {
 		log.info("ClickOnHE_Benzene  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -984,7 +1002,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_Benzene, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Benzene.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Benzene')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -999,6 +1017,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_Styrene() {
 		log.info("ClickOnHE_Styrene  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1015,7 +1034,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_Styrene, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Styrene.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Styrene')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1036,6 +1055,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			HE_ShowMore.click();
 		} catch (Exception e) {
@@ -1046,16 +1066,17 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_Toluene, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Toluene.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Toluene')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		log.info("ClickOnHE_Toluene  method ends here.........");
 	}
 
@@ -1067,6 +1088,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			HE_ShowMore.click();
 		} catch (Exception e) {
@@ -1077,7 +1099,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_Naphthalene, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_Naphthalene.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Naphthalene')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1092,6 +1114,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_Dichlorobenzene() {
 		log.info("ClickOnHE_Dichlorobenzene  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1108,7 +1131,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_DichloroBenzene, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_DichloroBenzene.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Dichlorobenzene')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1123,6 +1146,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_XyleneTotal() {
 		log.info("ClickOnHE_XyleneTotal  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1139,7 +1163,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_XylenesTotal, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_XylenesTotal.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Xylenes-total')])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1154,6 +1178,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnHE_Formaldehyde() {
 		log.info("ClickOnHE_XyleneTotal  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1170,7 +1195,7 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(HE_FormalDehype, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		HE_FormalDehype.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Formaldehyde')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1185,6 +1210,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnReEntry_FMS() {
 		log.info("ClickOnReEntry_FMS  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -1194,7 +1220,7 @@ public class BuildingPageObject extends BaseClass {
 		ReEntry_ShowMore.click();
 		waithelper.WaitForElementClickable(ReEntry_FMS, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ReEntry_FMS.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1209,6 +1235,7 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnReEntry_OccupantSurvey() {
 		log.info("ClickOnReEntry_OccupantSurvey  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1219,7 +1246,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(ReEntry_OccupantSurvey, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		ReEntry_OccupantSurvey.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[contains(text(),'Re-Entry Survey Responses')]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1235,7 +1262,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean ClickOnWaste_Data() {
 		log.info("ClickOnWaste_Data  method starts here.........");
 		boolean Waste_DataTab = false;
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1243,6 +1270,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		Waste_Data.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -1258,6 +1286,7 @@ public class BuildingPageObject extends BaseClass {
 		Waste_DataTab = driver
 				.findElement(By.xpath("(//div[@class='meterNameInfo--wrapper']/div[contains(text(),'Waste Data')])[2]"))
 				.isDisplayed();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -1279,8 +1308,10 @@ public class BuildingPageObject extends BaseClass {
 	public void ClickOnBuildingSetting_OperatingHoursTab() {
 		log.info("ClickOnBuildingSetting_OperatingHoursTab  method starts here.........");
 		BuildingSetting_OperatingHourTab.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -1292,7 +1323,9 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnBuildingSetting_GrossFloorAreaTab() {
 		log.info("ClickOnBuildingSetting_GrossFloorAreaTab  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_GrossFloorAreaTab.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -1306,7 +1339,9 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnBuildingSetting_EmissionsFactorTab() {
 		log.info("ClickOnBuildingSetting_EmissionsFactorTab  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_EmissionsFactorTab.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//label[contains(text(),'Use Standard Emissions Factor')]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1321,7 +1356,9 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnBuildingSetting_OperationalDaysTab() {
 		log.info("ClickOnBuildingSetting_OperationalDaysTab  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_OperationalDaysTab.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -1335,7 +1372,9 @@ public class BuildingPageObject extends BaseClass {
 
 	public void ClickOnBuildingSetting_OccupantTab() {
 		log.info("ClickOnBuildingSetting_OccupantTab  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_OccupantsTab.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddOccupancyDataBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -1352,6 +1391,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean CheckSendASurvey() {
 		log.info("CheckSendASurvey  method starts here.........");
 		boolean TransportationSurevyTab = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1359,6 +1399,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		OverviewSendASurvey.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -1390,6 +1431,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean CheckUpdateAppsToCollectData() {
 		log.info("CheckUpdateAppsToCollectData  method starts here.........");
 		boolean AppsTab = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1397,6 +1439,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		OverviewUpdateAppsToCollectData.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -1421,6 +1464,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean CheckGetNotified() {
 		log.info("CheckGetNotified  method starts here.........");
 		boolean LEEDCertificationsTab = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1428,6 +1472,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		OverviewGetNotified.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -1454,6 +1499,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("CheckRHS_ShowLast12Months  method starts here.........");
 		boolean RHS_Last12Months = false;
 		// CommonMethod.switchToShowOverviewFrame();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1487,6 +1533,7 @@ public class BuildingPageObject extends BaseClass {
 		boolean Scope1_Scope2_Date_Range_Flag = false;
 		boolean Transportation_Date_Range_Flag = false;
 		boolean Occupant_Date_Range_Flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1512,7 +1559,7 @@ public class BuildingPageObject extends BaseClass {
 				break;
 			}
 		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -1586,6 +1633,7 @@ public class BuildingPageObject extends BaseClass {
 		boolean Scope1_Scope2_Date_Range_Flag = false;
 		boolean Transportation_Date_Range_Flag = false;
 		boolean Occupant_Date_Range_Flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1607,6 +1655,7 @@ public class BuildingPageObject extends BaseClass {
 			List<WebElement> Last12MonthsDrop = driver.findElements(By.xpath("//ul[@id='range_dropdown']/li/a"));
 			for (WebElement ele : Last12MonthsDrop) {
 				log.info("Currently showing value for Last12Months Dropdown is --" + ele.getText());
+				ngWebDriver.waitForAngularRequestsToFinish();
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -1619,7 +1668,7 @@ public class BuildingPageObject extends BaseClass {
 				}
 			}
 		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(8000);
 		} catch (InterruptedException e) {
@@ -4660,7 +4709,7 @@ public class BuildingPageObject extends BaseClass {
 		ListOfRows.size();
 		log.info("Total number of rows before Adding ..." + ListOfRows.size());
 		BuildingSetting_AddRow_button.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
@@ -6439,6 +6488,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		if (TotalRowsBeforeDelete > 0) {
 			try {
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
@@ -6454,13 +6504,13 @@ public class BuildingPageObject extends BaseClass {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			ngWebDriver.waitForAngularRequestsToFinish();
 		}
 		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
@@ -10376,10 +10426,10 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-
+		String url=null;
 		if (flag) {
 
-			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			driver.close();
 			try {
 				Thread.sleep(3000);
@@ -10426,8 +10476,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
 			ActProjectName_Address = driver
 					.findElement(By.xpath("//div[@class='survey-logo']/parent::div/following-sibling::div[1]"))
@@ -10454,7 +10505,7 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
-	public boolean OccupantSurvey_SurveyPage_ProjectNameAndAddress(String PAddress) {
+	public boolean OccupantSurvey_SurveyPage_ProjectNameAndAddress() {
 		log.info("OccupantSurvey_SurveyPage_ProjectNameAndAddress  method starts here.........");
 		boolean flag = false;
 		String ExpProjectName_Address = null;
@@ -10465,7 +10516,8 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
+		//ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
+		ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + data.getCellData("ProjectRegistration", 3, 2);
 		ActProjectName_Address = driver
 				.findElement(By.xpath("//div[@class='survey-logo']/parent::div/following-sibling::div[1]")).getText();
 		log.info("Expected Project Name and Project Address are.. " + ExpProjectName_Address);
@@ -10515,9 +10567,9 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 
 		flag = Transportation_copyLanguage("English");
-
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -10697,10 +10749,10 @@ public class BuildingPageObject extends BaseClass {
 
 	// This method will open new tab and paste the url from system clipboard.
 
-	public boolean Transportation_OpenNewTabWithCopiedURL() {
+	public boolean Transportation_OpenNewTabWithCopiedURL(String newURL) {
 		log.info("Transportation_OpenNewTabWithCopiedURL method starts here ...");
 		boolean flag = false;
-		Object copiedText = null;
+		/*Object copiedText = null;
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		// String handle = driver.getWindowHandle();
 		try {
@@ -10714,8 +10766,15 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Copied text from ClipBoard is " + copiedText);
 		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
-		// "\")");
-		((JavascriptExecutor) driver).executeScript("window.open('" + copiedText + "')");
+		// "\")"); */
+		((JavascriptExecutor) driver).executeScript("window.open('" + newURL + "')");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		Set<String> handles = driver.getWindowHandles();
 		for (String window : handles) {
 			if (!window.equals(BaseWindow)) {
@@ -10741,10 +10800,10 @@ public class BuildingPageObject extends BaseClass {
 	// Occupant Survey -->This method will open new tab and paste the url from
 	// system clipboard.
 
-	public boolean OcupantSurvey_OpenNewTabWithCopiedURL() {
+	public boolean OcupantSurvey_OpenNewTabWithCopiedURL(String url) {
 		log.info("OcupantSurvey_OpenNewTabWithCopiedURL method starts here ...");
 		boolean flag = false;
-		Object copiedText = null;
+		/*Object copiedText = null;
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		// String handle = driver.getWindowHandle();
 		try {
@@ -10758,10 +10817,20 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Copied text from ClipBoard is " + copiedText);
 		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
-		// "\")");
-		((JavascriptExecutor) driver).executeScript("window.open('" + copiedText + "')");
+		// "\")"); */
+		((JavascriptExecutor) driver).executeScript("window.open('" + url + "')");
+		//ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		log.info("Base Window ID is "+driver.getWindowHandle());
 		Set<String> handles = driver.getWindowHandles();
+		log.info("Total Number of Window Handles is "+handles.size());
 		for (String window : handles) {
+			log.info("Current window ID is "+window);
 			if (!window.equals(BaseWindow)) {
 				driver.switchTo().window(window);
 				log.info("Switched to new window....");
@@ -10810,9 +10879,9 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 
 		flag = Transportation_copyLanguage("English");
-
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -10904,8 +10973,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -10998,8 +11068,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
 				Thread.sleep(4000);
 			} catch (InterruptedException e) {
@@ -11110,12 +11181,13 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Total Number of language is " + LanguageList.size());
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		log.info("Language copy flag is .." + flag);
 		int xaxis = 0;
 		int z = 0;
 		if (flag) {
 			for (int i = 0; i < 14; i++) {
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				try {
 					Thread.sleep(4000);
 				} catch (InterruptedException e) {
@@ -11748,10 +11820,11 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
+		String url=null;
 		if (flag) {
 			int k = 0;
 			for (int i = 1; i <= 7; i++) {
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				try {
 					Thread.sleep(4000);
 				} catch (InterruptedException e) {
@@ -11863,7 +11936,8 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		Transportation_copyLanguage("English");
-		Transportation_OpenNewTabWithCopiedURL();
+		String url=null;
+		Transportation_OpenNewTabWithCopiedURL(url);
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -13050,11 +13124,15 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//div[text()='Facilities and Management Survey']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
+		log.info("Copied URL is "+url);
+		//CommonMethod.setClipBoard(url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
+		log.info("Flag value is "+flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		if (flag) {
-			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			driver.close();
 			try {
 				Thread.sleep(3000);
@@ -13104,7 +13182,8 @@ public class BuildingPageObject extends BaseClass {
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
-		CommonMethod.setClipBoard(url);
+		log.info("Copied URL is "+url);
+		//CommonMethod.setClipBoard(url);
 		// js.executeScript("document.querySelector("'#copy-link-button'")
 		// driver.findElement(By.xpath("//a[text()='Copy
 		// Link']/parent::button")).click();
@@ -13122,7 +13201,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL();
+			Transportation_OpenNewTabWithCopiedURL(url);
 			driver.findElement(
 					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/descendant::input[1]")).click();
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
@@ -13196,8 +13275,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 55, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(2, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(2, Question_Link); // that particular question
@@ -13215,7 +13294,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
-	public boolean FMS_CopySurveyLink() {
+	public String FMS_CopySurveyLink() {
 		log.info("FMS_CopySurveyLink method starts here...");
 		boolean flag = false;
 		try {
@@ -13236,14 +13315,14 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
-		CommonMethod.setClipBoard(url);
+		//CommonMethod.setClipBoard(url);
 		log.info("Copied url is " + url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		log.info("FMS_CopySurveyLink method ends here with " + flag + "  ...");
-		return flag;
+		return url;
 	}
 
 	public void FMS_SelectYes_UploadFile_AddLink(int QNo, String QLink) {
@@ -14569,8 +14648,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 56, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(3, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(3, Question_Link); // that particular question
@@ -14594,15 +14673,15 @@ public class BuildingPageObject extends BaseClass {
 		boolean Noflag = false;
 		boolean NAflag = false;
 		// String Question_Link = data.getCellData("Building", 56, 2);
-		FMS_CopySurveyLink();
+		String url=FMS_CopySurveyLink();
 		for (int i = 0; i < 3; i++) {
-			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			if (OpenSurveyTab) {
 				Yesflag = FMS_SelectYes_No_NA_Verify(4, "Yes");// takes row number and URL to paste in that particular
 																// question
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				Noflag = FMS_SelectYes_No_NA_Verify(4, "No");
-				Transportation_OpenNewTabWithCopiedURL();
+				Transportation_OpenNewTabWithCopiedURL(url);
 				NAflag = FMS_SelectYes_No_NA_Verify(4, "No");
 				log.info("Value of Yes Flag is " + Yesflag);
 				log.info("Value of No Flag is " + Noflag);
@@ -14629,9 +14708,8 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ReEntry_FMS_Question5_CheckCDC_GuideLine  method starts here.........");
 		boolean OpenSurveyTab = false;
 		String pdfcontent = null;
-		String url = null;
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			String SurveyWindow = driver.getWindowHandle();
 			driver.findElement(
@@ -14678,8 +14756,8 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ReEntry_FMS_Question5_USGBC_CreditLink  method starts here.........");
 		boolean OpenSurveyTab = false;
 		String PageTitle = null;
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			String SurveyWindow = driver.getWindowHandle();
 			driver.findElement(
@@ -14724,8 +14802,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 57, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(5, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(5, Question_Link); // that particular question
@@ -14747,8 +14825,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 58, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);// takes row number and URL to
 																						// paste in
@@ -14771,8 +14849,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 59, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(7, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14795,8 +14873,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 62, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(10, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14819,8 +14897,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 63, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink(11, Question_Link);// takes row number and URL to
 																							// paste in
@@ -14843,8 +14921,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 61, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_OccupantScreening_Yes_UploadFile_AddLink(9, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(9, Question_Link); // that particular question
@@ -14866,8 +14944,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 60, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(8, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14890,8 +14968,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 64, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify(12, Question_Link);// takes row number and URL to paste
 																					// in
@@ -14914,8 +14992,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 65, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACSystemOperation_Yes_UploadFile_AddLink(13, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(13, Question_Link); // that particular question
@@ -14937,8 +15015,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 66, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink(14, Question_Link);// takes row number and URL to
 																							// paste in
@@ -14961,8 +15039,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 67, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink(15, Question_Link);// takes row number and URL to
 																						// paste in
@@ -14985,8 +15063,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 68, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(16, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(16, Question_Link); // that particular question
@@ -15008,8 +15086,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 69, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_Elevatormanagement_Yes_UploadFile_AddLink(17, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(17, Question_Link); // that particular question
@@ -15031,8 +15109,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 70, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_PortableWaterManagement_Yes_UploadFile_AddLink(18, Question_Link);// takes row number and URL to paste
 																					// in
@@ -15055,8 +15133,8 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 71, 2);
-		FMS_CopySurveyLink();
-		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL();
+		String url=FMS_CopySurveyLink();
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_IAQAssessment_Yes_UploadFile_AddLink(19, Question_Link);// takes row number and URL to paste in
 			flag = FMS_Verify(19, Question_Link); // that particular question
@@ -15084,12 +15162,22 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("//a[text()='Arc Re-Entry Guide']")).click();
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(20000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		flag = CommonMethod.CheckDownloadedFileName("Re-Entry.pdf");
+		//flag = CommonMethod.CheckDownloadedFileName("Re-Entry.pdf");
+		Set<String> handles = driver.getWindowHandles();
+		log.info("Total Number of Window Handles is "+handles.size());
+		for (String window : handles) {
+			log.info("Current window ID is "+window);
+			if (!window.equals(BaseWindow)) {
+				driver.switchTo().window(window);
+				log.info("Switched to new window....");
+				break;
+			}
+		}
 		if (flag) {
 			log.info("ReEntry_FMS_DownloadArcGuideToReEntry method ends here with true.........");
 			return true;
@@ -15121,9 +15209,18 @@ public class BuildingPageObject extends BaseClass {
 		dropdownhelper.selectUsingVisibleText(DropScope, Scope);
 		WebElement DropGroup = driver.findElement(By.xpath("//select[@name='group']"));
 		dropdownhelper.selectUsingVisibleText(DropGroup, Group);
-		driver.findElement(ByAngular.model("tenant")).sendKeys(Scope + "_" + Group);
+		String name=Scope.split(" ")[0]+Group;
+		
+		driver.findElement(ByAngular.model("tenant")).sendKeys(name);
+		try {
+			Thread.sleep(8000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String url = driver.findElement(ByAngular.model("oe_link")).getAttribute("value");
-		CommonMethod.setClipBoard(url);
+		//CommonMethod.setClipBoard(url);
+		log.info("Url Copied is "+url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
 		try {
@@ -15134,7 +15231,8 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
-		flag = OcupantSurvey_OpenNewTabWithCopiedURL();
+		flag = OcupantSurvey_OpenNewTabWithCopiedURL(url);
+		//CommonMethod.clearClipBoard();
 		if (flag) {
 			log.info("ReEntry_OccupantSurvey_OpenSurvey_NewTab method ends here with true.........");
 			return true;
@@ -15155,6 +15253,7 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
 
 		driver.findElement(By.xpath("//a[text()='Arc Re-Entry Guide']")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -15194,6 +15293,7 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
 		driver.findElement(By.xpath("//span[text()='Yes ']/input[@name='infection_control']")).click();
 		driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building", 72, 2));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
@@ -15202,7 +15302,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Never");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Never");
 		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
 		// 72, 2));
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
@@ -15210,44 +15310,51 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Never");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Never");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Never");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15313,50 +15420,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
 				.sendKeys(data.getCellData("Building", 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15423,50 +15537,58 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
 				.sendKeys(data.getCellData("Building", 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15533,50 +15655,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]")).sendKeys(data.getCellData("Building",
 		// 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]")).sendKeys(data.getCellData("Building",
 		// 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]")).sendKeys(data.getCellData("Building",
 		// 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]")).sendKeys(data.getCellData("Building",
 		// 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]")).sendKeys(data.getCellData("Building",
 		// 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]")).sendKeys(data.getCellData("Building",
 		// 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]")).sendKeys(data.getCellData("Building",
 		// 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15643,50 +15772,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
 				.sendKeys(data.getCellData("Building", 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15753,50 +15889,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
 				.sendKeys(data.getCellData("Building", 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15863,50 +16006,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
 				.sendKeys(data.getCellData("Building", 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -15973,50 +16123,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]")).sendKeys(data.getCellData("Building",
 		// 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]")).sendKeys(data.getCellData("Building",
 		// 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]")).sendKeys(data.getCellData("Building",
 		// 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]")).sendKeys(data.getCellData("Building",
 		// 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]")).sendKeys(data.getCellData("Building",
 		// 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]")).sendKeys(data.getCellData("Building",
 		// 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]")).sendKeys(data.getCellData("Building",
 		// 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -16081,50 +16238,57 @@ public class BuildingPageObject extends BaseClass {
 		}
 		WebElement DiseaseControlHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][1]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_DiseaseControl_Slider, DiseaseControlHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[1]"))
 				.sendKeys(data.getCellData("Building", 73, 2));
 
 		WebElement OccupantScreeningHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][2]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_OccupantScreening_Slider, OccupantScreeningHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[2]"))
 				.sendKeys(data.getCellData("Building", 74, 2));
 
 		WebElement HandWashingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][3]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_HandWashing_Slider, HandWashingHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_HandWashing_Slider, HandWashingHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[3]"))
 				.sendKeys(data.getCellData("Building", 75, 2));
 
 		WebElement SupportSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][4]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
+		CommonMethod.SelectSliderControl(ReEntry_SupportSocialDistancing_Slider, SupportSocialDistancingHeader,
 				"Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[4]"))
 				.sendKeys(data.getCellData("Building", 76, 2));
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ManintainSocialDistancing_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
 				MaintainSocialDistancingHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
 		WebElement ProtectedDiseaseTransmissionHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][6]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_ProtectedDiseaseTransmission_Slider,
+		CommonMethod.SelectSliderControl(ReEntry_ProtectedDiseaseTransmission_Slider,
 				ProtectedDiseaseTransmissionHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[6]"))
 				.sendKeys(data.getCellData("Building", 78, 2));
 
 		WebElement StaffUsePPEHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][7]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectDiseaseControlSlider(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_StaffUsePPE_Slider, StaffUsePPEHeader, "Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[7]"))
 				.sendKeys(data.getCellData("Building", 79, 2));
 
 		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (driver.findElement(By.xpath("//h4[text()='Thank you for taking our survey!']")).isDisplayed()) {
 			log.info("Response message displayed.. ");
 			SubmitResponseFlag = true;
@@ -16297,26 +16461,36 @@ public class BuildingPageObject extends BaseClass {
 	// it.
 	public boolean OccupantSurveyVerify(String Scope, String Group, String SatisfactionLevel) {
 		log.info("OccupantSurveyVerify Method starts here...........");
-		CommonMethod.RefreshPagewaitForPageLoaded(driver);
-		BuildingPage.ClickOnMetersAndSurveyMenu();
-		BuildingPage.ClickOnReEntry_OccupantSurvey();
+		//CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		//BuildingPage.ClickOnMetersAndSurveyMenu();
+		//BuildingPage.ClickOnReEntry_OccupantSurvey();
+		CommonMethod.switchToDataInputFrame();
 		BuildingPage.SelectScope_Group(Scope, Group);
 		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		boolean Responseflag = false;
 		boolean Averageflag = false;
 		List<WebElement> ResponseList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[2]"));
 		List<WebElement> AverageResponseList = driver
 				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[3]"));
 		for (WebElement ele : ResponseList) {
-			if (ele.getText().contains("1")) {
+			String res=ele.getText();
+			log.info("Current Response is "+res);
+			if (res.contains("1")) {
 				Responseflag = true;
 			} else {
 				Responseflag = false;
 				break;
 			}
 		}
-		for (byte i = 1; i < 7; i++) {
+		for (byte i = 1; i < 8; i++) {
 			String AverageText = AverageResponseList.get(i).getAttribute("innerText");
+			log.info("Current Average is "+AverageText);
 			if (AverageText.contains(SatisfactionLevel)) {
 				Averageflag = true;
 			} else {
@@ -16339,36 +16513,37 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(
 				driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		//driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")).click();
-		//driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
-		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")).click();
+		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
+		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(
 				driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		//driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")).click();
-		//driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")));
-		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")));
+		driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")));
+		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")));
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		
+		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")).click();
+		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
+	//	JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
-		} catch (InterruptedException e) {
+		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
-		JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 }
