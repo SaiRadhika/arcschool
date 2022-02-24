@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ARC Essential Test Suite ">
+
+	<listeners>
+		<listener
+			class-name="com.arc.commonMethods.ExtentReportListener"></listener>
+			<listener
+			class-name="com.arc.commonMethods.RetryListener"></listener>
+		
+	</listeners>
+
+	<test name="ARC_Reboot_Test">
+		<parameter name="browserName" value="chrome" />
+		<parameter name="environment" value="STG"/>
+		<groups>
+		<run>
+		<include name="Reboot"/>
+		</run>
+		</groups>
+		<classes>
+			<class name="com.arc.testCases.LoginPageTest" />
+			<class name="com.arc.testCases.HomePageTest" />
+			<!-- <class name="com.arc.testCases.Project.ProjectPageTest"/> -->
+			<class name="com.arc.testCases.Project.BuildingPageTest" />
+			<class name="com.arc.testCases.Project.SchoolPageTest" />
+			 <class name="com.arc.testCases.Project.CityPageTest" />
+			<class name="com.arc.testCases.Project.TransitPageTest" />
+			<class name="com.arc.testCases.Project.CommunitiesPageTest" />
+			<class name="com.arc.testCases.Project.ParkingPageTest" /> 
+			<class name="com.arc.testCases.InsightPageTest" /> 
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
+
+

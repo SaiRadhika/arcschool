@@ -1,52 +1,77 @@
 package com.arc.testCases;
 
+import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.arc.pageObjects.HomePageObjects;
-import com.arc.pageObjects.LoginPageObjects;
+import com.arc.PageObject.HomePageObjects;
+import com.arc.PageObject.LoginPageObjects;
+import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 
+public class LoginPageTest extends BaseClass {
+	/*
+	 * LoginPageObjects LoginPage; HomePageObjects HomePage;
+	 */
 
+	private static Logger log = LoggerHelper.getLogger(LoginPageTest.class);
 
-public class LoginPageTest extends BaseClass{
-	LoginPageObjects LoginPage;
-	HomePageObjects HomePage;
-	public LoginPageTest()
-	{
-		super();
+	/*
+	 * public LoginPageTest() { //super();
+	 * log.info("LoginPageTest constructor is called"); }
+	 */
+
+	/*
+	 * @BeforeMethod
+	 * 
+	 * @Parameters("browserName") public void setup(String browserName) {
+	 * log.info("Setup method of LoginPageTest class started ");
+	 * initializtion(browserName); LoginPage=new LoginPageObjects(); HomePage=new
+	 * HomePageObjects();
+	 * log.info("Setup method of LoginPageTest class completed "); }
+	 */
+
+	/*
+	 * @Test(enabled=false) public void LoginPageTitleTest() { LoginPage=new
+	 * LoginPageObjects(); HomePage=new HomePageObjects();
+	 * log.info("LoginPageTitleTest started"); String
+	 * Title=LoginPage.checkLoginPageTitle();
+	 * Assert.assertEquals("Arc Skoru | Sustainability performance platform",
+	 * Title); log.info("LoginPageTitleTest completed"); }
+	 */
+
+	@Test(groups = { "LoginMethodTCGroup", "Reboot", "Regression","BuildingsRegression","CityRegression","CommunityRegression" }, priority = 1, description = "Verify clicking on Login button should redirect to Home/Overview tab.")
+
+	public void Login_ApplicationTest() {
+		LoginPage = new LoginPageObjects();
+		HomePage = new HomePageObjects();
+		log.info("LoginApplicationTest started");
+		HomePage = LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
+		boolean flag = HomePage.CheckHomePageLabel();
+		if (flag) {
+			log.info("LoginApplicationTest completed");
+			Assert.assertTrue(true);
+		} else {
+			log.info("LoginApplicationTest completed");
+			Assert.assertTrue(false);
+		}
 	}
-	
-	@BeforeMethod
-	public void setup()
-	{
-		initializtion();
-		LoginPage=new LoginPageObjects();
-		HomePage=new HomePageObjects();
-	}
-	
-	
-	@Test(priority = 1,enabled=false)
-	public void LoginPageTitleTest()
-	{
-		String Title=LoginPage.checkLoginPageTitle();
-		Assert.assertEquals("Arc Skoru | Sustainability performance platform", Title);
-	}
-	
-	
-	@Test(priority = 2)
-	public void LoginIntoApplicationTest()
-	{
-		HomePage=LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
-		String HTitle=HomePage.checkHomePageTitle();
-		Assert.assertEquals("Arc dashboard", HTitle);
-	}
-	@AfterMethod
-	public void tearDown()
-	{
-		closeBrowser();
-	}
+
+	/*
+	 * @Test(groups={"LoginMethodTCGroupR","Regression" }, priority = 1)
+	 * 
+	 * public void Login_ApplicationTes1t() { LoginPage=new LoginPageObjects();
+	 * HomePage=new HomePageObjects(); log.info("LoginApplicationTest started1");
+	 * HomePage=LoginPage.login(prop.getProperty("email"),
+	 * prop.getProperty("password")); boolean flag = HomePage.CheckHomePageLabel();
+	 * if(flag) { log.info("LoginApplicationTest completed1");
+	 * Assert.assertTrue(true); } else {
+	 * log.info("LoginApplicationTest completed1"); Assert.assertTrue(false); } }
+	 */
+	/*
+	 * @AfterMethod public void tearDown() {
+	 * log.info("tearDown method of LoginPageTest class started "); closeBrowser();
+	 * log.info("tearDown method of LoginPageTest class completed "); }
+	 */
 
 }

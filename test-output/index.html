@@ -5,9 +5,8 @@
   <meta charset='utf-8'>
   <title>TestNG reports</title>
 
-    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
-    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="testng-reports.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type='text/javascript'>
@@ -24,9 +23,8 @@
   <body>
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
-      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,8 +37,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" panel-name="suite-ARC_Essential_Test_Suite" class="navigator-link">
-              <span class="suite-name border-passed">ARC Essential Test Suite</span>
+            <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="navigator-link">
+              <span class="suite-name border-failed">ARC Essential City Regression Suite </span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,37 +48,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" panel-name="test-xml-ARC_Essential_Test_Suite" class="navigator-link ">
-                    <span>C:\AutomationTasks\ARCEssential\src\main\resources\testng.xml</span>
+                  <a href="#" panel-name="test-xml-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
+                    <span>C:\AutomationTasks\ARCEssential\src\main\resources\Regression_City.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="testlist-ARC_Essential_Test_Suite" class="navigator-link ">
+                  <a href="#" panel-name="testlist-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="group-ARC_Essential_Test_Suite" class="navigator-link ">
-                    <span>0 groups</span>
+                  <a href="#" panel-name="group-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
+                    <span>3 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="times-ARC_Essential_Test_Suite" class="navigator-link ">
+                  <a href="#" panel-name="times-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="reporter-ARC_Essential_Test_Suite" class="navigator-link ">
+                  <a href="#" panel-name="reporter-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="ignored-methods-ARC_Essential_Test_Suite" class="navigator-link ">
+                  <a href="#" panel-name="ignored-methods-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="chronological-ARC_Essential_Test_Suite" class="navigator-link ">
+                  <a href="#" panel-name="chronological-ARC_Essential_City_Regression_Suite_" class="navigator-link ">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -93,31 +91,144 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">22 methods, 2 failed,  2 skipped,  18 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="hide-methods failed suite-ARC_Essential_City_Regression_Suite_"> (hide)</a> <!-- hide-methods failed suite-ARC_Essential_City_Regression_Suite_ -->
+                      <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="show-methods failed suite-ARC_Essential_City_Regression_Suite_"> (show)</a> <!-- show-methods failed suite-ARC_Essential_City_Regression_Suite_ -->
+                    </span>
+                    <div class="method-list-content failed suite-ARC_Essential_City_Regression_Suite_">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Energy_GHGEmission_SavePreviousYearData_CheckScore">City_Energy_GHGEmission_SavePreviousYearData_CheckScore</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display">City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-ARC_Essential_City_Regression_Suite_ -->
+                  </li>
+                  <li>
+                    <span class="method-list-title skipped">Skipped methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="hide-methods skipped suite-ARC_Essential_City_Regression_Suite_"> (hide)</a> <!-- hide-methods skipped suite-ARC_Essential_City_Regression_Suite_ -->
+                      <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="show-methods skipped suite-ARC_Essential_City_Regression_Suite_"> (show)</a> <!-- show-methods skipped suite-ARC_Essential_City_Regression_Suite_ -->
+                    </span>
+                    <div class="method-list-content skipped suite-ARC_Essential_City_Regression_Suite_">
+                      <span>
+                        <img src="skipped.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Energy_GHGEmission_Delete_Row">City_Energy_GHGEmission_Delete_Row</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="skipped.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Energy_GHGEmission_Edit_Row">City_Energy_GHGEmission_Edit_Row</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content skipped suite-ARC_Essential_City_Regression_Suite_ -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
                     <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-ARC_Essential_Test_Suite" class="hide-methods passed suite-ARC_Essential_Test_Suite"> (hide)</a> <!-- hide-methods passed suite-ARC_Essential_Test_Suite -->
-                      <a href="#" panel-name="suite-ARC_Essential_Test_Suite" class="show-methods passed suite-ARC_Essential_Test_Suite"> (show)</a> <!-- show-methods passed suite-ARC_Essential_Test_Suite -->
+                      <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="hide-methods passed suite-ARC_Essential_City_Regression_Suite_"> (hide)</a> <!-- hide-methods passed suite-ARC_Essential_City_Regression_Suite_ -->
+                      <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" class="show-methods passed suite-ARC_Essential_City_Regression_Suite_"> (show)</a> <!-- show-methods passed suite-ARC_Essential_City_Regression_Suite_ -->
                     </span>
-                    <div class="method-list-content passed suite-ARC_Essential_Test_Suite">
+                    <div class="method-list-content passed suite-ARC_Essential_City_Regression_Suite_">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite" title="com.arc.testCases.HomePageTest" class="method navigator-link" hash-for-method="CheckClickOnProjectsMenu">CheckClickOnProjectsMenu</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.HomePageTest" class="method navigator-link" hash-for-method="Check_Add_A_Project">Check_Add_A_Project</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite" title="com.arc.testCases.Building.ProjectPageTest" class="method navigator-link" hash-for-method="CheckProjectListed">CheckProjectListed</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="Check_ProjectType_City_Value">Check_ProjectType_City_Value</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-ARC_Essential_Test_Suite" title="com.arc.testCases.LoginPageTest" class="method navigator-link" hash-for-method="LoginIntoApplicationTest">LoginIntoApplicationTest</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_AutoPopulate_Address_City_Country_State_ZipCode">City_AutoPopulate_Address_City_Country_State_ZipCode</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-ARC_Essential_Test_Suite -->
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_AutoPopulate_Latitude_Longitude">City_AutoPopulate_Latitude_Longitude</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_DI_ProjectSetting_Population_Add_Row">City_DI_ProjectSetting_Population_Add_Row</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Energy_GHGEmission_AddYear_AddNewLine">City_Energy_GHGEmission_AddYear_AddNewLine</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Energy_GHGEmission_With_DataAndDetails_Display">City_Energy_GHGEmission_With_DataAndDetails_Display</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_LEED_Regis_Redirects_LeedOnlineportal">City_LEED_Regis_Redirects_LeedOnlineportal</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow">City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_LEED_Registration_Not_Now_Test">City_LEED_Registration_Not_Now_Test</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Population_Field_Comma_Display">City_Population_Field_Comma_Display</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_ProjectArea_Field_Comma_Display">City_ProjectArea_Field_Comma_Display</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_ProjectSetting_Population_Save_Row_DecadeCalender_Display">City_ProjectSetting_Population_Save_Row_DecadeCalender_Display</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_ProjectSetting_ProjectArea_Add_Row">City_ProjectSetting_ProjectArea_Add_Row</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.Project.CityPageTest" class="method navigator-link" hash-for-method="City_Project_Area_GrossArea_SquareMiles_Display">City_Project_Area_GrossArea_SquareMiles_Display</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_Project_Is_Private_Creation_Opens_Performance_Screen">City_Project_Is_Private_Creation_Opens_Performance_Screen</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.ProjectRegistrationPageTest" class="method navigator-link" hash-for-method="City_TestProject_NonLEED_Creation">City_TestProject_NonLEED_Creation</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-ARC_Essential_City_Regression_Suite_" title="com.arc.testCases.LoginPageTest" class="method navigator-link" hash-for-method="Login_ApplicationTest">Login_ApplicationTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-ARC_Essential_City_Regression_Suite_ -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -128,23 +239,101 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-ARC_Essential_Test_Suite" class="panel ARC_Essential_Test_Suite">
-          <div class="suite-ARC_Essential_Test_Suite-class-passed">
+        <div panel-name="suite-ARC_Essential_City_Regression_Suite_" class="panel ARC_Essential_City_Regression_Suite_">
+          <div class="suite-ARC_Essential_City_Regression_Suite_-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.arc.testCases.Building.ProjectPageTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.arc.testCases.Project.CityPageTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="CheckProjectListed">
-                  </a> <!-- CheckProjectListed -->
-                  <span class="method-name">CheckProjectListed</span>
+                  <a name="City_Energy_GHGEmission_SavePreviousYearData_CheckScore">
+                  </a> <!-- City_Energy_GHGEmission_SavePreviousYearData_CheckScore -->
+                  <span class="method-name">City_Energy_GHGEmission_SavePreviousYearData_CheckScore</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;(//table[@class=&apos;meterListByType--wrapper&apos;]/tbody/tr[1])[1]/td[3]/div/span/span&quot;}
+  (Session info: chrome=91.0.4472.114)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;G10GGNLT065&apos;, ip: &apos;192.168.43.9&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;15.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 91.0.4472.114, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\NARAYA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:58845}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 835f54ea0e79db627c08082410384cf2
+*** Element info: {Using=xpath, value=(//table[@class=&apos;meterListByType--wrapper&apos;]/tbody/tr[1])[1]/td[3]/div/span/span}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.lambda$new$1(EventFiringWebDriver.java:105)
+	at com.sun.proxy.$Proxy11.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:194)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy15.getText(Unknown Source)
+	at com.arc.PageObject.Project.CityPageObject.getEnergyScore(CityPageObject.java:272)
+	at com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_SavePreviousYearData_CheckScore(CityPageTest.java:573)
+... Removed 33 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Verify by adding value to reading and clicking on save button. 
+				 Verify score gets populated when data is added for previous year  )                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display">
+                  </a> <!-- City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display -->
+                  <span class="method-name">City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
+	at com.arc.testCases.Project.CityPageTest.City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display(CityPageTest.java:913)
+... Removed 29 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Verify in DI, Project settings - Project Area tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button 
+			 Verify Effective year opens up decade calendar and gives the option to select any year.)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite-class-passed">
+          </div> <!-- suite-ARC_Essential_City_Regression_Suite_-class-failed -->
+          <div class="suite-ARC_Essential_City_Regression_Suite_-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">com.arc.testCases.Project.CityPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Energy_GHGEmission_Delete_Row">
+                  </a> <!-- City_Energy_GHGEmission_Delete_Row -->
+                  <span class="method-name">City_Energy_GHGEmission_Delete_Row</span>
+                  <div class="stack-trace">java.lang.Throwable: Method CityPageTest.City_Energy_GHGEmission_Delete_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e] depends on not successfully finished methods
+... Removed 18 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Verify able to delete line item by using delete button.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Energy_GHGEmission_Edit_Row">
+                  </a> <!-- City_Energy_GHGEmission_Edit_Row -->
+                  <span class="method-name">City_Energy_GHGEmission_Edit_Row</span>
+                  <div class="stack-trace">java.lang.Throwable: Method CityPageTest.City_Energy_GHGEmission_Edit_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e] depends on not successfully finished methods
+... Removed 18 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(Verify able to Edit line item by using delete button..)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_City_Regression_Suite_-class-skipped -->
+          <div class="suite-ARC_Essential_City_Regression_Suite_-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
               <span class="class-name">com.arc.testCases.HomePageTest</span>
@@ -152,14 +341,102 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="CheckClickOnProjectsMenu">
-                  </a> <!-- CheckClickOnProjectsMenu -->
-                  <span class="method-name">CheckClickOnProjectsMenu</span>
+                  <a name="Check_Add_A_Project">
+                  </a> <!-- Check_Add_A_Project -->
+                  <span class="method-name">Check_Add_A_Project</span>
+                  <em>
+(Verify clicking on add a project at RHS button opens the registration form successfully.)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite-class-passed -->
-          <div class="suite-ARC_Essential_Test_Suite-class-passed">
+          </div> <!-- suite-ARC_Essential_City_Regression_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_City_Regression_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.ProjectRegistrationPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Check_ProjectType_City_Value">
+                  </a> <!-- Check_ProjectType_City_Value -->
+                  <span class="method-name">Check_ProjectType_City_Value</span>
+                  <em>
+(Verify Project Type as 'Cities' available in dropdown or not)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_AutoPopulate_Address_City_Country_State_ZipCode">
+                  </a> <!-- City_AutoPopulate_Address_City_Country_State_ZipCode -->
+                  <span class="method-name">City_AutoPopulate_Address_City_Country_State_ZipCode</span>
+                  <em>
+(Verify address field auto populates the address(this address is being pulled using google maps API).
+	Verify auto pulled address populates all the fields -City, County,States,zipcode)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_AutoPopulate_Latitude_Longitude">
+                  </a> <!-- City_AutoPopulate_Latitude_Longitude -->
+                  <span class="method-name">City_AutoPopulate_Latitude_Longitude</span>
+                  <em>
+(Verify after address is auto pulled, geo location gets auto -populated.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_LEED_Regis_Redirects_LeedOnlineportal">
+                  </a> <!-- City_LEED_Regis_Redirects_LeedOnlineportal -->
+                  <span class="method-name">City_LEED_Regis_Redirects_LeedOnlineportal</span>
+                  <em>
+(Verify clicking on 'Register for LEED certification now' redirects to Leed Online portal.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow">
+                  </a> <!-- City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow -->
+                  <span class="method-name">City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow</span>
+                  <em>
+(Verify the new modal window shows two buttons- 'Register for LEED certification now' and 'Not now')                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_LEED_Registration_Not_Now_Test">
+                  </a> <!-- City_LEED_Registration_Not_Now_Test -->
+                  <span class="method-name">City_LEED_Registration_Not_Now_Test</span>
+                  <em>
+(Verify clicking on 'Not now' closes the modal window and keeps the user at the registration page. 
+	// Verify clicking on 'Not now' closes the modal window and selects the 'No' radio button.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Project_Is_Private_Creation_Opens_Performance_Screen">
+                  </a> <!-- City_Project_Is_Private_Creation_Opens_Performance_Screen -->
+                  <span class="method-name">City_Project_Is_Private_Creation_Opens_Performance_Screen</span>
+                  <em>
+(Verify if 'project is private' is selected, shows private as 'Yes' under Manage--project. 
+ Verify clicking on 'Add project' button opens the 'Performance' Tab.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_TestProject_NonLEED_Creation">
+                  </a> <!-- City_TestProject_NonLEED_Creation -->
+                  <span class="method-name">City_TestProject_NonLEED_Creation</span>
+                  <em>
+(Verify clicking on checkbox for 'This is a test project' creates a test project and the same gets populated after project creation under  manage-project.
+	
+	// Verify clicking on 'Add project' button registers the project with non-leed id.
+	)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_City_Regression_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_City_Regression_Suite_-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
               <span class="class-name">com.arc.testCases.LoginPageTest</span>
@@ -167,164 +444,563 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="LoginIntoApplicationTest">
-                  </a> <!-- LoginIntoApplicationTest -->
-                  <span class="method-name">LoginIntoApplicationTest</span>
+                  <a name="Login_ApplicationTest">
+                  </a> <!-- Login_ApplicationTest -->
+                  <span class="method-name">Login_ApplicationTest</span>
+                  <em>
+(Verify clicking on Login button should redirect to Home/Overview tab.)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-ARC_Essential_Test_Suite-class-passed -->
-        </div> <!-- panel ARC_Essential_Test_Suite -->
-        <div panel-name="test-xml-ARC_Essential_Test_Suite" class="panel">
+          </div> <!-- suite-ARC_Essential_City_Regression_Suite_-class-passed -->
+          <div class="suite-ARC_Essential_City_Regression_Suite_-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.arc.testCases.Project.CityPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_DI_ProjectSetting_Population_Add_Row">
+                  </a> <!-- City_DI_ProjectSetting_Population_Add_Row -->
+                  <span class="method-name">City_DI_ProjectSetting_Population_Add_Row</span>
+                  <em>
+(Verify in DI, Project settings - population tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button )                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Energy_GHGEmission_AddYear_AddNewLine">
+                  </a> <!-- City_Energy_GHGEmission_AddYear_AddNewLine -->
+                  <span class="method-name">City_Energy_GHGEmission_AddYear_AddNewLine</span>
+                  <em>
+(Verify 'Add year' button adds line item with year for previous year.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Energy_GHGEmission_With_DataAndDetails_Display">
+                  </a> <!-- City_Energy_GHGEmission_With_DataAndDetails_Display -->
+                  <span class="method-name">City_Energy_GHGEmission_With_DataAndDetails_Display</span>
+                  <em>
+(Verify Energy meter shows GHG emissions meter with data and detals tab.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Population_Field_Comma_Display">
+                  </a> <!-- City_Population_Field_Comma_Display -->
+                  <span class="method-name">City_Population_Field_Comma_Display</span>
+                  <em>
+(Verify population field allows to add values followed by commas.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_ProjectArea_Field_Comma_Display">
+                  </a> <!-- City_ProjectArea_Field_Comma_Display -->
+                  <span class="method-name">City_ProjectArea_Field_Comma_Display</span>
+                  <em>
+(Verify Project Area field allows to add values followed by commas.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_ProjectSetting_Population_Save_Row_DecadeCalender_Display">
+                  </a> <!-- City_ProjectSetting_Population_Save_Row_DecadeCalender_Display -->
+                  <span class="method-name">City_ProjectSetting_Population_Save_Row_DecadeCalender_Display</span>
+                  <em>
+(Project Setting -> Population 
+ Verify in DI, Project settings - population tab- Save One row button 
+		Verify Effective year opens up decade calendar and gives the option to select any year.)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_ProjectSetting_ProjectArea_Add_Row">
+                  </a> <!-- City_ProjectSetting_ProjectArea_Add_Row -->
+                  <span class="method-name">City_ProjectSetting_ProjectArea_Add_Row</span>
+                  <em>
+(Verify in DI, Project settings - ProjectArea tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button )                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="City_Project_Area_GrossArea_SquareMiles_Display">
+                  </a> <!-- City_Project_Area_GrossArea_SquareMiles_Display -->
+                  <span class="method-name">City_Project_Area_GrossArea_SquareMiles_Display</span>
+                  <em>
+(Verify after creating City Project with Gross Area as "Square Miles unit", check in Data Input – Project Setting - > Project Area Tab -> Unit Drop down by default value. )                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-ARC_Essential_City_Regression_Suite_-class-passed -->
+        </div> <!-- panel ARC_Essential_City_Regression_Suite_ -->
+        <div panel-name="test-xml-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\AutomationTasks\ARCEssential\src\main\resources\testng.xml</span>
+            <span class="header-content">C:\AutomationTasks\ARCEssential\src\main\resources\Regression_City.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;ARC Essential Test Suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;ARC Essential Reboot Test Cases&quot;&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;ARC Essential City Regression Suite &quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;com.arc.commonMethods.ExtentReportListener&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test name=&quot;City RegressionTest Cases&quot;&gt;
+    &lt;parameter name=&quot;browserName&quot; value=&quot;chrome&quot;/&gt;
+    &lt;groups&gt;
+      &lt;run&gt;
+        &lt;include name=&quot;Regression&quot;/&gt;
+      &lt;/run&gt;
+    &lt;/groups&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.arc.testCases.LoginPageTest&quot;/&gt;
       &lt;class name=&quot;com.arc.testCases.HomePageTest&quot;/&gt;
-      &lt;class name=&quot;com.arc.testCases.Building.ProjectPageTest&quot;/&gt;
+      &lt;class name=&quot;com.arc.testCases.ProjectRegistrationPageTest&quot;/&gt;
+      &lt;class name=&quot;com.arc.testCases.Project.CityPageTest&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- ARC Essential Reboot Test Cases --&gt;
-&lt;/suite&gt; &lt;!-- ARC Essential Test Suite --&gt;
+  &lt;/test&gt; &lt;!-- City RegressionTest Cases --&gt;
+&lt;/suite&gt; &lt;!-- ARC Essential City Regression Suite  --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-ARC_Essential_Test_Suite" class="panel">
+        <div panel-name="testlist-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for ARC Essential Test Suite</span>
+            <span class="header-content">Tests for ARC Essential City Regression Suite </span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">ARC Essential Reboot Test Cases (3 classes)</span>
+                <span class="test-name">City RegressionTest Cases (4 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-ARC_Essential_Test_Suite" class="panel">
+        <div panel-name="group-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for ARC Essential Test Suite</span>
+            <span class="header-content">Groups for ARC Essential City Regression Suite </span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">LoginMethodTCGroup</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">Login_ApplicationTest</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">Reboot</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">Login_ApplicationTest</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">Regression</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">Check_Add_A_Project</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">Check_ProjectType_City_Value</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_AutoPopulate_Address_City_Country_State_ZipCode</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_AutoPopulate_Latitude_Longitude</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_DI_ProjectSetting_Population_Add_Row</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Energy_GHGEmission_AddYear_AddNewLine</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Energy_GHGEmission_Delete_Row</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Energy_GHGEmission_Edit_Row</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Energy_GHGEmission_SavePreviousYearData_CheckScore</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Energy_GHGEmission_With_DataAndDetails_Display</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_LEED_Regis_Redirects_LeedOnlineportal</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_LEED_Registration_Not_Now_Test</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Population_Field_Comma_Display</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_ProjectArea_Field_Comma_Display</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_ProjectSetting_Population_Save_Row_DecadeCalender_Display</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_ProjectSetting_ProjectArea_Add_Row</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Project_Area_GrossArea_SquareMiles_Display</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_Project_Is_Private_Creation_Opens_Performance_Screen</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">City_TestProject_NonLEED_Creation</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">Login_ApplicationTest</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-ARC_Essential_Test_Suite" class="panel">
+        <div panel-name="times-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for ARC Essential Test Suite</span>
+            <span class="header-content">Times for ARC Essential City Regression Suite </span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_ARC_Essential_Test_Suite');
-function tableData_ARC_Essential_Test_Suite() {
+suiteTableInitFunctions.push('tableData_ARC_Essential_City_Regression_Suite_');
+function tableData_ARC_Essential_City_Regression_Suite_() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(22);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'LoginIntoApplicationTest')
-data.setCell(0, 2, 'com.arc.testCases.LoginPageTest')
-data.setCell(0, 3, 22230);
+data.setCell(0, 1, 'City_Energy_GHGEmission_SavePreviousYearData_CheckScore')
+data.setCell(0, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(0, 3, 265083);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'CheckClickOnProjectsMenu')
-data.setCell(1, 2, 'com.arc.testCases.HomePageTest')
-data.setCell(1, 3, 6238);
+data.setCell(1, 1, 'City_ProjectSetting_Population_Save_Row_DecadeCalender_Display')
+data.setCell(1, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(1, 3, 146344);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'CheckProjectListed')
-data.setCell(2, 2, 'com.arc.testCases.Building.ProjectPageTest')
-data.setCell(2, 3, 2762);
-window.suiteTableData['ARC_Essential_Test_Suite']= { tableData: data, tableDiv: 'times-div-ARC_Essential_Test_Suite'}
+data.setCell(2, 1, 'City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display')
+data.setCell(2, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(2, 3, 144573);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'City_TestProject_NonLEED_Creation')
+data.setCell(3, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(3, 3, 91430);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'City_Population_Field_Comma_Display')
+data.setCell(4, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(4, 3, 75688);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'City_ProjectSetting_ProjectArea_Add_Row')
+data.setCell(5, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(5, 3, 73213);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'City_Project_Area_GrossArea_SquareMiles_Display')
+data.setCell(6, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(6, 3, 72662);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'City_DI_ProjectSetting_Population_Add_Row')
+data.setCell(7, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(7, 3, 72619);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'City_Energy_GHGEmission_AddYear_AddNewLine')
+data.setCell(8, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(8, 3, 72502);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'City_ProjectArea_Field_Comma_Display')
+data.setCell(9, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(9, 3, 70662);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'City_Energy_GHGEmission_With_DataAndDetails_Display')
+data.setCell(10, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(10, 3, 68739);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'City_Project_Is_Private_Creation_Opens_Performance_Screen')
+data.setCell(11, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(11, 3, 32113);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'City_AutoPopulate_Latitude_Longitude')
+data.setCell(12, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(12, 3, 21641);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'Login_ApplicationTest')
+data.setCell(13, 2, 'com.arc.testCases.LoginPageTest')
+data.setCell(13, 3, 18590);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'City_AutoPopulate_Address_City_Country_State_ZipCode')
+data.setCell(14, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(14, 3, 17747);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'City_LEED_Regis_Redirects_LeedOnlineportal')
+data.setCell(15, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(15, 3, 11333);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'Check_ProjectType_City_Value')
+data.setCell(16, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(16, 3, 6689);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'City_LEED_Registration_Not_Now_Test')
+data.setCell(17, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(17, 3, 5414);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow')
+data.setCell(18, 2, 'com.arc.testCases.ProjectRegistrationPageTest')
+data.setCell(18, 3, 4701);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'Check_Add_A_Project')
+data.setCell(19, 2, 'com.arc.testCases.HomePageTest')
+data.setCell(19, 3, 718);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'City_Energy_GHGEmission_Delete_Row')
+data.setCell(20, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(20, 3, 0);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'City_Energy_GHGEmission_Edit_Row')
+data.setCell(21, 2, 'com.arc.testCases.Project.CityPageTest')
+data.setCell(21, 3, 0);
+window.suiteTableData['ARC_Essential_City_Regression_Suite_']= { tableData: data, tableDiv: 'times-div-ARC_Essential_City_Regression_Suite_'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 31 seconds</span>
-              <div id="times-div-ARC_Essential_Test_Suite">
-              </div> <!-- times-div-ARC_Essential_Test_Suite -->
+              <span class="suite-total-time">Total running time: 21 minutes</span>
+              <div id="times-div-ARC_Essential_City_Regression_Suite_">
+              </div> <!-- times-div-ARC_Essential_City_Regression_Suite_ -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-ARC_Essential_Test_Suite" class="panel">
+        <div panel-name="reporter-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for ARC Essential Test Suite</span>
+            <span class="header-content">Reporter output for ARC Essential City Regression Suite </span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-ARC_Essential_Test_Suite" class="panel">
+        <div panel-name="ignored-methods-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">1 ignored method</span>
+            <span class="header-content">26 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">com.arc.testCases.LoginPageTest</span>
+              <span class="ignored-class-name">com.arc.testCases.HomePageTest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">LoginPageTitleTest</span>
+                <span class="ignored-method-name">initializtion</span>
+                <br/>
+                <span class="ignored-method-name">EssentialUser_Download_Invoice</span>
+                <br/>
+                <span class="ignored-method-name">Logout_Test</span>
+                <br/>
+                <span class="ignored-method-name">closeBrowser</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.arc.testCases.ProjectRegistrationPageTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initializtion</span>
+                <br/>
+                <span class="ignored-method-name">City_Agreement_Check_AddButtonEnabled</span>
+                <br/>
+                <span class="ignored-method-name">ProjectName_With_Valid_SpecialCharacters</span>
+                <br/>
+                <span class="ignored-method-name">City_GrossArea_Invalid_50001_SQ_KM</span>
+                <br/>
+                <span class="ignored-method-name">City_GrossArea_Invalid_19306_SQ_Miles</span>
+                <br/>
+                <span class="ignored-method-name">City_LEED_Registration_Yes_CheckMessage</span>
+                <br/>
+                <span class="ignored-method-name">City_Test</span>
+                <br/>
+                <span class="ignored-method-name">City_GrossArea_Valid_50000_SQ_KM</span>
+                <br/>
+                <span class="ignored-method-name">ProjectName_With_Invalid_SpecialCharacters</span>
+                <br/>
+                <span class="ignored-method-name">City_Download_Service_Agreement</span>
+                <br/>
+                <span class="ignored-method-name">City_GrossArea_Valid_19305_SQ_Miles</span>
+                <br/>
+                <span class="ignored-method-name">closeBrowser</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.arc.testCases.Project.CityPageTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">initializtion</span>
+                <br/>
+                <span class="ignored-method-name">City_Agreement_Display</span>
+                <br/>
+                <span class="ignored-method-name">City_ProjectSetting_Population_UpdatedBy_Test</span>
+                <br/>
+                <span class="ignored-method-name">City_Agreement_Download</span>
+                <br/>
+                <span class="ignored-method-name">City_Team_Delete_Member</span>
+                <br/>
+                <span class="ignored-method-name">City_ProjectSetting_Population_Remarks_Activity_Test</span>
+                <br/>
+                <span class="ignored-method-name">City_LEEDIDProject_Download_Invoice</span>
+                <br/>
+                <span class="ignored-method-name">City_Team_Add_Member</span>
+                <br/>
+                <span class="ignored-method-name">City_AddRowInEnergy</span>
+                <br/>
+                <span class="ignored-method-name">closeBrowser</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-ARC_Essential_Test_Suite" class="panel">
+        <div panel-name="chronological-ARC_Essential_City_Regression_Suite_" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.LoginPageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
-                <span class="method-name">setup</span>
+              <div class="configuration-test before">
+                <span class="method-name">initializtion(chrome)</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- configuration-method before -->
+              </div> <!-- configuration-test before -->
               <div class="test-method">
-                <span class="method-name">LoginIntoApplicationTest</span>
-                <span class="method-start">28092 ms</span>
+                <span class="method-name">Login_ApplicationTest</span>
+                <span class="method-start">12922 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">50330 ms</span>
-              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.arc.testCases.HomePageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
-                <span class="method-name">setup</span>
-                <span class="method-start">50622 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">CheckClickOnProjectsMenu</span>
-                <span class="method-start">93142 ms</span>
+                <span class="method-name">Check_Add_A_Project</span>
+                <span class="method-start">31544 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">99383 ms</span>
-              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
-              <div class="chronological-class-name">com.arc.testCases.Building.ProjectPageTest</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
-                <span class="method-name">setup</span>
-                <span class="method-start">99639 ms</span>
-              </div> <!-- configuration-method before -->
+              <div class="chronological-class-name">com.arc.testCases.ProjectRegistrationPageTest</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">CheckProjectListed</span>
-                <span class="method-start">145617 ms</span>
+                <span class="method-name">Check_ProjectType_City_Value</span>
+                <span class="method-start">32267 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">148383 ms</span>
-              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">City_AutoPopulate_Address_City_Country_State_ZipCode</span>
+                <span class="method-start">38963 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow</span>
+                <span class="method-start">56714 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_AutoPopulate_Latitude_Longitude</span>
+                <span class="method-start">61422 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_LEED_Regis_Redirects_LeedOnlineportal</span>
+                <span class="method-start">83067 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_LEED_Registration_Not_Now_Test</span>
+                <span class="method-start">94405 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_Project_Is_Private_Creation_Opens_Performance_Screen</span>
+                <span class="method-start">99825 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_TestProject_NonLEED_Creation</span>
+                <span class="method-start">131941 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.arc.testCases.Project.CityPageTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">City_DI_ProjectSetting_Population_Add_Row</span>
+                <span class="method-start">223375 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_Energy_GHGEmission_With_DataAndDetails_Display</span>
+                <span class="method-start">295996 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_ProjectArea_Field_Comma_Display</span>
+                <span class="method-start">364739 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_ProjectSetting_Population_Save_Row_DecadeCalender_Display</span>
+                <span class="method-start">435407 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_ProjectSetting_ProjectArea_Add_Row</span>
+                <span class="method-start">581754 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</span>
+                <span class="method-start">654970 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_Project_Area_GrossArea_SquareMiles_Display</span>
+                <span class="method-start">800210 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_Energy_GHGEmission_AddYear_AddNewLine</span>
+                <span class="method-start">872880 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">City_Population_Field_Comma_Display</span>
+                <span class="method-start">945386 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">City_Energy_GHGEmission_SavePreviousYearData_CheckScore</span>
+                <span class="method-start">1021078 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.arc.testCases.LoginPageTest</div> <!-- chronological-class-name -->
+              <div class="configuration-test after">
+                <span class="method-name">closeBrowser</span>
+                <span class="method-start">1286862 ms</span>
+              </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
     </div> <!-- wrapper -->
   </body>
-<script type="text/javascript" src="testng-reports2.js"></script>
 </html>

@@ -1,53 +1,331 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="4" passed="3" failed="0" skipped="0">
+<testng-results ignored="26" total="48" passed="18" failed="2" skipped="2">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-05-19T18:40:51 IST" name="ARC Essential Test Suite" finished-at="2021-05-19T18:43:19 IST" duration-ms="148713">
+  <suite started-at="2021-06-28T03:10:50Z" name="ARC Essential City Regression Suite " finished-at="2021-06-28T03:32:17Z" duration-ms="1287296">
     <groups>
+      <group name="LoginMethodTCGroup">
+        <method signature="LoginPageTest.Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@659499f1]" name="Login_ApplicationTest" class="com.arc.testCases.LoginPageTest"/>
+      </group> <!-- LoginMethodTCGroup -->
+      <group name="Regression">
+        <method signature="LoginPageTest.Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@659499f1]" name="Login_ApplicationTest" class="com.arc.testCases.LoginPageTest"/>
+        <method signature="CityPageTest.City_DI_ProjectSetting_Population_Add_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_DI_ProjectSetting_Population_Add_Row" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Energy_GHGEmission_With_DataAndDetails_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Energy_GHGEmission_With_DataAndDetails_Display" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Energy_GHGEmission_AddYear_AddNewLine()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Energy_GHGEmission_AddYear_AddNewLine" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Energy_GHGEmission_SavePreviousYearData_CheckScore()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Energy_GHGEmission_SavePreviousYearData_CheckScore" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Energy_GHGEmission_Edit_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Energy_GHGEmission_Edit_Row" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Energy_GHGEmission_Delete_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Energy_GHGEmission_Delete_Row" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_ProjectArea_Field_Comma_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_ProjectArea_Field_Comma_Display" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_ProjectSetting_Population_Save_Row_DecadeCalender_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Population_Field_Comma_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Population_Field_Comma_Display" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_ProjectSetting_ProjectArea_Add_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_ProjectSetting_ProjectArea_Add_Row" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="CityPageTest.City_Project_Area_GrossArea_SquareMiles_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" name="City_Project_Area_GrossArea_SquareMiles_Display" class="com.arc.testCases.Project.CityPageTest"/>
+        <method signature="HomePageTest.Check_Add_A_Project()[pri:2, instance:com.arc.testCases.HomePageTest@51e69659]" name="Check_Add_A_Project" class="com.arc.testCases.HomePageTest"/>
+        <method signature="ProjectRegistrationPageTest.Check_ProjectType_City_Value()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="Check_ProjectType_City_Value" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_AutoPopulate_Address_City_Country_State_ZipCode()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_AutoPopulate_Address_City_Country_State_ZipCode" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_AutoPopulate_Latitude_Longitude()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_AutoPopulate_Latitude_Longitude" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_LEED_Regis_Redirects_LeedOnlineportal()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_LEED_Regis_Redirects_LeedOnlineportal" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_LEED_Registration_Not_Now_Test()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_LEED_Registration_Not_Now_Test" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_Project_Is_Private_Creation_Opens_Performance_Screen()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_Project_Is_Private_Creation_Opens_Performance_Screen" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+        <method signature="ProjectRegistrationPageTest.City_TestProject_NonLEED_Creation()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" name="City_TestProject_NonLEED_Creation" class="com.arc.testCases.ProjectRegistrationPageTest"/>
+      </group> <!-- Regression -->
+      <group name="Reboot">
+        <method signature="LoginPageTest.Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@659499f1]" name="Login_ApplicationTest" class="com.arc.testCases.LoginPageTest"/>
+      </group> <!-- Reboot -->
     </groups>
-    <test started-at="2021-05-19T18:40:51 IST" name="ARC Essential Reboot Test Cases" finished-at="2021-05-19T18:43:19 IST" duration-ms="148713">
-      <class name="com.arc.testCases.Building.ProjectPageTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.arc.testCases.Building.ProjectPageTest@1b6e1eff]" started-at="2021-05-19T18:42:30 IST" name="setup" finished-at="2021-05-19T18:43:16 IST" duration-ms="45978" status="PASS">
+    <test started-at="2021-06-28T03:10:50Z" name="City RegressionTest Cases" finished-at="2021-06-28T03:32:17Z" duration-ms="1287296">
+      <class name="com.arc.testCases.ProjectRegistrationPageTest">
+        <test-method signature="Check_ProjectType_City_Value()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:41:23Z" name="Check_ProjectType_City_Value" description="Verify Project Type as &#039;Cities&#039; available in dropdown or not" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:41:29Z" duration-ms="6689" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="CheckProjectListed()[pri:0, instance:com.arc.testCases.Building.ProjectPageTest@1b6e1eff]" started-at="2021-05-19T18:43:16 IST" name="CheckProjectListed" finished-at="2021-05-19T18:43:19 IST" duration-ms="2762" status="PASS">
+        </test-method> <!-- Check_ProjectType_City_Value -->
+        <test-method signature="City_AutoPopulate_Address_City_Country_State_ZipCode()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:41:29Z" name="City_AutoPopulate_Address_City_Country_State_ZipCode" description="Verify address field auto populates the address(this address is being pulled using google maps API).
+	Verify auto pulled address populates all the fields -City, County,States,zipcode" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:41:47Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="17747" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CheckProjectListed -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.arc.testCases.Building.ProjectPageTest@1b6e1eff]" started-at="2021-05-19T18:43:19 IST" name="tearDown" finished-at="2021-05-19T18:43:19 IST" duration-ms="278" status="PASS">
+        </test-method> <!-- City_AutoPopulate_Address_City_Country_State_ZipCode -->
+        <test-method signature="City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:41:47Z" name="City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow" description="Verify the new modal window shows two buttons- &#039;Register for LEED certification now&#039; and &#039;Not now&#039;" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:41:52Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="4701" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- com.arc.testCases.Building.ProjectPageTest -->
+        </test-method> <!-- City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow -->
+        <test-method signature="City_AutoPopulate_Latitude_Longitude()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:41:52Z" name="City_AutoPopulate_Latitude_Longitude" description="Verify after address is auto pulled, geo location gets auto -populated." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:42:13Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.City_AutoPopulate_Address_City_Country_State_ZipCode, com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="21641" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_AutoPopulate_Latitude_Longitude -->
+        <test-method signature="City_LEED_Regis_Redirects_LeedOnlineportal()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:42:13Z" name="City_LEED_Regis_Redirects_LeedOnlineportal" description="Verify clicking on &#039;Register for LEED certification now&#039; redirects to Leed Online portal." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:42:25Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow, com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="11333" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_LEED_Regis_Redirects_LeedOnlineportal -->
+        <test-method signature="City_LEED_Registration_Not_Now_Test()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:42:25Z" name="City_LEED_Registration_Not_Now_Test" description="Verify clicking on &#039;Not now&#039; closes the modal window and keeps the user at the registration page. 
+	// Verify clicking on &#039;Not now&#039; closes the modal window and selects the &#039;No&#039; radio button." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:42:30Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow, com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="5414" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_LEED_Registration_Not_Now_Test -->
+        <test-method signature="City_Project_Is_Private_Creation_Opens_Performance_Screen()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:42:30Z" name="City_Project_Is_Private_Creation_Opens_Performance_Screen" description="Verify if &#039;project is private&#039; is selected, shows private as &#039;Yes&#039; under Manage--project. 
+ Verify clicking on &#039;Add project&#039; button opens the &#039;Performance&#039; Tab." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:43:02Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.City_AutoPopulate_Latitude_Longitude, com.arc.testCases.ProjectRegistrationPageTest.City_AutoPopulate_Address_City_Country_State_ZipCode, com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="32113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Project_Is_Private_Creation_Opens_Performance_Screen -->
+        <test-method signature="City_TestProject_NonLEED_Creation()[pri:3, instance:com.arc.testCases.ProjectRegistrationPageTest@201a4587]" started-at="2021-06-28T08:43:02Z" name="City_TestProject_NonLEED_Creation" description="Verify clicking on checkbox for &#039;This is a test project&#039; creates a test project and the same gets populated after project creation under  manage-project.
+	
+	// Verify clicking on &#039;Add project&#039; button registers the project with non-leed id.
+	" depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:44:34Z" depends-on-methods="com.arc.testCases.ProjectRegistrationPageTest.City_AutoPopulate_Latitude_Longitude, com.arc.testCases.ProjectRegistrationPageTest.City_AutoPopulate_Address_City_Country_State_ZipCode, com.arc.testCases.ProjectRegistrationPageTest.Check_ProjectType_City_Value" duration-ms="91430" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_TestProject_NonLEED_Creation -->
+      </class> <!-- com.arc.testCases.ProjectRegistrationPageTest -->
       <class name="com.arc.testCases.LoginPageTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.arc.testCases.LoginPageTest@1cbb87f3]" started-at="2021-05-19T18:40:51 IST" name="setup" finished-at="2021-05-19T18:41:19 IST" duration-ms="28088" status="PASS">
+        <test-method is-config="true" signature="initializtion(java.lang.String)[pri:0, instance:com.arc.testCases.LoginPageTest@659499f1]" started-at="2021-06-28T08:40:50Z" name="initializtion" finished-at="2021-06-28T08:41:03Z" duration-ms="12864" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="LoginIntoApplicationTest()[pri:2, instance:com.arc.testCases.LoginPageTest@1cbb87f3]" started-at="2021-05-19T18:41:19 IST" name="LoginIntoApplicationTest" finished-at="2021-05-19T18:41:41 IST" duration-ms="22230" status="PASS">
+        </test-method> <!-- initializtion -->
+        <test-method signature="Login_ApplicationTest()[pri:1, instance:com.arc.testCases.LoginPageTest@659499f1]" started-at="2021-06-28T08:41:03Z" name="Login_ApplicationTest" description="Verify clicking on Login button should redirect to Home/Overview tab." finished-at="2021-06-28T08:41:22Z" duration-ms="18590" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LoginIntoApplicationTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.arc.testCases.LoginPageTest@1cbb87f3]" started-at="2021-05-19T18:41:41 IST" name="tearDown" finished-at="2021-05-19T18:41:41 IST" duration-ms="289" status="PASS">
+        </test-method> <!-- Login_ApplicationTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:com.arc.testCases.LoginPageTest@659499f1]" started-at="2021-06-28T09:02:17Z" name="closeBrowser" finished-at="2021-06-28T09:02:17Z" duration-ms="261" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
+        </test-method> <!-- closeBrowser -->
       </class> <!-- com.arc.testCases.LoginPageTest -->
+      <class name="com.arc.testCases.Project.CityPageTest">
+        <test-method signature="City_DI_ProjectSetting_Population_Add_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:44:34Z" name="City_DI_ProjectSetting_Population_Add_Row" description="Verify in DI, Project settings - population tab- Add row button adds a new line item with fields- &#039;Effective year&#039;, Population, Updated by followed by Save and delete button " depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:45:46Z" duration-ms="72619" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_DI_ProjectSetting_Population_Add_Row -->
+        <test-method signature="City_Energy_GHGEmission_With_DataAndDetails_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:45:46Z" name="City_Energy_GHGEmission_With_DataAndDetails_Display" description="Verify Energy meter shows GHG emissions meter with data and detals tab." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:46:55Z" duration-ms="68739" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Energy_GHGEmission_With_DataAndDetails_Display -->
+        <test-method signature="City_ProjectArea_Field_Comma_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:46:55Z" name="City_ProjectArea_Field_Comma_Display" description="Verify Project Area field allows to add values followed by commas." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:48:06Z" duration-ms="70662" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_ProjectArea_Field_Comma_Display -->
+        <test-method signature="City_ProjectSetting_Population_Save_Row_DecadeCalender_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:48:06Z" name="City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" description="Project Setting -&gt; Population 
+ Verify in DI, Project settings - population tab- Save One row button 
+		Verify Effective year opens up decade calendar and gives the option to select any year." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:50:32Z" duration-ms="146344" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_ProjectSetting_Population_Save_Row_DecadeCalender_Display -->
+        <test-method signature="City_ProjectSetting_ProjectArea_Add_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:50:32Z" name="City_ProjectSetting_ProjectArea_Add_Row" description="Verify in DI, Project settings - ProjectArea tab- Add row button adds a new line item with fields- &#039;Effective year&#039;, Population, Updated by followed by Save and delete button " depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:51:45Z" duration-ms="73213" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_ProjectSetting_ProjectArea_Add_Row -->
+        <test-method signature="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:51:45Z" name="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" description="Verify in DI, Project settings - Project Area tab- Add row button adds a new line item with fields- &#039;Effective year&#039;, Population, Updated by followed by Save and delete button 
+			 Verify Effective year opens up decade calendar and gives the option to select any year." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:54:10Z" duration-ms="144573" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertTrue(Assert.java:42)
+	at org.testng.Assert.assertTrue(Assert.java:52)
+	at com.arc.testCases.Project.CityPageTest.City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display(CityPageTest.java:913)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display -->
+        <test-method signature="City_Project_Area_GrossArea_SquareMiles_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:54:10Z" name="City_Project_Area_GrossArea_SquareMiles_Display" description="Verify after creating City Project with Gross Area as &quot;Square Miles unit&quot;, check in Data Input – Project Setting - &gt; Project Area Tab -&gt; Unit Drop down by default value. " depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:55:23Z" duration-ms="72662" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Project_Area_GrossArea_SquareMiles_Display -->
+        <test-method signature="City_Energy_GHGEmission_AddYear_AddNewLine()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:55:23Z" name="City_Energy_GHGEmission_AddYear_AddNewLine" description="Verify &#039;Add year&#039; button adds line item with year for previous year." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:56:36Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_With_DataAndDetails_Display" duration-ms="72502" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Energy_GHGEmission_AddYear_AddNewLine -->
+        <test-method signature="City_Population_Field_Comma_Display()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:56:36Z" name="City_Population_Field_Comma_Display" description="Verify population field allows to add values followed by commas." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:57:51Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" duration-ms="75688" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Population_Field_Comma_Display -->
+        <test-method signature="City_Energy_GHGEmission_SavePreviousYearData_CheckScore()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T08:57:51Z" name="City_Energy_GHGEmission_SavePreviousYearData_CheckScore" description="Verify by adding value to reading and clicking on save button. 
+				 Verify score gets populated when data is added for previous year  " depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T09:02:16Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_AddYear_AddNewLine" duration-ms="265083" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span"}
+  (Session info: chrome=91.0.4472.114)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'G10GGNLT065', ip: '192.168.43.9', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 91.0.4472.114, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\NARAYA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:58845}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 835f54ea0e79db627c08082410384cf2
+*** Element info: {Using=xpath, value=(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span"}
+  (Session info: chrome=91.0.4472.114)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'G10GGNLT065', ip: '192.168.43.9', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 91.0.4472.114, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\NARAYA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:58845}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 835f54ea0e79db627c08082410384cf2
+*** Element info: {Using=xpath, value=(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span}
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at jdk.internal.reflect.GeneratedMethodAccessor5.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.lambda$new$1(EventFiringWebDriver.java:105)
+	at com.sun.proxy.$Proxy11.findElement(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:194)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at com.sun.proxy.$Proxy15.getText(Unknown Source)
+	at com.arc.PageObject.Project.CityPageObject.getEnergyScore(CityPageObject.java:272)
+	at com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_SavePreviousYearData_CheckScore(CityPageTest.java:573)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Energy_GHGEmission_SavePreviousYearData_CheckScore -->
+        <test-method signature="City_Energy_GHGEmission_Edit_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T09:02:17Z" name="City_Energy_GHGEmission_Edit_Row" description="Verify able to Edit line item by using delete button.." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T09:02:17Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_SavePreviousYearData_CheckScore" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method CityPageTest.City_Energy_GHGEmission_Edit_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method CityPageTest.City_Energy_GHGEmission_Edit_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1068)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Energy_GHGEmission_Edit_Row -->
+        <test-method signature="City_Energy_GHGEmission_Delete_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e]" started-at="2021-06-28T09:02:17Z" name="City_Energy_GHGEmission_Delete_Row" description="Verify able to delete line item by using delete button." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T09:02:17Z" depends-on-methods="com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_Edit_Row" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method CityPageTest.City_Energy_GHGEmission_Delete_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method CityPageTest.City_Energy_GHGEmission_Delete_Row()[pri:4, instance:com.arc.testCases.Project.CityPageTest@54a7079e] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1068)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:756)
+	at org.testng.TestRunner.run(TestRunner.java:610)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
+	at org.testng.TestNG.runSuites(TestNG.java:1133)
+	at org.testng.TestNG.run(TestNG.java:1104)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- City_Energy_GHGEmission_Delete_Row -->
+      </class> <!-- com.arc.testCases.Project.CityPageTest -->
       <class name="com.arc.testCases.HomePageTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.arc.testCases.HomePageTest@1a4013]" started-at="2021-05-19T18:41:41 IST" name="setup" finished-at="2021-05-19T18:42:24 IST" duration-ms="42520" status="PASS">
+        <test-method signature="Check_Add_A_Project()[pri:2, instance:com.arc.testCases.HomePageTest@51e69659]" started-at="2021-06-28T08:41:22Z" name="Check_Add_A_Project" description="Verify clicking on add a project at RHS button opens the registration form successfully." depends-on-groups="LoginMethodTCGroup" finished-at="2021-06-28T08:41:23Z" duration-ms="718" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="CheckClickOnProjectsMenu()[pri:0, instance:com.arc.testCases.HomePageTest@1a4013]" started-at="2021-05-19T18:42:24 IST" name="CheckClickOnProjectsMenu" finished-at="2021-05-19T18:42:30 IST" duration-ms="6238" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CheckClickOnProjectsMenu -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.arc.testCases.HomePageTest@1a4013]" started-at="2021-05-19T18:42:30 IST" name="tearDown" finished-at="2021-05-19T18:42:30 IST" duration-ms="254" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
+        </test-method> <!-- Check_Add_A_Project -->
       </class> <!-- com.arc.testCases.HomePageTest -->
-    </test> <!-- ARC Essential Reboot Test Cases -->
-  </suite> <!-- ARC Essential Test Suite -->
+    </test> <!-- City RegressionTest Cases -->
+  </suite> <!-- ARC Essential City Regression Suite  -->
 </testng-results>
