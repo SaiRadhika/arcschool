@@ -100,7 +100,7 @@ public class BaseClass {
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			else if (testSuite != null && testSuite.equalsIgnoreCase("BuildingsRegressionTestSuite.xml"))
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
-			else if (testSuite != null && testSuite.equalsIgnoreCase("ParkSmartRegression.xml"))
+			else if (testSuite != null && testSuite.equalsIgnoreCase("ParkSmartRegressionTestSuite.xml"))
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");	
 			else
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
