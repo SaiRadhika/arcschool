@@ -47,7 +47,7 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "(//*[@class='ml10' and text()='Communities'])[1]")
 	WebElement CommunitiesSubMenu;
-
+	
 	@FindBy(xpath = "//table[@class='table table-striped arc-table']//child::tr[1]/td[3]/div/span")
 	WebElement BuildingName;
 
@@ -89,9 +89,13 @@ public class HomePageObjects extends BaseClass {
 
 	@FindBy(xpath = "(//*[name()='svg']//*[local-name()='circle' ])[2]")
 	WebElement CircularLoader;
+	
 	@FindBy(xpath = "//input[@id='search-input']")
 	WebElement SearchProjectTextBox;
 
+	@FindBy(xpath = "(//*[@class='ml10' and text()='Parking'])[1]")
+	WebElement ParkingSubMenu;
+	
 	public boolean CheckHomePageLabel() {
 		try {
 			return HomePageLabel.isDisplayed();
@@ -245,6 +249,18 @@ public class HomePageObjects extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void clickOnParkingSubMenu() {
+		waithelper.WaitForElementClickable(ParkingSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ParkingSubMenu.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public void setHomePageApplication() {

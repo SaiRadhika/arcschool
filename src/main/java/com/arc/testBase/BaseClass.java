@@ -26,6 +26,7 @@ import org.testng.annotations.Parameters;
 import com.arc.PageObject.HomePageObjects;
 import com.arc.PageObject.InsightPageObject;
 import com.arc.PageObject.LoginPageObjects;
+import com.arc.PageObject.ProjectPaymentPageObject;
 import com.arc.PageObject.ProjectRegistrationPageObject;
 import com.arc.PageObject.Project.BuildingPageObject;
 import com.arc.PageObject.Project.CityPageObject;
@@ -69,13 +70,14 @@ public class BaseClass {
 	public static CommunitiesPageObject CommunitiesPage;
 	public static ParkingPageObject ParkingPage;
 	public static ProjectRegistrationPageObject ProjectRegistrationPage;
+	public static ProjectPaymentPageObject ProjectPaymentPage;
 	public static InsightPageObject InsightPage;
 	public static String BaseWindow = null; // This will capture the base window handle
 	public static NgWebDriver ngWebDriver;
 
 	@Parameters({ "browserName" })
 	@BeforeTest(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
-			"ProjectRegsRegression" })
+			"ProjectRegsRegression", "ParkSmartRegression" })
 	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
 		try {
@@ -98,6 +100,8 @@ public class BaseClass {
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			else if (testSuite != null && testSuite.equalsIgnoreCase("BuildingsRegressionTestSuite.xml"))
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
+			else if (testSuite != null && testSuite.equalsIgnoreCase("ParkSmartRegression.xml"))
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");	
 			else
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 
@@ -201,7 +205,7 @@ public class BaseClass {
 	}
 
 	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression", "BuildingsRegression", "CityRegression",
-			"CommunityRegression" })
+			"CommunityRegression","ParkSmartRegression" })
 	public void closeBrowser() {
 
 		driver.close();
