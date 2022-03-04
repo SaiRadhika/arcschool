@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -85,12 +86,6 @@ public class ParkingPageObject extends BaseClass {
 	@FindBy(xpath = "//*[@class='viewUpload laptop']")
 	WebElement FileUploadButtonUsingComputer;
 
-	@FindBy(xpath = "//*[@id=\"DataTables_Table_1_paginate\"]/ul/button[2]")
-	WebElement NextButton;
-
-	@FindBy(xpath = "//*[@id=\"actions-form\"]/div[2]/section[1]/header/div/a/i")
-	WebElement HelpButton;
-
 	@FindBy(xpath = "//div[@class='ng-scope']//span[@class='ml10'][normalize-space()='Measures']")
 	WebElement MeasureMenu;
 
@@ -100,38 +95,29 @@ public class ParkingPageObject extends BaseClass {
 	@FindBy(xpath = "//span[@class='fa fa-trash-o cursor-pointer align_file_name']")
 	WebElement FileDeletebutton;
 
-	@FindBy(xpath = "//*[@id=\"actions-form\"]/div[3]/section/div/div[1]/p/a")
+	@FindBy(xpath = "//a[@ng-click='downloadFile(uploaded_file)']")
 	WebElement FileUploaded;
 
-	@FindBy(xpath = "//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[4]/div/button[1]")
+	@FindBy(xpath = "//button[normalize-space()='Edit']")
 	WebElement EditButton;
 
-	@FindBy(xpath = "//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[4]/div/button[2]")
+	@FindBy(xpath = "//button[@type='button'][normalize-space()='Save']")
 	WebElement SaveButton;
 
-	@FindBy(xpath = "//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[3]/select")
+	@FindBy(xpath = "//select[@class='ng-pristine ng-valid ng-scope ng-not-empty ng-touched']")
 	WebElement AccessDropdown;
 
-	@FindBy(xpath = "/html/body/ul/li[1]/div/div")
+	@FindBy(xpath = "//div[normalize-space()='Project should have at least one Arc Administrator.']")
 	WebElement ArcAdminErrorMsg;
 
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div/span[3]/p[2]")
+	@FindBy(xpath = "//p[normalize-space()='This ID is already added to the team.']")
 	WebElement IdAlreadyExistsMsg;
 
 	@FindBy(xpath = "//a[normalize-space()='Parksmart criteria']")
 	WebElement A4_HyperLink;
 
-	@FindBy(xpath = "//span[contains(text(),'Operator employs a minimum of 4')]//a[@class='fw-bold'][normalize-space()='Parksmart traffic flow strategies']")
-	WebElement B5_Hyperlink;
-
-	@FindBy(xpath = "//a[normalize-space()='Parksmart criteria']")
-	WebElement C4_Hyperlink;
-
 	@FindBy(xpath = "//h1[@class='page-title pull-left']")
 	WebElement AllMeasureHead;
-
-	@FindBy(xpath = "//span[@class='cursor-pointer']//*[name()='svg']")
-	WebElement TeamToolTip;
 
 	public ParkingPageObject() {
 		PageFactory.initElements(driver, this);
@@ -188,24 +174,16 @@ public class ParkingPageObject extends BaseClass {
 		MeasureMenu.click();
 	}
 
-	public void ClickOnToolTip() {
-		HelpButton.click();
-	}
-
-	public void ClickOnTeamToolTip() {
-		try {
-
-			waithelper.WaitForElementClickable(TeamToolTip, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			TeamToolTip.click();
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public void ClickOnMeasureLanguagePdf() {
 		MeasureLanguagePDF.click();
+	}
+	
+	public void ClickOnEditInTeam() {
+		EditButton.click();
+	}
+
+	public void ClickOnSaveInTeam() {
+		SaveButton.click();
 	}
 
 	public boolean ClickonA4HyperLink() {
@@ -230,7 +208,7 @@ public class ParkingPageObject extends BaseClass {
 						+ ".app.arconline.io/assets/json-v2/parksmart/measure_pdf/A4.pdf";
 				log.info("Agreement URL is " + url);
 				pdfcontent = CommonMethod.getPDFContent(url);
-				if (pdfcontent.contains("SECTION")) {
+				if (pdfcontent.contains("SECTION A  Management")) {
 					driver.close();
 					driver.switchTo().window(BaseWindow);
 					log.info("ClickonA4HyperLink  method ends with true here -----");
@@ -246,81 +224,7 @@ public class ParkingPageObject extends BaseClass {
 		return false;
 	}
 
-	public boolean ClickonB5HyperLink() {
-		String pdfcontent = null;
-		waithelper.WaitForElementClickable(B5_Hyperlink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		B5_Hyperlink.click();
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
-		Set<String> handles = driver.getWindowHandles();
-		for (String window : handles) {
-			if (!BaseWindow.equals(window)) {
-				driver.switchTo().window(window);
-				String url = "https://" + (System.getProperty("environment")).toLowerCase()
-						+ ".app.arconline.io/assets/json-v2/parksmart/measure_pdf/B5.pdf";
-				log.info("Agreement URL is " + url);
-				pdfcontent = CommonMethod.getPDFContent(url);
-				if (pdfcontent.contains("MEASURE 5 Traffic Flow Plan")) {
-					driver.close();
-					driver.switchTo().window(BaseWindow);
-					log.info("ClickonB5HyperLink  method ends with true here -----");
-					return true;
-				} else
-					log.info("ClickonB5HyperLink  method ends with false here -----");
-				return false;
-
-			}
-		}
-
-		log.info("ClickonB5HyperLink  method ends with false here -----");
-		return false;
-	}
-
-	public boolean ClickonC4HyperLink() {
-		String pdfcontent = null;
-		waithelper.WaitForElementClickable(C4_Hyperlink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		C4_Hyperlink.click();
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
-		Set<String> handles = driver.getWindowHandles();
-		for (String window : handles) {
-			if (!BaseWindow.equals(window)) {
-				driver.switchTo().window(window);
-				String url = "https://" + (System.getProperty("environment")).toLowerCase()
-						+ ".app.arconline.io/assets/json-v2/parksmart/measure_pdf/C4.pdf";
-				log.info("Agreement URL is " + url);
-				pdfcontent = CommonMethod.getPDFContent(url);
-				if (pdfcontent.contains("SECTION C Technology & Structure Design")) {
-					driver.close();
-					driver.switchTo().window(BaseWindow);
-					log.info("ClickonC4HyperLink  method ends with true here -----");
-					return true;
-				} else
-					log.info("ClickonC4HyperLink  method ends with false here -----");
-				return false;
-
-			}
-		}
-
-		log.info("ClickonC4HyperLink  method ends with false here -----");
-		return false;
-	}
+	
 
 	public boolean ClickonFAQ() {
 		String handle = driver.getWindowHandle();
@@ -339,41 +243,7 @@ public class ParkingPageObject extends BaseClass {
 			for (String window : handles) {
 				if (!handle.equals(window)) {
 					driver.switchTo().window(window);
-					String url = driver.getCurrentUrl();
-					System.out.println("Second URL is ---------------" + url);
-					if (url.contains("https://parksmart.gbci.org/faq")) {
-						driver.close();
-						driver.switchTo().window(handle);
-						return true;
-					} else
-						return false;
-
-				}
-			}
-
-		}
-		return false;
-
-	}
-
-	public boolean ClickonContactUs() {
-		String handle = driver.getWindowHandle();
-		ContactUsLink.click();
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
-		Set<String> handles = driver.getWindowHandles();
-		if (handles.size() == 2) {
-			for (String window : handles) {
-				if (!handle.equals(window)) {
-					driver.switchTo().window(window);
-					String url = driver.getCurrentUrl();
+					String url = JSHelper.getCurrentURL();
 					System.out.println("Second URL is ---------------" + url);
 					if (url.contains("https://parksmart.gbci.org/faq")) {
 						driver.close();
@@ -392,6 +262,7 @@ public class ParkingPageObject extends BaseClass {
 
 	public boolean ClickonParkSmartResources() {
 		String handle = driver.getWindowHandle();
+		boolean flag = false;
 		ParkSmartResourceLink.click();
 
 		try {
@@ -407,29 +278,19 @@ public class ParkingPageObject extends BaseClass {
 			for (String window : handles) {
 				if (!handle.equals(window)) {
 					driver.switchTo().window(window);
-					String url = driver.getCurrentUrl();
+					String url = JSHelper.getCurrentURL();
 					System.out.println("Second URL is ---------------" + url);
 					if (url.contains("https://parksmart.gbci.org/resources")) {
 						driver.close();
 						driver.switchTo().window(handle);
-						return true;
+						flag = true;
 					} else
 						return false;
-
 				}
 			}
-
 		}
-		return false;
+		return flag;
 
-	}
-
-	public void ClickOnEditInTeam() {
-		EditButton.click();
-	}
-
-	public void ClickOnSaveInTeam() {
-		SaveButton.click();
 	}
 
 	public void ClickonTeamInManage() {
@@ -589,51 +450,44 @@ public class ParkingPageObject extends BaseClass {
 	}
 
 	public boolean CheckFileUploadUsingComputer(String filePath) {
-
+		log.info("CheckFileUploadUsingComputer method starsts here............");
+		boolean flag = false;
 		try {
 			log.info("File uploading using computer path is --" + filePath);
+			
 			WebElement ele2 = driver.findElement(By.xpath("//div[@class='viewUpload laptop']"));
 			JSHelper.clickElement(ele2);
 			WebElement ele = driver.findElement(By.xpath("//input[@class='hide uploadFile']"));
 			JSHelper.displayHiddenElement(ele);
 			Thread.sleep(3000);
 			ele.sendKeys(filePath);
+			ngWebDriver.waitForAngularRequestsToFinish();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		try {
-			boolean flag = FileUploadMsg.isDisplayed();
-			Thread.sleep(3000);
+		
+			flag = FileUploadMsg.isDisplayed();
+			
+		if(flag == true) {
+			log.info("CheckFileUploadUsingComputer completed with true ..........");
 			return flag;
-		} catch (Exception e) {
-			e.printStackTrace();
-
+		}else {
+			log.info("CheckFileUploadUsingComputer completed with false ..........");
+			return false;
 		}
-		return false;
+		
 	}
 
 	public boolean ClickonFileDeleButton(String fname) {
 		log.info("ClickonFileDeleButton method starts here ...");
 		boolean flag = false;
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		WebElement ele = driver.findElement(By.xpath("//*[text()='" + fname + "']"));
 		if (ele.isDisplayed()) {
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			FileDeletebutton.click();
-
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
 				waithelper.WaitForElementInvisible(ele, 30, 2);
 				flag = ele.isDisplayed();
@@ -655,16 +509,11 @@ public class ParkingPageObject extends BaseClass {
 				return true;
 		}
 		return false;
-
 	}
 
 
 	public void SelectTeamMember() {
-		AccessDropdown.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(
-						By.xpath("//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[3]/select")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		waithelper.WaitForElementVisibleWithPollingTime(AccessDropdown, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		driver.findElement(
 				By.xpath("//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[3]/select/option[2]"))
 				.click();
@@ -672,11 +521,8 @@ public class ParkingPageObject extends BaseClass {
 	}
 
 	public void SelectArcAdmin() {
+		waithelper.WaitForElementVisibleWithPollingTime(AccessDropdown, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AccessDropdown.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(
-						By.xpath("//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[3]/select")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		driver.findElement(
 				By.xpath("//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr[1]/td[3]/select/option[1]"))
 				.click();
@@ -684,12 +530,12 @@ public class ParkingPageObject extends BaseClass {
 	}
 
 	public boolean Check_Arc_Admin_Error_Msg() {
-
+		boolean flag = false;
 		waithelper.WaitForElementVisibleWithPollingTime(ArcAdminErrorMsg,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			boolean flag = ArcAdminErrorMsg.isDisplayed();
-			return flag;
+			flag = ArcAdminErrorMsg.isDisplayed();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -721,20 +567,100 @@ public class ParkingPageObject extends BaseClass {
 
 	}
 
-	public boolean Check_ID_Already_Exist_Msg() {
+	public boolean AddExistingTeamMember() {
 
-		waithelper.WaitForElementVisibleWithPollingTime(IdAlreadyExistsMsg,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			boolean flag = IdAlreadyExistsMsg.isDisplayed();
-			return flag;
-		} catch (Exception e) {
-			e.printStackTrace();
-
+		boolean flag = false;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String Username = data.getCellData("Parking", 0, 2);
+		Message = CommonMethod.Team_InviteMember(Username);
+		String ExpMessage = "This ID is already added to the team.";
+		if (Message != null) {
+			if (Message.equals(ExpMessage)) {
+				log.info(Message + " message displaying...");
+				flag = true;
+			} else {
+				log.info(Message + " message displaying...");
+				flag = false;
+			}
+		} else {
+			log.info("No Message showing....");
+			flag = false;
 		}
-		return false;
 
+		if (flag) {
+			log.info("AddExistingTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("AddExistingTeamMember  ends here with false........");
+			return false;
+		}
+	}
+	
+	public boolean TeamAddRemoveMember() {
+		log.info("ManageTeam_TeamAddRemoveMember  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		boolean AddFlag = false;
+		boolean SearchFlag = false;
+		String AltenateUser = data.getCellData("Parking", 2, 2);
+		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
+		log.info("Add Member flag is "+AddFlag);
+		if (AddFlag) {
+			CommonMethod.Team_Delete_Member(AltenateUser);
+			HomePage.checkSignOut();
+			HomePage = LoginPage.loginLater(data.getCellData("Parking", 2, 2), data.getCellData("Parking", 3, 2));
+			ProjectPage = HomePage.clickOnProject();
+//			SearchFlag = ProjectPage.SearchProject(System.getProperty("LEEDParkSmartProjectID"));
+			SearchFlag = ProjectPage.SearchProject("1000195711");
+			HomePage.closeProjectSearchTextBox();
+			HomePage.checkSignOut();
+			HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
+		}
+		else
+		{
+			log.info("Team member is not added successfully..");
+		}
+		log.info("AddFlag is "+AddFlag);
+		log.info("SearchFlag is "+SearchFlag);
+		if (AddFlag == true && SearchFlag==false) {
+			log.info("ManageTeam_TeamAddRemoveMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_TeamAddRemoveMember  ends here with false........");
+			return false;
+		}
+	}
+	
+	public boolean TeamAddEditMember() {
+		log.info("TeamAddEditMember  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		boolean AddFlag = false;
+		String Message1 = null;
+		String Message2 = null;
+		String ExpMsg = null;
+		String AltenateUser = data.getCellData("Parking", 2, 2);
+		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
+		log.info("Add Member flag is "+AddFlag);
+		if (AddFlag) {
+			Message1 = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Arc Administrator");
+			Message2 = CommonMethod.Team_EditRole(AltenateUser, "Arc Administrator", "Team Member");
+			log.info("Message1 displaying text is "+Message1);
+			log.info("Message2 displaying text is "+Message2);
+		}
+		else
+		{
+			log.info("Team member is not added successfully..");
+		}
+		
+		ExpMsg = "Team member updated successfully.";
+		if (Message1.equals(ExpMsg) && Message2.equals(ExpMsg)) {
+			CommonMethod.Team_Delete_Member(AltenateUser);
+			log.info("TeamAddEditMember  ends here with true........");
+			return true;
+		} else {
+			log.info("TeamAddEditMember  ends here with false........");
+			return false;
+		}
 	}
 
 	public boolean CheckAddNewTeamMember() {
@@ -759,60 +685,90 @@ public class ParkingPageObject extends BaseClass {
 
 	}
 
-	public boolean Team_CheckDefaultArcAdmin() {
-		log.info("CheckDefaultArcAdmin method starts here .....");
+	public boolean CheckDefaultArcAdministrator() {
+		log.info("CheckDefaultArcAdministrator  starts here........");
 		boolean flag = false;
-		String RowPath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr[1]";
-		List<WebElement> TeamTable = driver.findElements(By.xpath(RowPath));
-		if (TeamTable.size() > 0) {
-			Iterator itr = TeamTable.iterator();
-			String ArcAdminPath;
-			for (int i = 0; i < TeamTable.size(); i++) {
-				int rownum = i + 3;
-				ArcAdminPath = RowPath + "/td[" + (rownum) + "]";
-				String ArcAdmin = driver.findElement(By.xpath(ArcAdminPath)).getText();
-				// System.out.println(ArcAdminPath + "......." + ArcAdmin);
-				if (ArcAdmin.equals("Arc Administrator")) {
-					flag = true;
-					break;
-				}
-			}
+		String msg = null;
+		boolean deleteFlag = true;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String email = prop.getProperty("email");
+		flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
+		if (flag) {
+			msg = CommonMethod.Team_EditRole(email, "Arc Administrator", "Team Member");
+			deleteFlag = CommonMethod.Team_Delete_Member(email);
+			flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
 		}
-		if (flag)
-			log.info("Arc Administrator found ...");
-		else
-			log.info("Arc Administrator not found ...");
+		if (flag == true && msg.equals("Project should have at least one Arc Administrator.") && deleteFlag == false) {
+			log.info("CheckDefaultArcAdministrator  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckDefaultArcAdministrator  ends here with false........");
+			return false;
+		}
 
-		return flag;
+	}
+	
+	public boolean CheckAddRegisteredTeamMember() {
+		log.info("CheckAddRegisteredTeamMember  starts here........");
+		boolean MemberAddedflag = false;
+		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String username = data.getCellData("Parking", 0, 2);
+		MemberAddedflag = CommonMethod.Team_Add_Member(username);
+		if (MemberAddedflag) {
+			flag = CommonMethod.CheckRoleOfEmail(username, "Team Member");
+		} else {
+			log.info("Member not added..");
+		}
+		if (flag) {
+			log.info("CheckAddRegisteredTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckAddRegisteredTeamMember  ends here with false........");
+			return false;
+		}
 
 	}
 
-	public boolean Team_CheckDefaultProjectAdmin() {
-		log.info("CheckDefaultProjectAdmin method starts here .....");
+	public boolean CheckAddUnregisteredTeamMember() {
+		log.info("CheckAddUnregisteredTeamMember  starts here........");
 		boolean flag = false;
-		String RowPath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr[2]";
-		List<WebElement> TeamTable = driver.findElements(By.xpath(RowPath));
-		if (TeamTable.size() > 0) {
-			Iterator itr = TeamTable.iterator();
-			String ProjectAdminPath;
-			for (int i = 0; i < TeamTable.size(); i++) {
-				int rownum = i + 3;
-				ProjectAdminPath = RowPath + "/td[" + (rownum) + "]";
-				String ProjectAdmin = driver.findElement(By.xpath(ProjectAdminPath)).getText();
-				if (ProjectAdmin.equals("Project Admin")) {
-					flag = true;
-					break;
-				}
+		boolean Memberflag = false;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String UnRegisteredUsername = data.getCellData("Parking", 1, 2);
+		Message = CommonMethod.Team_InviteMember(UnRegisteredUsername);
+		String ExpMessage = UnRegisteredUsername
+				+ "is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.";
+		if (Message != null) {
+			if (Message.equals(ExpMessage)) {
+				log.info(Message + " message displaying...");
+				flag = true;
+			} else {
+				log.info(Message + " message displaying...");
+				flag = false;
+			}
+		} else {
+			log.info("No Message showing....");
+			flag = false;
+		}
+
+		if (flag == false) {
+			Memberflag = CommonMethod.Team_checkEmailExistOrNot(UnRegisteredUsername);
+			if (Memberflag) {
+				log.info(UnRegisteredUsername + " added as Team Member..");
+			} else {
+				log.info(UnRegisteredUsername + " not added as Team Member..");
 			}
 		}
-		if (flag)
-			log.info("Project Admin found ...");
-		else
-			log.info("Project Admin not found ...");
-
-		return flag;
+		if (flag) {
+			log.info("CheckAddUnregisteredTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckAddUnregisteredTeamMember  ends here with false........");
+			return false;
+		}
 	}
-
 	public boolean Team_CheckEditButton() {
 		log.info("CheckEditButton method starts here");
 		boolean flag = false;
@@ -844,30 +800,99 @@ public class ParkingPageObject extends BaseClass {
 		return false;
 	}
 
-	public boolean Check_Multiple_Arc_Admin() {
-		log.info("Check_Multiple_Arc_Admin method starts here...........");
-		boolean flag = false;
+	public boolean EditARCAdministratorRole() {
+		log.info("EditARCAdministratorRole  starts here........");
+		boolean EditEnabledFlag = false;
+		boolean DeleteEnabledFlag = false;
+		boolean InviteEnabledFlag = false;
+		String ValidationMessage = null;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ExistingUser = prop.getProperty("email");
+		String AltenateUser = data.getCellData("Parking", 0, 2);
+		ValidationMessage = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// (In case of
+																											// Logged in
+																											// User and
+																											// only one
+																											// ARC
+																											// Admin)
+																											// Project
+																											// should
+																											// have at
+																											// least one
+																											// Arc
+																											// Administrator.
+		String ExpMessage = "Project should have at least one Arc Administrator.";
+		log.info("Validation Message showing " + ValidationMessage);
+		if (ValidationMessage.equals(ExpMessage)) {
+			log.info("Validation Message showing proper..");
+			Message = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Arc Administrator");// Team member
+																									// updated
+																									// successfully.
+			log.info("Alternate email updated with " + Message);
+			if (Message.equals("Team member updated successfully.")) {
+				log.info("Alternate Email is updated with Arc Administrator");
+				Message = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// Team member
+																										// updated
+																										// successfully.
+				log.info("Existing email updated with " + Message);
+				if (Message.equals("Team member updated successfully.")) {
+					CommonMethod.RefreshPagewaitForPageLoaded(driver);
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					log.info("Existing Email is updated with Team Member");
 
-		List<WebElement> table = driver
-				.findElements(By.xpath("//*[@id=\"content\"]/div/div/div[1]/section/div/table/tbody/tr/td[3]"));
-		List<String> Role = new ArrayList<>();
-		for (int i = 0; i < table.size(); i++) {
-			Role.add(i, table.get(i).getText());
+					List<WebElement> EditBtnList = driver.findElements(By.xpath(
+							"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[4]/descendant::button[text()='Edit']"));
+					List<WebElement> DeleteBtnList = driver.findElements(By.xpath(
+							"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[5]/div[@class='ml10 delete_report tippy_init floatNone']"));
+					for (WebElement ele : EditBtnList) {
+						try {
+							ele.click();
+							EditEnabledFlag = false;
+							break;
+						} catch (ElementClickInterceptedException e) {
+							EditEnabledFlag = true;
+						}
+
+					}
+					for (WebElement ele : DeleteBtnList) {
+						try {
+							ele.click();
+							DeleteEnabledFlag = false;
+							break;
+						} catch (ElementClickInterceptedException e) {
+							DeleteEnabledFlag = true;
+						}
+
+					}
+
+					try {
+						driver.findElement(By.xpath("//button[@id='invite_team']")).click();
+						InviteEnabledFlag = false;
+					} catch (ElementClickInterceptedException e) {
+						InviteEnabledFlag = true;
+					}
+
+				}
+			}
 		}
-		log.info("Roles we have .........."+ Role);
-		
-		Set<String> set = new HashSet<>(Role);
 
-		if (set.size() != Role.size()) {
-			flag = true;
+		log.info("Edit button flag is " + EditEnabledFlag);
+		log.info("Delete button flag is " + DeleteEnabledFlag);
+		log.info("Invite button flag is " + InviteEnabledFlag);
 
-			if (flag) {
-				log.info("Have multiple Arc Admin.............");
-			} else
-				log.info("Not have multiple ArcAdmin.............");
+		if (EditEnabledFlag == true && InviteEnabledFlag == true && DeleteEnabledFlag == true) {
+			log.info("EditARCAdministratorRole  ends here with true........");
+			return true;
+		} else {
+			log.info("EditARCAdministratorRole  ends here with false........");
+			return false;
 		}
-		log.info("Check_Multiple_Arc_Admin method ends here..........");
-		return flag;
 
 	}
 
@@ -875,12 +900,12 @@ public class ParkingPageObject extends BaseClass {
 		log.info("CheckStatusButtons method starts here...........");
 		boolean flag = false;
 
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody"));
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		int Credits = rows.size();
 		log.info("No. of credits are...... " + rows.size());
 		List<WebElement> StatusButtons = driver
-				.findElements(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody/tr/td[1]/span"));
+				.findElements(By.xpath("//tbody/tr/td/span"));
 		int Sbuttons = StatusButtons.size();
 		log.info("No of Status Buttons are : " + StatusButtons.size());
 		if (Credits == Sbuttons) {
@@ -1003,7 +1028,7 @@ public class ParkingPageObject extends BaseClass {
 
 		boolean flag = false;
 
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody"));
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		HashMap<String, Integer> WebValue = new HashMap<String, Integer>();
 
@@ -1053,7 +1078,7 @@ public class ParkingPageObject extends BaseClass {
 
 		boolean flag = false;
 
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody"));
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		HashMap<String, Integer> WebValue = new HashMap<String, Integer>();
 
@@ -1099,7 +1124,7 @@ public class ParkingPageObject extends BaseClass {
 
 		boolean flag = false;
 
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody"));
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		HashMap<String, Integer> WebValue = new HashMap<String, Integer>();
 
@@ -1151,7 +1176,7 @@ public class ParkingPageObject extends BaseClass {
 
 		boolean flag = false;
 
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody"));
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		HashMap<String, Integer> WebValue = new HashMap<String, Integer>();
 
@@ -1181,7 +1206,7 @@ public class ParkingPageObject extends BaseClass {
 
 		boolean flag = false;
 
-		WebElement table = driver.findElement(By.xpath("//*[@id=\"content\"]/section/div[1]/div/table/tbody"));
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
 		List<WebElement> rows = table.findElements(By.tagName("tr"));
 		List<String> value = new ArrayList<String>();
 
@@ -1202,102 +1227,109 @@ public class ParkingPageObject extends BaseClass {
 	}
 
 	public boolean Validate_ToolTipMessage() {
-		String Para1, Para2, Para3;
-		boolean flag = true;
-		for (int i = 1; i < 4; i++) {
-			if (i == 1) {
-				Para1 = driver
-						.findElement(
-								By.xpath("//p[contains(text(),'To select an option, click one of the check boxes.')]"))
-						.getText();
-				if (!Para1.equals(
-						"To select an option, click one of the check boxes. Once you have selected an option, the documentation requirements for that option will appear.")) {
-					flag = false;
-					break;
-				}
-			}
-
-			else if (i == 2) {
-				Para2 = driver
-						.findElement(
-								By.xpath("//p[contains(text(),'Upload each of the required documents using the bu')]"))
-						.getText();
-				if (!Para2.equals(
-						"Upload each of the required documents using the button to the left of the word “Upload” on the right hand side of your screen. Indicate which documents you have uploaded by clicking the check boxes next to each of the documentation requirements.")) {
-					flag = false;
-					break;
-				}
-			}
-
-			else if (i == 3) {
-				Para3 = driver
-						.findElement(
-								By.xpath("//p[contains(text(),'To reference the measure language for this measure')]"))
-						.getText();
-				if (!Para3.equals(
-						"To reference the measure language for this measure, click the “Measure Language (PDF)” button on the right hand side of your screen.")) {
-					flag = false;
-					break;
-				}
-			}
-		}
+		
+		log.info("Validate_ToolTipMessage method starts here.......");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		WebElement Tooltip=driver.findElement(By.xpath("//i[@class='fa fa-question-circle']"));
+		waithelper.WaitForElementClickable(Tooltip, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		Tooltip.click();
+		String ActToolTipP1=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[1]")).getText();
+		String ActToolTipP2=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[2]")).getText();
+		String ActToolTipP3=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[3]")).getText();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("Tooltip is ");
+		String ExpToolTipP1="To select an option, click one of the check boxes. Once you have selected an option, the documentation requirements for that option will appear.";
+		String ExpToolTipP2="Upload each of the required documents using the button to the left of the word “Upload” on the right hand side of your screen. Indicate which documents you have uploaded by clicking the check boxes next to each of the documentation requirements.";
+		String ExpToolTipP3="To reference the measure language for this measure, click the “Measure Language (PDF)” button on the right hand side of your screen.";
+		
 		try {
-			actionhelper.clickRandomlyOnPage();
-		} catch (AWTException e) {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return flag;
+		log.info(ActToolTipP1);
+		log.info(ExpToolTipP1);
+		log.info("--------------------");
+		log.info(ActToolTipP2);
+		log.info(ExpToolTipP2);
+		log.info("--------------------");
+		log.info(ActToolTipP3);
+		log.info(ExpToolTipP3);
+		log.info("--------------------");
+		
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(ExpToolTipP1.equals(ActToolTipP1));
+		log.info(ExpToolTipP2.equals(ActToolTipP2));
+		log.info(ExpToolTipP3.equals(ActToolTipP3));
+		
+		if ((ExpToolTipP1.equals(ActToolTipP1)) && (ExpToolTipP2.equals(ActToolTipP2)) && (ExpToolTipP3.equals(ActToolTipP3))) {
+			log.info("Validate_ToolTipMessage   ends here with true........");
+			return true;
+		} else {
+			log.info("Validate_ToolTipMessage  ends here with false........");
+			return false;
+		}
 	}
 
 	public boolean Validate_TeamToolTipMessage() {
-		String Para1, Para2, Para3;
-		boolean flag = true;
-		for (int i = 1; i < 4; i++) {
-			if (i == 1) {
-				Para1 = driver
-						.findElement(
-								By.xpath("//p[contains(text(),'The Arc Administrator has complete access to the p')]"))
-						.getText();
-				if (!Para1.equals("Arc Administrator:\r\n"
-						+ "The Arc Administrator has complete access to the project including data entry, submitting for review, and is granted rights to add additional team members. The Arc Administrator will also be the point of contact for automatic notifications, billing information, and review reports.")) {
-					flag = false;
-					break;
-				}
-			}
-
-			else if (i == 2) {
-				Para2 = driver
-						.findElement(
-								By.xpath("//p[contains(text(),': While multiple “Arc Administrators” can exist on')]"))
-						.getText();
-				if (!Para2.equals(
-						"Note: While multiple “Arc Administrators” can exist on a project team, we strongly recommend that you designate only one person in this role to avoid confusion and so that a single point of contact is receiving notifications about billing and certification.")) {
-					flag = false;
-					break;
-				}
-			}
-
-			else if (i == 3) {
-				Para3 = driver
-						.findElement(
-								By.xpath("//p[contains(text(),'A Team Member has access to the project including ')]"))
-						.getText();
-				if (!Para3.equals("Team Member:\r\n"
-						+ "A Team Member has access to the project including data entry and submitting for review, but cannot make any changes to the project team.")) {
-					flag = false;
-					break;
-				}
-			}
-		}
-
+		log.info("Validate_TeamToolTipMessage method starts here...............");
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		WebElement TeamTooltip=driver.findElement(By.xpath("//span[text()='How team roles work']/following-sibling::span"));
+		waithelper.WaitForElementClickable(TeamTooltip, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		TeamTooltip.click();
+		String ActToolTipP1=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[1]")).getText();
+		String ActToolTipP2=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[2]")).getText();
+		String ActToolTipP3=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[4]")).getText();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("Tooltip is ");
+		String ExpToolTipP1="Arc Administrator:\n"
+				+ "The Arc Administrator has complete access to the project including data entry, submitting for review, and is granted rights to add additional team members. The Arc Administrator will also be the point of contact for automatic notifications, billing information, and review reports.";
+		String ExpToolTipP2="Note: While multiple “Arc Administrators” can exist on a project team, we strongly recommend that you designate only one person in this role to avoid confusion and so that a single point of contact is receiving notifications about billing and certification.";
+		String ExpToolTipP3="Team Member:\n"
+				+ "A Team Member has access to the project including data entry and submitting for review, but cannot make any changes to the project team.";
 		try {
-			actionhelper.clickRandomlyOnPage();
-		} catch (AWTException e) {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return flag;
+		log.info(ActToolTipP1);
+		log.info(ExpToolTipP1);
+		log.info("--------------------");
+		log.info(ActToolTipP2);
+		log.info(ExpToolTipP2);
+		log.info("--------------------");
+		log.info(ActToolTipP3);
+		log.info(ExpToolTipP3);
+		log.info("--------------------");
+		
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(ExpToolTipP1.equals(ActToolTipP1));
+		log.info(ExpToolTipP2.equals(ActToolTipP2));
+		log.info(ExpToolTipP3.equals(ActToolTipP3));
+
+		if ((ExpToolTipP1.equals(ActToolTipP1)) && (ExpToolTipP2.equals(ActToolTipP2)) && (ExpToolTipP3.equals(ActToolTipP3))) {
+			log.info("Validate_TeamsToolTipMessage  ends here with true........");
+			return true;
+		} else {
+			log.info("Validate_TeamsToolTipMessage  ends here with false........");
+			return false;
+		}
 	}
 
 	public boolean CheckMeasurePDFDownloadedFile() {
@@ -1363,11 +1395,11 @@ public class ParkingPageObject extends BaseClass {
 			for (File file : ListOfFiles) {
 
 				log.info("Size of the file - " + file.getName() + " is  " + file.length());
-				log.info("CheckDownloadedFile method ends here ......");
+				log.info("CheckDownloadedFile method ends here with true ......");
 				return true;
 			}
 		} else
-			log.info("CheckDownloadedFile method ends here ......");
+			log.info("CheckDownloadedFile method ends here with false......");
 		return false;
 	}
 
@@ -1382,7 +1414,7 @@ public class ParkingPageObject extends BaseClass {
 		String CheckBoxPoint = (String) Array.get(SplitedPointText, 1);
 		log.info("Point Against Checkbox is ----->" + CheckBoxPoint);
 
-		String PointsText = driver.findElement(By.xpath("/html/body/div[1]/div[6]/main/div/div[2]/div[1]/span"))
+		String PointsText = driver.findElement(By.xpath("//span[@class='floatr mb20 mt20 ng-binding']"))
 				.getText();
 		String[] SplitText = PointsText.split(" ");
 		String TextBefore = (String) Array.get(SplitText, 0);
@@ -1397,7 +1429,7 @@ public class ParkingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String NewPointsText = driver.findElement(By.xpath("/html/body/div[1]/div[6]/main/div/div[2]/div[1]/span"))
+			String NewPointsText = driver.findElement(By.xpath("//span[@class='floatr mb20 mt20 ng-binding']"))
 					.getText();
 			String[] SplitNewText = NewPointsText.split(" ");
 			String TextAfter = (String) Array.get(SplitNewText, 0);
@@ -1405,11 +1437,11 @@ public class ParkingPageObject extends BaseClass {
 
 			if (CheckBoxPoint.matches(TextAfter)) {
 				flag = true;
-				driver.findElement(By.xpath("//*[@id=\"actions-form\"]/div[2]/section[1]/div[3]/div/div[1]/div/input")).click();
+//				driver.findElement(By.xpath("//input[@class='ng-valid ng-dirty ng-valid-parse ng-touched ng-empty']")).click();
 			}
-			log.info("Appropriate Points are updated Check_Points_Updated method ends here.........");
+			log.info("Appropriate Points are updated Check_Points_Updated method ends with true .........");
 		} else
-			log.info("Appropriate Points not updated Check_Points_Updated method ends here.........");
+			log.info("Appropriate Points not updated Check_Points_Updated method ends with false .........");
 		
 		return flag;
 	}
@@ -1432,14 +1464,14 @@ public class ParkingPageObject extends BaseClass {
 		log.info("Check_Points_Updated_Selecting_All_CheckBoxes method starts here...........");
 
 		boolean flag = false;
-		String PointsText = driver.findElement(By.xpath("/html/body/div[1]/div[6]/main/div/div[2]/div[1]/span"))
+		String PointsText = driver.findElement(By.xpath("//span[@class='floatr mb20 mt20 ng-binding']"))
 				.getText();
 		String[] SplitText = PointsText.split(" ");
 		String TextBefore = (String) Array.get(SplitText, 0);
 		String MaxPoints = (String) Array.get(SplitText, 2);
 		log.info("Points Before Selecting CheckBox ----->" + TextBefore);
 
-		String NewPointsText = driver.findElement(By.xpath("/html/body/div[1]/div[6]/main/div/div[2]/div[1]/span"))
+		String NewPointsText = driver.findElement(By.xpath("//span[@class='floatr mb20 mt20 ng-binding']"))
 				.getText();
 		String[] SplitNewText = NewPointsText.split(" ");
 		String TextAfter = (String) Array.get(SplitNewText, 0);
@@ -1456,21 +1488,82 @@ public class ParkingPageObject extends BaseClass {
 		return flag;
 	}
 
-	public boolean ValidatePdfContent() {
-		String pdfContent = null;
+	public boolean ValidatePdfContent(String user) {
+		log.info("ValidatePdfContent method starts here..........");
+		// DownloadFolder=new File(UUID.randomUUID().toString());
+		String userid = null;
+		SimpleDateFormat Formatter = new SimpleDateFormat("EEE");
+		String stringDay = Formatter.format(new Date());
+		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		String ExpDate = stringDay + ", " + strDate;
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		boolean flag = false;
+		String FilePath = null;
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.getName().equals("Agreement.pdf")) {
+					FilePath = file.getAbsolutePath();
+					log.info("File Path is ---" + FilePath);
+					flag = true;
+					break;
+				}
 
-		String AgreementUrl = "file://////" + DownloadFolder.getAbsolutePath().toString() + "//Agreement.pdf";
-		System.out.println(AgreementUrl);
+			}
 
-		pdfContent = CommonMethod.getPDFContent(AgreementUrl);
-		if (pdfContent.contains("Project ID : \r\n" + "Rating system : \r\n" + "User Name : \r\n" + "User Email : \r\n"
-				+ "User ID : \r\n" + "Date and Time of Acceptance : \r\n" + "Name of Project : \r\n"
-				+ "Owner Email : ")) {
-			log.info("Validation of pdf content is done content matched..........");
-			return true;
-		} else
-			log.info("Validation of pdf content is not done content didn't matched.........");
-		return false;
+		} else {
+			flag = false;
+		}
+		if (flag) {
+			String pdfcontent = CommonMethod.getPDFContent("file:///" + FilePath);
+			String ProjectID = "Project ID : " + System.getProperty("LEEDParkSmartProjectID");
+			String RatingSystem = "Rating system : PARKSMART";
+			String UserName = "User Name : " + user;
+			String useremail = "User Email : " + prop.getProperty("email");
+			if (System.getProperty("environment").equals("QAS")) {
+				userid = "User ID : 0010640669";
+			} else if (System.getProperty("environment").equals("STG")) {
+				userid = "User ID : 0010545793";
+			}
+			String DateTime = "Date and Time of Acceptance : " + ExpDate;
+			String ProjectName = "Name of Project : " + System.getProperty("RegisteredProjectName");
+			String OwnerEmail = "Owner Email : " + data.getCellData("Parking", 	0, 2);
+			log.info("----------------------------------------");
+			log.info("ProjectID is " + ProjectID);
+			log.info("RatingSystem is " + RatingSystem);
+			log.info("UserName is " + UserName);
+			log.info("useremail is " + useremail);
+			log.info("userid is " + userid);
+			log.info("DateTime is " + DateTime);
+			log.info("ProjectName is " + ProjectName);
+			log.info("OwnerEmail is " + OwnerEmail);
+			log.info(pdfcontent.contains(ProjectID));
+			log.info(pdfcontent.contains(RatingSystem));
+			log.info(pdfcontent.contains(UserName));
+			log.info(pdfcontent.contains(useremail));
+			log.info(pdfcontent.contains(userid));
+			log.info(pdfcontent.contains(DateTime));
+			log.info(pdfcontent.contains(ProjectName));
+			log.info(pdfcontent.contains(OwnerEmail));
+			if (pdfcontent.contains(ProjectID) && pdfcontent.contains(RatingSystem) && pdfcontent.contains(UserName)
+					&& pdfcontent.contains(useremail) && pdfcontent.contains(userid) && pdfcontent.contains(DateTime)
+					&& pdfcontent.contains(ProjectName) && pdfcontent.contains(OwnerEmail)) {
+				flag = true;
+			} else
+				flag = false;
+
+		}
+
+		CommonMethod.DeleteAllFiles();
+		DownloadFolder.delete();
+		log.info("ValidatePdfContent method ends here with " + flag + " ......");
+		return flag;
 	}
 
 	public boolean CheckFileUploadedStatus(String fname) {

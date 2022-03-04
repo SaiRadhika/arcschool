@@ -246,7 +246,7 @@ public class ProjectPageObjects extends BaseClass {
 	
 	// This function takes the project Id and returns whether project found or not in searcch
 	public boolean SearchProject(String ProjectID) {
-		log.info("SearchProject method started for City Project---- " + ProjectID + "  .........");
+		log.info("SearchProject method started for Project---- " + ProjectID + "  .........");
 		// CommonMethod.switchToDefaultContent();
 		boolean flag=false;
 		if (!SearchProjectTextBox.isDisplayed())

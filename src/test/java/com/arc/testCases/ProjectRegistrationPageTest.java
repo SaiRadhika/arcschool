@@ -3,6 +3,7 @@ package com.arc.testCases;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -3086,6 +3087,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	public void Parking_Registered_TestProject_Creation() {
 		log.info("Parking_Registered_TestProject_Creation method started ........... ");
 		String ProjectParkingID = null;
+		String ProjectName = null;
 		try {
 			ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
@@ -3109,14 +3111,11 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage.Check_Owner_Region(data.getCellData("ProjectRegistration", 23, 2));
 		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
-
+		
 		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
 		ProjectPaymentPage.EnterBillingName(data.getCellData("ProjectRegistration", 24, 2) + CommonMethod.generateRandomNumber(2));
 		ProjectPaymentPage.enterBillingEmail(data.getCellData("ProjectRegistration", 22, 2));
 		ProjectPaymentPage.EnterBillingAddress(data.getCellData("ProjectRegistration", 3, 2));
@@ -3126,8 +3125,10 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectPaymentPage.EnterCardNumber(data.getCellData("ProjectRegistration", 25, 2));
 		ProjectPaymentPage.EnterExpiryDate(data.getCellData("ProjectRegistration", 26, 2));
 		ProjectPaymentPage.EnterCvv(data.getCellData("ProjectRegistration", 27, 2));
-
+		
 		ParkingPage = ProjectPaymentPage.ClickonParkingSubmitButton();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		boolean flag = ParkingPage.checkParkingProjectCreation(ParkingProjectName);
 		System.out.println("Flag is --------->" + flag);
@@ -3135,7 +3136,10 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			ParkingPage.ClickonProjectInManage();
 			ProjectParkingID = ParkingPage.getProjectID(ParkingProjectName);
 			System.setProperty("LEEDParkSmartProjectID", ProjectParkingID);
-			// System.out.println(ProjectParkingID);
+			log.info("Project ID is -------->"+ ProjectParkingID);
+			ProjectName = driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value");
+			System.setProperty("RegisteredProjectName", ParkingProjectName);
+			log.info("Project Name is -------->"+ ProjectName);
 			if (ProjectParkingID.substring(0, 4).equals("1000")) {
 				// ParkingPage.ClickonProjectInManage();
 				log.info("Project creation done successfully.......");
@@ -3181,7 +3185,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage.Check_Owner_Region(data.getCellData("ProjectRegistration", 23, 2));
 		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
 
 		flag = ProjectPaymentPage.checkUnregisteredParkingProjectCreation();
@@ -3239,12 +3243,9 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 		
 		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
 		ProjectPaymentPage.EnterBillingName(data.getCellData("ProjectRegistration", 24, 2) + CommonMethod.generateRandomNumber(2));
 		ProjectPaymentPage.enterBillingEmail(data.getCellData("ProjectRegistration", 22, 2));
 		ProjectPaymentPage.EnterBillingAddress(data.getCellData("ProjectRegistration", 3, 2));
@@ -3257,6 +3258,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 		ParkingPage = ProjectPaymentPage.ClickonParkingSubmitButton();
 
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
 		boolean flag = ParkingPage.checkParkingProjectCreation(ParkingProjectName);
 		if (flag) {
 			ParkingPage.ClickonProjectInManage();
@@ -3316,12 +3319,9 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 
 		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
 		ProjectPaymentPage.EnterBillingName(data.getCellData("ProjectRegistration", 24, 2) + CommonMethod.generateRandomNumber(2));
 		ProjectPaymentPage.enterBillingEmail(data.getCellData("ProjectRegistration", 22, 2));
 		ProjectPaymentPage.EnterBillingAddress(data.getCellData("ProjectRegistration", 3, 2));
@@ -3333,7 +3333,9 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectPaymentPage.EnterCvv(data.getCellData("ProjectRegistration", 27, 2));
 
 		ParkingPage = ProjectPaymentPage.ClickonParkingSubmitButton();
-
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
 		boolean flag = ParkingPage.checkParkingProjectCreation(ParkingProjectName);
 		String HeaderText = ParkingPage.CheckAllMeasureHeaderShowing();
 		if (flag) {
