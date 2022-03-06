@@ -9,36 +9,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.arc.PageObject.Project.BuildingPageObject;
 import com.arc.PageObject.Project.CityPageObject;
 import com.arc.PageObject.Project.CommunitiesPageObject;
-import com.arc.commonMethods.CommonMethod;
+import com.arc.PageObject.Project.ParkingPageObject;
+import com.arc.PageObject.Project.TransitPageObject;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
+import com.arc.commonMethods.CommonMethod;
 
 public class ProjectRegistrationPageObject extends BaseClass {
 
 	private static Logger log = LoggerHelper.getLogger(ProjectRegistrationPageObject.class);
-
-	@FindBy(xpath = "//div[@class='align-center mt11 width-100-perc']/h4")
-	WebElement AddAProjectLabelHeader;
-
-	@FindBy(xpath = "(//*[text()='Enter Project Details']//parent::div/div//div/input)[1]")
-	WebElement ProjectNameTextBox;
-
-	@FindBy(xpath = "//*[@class='error ng-binding' and starts-with(text(),'Please enter a valid name. Allowed special characters are')]")
-	WebElement ProjectNamevalidationMsg;
-
-	@FindBy(xpath = "//div[@class='checkbox test_project pl20 ng-scope']/input")
-	WebElement ThisIsTestProjectCheckBox;
-
-	@FindBy(xpath = "(//input[@type='checkbox'])[2]")
-	WebElement ProjectIsPrivateCheckBox;
-
-	@FindBy(xpath = "(//table[1]/tbody/tr[3]/td[1]/div[1]/select)[1]")
-	WebElement ProjectType;
 
 	@FindBy(xpath = "//label[text()='Space Type']/parent::div/select")
 	WebElement BuildingSpaceType;
@@ -58,13 +43,46 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//label[text()='Owner Email']//following-sibling::span")
 	WebElement BuildingEmailValidation;
 
+	@FindBy(xpath = "//span[@class='head fs16 lh30']/following-sibling::div[2]")
+	WebElement RegisterLEED_ValidationMSG;
+
+	@FindBy(xpath = "//table/tbody/tr[@class='hide900']/descendant::p")
+	WebElement AddProject_ValidationMSG;
+
+	@FindBy(xpath = "//div[@class='align-center mt11 width-100-perc']/h4")
+	WebElement AddAProjectLabelHeader;
+
+	@FindBy(xpath = "(//*[text()='Enter Project Details']//parent::div/div//div/input)[1]")
+	WebElement ProjectNameTextBox;
+
+	@FindBy(xpath = "//*[@class='error ng-binding' and starts-with(text(),'Please enter a valid name. Allowed special characters are')]")
+	WebElement ProjectNamevalidationMsg;
+
+	@FindBy(xpath = "//*[@class='error ng-binding' and starts-with(text(),'Please enter valid number of parking space.')]")
+	WebElement ParkingSpaceValidationMsg;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[5]/td/div/span[3]")
+	WebElement ParkingLevelValidationMsg;
+
+	@FindBy(xpath = "//div[@class='checkbox test_project pl20 ng-scope']/input")
+	WebElement ThisIsTestProjectCheckBox;
+
+	@FindBy(xpath = "(//input[@type='checkbox'])[1]")
+	WebElement ProjectIsPrivateCheckBox;
+
+	@FindBy(xpath = "(//table[1]/tbody/tr[3]/td[1]/div[1]/select)[1]")
+	WebElement ProjectType;
+
 	@FindBy(xpath = "//input[@id='gross_area']")
 	WebElement GrossAreaTextBox;
 
-	@FindBy(xpath = "//*[text()='Gross Area']//following-sibling::span[text()=\"Exceeded maximum value\"]")
+	@FindBy(xpath = "//span[normalize-space()='Exceeded maximum value']")
 	WebElement GrossAreaTextBoxValidationMsg;
 
-	@FindBy(xpath = "//table[1]/tbody/tr[5]/td[2]/div/select")
+	@FindBy(xpath = "//*[@id=\"year_constructed\"]")
+	WebElement DateCommisioned;
+
+	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.unitType, 'unitType')\"]")
 	WebElement GrossAreaUnitType;
 
 	@FindBy(xpath = "//*[@class='svg_hover']")
@@ -75,12 +93,6 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//input[@type='radio'])[2]")
 	WebElement RegisterLEEDNoRadioBtn;
-	
-	@FindBy(xpath = "//span[@class='head fs16 lh30']/following-sibling::div[2]")
-	WebElement RegisterLEED_ValidationMSG;
-	
-	@FindBy(xpath = "//table/tbody/tr[@class='hide900']/descendant::p")
-	WebElement AddProject_ValidationMSG;
 
 	@FindBy(xpath = "//button[text()='Register for LEED certification now']")
 	WebElement RegisterLEEDCertificationNowPopUpButton;
@@ -120,6 +132,66 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	@FindBy(xpath = "//button[text()='Not now']")
 	WebElement NotNowPopUpButton;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[4]/td/div/input")
+	WebElement ParkingSpacesTextBox;
+
+	@FindBy(xpath = "//input[@ng-init='enableFdatePicker()']")
+	WebElement ParkingLevelTextBox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[11]/td/div/input")
+	WebElement OwnerEmailTextbox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[11]/td/div/span[3]")
+	WebElement EmailValidationMsg;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[9]/td/div/select")
+	WebElement OwnerTypeTextbox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[12]/td/div/select")
+	WebElement OwnerRegionTextbox;
+
+	@FindBy(xpath = "//*[@id=\"organization\"]")
+	WebElement OrgTextbox;
+
+	@FindBy(xpath = "(//div[@class='datepicker-days'])[2]")
+	WebElement CalenderPopUp;
+
+	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
+	WebElement TestProjectCheckBox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[6]/td/div/input")
+	WebElement AnnualRidershipTextbox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[7]/td/div/input")
+	WebElement WeeklyHrsTextbox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[8]/td/div/input")
+	WebElement FulltimeStaffTextbox;
+
+	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[9]/td/div/input")
+	WebElement AvgTimeSpentTextbox;
+
+	@FindBy(xpath = "//span[normalize-space()='Please enter valid annual ridership.']")
+	WebElement AnnualRiderValidationMsg;
+
+	@FindBy(xpath = "//span[normalize-space()='Please enter valid hours.']")
+	WebElement AvgTimeSpentValidationMsg;
+
+	@FindBy(xpath = "//span[normalize-space()='Please enter valid number of hours']")
+	WebElement WeeklyHrsValidationMsg;
+
+	@FindBy(xpath = "//span[normalize-space()='Please enter valid full time staff.']")
+	WebElement FulltimeStaffValidationMsg;
+
+	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.station_type, 'station_type')\"]")
+	WebElement TransitStationType;
+
+	@FindBy(xpath = "//span[normalize-space()='Preview Access']")
+	WebElement PreviewAccessButton;
+
+	@FindBy(xpath = "//span[normalize-space()='Pay Now']")
+	WebElement PayNowButton;
 
 	public ProjectRegistrationPageObject() {
 		PageFactory.initElements(driver, this);
@@ -201,17 +273,13 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	}
 
 	public boolean CheckRegisterforLEEDValidationMessage() {
-		if(AddProject_ValidationMSG.isDisplayed() && RegisterLEED_ValidationMSG.isDisplayed())
-		{
+		if (AddProject_ValidationMSG.isDisplayed() && RegisterLEED_ValidationMSG.isDisplayed()) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
-	
-	
+
 	public boolean CheckRegisterforLEEDPopupButtonsExists() {
 		boolean flag = false;
 		try {
@@ -282,7 +350,6 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 		return null;
 	}
-
 
 	public String checkCommunityLEEDOnLinePortal() {
 		String handle = driver.getWindowHandle();
@@ -385,6 +452,19 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		try {
 
 			if (dropdownhelper.getSelectedValue(ProjectType).equals("Buildings"))
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	public boolean SelectParkingProjectType() {
+		boolean flag = false;
+
+		try {
+
+			if (dropdownhelper.getSelectedValue(ProjectType).equals("Buildings - Parking (Parksmart)"))
 				flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -528,7 +608,6 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		log.info("CheckAddress_City_Country_State_ZipCode starts here..................");
 		AddressTextBox.clear();
 		AddressTextBox.sendKeys(Address);
-		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By
@@ -629,9 +708,9 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	}
 
-	public boolean DownLoadServiceAgreement() {
-		log.info("DownLoadServiceAgreement  method starts here -----");
-		String pdfcontent=null;
+	public boolean ParkSmartDownLoadServiceAgreement() {
+		log.info("ParkSmartDownLoadServiceAgreement  method starts here -----");
+		String pdfcontent = null;
 		waithelper.WaitForElementClickable(ServiceAgreementLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
 			Thread.sleep(5000);
@@ -648,30 +727,75 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			e.printStackTrace();
 
 		}
-		
+
 		Set<String> handles = driver.getWindowHandles();
-			for (String window : handles) {
-				if (!BaseWindow.equals(window)) {
-					driver.switchTo().window(window);
-					String Agreementurl = "https://"+(System.getProperty("environment")).toLowerCase()+".app.arconline.io/assets/pdf/registration_agreement.pdf";
-					log.info("Agreement URL is "+Agreementurl);
-					pdfcontent=CommonMethod.getPDFContent(Agreementurl);
-					if (pdfcontent.contains("ARC FOR ALL SERVICES AGREEMENT")) {
-						driver.close();
-						driver.switchTo().window(BaseWindow);
-						log.info("DownLoadServiceAgreement  method ends with true here -----");
-						return true;
-					} else
-						log.info("DownLoadServiceAgreement  method ends with false here -----");
-					return false;
+		for (String window : handles) {
+			if (!BaseWindow.equals(window)) {
+				driver.switchTo().window(window);
+				String Agreementurl = "https://" + (System.getProperty("environment")).toLowerCase()
+						+ ".app.arconline.io/assets/pdf/parksmart_registration_agreement.pdf";
+				log.info("Agreement URL is " + Agreementurl);
+				pdfcontent = CommonMethod.getPDFContent(Agreementurl);
+				if (pdfcontent.contains("Green Business Certification Inc.™")) {
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+					log.info("ParkSmartDownLoadServiceAgreement  method ends with true here -----");
+					return true;
+				} else
+					log.info("ParkSmartDownLoadServiceAgreement  method ends with false here -----");
+				return false;
 
-				}
 			}
+		}
 
-		
+		log.info("ParksmartDownLoadServiceAgreement  method ends with false here -----");
+		return false;
+	}
+
+	public boolean DownLoadServiceAgreement() {
+		log.info("DownLoadServiceAgreement  method starts here -----");
+		String pdfcontent = null;
+		waithelper.WaitForElementClickable(ServiceAgreementLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		ServiceAgreementLink.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		Set<String> handles = driver.getWindowHandles();
+		for (String window : handles) {
+			if (!BaseWindow.equals(window)) {
+				driver.switchTo().window(window);
+				String Agreementurl = "https://" + (System.getProperty("environment")).toLowerCase()
+						+ ".app.arconline.io/assets/pdf/registration_agreement.pdf";
+				log.info("Agreement URL is " + Agreementurl);
+				pdfcontent = CommonMethod.getPDFContent(Agreementurl);
+				if (pdfcontent.contains("ARC FOR ALL SERVICES AGREEMENT")) {
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+					log.info("DownLoadServiceAgreement  method ends with true here -----");
+					return true;
+				} else
+					log.info("DownLoadServiceAgreement  method ends with false here -----");
+				return false;
+
+			}
+		}
+
 		log.info("DownLoadServiceAgreement  method ends with false here -----");
 		return false;
 	}
+
 
 	public boolean CheckServiceAgreementCheckbox() {
 		boolean flag = false;
@@ -687,6 +811,8 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 		return flag;
 	}
+	
+	
 
 	public CityPageObject ClickonCityAddProjectButton() {
 
@@ -746,4 +872,182 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	}
 
+	public boolean Check_Calender_Opens() {
+		boolean flag = false;
+		DateCommisioned.click();
+		try {
+			Thread.sleep(2000);
+			waithelper.WaitForElementVisibleWithPollingTime(CalenderPopUp, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			if (CalenderPopUp.isDisplayed())
+				flag = true;
+			else 
+				return false;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+
+	}
+
+	public boolean Check_Owner_Region(String Region) {
+		OwnerRegionTextbox.click();
+		OwnerRegionTextbox.sendKeys(Region);
+		/*
+		 * try { waithelper.WaitForElementVisibleWithPollingTime( driver.findElement(By
+		 * .xpath("//ul[@class='dropdown-menu address normal dropdown-menu-fixed address_dropdown']"
+		 * )), Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch
+		 * (Exception e) { e.printStackTrace(); }
+		 */
+		List<WebElement> list = driver.findElements(
+				By.xpath("//*[@id=\"details-form\"]/div[1]/table/tbody/tr[12]/td/div/select/option[235]"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getText());
+			if (list.get(i).getText().equals("United States")) {
+				list.get(i).click();
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+
+		if (OwnerRegionTextbox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 23, 2))) {
+			return true;
+		} else
+			return false;
+
+	}
+
+	public boolean Check_Owner_Type(String Type) {
+		OwnerTypeTextbox.click();
+		OwnerTypeTextbox.sendKeys(Type);
+		/*
+		 * try { waithelper.WaitForElementVisibleWithPollingTime( driver.findElement(By
+		 * .xpath("//ul[@class='dropdown-menu address normal dropdown-menu-fixed address_dropdown']"
+		 * )), Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch
+		 * (Exception e) { e.printStackTrace(); }
+		 */
+		List<WebElement> list = driver
+				.findElements(By.xpath("//*[@id=\"details-form\"]/div[1]/table/tbody/tr[9]/td/div/select/option[1]"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getText());
+			if (list.get(i).getText().equals("Business Improvement District")) {
+				list.get(i).click();
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+
+		if (OwnerTypeTextbox.getAttribute("value").equals(data.getCellData("ProjectRegistration", 20, 2))) {
+			return true;
+		} else
+			return false;
+
+	}
+
+	public ProjectPaymentPageObject ClickonParkingAddProjectButton() {
+
+		try {
+			AddProjectButton.click();
+			// Thread.sleep(2000);
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ProjectPaymentPageObject();
+
+	}
+
+	public void ClickOnParkingSpace() {
+		try {
+			ParkingSpacesTextBox.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void ClickOnParkingLevels() {
+		try {
+			ParkingLevelTextBox.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void ClickOwnerEmail() {
+		try {
+			OwnerEmailTextbox.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean CheckParkingSpaceValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = ParkingSpaceValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+
+	public boolean CheckParkingLevelValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = ParkingLevelValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+
+	public boolean CheckEmailValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = EmailValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+
+	public void enterParkingSpace(String ParkingSpace) {
+		ParkingSpacesTextBox.clear();
+		ParkingSpacesTextBox.sendKeys(ParkingSpace);
+
+	}
+
+	public void enterParkingLevel(String ParkingLevel) {
+		ParkingLevelTextBox.clear();
+		ParkingLevelTextBox.sendKeys(ParkingLevel);
+	}
+	 
 }

@@ -9,6 +9,8 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.arc.PageObject.ProjectPaymentPageObject;
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
@@ -244,7 +246,7 @@ public class ProjectPageObjects extends BaseClass {
 	
 	// This function takes the project Id and returns whether project found or not in searcch
 	public boolean SearchProject(String ProjectID) {
-		log.info("SearchProject method started for City Project---- " + ProjectID + "  .........");
+		log.info("SearchProject method started for Project---- " + ProjectID + "  .........");
 		// CommonMethod.switchToDefaultContent();
 		boolean flag=false;
 		if (!SearchProjectTextBox.isDisplayed())
@@ -438,6 +440,50 @@ public class ProjectPageObjects extends BaseClass {
 			return new ParkingPageObject();
 		} else {
 			log.info("SearchAndClickOnProject method ends with false for Parking Project---- " + ProjectID
+					+ "  .........");
+			return null;
+		}
+	}
+	
+	public ProjectPaymentPageObject SearchAndClickOnUnregisteredParkingProject(String ProjectID) {
+		log.info("SearchAndClickOnProject method started for Unregistered Parking Project---- " + ProjectID + "  .........");
+		CommonMethod.switchToDefaultContent();
+		if (!SearchProjectTextBox.isDisplayed())
+			actionhelper.mouseOverElementAndClick(SearchIcon);
+		SearchProjectTextBox.clear();
+		SearchProjectTextBox.sendKeys(ProjectID);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.waitForElement(SearchedProject, (Integer.parseInt(prop.getProperty("explicitTime"))));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(SearchedProject, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SearchedProject.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (driver
+				.findElement(
+						By.xpath("(//h4[normalize-space()='Project Payment'])[1]"))
+				.getText().equals("Project Payment")) {
+			log.info("SearchAndClickOnProject method ends with true for Unregistered Parking Project---- " + ProjectID
+					+ "  .........");
+			return new ProjectPaymentPageObject();
+		} else {
+			log.info("SearchAndClickOnProject method ends with false for Unregistered Parking Project---- " + ProjectID
 					+ "  .........");
 			return null;
 		}
