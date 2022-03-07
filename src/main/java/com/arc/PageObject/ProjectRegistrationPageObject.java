@@ -67,7 +67,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//div[@class='checkbox test_project pl20 ng-scope']/input")
 	WebElement ThisIsTestProjectCheckBox;
 
-	@FindBy(xpath = "(//input[@type='checkbox'])[1]")
+	@FindBy(xpath = "//label[text()='This project is private.']//preceding-sibling::input")
 	WebElement ProjectIsPrivateCheckBox;
 
 	@FindBy(xpath = "(//table[1]/tbody/tr[3]/td[1]/div[1]/select)[1]")
