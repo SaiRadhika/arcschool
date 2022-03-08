@@ -157,39 +157,6 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
 	WebElement TestProjectCheckBox;
 
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[6]/td/div/input")
-	WebElement AnnualRidershipTextbox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[7]/td/div/input")
-	WebElement WeeklyHrsTextbox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[8]/td/div/input")
-	WebElement FulltimeStaffTextbox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[9]/td/div/input")
-	WebElement AvgTimeSpentTextbox;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid annual ridership.']")
-	WebElement AnnualRiderValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid hours.']")
-	WebElement AvgTimeSpentValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid number of hours']")
-	WebElement WeeklyHrsValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid full time staff.']")
-	WebElement FulltimeStaffValidationMsg;
-
-	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.station_type, 'station_type')\"]")
-	WebElement TransitStationType;
-
-	@FindBy(xpath = "//span[normalize-space()='Preview Access']")
-	WebElement PreviewAccessButton;
-
-	@FindBy(xpath = "//span[normalize-space()='Pay Now']")
-	WebElement PayNowButton;
-
 	public ProjectRegistrationPageObject() {
 		PageFactory.initElements(driver, this);
 	}
