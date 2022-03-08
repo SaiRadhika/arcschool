@@ -274,7 +274,7 @@ public class ProjectPaymentPageTest extends BaseClass {
 				e1.printStackTrace();
 			}
 			boolean flag = ProjectPaymentPage.Check_Billing_Country("United States");
-			System.out.println("Flag is -------> " + flag);
+			
 			if (!flag) {
 				Assert.assertTrue(true);
 			} else
