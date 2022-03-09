@@ -79,7 +79,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//span[normalize-space()='Exceeded maximum value']")
 	WebElement GrossAreaTextBoxValidationMsg;
 
-	@FindBy(xpath = "//*[@id=\"year_constructed\"]")
+	@FindBy(xpath = "//input[@id='year_constructed']")
 	WebElement DateCommisioned;
 
 	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.unitType, 'unitType')\"]")
@@ -154,44 +154,8 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//*[@id=\"organization\"]")
 	WebElement OrgTextbox;
 
-	@FindBy(xpath = "(//div[@class='datepicker-days'])[2]")
-	WebElement CalenderPopUp;
-
 	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
 	WebElement TestProjectCheckBox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[6]/td/div/input")
-	WebElement AnnualRidershipTextbox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[7]/td/div/input")
-	WebElement WeeklyHrsTextbox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[8]/td/div/input")
-	WebElement FulltimeStaffTextbox;
-
-	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[9]/td/div/input")
-	WebElement AvgTimeSpentTextbox;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid annual ridership.']")
-	WebElement AnnualRiderValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid hours.']")
-	WebElement AvgTimeSpentValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid number of hours']")
-	WebElement WeeklyHrsValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid full time staff.']")
-	WebElement FulltimeStaffValidationMsg;
-
-	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.station_type, 'station_type')\"]")
-	WebElement TransitStationType;
-
-	@FindBy(xpath = "//span[normalize-space()='Preview Access']")
-	WebElement PreviewAccessButton;
-
-	@FindBy(xpath = "//span[normalize-space()='Pay Now']")
-	WebElement PayNowButton;
 
 	public ProjectRegistrationPageObject() {
 		PageFactory.initElements(driver, this);
@@ -872,22 +836,18 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	}
 
-	public boolean Check_Calender_Opens() {
-		boolean flag = false;
+	public boolean DateCommisonedOpensCalendar() {
+		log.info("DateCommisonedOpensCalendar method starts here........");
+		boolean flag = true;
 		DateCommisioned.click();
-		try {
-			Thread.sleep(2000);
-			waithelper.WaitForElementVisibleWithPollingTime(CalenderPopUp, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			if (CalenderPopUp.isDisplayed())
-				flag = true;
-			else 
-				return false;
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		WebElement ele = driver.findElement(By.xpath("//div[@class='datepicker datepicker-dropdown dropdown-menu'][2]"));
+		if (ele.isDisplayed()) {
+			flag = true;
+			log.info("DateCommisonedOpensCalendar method ends here........");
 		}
 		return flag;
-
+		
 	}
 
 	public boolean Check_Owner_Region(String Region) {

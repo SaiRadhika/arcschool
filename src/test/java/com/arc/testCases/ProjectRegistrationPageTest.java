@@ -2577,7 +2577,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	}
 
 	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"Parking_ProjectType_Parking_Value" }, priority = 8, enabled = true, description = "Verify Parking adding Gross area - limit allowed is Max: 1904514 square meters")
+			"Parking_ProjectType_Parking_Value" }, priority = 8, enabled = false, description = "Verify Parking adding Gross area - limit allowed is Max: 1904514 square meters")
 	public void Parking_GrossArea_Valid_SQ_FT() {
 		log.info("Parking_GrossArea_Valid_SQ_FT method started ........... ");
 		try {
@@ -2655,6 +2655,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	public void Parking_DateCommisioned_Open_Calendar() {
 
 		log.info("Parking_DateCommisioned_Open_Calendar method started ........... ");
+		boolean flag = false;
 		try {
 			ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
@@ -2665,19 +2666,19 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		}
 
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
-		ProjectRegistrationPage
-				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
 		ProjectRegistrationPage.SelectParkingProjectType();
 
-		boolean flag = ProjectRegistrationPage.Check_Calender_Opens();
+		flag = ProjectRegistrationPage.DateCommisonedOpensCalendar();
 		log.info("Flag is ----------->" + flag);
 
-		if (!flag) {
+		if (flag) {
 			Assert.assertTrue(true);
+			log.info("Parking_DateCommisioned_Open_Calendar method ends with true here ........... ");
+			
 		} else
 			Assert.assertTrue(false);
-
-		log.info("Parking_DateCommisioned_Open_Calendar method ends here ........... ");
+			log.info("Parking_DateCommisioned_Open_Calendar method ends with false here ........... ");
 
 	}
 
