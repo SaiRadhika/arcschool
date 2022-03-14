@@ -99,7 +99,7 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(name = "test_project")
 	WebElement ThisIsTestProjectCheckBox;
 
-	@FindBy(xpath = "//span[text()='Private']/parent::div/div/div[1]/span/input")
+	@FindBy(xpath = "//span[text()='Private']//following-sibling::div//span[contains(text(),'Yes')]/input")
 	WebElement PrivateYesRadioButton;
 
 	// ***********************Regression Test
