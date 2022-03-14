@@ -1,8 +1,11 @@
 package com.arc.PageObject.Project;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -43,12 +46,6 @@ public class TransitPageObject extends BaseClass {
 	@FindBy(xpath = "(//*[text()='File successfully uploaded.'])[1]")
 	WebElement FileUploadSuccessMsg;
 
-	/*
-	 * @FindBy(
-	 * xpath="//table[@class='table table-striped table-hover']/tbody/tr/td[3]/a/span"
-	 * ) List<WebElement> ActionNames;
-	 */
-
 	@FindBy(xpath = "//*[@class='viewUpload laptop']")
 	WebElement FileUploadButtonUsingComputer;
 
@@ -66,7 +63,31 @@ public class TransitPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//*[text()='Upload'])[1]")
 	WebElement CreditFormUploadButton;
-
+	
+	@FindBy(xpath = "//button[contains(text(),'CLOSE')][1]")
+	WebElement TrailCloseButton;
+	
+	@FindBy(xpath = "//span[text()='Private']//following-sibling::div//span[contains(text(),'Yes')]/input")
+	WebElement PrivateYesRadioButton;
+	
+	@FindBy(xpath = "(//a[contains(text(),'Prerequisites')])[1]")
+	WebElement PrerequisitesSubmenu;
+	
+	@FindBy(xpath = "(//a[contains(text(),'Base Points')])[1]")
+	WebElement BasePointSubmenu;
+	
+	@FindBy(xpath = "//a[normalize-space()='Credit Library']")
+	WebElement CreditLibraryButton;
+	
+	@FindBy(xpath = "//a[normalize-space()='Resources']")
+	WebElement ResourcesButton;
+	
+	@FindBy(xpath = "//div[@class='left-right-align ng-binding']")
+	WebElement BuildingSetting;
+	
+	@FindBy(xpath = "//div[@class='meterList--wrapper']/div[1]/div[1]/span")
+	WebElement MeterAndSurveyMiddleSection;
+	
 	public TransitPageObject() {
 		PageFactory.initElements(driver, this);
 	}
@@ -337,4 +358,299 @@ public class TransitPageObject extends BaseClass {
 		return false;
 	}
 
+	public void ClickonTrailCloseButton() {
+		
+		waithelper.WaitForElementVisibleWithPollingTime(TrailCloseButton,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		
+		TrailCloseButton.click();
+				
+	}
+	
+	public String getProjectID(String PName) {
+
+		try {
+			return driver
+					.findElement(
+							By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div//div[1]/span"))
+					.getText();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	public boolean checkTransitProjectCreation(String PName) {
+
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(
+							By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div/h4")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			if (driver.findElement(By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div/h4"))
+					.getText().contains(PName)) {
+				System.out.println("Project Name showing---------" + driver
+						.findElement(By.xpath("//*[@class='page-controls navbar_info navbar-default']/div/div/div/h4"))
+						.getText());
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return false;
+
+	}
+	
+	public boolean CheckProjectIsPrivateFlagUnderManage(String ProjectID) {
+		
+		try {
+			String path = "(//*[text()='" + ProjectID + "'])[2]";
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath(path)),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+			System.out
+					.println("PrivateYesRadioButton.isSelected() value is ---- " + PrivateYesRadioButton.isSelected());
+			return PrivateYesRadioButton.isSelected();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
+	public void ClickOnCreditsTab() {
+		CreditActionSubmenu.click();
+	}
+	
+	public void PrerequistitesSubMenu() {
+		log.info("PrerequistitesSubMenu method starts here ....");
+		waithelper.WaitForElementClickable(CreditActionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		CreditActionSubmenu.click();
+		waithelper.WaitForElementClickable(PrerequisitesSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		PrerequisitesSubmenu.click();
+		log.info("AllActionSubMenu method ends here ....");
+	}
+	
+	public void BasePointSubMenu() {
+		log.info("BasePointSubMenu method starts here ....");
+		waithelper.WaitForElementClickable(CreditActionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		CreditActionSubmenu.click();
+		waithelper.WaitForElementClickable(BasePointSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		BasePointSubmenu.click();
+		log.info("BasePointSubMenu method ends here ....");
+	}
+
+	public boolean CheckCreditTabMenu() {
+		log.info("CheckCreditTabMenu method starts here...........");
+
+		String className = null;
+		boolean flag = false;
+		List<WebElement> allElement = driver
+				.findElements(By.xpath("//div[@class='ng-scope']//div[@class='ng-scope']//ul[@id='sidebar-actions']"));
+		for (WebElement element : allElement) {
+			className = element.getText();
+			System.out.println(className);
+		}
+
+		if (className.equals("All Actions\r\n" + "Prerequisites\r\n" + "Base Points\r\n"
+				+ "My Actions\r\n")) {
+
+			flag = true;
+			
+		}
+		if (flag)
+			log.info("CheckCreditTabMenu method ends here..........");
+		else
+			log.info("CheckCreditTabMenu method ends here..........");
+
+		return flag;
+	}
+
+	public boolean CheckPrerequisitesCredits() {
+		log.info("CheckPrerequisitesCredits method starts here...........");
+		boolean flag = false;
+
+		int expCredits = 10 ;
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		int Credits = rows.size();
+		for(WebElement row : table.findElements(By.tagName("tr"))) {
+		String CreditNames = row.getText();
+		log.info("Credit Name -> "+CreditNames);
+		}
+		log.info("No. of credits are...... " + rows.size());
+		if (Credits == expCredits) {
+			flag = true;
+		}
+		if (flag) {
+			log.info("Number of Prerequisites Credits equals to 10 ");
+		} else {
+			log.info("Number of Prerequisites Credits not equals to 10");
+		}
+
+		log.info("CheckPrerequisitesCredits method ends here...........");
+		return flag;
+	}
+	
+	public boolean CheckBasePointCredits() {
+		log.info("CheckBasePointCredits method starts here...........");
+		boolean flag = false;
+		
+		int expCredits = 23 ;
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		int Credits = rows.size();
+		for(WebElement row : table.findElements(By.tagName("tr"))) {
+		String CreditNames = row.getText();
+		log.info("Credit Name -> "+CreditNames);
+		}
+		log.info("No. of credits are...... " + rows.size());
+		if (Credits == expCredits) {
+			flag = true;
+		}
+		if (flag) {
+			log.info("Number of BasePoint Credits equals to 23 ");
+		} else {
+			log.info("Number of BasePoint Credits not equals to 10");
+		}
+
+		log.info("CheckBasePointCredits method ends here...........");
+		return flag;
+	}
+	
+	public boolean CheckAllActionsCredits() {
+		log.info("CheckAllActionsCredits method starts here...........");
+		boolean flag = false;
+		
+		int expCredits = 38 ;
+		WebElement table = driver.findElement(By.xpath("//table[@class='table table-striped table-hover']/tbody"));
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		int Credits = rows.size();
+		for(WebElement row : table.findElements(By.tagName("tr"))) {
+		String CreditNames = row.getText();
+		log.info("Credit Name -> "+CreditNames);
+		}
+		log.info("No. of credits are...... " + rows.size());
+		if (Credits == expCredits) {
+			flag = true;
+		}
+		if (flag) {
+			log.info("Number of All actions Credits equals to 23 ");
+		} else {
+			log.info("Number of All actions Credits not equals to 10");
+		}
+
+		log.info("CheckAllActionsCredits method ends here...........");
+		return flag;
+	}
+	
+	public boolean CheckCreditLibraryButton() {
+		log.info("CheckCreditLibraryButton method starts here.........");
+		String handle = driver.getWindowHandle();
+		CreditLibraryButton.click();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		Set<String> handles = driver.getWindowHandles();
+		if (handles.size() == 2) {
+			for (String window : handles) {
+				if (!handle.equals(window)) {
+					driver.switchTo().window(window);
+					String url = JSHelper.getCurrentURL();
+					System.out.println("Second URL is ---------------" + url);
+					if (url.contains("https://www.usgbc.org/credits/existing-buildings-retail-existing-buildings-schools-existing-buildings-hospitality-2?return=/credits")) {
+						driver.close();
+						driver.switchTo().window(handle);
+						return true;
+					} else
+						return false;
+
+				}
+			}
+
+		}
+		return false;
+
+	}
+	
+	public boolean CheckResourcesButton() {
+		log.info("CheckResourcesButton method starts here........");
+		String handle = driver.getWindowHandle();
+		ResourcesButton.click();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		Set<String> handles = driver.getWindowHandles();
+		if (handles.size() == 2) {
+			for (String window : handles) {
+				if (!handle.equals(window)) {
+					driver.switchTo().window(window);
+					String url = JSHelper.getCurrentURL();
+					System.out.println("Second URL is ---------------" + url);
+					if (url.contains("https://arcskoru.com/resources")) {
+						driver.close();
+						driver.switchTo().window(handle);
+						return true;
+					} else
+						return false;
+
+				}
+			}
+
+		}
+		return false;
+	}
+	
+	public boolean ClickOnBuildingSetting() {
+		log.info("ClickOnBuildingSetting  method starts here.........");
+		boolean BuldingSettingTab = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		BuildingSetting.click();
+		//ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommonMethod.switchToDefaultContent();
+		CommonMethod.switchToDataInputFrame();
+		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By
+						.xpath("//div[@class='meterNameInfo--wrapper pt5']/div[contains(text(),'Building Settings')]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		BuldingSettingTab = driver
+				.findElement(By
+						.xpath("//div[@class='meterNameInfo--wrapper pt5']/div[contains(text(),'Building Settings')]"))
+				.isDisplayed();
+		log.info("MetersAndSurveyTab flag is --" + MetersAndSurveyTab);
+		log.info("BuldingSettingTab flag is --" + BuldingSettingTab);
+		if (BuldingSettingTab == true && MetersAndSurveyTab == true) {
+			log.info("ClickOnBuildingSetting  method ends here with true .........");
+			return true;
+		} else {
+			log.info("ClickOnBuildingSetting  method ends here with false.........");
+			return false;
+		}
+	}
+	
+	
+	
 }
