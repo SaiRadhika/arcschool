@@ -1,5 +1,8 @@
 package com.arc.commonMethods;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -33,5 +36,18 @@ public class ActionsHelper extends BaseClass {
 		action.dragAndDropBy(ele, x, y);
 		action.build().perform();
 
+	}
+	
+	public void clickRandomlyOnPage() throws AWTException
+	{
+		Robot robot = new Robot();
+
+		robot.mouseMove(50,50);
+
+		action.click().build().perform();
+
+		robot.mouseMove(200,70);
+
+		action.click().build().perform();
 	}
 }

@@ -3,12 +3,14 @@ package com.arc.testCases;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.arc.commonMethods.CommonMethod;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
+import java.lang.reflect.Array;
 
 public class ProjectRegistrationPageTest extends BaseClass {
 
@@ -54,7 +56,6 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		try {
 			ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
-
 
 		} catch (Exception e) {
 			HomePage.setHomePageApplication();
@@ -257,7 +258,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 
 		ProjectRegistrationPage.enterGrossArea("50001");
 		ProjectRegistrationPage.SelectUnitType("square kilometers");
@@ -280,45 +281,44 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("ProjectRegistration_CityGrossArea_Invalid_50001_SQ_KM method ends here ........... ");
 
 	}
-	
-	// Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message "This field is required."
 
-		@Test(groups = {
-				"CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 10, enabled = true, description = "Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message \"This field is required.\"")
-		public void ProjectRegistration_LEED_Certification_NotSelectedRadioButton() {
-			log.info(
-					"ProjectRegistration_LEED_Certification_NotSelectedRadioButton method started ........... ");
-			try {
-				ProjectRegistrationPage.closeProjectButton();
-				HomePage.setHomePageApplication();
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
+	// Verify if none of the radio button is selected for 'Are You registering for a
+	// LEED Certfication?' , throws an error message "This field is required."
 
-			boolean flag = false;
-			HomePage.clickOnProject();
-			HomePage.clickOnCitiesSubMenu();
-			ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
-			ProjectRegistrationPage
-					.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-			//ProjectRegistrationPage.SelectCityProjectType();
-			ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
-			//ProjectRegistrationPage.clickYesLEEDRegistration();
-			ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
-			ProjectRegistrationPage.CheckServiceAgreementCheckbox();
-			ProjectRegistrationPage.ClickonCityAddProjectButton();
-			flag = ProjectRegistrationPage.CheckRegisterforLEEDValidationMessage();
-
-			if (flag) {
-				// ProjectRegistrationPage.closeProjectButton();
-				Assert.assertTrue(true);
-			} else
-				Assert.assertTrue(false);
-			log.info(
-					"ProjectRegistration_LEED_Certification_NotSelectedRadioButton method ends here ........... ");
-
+	@Test(groups = {
+			"CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 10, enabled = true, description = "Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message \"This field is required.\"")
+	public void ProjectRegistration_LEED_Certification_NotSelectedRadioButton() {
+		log.info("ProjectRegistration_LEED_Certification_NotSelectedRadioButton method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
 		}
+
+		boolean flag = false;
+		HomePage.clickOnProject();
+		HomePage.clickOnCitiesSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
+		// ProjectRegistrationPage.SelectCityProjectType();
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
+		// ProjectRegistrationPage.clickYesLEEDRegistration();
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		ProjectRegistrationPage.ClickonCityAddProjectButton();
+		flag = ProjectRegistrationPage.CheckRegisterforLEEDValidationMessage();
+
+		if (flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("ProjectRegistration_LEED_Certification_NotSelectedRadioButton method ends here ........... ");
+
+	}
 
 	/*
 	 * Verify if 'Are you registering for a LEED CERTIFICATION' is selected as
@@ -361,7 +361,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
 		flag = ProjectRegistrationPage.Validate_LEEDRegistrationPopupMessage();
@@ -397,7 +397,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
 		flag = ProjectRegistrationPage.CheckRegisterforLEEDPopupButtonsExists();
@@ -431,7 +431,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("City", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
@@ -482,7 +482,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
@@ -523,7 +523,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
@@ -557,7 +557,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
@@ -575,7 +575,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify able to download service agreement successfully.
 
 	@Test(groups = { "CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-					"ProjectRegistration_ProjectType_City_Value"  }, priority = 16, enabled = true, description = " Verify able to download service agreement successfully.")
+			"ProjectRegistration_ProjectType_City_Value" }, priority = 16, enabled = true, description = " Verify able to download service agreement successfully.")
 	public void ProjectRegistration_Download_Service_Agreement() {
 		log.info("ProjectRegistration_Download_Service_Agreement method started ........... ");
 		try {
@@ -598,8 +598,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
 
 		boolean flag = ProjectRegistrationPage.DownLoadServiceAgreement();
-		
-		log.info("ProjectRegistration_Download_Service_Agreement method ends with "+flag+" here ........... ");
+
+		log.info("ProjectRegistration_Download_Service_Agreement method ends with " + flag + " here ........... ");
 		if (flag) {
 			Assert.assertTrue(true);
 		} else
@@ -610,7 +610,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	// Verify when 'I agree to … agreement' checkbox is selected, 'Add project'
 	// button gets enabled.
 
-	@Test(groups = { "CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 17, enabled = true, description = "Verify when 'I agree to … agreement' checkbox is selected, 'Add project' button gets enabled.")
+	@Test(groups = {
+			"CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 17, enabled = true, description = "Verify when 'I agree to … agreement' checkbox is selected, 'Add project' button gets enabled.")
 	public void ProjectRegistration_Agreement_Check_AddButtonEnabled() {
 		log.info("ProjectRegistration_Agreement_Check_AddButtonEnabled method started ........... ");
 		try {
@@ -626,7 +627,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		boolean flag = ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 		if (flag) {
 			// ProjectRegistrationPage.closeProjectButton();
@@ -662,7 +663,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(6);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
 		ProjectRegistrationPage.SelectThisIsTestProjectCheckBox();
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
@@ -719,7 +720,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(6);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
 		// ProjectRegistrationPage.SelectThisIsTestProjectCheckBox();
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
@@ -775,7 +776,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
@@ -831,7 +832,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
@@ -866,14 +867,21 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("City_Project_Creation_Opens_Performance_Screen method ends here ........... ");
 	}
 
-	
-	// Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.
-	// Verify Manage--Project --Under Project  - Project Address matches with the actual project address through which the project was registered. 
-	// Verify Manage--Project --Under Project  - Project City matches with the actual city through which the project was regsitered.
-	// Verify Manage--Project --Under Project  - Project Country matches with the actual Country value through which the project was regsitered.
-	// Verify Under Project Details-Project name shows the same name used at the time of project registration.
-	// Verify Under Project Details- If Project was marked as Test at time of project registration then checkmark shows selected for "This is a test project" Otherwise checkbox should be unselected.
-	// Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. 
+	// Verify Manage--Project --Under Project - Project ID matches with the actual
+	// project id of the project.
+	// Verify Manage--Project --Under Project - Project Address matches with the
+	// actual project address through which the project was registered.
+	// Verify Manage--Project --Under Project - Project City matches with the actual
+	// city through which the project was regsitered.
+	// Verify Manage--Project --Under Project - Project Country matches with the
+	// actual Country value through which the project was regsitered.
+	// Verify Under Project Details-Project name shows the same name used at the
+	// time of project registration.
+	// Verify Under Project Details- If Project was marked as Test at time of
+	// project registration then checkmark shows selected for "This is a test
+	// project" Otherwise checkbox should be unselected.
+	// Verify under Manage--Project-- Project Details, Year founded is a dropdown
+	// field with year values ranging from 1900 to current year.
 
 	@Test(groups = { "CityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"ProjectRegistration_ProjectType_City_Value",
@@ -889,7 +897,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("City_Project_Creation_ValidateProjectDetails method started ........... ");
 		String ProjectCityID = "";
 		try {
-			//ProjectRegistrationPage.closeProjectButton();
+			// ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
 		} catch (Exception e) {
 			HomePage.setHomePageApplication();
@@ -899,22 +907,22 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		HomePage.clickOnCitiesSubMenu();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		String CityProjectName = data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(6);
-		String ProjectAddress=data.getCellData("ProjectRegistration", 3, 2);
+		String ProjectAddress = data.getCellData("ProjectRegistration", 3, 2);
 		ProjectRegistrationPage.enterProjectName(CityProjectName);
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
 		ProjectRegistrationPage.enterPopulation(data.getCellData("ProjectRegistration", 2, 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
 		// ProjectRegistrationPage.SelectProjectIsPrivateCheckBox();
-		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(ProjectAddress);	
-		
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(ProjectAddress);
+
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 		CityPage = ProjectRegistrationPage.ClickonCityAddProjectButton();
 
 		boolean flag = CityPage.checkCityProjectCreation(CityProjectName);
-		//String HeaderText = CityPage.CheckPerformanceHeaderShowing();
+		// String HeaderText = CityPage.CheckPerformanceHeaderShowing();
 		if (flag) {
 			CityPage.ClickonProjectInManage();
 			ProjectCityID = CityPage.getProjectID(CityProjectName);
@@ -922,26 +930,25 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			log.info("  CityProject5 is ---" + ProjectCityID);
 			System.setProperty("CityProject5_Name", CityProjectName);
 			log.info("  CityProject5_Name is ---" + CityProjectName);
-			boolean ProjectDetailsFlag=CityPage.CheckProjectDetails(CityProjectName,ProjectAddress);
-			if(ProjectDetailsFlag)
-			{
+			boolean ProjectDetailsFlag = CityPage.CheckProjectDetails(CityProjectName, ProjectAddress);
+			if (ProjectDetailsFlag) {
 				log.info("Project Details are matching ........... ");
 				Assert.assertTrue(true);
-			}
-			else
-			{
+			} else {
 				log.info("Project Details are not matching ........... ");
 				Assert.assertTrue(false);
 			}
 		} else {
 			log.info("Project Creation gets failed..........");
 			Assert.assertTrue(false);
-		}		
+		}
 		ProjectRegistrationPage.closeProjectButton();
 		log.info("City_Project_Creation_ValidateProjectDetails method ends here ........... ");
 	}
-//-----------------------------------------------Communities related Test Cases----------------------------
-	// Verify Community adding Gross area - limit allowed is Max: 19,305 square miles
+	// -----------------------------------------------Communities related Test
+	// Cases----------------------------
+	// Verify Community adding Gross area - limit allowed is Max: 19,305 square
+	// miles
 
 	@Test(groups = {
 			"CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 6, enabled = true, description = "Verify Community adding Gross area - limit allowed is Max: 19,305 square miles")
@@ -1024,7 +1031,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	}
 
-	// Verify Community adding Gross area - limit allowed is Max: 50000 square kilometers
+	// Verify Community adding Gross area - limit allowed is Max: 50000 square
+	// kilometers
 
 	@Test(groups = {
 			"CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 8, enabled = true, description = "Verify Community adding Gross area - limit allowed is Max: 50000 square kilometers")
@@ -1082,7 +1090,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 
 		ProjectRegistrationPage.enterGrossArea("50001");
 		ProjectRegistrationPage.SelectUnitType("square kilometers");
@@ -1106,14 +1114,13 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	}
 
-	
-	// Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message "This field is required."
+	// Verify if none of the radio button is selected for 'Are You registering for a
+	// LEED Certfication?' , throws an error message "This field is required."
 
 	@Test(groups = {
 			"CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 10, enabled = true, description = "Verify if none of the radio button is selected for 'Are You registering for a LEED Certfication?' , throws an error message \"This field is required.\"")
 	public void ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton() {
-		log.info(
-				"ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton method started ........... ");
+		log.info("ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton method started ........... ");
 		try {
 			ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
@@ -1128,9 +1135,9 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
-		//ProjectRegistrationPage.clickYesLEEDRegistration();
+		// ProjectRegistrationPage.clickYesLEEDRegistration();
 		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 		ProjectRegistrationPage.ClickonCommunitiesAddProjectButton();
@@ -1145,7 +1152,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 				"ProjectRegistration_CommunityLEED_Certification_NotSelectedRadioButton method ends here ........... ");
 
 	}
-	
+
 	/*
 	 * Verify if 'Are you registering for a LEED CERTIFICATION' is selected as
 	 * 'Yes', opens a new modal window with text as below:
@@ -1187,7 +1194,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
 		flag = ProjectRegistrationPage.Validate_LEEDRegistrationPopupMessage();
@@ -1207,8 +1214,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 	@Test(groups = {
 			"CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 11, enabled = true, description = "Verify the new modal window shows two buttons- 'Register for LEED certification now' and 'Not now'")
 	public void Community_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow() {
-		log.info(
-				"Community_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow method started ........... ");
+		log.info("Community_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow method started ........... ");
 		try {
 			ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
@@ -1223,7 +1229,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
 		flag = ProjectRegistrationPage.CheckRegisterforLEEDPopupButtonsExists();
@@ -1233,8 +1239,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			Assert.assertTrue(flag);
 		} else
 			Assert.assertTrue(flag);
-		log.info(
-				"Community_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow method ends here ........... ");
+		log.info("Community_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow method ends here ........... ");
 
 	}
 
@@ -1257,7 +1262,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		System.out.println(data.getCellData("Communities", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
@@ -1308,7 +1313,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickYesLEEDRegistration();
@@ -1329,7 +1334,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	// Verify address field auto populates the address(this address is being pulled
 	// using google maps API).
-	// Verify auto pulled address populates all the fields -Community, County,States,zip
+	// Verify auto pulled address populates all the fields -Community,
+	// County,States,zip
 	// code
 
 	@Test(groups = {
@@ -1349,7 +1355,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
@@ -1383,7 +1389,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
@@ -1400,8 +1406,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 	// Verify able to download service agreement successfully.
 
-	@Test(groups = {"CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-					"Community_ProjectType_Communities_Value" }, priority = 16, enabled = true, description = " Verify able to download service agreement successfully.")
+	@Test(groups = { "CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Community_ProjectType_Communities_Value" }, priority = 16, enabled = true, description = " Verify able to download service agreement successfully.")
 	public void Community_Download_Service_Agreement() {
 		log.info("Community_Download_Service_Agreement method started ........... ");
 		try {
@@ -1463,7 +1469,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage
 				.enterProjectName(data.getCellData("ProjectRegistration", 0, 2) + CommonMethod.generateRandomString(5));
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		boolean flag = ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 		if (flag) {
 			// ProjectRegistrationPage.closeProjectButton();
@@ -1473,11 +1479,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 		log.info("Community_Agreement_AddButtonEnabled method ends here ........... ");
 	}
-	
-	
-	
-	
-	
+
 	// Verify Project Type is selected as 'Communities'
 
 	@Test(groups = {
@@ -1541,11 +1543,12 @@ public class ProjectRegistrationPageTest extends BaseClass {
 				+ CommonMethod.generateRandomString(6);
 		ProjectRegistrationPage.enterProjectName(CommunitiesProjectName);
 		ProjectRegistrationPage.SelectThisIsTestProjectCheckBox();
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
-		// ProjectRegistrationPage.enterPopulation(data.getCellData("Communities", 2, 2));
+		// ProjectRegistrationPage.enterPopulation(data.getCellData("Communities", 2,
+		// 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
 		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
@@ -1598,11 +1601,12 @@ public class ProjectRegistrationPageTest extends BaseClass {
 				+ CommonMethod.generateRandomString(6);
 		ProjectRegistrationPage.enterProjectName(CommunitiesProjectName);
 		// ProjectRegistrationPage.SelectThisIsTestProjectCheckBox();
-		//ProjectRegistrationPage.SelectCommunityProjectType();
+		// ProjectRegistrationPage.SelectCommunityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
-		// ProjectRegistrationPage.enterPopulation(data.getCellData("Communities", 2, 2));
+		// ProjectRegistrationPage.enterPopulation(data.getCellData("Communities", 2,
+		// 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
 		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
@@ -1651,7 +1655,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
 				+ CommonMethod.generateRandomString(5);
 		ProjectRegistrationPage.enterProjectName(CommunitiesProjectName);
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
@@ -1704,7 +1708,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
 				+ CommonMethod.generateRandomString(5);
 		ProjectRegistrationPage.enterProjectName(CommunitiesProjectName);
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
@@ -1737,14 +1741,21 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("Communities_Project_Creation_Opens_Performance_Screen method ends here ........... ");
 	}
 
-	
-	// Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.
-	// Verify Manage--Project --Under Project  - Project Address matches with the actual project address through which the project was registered. 
-	// Verify Manage--Project --Under Project  - Project City matches with the actual city through which the project was regsitered.
-	// Verify Manage--Project --Under Project  - Project Country matches with the actual Country value through which the project was regsitered.
-	// Verify Under Project Details-Project name shows the same name used at the time of project registration.
-	// Verify Under Project Details- If Project was marked as Test at time of project registration then checkmark shows selected for "This is a test project" Otherwise checkbox should be unselected.
-	// Verify under Manage--Project-- Project Details, Year founded is a dropdown field with year values ranging from 1900 to current year. 
+	// Verify Manage--Project --Under Project - Project ID matches with the actual
+	// project id of the project.
+	// Verify Manage--Project --Under Project - Project Address matches with the
+	// actual project address through which the project was registered.
+	// Verify Manage--Project --Under Project - Project City matches with the actual
+	// city through which the project was regsitered.
+	// Verify Manage--Project --Under Project - Project Country matches with the
+	// actual Country value through which the project was regsitered.
+	// Verify Under Project Details-Project name shows the same name used at the
+	// time of project registration.
+	// Verify Under Project Details- If Project was marked as Test at time of
+	// project registration then checkmark shows selected for "This is a test
+	// project" Otherwise checkbox should be unselected.
+	// Verify under Manage--Project-- Project Details, Year founded is a dropdown
+	// field with year values ranging from 1900 to current year.
 
 	@Test(groups = { "CommunityRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"Community_ProjectType_Communities_Value" }, priority = 250, enabled = true, description = "Verify Manage--Project --Under Project  - Project ID matches with the actual project id of the project.\r\n"
@@ -1758,7 +1769,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("Community_Project_Creation_ValidateProjectDetails method started ........... ");
 		String ProjectCommunityID = "";
 		try {
-			//ProjectRegistrationPage.closeProjectButton();
+			// ProjectRegistrationPage.closeProjectButton();
 			HomePage.setHomePageApplication();
 		} catch (Exception e) {
 			HomePage.setHomePageApplication();
@@ -1767,22 +1778,23 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		HomePage.clickOnProject();
 		HomePage.clickOnCommunitiesSubMenu();
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
-		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2) + CommonMethod.generateRandomString(6);
-		String ProjectAddress=data.getCellData("ProjectRegistration", 3, 2);
+		String CommunitiesProjectName = data.getCellData("ProjectRegistration", 8, 2)
+				+ CommonMethod.generateRandomString(6);
+		String ProjectAddress = data.getCellData("ProjectRegistration", 3, 2);
 		ProjectRegistrationPage.enterProjectName(CommunitiesProjectName);
-		//ProjectRegistrationPage.SelectCityProjectType();
+		// ProjectRegistrationPage.SelectCityProjectType();
 		System.out.println(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 1, 2));
 		ProjectRegistrationPage.SelectUnitType("square miles");
 		ProjectRegistrationPage.enterPopulation(data.getCellData("ProjectRegistration", 2, 2));
 		ProjectRegistrationPage.clickNoLEEDRegistration();
 		// ProjectRegistrationPage.SelectProjectIsPrivateCheckBox();
-		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(ProjectAddress);	
-		
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(ProjectAddress);
+
 		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
 		CommunitiesPage = ProjectRegistrationPage.ClickonCommunitiesAddProjectButton();
 
-		boolean flag =  CommunitiesPage.checkCommunitiesProjectCreation(CommunitiesProjectName);
+		boolean flag = CommunitiesPage.checkCommunitiesProjectCreation(CommunitiesProjectName);
 		if (flag) {
 			CommunitiesPage.ClickonProjectInManage();
 			ProjectCommunityID = CommunitiesPage.getProjectID(CommunitiesProjectName);
@@ -1790,14 +1802,11 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			log.info("  CommunityProject5 is ---" + ProjectCommunityID);
 			System.setProperty("CommunityProject5_Name", CommunitiesProjectName);
 			log.info("  CommunityProject5_Name is ---" + CommunitiesProjectName);
-			boolean ProjectDetailsFlag=CommunitiesPage.CheckProjectDetails(CommunitiesProjectName,ProjectAddress);
-			if(ProjectDetailsFlag)
-			{
+			boolean ProjectDetailsFlag = CommunitiesPage.CheckProjectDetails(CommunitiesProjectName, ProjectAddress);
+			if (ProjectDetailsFlag) {
 				log.info("Project Details are matching ........... ");
 				Assert.assertTrue(true);
-			}
-			else
-			{
+			} else {
 				log.info("Project Details are not matching ........... ");
 				Assert.assertTrue(false);
 			}
@@ -2246,7 +2255,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 			ProjectBuildingID = BuildingPage.getProjectID(BuildingProjectName);
 			System.setProperty("BuildingProject_Test1", ProjectBuildingID);
 			log.info("  BuildingProject_Test1 is ---" + ProjectBuildingID);
-			
+
 			System.setProperty("BuildingProject_Test1_Name", BuildingProjectName);
 			log.info("  BuildingProject_Test1_Name is ---" + BuildingProjectName);
 
@@ -2389,9 +2398,8 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("Buildings_Project_Creation_Opens_Overview_Screen method ends here ........... ");
 	}
 
-	
-	
-	// Verify clicking on 'Add project' button registers the project with non-leed id.
+	// Verify clicking on 'Add project' button registers the project with non-leed
+	// id.
 
 	@Test(groups = {
 			"BuildingsRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 42, enabled = true, description = "Verify clicking on 'Add project' button registers the project with non-leed id.")
@@ -2427,7 +2435,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		BuildingPage = ProjectRegistrationPage.ClickonBuildingsAddProjectButton();
 
 		boolean flag = BuildingPage.checkBuildingProjectCreation(BuildingProjectName);
-		//String HeaderText = BuildingPage.CheckOverviewHeaderShowing();
+		// String HeaderText = BuildingPage.CheckOverviewHeaderShowing();
 		if (flag) {
 			BuildingPage.ClickonProjectInManage();
 			ProjectBuildingID = BuildingPage.getProjectID(BuildingProjectName);
@@ -2448,4 +2456,899 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		log.info("Buildings_Project_Creation_NonLEEDID method ends here ........... ");
 	}
 
+	/////////////////////////////////////////////////// Test Cases For
+	/////////////////////////////////////////////////// Parking/////////////////////////////////////////////////////////////////
+
+	// Verify Project Type as 'Parking' available in dropdown or not
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 5, enabled = true, description = "Verify Project Type as 'Cities' available in dropdown or not")
+	public void Parking_ProjectType_Parking_Value() {
+		log.info("Parking_ProjectType_Parking_Value method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+		HomePage.clickOnProject();
+		HomePage.clickOnParkingSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+
+		try {
+
+			flag = ProjectRegistrationPage.SelectParkingProjectType();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_ProjectType_Parking_Value method ends here ........... ");
+
+	}
+
+	// Verify- Parking adding Gross area - limit allowed is Max: 1904514 square
+	// meters
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 6, enabled = true, description = "Verify Parking adding Gross area - limit allowed is Max: 1904514 square meters")
+	public void Parking_GrossArea_Valid_SQ_MT() {
+		log.info("Parking_GrossArea_Valid_SQ_MT method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.enterGrossArea("1904514");
+
+		try {
+
+			flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_GrossArea_Valid_Square_Meters method ends here ........... ");
+
+	}
+
+	// Verify parking adding invalid Gross area - limit 1904515 square meters
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 7, enabled = true, description = "Verify Parking adding invalid Gross area - limit  1904515 square meters")
+	public void Parking_GrossArea_Invalid_SQ_MT() {
+		log.info("Parking_GrossArea_Invalid_SQ_MT method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.enterGrossArea("1904515");
+
+		try {
+
+			flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_GrossArea_Invalid_Square_Meters method ends here ........... ");
+
+	}
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 8, enabled = false, description = "Verify Parking adding Gross area - limit allowed is Max: 1904514 square meters")
+	public void Parking_GrossArea_Valid_SQ_FT() {
+		log.info("Parking_GrossArea_Valid_SQ_FT method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.SelectUnitType("square feet");
+		ProjectRegistrationPage.enterGrossArea("20499999");
+
+		try {
+
+			flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_GrossArea_Valid_SQ_FT method ends here ........... ");
+
+	}
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 9, enabled = true, description = "Verify Parking adding Gross area - limit allowed is Max: 1904514 square meters")
+	public void Parking_GrossArea_Invalid_SQ_FT() {
+		log.info("Parking_GrossArea_Inalid_SQ_FT method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.SelectUnitType("square feet");
+		ProjectRegistrationPage.enterGrossArea("20500000");
+
+		try {
+
+			flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_GrossArea_Invalid_SQ_FT method ends here ........... ");
+
+	}
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 10, enabled = true, description = "Verify 'Date commisioned' opens up the calendar.")
+	public void Parking_DateCommisioned_Open_Calendar() {
+
+		log.info("Parking_DateCommisioned_Open_Calendar method started ........... ");
+		boolean flag = false;
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+
+		flag = ProjectRegistrationPage.DateCommisonedOpensCalendar();
+		log.info("Flag is ----------->" + flag);
+
+		if (flag) {
+			Assert.assertTrue(true);
+			log.info("Parking_DateCommisioned_Open_Calendar method ends with true here ........... ");
+			
+		} else
+			Assert.assertTrue(false);
+			log.info("Parking_DateCommisioned_Open_Calendar method ends with false here ........... ");
+
+	}
+
+	// Verify Auto-Population of the Address
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 11, enabled = true, description = "Verify address field auto populates the address(this address is being pulled using google maps API).\r\n"
+					+ "	Verify auto pulled address populates all the fields -City, County,States,zipcode")
+	public void Parking_AutoPopulate_Address_City_Country_State_ZipCode() {
+		log.info("Parking_AutoPopulate_Address_Parking_Country_State_ZipCode method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		// ProjectRegistrationPage.clickNoLEEDRegistration();
+
+		boolean flag = ProjectRegistrationPage
+				.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
+		if (flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("Parking_AutoPopulate_Address_Parking_Country_State_ZipCode method ends here ........... ");
+	}
+
+	// Verify Auto-Populate Latitude and Longitude value
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value",
+			"Parking_AutoPopulate_Address_City_Country_State_ZipCode" }, priority = 12, enabled = true, description = "Verify after address is auto pulled, geo location gets auto -populated.")
+	public void Parking_AutoPopulate_Latitude_Longitude() {
+		log.info("Parking_AutoPopulate_Latitude_Longitude method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		// ProjectRegistrationPage.clickNoLEEDRegistration();
+
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
+		boolean flag = ProjectRegistrationPage.CheckGeoLocation();
+		if (flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("Parking_AutoPopulate_Latitude_Longitude method ends here ........... ");
+	}
+
+	// Verify able to download service agreement successfully.
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 13, enabled = true, description = " Verify able to download service agreement successfully.")
+	public void Parking_Download_Service_Agreement() {
+		log.info("Parking_Download_Service_Agreement method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String handle = driver.getWindowHandle();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		// ProjectRegistrationPage.clickNoLEEDRegistration();
+
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode("2101 L St NW washington DC 20037 USA");
+
+		boolean flag = ProjectRegistrationPage.ParkSmartDownLoadServiceAgreement();
+
+		Set<String> handles = driver.getWindowHandles();
+		if (handles.size() == 2) {
+			for (String window : handles) {
+				if (!handle.equals(window)) {
+					driver.switchTo().window(window);
+					driver.close();
+					driver.switchTo().window(handle);
+				}
+			}
+		}
+		if (flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+
+		log.info("Parking_Download_Service_Agreement method ends here ........... ");
+	}
+
+	// Verify when 'I agree to … agreement' checkbox is selected, 'Add project'
+	// button gets enabled.
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 14, enabled = true, description = "Verify when 'I agree to … agreement' checkbox is selected, 'Add project' button gets enabled.")
+	public void Parking_Agreement_Check_AddButtonEnabled() {
+		log.info("Parking_Agreement_Check_AddButtonEnabled method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String handle = driver.getWindowHandle();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		boolean flag = ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		if (flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+
+		log.info("Parking_Agreement_Check_AddButtonEnabled method ends here ........... ");
+	}
+
+	// Verify 'Number of parking spaces' is a whole number field i.e. should not
+	// accept decimals and alphabets
+
+	@Test(groups = "ParkSmartRegression", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, dependsOnGroups = "LoginMethodTCGroup", priority = 15, enabled = true, description = "Verify 'Number of parking spaces' is a whole number  field i.e. should not accept decimals and alphabets")
+	public void Parking_Space_Is_Whole_Number() {
+
+		log.info(" Parking_Space_Is_Whole_Number method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		boolean flag = false;
+		// HomePage.setHomePageApplication();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.enterParkingSpace(data.getCellData("ProjectRegistration", 17, 2));
+
+		try {
+			flag = ProjectRegistrationPage.CheckParkingSpaceValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_Space_Is_Whole_Number method ends here ........... ");
+
+	}
+
+	@Test(groups = "ParkSmartRegression", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, dependsOnGroups = "LoginMethodTCGroup", priority = 16, enabled = true, description = "Verify 'How many levels in your parking structure' is a whole number  field i.e. should not accept decimals and alphabets")
+	public void Parking_Space_Invalid() {
+		log.info(" Parking_Space_Is_Invalid method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		boolean flag = false;
+		// HomePage.setHomePageApplication();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage
+				.enterParkingSpace(data.getCellData("ProjectRegistration", 18, 2) + CommonMethod.generateRandomString(3));
+
+		try {
+			flag = ProjectRegistrationPage.CheckParkingSpaceValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(true);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_Space_Is_Invalid method ends here ........... ");
+	}
+
+	// Verify 'How many levels in your parking structure' is a whole number field
+	// i.e. should not accept decimals and alphabets
+
+	@Test(groups = "ParkSmartRegression", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, dependsOnGroups = "LoginMethodTCGroup", priority = 17, enabled = true, description = "Verify 'How many levels in your parking structure' is a whole number  field i.e. should not accept decimals and alphabets")
+
+	public void Parking_Level_Validation() {
+
+		log.info(" Parking_Level_Validation method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		boolean flag = false;
+		// HomePage.setHomePageApplication();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.enterParkingLevel(data.getCellData("ProjectRegistration", 19, 2));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			flag = ProjectRegistrationPage.CheckParkingLevelValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_Level_Validation method ends here ........... ");
+
+	}
+
+	// Verify Owner email should take the value is email format- with only 1 '@' and
+	// upto 2 '.' allowed.
+
+	@Test(groups = "ParkSmartRegression", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, dependsOnGroups = "LoginMethodTCGroup", priority = 18, enabled = true, description = "Verify Owner email should take the value in email format- with only 1 '@' and upto 2 '.' allowed.")
+
+	public void Parking_Owner_Email_Validation() {
+
+		log.info("Parking_Owner_Email_Validation method started ........... ");
+
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		boolean flag = false;
+		// HomePage.setHomePageApplication();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 22, 2));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			flag = ProjectRegistrationPage.CheckEmailValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		// ProjectRegistrationPage.closeProjectButton();
+		log.info("Parking_Owner_Email_Validation method ends here ........... ");
+
+	}
+
+	// Verify 'Owner type' field opens up the dropdown with list of organizations
+	// and allows to select the value from the dropdown.
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 19, enabled = true, description = "Verify 'Owner type' field opens up the dropdown with list of organizations and allows to select the value from the dropdown.")
+	public void Parking_Owner_Type_Validation() {
+		log.info("Parking_Owner_Type_Validation method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+
+		boolean flag = ProjectRegistrationPage.Check_Owner_Type("Business Improvement District");
+		if (!flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("Parking_Owner_Type_Validation method ends here ........... ");
+	}
+
+	// Verify 'Owner organization' field- enter one or 2 letters should auto
+	// populate the list of organizations.
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 20, enabled = true, description = "Verify 'Owner organization' field- enter one or 2 letters should auto populate the list of organizations.")
+	public void Parking_OwnerOrganization_AutoSuggestion() {
+		log.info("ProjectRegistration_OwnerOrganization_AutoSuggestion method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		HomePage.clickOnProject();
+		HomePage.clickOnParkingSubMenu();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.enterGrossArea("1904515");
+		ProjectRegistrationPage.SelectUnitType("square meters");
+
+		int totalOwnerName = ProjectRegistrationPage
+				.CheckOwnerOrgAutoSuggetion(data.getCellData("ProjectRegistration", 13, 2));
+		log.info("Total Suggestion showing is ---" + totalOwnerName);
+		if (totalOwnerName > 0) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("ProjectRegistration_OwnerOrganization_AutoSuggestion method ends here ........... ");
+
+	}
+
+	// Verify Owner country should open a list of countries.
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 21, enabled = true, description = "Verify Owner country should open a list of countries.")
+	public void Parking_Owner_Region_Validation() {
+		log.info("Parking_Owner_Region_Validation method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		ProjectRegistrationPage
+				.enterProjectName(data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+		ProjectRegistrationPage.SelectParkingProjectType();
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+
+		boolean flag = ProjectRegistrationPage.Check_Owner_Region("United States");
+		if (!flag) {
+			// ProjectRegistrationPage.closeProjectButton();
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("Parking_Owner_Region_Validation method ends here ........... ");
+	}
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value", "Parking_AutoPopulate_Address_City_Country_State_ZipCode",
+			"Parking_AutoPopulate_Latitude_Longitude", "Parking_Owner_Type_Validation",
+			"Parking_Owner_Region_Validation", }, priority = 22, enabled = true, description = " Verify clicking on 'Add project' button registers the project.")
+
+	public void Parking_Registered_TestProject_Creation() {
+		log.info("Parking_Registered_TestProject_Creation method started ........... ");
+		String ProjectParkingID = null;
+		String ProjectName = null;
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String handle = driver.getWindowHandle();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String ParkingProjectName = data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5);
+		ProjectRegistrationPage.enterProjectName(ParkingProjectName);
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.enterParkingSpace(data.getCellData("ProjectRegistration", 18, 2));
+		ProjectRegistrationPage.enterParkingLevel(data.getCellData("ProjectRegistration", 19, 2));
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.Check_Owner_Type(data.getCellData("ProjectRegistration", 20, 2));
+		ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 21, 2));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectRegistrationPage.Check_Owner_Region(data.getCellData("ProjectRegistration", 23, 2));
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		
+		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		ProjectPaymentPage.EnterBillingName(data.getCellData("ProjectRegistration", 24, 2) + CommonMethod.generateRandomNumber(2));
+		ProjectPaymentPage.enterBillingEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectPaymentPage.EnterBillingAddress(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectPaymentPage.EnterBillingCity(data.getCellData("ProjectRegistration", 4, 2));
+		ProjectPaymentPage.EnterBillingZipCode(data.getCellData("ProjectRegistration", 7, 2));
+		ProjectPaymentPage.selectBillingState(data.getCellData("ProjectRegistration", 6, 2));
+		ProjectPaymentPage.EnterCardNumber(data.getCellData("ProjectRegistration", 25, 2));
+		ProjectPaymentPage.EnterExpiryDate(data.getCellData("ProjectRegistration", 26, 2));
+		ProjectPaymentPage.EnterCvv(data.getCellData("ProjectRegistration", 27, 2));
+		
+		ParkingPage = ProjectPaymentPage.ClickonParkingSubmitButton();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		boolean flag = ParkingPage.checkParkingProjectCreation(ParkingProjectName);
+		System.out.println("Flag is --------->" + flag);
+		if (flag) {
+			ParkingPage.ClickonProjectInManage();
+			ProjectParkingID = ParkingPage.getProjectID(ParkingProjectName);
+			System.setProperty("LEEDParkSmartProjectID", ProjectParkingID);
+			log.info("Project ID is -------->"+ ProjectParkingID);
+			ProjectName = driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value");
+			System.setProperty("RegisteredProjectName", ParkingProjectName);
+			log.info("Project Name is -------->"+ ProjectName);
+			if (ProjectParkingID.substring(0, 4).equals("1000")) {
+				// ParkingPage.ClickonProjectInManage();
+				log.info("Project creation done successfully.......");
+				Assert.assertTrue(true);
+			} else {
+				log.info(" Project creation failed..................");
+				Assert.assertTrue(false);
+			}
+
+		}
+
+		log.info("Parking_Registered_TestProject_Creation method ends here ........... ");
+	}
+
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value", "Parking_AutoPopulate_Address_City_Country_State_ZipCode",
+			"Parking_AutoPopulate_Latitude_Longitude", "Parking_Owner_Type_Validation",
+			"Parking_Owner_Region_Validation" }, priority = 23, enabled = true, description = " Verify clicking on 'Add project' button registers the project.")
+
+	public void Parking_Unregistered_TestProject_Creation() {
+		log.info("Parking_Unregistered_TestProject_Creation method started ........... ");
+		String UnregisteredProjectID = null;
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String handle = driver.getWindowHandle();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String ParkingProjectName = data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5);
+		ProjectRegistrationPage.enterProjectName(ParkingProjectName);
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.enterParkingSpace(data.getCellData("ProjectRegistration", 18, 2));
+		ProjectRegistrationPage.enterParkingLevel(data.getCellData("ProjectRegistration", 19, 2));
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.Check_Owner_Type(data.getCellData("ProjectRegistration", 20, 2));
+		ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 21, 2));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectRegistrationPage.Check_Owner_Region(data.getCellData("ProjectRegistration", 23, 2));
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
+
+		flag = ProjectPaymentPage.checkUnregisteredParkingProjectCreation();
+		System.out.println("Flag is -------------> " + flag);
+		if (flag) {
+			String Url = driver.getCurrentUrl();
+			System.out.println("Url is ---------> " + Url);
+			String UrlParts[] = Url.split("/");
+			UnregisteredProjectID = (String) Array.get(UrlParts, 4);
+			System.setProperty("UnregisteredParkSmartProjectID", UnregisteredProjectID);
+			System.out.println("Project Id is ----->" + UnregisteredProjectID);
+			if (UnregisteredProjectID.substring(0, 4).equals("1000")) {
+				log.info("Project creation done successfully.......");
+				Assert.assertTrue(true);
+			} else {
+				log.info(" Project creation failed..................");
+				Assert.assertTrue(false);
+			}
+
+		}
+		ProjectPaymentPage.CancelPaymentButton();
+		log.info("Parking_Unregistered_TestProject_Creation method ends here ........... ");
+	}
+
+	@Test(groups = { "ParkSmartRegression" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value" }, priority = 24, enabled = true, description = "Verify if 'project is private' is selected, shows private as 'Yes' under Manage--project.")
+	public void Parking_Project_Is_Private_Creation() {
+		log.info("Parking_Project_Is_Private_Creation method started ........... ");
+		String ProjectParkingID = "";
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		HomePage.clickOnProject();
+		HomePage.clickOnParkingSubMenu();
+		String handle = driver.getWindowHandle();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String ParkingProjectName = data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5);
+		ProjectRegistrationPage.enterProjectName(ParkingProjectName);
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.enterParkingSpace(data.getCellData("ProjectRegistration", 18, 2));
+		ProjectRegistrationPage.enterParkingLevel(data.getCellData("ProjectRegistration", 19, 2));
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.Check_Owner_Type(data.getCellData("ProjectRegistration", 20, 2));
+		ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 21, 2));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectRegistrationPage.Check_Owner_Region(data.getCellData("ProjectRegistration", 23, 2));
+		ProjectRegistrationPage.SelectProjectIsPrivateCheckBox();
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		
+		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		ProjectPaymentPage.EnterBillingName(data.getCellData("ProjectRegistration", 24, 2) + CommonMethod.generateRandomNumber(2));
+		ProjectPaymentPage.enterBillingEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectPaymentPage.EnterBillingAddress(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectPaymentPage.EnterBillingCity(data.getCellData("ProjectRegistration", 4, 2));
+		ProjectPaymentPage.EnterBillingZipCode(data.getCellData("ProjectRegistration", 7, 2));
+		ProjectPaymentPage.selectBillingState(data.getCellData("ProjectRegistration", 6, 2));
+		ProjectPaymentPage.EnterCardNumber(data.getCellData("ProjectRegistration", 25, 2));
+		ProjectPaymentPage.EnterExpiryDate(data.getCellData("ProjectRegistration", 26, 2));
+		ProjectPaymentPage.EnterCvv(data.getCellData("ProjectRegistration", 27, 2));
+
+		ParkingPage = ProjectPaymentPage.ClickonParkingSubmitButton();
+
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		boolean flag = ParkingPage.checkParkingProjectCreation(ParkingProjectName);
+		if (flag) {
+			ParkingPage.ClickonProjectInManage();
+			ProjectParkingID = ParkingPage.getProjectID(ParkingProjectName);
+			System.setProperty("ParkingProject_Private", ProjectParkingID);
+			log.info("  ParkingProject_Private is ---" + ProjectParkingID);
+			if ((ParkingPage.CheckProjectIsPrivateFlagUnderManage(ProjectParkingID) == true)) {
+				Assert.assertTrue(true);
+			} else {
+				log.info("This is Project is Private as YES radiobutton is not selected..................");
+				Assert.assertTrue(false);
+			}
+
+		} else {
+			log.info("Project is Private Creation gets failed..........");
+			Assert.assertTrue(false);
+		}
+
+		log.info("Parking_Project_Is_Private_Creation method ends here ........... ");
+	}
+
+	// Successful Payment open all measures page
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
+			"Parking_ProjectType_Parking_Value", "Parking_AutoPopulate_Address_City_Country_State_ZipCode",
+			"Parking_AutoPopulate_Latitude_Longitude" }, priority = 25, enabled = true, description = "Verify after successful payment, user sould be redirected to 'All measures' page of the project.")
+	public void Parking_Project_Creation_Opens_AllMeasures_Screen() {
+		log.info("Parking_Project_Creation_Opens_AllMeasures_Screen method started ........... ");
+		String ProjectParkingID = null;
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+			/*
+			 * if (!HomePage.CheckHomePageLabel())
+			 * ProjectRegistrationPage.closeProjectButton();
+			 * HomePage.setHomePageApplication();
+			 */
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String handle = driver.getWindowHandle();
+		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
+		String ParkingProjectName = data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5);
+		ProjectRegistrationPage.enterProjectName(ParkingProjectName);
+		ProjectRegistrationPage.SelectParkingProjectType();
+		ProjectRegistrationPage.enterParkingSpace(data.getCellData("ProjectRegistration", 18, 2));
+		ProjectRegistrationPage.enterParkingLevel(data.getCellData("ProjectRegistration", 19, 2));
+		System.out.println(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.enterGrossArea(data.getCellData("ProjectRegistration", 17, 2));
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.Check_Owner_Type(data.getCellData("ProjectRegistration", 20, 2));
+		ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 21, 2));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectRegistrationPage.Check_Owner_Region(data.getCellData("ProjectRegistration", 23, 2));
+		ProjectRegistrationPage.CheckAddress_City_Country_State_ZipCode(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+
+		ProjectPaymentPage = ProjectRegistrationPage.ClickonParkingAddProjectButton();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		ProjectPaymentPage.EnterBillingName(data.getCellData("ProjectRegistration", 24, 2) + CommonMethod.generateRandomNumber(2));
+		ProjectPaymentPage.enterBillingEmail(data.getCellData("ProjectRegistration", 22, 2));
+		ProjectPaymentPage.EnterBillingAddress(data.getCellData("ProjectRegistration", 3, 2));
+		ProjectPaymentPage.EnterBillingCity(data.getCellData("ProjectRegistration", 4, 2));
+		ProjectPaymentPage.EnterBillingZipCode(data.getCellData("ProjectRegistration", 7, 2));
+		ProjectPaymentPage.selectBillingState(data.getCellData("ProjectRegistration", 6, 2));
+		ProjectPaymentPage.EnterCardNumber(data.getCellData("ProjectRegistration", 25, 2));
+		ProjectPaymentPage.EnterExpiryDate(data.getCellData("ProjectRegistration", 26, 2));
+		ProjectPaymentPage.EnterCvv(data.getCellData("ProjectRegistration", 27, 2));
+
+		ParkingPage = ProjectPaymentPage.ClickonParkingSubmitButton();
+		
+		ngWebDriver.waitForAngularRequestsToFinish();
+		
+		boolean flag = ParkingPage.checkParkingProjectCreation(ParkingProjectName);
+		String HeaderText = ParkingPage.CheckAllMeasureHeaderShowing();
+		if (flag) {
+			ParkingPage.ClickonProjectInManage();
+			ProjectParkingID = ParkingPage.getProjectID(ParkingProjectName);
+			if ((HeaderText.equals("All Measures"))) {
+				Assert.assertTrue(true);
+			} else {
+				Assert.assertTrue(false);
+			}
+
+			log.info("Parking_Project_Creation_Opens_Measures_Screen method ends here ........... ");
+		}
+	}
 }

@@ -672,7 +672,21 @@ public class CommonMethod extends BaseClass {
 
 		return sb.toString();
 	}
+	
+	public static String generateRandomNumber(int n) {
+		String NumericSeries = "0123456789";
+		StringBuilder sb = new StringBuilder(n);
 
+		for (int i = 0; i < n; i++) {
+
+			int index = (int) (NumericSeries.length() * Math.random());
+
+			sb.append(NumericSeries.charAt(index));
+		}
+
+		return sb.toString();
+	}
+	
 	// This method will switch to defautl content from any frame
 
 	public static void switchToDefaultContent() {
