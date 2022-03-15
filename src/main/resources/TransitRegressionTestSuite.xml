@@ -12,7 +12,7 @@
 
 	<test name="Transit RegressionTest Cases" preserve-order="true">
 		<parameter name="browserName" value="chrome" />
-		<parameter name="environment" value="STG"/>
+		<parameter name="environment" value="QAS"/>
 		<groups>
 		<run>
 		<include name="ProjectRegsRegression"/>
@@ -23,8 +23,8 @@
 			<class name="com.arc.testCases.LoginPageTest" />
 			<class name="com.arc.testCases.HomePageTest" />
 			<class name="com.arc.testCases.ProjectRegistrationPageTest" />
-			<class name="com.arc.testCases.ProjectPaymentPageTest"/>	
-			<class name="com.arc.testCases.Project.ParkingPageTest" /> 
+			<!-- <class name="com.arc.testCases.ProjectPaymentPageTest"/>	
+			<class name="com.arc.testCases.Project.TransitPageTest" />--> 
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
