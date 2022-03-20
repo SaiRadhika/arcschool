@@ -36,16 +36,16 @@ public class CommunitiesPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//*[text()='Certifications' and @class='ml10'])[1]")
 	WebElement CertificationsMenu;
-	
+
 	@FindBy(xpath = "(//*[text()='Data Input'])[1]")
 	WebElement DataInputSubMenu;
 
 	@FindBy(xpath = "(//a[text()=' Score Version '])[1]")
 	WebElement ScoreVersionSubmenu;
-	
+
 	@FindBy(xpath = "//table[@class='building-settings']/tbody/tr/td[2]/div")
 	WebElement ProjectSettingButton;
-	
+
 	@FindBy(xpath = "(//a[text()=' Settings '])[1]")
 	WebElement SettingsSubmenu;
 
@@ -119,6 +119,15 @@ public class CommunitiesPageObject extends BaseClass {
 	WebElement Population_ActivityButton;
 
 	@FindBy(xpath = "(//*[@id='comment_box'])[1]")
+	WebElement ProjectSetting_CommentTextBox;
+
+	@FindBy(xpath = "(//button[text()='Post'])[1]")
+	WebElement ProjectSetting_PostButton;
+
+	@FindBy(xpath = "//span[text()='Activity']")
+	WebElement ProjectSetting_ActivityButton;
+
+	@FindBy(xpath = "(//*[@id='comment_box'])[1]")
 	WebElement ProjectArea_CommentTextBox;
 
 	@FindBy(xpath = "(//button[text()='Post'])[1]")
@@ -129,6 +138,9 @@ public class CommunitiesPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//*[@id='comment_box'])[2]")
 	WebElement Energy_CommentTextBox;
+
+	@FindBy(xpath = "(//*[@id='comment_box'])[2]")
+	WebElement CommentTextBox;
 
 	@FindBy(xpath = "(//button[@class='btn btn-default button--post'])[2]")
 	WebElement Energy_PostButton;
@@ -313,6 +325,13 @@ public class CommunitiesPageObject extends BaseClass {
 
 	// ****************************Quality Of Life--> Health And Safety
 	// Objects************************
+
+	@FindBy(xpath = "(//ul[@class='meterNav'])[2]/li[2]/span")
+	WebElement DetailsTab;
+
+	@FindBy(xpath = "//span[text()='Data']")
+	WebElement DataTab;
+
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[5]/tr[2]/td[2]/div")
 	WebElement HealthAndSafety;
 
@@ -324,6 +343,51 @@ public class CommunitiesPageObject extends BaseClass {
 
 	@FindBy(xpath = "//span[text()='Add Year']/parent::button")
 	WebElement HealthAndSafety_Data_AddYearBtn;
+
+	@FindBy(xpath = "//span[text()='Add Year']/parent::button")
+	WebElement Data_AddYearBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='Save']/parent::button")
+	WebElement Data_FirstRow_SaveBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[2]/td//span[text()='Save']/parent::button")
+	WebElement Data_SecondRow_SaveBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[3]/td//span[text()='Save']/parent::button")
+	WebElement Data_ThirdRow_SaveBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='Edit']/parent::button")
+	WebElement Data_FirstRow_EditBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[2]/td//span[text()='Edit']/parent::button")
+	WebElement Data_SecondRow_EditBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[3]/td//span[text()='Edit']/parent::button")
+	WebElement Data_ThirdRow_EditBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//input[@ng-model='data.reading']")
+	WebElement Data_FirstRowReadingTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[2]/td//input[@ng-model='data.reading']")
+	WebElement Data_SecondRowReadingTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[3]/td//input[@ng-model='data.reading']")
+	WebElement Data_ThirdRowReadingTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'start_date')]")
+	WebElement Data_FirstRowYearTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[2]/td//input[contains(@id,'start_date')]")
+	WebElement Data_SecondRowYearTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[3]/td//input[contains(@id,'start_date')]")
+	WebElement Data_ThirdRowYearTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//span[contains(@class,'deleteReading')]")
+	WebElement Data_FirstRowDeleteIcon;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[2]/td//span[contains(@class,'deleteReading')]")
+	WebElement Data_SecondRowDeleteIcon;
 
 	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")
 	WebElement HealthAndSafety_Data_Save_EditBtn;
@@ -551,7 +615,6 @@ public class CommunitiesPageObject extends BaseClass {
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr[2]/td[2]/div")
 	WebElement AdditionalData;
 
-	
 	// *******************************Manage-Project Sections
 
 	@FindBy(xpath = "//input[@name='manageEntityName']")
@@ -568,6 +631,7 @@ public class CommunitiesPageObject extends BaseClass {
 
 	@FindBy(xpath = "//input[@name='targetCertDate']")
 	WebElement TargetCertificationDate;
+
 	// ************************************************************************
 	public CommunitiesPageObject() {
 		PageFactory.initElements(driver, this);
@@ -577,9 +641,11 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("ClickonAgreementInManage method starts here ....");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(AgreementSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AgreementSubmenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("ClickonAgreementInManage method ends here ....");
 	}
 
@@ -599,9 +665,11 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("ClickonBillingInManage method ends here ....");
 		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(BillingSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BillingSubmenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("ClickonBillingInManage method ends here ....");
 	}
 
@@ -612,6 +680,7 @@ public class CommunitiesPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		DataInputSubMenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("ClickonDataInput method ends here. ...");
 	}
 
@@ -628,6 +697,7 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 
 	}
+
 	public void ClickonProjectSetting() {
 
 		log.info("ClickonProjectSetting method started here. ...");
@@ -636,6 +706,7 @@ public class CommunitiesPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ProjectSettingButton.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(PopulationTab,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
@@ -648,12 +719,39 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("ClickonProjectSetting method ends here. ...");
 	}
 
+	public void ClickOnProjectAreaTab() {
+		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(ProjectAreaTab);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+	}
+
+	public void ClickOnDetailsTab() {
+		waithelper.WaitForElementClickable(DetailsTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(DetailsTab);
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(CommentTextBox, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+	}
+
 	// This method will click on Energy --> GHG Emissions
 	public void ClickonGHGEmiissions() {
 
 		log.info("ClickonGHGEmiissions method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(GHGEmission,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -663,11 +761,12 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		GHGEmission.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'GHG Emissions')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -680,8 +779,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonVMT() {
 
 		log.info("ClickonVMT method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(Transport_VMT,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -697,7 +794,7 @@ public class CommunitiesPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -711,8 +808,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonHealthAndSafety() {
 
 		log.info("ClickonHealthAndSafety method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(HealthAndSafety,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -722,12 +817,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		HealthAndSafety.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(
 						By.xpath("(//*[contains(text(),'Health & Safety: Median air quality index (AQI)')])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -741,8 +837,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonEducation_BachelorPopulation() {
 
 		log.info("ClickonEducation_BachelorPopulation method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(Education_BachelorPopulation,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -752,12 +846,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		Education_BachelorPopulation.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Education: Population with (at least) Bachelor's degree\")])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -771,8 +866,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonEquitability_Gini_Coeffiecient() {
 
 		log.info("ClickonEquitability_Gini_Coeffiecient method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(Equitability_Gini_Coefficient,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -782,12 +875,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		Equitability_Gini_Coefficient.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Equitability: Gini coefficient (for income distribution)\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -801,8 +895,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonEducation_HighSchoolPopulation() {
 
 		log.info("ClickonEducation_HighSchoolPopulation method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(Education_HighSchoolPopulation,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -812,12 +904,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		Education_HighSchoolPopulation.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Education: Population with (at least) High School degree (%)\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -830,8 +923,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonProsperity_MedianIncome() {
 
 		log.info("ClickonProsperity_MedianIncome method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(ProsperityMedianIncome,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -841,12 +932,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		ProsperityMedianIncome.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By
 						.xpath("(//*[contains(text(),\"Prosperity: Median household income (US Dollars/Year)\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -860,8 +952,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonEquitability_MedianGrossIncome() {
 
 		log.info("ClickonEquitability_MedianGrossIncome method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(Equitability_MedianGrossIncome,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -871,12 +961,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		Equitability_MedianGrossIncome.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath(
 						"(//*[contains(text(),\"Equitability: Median gross rent as (%) of household income\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -890,8 +981,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonProsperityUnemployementRate() {
 
 		log.info("ClickonProsperityUnemployementRate method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(ProsperityUnemployementRate,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -901,11 +990,12 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		ProsperityUnemployementRate.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),\"Prosperity: Unemployment rate (%)\")])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -919,8 +1009,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonHealthAndSafetySensitiveGroup() {
 
 		log.info("ClickonHealthAndSafetySensitiveGroup method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(HealthAndSafetySensitiveGroup,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -930,11 +1018,12 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		HealthAndSafetySensitiveGroup.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath(
 				"(//*[contains(text(),\"Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr)\")])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -948,8 +1037,6 @@ public class CommunitiesPageObject extends BaseClass {
 	public void ClickonHealthAndSafetyVoilentCrime() {
 
 		log.info("ClickonHealthAndSafetyVoilentCrime method started here.....");
-
-		// driver.switchTo().frame("datainput-widget");
 		try {
 			waithelper.WaitForElementVisibleWithPollingTime(HealthAndSafetyVoilentCrime,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -959,12 +1046,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 		HealthAndSafetyVoilentCrime.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By
 						.xpath("(//*[contains(text(),\"Health & Safety: Violent Crime (per year per capita)\")])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -986,11 +1074,13 @@ public class CommunitiesPageObject extends BaseClass {
 
 		}
 		AdditionalData.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Additional Data')])[3]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1002,16 +1092,16 @@ public class CommunitiesPageObject extends BaseClass {
 	// This method will click on Water --> Water Consumption
 	public void ClickonWaterConsumption() {
 		log.info("ClickonWaterConsumption method started .............");
-
-		// driver.switchTo().frame("datainput-widget");
 		waithelper.WaitForElementVisibleWithPollingTime(WaterConsumption,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		WaterConsumption.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Water consumption')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1023,16 +1113,16 @@ public class CommunitiesPageObject extends BaseClass {
 	// intensity
 	public void ClickonMunicipalSolidwastegeneration() {
 		log.info("ClickonMunicipalSolidwastegeneration method started .............");
-
-		// driver.switchTo().frame("datainput-widget");
 		waithelper.WaitForElementVisibleWithPollingTime(Waste_Solid_Generation,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Waste_Solid_Generation.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("(//*[contains(text(),'Municipal solid waste generation intensity')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1043,17 +1133,17 @@ public class CommunitiesPageObject extends BaseClass {
 	// This method will click on Waste --> Municipal solid waste Diversion
 	public void ClickonMunicipalSolidWasteDiversion() {
 		log.info("ClickonMunicipalSolidWasteDiversion method started .............");
-
-		// driver.switchTo().frame("datainput-widget");
 		waithelper.WaitForElementVisibleWithPollingTime(Waste_Solid_Diversion,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Waste_Solid_Diversion.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(
 						By.xpath("(//*[contains(text(),'Municipal solid waste diversion rate from landfill')])[4]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1078,7 +1168,9 @@ public class CommunitiesPageObject extends BaseClass {
 		try {
 
 			ManageMenu.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			ProjectSubmenu.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1092,8 +1184,10 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("ClickonTeamInManage method starts here ....");
 		;
 		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		TeamSubmenu.click();
 		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.waitForElement(driver.findElement(By.xpath("//span[text()='Team']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
@@ -1194,6 +1288,7 @@ public class CommunitiesPageObject extends BaseClass {
 		boolean flag = false;
 		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(ProjectAreaTab);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// ProjectAreaTab.click();
 		try {
 			Thread.sleep(2000);
@@ -1216,12 +1311,11 @@ public class CommunitiesPageObject extends BaseClass {
 
 		boolean flag = false;
 		try {
-			// PopulationTab.click();
 			Thread.sleep(3000);
 			waithelper.WaitForElementClickable(ProjectSettingAddRowButton,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			ProjectSettingAddRowButton.click();
-
+			ngWebDriver.waitForAngularRequestsToFinish();
 			if (PopulationEffectiveYearHeading.getText().equals("EFFECTIVE YEAR")
 					&& Population_populationHeading.getText().equals("POPULATION")
 					&& Population_UpdatedByHeading.getText().equals("UPDATED BY")
@@ -1237,17 +1331,19 @@ public class CommunitiesPageObject extends BaseClass {
 	}
 
 	// This method will add comment and check in activity section DI - > Project
-	// Setting - > Population Tab and check it in Activity
-	public boolean checkPopulationCommentAndActivity(String comment, String uname) {
-		log.info("checkPopulationCommentAndActivity  starts here........");
+	// Setting - > Population Tab and Project Area Tab and check it in Activity
+	public boolean CheckProjectSettingCommentAndActivity(String comment, String uname, String ProgramName) {
+		log.info("CheckProjectSettingCommentAndActivity  starts here........");
 		boolean Commentflag = false;
-		waithelper.WaitForElementClickable(Population_CommentTextBox,
+		boolean ActivityTimeFlag = false;
+		String ExpComment = null;
+		waithelper.WaitForElementClickable(ProjectSetting_CommentTextBox,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Population_CommentTextBox.sendKeys(comment);
-		waithelper.WaitForElementClickable(Population_PostButton, Integer.parseInt(prop.getProperty("explicitTime")),
-				2);
-		JSHelper.clickElement(Population_PostButton);
-		// Population_PostButton.click();
+		ProjectSetting_CommentTextBox.sendKeys(comment);
+		waithelper.WaitForElementClickable(ProjectSetting_PostButton,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(ProjectSetting_PostButton);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
 		Date date = new Date();
 		String strDate = formatter.format(date);
@@ -1255,19 +1351,13 @@ public class CommunitiesPageObject extends BaseClass {
 		LocalTime localTime = LocalTime.now();
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 		String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
-		// log.info(localTime.format(dateTimeFormatter));
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		Commentflag = driver.findElement(By.xpath("(//p[text()='" + comment + "'])[1]")).isDisplayed();
 		log.info(" Comment display in Comment Tab is --" + Commentflag);
-		waithelper.WaitForElementClickable(Population_ActivityButton,
+		waithelper.WaitForElementClickable(ProjectSetting_ActivityButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Population_ActivityButton.click();
+		ProjectSetting_ActivityButton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1281,7 +1371,18 @@ public class CommunitiesPageObject extends BaseClass {
 		String ActivtyComment = driver.findElement(By.xpath("//table[@class='mb10 ng-scope']/tbody/tr/td[2]/p"))
 				.getText();
 
-		String ExpComment = uname + " commented in Population";
+		switch (ProgramName) {
+		case "Population":
+			ExpComment = uname + " commented in Population";
+			break;
+		case "Project Area":
+			ExpComment = uname + " commented in Project Area";
+			break;
+
+		default:
+			log.info("Wrong Program Name passed... ");
+			break;
+		}
 
 		log.info("Displayed Activity Date is ---" + ActivityDate);
 		log.info("Displayed Activity Time is ---" + ActivityTime);
@@ -1289,30 +1390,35 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("Expected Activity Time is ---" + currentTime);
 		log.info("Expected Activity Date is ---" + strDate);
 		log.info("Expected Activity Comment is ---" + ExpComment);
-		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+
+		long TimeDiff = CommonMethod.AbsoluteTimeDifference(currentTime, ActivityTime);
+
+		if (TimeDiff <= 60000) // If Time difference is less than equal to 1 minute then consider Time is
+								// proper
+		{
+			ActivityTimeFlag = true;
+		}
+
+		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTimeFlag)
 				&& (ActivtyComment.equals(ExpComment))) {
-			log.info("checkPopulationCommentAndActivity  ends here........");
+			log.info("CheckProjectSettingCommentAndActivity  ends here........");
 			return true;
 		} else {
-			log.info("checkPopulationCommentAndActivity  ends here........");
+			log.info("CheckProjectSettingCommentAndActivity  ends here........");
 			return false;
 		}
 
 	}
+
+
 
 	// This method will add comment and check in activity section DI - > Energy
 	// - > GHS Emission Tab and check it in Activity
 	public boolean checkEnergyCommentAndActivity(String comment, String uname) {
 		log.info("checkEnergyCommentAndActivity  starts here........");
 		boolean Commentflag = false;
-		JSHelper.clickElement(GHGEmission_DetailsTab);
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		boolean ActivityTimeFlag = false;
+		
 		waithelper.WaitForElementClickable(Energy_CommentTextBox, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		Energy_CommentTextBox.sendKeys(comment);
@@ -1369,8 +1475,14 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("Expected Activity Time is ---" + currentTime);
 		log.info("Expected Activity Date is ---" + strDate);
 		log.info("Expected Activity Comment is ---" + ExpComment);
+		long TimeDiff = CommonMethod.AbsoluteTimeDifference(currentTime, ActivityTime);
 
-		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+		if (TimeDiff <= 60000) // If Time difference is less than equal to 1 minute then consider Time is
+								// proper
+		{
+			ActivityTimeFlag = true;
+		}
+		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTimeFlag)
 				&& (ActivityComment.equals(ExpComment))) {
 			log.info("Comments and activity showing proper");
 			log.info("checkEnergyCommentAndActivity  ends here........");
@@ -1389,14 +1501,8 @@ public class CommunitiesPageObject extends BaseClass {
 	public boolean checkTransportCommentAndActivity(String comment, String uname) {
 		log.info("checkTransportCommentAndActivity  starts here........");
 		boolean Commentflag = false;
-		JSHelper.clickElement(VMT_DetailsTab);
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		boolean ActivityTimeFlag = false;
+		
 		waithelper.WaitForElementClickable(VMT_CommentTextBox, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		VMT_CommentTextBox.sendKeys(comment);
 		waithelper.WaitForElementClickable(VMT_PostButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1418,13 +1524,9 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		// waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("(//p[text()='"
-		// + comment + "'])[1]")), Integer.parseInt(prop.getProperty("explicitTime")),
-		// 2);
 		String xp = "(//p[text()='" + comment + "'])[2]";
 		Commentflag = driver.findElement(By.xpath(xp)).isDisplayed();
-		// log.info("Commentenabled flag --"+
-		// driver.findElement(By.xpath(xp)).isEnabled());
+
 		log.info("Comment displayed flag --" + Commentflag);
 		waithelper.WaitForElementClickable(VMT_ActivityButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		VMT_ActivityButton.click();
@@ -1452,7 +1554,14 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("Expected Activity Date is ---" + strDate);
 		log.info("Expected Activity Comment is ---" + ExpComment);
 
-		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+		long TimeDiff = CommonMethod.AbsoluteTimeDifference(currentTime, ActivityTime);
+
+		if (TimeDiff <= 60000) // If Time difference is less than equal to 1 minute then consider Time is
+								// proper
+		{
+			ActivityTimeFlag = true;
+		}
+		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTimeFlag)
 				&& (ActivityComment.equals(ExpComment))) {
 			log.info("Comments and activity showing proper");
 			log.info("checkTransportCommentAndActivity  ends here........");
@@ -1921,14 +2030,8 @@ public class CommunitiesPageObject extends BaseClass {
 	public boolean checkWaterCommentAndActivity(String comment, String uname) {
 		log.info("checkWaterCommentAndActivity  starts here........");
 		boolean Commentflag = false;
-		JSHelper.clickElement(WaterConsum_DetailsTab);
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		boolean ActivityTimeFlag = false;
+		
 		waithelper.WaitForElementClickable(Water_CommentTextBox, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		Water_CommentTextBox.sendKeys(comment);
 		waithelper.WaitForElementClickable(Water_PostButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -1979,8 +2082,14 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("Expected Activity Time is ---" + currentTime);
 		log.info("Expected Activity Date is ---" + strDate);
 		log.info("Expected Activity Comment is ---" + ExpComment);
+		long TimeDiff = CommonMethod.AbsoluteTimeDifference(currentTime, ActivityTime);
 
-		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+		if (TimeDiff <= 60000) // If Time difference is less than equal to 1 minute then consider Time is
+								// proper
+		{
+			ActivityTimeFlag = true;
+		}
+		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTimeFlag)
 				&& (ActivityComment.equals(ExpComment))) {
 			log.info("Comments and activity showing proper");
 			log.info("checkWaterCommentAndActivity  ends here........");
@@ -1998,14 +2107,8 @@ public class CommunitiesPageObject extends BaseClass {
 	public boolean checkWasteGenerationCommentAndActivity(String comment, String uname) {
 		log.info("checkWasteGenerationCommentAndActivity  starts here........");
 		boolean Commentflag = false;
-		JSHelper.clickElement(WasteGen_DetailsTab);
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		boolean ActivityTimeFlag = false;
+		
 		waithelper.WaitForElementClickable(Waste_Gen_CommentTextBox, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		Waste_Gen_CommentTextBox.sendKeys(comment);
@@ -2058,7 +2161,14 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("Expected Activity Date is ---" + strDate);
 		log.info("Expected Activity Comment is ---" + ExpComment);
 
-		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+		long TimeDiff = CommonMethod.AbsoluteTimeDifference(currentTime, ActivityTime);
+
+		if (TimeDiff <= 60000) // If Time difference is less than equal to 1 minute then consider Time is
+								// proper
+		{
+			ActivityTimeFlag = true;
+		}
+		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTimeFlag)
 				&& (ActivityComment.equals(ExpComment))) {
 			log.info("checkWasteGenerationCommentAndActivity  ends here........");
 			return true;
@@ -2075,14 +2185,8 @@ public class CommunitiesPageObject extends BaseClass {
 	public boolean checkWasteDiversionCommentAndActivity(String comment, String uname) {
 		log.info("checkWasteDiversionCommentAndActivity  starts here........");
 		boolean Commentflag = false;
-		JSHelper.clickElement(WasteDiv_DetailsTab);
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		boolean ActivityTimeFlag = false;
+		
 		waithelper.WaitForElementClickable(Waste_Div_CommentTextBox, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		Waste_Div_CommentTextBox.sendKeys(comment);
@@ -2119,11 +2223,7 @@ public class CommunitiesPageObject extends BaseClass {
 		String ActivityTime = driver
 				.findElement(By.xpath("(//table[@class='mb20 ng-scope']/tbody[1]/tr/td[1]/span)[2]")).getText()
 				.toLowerCase();
-		// String ActivtyComment = driver.findElement(By.xpath("//table[@class='mb20
-		// ng-scope']/tbody/tr/td[2]/p")).getText();
-
-		// boolean ActivityTime =
-		// driver.findElement(By.xpath("(//td[@class='vtop']/span[text()='"+currentTime+"'])[2]")).isDisplayed();
+		
 		String ActivityComment = driver.findElement(By.xpath(
 				"(//td[@class='vtop']/span[text()='" + ActivityTime + "'])[2]/parent::td/following-sibling::td/p"))
 				.getText();
@@ -2135,7 +2235,14 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("Expected Activity Date is ---" + strDate);
 		log.info("Expected Activity Comment is ---" + ExpComment);
 
-		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTime.equals(currentTime))
+		long TimeDiff = CommonMethod.AbsoluteTimeDifference(currentTime, ActivityTime);
+
+		if (TimeDiff <= 60000) // If Time difference is less than equal to 1 minute then consider Time is
+								// proper
+		{
+			ActivityTimeFlag = true;
+		}
+		if (Commentflag && (ActivityDate.equals(strDate)) && (ActivityTimeFlag)
 				&& (ActivityComment.equals(ExpComment))) {
 			log.info("checkWasteDiversionCommentAndActivity  ends here........");
 			return true;
@@ -3026,33 +3133,21 @@ public class CommunitiesPageObject extends BaseClass {
 		return flag;
 
 	}
-	// Project Setting -- > Population --> This method will add records and check
-	// whether filter is working or not
 
-	public boolean CheckPopulationFilter() {
-		log.info("CheckPopulationFilter starts here ................");
+	public void ProjectSetting_AddRecords() {
+		log.info("ProjectSetting_AddRecords starts here ................");
 
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean RowAddedflag = false;
+		// boolean RowAddedflag = false;
 		boolean flag = false;
-		// List<WebElement> rows =
-		// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-
 		int CurrentYear = CommonMethod.getCurrentYear();
 		int StartYear = CurrentYear - 5;
 		int prev_year = CurrentYear - 1;
 		int population = 100;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
+		// int filterStartYear = StartYear + 2;
+		// int filterEndYear = StartYear + 4;
 		List<WebElement> ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 
-		// int TotalRowsBeforeAdding = ListOfRows.size();
 		int TotalRowsAfterAdding;
 		log.info("Total rows before adding any row--  " + TotalRowsBeforeAdding);
 		log.info("Population-->Going to add record from --" + StartYear + "  to " + prev_year);
@@ -3063,23 +3158,15 @@ public class CommunitiesPageObject extends BaseClass {
 			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			waithelper.WaitForElementClickable(ProjectSettingAddRowButton,
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
+			ngWebDriver.waitForAngularRequestsToFinish();
 			ProjectSettingAddRowButton.click();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'start_date')]")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
 			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")), 5, 2);
+
 			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
 			try {
 				driver.findElement(By.xpath(xpath)).click();
@@ -3091,3349 +3178,292 @@ public class CommunitiesPageObject extends BaseClass {
 
 			}
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[@ng-model='data.reading']"))
 					.sendKeys(Integer.toString(population));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/button")).click();
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='Save']/parent::button"))
+					.click();
 
 			try {
 				waithelper.WaitForElementVisibleWithPollingTime(
 						driver.findElement(By.xpath(
-								"//table[@id='readingsTable']/tbody/tr[1]/td[4]/*[@class='fade-out saved_symbol']")),
+								"//table[@id='readingsTable']/tbody/tr[1]//td/*[@class='fade-out saved_symbol']")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 				waithelper.WaitForElementInvisible(
 						driver.findElement(By.xpath(
-								"//table[@id='readingsTable']/tbody/tr[1]/td[4]/*[@class='fade-out saved_symbol']")),
+								"//table[@id='readingsTable']/tbody/tr[1]//td/*[@class='fade-out saved_symbol']")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath(
+							"//table[@id='readingsTable']/tbody/tr[1]/td//span[contains(@class,'deleteReading')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
 
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 1);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			/*
-			 * waithelper.WaitForElementVisibleWithPollingTime( driver.findElement(
-			 * By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/span")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 */
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			population = population + 5;
 
-			// ListOfRows =
-			// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-			// TotalRowsAfterAdding = ListOfRows.size();
 			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total row after adding --" + TotalRowsAfterAdding);
 			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-				RowAddedflag = true;
+				log.info("Record added for " + StartYear);
+				flag = true;
 			} else {
-				RowAddedflag = false;
-				log.info("Adding row is failed for the year..." + i);
+				log.info("Record is not added for " + StartYear);
+				flag = false;
 				break;
 			}
-
-			population = population + 100;
 		}
 
-		if (RowAddedflag) {
+		log.info("ProjectSetting_AddRecords ends here with  " + flag + "  ................");
+	}
+
+	public boolean CheckFilter_Reset() {
+		log.info("CheckFilter_Reset method starts here....");
+		int currentYear = CommonMethod.getCurrentYear();
+		int filterStartYear = currentYear - 4;
+		int filterEndYear = currentYear - 2;
+		boolean FilterFlag = false;
+		boolean ResetFlag = false;
+		waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		YearFilterButton.click();
+		YearStartDateTextBox.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")), 4, 2);
+		String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear + "']";
+		try {
+			driver.findElement(By.xpath(Startxpath)).click();
+		} catch (NoSuchElementException e) {
+			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
+			driver.findElement(By.xpath(Startxpath)).click();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		YearEndDateTextBox.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")), 4, 2);
+		String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
+		try {
+			driver.findElement(By.xpath(Endxpath)).click();
+		} catch (NoSuchElementException e) {
+			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
+			driver.findElement(By.xpath(Endxpath)).click();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		YearUpdateBtn.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
+		int j = 1;
+		if (RowsAfterFilter == 3) {
+			for (int i = filterEndYear; i >= filterStartYear; i--) {
+				String currentyear = driver.findElement(By.xpath(
+						"//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+						.getAttribute("value");
+				log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
+				if (!currentyear.equals(Integer.toString(i))) {
+					log.info("Filtered Year not matching");
+					FilterFlag = false;
+					break;
+				}
+
+				else {
+					FilterFlag = true;
+				}
+				j++;
+			}
+		}
+		log.info("Filter flag value is " + FilterFlag);
+		if (FilterFlag) {
 			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// ListOfRows =
-			// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-			// log.info("After Filter Total rows displaying are --" + ListOfRows.size());
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
+			ngWebDriver.waitForAngularRequestsToFinish();
+			YearResetBtn.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			j = 1;
+			for (int i = currentYear - 1; i >= currentYear - 5; i--) {
+				String Actualyear = driver.findElement(By.xpath(
+						"//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+						.getAttribute("value");
+				log.info("Current showing Year is --" + Actualyear + "  and filter year is --" + i);
+				if (!Actualyear.equals(Integer.toString(i))) {
+					log.info("Reset Year not matching");
+					ResetFlag = false;
+					break;
 				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + ListOfRows.size());
-				log.info("CheckPopulationFilter ends here with false ................");
-				return false;
+
+				else {
+					ResetFlag = true;
+				}
+				j++;
 			}
-			if (flag == true) {
-				log.info("CheckPopulationFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckPopulationFilter ends here with false ................");
-				return false;
-			}
+		}
+		log.info("Reset flag value is " + ResetFlag);
+		if (FilterFlag == true && ResetFlag == true) {
+			log.info("CheckFilter_Reset method ends here with true....");
+			return true;
 		} else {
-			log.info("CheckPopulationFilter ends here with false ................");
+			log.info("CheckFilter_Reset method ends here with false....");
 			return false;
 		}
 
 	}
 
-	// Project Setting -- > Project Area --> This method will add records and check
-	// whether filter is working or not
-
-	public boolean CheckProjectAreaFilter() {
-		log.info("CheckProjectAreaFilter starts here ................");
-		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(ProjectAreaTab);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+	public void Water_AddRecords() {
+		log.info("Water_AddRecords starts here ................");
 		boolean flag = false;
-		boolean RowAddedflag = false;
-		// List<WebElement> rows =
-		// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 5;
-		int prev_year = CurrentYear - 1;
-		int PArea = 100;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		// List<WebElement> ListOfRows =
-		// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		int StartYear = CurrentYear - 1;
+		int value = 10;
+		int TotalRowsBeforeAdding;
 		int TotalRowsAfterAdding;
-		log.info("Total rows before adding any row--  " + TotalRowsBeforeAdding);
-		log.info("Project Area-->Going to add record from " + StartYear + "to " + prev_year);
-		for (int i = StartYear; i < CurrentYear; i++) {
-			log.info("Project Area-->Going to add record for year--" + i + "  with " + PArea);
-			// ListOfRows =
-			// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		int j = 1;
+		for (int i = StartYear; i >= StartYear - 4; i--) {
 			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			waithelper.WaitForElementClickable(ProjectSettingAddRowButton,
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+			if (i == StartYear) {
+				waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")),
+						2);
+				Data_AddYearBtn.click();
+			} else {
+				waithelper.WaitForElementClickable(PreviousYearbutton,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				PreviousYearbutton.click();
 			}
-			ProjectSettingAddRowButton.click();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-			try {
-				driver.findElement(By.xpath(xpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(xpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
+			driver.findElement(By.xpath(xpath)).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 
-			}
-
-			// driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).sendKeys(Integer.toString(i));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(PArea));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/button")).click();
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[@ng-model='data.reading']"))
+					.sendKeys(Integer.toString(value));
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//span[text()='Save']/parent::button"))
+					.click();
 
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(
+				waithelper.WaitForElementInvisible(
 						driver.findElement(By.xpath(
-								"//table[@id='readingsTable']/tbody/tr[1]/td[4]/*[@class='fade-out saved_symbol']")),
+								"//table[@class='meterListByType--wrapper']/tbody[2]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath(
-								"//table[@id='readingsTable']/tbody/tr[1]/td[4]/*[@class='fade-out saved_symbol']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 1);
 			} catch (Exception e) {
 				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
 			}
+			ngWebDriver.waitForAngularRequestsToFinish();
 
-			try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j
+							+ "]/td//span[contains(@class,'deleteReading')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
 
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 1);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			// ListOfRows =
-			// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+			value = value + 5;
+			j++;
 			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total row after adding --" + TotalRowsAfterAdding);
 			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-				RowAddedflag = true;
+				log.info("Record added for " + StartYear);
+				flag = true;
 			} else {
-				RowAddedflag = false;
-				log.info("Adding row is failed for the year..." + i);
+				log.info("Record is not added for " + StartYear);
+				flag = false;
 				break;
 			}
-
-			PArea = PArea + 100;
 		}
-
-		if (RowAddedflag) {
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// ListOfRows =
-			// driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-			int TotalRowAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + TotalRowAfterFilter);
-			int j = 1;
-			if (TotalRowAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			}
-			if (flag == true) {
-				log.info("CheckProjectAreaFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckProjectAreaFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckProjectAreaFilter ends here with false ................");
-			return false;
-		}
+		log.info("Water_AddRecords ends here with  " + flag + "  ................");
 	}
 
-	// GHG Emissions -- > Energy --> This method will add records and check whether
-	// filter is working or not
-
-	public boolean CheckEnergyFilter() {
-		log.info("CheckEnergyFilter starts here ................");
-
+	public void Energy_AddRecords() {
+		log.info("Energy_AddRecords starts here ................");
 		boolean flag = false;
 		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int tons = 100;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		int StartYear = CurrentYear - 1;
+		int value = 10;
+		int TotalRowsBeforeAdding;
 		int TotalRowsAfterAdding;
-		log.info("Total rows before adding any row--  " + TotalRowsBeforeAdding);
-		GHGEmission_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(tons));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Row Circular Image");
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Energy Circular Image");
-		}
-
-		tons = tons + 10;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(tons));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate Row Circular Image");
-				}
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate Energy Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				tons = tons + 2;
-			}
-		}
-		if (flag) {
-			ClickonWaterConsumption();
-			ClickonGHGEmiissions();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckEnergyFilter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckEnergyFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckEnergyFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckEnergyFilter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Transportation -- > VMT --> This method will add records and check whether
-	// filter is working or not
-
-	public boolean CheckTransportationFilter() {
-		log.info("CheckTransportationFilter starts here ................");
-
-		boolean flag = false;
-		driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int Miles = 10;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		VMT_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(Miles));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Circular Image");
-		}
-
-		Miles = Miles + 2;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
+		int j = 1;
+		for (int i = StartYear; i >= StartYear - 4; i--) {
+			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (i == StartYear) {
+				waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")),
 						2);
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+				Data_AddYearBtn.click();
+			} else {
+				waithelper.WaitForElementClickable(PreviousYearbutton,
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				// driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).sendKeys(Integer.toString(i));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(Miles));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				Miles = Miles + 2;
+				PreviousYearbutton.click();
 			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonVMT();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
+			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
+			driver.findElement(By.xpath(xpath)).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[@ng-model='data.reading']"))
+					.sendKeys(Integer.toString(value));
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//span[text()='Save']/parent::button"))
+					.click();
+
 			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[1]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
-
+				log.info("Unable to locate  Circular Image");
 			}
-			YearEndDateTextBox.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
 			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j
+							+ "]/td//span[contains(@class,'deleteReading')]")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
+			ngWebDriver.waitForAngularRequestsToFinish();
 
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
+			value = value + 5;
+			j++;
+			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
+				log.info("Record added for " + StartYear);
+				flag = true;
 			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckTransportationFilter ends here with false ................");
-				return false;
+				log.info("Record is not added for " + StartYear);
+				flag = false;
+				break;
 			}
-			if (flag == true) {
-				log.info("CheckTransportationFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckTransportationFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckTransportationFilter ends here with false ................");
-			return false;
 		}
-
+		log.info("Energy_AddRecords ends here with  " + flag + "  ................");
 	}
 
-	// Quality Of Life--> Health And Safety --> This method will add records and
-	// check whether filter is working or not
-
-	public boolean CheckHealthAndSafetyFilter() {
-		log.info("CheckHealthAndSafetyFilter starts here ................");
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int Miles = 10;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		waithelper.WaitForElementClickable(HealthAndSafety_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		HealthAndSafety_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(Miles));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-
-		Miles = Miles + 2;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				// driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).sendKeys(Integer.toString(i));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(Miles));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				Miles = Miles + 2;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonHealthAndSafety();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckHealthAndSafetyFilter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckHealthAndSafetyFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckHealthAndSafetyFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckHealthAndSafetyFilter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
-	// (%) --> This method will add records and check whether filter is working or
-	// not
-
-	public boolean CheckEducation_Bachelor_Population_Filter() {
-		log.info("CheckEducation_Bachelor_Population_Filter starts here ................");
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int Percent = 50;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		waithelper.WaitForElementClickable(Education_BachelorPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Education_BachelorPopulation_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(Percent));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-
-		Percent = Percent + 2;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				// driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).sendKeys(Integer.toString(i));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(Percent));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				Percent = Percent + 2;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonEducation_BachelorPopulation();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckEducation_Bachelor_Population_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckEducation_Bachelor_Population_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckEducation_Bachelor_Population_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckEducation_Bachelor_Population_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Equitability: Gini coefficient (for income distribution)
-	// --> This method will add records and check whether filter is working or not
-
-	public boolean CheckEquitability_Gini_Coefficient_Filter() {
-		log.info("CheckEquitability_Gini_Coefficient_Filter starts here ................");
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 1;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		waithelper.WaitForElementClickable(Equitability_Gini_Coefficient_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(Equitability_Gini_Coefficient_Data_AddYearBtn);
-		// Equitability_Gini_Coefficient_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		// Percent=Percent+2;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				// driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).sendKeys(Integer.toString(i));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonEquitability_Gini_Coeffiecient();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckEquitability_Gini_Coefficient_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckEquitability_Gini_Coefficient_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckEquitability_Gini_Coefficient_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckEquitability_Gini_Coefficient_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Education: Population with (at least) High School degree
-	// (%) --> This method will add records and check whether filter is working or
-	// not
-
-	public boolean CheckEducation_HighSchoolPopulation_Filter() {
-		log.info("CheckEducation_HighSchoolPopulation_Filter starts here ................");
-		// JSHelper.clickElement(Education_HighSchoolPopulation_Data_AddYearBtn);
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 65;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-
-		waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Education_HighSchoolPopulation_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		value = value + 2;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				value = value + 2;
-			}
-		}
-
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonEducation_HighSchoolPopulation();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckEducation_HighSchoolPopulation_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckEducation_HighSchoolPopulation_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckEducation_HighSchoolPopulation_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckEducation_HighSchoolPopulation_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Prosperity: Median household income (US Dollars/Year) -->
-	// This method will add records and check whether filter is working or not
-
-	public boolean CheckProsperityMedianIncome_Filter() {
-		log.info("CheckProsperityMedianIncome_Filter starts here ................");
-		// JSHelper.clickElement(Education_HighSchoolPopulation_Data_AddYearBtn);
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 1000;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(ProsperityMedianIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		ProsperityMedianIncome_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		value = value + 10;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-				value = value + 10;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonProsperity_MedianIncome();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckProsperityMedianIncome_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckProsperityMedianIncome_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckProsperityMedianIncome_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckProsperityMedianIncome_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Equitability: Median gross rent as (%) of household income
-	// --> This method will add records and check whether filter is working or not
-
-	public boolean CheckEquitability_MedianGrossIncome_Filter() {
-		log.info("CheckProsperityMedianIncome_Filter starts here ................");
-		// JSHelper.clickElement(Education_HighSchoolPopulation_Data_AddYearBtn);
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 50;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Equitability_MedianGrossIncome_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-
-		value = value + 5;
-
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				value = value + 10;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonEquitability_MedianGrossIncome();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckEquitability_MedianGrossIncome_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckEquitability_MedianGrossIncome_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckEquitability_MedianGrossIncome_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckEquitability_MedianGrossIncome_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-	// Quality Of Life--> Prosperity: Unemployment rate (%) --> This method will add
-	// records and check whether filter is working or not
-
-	public boolean CheckProsperityUnemployementRate_Filter() {
-		log.info("CheckProsperityUnemployementRate_Filter starts here ................");
-		// JSHelper.clickElement(Education_HighSchoolPopulation_Data_AddYearBtn);
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 50;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Equitability_MedianGrossIncome_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		value = value + 5;
-
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				value = value + 5;
-			}
-		}
-
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonProsperityUnemployementRate();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckProsperityUnemployementRate_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckProsperityUnemployementRate_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckProsperityUnemployementRate_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckProsperityUnemployementRate_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Health & Safety: Air quality days unhealthy for sensitive
-	// groups (Days/yr) --> This method will add records and check whether filter is
-	// working or not
-
-	public boolean CheckHealthAndSafetySensitiveGroup_Filter() {
-		log.info("CheckHealthAndSafetySensitiveGroup_Filter starts here ................");
-		// JSHelper.clickElement(Education_HighSchoolPopulation_Data_AddYearBtn);
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 250;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafetySensitiveGroup_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		value = value + 5;
-
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				value = value + 5;
-			}
-		}
-
-		if (flag) {
-			ClickonHealthAndSafetySensitiveGroup();
-			ClickonWaterConsumption();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckHealthAndSafetySensitiveGroup_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckHealthAndSafetySensitiveGroup_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckHealthAndSafetySensitiveGroup_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckHealthAndSafetySensitiveGroup_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Quality Of Life--> Health & Safety: Violent Crime (per year per capita) -->
-	// This method will add records and check whether filter is working or not
-
-	public boolean CheckHealthAndSafetyVoilentCrime_Filter() {
-		log.info("CheckHealthAndSafetyVoilentCrime_Filter starts here ................");
-		// JSHelper.clickElement(Education_HighSchoolPopulation_Data_AddYearBtn);
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 250;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(HealthAndSafetyVoilentCrime_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafetyVoilentCrime_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		value = value + 5;
-
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				value = value + 5;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonHealthAndSafetyVoilentCrime();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckHealthAndSafetyVoilentCrime_Filter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckHealthAndSafetyVoilentCrime_Filter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckHealthAndSafetyVoilentCrime_Filter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckHealthAndSafetyVoilentCrime_Filter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Waste -- > Waste Generation --> This method will add records and check
-	// whether filter is working or not
-	public boolean CheckWaste_GenerationFilter() {
-		log.info("CheckWaste_GenerationFilter starts here ................");
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int tons = 100;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(Waste_AddYearButton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(tons));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Circular Image");
-		}
-
-		tons = tons + 10;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(tons));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate Circular Image");
-				}
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-				tons = tons + 2;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonMunicipalSolidwastegeneration();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckWaste_GenerationFilter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckWaste_GenerationFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckWaste_GenerationFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckWaste_GenerationFilter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Waste -- > Waste Generation --> This method will add records and check
-	// whether filter is working or not
-
-	public boolean CheckWaste_DiversionFilter() {
-		log.info("CheckWaste_DiversionFilter starts here ................");
-		// Waste_AddYearButton.click();
-
-		boolean flag = false;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int percent = 10;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		JSHelper.clickElement(Waste_AddYearButton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(percent));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Circular Image");
-		}
-
-		percent = percent + 3;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(percent));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate  Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-
-				percent = percent + 2;
-			}
-		}
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonMunicipalSolidwastegeneration();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckWaste_DiversionFilter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckWaste_DiversionFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckWaste_DiversionFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckWaste_DiversionFilter ends here with false ................");
-			return false;
-		}
-
-	}
-
-	// Water Consumption -- > This method will add records and check whether filter
-	// is working or not
-
-	public boolean CheckWaterFilter() {
-		log.info("CheckWaterFilter starts here ................");
-
-		boolean flag = false;
-		int TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		int TotalRowsAfterAdding;
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int StartYear = CurrentYear - 6;
-		int value = 100;
-		int filterStartYear = StartYear + 2;
-		int filterEndYear = StartYear + 4;
-		WaterConsum_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + StartYear + "']";
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Energy Circular Image");
-		}
-
-		value = value + 10;
-		TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		if (TotalRowsAfterAdding - TotalRowsBeforeAdding != 1) {
-			flag = false;
-			log.info("Record is not added for " + StartYear);
-
-		} else {
-			log.info("Record added for " + StartYear);
-			StartYear++;
-			for (int i = StartYear; i < CurrentYear; i++) {
-				TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")),
-						2);
-				NextYearbutton.click();
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				waithelper.WaitForElementVisibleWithPollingTime(
-						driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
-				try {
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (NoSuchElementException e) {
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-					driver.findElement(By.xpath(xpath)).click();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-						.sendKeys(Integer.toString(value));
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/button")).click();
-
-				try {
-					waithelper.WaitForElementVisibleWithPollingTime(
-							driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/span")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate Row Circular Image");
-				}
-
-				try {
-					waithelper.WaitForElementInvisible(
-							driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-							Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.info("Unable to locate Water Circular Image");
-				}
-
-				TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
-					log.info("Record added for " + i);
-					flag = true;
-				} else {
-					log.info("Record is not added for " + i);
-					flag = false;
-				}
-				value = value + 2;
-			}
-		}
-
-		if (flag) {
-			ClickonGHGEmiissions();
-			ClickonWaterConsumption();
-			waithelper.WaitForElementClickable(YearFilterButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearFilterButton.click();
-			YearStartDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Startxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterStartYear
-					+ "']";
-			try {
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Startxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-			YearEndDateTextBox.click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			String Endxpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + filterEndYear + "']";
-			try {
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (NoSuchElementException e) {
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]/thead/tr/th[1]")).click();
-				driver.findElement(By.xpath(Endxpath)).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-
-			}
-
-			waithelper.WaitForElementClickable(YearUpdateBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			YearUpdateBtn.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int RowsAfterFilter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("After Filter Total rows displaying are --" + RowsAfterFilter);
-			int j = 1;
-			if (RowsAfterFilter == 3) {
-				for (int i = filterEndYear; i >= filterStartYear; i--) {
-					String currentyear = driver
-							.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td[1]/input"))
-							.getAttribute("value");
-					log.info("Current showing Year is --" + currentyear + "  and filter year is --" + i);
-					if (!currentyear.equals(Integer.toString(i))) {
-						log.info("Filtered Year not matching");
-						flag = false;
-						break;
-					} else {
-						flag = true;
-					}
-					j++;
-				}
-			} else {
-				log.info("Total number of row should be displayed 3 but it is showing " + RowsAfterFilter);
-				log.info("CheckWaterFilter ends here with false ................");
-				return false;
-			}
-			if (flag == true) {
-				log.info("CheckWaterFilter ends here with true ................");
-				return true;
-			} else {
-				log.info("CheckWaterFilter ends here with false ................");
-				return false;
-			}
-		} else {
-			log.info("CheckWaterFilter ends here with false ................");
-			return false;
-		}
-
-	}
 	// This method will check whether newly added row in Population is saved
 	// successfully or not
 
@@ -6453,7 +3483,6 @@ public class CommunitiesPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		boolean AddedRowFlag = false;
 		List<WebElement> rows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		log.info("Total Row display is ---  " + rows.size());
 		log.info("Total Row display is ---  " + rows.size());
 		if (rows.size() > 1) {
 			log.info("Added Row showing proper----");
@@ -6617,398 +3646,48 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > GHG Emission - > Data/Details Tab
-
-	public boolean CheckGHGEmission_Data_DetailsTab_Display() {
-		log.info("CheckGHGEmission_Data_DetailsTab_Display  starts here........");
+	public boolean Check_Data_DetailsTab_Display() {
+		log.info("Check_Data_DetailsTab_Display  starts here........");
 		boolean DataTabflag = false;
 		boolean DetailsTabflag = false;
-		DataTabflag = GHGEmission_DataTab.isDisplayed();
+		DataTabflag = DataTab.isDisplayed();
 		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = GHGEmission_DetailsTab.isDisplayed();
+		DetailsTabflag = DetailsTab.isDisplayed();
 		log.info("Details Tab display status is --" + DetailsTabflag);
 
 		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckGHGEmission_Data_DetailsTab_Display  ends here........");
+			log.info("Check_Data_DetailsTab_Display  ends here........");
 			return true;
 		} else {
-			log.info("CheckGHGEmission_Data_DetailsTab_Display  ends here........");
+			log.info("Check_Data_DetailsTab_Display  ends here........");
 			return false;
 		}
 
 	}
 
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Transportation - > Data/Details Tab
-
-	public boolean CheckVMT_Data_DetailsTab_Display() {
-		log.info("CheckVMT_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = VMT_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = VMT_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckVMT_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckVMT_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Health And Safety - > Data/Details Tab
-
-	public boolean CheckHealthAndSafety_Data_DetailsTab_Display() {
-		log.info("CheckHealthAndSafety_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = HealthAndSafety_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = HealthAndSafety_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckHealthAndSafety_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafety_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Education: Population with (at least)
-	// Bachelor's degree (%) - > Data/Details Tab
-
-	public boolean CheckEducation_BachelorPopulation_Data_DetailsTab_Display() {
-		log.info("CheckEducation_BachelorPopulation_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = Education_BachelorPopulation_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = Education_BachelorPopulation_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckEducation_BachelorPopulation_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEducation_BachelorPopulation_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Equitability: Gini coefficient (for
-	// income distribution) - > Data/Details Tab
-
-	public boolean CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display() {
-		log.info("CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = Equitability_Gini_Coefficient_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = Equitability_Gini_Coefficient_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Education: Population with (at least)
-	// High School degree (%) - > Data/Details Tab
-
-	public boolean CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display() {
-		log.info("CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = Education_HighSchoolPopulation_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = Education_HighSchoolPopulation_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Prosperity: Median household income (US
-	// Dollars/Year) - > Data/Details Tab
-
-	public boolean CheckProsperityMedianIncome_Data_DetailsTab_Display() {
-		log.info("CheckProsperityMedianIncome_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = ProsperityMedianIncome_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = ProsperityMedianIncome_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckProsperityMedianIncome_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckProsperityMedianIncome_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Equitability: Median gross rent as (%) of
-	// household income - > Data/Details Tab
-
-	public boolean CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display() {
-		log.info("CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = Equitability_MedianGrossIncome_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = Equitability_MedianGrossIncome_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Prosperity: Unemployment rate (%) - >
-	// Data/Details Tab
-
-	public boolean CheckProsperityUnemployementRate_Data_DetailsTab_Display() {
-		log.info("CheckProsperityUnemployementRate_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = ProsperityUnemployementRate_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = ProsperityUnemployementRate_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckProsperityUnemployementRate_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckProsperityUnemployementRate_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life --> Health & Safety: Air quality days
-	// unhealthy for sensitive groups (Days/yr) - > Data/Details Tab
-
-	public boolean CheckHealthAndSafetySensitiveGroup_Data_DetailsTab_Display() {
-		log.info("CheckProsperityUnemployementRate_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = HealthAndSafetySensitiveGroup_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = HealthAndSafetySensitiveGroup_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckHealthAndSafetySensitiveGroup_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetySensitiveGroup_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Quality Of life -->Health & Safety: Violent Crime (per year
-	// per capita) - > Data/Details Tab
-
-	public boolean CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display() {
-		log.info("CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = HealthAndSafetyVoilentCrime_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = HealthAndSafetyVoilentCrime_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Waste - > Municipal solid waste generation
-	// intensityData/Details Tab
-
-	public boolean CheckWasteGeneration_Data_DetailsTab_Display() {
-		log.info("CheckWasteGeneration_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = Waste_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = Waste_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckWasteGeneration_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckWasteGeneration_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Waste - > Municipal solid waste diversion rate from landfill
-	// Data/Details Tab
-
-	public boolean CheckWasteDiversion_Data_DetailsTab_Display() {
-		log.info("CheckWasteDiversion_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = Waste_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = Waste_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckWasteDiversion_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckWasteDiversion_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check whether Data and Details Tab is displaying or not
-	// (Data Input - > Waste - > Data/Details Tab
-
-	public boolean CheckWaterConsumption_Data_DetailsTab_Display() {
-		log.info("CheckGHGEmission_Data_DetailsTab_Display  starts here........");
-		boolean DataTabflag = false;
-		boolean DetailsTabflag = false;
-		DataTabflag = WaterConsum_DataTab.isDisplayed();
-		log.info("Data Tab display status is --" + DataTabflag);
-		DetailsTabflag = WaterConsum_DetailsTab.isDisplayed();
-		log.info("Details Tab display status is --" + DetailsTabflag);
-
-		if (DataTabflag && DetailsTabflag) {
-			log.info("CheckWaterConsumption_Data_DetailsTab_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckWaterConsumption_Data_DetailsTab_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > GHG Emission - > Data/Details Tab
-
-	public boolean CheckGHGEmission_AddYear_NewRow_Display() {
-		log.info("CheckGHGEmission_Data_DetailsTab_Display  starts here........");
-		GHGEmission_Data_AddYearBtn.click();
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckGHGEmission_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckGHGEmission_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Transportation - > Data/Details Tab
-
-	public boolean CheckTransport_VMT_AddYear_NewRow_Display() {
-		log.info("CheckTransport_VMT_AddYear_NewRow_Display  starts here........");
+	public boolean CheckAddYear_NewRow_Display() {
+		log.info("CheckAddYear_NewRow_Display  starts here........");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementClickable(VMT_Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		VMT_Data_AddYearBtn.click();
+		waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		Data_AddYearBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+		int YearValue = Integer.parseInt(Data_FirstRowYearTextBox.getAttribute("value"));
 		int PreviousYear = CurrentYear - 1;
 		if (YearValue == PreviousYear) {
-			log.info("CheckTransport_VMT_AddYear_NewRow_Display  ends here........");
+			log.info("CheckAddYear_NewRow_Display  ends here........");
 			return true;
 		} else {
-			log.info("CheckTransport_VMT_AddYear_NewRow_Display  ends here........");
+			log.info("CheckAddYear_NewRow_Display  ends here........");
 			return false;
 		}
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality Of Life - > Health & Safety:
-	// Median air quality index (AQI)--> Data/Details Tab
-
-	public boolean CheckHealthAndSafety_AddYear_NewRow_Display() {
-		log.info("CheckHealthAndSafety_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(HealthAndSafety_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafety_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckHealthAndSafety_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafety_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
 	}
 
 	public boolean CheckHealthAndSafety_CheckWithInvalidValue() {
@@ -7050,109 +3729,6 @@ public class CommunitiesPageObject extends BaseClass {
 			return flag;
 		}
 		return flag;
-
-	}
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Education: Population
-	// with (at least) Bachelor's degree (%)--> Data/Details Tab
-
-	public boolean CheckEducation_Bachelor_Population_AddYear_NewRow_Display() {
-		log.info("CheckEducation_Bachelor_Population_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Education_BachelorPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Education_BachelorPopulation_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckEducation_Bachelor_Population_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEducation_Bachelor_Population_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	public boolean CheckEducation_Bachelor_Population_CheckWithInvalidPercent() {
-		log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  starts here........");
-		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		TableRow.size();
-		log.info("Before adding number of row showing is ---" + TableRow.size());
-		boolean flag = false;
-		boolean ValidationMsg = false;
-		waithelper.WaitForElementClickable(Education_BachelorPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Education_BachelorPopulation_Data_AddYearBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
-
-			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
-					.isDisplayed();
-			if (ValidationMsg) {
-				String ActualValMsg = driver
-						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---" + ActualValMsg);
-				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag = true;
-				else
-					flag = false;
-			} else {
-				log.info("Validation Message not displayed..");
-			}
-			log.info("CheckEducation_Bachelor_Population_CheckWithInvalidPercent  ends here........");
-			return flag;
-		}
-		return flag;
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Equitability: Gini
-	// coefficient (for income distribution)--> Data/Details Tab
-
-	public boolean CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display() {
-		log.info("CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Equitability_Gini_Coefficient_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Equitability_Gini_Coefficient_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
 
 	}
 
@@ -7197,273 +3773,7 @@ public class CommunitiesPageObject extends BaseClass {
 		return flag;
 
 	}
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Education: Population
-	// with (at least) High School degree (%)--> Data/Details Tab
 
-	public boolean CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display() {
-		log.info("CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Education_HighSchoolPopulation_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	public boolean CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent() {
-		log.info("CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent  starts here........");
-		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		TableRow.size();
-		log.info("Before adding number of row showing is ---" + TableRow.size());
-		boolean flag = false;
-		boolean ValidationMsg = false;
-		waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Education_HighSchoolPopulation_Data_AddYearBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
-
-			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
-					.isDisplayed();
-			if (ValidationMsg) {
-
-				String ActualValMsg = driver
-						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---" + ActualValMsg);
-				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag = true;
-				else
-					flag = false;
-			} else {
-				log.info("Validation Message not displayed..");
-			}
-			log.info("CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent  ends here........");
-			return flag;
-		}
-		return flag;
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Prosperity: Median
-	// household income (US Dollars/Year)--> Data/Details Tab
-
-	public boolean CheckProsperityMedianIncome_AddYear_NewRow_Display() {
-		log.info("CheckProsperityMedianIncome_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(ProsperityMedianIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		ProsperityMedianIncome_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckProsperityMedianIncome_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckProsperityMedianIncome_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Equitability: Median
-	// gross rent as (%) of household income--> Data/Details Tab
-
-	public boolean CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display() {
-		log.info("CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Equitability_MedianGrossIncome_Data_AddYearBtn.click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	public boolean CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue() {
-		log.info("CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue  starts here........");
-		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		TableRow.size();
-		log.info("Before adding number of row showing is ---" + TableRow.size());
-		boolean flag = false;
-		boolean ValidationMsg = false;
-		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Equitability_MedianGrossIncome_Data_AddYearBtn.click();
-
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
-
-			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
-					.isDisplayed();
-			if (ValidationMsg) {
-				String ActualValMsg = driver
-						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---" + ActualValMsg);
-				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag = true;
-				else
-					flag = false;
-
-			} else {
-				log.info("Validation Message not displayed..");
-			}
-			log.info("CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue  ends here........");
-			return flag;
-		}
-		return flag;
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Prosperity:
-	// Unemployment rate (%)--> Data/Details Tab
-
-	public boolean CheckProsperityUnemployementRate_AddYear_NewRow_Display() {
-		log.info("CheckProsperityUnemployementRate_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ProsperityUnemployementRate_Data_AddYearBtn.click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckProsperityUnemployementRate_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckProsperityUnemployementRate_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	public boolean CheckProsperityUnemployementRate_CheckWithInvalidValue() {
-		log.info("CheckProsperityUnemployementRate_CheckWithInvalidValue  starts here........");
-		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
-		TableRow.size();
-		log.info("Before adding number of row showing is ---" + TableRow.size());
-		boolean flag = false;
-		boolean ValidationMsg = false;
-		waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ProsperityUnemployementRate_Data_AddYearBtn.click();
-
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("101");
-
-			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
-					.isDisplayed();
-			if (ValidationMsg) {
-
-				String ActualValMsg = driver
-						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
-				log.info("Validation Message displayed ---" + ActualValMsg);
-				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
-					flag = true;
-				else
-					flag = false;
-			} else {
-				log.info("Validation Message not displayed..");
-			}
-			log.info("CheckProsperityUnemployementRate_CheckWithInvalidValue  ends here........");
-			return flag;
-		}
-		return flag;
-
-	}
 	// This method will check on clicking Add Year button, new row should be listed
 	// with previous year (Data Input - > Quality of Life -- > Health & Safety:
 	// Violent Crime (per year per capita)--> Data/Details Tab
@@ -7509,20 +3819,22 @@ public class CommunitiesPageObject extends BaseClass {
 		boolean flag = false;
 		boolean ValidationMsg = false;
 
-		waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		HealthAndSafetySensitiveGroup_Data_AddYearBtn.click();
+		Data_AddYearBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
+				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'start_date')]"))
+				.getAttribute("value"));
 		log.info("Selected Year is ---" + Selected_Year);
 		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).sendKeys("366");
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[@ng-model='data.reading']"))
+					.sendKeys("366");
 
 			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
 					.isDisplayed();
@@ -7542,120 +3854,6 @@ public class CommunitiesPageObject extends BaseClass {
 			return flag;
 		}
 		return flag;
-
-	}
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Quality of Life -- > Health & Safety: Air
-	// quality days unhealthy for sensitive groups (Days/yr)--> Data/Details Tab
-
-	public boolean CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display() {
-		log.info("CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display  starts here........");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafetySensitiveGroup_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Water Consumption - > Data/Details Tab
-
-	public boolean CheckWatwr_Consumption_AddYear_NewRow_Display() {
-		log.info("CheckWatwr_Consumption_AddYear_NewRow_Display  starts here........");
-		waithelper.WaitForElementClickable(WaterConsum_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		WaterConsum_Data_AddYearBtn.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckWatwr_Consumption_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckWatwr_Consumption_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Waste - > Solid Waste Generation- Data ->
-	// Add New Line
-
-	public boolean CheckWaste_Generation_AddYear_NewRow_Display() {
-		log.info("CheckWaste_Generation_AddYear_NewRow_Display  starts here........");
-		waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Waste_AddYearButton.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckWaste_Generation_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckWaste_Generation_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
-
-	}
-
-	// This method will check on clicking Add Year button, new row should be listed
-	// with previous year (Data Input - > Waste - >Municipal solid waste diversion
-	// rate from landfill- Data ->
-	// Add New Line
-
-	public boolean CheckWaste_Diversion_AddYear_NewRow_Display() {
-		log.info("CheckWaste_Diversion_AddYear_NewRow_Display  starts here........");
-		waithelper.WaitForElementClickable(Waste_AddYearButton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Waste_AddYearButton.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int CurrentYear = CommonMethod.getCurrentYear();
-		int YearValue = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		int PreviousYear = CurrentYear - 1;
-		if (YearValue == PreviousYear) {
-			log.info("CheckWaste_Diversion_AddYear_NewRow_Display  ends here........");
-			return true;
-		} else {
-			log.info("CheckWaste_Diversion_AddYear_NewRow_Display  ends here........");
-			return false;
-		}
 
 	}
 
@@ -7744,7 +3942,7 @@ public class CommunitiesPageObject extends BaseClass {
 				log.info("Unable to locate Energy ScoreTip Message..");
 			}
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -7803,7 +4001,7 @@ public class CommunitiesPageObject extends BaseClass {
 			}
 		}
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -7821,675 +4019,6 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Health And Safety) --> Data Tab
-
-	public boolean CheckHealthAndSafety_SaveNewRecord() {
-		log.info("CheckHealthAndSafety_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(HealthAndSafety_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafety_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 26, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 16, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckHealthAndSafety_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafety_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Education: Population with (at least) Bachelor's degree (%) --> Data
-	// Tab
-
-	public boolean CheckEductaion_Bachelor_Population_SaveNewRecord() {
-		log.info("CheckEductaion_Bachelor_Population_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		waithelper.WaitForElementClickable(Education_BachelorPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Education_BachelorPopulation_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 18, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 28, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + Prev_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckEductaion_Bachelor_Population_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckEductaion_Bachelor_Population_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Equitability: Gini coefficient (for income distribution) --> Data
-	// Tab
-
-	public boolean CheckEquitability_Gini_Coefficient_SaveNewRecord() {
-		log.info("CheckEquitability_Gini_Coefficient_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(Equitability_Gini_Coefficient_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Equitability_Gini_Coefficient_Data_AddYearBtn.click();
-		// waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,Integer.parseInt(prop.getProperty("explicitTime")),
-		// 2);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 20, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 20, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckEquitability_Gini_Coefficient_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckEquitability_Gini_Coefficient_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Education: Population with (at least) High School degree (%) -->
-	// Data Tab
-
-	public boolean CheckEducation_HighSchoolPopulation_SaveNewRecord() {
-		log.info("CheckEducation_HighSchoolPopulation_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Education_HighSchoolPopulation_Data_AddYearBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 22, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 22, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("Community_Education_HighSchoolPopulation_SavePreviousYearData  ends here with true........");
-			return true;
-		} else {
-			log.info("Community_Education_HighSchoolPopulation_SavePreviousYearData  ends here with false........");
-			return false;
-		}
-
-	}
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Prosperity: Median household income (US Dollars/Year) --> Data Tab
-
-	public boolean CheckProsperityMedianIncome_SaveNewRecord() {
-		log.info("CheckProsperityMedianIncome_SaveNewRecord  starts here........");
-		
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		waithelper.WaitForElementClickable(ProsperityMedianIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ProsperityMedianIncome_Data_AddYearBtn.click();
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 24, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 24, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckProsperityMedianIncome_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckProsperityMedianIncome_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Equitability: Median gross rent as (%) of household income --> Data
-	// Tab
-
-	public boolean CheckEquitability_MedianGrossIncome_SaveNewRecord() {
-		log.info("CheckEquitability_MedianGrossIncome_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Equitability_MedianGrossIncome_Data_AddYearBtn.click();
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 26, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 26, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckEquitability_MedianGrossIncome_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckEquitability_MedianGrossIncome_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Prosperity: Unemployment rate (%) --> Data Tab
-
-	public boolean CheckProsperityUnemployementRate_SaveNewRecord() {
-		log.info("CheckProsperityUnemployementRate_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ProsperityUnemployementRate_Data_AddYearBtn.click();
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 28, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 28, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath(
-								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckProsperityUnemployementRate_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckProsperityUnemployementRate_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Health & Safety: Air quality days unhealthy for sensitive groups
-	// (Days/yr) --> Data Tab
-
-	public boolean CheckHealthAndSafetySensitiveGroup_SaveNewRecord() {
-		log.info("CheckHealthAndSafetySensitiveGroup_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		try {
-
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// JSHelper.clickElement(ProsperityMedianIncome_Data_AddYearBtn);
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HealthAndSafetySensitiveGroup_Data_AddYearBtn.click();
-		try {
-
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 30, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 30, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckHealthAndSafetySensitiveGroup_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetySensitiveGroup_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
-
-	// This method will add one row with previous year in Data Input - > Quality Of
-	// Life - > Health & Safety: Violent Crime (per year per capita) --> Data Tab
-
-	public boolean CheckHealthAndSafetyVoilentCrime_SaveNewRecord() {
-		log.info("CheckHealthAndSafetySensitiveGroup_SaveNewRecord  starts here........");
-		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
-		waithelper.WaitForElementClickable(HealthAndSafetyVoilentCrime_Data_AddYearBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HealthAndSafetyVoilentCrime_Data_AddYearBtn.click();
-		try {
-
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		log.info("Selected Year is ---" + Selected_Year);
-		log.info(data.getCellData("Communities", 32, 2));
-		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(data.getCellData("Communities", 32, 2));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath(
-								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-			try {
-
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate ScoreTip Message..");
-			}
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + After_TableRowCount);
-		if (After_TableRowCount - Prev_TableRowCount == 1) {
-			log.info("CheckHealthAndSafetyVoilentCrime_SaveNewRecord  ends here with true........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetyVoilentCrime_SaveNewRecord  ends here with false........");
-			return false;
-		}
-
-	}
 	// This method will Edit Record in Data Input - > Transportation - > Data Tab
 
 	public boolean CheckTransportation_EditRecord() {
@@ -8538,7 +4067,7 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -8556,150 +4085,6 @@ public class CommunitiesPageObject extends BaseClass {
 			return true;
 		} else {
 			log.info("Community_Transportation_Edit_Test  ends here with false ........");
-			return false;
-		}
-
-	}
-
-	// This method will Edit Record in Data Input - > Quality Of Life--> Health And
-	// Safety - > Data Tab
-
-	public boolean CheckHealthAndSafety_EditRecord() {
-		log.info("CheckHealthAndSafety_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(VMT_Data_Save_EditBtn, Integer.parseInt(prop.getProperty("explicitTime")),
-				2);
-		HealthAndSafety_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-		value = value + 100;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		HealthAndSafety_Data_Save_EditBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		if (ExpValue.equals(ActValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("Community_HealthAndSafety_Edit_Test  ends here with true ........");
-			return true;
-		} else {
-			log.info("Community_HealthAndSafety_Edit_Test  ends here with false ........");
-			return false;
-		}
-
-	}
-
-	// This method will Edit Record in Data Input - > Quality Of Life--> Education:
-	// Population with (at least) Bachelor's degree (%) - > Data Tab
-
-	public boolean CheckEducation_Bachelor_population_EditRecord() {
-		log.info("CheckEducation_Bachelor_population_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(VMT_Data_Save_EditBtn, Integer.parseInt(prop.getProperty("explicitTime")),
-				2);
-		Education_BachelorPopulation_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		Education_BachelorPopulation_Data_Save_EditBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("Community_Education_Bachelor_Population_Edit_Test  ends here with true ........");
-			return true;
-		} else {
-			log.info("Community_Education_Bachelor_Population_Edit_Test  ends here with false ........");
 			return false;
 		}
 
@@ -8754,24 +4139,24 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Row Circular Image");
 		}
-		
+
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if ( (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
+		if ((driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
 				.isDisplayed())) {
 
 			log.info("CheckEquitability_Gini_Coefficient_EditRecord  ends here with true ........");
@@ -8783,462 +4168,6 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
-	// This method will Edit Record in Data Input - > Quality Of Life--> Education:
-	// Population with (at least) High School degree (%) - > Data Tab
-
-	public boolean CheckEducation_HighSchoolPopulation_EditRecord() {
-		log.info("CheckEducation_HighSchoolPopulation_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(Education_HighSchoolPopulation_Data_Save_EditBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Education_HighSchoolPopulation_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		Education_HighSchoolPopulation_Data_Save_EditBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("CheckEducation_HighSchoolPopulation_EditRecord  ends here with true ........");
-			return true;
-		} else {
-			log.info("CheckEducation_HighSchoolPopulation_EditRecord  ends here with false ........");
-			return false;
-		}
-
-	}
-	// This method will Edit Record in Data Input - > Quality Of Life--> Prosperity:
-	// Median household income (US Dollars/Year) - > Data Tab
-
-	public boolean CheckProsperityMedianIncome_EditRecord() {
-		log.info("CheckProsperityMedianIncome_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(ProsperityMedianIncome_Data_Save_EditBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		ProsperityMedianIncome_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		ProsperityMedianIncome_Data_Save_EditBtn.click();
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Row Circular Image");
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("CheckProsperityMedianIncome_EditRecord  ends here with true ........");
-			return true;
-		} else {
-			log.info("CheckProsperityMedianIncome_EditRecord  ends here with false ........");
-			return false;
-		}
-
-	}
-	// This method will Edit Record in Data Input - > Quality Of Life-->
-	// Equitability: Median gross rent as (%) of household income - > Data Tab
-
-	public boolean CheckEquitability_MedianGrossIncome_EditRecord() {
-		log.info("CheckEquitability_MedianGrossIncome_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(Equitability_MedianGrossIncome_Data_Save_EditBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		Equitability_MedianGrossIncome_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		ProsperityMedianIncome_Data_Save_EditBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("Community_Equitability_MedianGrossIncome_Edit_Test  ends here with true ........");
-			return true;
-		} else {
-			log.info("Community_Equitability_MedianGrossIncome_Edit_Test  ends here with false ........");
-			return false;
-		}
-
-	}
-
-	// This method will Edit Record in Data Input - > Quality Of Life--> Prosperity:
-	// Unemployment rate (%) - > Data Tab
-
-	public boolean CheckProsperityUnemployementRate_EditRecord() {
-		log.info("CheckProsperityUnemployementRate_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(ProsperityUnemployementRate_Data_Save_EditBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		ProsperityUnemployementRate_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		ProsperityMedianIncome_Data_Save_EditBtn.click();
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Row Circular Image");
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("CheckProsperityUnemployementRate_EditRecord  ends here with true ........");
-			return true;
-		} else {
-			log.info("CheckProsperityUnemployementRate_EditRecord  ends here with false ........");
-			return false;
-		}
-
-	}
-
-	// This method will Edit Record in Data Input - > Quality Of Life--> Health &
-	// Safety: Air quality days unhealthy for sensitive groups (Days/yr) - > Data
-	// Tab
-
-	public boolean CheckHealthAndSafetySensitiveGroup_EditRecord() {
-		log.info("CheckHealthAndSafetySensitiveGroup_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(HealthAndSafetySensitiveGroup_Data_Save_EditBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafetySensitiveGroup_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		HealthAndSafetySensitiveGroup_Data_Save_EditBtn.click();
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Row Circular Image");
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate  Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("CheckHealthAndSafetySensitiveGroup_EditRecord  ends here with true ........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetySensitiveGroup_EditRecord  ends here with false ........");
-			return false;
-		}
-
-	}
-
-	// This method will Edit Record in Data Input - > Quality Of Life--> Health &
-	// Safety: Violent Crime (per year per capita) - > Data Tab
-
-	public boolean CheckHealthAndSafetyVoilentCrime_EditRecord() {
-		log.info("CheckHealthAndSafetyVoilentCrime_EditRecord  starts here........");
-		waithelper.WaitForElementClickable(HealthAndSafetyVoilentCrime_Data_Save_EditBtn,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		HealthAndSafetyVoilentCrime_Data_Save_EditBtn.click();
-		int Selected_Year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		Selected_Year++;
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
-
-		try {
-			driver.findElement(By.xpath(xpath)).click();
-		} catch (NoSuchElementException e) {
-			driver.findElement(By.xpath(xpath)).click();
-			e.printStackTrace();
-			log.info(e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info(e.getMessage());
-		}
-
-		String OldValue = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.getAttribute("value");
-		int value = Integer.parseInt(OldValue);
-
-		value = value + 10;
-		String ExpValue = Integer.toString(value);
-		log.info(value);
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-				.sendKeys(Integer.toString(value));
-		HealthAndSafetyVoilentCrime_Data_Save_EditBtn.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-		waithelper.WaitForElementInvisible(
-				driver.findElement(
-						By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("Unable to locate Circular Image");
-		}
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String ActValue = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).getAttribute("value");
-		if (ActValue.equals(ExpValue) && (driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button/span[text()='Edit']"))
-				.isDisplayed())) {
-
-			log.info("CheckHealthAndSafetyVoilentCrime_EditRecord  ends here with true ........");
-			return true;
-		} else {
-			log.info("CheckHealthAndSafetyVoilentCrime_EditRecord  ends here with false ........");
-			return false;
-		}
-
-	}
 	// This method will Edit Row in Data Input - > GHG Emission - > Data Tab
 
 	public boolean CheckGHGEmission_EditRow() {
@@ -9247,7 +4176,8 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info(data.getCellData("Communities", 4, 2));
 		int value = Integer.parseInt(data.getCellData("Communities", 4, 2)) + 5;
 		// log.info(Integer.parseInt(data.getCellData("Communities", 4, 2)) + 5);
-		// log.info(Integer.toString(Integer.parseInt(data.getCellData("Communities", 4, 2)) +
+		// log.info(Integer.toString(Integer.parseInt(data.getCellData("Communities", 4,
+		// 2)) +
 		// 5));
 		String Tons_Year_Capita = Integer.toString(value);
 		// log.info(Tons_Year_Capita);
@@ -9274,7 +4204,7 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Energy Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9297,6 +4227,655 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
+	public void Waste_AddRecords() {
+		log.info("Waste_AddRecords starts here ................");
+		boolean flag = false;
+		int CurrentYear = CommonMethod.getCurrentYear();
+		int StartYear = CurrentYear - 1;
+		int value = 10;
+		int TotalRowsBeforeAdding;
+		int TotalRowsAfterAdding;
+		int j = 1;
+		for (int i = StartYear; i >= StartYear - 4; i--) {
+			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (i == StartYear) {
+				waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")),
+						2);
+				Data_AddYearBtn.click();
+			} else {
+				waithelper.WaitForElementClickable(PreviousYearbutton,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				PreviousYearbutton.click();
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
+			driver.findElement(By.xpath(xpath)).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[@ng-model='data.reading']"))
+					.sendKeys(Integer.toString(value));
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//span[text()='Save']/parent::button"))
+					.click();
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[3]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j
+							+ "]/td//span[contains(@class,'deleteReading')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			value = value + 5;
+			j++;
+			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
+				log.info("Record added for " + StartYear);
+				flag = true;
+			} else {
+				log.info("Record is not added for " + StartYear);
+				flag = false;
+				break;
+			}
+		}
+		log.info("Waste_AddRecords ends here with  " + flag + "  ................");
+	}
+
+	public void VMT_AddRecords() {
+		log.info("VMT_AddRecords starts here ................");
+		boolean flag = false;
+		int CurrentYear = CommonMethod.getCurrentYear();
+		int StartYear = CurrentYear - 1;
+		int value = 10;
+		int TotalRowsBeforeAdding;
+		int TotalRowsAfterAdding;
+		int j = 1;
+		for (int i = StartYear; i >= StartYear - 4; i--) {
+			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (i == StartYear) {
+				waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")),
+						2);
+				Data_AddYearBtn.click();
+			} else {
+				waithelper.WaitForElementClickable(PreviousYearbutton,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				PreviousYearbutton.click();
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
+			driver.findElement(By.xpath(xpath)).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[@ng-model='data.reading']"))
+					.sendKeys(Integer.toString(value));
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//span[text()='Save']/parent::button"))
+					.click();
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[4]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j
+							+ "]/td//span[contains(@class,'deleteReading')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			value = value + 5;
+			j++;
+			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
+				log.info("Record added for " + StartYear);
+				flag = true;
+			} else {
+				log.info("Record is not added for " + StartYear);
+				flag = false;
+				break;
+			}
+		}
+		log.info("VMT_AddRecords ends here with  " + flag + "  ................");
+	}
+
+	public boolean QualityOfLife_SaveNewRecord(String value) {
+		log.info("QualityOfLife_SaveNewRecord  starts here........");
+		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		Data_AddYearBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		int Selected_Year = Integer.parseInt(Data_FirstRowYearTextBox.getAttribute("value"));
+		log.info("Selected Year is ---" + Selected_Year);
+		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+			Data_FirstRowReadingTextBox.sendKeys(value);
+
+			waithelper.WaitForElementVisibleWithPollingTime(Data_FirstRow_SaveBtn,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+			Data_FirstRow_SaveBtn.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Circular Image");
+			}
+			try {
+
+				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate ScoreTip Message..");
+			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("After adding number of row showing is ---" + After_TableRowCount);
+		if (After_TableRowCount - Prev_TableRowCount == 1) {
+			log.info("QualityOfLife_SaveNewRecord  ends here with true........");
+			return true;
+		} else {
+			log.info("QualityOfLife_SaveNewRecord  ends here with false........");
+			return false;
+		}
+
+	}
+
+	public boolean QualityOfLife_SavePreviousAndNextYearRecord(String Reading) {
+		log.info("QualityOfLife_SavePreviousAndNextYearRecord  starts here........");
+		int value;
+		boolean prev_flag = false;
+		boolean Next_flag = false;
+		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		PreviousYearbutton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		int selected_year = Integer.parseInt(Data_SecondRowYearTextBox.getAttribute("value"));
+		if (CommonMethod.getCurrentYear() - selected_year == 2) {
+			value = Integer.parseInt(Reading);
+			value = value - 10;
+			log.info("Previous Year Value is ---" + value);
+			Data_SecondRowReadingTextBox.clear();
+			Data_SecondRowReadingTextBox.sendKeys(Integer.toString(value));
+			Data_SecondRow_SaveBtn.click();
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Row Circular Image");
+			}
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Circular Image");
+			}
+
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
+			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
+				prev_flag = true;
+				log.info("Previous year record added successfully...");
+			} else {
+				log.info("Previous year record not added successfully...");
+			}
+		}
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		NextYearbutton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		selected_year = Integer.parseInt(Data_FirstRowYearTextBox.getAttribute("value"));
+		if (CommonMethod.getCurrentYear() == selected_year) {
+			value = Integer.parseInt(Reading);
+			value = value + 5;
+			log.info("Next Year Value is ---" + value);
+			Data_FirstRowReadingTextBox.clear();
+			Data_FirstRowReadingTextBox.sendKeys(Integer.toString(value));
+			Data_FirstRow_SaveBtn.click();
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Row Circular Image");
+			}
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
+			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
+				Next_flag = true;
+				log.info("Next year record added successfully...");
+			} else {
+				log.info("Next year record not added successfully...");
+			}
+		}
+		log.info("prev_flag value is  :" + prev_flag);
+		if (prev_flag && Next_flag) {
+
+			log.info("QualityOfLife_SavePreviousAndNextYearRecord  ends here........");
+			return true;
+		} else {
+			log.info("QualityOfLife_SavePreviousAndNextYearRecord  ends here........");
+			return false;
+		}
+	}
+
+	public boolean QualityOfLife_EditRecord() {
+		log.info("QualityOfLife_EditRecord  starts here........");
+		waithelper.WaitForElementClickable(Data_FirstRow_EditBtn, Integer.parseInt(prop.getProperty("explicitTime")),
+				2);
+		Data_FirstRow_EditBtn.click();
+		int Selected_Year = Integer.parseInt(Data_FirstRowYearTextBox.getAttribute("value"));
+		Selected_Year++;
+		Data_FirstRowYearTextBox.click();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + Selected_Year + "']";
+
+		try {
+			driver.findElement(By.xpath(xpath)).click();
+		} catch (NoSuchElementException e) {
+			driver.findElement(By.xpath(xpath)).click();
+			e.printStackTrace();
+			log.info(e.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info(e.getMessage());
+		}
+
+		String OldValue = Data_FirstRowReadingTextBox.getAttribute("value");
+		int value = Integer.parseInt(OldValue);
+		value = value + 10;
+		String ExpValue = Integer.toString(value);
+		log.info(value);
+		Data_FirstRowReadingTextBox.clear();
+		Data_FirstRowReadingTextBox.sendKeys(Integer.toString(value));
+
+		waithelper.WaitForElementClickable(Data_FirstRow_SaveBtn, Integer.parseInt(prop.getProperty("explicitTime")),
+				2);
+		Data_FirstRow_SaveBtn.click();
+		waithelper.WaitForElementVisibleWithPollingTime(Data_FirstRowDeleteIcon,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath(
+							"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate  Circular Image");
+		}
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		String ActValue = Data_FirstRowReadingTextBox.getAttribute("value");
+		if (ExpValue.equals(ActValue) && (Data_FirstRow_EditBtn.isDisplayed())) {
+
+			log.info("QualityOfLife_EditRecord  ends here with true ........");
+			return true;
+		} else {
+			log.info("QualityOfLife_EditRecord  ends here with false ........");
+			return false;
+		}
+
+	}
+
+	public boolean QualityOfLife_DeleteRow() {
+		log.info("QualityOfLife_DeleteRow  starts here........");
+		boolean flag = false;
+		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Row showing is --" + RowCountBefore);
+		if (RowCountBefore > 1) {
+			try {
+				Data_FirstRowDeleteIcon.click();
+				// ngWebDriver.waitForAngularRequestsToFinish();
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to delete the row..");
+				// TODO: handle exception
+			}
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate Row Circular Image");
+			}
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+
+		} else {
+			log.info("There is no any row to delete..");
+		}
+		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+
+		log.info("Row count after deleting is ---" + RowCountAfter);
+		if (RowCountBefore - RowCountAfter == 1)
+			flag = true;
+		log.info("QualityOfLife_DeleteRow  ends here........");
+		return flag;
+
+	}
+
+	public void QualityOfLifeAddRecords() {
+		log.info("QualityOfLifeAddRecords starts here ................");
+		boolean flag = false;
+		int CurrentYear = CommonMethod.getCurrentYear();
+		int StartYear = CurrentYear - 1;
+		int value = 10;
+		int TotalRowsBeforeAdding;
+		int TotalRowsAfterAdding;
+		int j = 1;
+		for (int i = StartYear; i >= StartYear - 4; i--) {
+			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (i == StartYear) {
+				waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")),
+						2);
+				Data_AddYearBtn.click();
+			} else {
+				waithelper.WaitForElementClickable(PreviousYearbutton,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				PreviousYearbutton.click();
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
+			driver.findElement(By.xpath(xpath)).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[@ng-model='data.reading']"))
+					.sendKeys(Integer.toString(value));
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//span[text()='Save']/parent::button"))
+					.click();
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j
+							+ "]/td//span[contains(@class,'deleteReading')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			value = value + 5;
+			j++;
+			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
+				log.info("Record added for " + StartYear);
+				flag = true;
+			} else {
+				log.info("Record is not added for " + StartYear);
+				flag = false;
+				break;
+			}
+		}
+		log.info("QualityOfLifeAddRecords ends here with  " + flag + "  ................");
+	}
+
+	public boolean CheckWithInvalidPercent() {
+		log.info("CheckWithInvalidPercent  starts here........");
+		List<WebElement> TableRow = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		TableRow.size();
+		log.info("Before adding number of row showing is ---" + TableRow.size());
+		boolean flag = false;
+		boolean ValidationMsg = false;
+		waithelper.WaitForElementClickable(Data_AddYearBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Data_AddYearBtn.click();
+		int Selected_Year = Integer.parseInt(driver
+				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'start_date')]"))
+				.getAttribute("value"));
+		log.info("Selected Year is ---" + Selected_Year);
+		if (CommonMethod.getCurrentYear() - Selected_Year == 1) {
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[@ng-model='data.reading']"))
+					.sendKeys("101");
+
+			ValidationMsg = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]"))
+					.isDisplayed();
+			if (ValidationMsg) {
+				String ActualValMsg = driver
+						.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[1]")).getText();
+				log.info("Validation Message displayed ---" + ActualValMsg);
+				if (ActualValMsg.equals("Exceeded maximum value (Max: 100)"))
+					flag = true;
+				else
+					flag = false;
+			} else {
+				log.info("Validation Message not displayed..");
+			}
+			log.info("CheckWithInvalidPercent  ends here........");
+			return flag;
+		}
+		return flag;
+
+	}
+
+	public void QualityOfLifeAddRecordsForGinni() {
+		log.info("QualityOfLifeAddRecordsForGinni starts here ................");
+		boolean flag = false;
+		int CurrentYear = CommonMethod.getCurrentYear();
+		int StartYear = CurrentYear - 1;
+		int value = 1;
+		int TotalRowsBeforeAdding;
+		int TotalRowsAfterAdding;
+		int j = 1;
+		for (int i = StartYear; i >= StartYear - 4; i--) {
+			TotalRowsBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (i == StartYear) {
+				waithelper.WaitForElementClickable(HealthAndSafetyVoilentCrime_Data_AddYearBtn,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				HealthAndSafetyVoilentCrime_Data_AddYearBtn.click();
+			} else {
+				waithelper.WaitForElementClickable(PreviousYearbutton,
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				PreviousYearbutton.click();
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[contains(@id,'start_date')]"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("(//table[@class='table-condensed'])[2]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			String xpath = "(//table[@class='table-condensed'])[2]/tbody/tr/td/span[text()='" + i + "']";
+			driver.findElement(By.xpath(xpath)).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//input[@ng-model='data.reading']"))
+					.sendKeys(Integer.toString(value));
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + j + "]/td//span[text()='Save']/parent::button"))
+					.click();
+
+			try {
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info("Unable to locate  Circular Image");
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + j
+							+ "]/td//span[contains(@class,'deleteReading')]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			// value = value + 5;
+			j++;
+			TotalRowsAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			if (TotalRowsAfterAdding - TotalRowsBeforeAdding == 1) {
+				log.info("Record added for " + StartYear);
+				flag = true;
+			} else {
+				log.info("Record is not added for " + StartYear);
+				flag = false;
+				break;
+			}
+		}
+		log.info("QualityOfLifeAddRecordsForGinni ends here with  " + flag + "  ................");
+	}
 	// This method will Edit Row in Data Input - > Waste - > Municipal solid waste
 	// generation intensity
 
@@ -9337,7 +4916,7 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9402,7 +4981,7 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9466,7 +5045,7 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate  Circular Image");
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -9489,113 +5068,114 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
-	
 	// Project Setting - > Population - > Verify delete button deletes the line item
-		// successfully.
+	// successfully.
 
-		public boolean CheckPopulationDeleteRow() {
-			log.info("CheckPopulationDeleteRow  starts here........");
-			int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
+	public boolean CheckPopulationDeleteRow() {
+		log.info("CheckPopulationDeleteRow  starts here........");
+		int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
 
-			try {
-				driver.findElement(
-						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
-						.click();
+		try {
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
+					.click();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: handle exception
-			}
-			
-			try {
-				waithelper.WaitForElementInvisible(driver.findElement(
-						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: handle exception
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-
-			int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
-			if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
-				log.info("CheckPopulationDeleteRow  ends here with true........");
-				return true;
-			} else {
-				log.info("CheckPopulationDeleteRow  ends here with false........");
-				return false;
-			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
 		}
-		
-		
-		// Project Setting - > Project Area - > Verify delete button deletes the line item
-		// successfully.
 
-		public boolean CheckProjectAreaDeleteRow() {
-			log.info("CheckProjectAreaDeleteRow  starts here........");
-			waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			JSHelper.clickElement(ProjectAreaTab);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
-
-			try {
-				driver.findElement(
-						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
-						.click();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: handle exception
-			}
-			
-			try {
-				waithelper.WaitForElementInvisible(driver.findElement(
-						By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: handle exception
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-
-			int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
-			if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
-				log.info("CheckProjectAreaDeleteRow  ends here with true........");
-				return true;
-			} else {
-				log.info("CheckProjectAreaDeleteRow  ends here with false........");
-				return false;
-			}
-
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
 		}
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Circular Image");
+		}
+
+		int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
+		if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
+			log.info("CheckPopulationDeleteRow  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckPopulationDeleteRow  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Project Setting - > Project Area - > Verify delete button deletes the line
+	// item
+	// successfully.
+
+	public boolean CheckProjectAreaDeleteRow() {
+		log.info("CheckProjectAreaDeleteRow  starts here........");
+		waithelper.WaitForElementClickable(ProjectAreaTab, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(ProjectAreaTab);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//*[contains(text(),'PROJECT AREA')]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		int TotalRowBeforeDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before deleting  " + TotalRowBeforeDeleting);
+
+		try {
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span"))
+					.click();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[" + TotalRowBeforeDeleting + "]/td[5]/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Circular Image");
+		}
+
+		int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
+		if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
+			log.info("CheckProjectAreaDeleteRow  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckProjectAreaDeleteRow  ends here with false........");
+			return false;
+		}
+
+	}
 	// This method will Delete Row in Data Input - > GHG Emission - > Data Tab
 
 	public boolean CheckGHGEmission_DeleteRow() {
@@ -9620,7 +5200,7 @@ public class CommunitiesPageObject extends BaseClass {
 			e.printStackTrace();
 			log.info("Unable to locate Energy Circular Image");
 		}
-		
+
 		int TotalRowAfterDeleting = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows after deleting  " + TotalRowAfterDeleting);
 		if (TotalRowBeforeDeleting - TotalRowAfterDeleting == 1) {
@@ -9660,8 +5240,6 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-
-			
 
 		} else {
 			log.info("There is no any row to delete..");
@@ -9705,7 +5283,6 @@ public class CommunitiesPageObject extends BaseClass {
 				log.info("Unable to locate  Circular Image");
 			}
 
-			
 		} else {
 			log.info("There is no any row to delete..");
 		}
@@ -9747,7 +5324,6 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			
 
 		} else {
 			log.info("There is no any row to delete..");
@@ -9758,474 +5334,6 @@ public class CommunitiesPageObject extends BaseClass {
 		if (RowCountBefore - RowCountAfter == 1)
 			flag = true;
 		log.info("Transportation_VMT_DeleteRow  ends here........");
-		return flag;
-
-	}
-
-	// This method will Delete Row in Data Input - > Quality Of Life--> Health And
-	// Safety
-
-	public boolean HealthAndSafety_DeleteRow() {
-		log.info("HealthAndSafety_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-
-			
-
-		} else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("HealthAndSafety_DeleteRow  ends here........");
-		return flag;
-
-	}
-	// This method will Delete Row in Data Input - > Quality Of Life--> Education:
-	// Population with (at least) Bachelor's degree (%)
-
-	public boolean Education_Bachelor_Population_DeleteRow() {
-		log.info("Education_Bachelor_Population_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-
-			
-
-		}
-		else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("Education_Bachelor_Population_DeleteRow  ends here........");
-		return flag;
-
-	}
-
-	// This method will Delete Row in Data Input - > Quality Of Life-->
-	// Equitability: Gini coefficient (for income distribution)
-
-	public boolean Equitability_Gini_Coefficient_DeleteRow() {
-		log.info("Equitability_Gini_Coefficient_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-			
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-
-			
-
-		}
-		else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("Equitability_Gini_Coefficient_DeleteRow  ends here........");
-		return flag;
-
-	}
-	// This method will Delete Row in Data Input - > Quality Of Life--> Education:
-	// Population with (at least) High School degree (%)
-
-	public boolean Education_HighSchoolPopulation_DeleteRow() {
-		log.info("Education_HighSchoolPopulation_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-
-			
-
-		}
-		else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("Education_HighSchoolPopulation_DeleteRow  ends here........");
-		return flag;
-
-	}
-
-	// This method will Delete Row in Data Input - > Quality Of Life--> Prosperity:
-	// Median household income (US Dollars/Year)
-
-	public boolean ProsperityMedianIncome_DeleteRow() {
-		log.info("ProsperityMedianIncome_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				log.info("Total Row showing is --" + RowCountBefore);
-				if (RowCountBefore > 1) {
-					try {
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to delete the row..");
-						// TODO: handle exception
-					}
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate Row Circular Image");
-					}
-
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate  Circular Image");
-					}
-
-					
-
-				}
-				else {
-					log.info("There is no any row to delete..");
-				}
-				int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				log.info("Row count after deleting is ---" + RowCountAfter);
-				if (RowCountBefore - RowCountAfter == 1)
-					flag = true;
-				log.info("ProsperityMedianIncome_DeleteRow  ends here........");
-				return flag;
-
-			}
-	// This method will Delete Row in Data Input - > Quality Of Life-->
-	// Equitability: Median gross rent as (%) of household income
-
-	public boolean Equitability_MedianGrossIncome_DeleteRow() {
-		log.info("Equitability_MedianGrossIncome_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-				log.info("Total Row showing is --" + RowCountBefore);
-				if (RowCountBefore > 1) {
-					try {
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to delete the row..");
-						// TODO: handle exception
-					}
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate Row Circular Image");
-					}
-
-					try {
-						waithelper.WaitForElementInvisible(
-								driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-								Integer.parseInt(prop.getProperty("explicitTime")), 2);
-					} catch (Exception e) {
-						e.printStackTrace();
-						log.info("Unable to locate  Circular Image");
-					}
-
-					
-
-				}
-				else {
-					log.info("There is no any row to delete..");
-				}
-				int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-				log.info("Row count after deleting is ---" + RowCountAfter);
-				if (RowCountBefore - RowCountAfter == 1)
-					flag = true;
-				log.info("CheckWasteGeneration_DeleteRow  ends here........");
-				return flag;
-
-			}
-
-	// This method will Delete Row in Data Input - > Quality Of Life--> Prosperity:
-	// Unemployment rate (%)
-
-	public boolean ProsperityUnemployementRate_DeleteRow() {
-		log.info("ProsperityUnemployementRate_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-	
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			
-
-		}
-		else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("Community_ProsperityUnemployementRate_Delete_Row  ends here........");
-		return flag;
-
-	}
-
-	// This method will Delete Row in Data Input - > Quality Of Life--> Health &
-	// Safety: Air quality days unhealthy for sensitive groups (Days/yr)
-
-	public boolean HealthAndSafetySensitiveGroup_DeleteRow() {
-		log.info("HealthAndSafetySensitiveGroup_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			
-
-		}
-		else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("HealthAndSafetySensitiveGroup_DeleteRow  ends here........");
-		return flag;
-
-	}
-
-	// This method will Delete Row in Data Input - > Quality Of Life--> Health &
-	// Safety: Violent Crime (per year per capita)
-
-	public boolean HealthAndSafetyVoilentCrime_DeleteRow() {
-		log.info("HealthAndSafetyVoilentCrime_DeleteRow  starts here........");
-		boolean flag = false;
-		waithelper.WaitForElementVisibleWithPollingTime(PreviousYearbutton,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		
-		int RowCountBefore = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Row showing is --" + RowCountBefore);
-		if (RowCountBefore > 1) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete the row..");
-				// TODO: handle exception
-			}
-
-	
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-
-		}
-		else {
-			log.info("There is no any row to delete..");
-		}
-		int RowCountAfter = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-
-		log.info("Row count after deleting is ---" + RowCountAfter);
-		if (RowCountBefore - RowCountAfter == 1)
-			flag = true;
-		log.info("HealthAndSafetyVoilentCrime_DeleteRow  ends here........");
 		return flag;
 
 	}
@@ -10316,7 +5424,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Energy Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10366,7 +5474,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Energy Circular Image");
 			}
-		
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -10546,7 +5654,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Waste Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -10591,7 +5699,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Waste Circular Image");
 			}
-			
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10599,7 +5707,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 			}
 
-			int  TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
 			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
 				Next_flag = true;
@@ -10658,14 +5766,14 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Transport Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			int  TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
 			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
 				prev_flag = true;
@@ -10703,7 +5811,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Transport Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -10731,276 +5839,13 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 	}
 
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Health And Safety - > Data Tab
-
-	public boolean HealthAndSafety_SavePreviousAndNextYearRecord() {
-		log.info("HealthAndSafety_SavePreviousAndNextYearRecord  starts here........");
-		int value;
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		PreviousYearbutton.click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 16, 2));
-			value = value - 10;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 16, 2));
-			value = value + 5;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("HealthAndSafety_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("HealthAndSafety_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Education: Population with (at least)
-	// Bachelor's degree (%) - > Data Tab
-
-	public boolean Education_Bachelor_Population_SavePreviousAndNextYearRecord() {
-		log.info("Education_Bachelor_Population_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		PreviousYearbutton.click();
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 18, 2));
-			value = value - 5;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 18, 2));
-			value = value + 5;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Transport Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("Education_Bachelor_Population_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("Education_Bachelor_Population_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
 	// This method will add one row with previous year and One row with Next Year in
 	// Data Input - >Quality Of Life--> Equitability: Gini coefficient (for income
 	// distribution) - > Data Tab
 
 	public boolean Equitability_Gini_Coefficient_SavePreviousAndNextYearRecord() {
 		log.info("Equitability_Gini_Coefficient_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
+		int value;
 		boolean prev_flag = false;
 		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
@@ -11036,13 +5881,14 @@ public class CommunitiesPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
@@ -11057,7 +5903,7 @@ public class CommunitiesPageObject extends BaseClass {
 			} else {
 				log.info("Previous year record not added successfully...");
 			}
-		
+
 		}
 		try {
 			Thread.sleep(3000);
@@ -11097,13 +5943,14 @@ public class CommunitiesPageObject extends BaseClass {
 
 			try {
 				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
+						driver.findElement(By.xpath(
+								"//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to locate  Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -11119,7 +5966,7 @@ public class CommunitiesPageObject extends BaseClass {
 			} else {
 				log.info("Next year record not added successfully...");
 			}
-		
+
 		}
 		if (prev_flag && Next_flag) {
 
@@ -11127,798 +5974,6 @@ public class CommunitiesPageObject extends BaseClass {
 			return true;
 		} else {
 			log.info("Equitability_Gini_Coefficient_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Education: Population with (at least) High
-	// School degree (%) - > Data Tab
-
-	public boolean Education_HighSchoolPopulation_SavePreviousAndNextYearRecord() {
-		log.info("Education_HighSchoolPopulation_SavePreviousAndNextYearRecord  starts here........");
-		int value;
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(PreviousYearbutton);
-
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 22, 2));
-			value = value - 5;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		JSHelper.clickElement(NextYearbutton);
-		// NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 22, 2));
-			value = value + 5;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("Education_HighSchoolPopulation_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("Education_HighSchoolPopulation_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Education: Population with (at least) High
-	// School degree (%) - > Data Tab
-
-	public boolean ProsperityMedianIncome_SavePreviousAndNextYearRecord() {
-		log.info("ProsperityMedianIncome_SavePreviousAndNextYearRecord  starts here........");
-		int value;
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(PreviousYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 24, 2));
-			value = value - 10;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(NextYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 24, 2));
-			value = value + 10;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("ProsperityMedianIncome_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("ProsperityMedianIncome_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Equitability: Median gross rent as (%) of
-	// household income - > Data Tab
-
-	public boolean Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord() {
-		log.info("Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(PreviousYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 26, 2));
-			value = value - 10;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(NextYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 26, 2));
-			value = value + 10;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Prosperity: Unemployment rate (%) - > Data
-	// Tab
-
-	public boolean ProsperityUnemployementRate_SavePreviousAndNextYearRecord() {
-		log.info("ProsperityUnemployementRate_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(PreviousYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 28, 2));
-			value = value - 10;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(NextYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 28, 2));
-			value = value + 10;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("ProsperityUnemployementRate_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("ProsperityUnemployementRate_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life--> Prosperity: Unemployment rate (%) - > Data
-	// Tab
-
-	public boolean HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord() {
-		log.info("HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(PreviousYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 30, 2));
-			value = value - 10;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(NextYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 30, 2));
-			value = value + 10;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord  ends here........");
-			return false;
-		}
-	}
-
-	// This method will add one row with previous year and One row with Next Year in
-	// Data Input - >Quality Of Life-->Health & Safety: Violent Crime (per year per
-	// capita) - > Data Tab
-
-	public boolean HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord() {
-		log.info("HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord  starts here........");
-		int value; 
-		boolean prev_flag = false;
-		boolean Next_flag = false;
-		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of Rows before Adding  " + TotalRowBeforeAdding);
-		waithelper.WaitForElementClickable(PreviousYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(PreviousYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		int selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() - selected_year == 2) {
-			value = Integer.parseInt(data.getCellData("Communities", 32, 2));
-			value = value - 10;
-			log.info("Previous Year Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[2]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int TotalRowAfterAddingPrevious = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Previous record " + TotalRowAfterAddingPrevious);
-			if (TotalRowAfterAddingPrevious - TotalRowBeforeAdding == 1) {
-				prev_flag = true;
-				log.info("Previous year record added successfully...");
-			} else {
-				log.info("Previous year record not added successfully...");
-			}
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(NextYearbutton, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		JSHelper.clickElement(NextYearbutton);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// NextYearbutton.click();
-		selected_year = Integer.parseInt(driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")).getAttribute("value"));
-		if (CommonMethod.getCurrentYear() == selected_year) {
-			value = Integer.parseInt(data.getCellData("Communities", 32, 2));
-			value = value + 10;
-			log.info("Next Year TONs Value is ---" + value);
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).clear();
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
-					.sendKeys(Integer.toString(value));
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/button")).click();
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate Row Circular Image");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("//table[@class='meterListByType--wrapper']/tbody[5]/tr[1]/td[3]/div/span[1]/span/*")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to locate  Circular Image");
-			}
-			 
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			int TotalRowAfterAddingNext = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-			log.info("Total Number of Rows after Adding Next record " + TotalRowAfterAddingNext);
-			if (TotalRowAfterAddingNext - TotalRowBeforeAdding == 2) {
-				Next_flag = true;
-				log.info("Next year record added successfully...");
-			} else {
-				log.info("Next year record not added successfully...");
-			}
-		}
-
-		if (prev_flag && Next_flag) {
-
-			log.info("HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord  ends here........");
-			return true;
-		} else {
-			log.info("HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord  ends here........");
 			return false;
 		}
 	}
@@ -11929,7 +5984,7 @@ public class CommunitiesPageObject extends BaseClass {
 		log.info("CheckWaterConsum_SavePreviousAndNextYearRecord  starts here........");
 
 		boolean prev_flag = false;
-		boolean Next_flag = false; 
+		boolean Next_flag = false;
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		PreviousYearbutton.click();
 		log.info("Total Number of record showing before adding..." + TotalRowBeforeAdding);
@@ -11963,7 +6018,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate water Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -12013,7 +6068,7 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate water Circular Image");
 			}
-			 
+
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e) {
@@ -12053,7 +6108,7 @@ public class CommunitiesPageObject extends BaseClass {
 
 	public boolean CheckWaterConsumption_SaveNewRecord() {
 		log.info("CheckWaterConsumption_SaveNewRecord  starts here........");
-		
+
 		int TotalRowBeforeAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of row before adding.. " + TotalRowBeforeAdding);
 		WaterConsum_Data_AddYearBtn.click();
@@ -12165,7 +6220,7 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 
 		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + Prev_TableRowCount);
+		log.info("After adding number of row showing is ---" + After_TableRowCount);
 		if (After_TableRowCount - Prev_TableRowCount == 1) {
 			log.info("CheckWaste_Generation_SaveNewRecord  ends here with true........");
 			return true;
@@ -12180,7 +6235,7 @@ public class CommunitiesPageObject extends BaseClass {
 
 	public boolean CheckWaste_Diversion_SaveNewRecord() {
 		log.info("CheckWaste_Diversion_SaveNewRecord  starts here........");
-		
+
 		int Prev_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Before adding number of row showing is ---" + Prev_TableRowCount);
 		Waste_AddYearButton.click();
@@ -12203,7 +6258,7 @@ public class CommunitiesPageObject extends BaseClass {
 						Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			} catch (Exception e) {
 				e.printStackTrace();
-				log.info("Unable to locate Energy Circular Image");
+				log.info("Unable to locate Circular Image");
 			}
 			try {
 				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
@@ -12222,7 +6277,7 @@ public class CommunitiesPageObject extends BaseClass {
 		}
 
 		int After_TableRowCount = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("After adding number of row showing is ---" + Prev_TableRowCount);
+		log.info("After adding number of row showing is ---" + After_TableRowCount);
 		if (After_TableRowCount - Prev_TableRowCount == 1) {
 			log.info("CheckWaste_Diversion_SaveNewRecord  ends here with true........");
 			return true;
@@ -12275,7 +6330,6 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Water Circular Image");
 			}
-			
 
 			TotalRowAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of record showing after adding..." + TotalRowAfterAdding);
@@ -12345,7 +6399,6 @@ public class CommunitiesPageObject extends BaseClass {
 				e.printStackTrace();
 				log.info("Unable to locate Water Circular Image");
 			}
-			
 
 			TotalRowAfterAdding = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 			log.info("Total Number of record showing after adding..." + TotalRowAfterAdding);
@@ -12382,1217 +6435,1209 @@ public class CommunitiesPageObject extends BaseClass {
 
 	}
 
-
-	
 	// --> Certifications- > Verify Under Certifications- Shows text- "LEED v4.1
-		// Communities Certification".
-
-		public boolean CheckLEEDCommunitiesCertification() {
-			log.info("CheckLEEDCommunitiesCertification  starts here........");
-			String CertificationText = driver.findElement(By.xpath("//span[@class='cert_list_rs ng-binding']")).getText();
-			log.info("Text Showing is " + CertificationText);
-
-			if (CertificationText.equals("LEED v4.1 Communities Certification")) {
-				log.info("CheckLEEDCommunitiesCertification  ends here with true........");
-				return true;
-			} else {
-				log.info("CheckLEEDCommunitiesCertification  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// --> Certifications- > Verify Under Certifications-button 'Register for LEED
-		// Certification' redirects to LEED Online page-
-		// "https://leedonline-stg.usgbc.org/"
-
-		public boolean CheckRegisterForLEEDCertification() {
-			log.info("CheckRegisterForLEEDCertification  starts here........");
-			String title=null;
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			driver.findElement(By.xpath("//button[contains(text(),'Register for LEED Certification')]")).click();
-			Set<String> WindowList = driver.getWindowHandles();
-			log.info(WindowList);
-			log.info(WindowList.size());
-			
-			for (String window : WindowList) {
-				if (!window.equals(BaseWindow)) {
-					driver.switchTo().window(window);
-					log.info(JSHelper.getCurrentURL());
-					log.info(driver.getTitle());
-					title=driver.getTitle();
-					break;
-				}
-			}
-			
-			if (title.equals("LEED Online")) {
-				log.info("CheckRegisterForLEEDCertification  ends here with true........");
-				return true;
-			} else {
-				log.info("CheckRegisterForLEEDCertification  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// --> Certifications- > Verify Under Certifications-'Recent certifications' at
-		// Right hand side shows LEED badge with text "Projects achieved LEED
-		// certification since Dec 10, 2021."
-
-		public boolean CheckRecentCertifications() {
-			log.info("CheckRecentCertifications  starts here........");
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-			LocalDate todaydate = LocalDate.now();
-			String strDate = formatter.format(todaydate.minusMonths(1));
-			String ActText = driver.findElement(By.xpath("//div[@class='certification_number_text']")).getText();
-			// String
-			// SecondLine=driver.findElement(By.xpath("//div[@class='certification_number_text']/span")).getText();
-			String ExpText = "Projects achieved LEED certification since " + strDate + ".";
-			log.info("Actual Text showing is " + ActText);
-			log.info("Expected Text should be is " + ExpText);
-
-			if (ExpText.equals(ActText)) {
-				log.info("CheckRecentCertifications  ends here with true........");
-				return true;
-			} else {
-				log.info("CheckRecentCertifications  ends here with false........");
-				return false;
-			}
-
-		}
-	
-		// --> Certifications- > Verify Under Certifications-'Recent certifications' -
-		// 'Learn More' link redirects to "https://www.usgbc.org/projects"
-
-		public boolean CheckLearnMoreLink() {
-			log.info("CheckLearnMoreLink  starts here........");
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			driver.findElement(By.xpath("//a[contains(text(),'Learn more')]")).click();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Set<String> WindowList = driver.getWindowHandles();
-			for (String window : WindowList) {
-				if (!window.equals(BaseWindow)) {
-					driver.switchTo().window(window);
-					break;
-				}
-			}
-			String currentURL = JSHelper.getCurrentURL();
-			// String env=System.getProperty("environment").toLowerCase();
-			String url = "https://www.usgbc.org/projects";
-			log.info("Current URL is " + currentURL);
-			log.info("Expected URL is " + url);
-			if (currentURL.equals(url)) {
-				log.info("CheckLearnMoreLink  ends here with true........");
-				return true;
-			} else {
-				log.info("CheckLearnMoreLink  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		
-		//Verify Under Certifications-Message is displayed "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites." Followed by individual score given for each performance category.
-
-		public boolean Certifications_VerifyTextMessage() {
-			log.info("Certifications_VerifyTextMessage  starts here........");
-			String ActText=driver.findElement(By.xpath("//div[@id='certification-div']/descendant::div[@class='col-md-12 pl0 pr0 fs16 line_height_24 pt25 ng-binding']")).getText();
-			String ExpText="This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.";
-			log.info("Actual Text is   "+ActText);
-			log.info("Expected Text is   "+ExpText);
-			if (ExpText.equals(ActText)) {
-				log.info("Certifications_VerifyTextMessage  ends here with true........");
-				return true;
-			} else {
-				log.info("Certifications_VerifyTextMessage  ends here with false........");
-				return false;
-			}
-
-		}
-		public boolean CheckProjectDetails(String PName, String PAddress) {
-			log.info("CheckProjectDetails method starts here......");
-			String City = data.getCellData("ProjectRegistration", 4, 2);
-			String Country = data.getCellData("ProjectRegistration", 5, 2);
-			String State = data.getCellData("ProjectRegistration", 6, 2);
-			// String ZipCode= data.getCellData("ProjectRegistration", 7, 2);
-			String ProjectID = driver.findElement(By.xpath("//div[text()='Project ID']/following-sibling::div")).getText();
-			String ProjectName = driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value");
-			String ProjectAddress = driver.findElement(By.xpath("//div[text()='Project Address']/following-sibling::div"))
-					.getText();
-			String ProjectCity = driver.findElement(By.xpath("//div[text()='Project City']/following-sibling::div"))
-					.getText();
-			String ProjectCountry = driver
-					.findElement(By.xpath("//div[text()='Project Country/Region']/following-sibling::div")).getText();
-			String ProjectState = driver.findElement(By.xpath("//div[text()='Project State']/following-sibling::div"))
-					.getText();
-			boolean TestFlag = CheckThisIsTestProjectCheckBox(ProjectID);
-			log.info("Actual Project ID is " + ProjectID);
-			log.info("Expected Project ID is " + System.getProperty("CommunityProject5"));
-			log.info("Actual Project Name is " + ProjectName);
-			log.info("Expected Project Name is " + PName);
-			log.info("Actual Project Address " + ProjectAddress);
-			log.info("Expected Project Address is " + PAddress);
-			log.info("Actual Project City " + ProjectCity);
-			log.info("Expected Project City is " + City);
-			log.info("Actual Project State " + ProjectState);
-			log.info("Expected Project State is " + State);
-			log.info("Actual Project Country " + ProjectCountry);
-			log.info("Expected Project Country is " + Country);
-			log.info("Actual Project Country " + ProjectCountry);
-			if (ProjectID.equals(System.getProperty("CityProject5")) && ProjectName.equals(PName)
-					&& ProjectAddress.equals(PAddress) && ProjectCity.equals(City) && ProjectState.equals(State)
-					&& ProjectCountry.equals(Country) && (TestFlag == false)) {
-				log.info("CheckProjectDetails method ends here with true......");
-				return true;
-			} else {
-				log.info("CheckProjectDetails method ends here with false......");
-				return true;
-			}
-
-		}
-
-		// --> Verify under Manage--Project-- Project Details, Year founded is a
-		// dropdown field with year values ranging from 1900 to current year.
-
-		public boolean ManageProject_CheckYearRange() {
-			log.info("ManageProject_CheckYearRange  starts here........");
-			ArrayList<Integer> year = new ArrayList<Integer>();
-			boolean flag = false;
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			List<WebElement> YearList = driver.findElements(ByAngular.repeater("type in year_constructed"));
-			for (WebElement ele : YearList) {
-				year.add(Integer.parseInt(ele.getText()));
-			}
-			int CurrentYear = CommonMethod.getCurrentYear();
-			for (int i = 1900; i <= CurrentYear; i++) {
-				if (year.contains(i)) {
-					log.info(i + " year found");
-					flag = true;
-				} else {
-					log.info(i + " year not found");
-					flag = false;
-					break;
-				}
-			}
-
-			if (flag) {
-				log.info("ManageProject_CheckYearRange  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageProject_CheckYearRange  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// --> Verify Managing entity name, address(line 1), address(line 2), entity
-		// city are text field and able to add any value in it.
-
-		public boolean ManageProject_CheckEntityFields() {
-			log.info("ManageProject_CheckEntityFields  starts here........");
-			String MEntityName = data.getCellData("Communities", 34, 2);
-			String MEntityAdd1 = data.getCellData("Communities", 35, 2);
-			String MEntityAdd2 = data.getCellData("Communities", 36, 2);
-			String MEntityCity = data.getCellData("Communities", 37, 2);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ManagingEntityName.sendKeys(MEntityName);
-			ManagingEntityAddress1.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ManagingEntityAddress1.sendKeys(MEntityAdd1);
-			ManagingEntityAddress2.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			ManagingEntityAddress2.sendKeys(MEntityAdd2);
-			ManagingEntityCity.click();
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ManagingEntityCity.sendKeys(MEntityCity);
-			ManagingEntityAddress2.click();
-			CommonMethod.waitUntilLoadElement();
-
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			CommunitiesPage.ClickonCertifications();
-
-			ProjectSubmenu.click();
-
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String ActMEntityName = ManagingEntityName.getAttribute("value");
-			String ActMEntityAddress1 = ManagingEntityAddress1.getAttribute("value");
-			String ActMEntityAddress2 = ManagingEntityAddress2.getAttribute("value");
-			String ActMEntityCity = ManagingEntityCity.getAttribute("value");
-
-			log.info("Actual ManagingEntityName showing is " + ActMEntityName);
-			log.info("Actual ManagingEntityAddress1  showing is " + ActMEntityAddress1);
-			log.info("Actual ManagingEntityAddress2  showing is " + ActMEntityAddress2);
-			log.info("Actual ManagingEntityCity  showing is " + ActMEntityCity);
-			if (ActMEntityName.equals(MEntityName) && ActMEntityAddress1.equals(MEntityAdd1)
-					&& ActMEntityAddress2.equals(MEntityAdd2) && ActMEntityCity.equals(MEntityCity)) {
-				log.info("ManageProject_CheckEntityFields  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageProject_CheckEntityFields  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// Verify Managing entity Country/region is drop down field and able to select
-		// any country value from it.
-		// Verify Managing entity State field is drop down field and the values change
-		// as per the country selected in the country field.
-
-		public boolean ManageProject_SelectCountryAndState() {
-			log.info("ManageProject_SelectCountryAndState  starts here........");
-			boolean IndiaStateflag = false;
-			boolean USStateflag = false;
-			List<String> USStateList = null;
-			String State = data.getCellData("Communities", 38, 2);
-			dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")),
-					"India");
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			List<String> IndiaStateList = dropdownhelper
-					.getAllDropdownData(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int ActIndia_NoOfStates = IndiaStateList.size();
-			log.info("Total Number of states listed for India are  " + ActIndia_NoOfStates);
-			List<String> ExpIndiaStateList = CommonMethod.getStateList("India");
-			int India_NoOfStates = ExpIndiaStateList.size();
-			log.info("Total Number of states should be  " + India_NoOfStates);
-			if (India_NoOfStates == ActIndia_NoOfStates && IndiaStateList.equals(ExpIndiaStateList)) {
-				IndiaStateflag = true;
-				log.info("States are showing proper for India...");
-			}
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")),
-					"United States");
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			USStateList = dropdownhelper
-					.getAllDropdownData(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
-			int ActUS_NoOfStates = USStateList.size();
-			log.info("Total Number of states listed for India are  " + ActUS_NoOfStates);
-			List<String> ExpUSStateList = CommonMethod.getStateList("United States");
-			int US_NoOfStates = ExpUSStateList.size();
-			log.info("Total Number of states should be  " + US_NoOfStates);
-			if (US_NoOfStates == ActUS_NoOfStates && USStateList.equals(ExpUSStateList)) {
-				USStateflag = true;
-				log.info("States are showing proper for United States...");
-			}
-			dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityState']")),
-					State);
-			CommonMethod.waitUntilLoadElement();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			CommunitiesPage.ClickonCertifications();
-
-			ProjectSubmenu.click();
-
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String ExpCountry = dropdownhelper
-					.getSelectedValue(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")));
-			String ExpState = dropdownhelper
-					.getSelectedValue(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
-			log.info("US State Flag value is " + USStateflag);
-			log.info("India State Flag value is " + IndiaStateflag);
-			log.info("Selected Country value is " + ExpCountry);
-			log.info("Selected State value is " + ExpState);
-			if ((USStateflag) && (IndiaStateflag) && (ExpCountry.equals("United States") && (ExpState.equals(State)))) {
-				log.info("ManageProject_SelectCountryAndState  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageProject_SelectCountryAndState  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// Verify Private is a radio button with options Yes And No. Able to select any
-		// value from it.
-		// Verify 'Intend to precertify?' field has radio button with options- Yes and
-		// No.Able to select any value from it.
-
-		public boolean ManageProject_PrivateRadioButton_IntendToPrecertify() {
-			log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  starts here........");
-			boolean Privateflag = false;
-			boolean IntendToPrecertifyflag = false;
-
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			JSHelper.clickElement(driver.findElement(
-					By.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]")));
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			JSHelper.clickElement(driver.findElement(By.xpath(
-					"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]")));
-
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			CommunitiesPage.ClickonCertifications();
-
-			ProjectSubmenu.click();
-
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			log.info("PrivateYes flag is " + driver.findElement(By.xpath(
-					"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
-					.isSelected());
-			log.info("PrivateNo flag is " + driver.findElement(By
-					.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
-					.isSelected());
-			log.info("IntendToPrecertifyYes flag " + driver.findElement(By.xpath(
-					"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
-					.isSelected());
-			log.info("IntendToPrecertifyNo flag " + driver.findElement(By.xpath(
-					"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
-					.isSelected());
-
-			if (driver.findElement(By.xpath(
-					"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
-					.isSelected()
-					&& driver.findElement(By.xpath(
-							"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
-							.isSelected()) {
-				Privateflag = true;
-				IntendToPrecertifyflag = true;
-			} else {
-				Privateflag = false;
-				IntendToPrecertifyflag = false;
-			}
-
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(
-					By.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]"))
-					.click();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By.xpath(
-					"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]"))
-					.click();
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			CommunitiesPage.ClickonCertifications();
-
-			ProjectSubmenu.click();
-
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			log.info("PrivateYes flag is " + driver.findElement(By.xpath(
-					"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
-					.isSelected());
-			log.info("PrivateNo flag is " + driver.findElement(By
-					.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
-					.isSelected());
-			log.info("IntendToPrecertifyYes flag " + driver.findElement(By.xpath(
-					"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
-					.isSelected());
-			log.info("IntendToPrecertifyNo flag " + driver.findElement(By.xpath(
-					"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
-					.isSelected());
-
-			if (driver.findElement(By
-					.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
-					.isSelected()
-					&& driver.findElement(By.xpath(
-							"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
-							.isSelected()) {
-				Privateflag = true;
-				IntendToPrecertifyflag = true;
-			} else {
-				Privateflag = false;
-				IntendToPrecertifyflag = false;
-			}
-
-			if ((Privateflag) && (IntendToPrecertifyflag)) {
-				log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// Verify Target certification date opens up a Calendar and able to seelct any
-		// date from the calendar.
-
-		public boolean ManageProject_TargetCertificationDate() {
-			log.info("ManageProject_TargetCertificationDate  starts here........");
-			ngWebDriver.waitForAngularRequestsToFinish();
-			ManagingEntityAddress1.click();
-			TargetCertificationDate.click();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			WebElement ele=driver.findElement(By.xpath("(//div[@class='datepicker datepicker-dropdown dropdown-menu']/descendant::table[@class=' table-condensed']/tbody/tr/td[@class='day   active'])[9]"));
-			log.info(ele.getSize().height);
-			log.info(ele.getSize().width);
-			log.info(ele.getSize());
-			log.info(ele.getLocation().x);
-			log.info(ele.getLocation().y);
-			log.info(ele.getLocation().getX());
-			log.info(ele.getLocation().getY());
-			ele.click();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			CommonMethod.waitUntilLoadElement();
-
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			CommunitiesPage.ClickonCertifications();
-
-			ProjectSubmenu.click();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String ActTargetSelected = TargetCertificationDate.getAttribute("value");
-			SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
-			Date date = new Date();
-			String strDate = formatter.format(date);
-			strDate = formatter.format(date);
-			log.info("Actual Certification Target Date is " + ActTargetSelected);
-			log.info("Expected Certification Target Date is " + strDate);
-
-			if (ActTargetSelected.equals(strDate)) {
-				log.info("ManageProject_TargetCertificationDate  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageProject_TargetCertificationDate  ends here with false........");
-				return false;
-			}
-
-		}
-		// Verify ARC Administrator will be created by default when a project is created
-		// Verify that project should have minimum one ARC adminsitrator.
-
-		public boolean ManageTeam_CheckDefaultARCAdministrator() {
-			log.info("ManageTeam_CheckDefaultARCAdministrator  starts here........");
-			boolean flag = false;
-			String msg = null;
-			boolean deleteFlag = true;
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String email = prop.getProperty("email");
-			flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
-			if (flag) {
-				msg = CommonMethod.Team_EditRole(email, "Arc Administrator", "Team Member");
-				deleteFlag = CommonMethod.Team_Delete_Member(email);
-				flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
-			}
-			if (flag == true && msg.equals("Project should have at least one Arc Administrator.") && deleteFlag == false) {
-				log.info("ManageTeam_CheckDefaultARCAdministrator  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_CheckDefaultARCAdministrator  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// verify under Manage-teams- 'Invite team members' able to add team member
-		// successfully.
-		// Verify team member can be added who is a registered USGBC.org user. Verify
-		// authorization level should be by default as 'Team Member' if added any new
-		// team member
-
-		public boolean ManageTeam_CheckAddNewTeamMember() {
-			log.info("ManageTeam_CheckAddNewTeamMember  starts here........");
-			boolean MemberAddedflag = false;
-			boolean flag = false;
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String username = data.getCellData("Communities", 0, 2);
-			MemberAddedflag = CommonMethod.Team_Add_Member(username);
-			if (MemberAddedflag) {
-				flag = CommonMethod.CheckRoleOfEmail(username, "Team Member");
-			} else {
-				log.info("Member not added..");
-			}
-			if (flag) {
-				log.info("ManageTeam_CheckAddNewTeamMember  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_CheckAddNewTeamMember  ends here with false........");
-				return false;
-			}
-
-		}
-		
-		// Verify if the team member added is unregistered user, throws error message in
-		// red "a@aa.com is not a registered USGBC.org user, please have the user
-		// register at https://new.usgbc.org/registration/create-user and try again."
-
-		public boolean ManageTeam_CheckAddUnregisteredTeamMember() {
-			log.info("ManageTeam_CheckAddNewTeamMember  starts here........");
-			boolean flag = false;
-			boolean Memberflag = false;
-			String Message = null;
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String UnRegisteredUsername = data.getCellData("Communities", 39, 2);
-			Message = CommonMethod.Team_InviteMember(UnRegisteredUsername);
-			String ExpMessage = UnRegisteredUsername
-					+ "is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.";
-			if (Message != null) {
-				if (Message.equals(ExpMessage)) {
-					log.info(Message + " message displaying...");
-					flag = true;
-				} else {
-					log.info(Message + " message displaying...");
-					flag = false;
-				}
-			} else {
-				log.info("No Message showing....");
-				flag = false;
-			}
-
-			if (flag == false) {
-				Memberflag = CommonMethod.Team_checkEmailExistOrNot(UnRegisteredUsername);
-				if (Memberflag) {
-					log.info(UnRegisteredUsername + " added as Team Member..");
-				} else {
-					log.info(UnRegisteredUsername + " not added as Team Member..");
-				}
-			}
-			if (flag) {
-				log.info("ManageTeam_CheckAddUnregisteredTeamMember  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_CheckAddUnregisteredTeamMember  ends here with false........");
-				return false;
-			}
-		}
-
-		// Adding the same team role for a member again, should give a validation
-		// message like 'ashree511@gmail.com already has the same team role'
-
-		public boolean ManageTeam_AddExistingTeamMember() {
-			log.info("ManageTeam_AddExistingTeamMember  starts here........");
-			boolean flag = false;
-			String Message = null;
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String Username = data.getCellData("Communities", 0, 2);
-			Message = CommonMethod.Team_InviteMember(Username);
-			String ExpMessage = "This ID is already added to the team.";
-			if (Message != null) {
-				if (Message.equals(ExpMessage)) {
-					log.info(Message + " message displaying...");
-					flag = true;
-				} else {
-					log.info(Message + " message displaying...");
-					flag = false;
-				}
-			} else {
-				log.info("No Message showing....");
-				flag = false;
-			}
-
-			if (flag) {
-				log.info("ManageTeam_AddExistingTeamMember  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_AddExistingTeamMember  ends here with false........");
-				return false;
-			}
-		}
-
-		
-		// Verify existing ARC administrator can't be edited until another ARC
-		// adminstrator is present. If edited, error message will display as 'Project
-		// should have atleast one ARC Administrator'.
-
-		public boolean ManageTeam_EditARCAdministratorRole() {
-			log.info("ManageTeam_EditARCAdministratorRole  starts here........");
-			boolean EditEnabledFlag = false;
-			boolean DeleteEnabledFlag = false;
-			boolean InviteEnabledFlag = false;
-			String ValidationMessage = null;
-			String Message = null;
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String ExistingUser = prop.getProperty("email");
-			String AltenateUser = data.getCellData("City", 0, 2);
-			ValidationMessage = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// (In case of
-																												// Logged in
-																												// User and
-																												// only one
-																												// ARC
-																												// Admin)
-																												// Project
-																												// should
-																												// have at
-																												// least one
-																												// Arc
-																												// Administrator.
-			String ExpMessage = "Project should have at least one Arc Administrator.";
-			log.info("Validation Message showing " + ValidationMessage);
-			if (ValidationMessage.equals(ExpMessage)) {
-				log.info("Validation Message showing proper..");
-				Message = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Arc Administrator");// Team member
-																										// updated
-																										// successfully.
-				log.info("Alternate email updated with " + Message);
-				if (Message.equals("Team member updated successfully.")) {
-					log.info("Alternate Email is updated with Arc Administrator");
-					Message = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// Team member
-																											// updated
-																											// successfully.
-					log.info("Existing email updated with " + Message);
-					if (Message.equals("Team member updated successfully.")) {
-						CommonMethod.RefreshPagewaitForPageLoaded(driver);
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						log.info("Existing Email is updated with Team Member");
-
-						List<WebElement> EditBtnList = driver.findElements(By.xpath(
-								"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[4]/descendant::button[text()='Edit']"));
-						List<WebElement> DeleteBtnList = driver.findElements(By.xpath(
-								"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[5]/div[@class='ml10 delete_report tippy_init floatNone']"));
-						for (WebElement ele : EditBtnList) {
-							try {
-								ele.click();
-								EditEnabledFlag = false;
-								break;
-							} catch (ElementClickInterceptedException e) {
-								EditEnabledFlag = true;
-							}
-
-						}
-						for (WebElement ele : DeleteBtnList) {
-							try {
-								ele.click();
-								DeleteEnabledFlag = false;
-								break;
-							} catch (ElementClickInterceptedException e) {
-								DeleteEnabledFlag = true;
-							}
-
-						}
-
-						try {
-							driver.findElement(By.xpath("//button[@id='invite_team']")).click();
-							InviteEnabledFlag = false;
-						} catch (ElementClickInterceptedException e) {
-							InviteEnabledFlag = true;
-						}
-
-					}
-				}
-			}
-
-			log.info("Edit button flag is " + EditEnabledFlag);
-			log.info("Delete button flag is " + DeleteEnabledFlag);
-			log.info("Invite button flag is " + InviteEnabledFlag);
-
-			if (EditEnabledFlag == true && InviteEnabledFlag == true && DeleteEnabledFlag == true) {
-				log.info("ManageTeam_EditARCAdministratorRole  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_EditARCAdministratorRole  ends here with false........");
-				return false;
-			}
-		}
-		
-		
-		// Verify able to add/update/remove team member.
-		// Verify authorization level Member, etc can be changed and vice-versa.
-
-		public boolean ManageTeam_TeamAddEditMember() {
-			log.info("ManageTeam_TeamAddEditMember  starts here........");
-			ngWebDriver.waitForAngularRequestsToFinish();
-			boolean AddFlag = false;
-			String Message1 = null;
-			String Message2 = null;
-			String Message3 = null;
-			String ExpMsg = null;
-			String AltenateUser = data.getCellData("Communities", 0, 2);
-			AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
-			log.info("Add Member flag is "+AddFlag);
-			if (AddFlag) {
-				Message1 = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Team Manager");
-				Message2 = CommonMethod.Team_EditRole(AltenateUser, "Team Manager", "Read Only");
-				Message3 = CommonMethod.Team_EditRole(AltenateUser, "Read Only", "Arc Administrator");
-				log.info("Message1 displaying text is "+Message1);
-				log.info("Message2 displaying text is "+Message2);
-				log.info("Message3 displaying text is "+Message3);
-			}
-			else
-			{
-				log.info("Team member is not added successfully..");
-			}
-			
-			ExpMsg = "Team member updated successfully.";
-			if (Message1.equals(ExpMsg) && Message2.equals(ExpMsg) && Message3.equals(ExpMsg)) {
-				log.info("ManageTeam_TeamAddEditMember  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_TeamAddEditMember  ends here with false........");
-				return false;
-			}
-		}
-		
-		public boolean ManageTeam_TeamAddRemoveMember() {
-			log.info("ManageTeam_TeamAddRemoveMember  starts here........");
-			ngWebDriver.waitForAngularRequestsToFinish();
-			boolean AddFlag = false;
-			boolean SearchFlag = false;
-			String AltenateUser = data.getCellData("Communities", 0, 2);
-			AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
-			log.info("Add Member flag is "+AddFlag);
-			if (AddFlag) {
-				CommonMethod.Team_Delete_Member(AltenateUser);
-				HomePage.checkSignOut();
-				HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
-				ProjectPage = HomePage.clickOnProject();
-				SearchFlag = ProjectPage.SearchProject(System.getProperty("CommunitiesProject_NonLeed2"));
-				HomePage.closeProjectSearchTextBox();
-				HomePage.checkSignOut();
-				HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
-			}
-			else
-			{
-				log.info("Team member is not added successfully..");
-			}
-			log.info("AddFlag is "+AddFlag);
-			log.info("SearchFlag is "+SearchFlag);
-			if (AddFlag == true && SearchFlag==false) {
-				log.info("ManageTeam_TeamAddRemoveMember  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_TeamAddRemoveMember  ends here with false........");
-				return false;
-			}
-		}
-		
-		
-		public boolean ManageTeam_HowTeamRolesWorkTooltip() {
-			log.info("ManageTeam_HowTeamRolesWorkTooltip  starts here........");
-			ngWebDriver.waitForAngularRequestsToFinish();
-			WebElement TeamTooltip=driver.findElement(By.xpath("//span[text()='How team roles work']/following-sibling::span"));
-			waithelper.WaitForElementClickable(TeamTooltip, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			TeamTooltip.click();
-			String ActToolTipP1=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[1]")).getText();
-			String ActToolTipP2=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[2]")).getText();
-			String ActToolTipP3=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[3]")).getText();
-			String ActToolTipP4=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[4]")).getText();
-			String ActToolTipP5=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[5]")).getText();
-			String ActToolTipP6=driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[6]")).getText();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			log.info("Tooltip is ");
-			String ExpToolTipP1="Arc Administrator:\n"
-					+ "The Arc Administrator has complete access to the project including data entry, submitting for review, and is granted rights to add additional team members. The Arc Administrator will also be the point of contact for automatic notifications, billing information, and review reports.";
-					
-			String ExpToolTipP2="Note: While multiple “Arc Administrators” can exist on a project team, we strongly recommend that you designate only one person in this role to avoid confusion and so that a single point of contact is receiving notifications about billing and certification.";
-			String ExpToolTipP3="Team Manager:\n"
-					+ "A Team Manager has access to the project including data entry and submitting for review, and can make changes to the project team.";
-			String ExpToolTipP4="Team Member:\n"
-					+ "A Team Member has access to the project including data entry and submitting for review, but cannot make any changes to the project team.";
-			String ExpToolTipP5="Project Administrator:\n"
-					+ "A Project Administrator is the original LEED Project Administrator and will only appear on the project team for LEED projects that were previously or are currently using LEED Online. The Project Administrator has the same rights as the Arc Administrator.";
-			String ExpToolTipP6="Read Only:\n"
-					+ "Read Only members can access the project to view data but cannot make any changes to the project, data entry or the project team.";
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			log.info(ActToolTipP1);
-			log.info(ExpToolTipP1);
-			log.info("--------------------");
-			log.info(ActToolTipP2);
-			log.info(ExpToolTipP2);
-			log.info("--------------------");
-			log.info(ActToolTipP3);
-			log.info(ExpToolTipP3);
-			log.info("--------------------");
-			log.info(ActToolTipP4);
-			log.info(ExpToolTipP4);
-			log.info("--------------------");
-			log.info(ActToolTipP5);
-			log.info(ExpToolTipP5);
-			log.info("--------------------");
-			log.info(ActToolTipP6);
-			log.info(ExpToolTipP6);
-			log.info("--------------------");
-			
-			CommonMethod.RefreshPagewaitForPageLoaded(driver);
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			log.info(ExpToolTipP1.equals(ActToolTipP1));
-			log.info(ExpToolTipP2.equals(ActToolTipP2));
-			log.info(ExpToolTipP3.equals(ActToolTipP3));
-			log.info(ExpToolTipP4.equals(ActToolTipP4));
-			log.info(ExpToolTipP5.equals(ActToolTipP5));
-			log.info(ExpToolTipP6.equals(ActToolTipP6));
-			if ((ExpToolTipP1.equals(ActToolTipP1)) && (ExpToolTipP2.equals(ActToolTipP2)) && (ExpToolTipP3.equals(ActToolTipP3)) &&  (ExpToolTipP4.equals(ActToolTipP4)) && (ExpToolTipP5.equals(ActToolTipP5)) && (ExpToolTipP6.equals(ActToolTipP6))) {
-				log.info("ManageTeam_HowTeamRolesWorkTooltip  ends here with true........");
-				return true;
-			} else {
-				log.info("ManageTeam_HowTeamRolesWorkTooltip  ends here with false........");
-				return false;
-			}
-		}
-		
-		public  boolean Manage_Agreement_CheckAgreement() {
-			log.info("Manage_Agreement_CheckAgreement method starts here ......");
-			boolean flag = false;
-			String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
-			List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
-			log.info("Size of the Agreement Table is ---" + AgreementTable.size());
-			SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
-			Date date = new Date();
-			String strDate = formatter.format(date);
-			strDate = formatter.format(date);
-			log.info(strDate);
-			if (AgreementTable.size() > 0) {
-				AgreementTable.iterator();
-				String OrderTypePath = "";
-				String DateSignedPath = "";
-				for (int i = 0; i < AgreementTable.size(); i++) {
-					int rownum = i + 1;
-					OrderTypePath = RowPath + "[" + rownum + "]/td[2]/span";
-					String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
-					log.info(OrderTypePath + "......." + OrderType);
-					if (OrderType.equals("Registration")) {
-						log.info("Order Type Registration found ..");
-						DateSignedPath=RowPath + "[" + rownum + "]/td[1]/span";
-						String DateSigned=driver.findElement(By.xpath(DateSignedPath)).getText();
-						log.info("Date Signed showing is "+DateSigned);
-						if(DateSigned.equals(strDate)) {
-						flag = true;
-						break;
-						}
-						
-					}
-					
-				}
-			}
-			if (flag)
-			{
-				log.info("Date signes showing proper ...");
-			}
-			else {
-				log.info("Date signes is not showing proper ...");
-			}
-			log.info("Manage_Agreement_CheckAgreement method ends here ......");
-			return flag;
-
-		}
-		
-		public boolean CheckAgreementDownloadedFile(String user) {
-			log.info("CheckDownloadedFile method starts here ......");
-			// DownloadFolder=new File(UUID.randomUUID().toString());
-			String userid=null;
-			SimpleDateFormat Formatter = new SimpleDateFormat("EEE");
-			String stringDay = Formatter.format(new Date());
-			SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
-			Date date = new Date();
-			String strDate = formatter.format(date);
-			strDate = formatter.format(date);
-			String ExpDate = stringDay + ", " + strDate;
-			log.info("Temporary folder name is ---" + DownloadFolder);
-			File ListOfFiles[] = DownloadFolder.listFiles();
-			boolean flag = false;
-			String FilePath = null;
-			// make sure the directory is not empty
-			log.info("Total file downloaded ...." + ListOfFiles.length);
-			if (ListOfFiles.length != 0) {
-				for (File file : ListOfFiles) {
-					log.info("Size of the file - " + file.getName() + " is  " + file.length());
-					if (file.getName().equals("Agreement.pdf")) {
-						FilePath = file.getAbsolutePath();
-						log.info("File Path is ---" + FilePath);
-						flag = true;
-						break;
-					}
-
-				}
-
-			} else {
-				flag = false;
-			}
-			if (flag) {
-				String pdfcontent = CommonMethod.getPDFContent("file:///" + FilePath);
-				String ProjectID = "Project ID : " + System.getProperty("CommunityProject5");
-				String RatingSystem = "Rating system : none";
-				String UserName = "User Name : " + user;
-				String useremail = "User Email : " + prop.getProperty("email");
-				if(System.getProperty("environment").equals("QAS"))
-				{
-					userid ="User ID : 0010640669";
-				}
-				else if(System.getProperty("environment").equals("STG"))
-				{
-					userid ="User ID : 0010545793";
-				}
-				String DateTime = "Date and Time of Acceptance : " + ExpDate;
-				String ProjectName = "Name of Project : " + System.getProperty("CommunityProject5_Name");
-				String OwnerEmail = "Owner Email : " + prop.getProperty("email");
-				log.info("----------------------------------------");
-				log.info("ProjectID is "+ProjectID);
-				log.info("RatingSystem is "+RatingSystem);
-				log.info("UserName is "+UserName);
-				log.info("useremail is "+useremail);
-				log.info("userid is "+userid);
-				log.info("DateTime is "+DateTime);
-				log.info("ProjectName is "+ProjectName);
-				log.info("OwnerEmail is "+OwnerEmail);
-				log.info(pdfcontent.contains(ProjectID));
-				log.info(pdfcontent.contains(RatingSystem));
-				log.info(pdfcontent.contains(UserName));
-				log.info(pdfcontent.contains(useremail));
-				log.info(pdfcontent.contains(userid));
-				log.info(pdfcontent.contains(DateTime));
-				log.info(pdfcontent.contains(ProjectName));
-				log.info(pdfcontent.contains(OwnerEmail));
-				if (pdfcontent.contains(ProjectID) && pdfcontent.contains(RatingSystem) && pdfcontent.contains(UserName) && pdfcontent.contains(useremail) && pdfcontent.contains(userid) && pdfcontent.contains(DateTime) && pdfcontent.contains(ProjectName) && pdfcontent.contains(OwnerEmail)) {
-					flag=true;
-				} else
-					flag=false;
-
-			}
-
-			CommonMethod.DeleteAllFiles();
-			DownloadFolder.delete();
-			log.info("CheckAgreementDownloadedFile method ends here with "+flag+ " ......");
-			return flag;
-		}
-		
-		
-		public void ClickonScoreVersionInManage() {
-			log.info("ClickonScoreVersionInManage method starts here ....");
-			waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			ManageMenu.click();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			waithelper.WaitForElementClickable(ScoreVersionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			ScoreVersionSubmenu.click();
-			CommonMethod.waitUntilLoadElement();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			log.info("ClickonScoreVersionInManage method ends here ....");
-		}
-		public boolean CheckSettings_DataResourceLink() {
-			log.info("CheckSettings_DataResourceLink method starts here ......");
-			String DataGuideURL = null;
-			boolean DataGuideURLFlag = false;
-			boolean DataReviewCheckListFlag = false;
-			ngWebDriver.waitForAngularRequestsToFinish();
-			driver.findElement(By.xpath("//div[@class='link'][text()='Data guide for buildings']")).click();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			Set<String> WindowList = driver.getWindowHandles();
-			if (WindowList.size() > 1) {
-				for (String window : WindowList) {
-					if (!window.equals(BaseWindow)) {
-						driver.switchTo().window(window);
-						DataGuideURL = JSHelper.getCurrentURL();
-						log.info("Current URL is " + DataGuideURL);
-						driver.close();
-						driver.switchTo().window(BaseWindow);
-					}
-				}
-			}
-
-			if (DataGuideURL.equals("https://www.usgbc.org/resources/data-management-buildings")) {
-				DataGuideURLFlag = true;
-			}
-
-			driver.findElement(By.xpath("//div[@class='link'][text()='Data review checklist (pdf)']")).click();
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			log.info("Temporary folder name is ---" + DownloadFolder);
-			File ListOfFiles[] = DownloadFolder.listFiles();
-			boolean flag = false;
-			String FilePath = null;
-			// make sure the directory is not empty
-			log.info("Total file downloaded ...." + ListOfFiles.length);
-			if (ListOfFiles.length != 0) {
-				for (File file : ListOfFiles) {
-					log.info("Size of the file - " + file.getName() + " is  " + file.length());
-					if (file.getName().contains("Data Review Checklist")) {
-						DataReviewCheckListFlag = true;
-						break;
-					}
-
-				}
-
-			}
-			log.info("DataGuideURLFlag flag value is "+DataGuideURLFlag);
-			log.info("DataReviewCheckListFlag flag value is "+DataReviewCheckListFlag);	
-			if(DataGuideURLFlag==true && DataReviewCheckListFlag==true)
-			{
-				log.info("CheckSettings_DataResourceLink emthod ends with true...");
-				return true;
-			}
-			else
-			{
-				log.info("CheckSettings_DataResourceLink emthod ends with false...");
-				return false;
-			}
-		}
-		
-		public boolean CheckScoreVersion() {
-			log.info("CheckScoreVersion method starts here ......");
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String ExpText="Arc score for communities version "+data.getCellData("City", 40, 2);
-			String ActText=driver.findElement(By.xpath("//*[@id='content']/descendant::h3")).getText();	
-			log.info("Actual Text is "+ActText);
-			log.info("Expected Text is "+ExpText);		
-			if(ExpText.equals(ActText))
-			{
-				log.info("CheckScoreVersion emthod ends with true...");
-				return true;
-			}
-			else
-			{
-				log.info("CheckScoreVersion emthod ends with false...");
-				return false;
-			}
+	// Communities Certification".
+
+	public boolean CheckLEEDCommunitiesCertification() {
+		log.info("CheckLEEDCommunitiesCertification  starts here........");
+		String CertificationText = driver.findElement(By.xpath("//span[@class='cert_list_rs ng-binding']")).getText();
+		log.info("Text Showing is " + CertificationText);
+
+		if (CertificationText.equals("LEED v4.1 Communities Certification")) {
+			log.info("CheckLEEDCommunitiesCertification  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckLEEDCommunitiesCertification  ends here with false........");
+			return false;
 		}
 
 	}
 
+	// --> Certifications- > Verify Under Certifications-button 'Register for LEED
+	// Certification' redirects to LEED Online page-
+	// "https://leedonline-stg.usgbc.org/"
+
+	public boolean CheckRegisterForLEEDCertification() {
+		log.info("CheckRegisterForLEEDCertification  starts here........");
+		String title = null;
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//button[contains(text(),'Register for LEED Certification')]")).click();
+		Set<String> WindowList = driver.getWindowHandles();
+		log.info(WindowList);
+		log.info(WindowList.size());
+
+		for (String window : WindowList) {
+			if (!window.equals(BaseWindow)) {
+				driver.switchTo().window(window);
+				log.info(JSHelper.getCurrentURL());
+				log.info(driver.getTitle());
+				title = driver.getTitle();
+				break;
+			}
+		}
+
+		if (title.equals("LEED Online")) {
+			log.info("CheckRegisterForLEEDCertification  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckRegisterForLEEDCertification  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' at
+	// Right hand side shows LEED badge with text "Projects achieved LEED
+	// certification since Dec 10, 2021."
+
+	public boolean CheckRecentCertifications() {
+		log.info("CheckRecentCertifications  starts here........");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDate todaydate = LocalDate.now();
+		String strDate = formatter.format(todaydate.minusMonths(1));
+		String ActText = driver.findElement(By.xpath("//div[@class='certification_number_text']")).getText();
+		// String
+		// SecondLine=driver.findElement(By.xpath("//div[@class='certification_number_text']/span")).getText();
+		String ExpText = "Projects achieved LEED certification since " + strDate + ".";
+		log.info("Actual Text showing is " + ActText);
+		log.info("Expected Text should be is " + ExpText);
+
+		if (ExpText.equals(ActText)) {
+			log.info("CheckRecentCertifications  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckRecentCertifications  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Certifications- > Verify Under Certifications-'Recent certifications' -
+	// 'Learn More' link redirects to "https://www.usgbc.org/projects"
+
+	public boolean CheckLearnMoreLink() {
+		log.info("CheckLearnMoreLink  starts here........");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("//a[contains(text(),'Learn more')]")).click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Set<String> WindowList = driver.getWindowHandles();
+		for (String window : WindowList) {
+			if (!window.equals(BaseWindow)) {
+				driver.switchTo().window(window);
+				break;
+			}
+		}
+		String currentURL = JSHelper.getCurrentURL();
+		// String env=System.getProperty("environment").toLowerCase();
+		String url = "https://www.usgbc.org/projects";
+		log.info("Current URL is " + currentURL);
+		log.info("Expected URL is " + url);
+		if (currentURL.equals(url)) {
+			log.info("CheckLearnMoreLink  ends here with true........");
+			return true;
+		} else {
+			log.info("CheckLearnMoreLink  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Under Certifications-Message is displayed "This project does not meet
+	// the requirements of the LEED performance prerequisites. Project must achieve
+	// a minimum score of 40 to meet the requirements of LEED performance
+	// prerequisites." Followed by individual score given for each performance
+	// category.
+
+	public boolean Certifications_VerifyTextMessage() {
+		log.info("Certifications_VerifyTextMessage  starts here........");
+		String ActText = driver.findElement(By.xpath(
+				"//div[@id='certification-div']/descendant::div[@class='col-md-12 pl0 pr0 fs16 line_height_24 pt25 ng-binding']"))
+				.getText();
+		String ExpText = "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.";
+		log.info("Actual Text is   " + ActText);
+		log.info("Expected Text is   " + ExpText);
+		if (ExpText.equals(ActText)) {
+			log.info("Certifications_VerifyTextMessage  ends here with true........");
+			return true;
+		} else {
+			log.info("Certifications_VerifyTextMessage  ends here with false........");
+			return false;
+		}
+
+	}
+
+	public boolean CheckProjectDetails(String PName, String PAddress) {
+		log.info("CheckProjectDetails method starts here......");
+		String City = data.getCellData("ProjectRegistration", 4, 2);
+		String Country = data.getCellData("ProjectRegistration", 5, 2);
+		String State = data.getCellData("ProjectRegistration", 6, 2);
+		// String ZipCode= data.getCellData("ProjectRegistration", 7, 2);
+		String ProjectID = driver.findElement(By.xpath("//div[text()='Project ID']/following-sibling::div")).getText();
+		String ProjectName = driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value");
+		String ProjectAddress = driver.findElement(By.xpath("//div[text()='Project Address']/following-sibling::div"))
+				.getText();
+		String ProjectCity = driver.findElement(By.xpath("//div[text()='Project City']/following-sibling::div"))
+				.getText();
+		String ProjectCountry = driver
+				.findElement(By.xpath("//div[text()='Project Country/Region']/following-sibling::div")).getText();
+		String ProjectState = driver.findElement(By.xpath("//div[text()='Project State']/following-sibling::div"))
+				.getText();
+		boolean TestFlag = CheckThisIsTestProjectCheckBox(ProjectID);
+		log.info("Actual Project ID is " + ProjectID);
+		log.info("Expected Project ID is " + System.getProperty("CommunityProject5"));
+		log.info("Actual Project Name is " + ProjectName);
+		log.info("Expected Project Name is " + PName);
+		log.info("Actual Project Address " + ProjectAddress);
+		log.info("Expected Project Address is " + PAddress);
+		log.info("Actual Project City " + ProjectCity);
+		log.info("Expected Project City is " + City);
+		log.info("Actual Project State " + ProjectState);
+		log.info("Expected Project State is " + State);
+		log.info("Actual Project Country " + ProjectCountry);
+		log.info("Expected Project Country is " + Country);
+		log.info("Actual Project Country " + ProjectCountry);
+		if (ProjectID.equals(System.getProperty("CommunityProject5")) && ProjectName.equals(PName)
+				&& ProjectAddress.equals(PAddress) && ProjectCity.equals(City) && ProjectState.equals(State)
+				&& ProjectCountry.equals(Country) && (TestFlag == false)) {
+			log.info("CheckProjectDetails method ends here with true......");
+			return true;
+		} else {
+			log.info("CheckProjectDetails method ends here with false......");
+			return true;
+		}
+
+	}
+
+	// --> Verify under Manage--Project-- Project Details, Year founded is a
+	// dropdown field with year values ranging from 1900 to current year.
+
+	public boolean ManageProject_CheckYearRange() {
+		log.info("ManageProject_CheckYearRange  starts here........");
+		ArrayList<Integer> year = new ArrayList<Integer>();
+		boolean flag = false;
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> YearList = driver.findElements(ByAngular.repeater("type in year_constructed"));
+		for (WebElement ele : YearList) {
+			year.add(Integer.parseInt(ele.getText()));
+		}
+		int CurrentYear = CommonMethod.getCurrentYear();
+		for (int i = 1900; i <= CurrentYear; i++) {
+			if (year.contains(i)) {
+				log.info(i + " year found");
+				flag = true;
+			} else {
+				log.info(i + " year not found");
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag) {
+			log.info("ManageProject_CheckYearRange  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_CheckYearRange  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// --> Verify Managing entity name, address(line 1), address(line 2), entity
+	// city are text field and able to add any value in it.
+
+	public boolean ManageProject_CheckEntityFields() {
+		log.info("ManageProject_CheckEntityFields  starts here........");
+		String MEntityName = data.getCellData("Communities", 34, 2);
+		String MEntityAdd1 = data.getCellData("Communities", 35, 2);
+		String MEntityAdd2 = data.getCellData("Communities", 36, 2);
+		String MEntityCity = data.getCellData("Communities", 37, 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ManagingEntityName.sendKeys(MEntityName);
+		ManagingEntityAddress1.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ManagingEntityAddress1.sendKeys(MEntityAdd1);
+		ManagingEntityAddress2.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ManagingEntityAddress2.sendKeys(MEntityAdd2);
+		ManagingEntityCity.click();
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ManagingEntityCity.sendKeys(MEntityCity);
+		ManagingEntityAddress2.click();
+		CommonMethod.waitUntilLoadElement();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommunitiesPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String ActMEntityName = ManagingEntityName.getAttribute("value");
+		String ActMEntityAddress1 = ManagingEntityAddress1.getAttribute("value");
+		String ActMEntityAddress2 = ManagingEntityAddress2.getAttribute("value");
+		String ActMEntityCity = ManagingEntityCity.getAttribute("value");
+
+		log.info("Actual ManagingEntityName showing is " + ActMEntityName);
+		log.info("Actual ManagingEntityAddress1  showing is " + ActMEntityAddress1);
+		log.info("Actual ManagingEntityAddress2  showing is " + ActMEntityAddress2);
+		log.info("Actual ManagingEntityCity  showing is " + ActMEntityCity);
+		if (ActMEntityName.equals(MEntityName) && ActMEntityAddress1.equals(MEntityAdd1)
+				&& ActMEntityAddress2.equals(MEntityAdd2) && ActMEntityCity.equals(MEntityCity)) {
+			log.info("ManageProject_CheckEntityFields  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_CheckEntityFields  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Managing entity Country/region is drop down field and able to select
+	// any country value from it.
+	// Verify Managing entity State field is drop down field and the values change
+	// as per the country selected in the country field.
+
+	public boolean ManageProject_SelectCountryAndState() {
+		log.info("ManageProject_SelectCountryAndState  starts here........");
+		boolean IndiaStateflag = false;
+		boolean USStateflag = false;
+		List<String> USStateList = null;
+		String State = data.getCellData("Communities", 38, 2);
+		dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")),
+				"India");
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String> IndiaStateList = dropdownhelper
+				.getAllDropdownData(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int ActIndia_NoOfStates = IndiaStateList.size();
+		log.info("Total Number of states listed for India are  " + ActIndia_NoOfStates);
+		List<String> ExpIndiaStateList = CommonMethod.getStateList("India");
+		int India_NoOfStates = ExpIndiaStateList.size();
+		log.info("Total Number of states should be  " + India_NoOfStates);
+		if (India_NoOfStates == ActIndia_NoOfStates && IndiaStateList.equals(ExpIndiaStateList)) {
+			IndiaStateflag = true;
+			log.info("States are showing proper for India...");
+		}
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")),
+				"United States");
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		USStateList = dropdownhelper
+				.getAllDropdownData(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
+		int ActUS_NoOfStates = USStateList.size();
+		log.info("Total Number of states listed for India are  " + ActUS_NoOfStates);
+		List<String> ExpUSStateList = CommonMethod.getStateList("United States");
+		int US_NoOfStates = ExpUSStateList.size();
+		log.info("Total Number of states should be  " + US_NoOfStates);
+		if (US_NoOfStates == ActUS_NoOfStates && USStateList.equals(ExpUSStateList)) {
+			USStateflag = true;
+			log.info("States are showing proper for United States...");
+		}
+		dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath("//select[@name='manageEntityState']")),
+				State);
+		CommonMethod.waitUntilLoadElement();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommunitiesPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String ExpCountry = dropdownhelper
+				.getSelectedValue(driver.findElement(By.xpath("//select[@name='manageEntityCountry']")));
+		String ExpState = dropdownhelper
+				.getSelectedValue(driver.findElement(By.xpath("//select[@name='manageEntityState']")));
+		log.info("US State Flag value is " + USStateflag);
+		log.info("India State Flag value is " + IndiaStateflag);
+		log.info("Selected Country value is " + ExpCountry);
+		log.info("Selected State value is " + ExpState);
+		if ((USStateflag) && (IndiaStateflag) && (ExpCountry.equals("United States") && (ExpState.equals(State)))) {
+			log.info("ManageProject_SelectCountryAndState  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_SelectCountryAndState  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Private is a radio button with options Yes And No. Able to select any
+	// value from it.
+	// Verify 'Intend to precertify?' field has radio button with options- Yes and
+	// No.Able to select any value from it.
+
+	public boolean ManageProject_PrivateRadioButton_IntendToPrecertify() {
+		log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  starts here........");
+		boolean Privateflag = false;
+		boolean IntendToPrecertifyflag = false;
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JSHelper.clickElement(driver.findElement(
+				By.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]")));
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JSHelper.clickElement(driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]")));
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommunitiesPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		log.info("PrivateYes flag is " + driver.findElement(By.xpath(
+				"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("PrivateNo flag is " + driver.findElement(By
+				.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyYes flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyNo flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+
+		if (driver.findElement(By.xpath(
+				"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected()
+				&& driver.findElement(By.xpath(
+						"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+						.isSelected()) {
+			Privateflag = true;
+			IntendToPrecertifyflag = true;
+		} else {
+			Privateflag = false;
+			IntendToPrecertifyflag = false;
+		}
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(
+				By.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]"))
+				.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]"))
+				.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		CommunitiesPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//span[@class='fw-semi-bold' and text()='Project']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		log.info("PrivateYes flag is " + driver.findElement(By.xpath(
+				"//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("PrivateNo flag is " + driver.findElement(By
+				.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyYes flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'Yes')]/input"))
+				.isSelected());
+		log.info("IntendToPrecertifyNo flag " + driver.findElement(By.xpath(
+				"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected());
+
+		if (driver.findElement(By
+				.xpath("//span[text()='Private']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+				.isSelected()
+				&& driver.findElement(By.xpath(
+						"//span[text()='Intend to precertify?']/following-sibling::div/descendant::span[contains(text(),'No')]/input"))
+						.isSelected()) {
+			Privateflag = true;
+			IntendToPrecertifyflag = true;
+		} else {
+			Privateflag = false;
+			IntendToPrecertifyflag = false;
+		}
+
+		if ((Privateflag) && (IntendToPrecertifyflag)) {
+			log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_PrivateRadioButton_IntendToPrecertify  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify Target certification date opens up a Calendar and able to seelct any
+	// date from the calendar.
+
+	public boolean ManageProject_TargetCertificationDate() {
+		log.info("ManageProject_TargetCertificationDate  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		ManagingEntityAddress1.click();
+		TargetCertificationDate.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		WebElement ele = driver.findElement(By.xpath(
+				"(//div[@class='datepicker datepicker-dropdown dropdown-menu']/descendant::table[@class=' table-condensed']/tbody/tr/td[@class='day   active'])[9]"));
+		log.info(ele.getSize().height);
+		log.info(ele.getSize().width);
+		log.info(ele.getSize());
+		log.info(ele.getLocation().x);
+		log.info(ele.getLocation().y);
+		log.info(ele.getLocation().getX());
+		log.info(ele.getLocation().getY());
+		ele.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		CommonMethod.waitUntilLoadElement();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		CommunitiesPage.ClickonCertifications();
+
+		ProjectSubmenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ActTargetSelected = TargetCertificationDate.getAttribute("value");
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		log.info("Actual Certification Target Date is " + ActTargetSelected);
+		log.info("Expected Certification Target Date is " + strDate);
+
+		if (ActTargetSelected.equals(strDate)) {
+			log.info("ManageProject_TargetCertificationDate  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageProject_TargetCertificationDate  ends here with false........");
+			return false;
+		}
+
+	}
+	// Verify ARC Administrator will be created by default when a project is created
+	// Verify that project should have minimum one ARC adminsitrator.
+
+	public boolean ManageTeam_CheckDefaultARCAdministrator() {
+		log.info("ManageTeam_CheckDefaultARCAdministrator  starts here........");
+		boolean flag = false;
+		String msg = null;
+		boolean deleteFlag = true;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String email = prop.getProperty("email");
+		flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
+		if (flag) {
+			msg = CommonMethod.Team_EditRole(email, "Arc Administrator", "Team Member");
+			deleteFlag = CommonMethod.Team_Delete_Member(email);
+			flag = CommonMethod.CheckRoleOfEmail(email, "Arc Administrator");
+		}
+		if (flag == true && msg.equals("Project should have at least one Arc Administrator.") && deleteFlag == false) {
+			log.info("ManageTeam_CheckDefaultARCAdministrator  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_CheckDefaultARCAdministrator  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// verify under Manage-teams- 'Invite team members' able to add team member
+	// successfully.
+	// Verify team member can be added who is a registered USGBC.org user. Verify
+	// authorization level should be by default as 'Team Member' if added any new
+	// team member
+
+	public boolean ManageTeam_CheckAddNewTeamMember() {
+		log.info("ManageTeam_CheckAddNewTeamMember  starts here........");
+		boolean MemberAddedflag = false;
+		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String username = data.getCellData("Communities", 0, 2);
+		MemberAddedflag = CommonMethod.Team_Add_Member(username);
+		if (MemberAddedflag) {
+			flag = CommonMethod.CheckRoleOfEmail(username, "Team Member");
+		} else {
+			log.info("Member not added..");
+		}
+		if (flag) {
+			log.info("ManageTeam_CheckAddNewTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_CheckAddNewTeamMember  ends here with false........");
+			return false;
+		}
+
+	}
+
+	// Verify if the team member added is unregistered user, throws error message in
+	// red "a@aa.com is not a registered USGBC.org user, please have the user
+	// register at https://new.usgbc.org/registration/create-user and try again."
+
+	public boolean ManageTeam_CheckAddUnregisteredTeamMember() {
+		log.info("ManageTeam_CheckAddNewTeamMember  starts here........");
+		boolean flag = false;
+		boolean Memberflag = false;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String UnRegisteredUsername = data.getCellData("Communities", 39, 2);
+		Message = CommonMethod.Team_InviteMember(UnRegisteredUsername);
+		String ExpMessage = UnRegisteredUsername
+				+ "is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.";
+		if (Message != null) {
+			if (Message.equals(ExpMessage)) {
+				log.info(Message + " message displaying...");
+				flag = true;
+			} else {
+				log.info(Message + " message displaying...");
+				flag = false;
+			}
+		} else {
+			log.info("No Message showing....");
+			flag = false;
+		}
+
+		if (flag == false) {
+			Memberflag = CommonMethod.Team_checkEmailExistOrNot(UnRegisteredUsername);
+			if (Memberflag) {
+				log.info(UnRegisteredUsername + " added as Team Member..");
+			} else {
+				log.info(UnRegisteredUsername + " not added as Team Member..");
+			}
+		}
+		if (flag) {
+			log.info("ManageTeam_CheckAddUnregisteredTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_CheckAddUnregisteredTeamMember  ends here with false........");
+			return false;
+		}
+	}
+
+	// Adding the same team role for a member again, should give a validation
+	// message like 'ashree511@gmail.com already has the same team role'
+
+	public boolean ManageTeam_AddExistingTeamMember() {
+		log.info("ManageTeam_AddExistingTeamMember  starts here........");
+		boolean flag = false;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String Username = data.getCellData("Communities", 0, 2);
+		Message = CommonMethod.Team_InviteMember(Username);
+		String ExpMessage = "This ID is already added to the team.";
+		if (Message != null) {
+			if (Message.equals(ExpMessage)) {
+				log.info(Message + " message displaying...");
+				flag = true;
+			} else {
+				log.info(Message + " message displaying...");
+				flag = false;
+			}
+		} else {
+			log.info("No Message showing....");
+			flag = false;
+		}
+
+		if (flag) {
+			log.info("ManageTeam_AddExistingTeamMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_AddExistingTeamMember  ends here with false........");
+			return false;
+		}
+	}
+
+	// Verify existing ARC administrator can't be edited until another ARC
+	// adminstrator is present. If edited, error message will display as 'Project
+	// should have atleast one ARC Administrator'.
+
+	public boolean ManageTeam_EditARCAdministratorRole() {
+		log.info("ManageTeam_EditARCAdministratorRole  starts here........");
+		boolean EditEnabledFlag = false;
+		boolean DeleteEnabledFlag = false;
+		boolean InviteEnabledFlag = false;
+		String ValidationMessage = null;
+		String Message = null;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ExistingUser = prop.getProperty("email");
+		String AltenateUser = data.getCellData("Communities", 0, 2);
+		ValidationMessage = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// (In case of
+																											// Logged in
+																											// User and
+																											// only one
+																											// ARC
+																											// Admin)
+																											// Project
+																											// should
+																											// have at
+																											// least one
+																											// Arc
+																											// Administrator.
+		String ExpMessage = "Project should have at least one Arc Administrator.";
+		log.info("Validation Message showing " + ValidationMessage);
+		if (ValidationMessage.equals(ExpMessage)) {
+			log.info("Validation Message showing proper..");
+			Message = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Arc Administrator");// Team member
+																									// updated
+																									// successfully.
+			log.info("Alternate email updated with " + Message);
+			if (Message.equals("Team member updated successfully.")) {
+				log.info("Alternate Email is updated with Arc Administrator");
+				Message = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// Team member
+																										// updated
+																										// successfully.
+				log.info("Existing email updated with " + Message);
+				if (Message.equals("Team member updated successfully.")) {
+					CommonMethod.RefreshPagewaitForPageLoaded(driver);
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					log.info("Existing Email is updated with Team Member");
+
+					List<WebElement> EditBtnList = driver.findElements(By.xpath(
+							"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[4]/descendant::button[text()='Edit']"));
+					List<WebElement> DeleteBtnList = driver.findElements(By.xpath(
+							"//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr/td[5]/div[@class='ml10 delete_report tippy_init floatNone']"));
+					for (WebElement ele : EditBtnList) {
+						try {
+							ele.click();
+							EditEnabledFlag = false;
+							break;
+						} catch (ElementClickInterceptedException e) {
+							EditEnabledFlag = true;
+						}
+
+					}
+					for (WebElement ele : DeleteBtnList) {
+						try {
+							ele.click();
+							DeleteEnabledFlag = false;
+							break;
+						} catch (ElementClickInterceptedException e) {
+							DeleteEnabledFlag = true;
+						}
+
+					}
+
+					try {
+						driver.findElement(By.xpath("//button[@id='invite_team']")).click();
+						InviteEnabledFlag = false;
+					} catch (ElementClickInterceptedException e) {
+						InviteEnabledFlag = true;
+					}
+
+				}
+			}
+		}
+
+		log.info("Edit button flag is " + EditEnabledFlag);
+		log.info("Delete button flag is " + DeleteEnabledFlag);
+		log.info("Invite button flag is " + InviteEnabledFlag);
+
+		if (EditEnabledFlag == true && InviteEnabledFlag == true && DeleteEnabledFlag == true) {
+			log.info("ManageTeam_EditARCAdministratorRole  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_EditARCAdministratorRole  ends here with false........");
+			return false;
+		}
+	}
+
+	// Verify able to add/update/remove team member.
+	// Verify authorization level Member, etc can be changed and vice-versa.
+
+	public boolean ManageTeam_TeamAddEditMember() {
+		log.info("ManageTeam_TeamAddEditMember  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		boolean AddFlag = false;
+		String Message1 = null;
+		String Message2 = null;
+		String Message3 = null;
+		String ExpMsg = null;
+		String AltenateUser = data.getCellData("Communities", 0, 2);
+		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
+		log.info("Add Member flag is " + AddFlag);
+		if (AddFlag) {
+			Message1 = CommonMethod.Team_EditRole(AltenateUser, "Team Member", "Team Manager");
+			Message2 = CommonMethod.Team_EditRole(AltenateUser, "Team Manager", "Read Only");
+			Message3 = CommonMethod.Team_EditRole(AltenateUser, "Read Only", "Arc Administrator");
+			log.info("Message1 displaying text is " + Message1);
+			log.info("Message2 displaying text is " + Message2);
+			log.info("Message3 displaying text is " + Message3);
+		} else {
+			log.info("Team member is not added successfully..");
+		}
+
+		ExpMsg = "Team member updated successfully.";
+		if (Message1.equals(ExpMsg) && Message2.equals(ExpMsg) && Message3.equals(ExpMsg)) {
+			log.info("ManageTeam_TeamAddEditMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_TeamAddEditMember  ends here with false........");
+			return false;
+		}
+	}
+
+	public boolean ManageTeam_TeamAddRemoveMember() {
+		log.info("ManageTeam_TeamAddRemoveMember  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		boolean AddFlag = false;
+		boolean SearchFlag = false;
+		String AltenateUser = data.getCellData("Communities", 0, 2);
+		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
+		log.info("Add Member flag is " + AddFlag);
+		if (AddFlag) {
+			CommonMethod.Team_Delete_Member(AltenateUser);
+			HomePage.checkSignOut();
+			HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2),
+					data.getCellData("Communities", 1, 2));
+			ProjectPage = HomePage.clickOnProject();
+			SearchFlag = ProjectPage.SearchProject(System.getProperty("CommunitiesProject_NonLeed2"));
+			HomePage.closeProjectSearchTextBox();
+			HomePage.checkSignOut();
+			HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
+		} else {
+			log.info("Team member is not added successfully..");
+		}
+		log.info("AddFlag is " + AddFlag);
+		log.info("SearchFlag is " + SearchFlag);
+		if (AddFlag == true && SearchFlag == false) {
+			log.info("ManageTeam_TeamAddRemoveMember  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_TeamAddRemoveMember  ends here with false........");
+			return false;
+		}
+	}
+
+	public boolean ManageTeam_HowTeamRolesWorkTooltip() {
+		log.info("ManageTeam_HowTeamRolesWorkTooltip  starts here........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		WebElement TeamTooltip = driver
+				.findElement(By.xpath("//span[text()='How team roles work']/following-sibling::span"));
+		waithelper.WaitForElementClickable(TeamTooltip, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		TeamTooltip.click();
+		String ActToolTipP1 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[1]")).getText();
+		String ActToolTipP2 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[2]")).getText();
+		String ActToolTipP3 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[3]")).getText();
+		String ActToolTipP4 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[4]")).getText();
+		String ActToolTipP5 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[5]")).getText();
+		String ActToolTipP6 = driver.findElement(By.xpath("//div[@class='row p20 fw-400']/p[6]")).getText();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("Tooltip is ");
+		String ExpToolTipP1 = "Arc Administrator:\n"
+				+ "The Arc Administrator has complete access to the project including data entry, submitting for review, and is granted rights to add additional team members. The Arc Administrator will also be the point of contact for automatic notifications, billing information, and review reports.";
+
+		String ExpToolTipP2 = "Note: While multiple “Arc Administrators” can exist on a project team, we strongly recommend that you designate only one person in this role to avoid confusion and so that a single point of contact is receiving notifications about billing and certification.";
+		String ExpToolTipP3 = "Team Manager:\n"
+				+ "A Team Manager has access to the project including data entry and submitting for review, and can make changes to the project team.";
+		String ExpToolTipP4 = "Team Member:\n"
+				+ "A Team Member has access to the project including data entry and submitting for review, but cannot make any changes to the project team.";
+		String ExpToolTipP5 = "Project Administrator:\n"
+				+ "A Project Administrator is the original LEED Project Administrator and will only appear on the project team for LEED projects that were previously or are currently using LEED Online. The Project Administrator has the same rights as the Arc Administrator.";
+		String ExpToolTipP6 = "Read Only:\n"
+				+ "Read Only members can access the project to view data but cannot make any changes to the project, data entry or the project team.";
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(ActToolTipP1);
+		log.info(ExpToolTipP1);
+		log.info("--------------------");
+		log.info(ActToolTipP2);
+		log.info(ExpToolTipP2);
+		log.info("--------------------");
+		log.info(ActToolTipP3);
+		log.info(ExpToolTipP3);
+		log.info("--------------------");
+		log.info(ActToolTipP4);
+		log.info(ExpToolTipP4);
+		log.info("--------------------");
+		log.info(ActToolTipP5);
+		log.info(ExpToolTipP5);
+		log.info("--------------------");
+		log.info(ActToolTipP6);
+		log.info(ExpToolTipP6);
+		log.info("--------------------");
+
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info(ExpToolTipP1.equals(ActToolTipP1));
+		log.info(ExpToolTipP2.equals(ActToolTipP2));
+		log.info(ExpToolTipP3.equals(ActToolTipP3));
+		log.info(ExpToolTipP4.equals(ActToolTipP4));
+		log.info(ExpToolTipP5.equals(ActToolTipP5));
+		log.info(ExpToolTipP6.equals(ActToolTipP6));
+		if ((ExpToolTipP1.equals(ActToolTipP1)) && (ExpToolTipP2.equals(ActToolTipP2))
+				&& (ExpToolTipP3.equals(ActToolTipP3)) && (ExpToolTipP4.equals(ActToolTipP4))
+				&& (ExpToolTipP5.equals(ActToolTipP5)) && (ExpToolTipP6.equals(ActToolTipP6))) {
+			log.info("ManageTeam_HowTeamRolesWorkTooltip  ends here with true........");
+			return true;
+		} else {
+			log.info("ManageTeam_HowTeamRolesWorkTooltip  ends here with false........");
+			return false;
+		}
+	}
+
+	public boolean Manage_Agreement_CheckAgreement() {
+		log.info("Manage_Agreement_CheckAgreement method starts here ......");
+		boolean flag = false;
+		String RowPath = "//table[@class='table table-striped arc-table']/tbody/tr";
+		List<WebElement> AgreementTable = driver.findElements(By.xpath(RowPath));
+		log.info("Size of the Agreement Table is ---" + AgreementTable.size());
+		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		log.info(strDate);
+		if (AgreementTable.size() > 0) {
+			AgreementTable.iterator();
+			String OrderTypePath = "";
+			String DateSignedPath = "";
+			for (int i = 0; i < AgreementTable.size(); i++) {
+				int rownum = i + 1;
+				OrderTypePath = RowPath + "[" + rownum + "]/td[2]/span";
+				String OrderType = driver.findElement(By.xpath(OrderTypePath)).getText();
+				log.info(OrderTypePath + "......." + OrderType);
+				if (OrderType.equals("Registration")) {
+					log.info("Order Type Registration found ..");
+					DateSignedPath = RowPath + "[" + rownum + "]/td[1]/span";
+					String DateSigned = driver.findElement(By.xpath(DateSignedPath)).getText();
+					log.info("Date Signed showing is " + DateSigned);
+					if (DateSigned.equals(strDate)) {
+						flag = true;
+						break;
+					}
+
+				}
+
+			}
+		}
+		if (flag) {
+			log.info("Date signes showing proper ...");
+		} else {
+			log.info("Date signes is not showing proper ...");
+		}
+		log.info("Manage_Agreement_CheckAgreement method ends here ......");
+		return flag;
+
+	}
+
+	public boolean CheckAgreementDownloadedFile(String user) {
+		log.info("CheckDownloadedFile method starts here ......");
+		// DownloadFolder=new File(UUID.randomUUID().toString());
+		String userid = null;
+		SimpleDateFormat Formatter = new SimpleDateFormat("EEE");
+		String stringDay = Formatter.format(new Date());
+		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+		Date date = new Date();
+		String strDate = formatter.format(date);
+		strDate = formatter.format(date);
+		String ExpDate = stringDay + ", " + strDate;
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		boolean flag = false;
+		String FilePath = null;
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.getName().equals("Agreement.pdf")) {
+					FilePath = file.getAbsolutePath();
+					log.info("File Path is ---" + FilePath);
+					flag = true;
+					break;
+				}
+
+			}
+
+		} else {
+			flag = false;
+		}
+		if (flag) {
+			String pdfcontent = CommonMethod.getPDFContent("file:///" + FilePath);
+			String ProjectID = "Project ID : " + System.getProperty("CommunityProject5");
+			String RatingSystem = "Rating system : none";
+			String UserName = "User Name : " + user;
+			String useremail = "User Email : " + prop.getProperty("email");
+			if (System.getProperty("environment").equals("QAS")) {
+				userid = "User ID : 0010640669";
+			} else if (System.getProperty("environment").equals("STG")) {
+				userid = "User ID : 0010545793";
+			}
+			String DateTime = "Date and Time of Acceptance : " + ExpDate;
+			String ProjectName = "Name of Project : " + System.getProperty("CommunityProject5_Name");
+			String OwnerEmail = "Owner Email : " + prop.getProperty("email");
+			log.info("----------------------------------------");
+			log.info("ProjectID is " + ProjectID);
+			log.info("RatingSystem is " + RatingSystem);
+			log.info("UserName is " + UserName);
+			log.info("useremail is " + useremail);
+			log.info("userid is " + userid);
+			log.info("DateTime is " + DateTime);
+			log.info("ProjectName is " + ProjectName);
+			log.info("OwnerEmail is " + OwnerEmail);
+			log.info(pdfcontent.contains(ProjectID));
+			log.info(pdfcontent.contains(RatingSystem));
+			log.info(pdfcontent.contains(UserName));
+			log.info(pdfcontent.contains(useremail));
+			log.info(pdfcontent.contains(userid));
+			log.info(pdfcontent.contains(DateTime));
+			log.info(pdfcontent.contains(ProjectName));
+			log.info(pdfcontent.contains(OwnerEmail));
+			if (pdfcontent.contains(ProjectID) && pdfcontent.contains(RatingSystem) && pdfcontent.contains(UserName)
+					&& pdfcontent.contains(useremail) && pdfcontent.contains(userid) && pdfcontent.contains(DateTime)
+					&& pdfcontent.contains(ProjectName) && pdfcontent.contains(OwnerEmail)) {
+				flag = true;
+			} else
+				flag = false;
+
+		}
+
+		CommonMethod.DeleteAllFiles();
+		DownloadFolder.delete();
+		log.info("CheckAgreementDownloadedFile method ends here with " + flag + " ......");
+		return flag;
+	}
+
+	public void ClickonScoreVersionInManage() {
+		log.info("ClickonScoreVersionInManage method starts here ....");
+		waithelper.WaitForElementClickable(ManageMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ManageMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(ScoreVersionSubmenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ScoreVersionSubmenu.click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("ClickonScoreVersionInManage method ends here ....");
+	}
+
+	public boolean CheckSettings_DataResourceLink() {
+		log.info("CheckSettings_DataResourceLink method starts here ......");
+		String DataGuideURL = null;
+		boolean DataGuideURLFlag = false;
+		boolean DataReviewCheckListFlag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//div[@class='link'][text()='Data guide for buildings']")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Set<String> WindowList = driver.getWindowHandles();
+		if (WindowList.size() > 1) {
+			for (String window : WindowList) {
+				if (!window.equals(BaseWindow)) {
+					driver.switchTo().window(window);
+					DataGuideURL = JSHelper.getCurrentURL();
+					log.info("Current URL is " + DataGuideURL);
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+				}
+			}
+		}
+
+		if (DataGuideURL.equals("https://www.usgbc.org/resources/data-management-buildings")) {
+			DataGuideURLFlag = true;
+		}
+
+		driver.findElement(By.xpath("//div[@class='link'][text()='Data review checklist (pdf)']")).click();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("Temporary folder name is ---" + DownloadFolder);
+		File ListOfFiles[] = DownloadFolder.listFiles();
+		boolean flag = false;
+		String FilePath = null;
+		// make sure the directory is not empty
+		log.info("Total file downloaded ...." + ListOfFiles.length);
+		if (ListOfFiles.length != 0) {
+			for (File file : ListOfFiles) {
+				log.info("Size of the file - " + file.getName() + " is  " + file.length());
+				if (file.getName().contains("Data Review Checklist")) {
+					DataReviewCheckListFlag = true;
+					break;
+				}
+
+			}
+
+		}
+		log.info("DataGuideURLFlag flag value is " + DataGuideURLFlag);
+		log.info("DataReviewCheckListFlag flag value is " + DataReviewCheckListFlag);
+		if (DataGuideURLFlag == true && DataReviewCheckListFlag == true) {
+			log.info("CheckSettings_DataResourceLink emthod ends with true...");
+			return true;
+		} else {
+			log.info("CheckSettings_DataResourceLink emthod ends with false...");
+			return false;
+		}
+	}
+
+	public boolean CheckScoreVersion() {
+		log.info("CheckScoreVersion method starts here ......");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ExpText = "Arc score for communities version " + data.getCellData("Communities", 40, 2);
+		String ActText = driver.findElement(By.xpath("//*[@id='content']/descendant::h3")).getText();
+		log.info("Actual Text is " + ActText);
+		log.info("Expected Text is " + ExpText);
+		if (ExpText.equals(ActText)) {
+			log.info("CheckScoreVersion emthod ends with true...");
+			return true;
+		} else {
+			log.info("CheckScoreVersion emthod ends with false...");
+			return false;
+		}
+	}
+
+}

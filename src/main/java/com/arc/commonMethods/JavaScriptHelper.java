@@ -59,7 +59,22 @@ public class JavaScriptHelper extends BaseClass {
 		executeScript("window.scrollBy(0," + pixel + ")");
 		log.info("Scroll down by  " + pixel);
 	}
-
+	/**
+	 * This method will scroll UP
+	 */
+	
+	public void scrollPageUp() {
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		executeScript("window.scrollTo(document.body.scrollHeight, 0)");
+	}
+	
+	/**
+	 * This method will scroll down
+	 */
+	public void scrollPageDown() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
 	/**
 	 * This method will scroll up by pixel
 	 * 

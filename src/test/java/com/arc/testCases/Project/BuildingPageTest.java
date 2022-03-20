@@ -12,34 +12,8 @@ import com.arc.testBase.BaseClass;
 
 public class BuildingPageTest extends BaseClass {
 
-	/*
-	 * LoginPageObjects LoginPage; HomePageObjects HomePage; ProjectPageObjects
-	 * ProjectPage; BuildingPageObject BuildingPage;
-	 */
 	private static Logger log = LoggerHelper.getLogger(BuildingPageTest.class);
 
-	/*
-	 * public BuildingPageTest() { super();
-	 * log.info("BuildingPageTest constructor is called"); }
-	 */
-
-	/*
-	 * @BeforeMethod
-	 * 
-	 * @Parameters("browserName") public void setup(String browserName)
-	 * 
-	 * { log.info("Setup method of BuildingPageTest class started ");
-	 * initializtion(browserName); LoginPage = new LoginPageObjects(); HomePage =
-	 * new HomePageObjects(); ProjectPage = new ProjectPageObjects();
-	 * BuildingPage=new BuildingPageObject(); HomePage =
-	 * LoginPage.login(prop.getProperty("email"), prop.getProperty("password"));
-	 * ProjectPage = HomePage.clickOnProject();
-	 * BuildingPage=ProjectPage.clickOnFirstProject();
-	 * //BuildingPage=ProjectPage.SearchAndClickOnProject(data.getCellData("Reboot",
-	 * 0, 2));
-	 * 
-	 * log.info("Setup method of BuildingPageTest class completed "); }
-	 */
 	@Test(dependsOnGroups = "LoginMethodTCGroup", enabled = true, groups = {
 			"Reboot" }, priority = 5, description = "Verify Manage-->Agreements should show the project agreement.")
 	public void Building_Agreement_Display() {
@@ -254,7 +228,7 @@ public class BuildingPageTest extends BaseClass {
 	// --> Verify in Overview tab, Under Actions- clicking on Add a meter should
 	// redirect to 'meters and surveys' and opens up 'Add Energy data' pop-up
 	// window.
-	
+
 	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 450, enabled = true, description = "Verify in Overview tab, Under Actions- clicking on Add a meter should redirect to 'meters and surveys' and opens up 'Add Energy data' pop-up window.")
 	public void Buildings_Overview_Actions_AddMeter() {
 
@@ -267,7 +241,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("BuildingProject_Test1","8000040293");
+		// System.setProperty("BuildingProject_Test1","8000040293");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID = "8000011060";
 		if (!ProjectBuildingID.equals(null)) {
@@ -286,7 +260,7 @@ public class BuildingPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
+
 	// --> Verify in Overview tab, Under Actions- clicking on 'Building Settings'
 	// should redirect to 'meters and surveys' and highlights up 'Building settings'
 	// tab
@@ -470,7 +444,7 @@ public class BuildingPageTest extends BaseClass {
 	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 456, enabled = true, description = "If Last 12 months is selected in dropdown- Under Scores and Metrics--> Arc Scores should show date window as per the following- End Date- with respect to the current date - last month end date || Start date- one year prior to the end date.")
 	public void Buildings_Overview_RHS_Last12Months_DateRange() {
 
-		log.info("Buildings_Overview_RHS_Last12Months_ARC_Score method started......................... ");
+		log.info("Buildings_Overview_RHS_Last12Months_DateRange method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -481,7 +455,7 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID = "8000011060";
+		// ProjectBuildingID = "8000012103";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -489,11 +463,11 @@ public class BuildingPageTest extends BaseClass {
 			flag = BuildingPage.CheckRHS_Last12Months_DateRange();
 		}
 		if (flag) {
-			log.info("Buildings_Overview_RHS_Last12Months_ARC_Score method ends here ........... ");
+			log.info("Buildings_Overview_RHS_Last12Months_DateRange method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Buildings_Overview_RHS_Last12Months_ARC_Score method ends here ........... ");
+			log.info("Buildings_Overview_RHS_Last12Months_DateRange method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -552,8 +526,8 @@ public class BuildingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 
-		String ProjectBuildingID = System.getProperty("BuildingProject_Private2");
-		// ProjectBuildingID = "8000011146";
+		String ProjectBuildingID = System.getProperty("BuildingProject_Perf3");
+		// ProjectBuildingID = "8000040359";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -788,7 +762,7 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID = "8000011146";
+		// ProjectBuildingID = "8000040359";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -804,7 +778,7 @@ public class BuildingPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
+
 	// Verify Transportation GHG emissions graph are blank with 0 lbs.
 	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 466, enabled = true, description = "Verify Transportation GHG emissions graph are blank with 0 lbs.")
 	public void Buildings_Overview_Transportation_GHGEmission_ZeroScores() {
@@ -1702,7 +1676,7 @@ public class BuildingPageTest extends BaseClass {
 
 	// Building Settings-->Occupant tab-- -->Validate Weekly operating hours shows
 	// the hrs entered in 'Operating hrs' field.
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 500, enabled = true, description = "Building Settings-->Occupant tab-- -->Validate Weekly operating hours shows the hrs entered in 'Operating hrs' field.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 500, dependsOnMethods = "Buildings_MeterSurvey_Occupant_SelectDurationOfVisit", enabled = true, description = "Building Settings-->Occupant tab-- -->Validate Weekly operating hours shows the hrs entered in 'Operating hrs' field.")
 	public void Buildings_MeterSurvey_Occupant_CheckWeeklyOperatingHours() {
 		log.info("Buildings_MeterSurvey_Occupant_CheckWeeklyOperatingHours method started......................... ");
 		boolean flag = false;
@@ -1738,9 +1712,13 @@ public class BuildingPageTest extends BaseClass {
 	// are calculated based on the calculation-
 	// (Days per week with visitors* no of visitors each day *duration of
 	// visit)/operating hours
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 501, enabled = true, description = "Building Settings-->Occupant tab-- -->Validate 'Add Occupany window' visitors are calculated based on the calculation-(Days per week with visitors* no of visitors each day *duration of visit)/operating hours")
-	public void Buildings_MeterSurvey_Occupant_CheckVisitorsDailyAverage() {
-		log.info("Buildings_MeterSurvey_Occupant_CheckVisitorsDailyAverage method started......................... ");
+
+	// Building Settings-->Occupant tab-- -->Validate total daily occupancy is sum
+	// of Visitors and Regular building occupants.
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 501, dependsOnMethods = "Buildings_MeterSurvey_Occupant_SelectDurationOfVisit", enabled = true, description = "Building Settings-->Occupant tab-- -->Validate 'Add Occupany window' visitors are calculated based on the calculation-(Days per week with visitors* no of visitors each day *duration of visit)/operating hours  and Total Daily Occupancy")
+	public void Buildings_MeterSurvey_Occupant_VisitorsDailyAverage_TotalDailyOccupancy() {
+		log.info(
+				"Buildings_MeterSurvey_Occupant_VisitorsDailyAverage_TotalDailyOccupancy method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -1750,28 +1728,30 @@ public class BuildingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectBuildingID = System.getProperty("BuildingProject_NonLEED4");
-		// ProjectBuildingID = "8000011386";
+		// ProjectBuildingID = "8000012217";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
 			CommonMethod.switchToShowOverviewFrame();
 			BuildingPage.ClickOnBuildingSetting();
-			flag = BuildingPage.BuildingSetting_Occupant_CheckVisitorsDailyAverage();
+			flag = BuildingPage.BuildingSetting_Occupant_VisitorsDailyAverage_TotalDailyOccupancy();
 		}
 		if (flag) {
-			log.info("Buildings_MeterSurvey_Occupant_CheckVisitorsDailyAverage method ends here ........... ");
+			log.info(
+					"Buildings_MeterSurvey_Occupant_VisitorsDailyAverage_TotalDailyOccupancy method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Buildings_MeterSurvey_Occupant_CheckVisitorsDailyAverage method ends here ........... ");
+			log.info(
+					"Buildings_MeterSurvey_Occupant_VisitorsDailyAverage_TotalDailyOccupancy method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
 
 	// Building Settings-->Occupant tab-- -->Validate total daily occupancy is sum
 	// of Visitors and Regular building occupants.
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 502, enabled = true, description = "Building Settings-->Occupant tab-- -->Validate total daily occupancy is sum of Visitors and Regular building occupants.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 502, enabled = false, description = "Building Settings-->Occupant tab-- -->Validate total daily occupancy is sum of Visitors and Regular building occupants.")
 	public void Buildings_MeterSurvey_Occupant_CheckTotalDailyOccupancy() {
 		log.info("Buildings_MeterSurvey_Occupant_CheckTotalDailyOccupancy method started......................... ");
 		boolean flag = false;
@@ -1783,7 +1763,7 @@ public class BuildingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectBuildingID = System.getProperty("BuildingProject_NonLEED4");
-		// ProjectBuildingID = "8000011341";
+		// ProjectBuildingID = "8000012174";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -1966,7 +1946,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-
+		// System.setProperty("BuildingProject_Test1","8000012182");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID="8000011389";
 		if (!ProjectBuildingID.equals(null)) {
@@ -2371,7 +2351,7 @@ public class BuildingPageTest extends BaseClass {
 		}
 
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID="8000011402";
+		// ProjectBuildingID="8000012218";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -2561,7 +2541,7 @@ public class BuildingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID="8000011611";
+		// ProjectBuildingID="8000012199";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -3418,7 +3398,7 @@ public class BuildingPageTest extends BaseClass {
 	// Question 3 are changed to "We're sorry to hear that. Please select the
 	// options below that significantly reduce your satisfaction:"
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 564,dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Transportation -> Validate Question-2, For Slider user gets the option to select from Extremely Unsatisfied, Very Unsatisfied, the option in Question 3 are changed to \"We're sorry to hear that. Please select the options below that significantly reduce your satisfaction:\"")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 564, dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Transportation -> Validate Question-2, For Slider user gets the option to select from Extremely Unsatisfied, Very Unsatisfied, the option in Question 3 are changed to \"We're sorry to hear that. Please select the options below that significantly reduce your satisfaction:\"")
 	public void Buildings_Transportation_ValidateRoute_2_Questions() {
 
 		log.info("Buildings_Transportation_ValidateRoute_2_Questions method started......................... ");
@@ -3455,7 +3435,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Transportation-> Fill all the details and select "Extremely
 	// Unsatisfied" and submit the survey.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 565, enabled = false, description = "Building -> Transportation -> Fill all the details and select \"Extremely Unsatisfied\" and submit the survey.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 565, enabled = false, description = "Building -> Transportation -> Fill all the details and select \"Extremely Unsatisfied\" and submit the survey.")
 	public void Buildings_Transportation_SubmitSurveyWithExtremelyUnsatisfied() {
 
 		log.info(
@@ -3495,7 +3475,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Transportation-> Fill all the details and submit the survey with
 	// each slider options.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 567, enabled = true, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 567, enabled = true, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
 	public void Buildings_Transportation_SubmitSurveyWithEachSliderOptions() {
 
 		log.info("Buildings_Transportation_SubmitSurveyWithEachSliderOptions method started......................... ");
@@ -3534,7 +3514,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Transportation-> Fill all the details and submit the survey with
 	// 2 route details
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 569, enabled = true, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 569, enabled = true, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
 	public void Buildings_Transportation_SubmitSurveyWith2Routes() {
 
 		log.info("Buildings_Transportation_SubmitSurveyWith2Routes method started......................... ");
@@ -3571,7 +3551,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Transportation-> Fill all the details and submit the survey with
 	// each slider options.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 569, enabled = false, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 569, enabled = false, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
 	public void Buildings_Transportation_SubmitSurveyInFrenchLanguage() {
 
 		log.info("Buildings_Transportation_SubmitSurveyInFrenchLanguage method started......................... ");
@@ -3608,7 +3588,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Transportation-> Fill all the details and submit the survey with
 	// each .
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 571, enabled = true, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_Transportation_OpenSurveyLinkInNewTab", priority = 571, enabled = true, description = "Building -> Transportation -> Fill all the details and submit the survey with each slider options.")
 	public void Buildings_Transportation_SubmitSurveyAllLanguage() {
 
 		log.info("Buildings_Transportation_SubmitSurveyAllLanguage method started......................... ");
@@ -3620,6 +3600,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
+		// System.setProperty("BuildingProject_Test1","");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID="8000011522";
 		if (!ProjectBuildingID.equals(null)) {
@@ -3809,6 +3790,8 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
+		// System.setProperty("BuildingProject_Test1","8000040530");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-PNWUA");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID="8000011522";
 		if (!ProjectBuildingID.equals(null)) {
@@ -3817,7 +3800,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonDioxide();
-			flag = BuildingPage.HE_CarbonDioxide_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -3854,7 +3837,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonDioxide();
-			flag = BuildingPage.HE_CarbonDioxide_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -3893,7 +3876,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonDioxide();
-			flag = BuildingPage.HECarbonDioxide_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Carbon Dioxide");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -3931,7 +3914,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonDioxide();
-			flag = BuildingPage.HECarbonDioxide_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -3969,7 +3952,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_TVOC();
-			flag = BuildingPage.HE_TVOC_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4006,7 +3989,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_TVOC();
-			flag = BuildingPage.HE_TVOC_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4044,7 +4027,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_TVOC();
-			flag = BuildingPage.HETVOC_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Total Volatile Organic Compounds");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4082,7 +4065,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_TVOC();
-			flag = BuildingPage.HETVOC_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4120,7 +4103,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_PM2_5();
-			flag = BuildingPage.HE_PM2_5_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4157,7 +4140,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_PM2_5();
-			flag = BuildingPage.HE_PM2_5_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4195,7 +4178,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_PM2_5();
-			flag = BuildingPage.HE_PM2_5_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Atmospheric Particulate Matter (PM2.5)");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4233,7 +4216,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_PM2_5();
-			flag = BuildingPage.HEPM2_5_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4271,7 +4254,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Ozone();
-			flag = BuildingPage.HE_Ozone_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4308,7 +4291,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Ozone();
-			flag = BuildingPage.HE_Ozone_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4346,7 +4329,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Ozone();
-			flag = BuildingPage.HE_Ozone_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Ozone");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4384,7 +4367,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Ozone();
-			flag = BuildingPage.HEOzone_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4423,7 +4406,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonMonoxide();
-			flag = BuildingPage.HE_CarbonMonoxide_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4461,7 +4444,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonMonoxide();
-			flag = BuildingPage.HE_CarbonMonoxide_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4500,7 +4483,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonMonoxide();
-			flag = BuildingPage.HE_CarbonMonoxide_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Carbon Monoxide");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4539,7 +4522,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_CarbonMonoxide();
-			flag = BuildingPage.HE_CarbonMonoxide_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4577,7 +4560,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_AcetalDehyde();
-			flag = BuildingPage.HE_Acetaldehyde_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4615,7 +4598,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_AcetalDehyde();
-			flag = BuildingPage.HE_Acetaldehyde_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4654,7 +4637,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_AcetalDehyde();
-			flag = BuildingPage.HE_Acetaldehyde_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Acetaldehyde");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4693,7 +4676,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_AcetalDehyde();
-			flag = BuildingPage.HE_Acetaldehyde_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4731,7 +4714,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Benzene();
-			flag = BuildingPage.HE_Benzene_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4760,6 +4743,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
+		
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID = "8000011522";
 		if (!ProjectBuildingID.equals(null)) {
@@ -4768,7 +4752,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Benzene();
-			flag = BuildingPage.HE_Benzene_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4806,7 +4790,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Benzene();
-			flag = BuildingPage.HE_Benzene_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Benzene");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4844,7 +4828,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Benzene();
-			flag = BuildingPage.HE_Benzene_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4882,7 +4866,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Styrene();
-			flag = BuildingPage.HE_Styrene_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4919,7 +4903,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Styrene();
-			flag = BuildingPage.HE_Styrene_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4957,7 +4941,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Styrene();
-			flag = BuildingPage.HE_Styrene_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Styrene");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -4995,7 +4979,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Styrene();
-			flag = BuildingPage.HE_Styrene_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5033,7 +5017,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Toluene();
-			flag = BuildingPage.HE_Toluene_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5070,7 +5054,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Toluene();
-			flag = BuildingPage.HE_Toluene_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5108,7 +5092,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Toluene();
-			flag = BuildingPage.HE_Toluene_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Toluene");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5146,7 +5130,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Toluene();
-			flag = BuildingPage.HE_Toluene_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5184,7 +5168,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Naphthalene();
-			flag = BuildingPage.HE_Naphthalene_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5221,7 +5205,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Naphthalene();
-			flag = BuildingPage.HE_Naphthalene_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5260,7 +5244,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Naphthalene();
-			flag = BuildingPage.HE_Naphthalene_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Naphthalene");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5299,7 +5283,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Naphthalene();
-			flag = BuildingPage.HE_Naphthalene_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5338,7 +5322,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Dichlorobenzene();
-			flag = BuildingPage.HE_Dichlorobenzene_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5376,7 +5360,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Dichlorobenzene();
-			flag = BuildingPage.HE_Dichlorobenzene_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5415,7 +5399,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Dichlorobenzene();
-			flag = BuildingPage.HE_Dichlorobenzene_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Dichlorobenzene");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5454,7 +5438,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Dichlorobenzene();
-			flag = BuildingPage.HE_Dichlorobenzene_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5492,7 +5476,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_XyleneTotal();
-			flag = BuildingPage.HE_XylenesTotal_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5530,7 +5514,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_XyleneTotal();
-			flag = BuildingPage.HE_XylenesTotal_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5569,7 +5553,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_XyleneTotal();
-			flag = BuildingPage.HE_XylenesTotal_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Xylenes-total");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5608,7 +5592,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_XyleneTotal();
-			flag = BuildingPage.HE_XylenesTotal_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5646,7 +5630,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Formaldehyde();
-			flag = BuildingPage.HE_Formaldehyde_ValidateOverlappingDate();
+			flag = BuildingPage.HE_ValidateOverlappingDate();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5684,7 +5668,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Formaldehyde();
-			flag = BuildingPage.HE_Formaldehyde_AddRecord();
+			flag = BuildingPage.HE_AddRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5723,7 +5707,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Formaldehyde();
-			flag = BuildingPage.HE_Formaldehyde_ValidateDocument();
+			flag = BuildingPage.HE_ValidateDocument("Formaldehyde");
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5762,7 +5746,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
 			BuildingPage.ClickOnHE_Formaldehyde();
-			flag = BuildingPage.HE_Formaldehyde_DeleteRecord();
+			flag = BuildingPage.HE_DeleteRecord();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
@@ -5792,7 +5776,7 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		// System.setProperty("BuildingProject_Test1","8000040286");
+
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID = "8000011570";
 		if (!ProjectBuildingID.equals(null)) {
@@ -5822,7 +5806,7 @@ public class BuildingPageTest extends BaseClass {
 	// selected as Yes, gives option to upload file, paste link and Enter 'Contact
 	// information'
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 655, enabled = true, description = "Re-Entry -->FMS ->In F & M survey, If question 1  Is a specific individual responsible for the development and implementation of infectious disease control policies, plans, and procedures for this facility?\" is selected as Yes, gives option to upload file, paste link and Enter 'Contact information'")
+	@Test(groups = {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 655, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Re-Entry -->FMS ->In F & M survey, If question 1  Is a specific individual responsible for the development and implementation of infectious disease control policies, plans, and procedures for this facility?\" is selected as Yes, gives option to upload file, paste link and Enter 'Contact information'")
 	public void Buildings_ReEntry_FMS_Question1_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question1_WithYesOption method started......................... ");
@@ -5834,14 +5818,16 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
+		// System.setProperty("BuildingProject_Test1","8000012104");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-JHKAN");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID = "8000011609";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question1_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -5863,7 +5849,7 @@ public class BuildingPageTest extends BaseClass {
 	// selected as Yes, gives option to upload file, paste link and Enter 'Contact
 	// information'
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 656, enabled = true, description = "Re-Entry -->FMS ->In F & M survey, If question 1  Is a specific individual responsible for the development and implementation of infectious disease control policies, plans, and procedures for this facility?\" is selected as Yes, gives option to upload file, paste link and Enter 'Contact information'")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 656, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Re-Entry -->FMS ->In F & M survey, If question 1  Is a specific individual responsible for the development and implementation of infectious disease control policies, plans, and procedures for this facility?\" is selected as Yes, gives option to upload file, paste link and Enter 'Contact information'")
 	public void Buildings_ReEntry_FMS_Question2_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question2_WithYesOption method started......................... ");
@@ -5881,8 +5867,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question2_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -5903,7 +5889,7 @@ public class BuildingPageTest extends BaseClass {
 	// implementation and effectiveness of infection control strategies?" is
 	// selected as Yes, Upload File, add link and Submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 657, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If 3. Are there processes or mechanisms used by the individual or group to ensure accountability for implementation and effectiveness of infection control strategies?\" is selected as Yes, Upload File, add link and Submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 657, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If 3. Are there processes or mechanisms used by the individual or group to ensure accountability for implementation and effectiveness of infection control strategies?\" is selected as Yes, Upload File, add link and Submit.")
 	public void Buildings_ReEntry_FMS_Question3_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question3_WithYesOption method started......................... ");
@@ -5921,8 +5907,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question3_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -5942,7 +5928,7 @@ public class BuildingPageTest extends BaseClass {
 	// venue have infectious disease control policies, plans, and procedures?" Able
 	// to select 'Yes', 'No' ,'Not Applicable' options successfully.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 658, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If 4.Does the facility or venue have infectious disease control policies, plans, and procedures?\" Able to select 'Yes', 'No' ,'Not Applicable' options successfully.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 658, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If 4.Does the facility or venue have infectious disease control policies, plans, and procedures?\" Able to select 'Yes', 'No' ,'Not Applicable' options successfully.")
 	public void Buildings_ReEntry_FMS_Question4_WithYes_NO_NA_Option() {
 
 		log.info("Buildings_ReEntry_FMS_Question4_WithYes_NO_NA_Option method started......................... ");
@@ -5960,8 +5946,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question4_WithYes_NO_NA_Option();
 		} else {
 			log.info("Building Project is showing Null");
@@ -5980,7 +5966,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Re-Entry -->FMS -> Verify 'CDC guideline' redirects to the
 	// following link- "https://stg.app.arconline.io/assets/pdf/CDC%20Guidance.pdf"
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 659, enabled = true, description = "Building -> Re-Entry -->FMS -> Verify 'CDC guideline' redirects to the following link- \"https://stg.app.arconline.io/assets/pdf/CDC%20Guidance.pdf")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 659, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> Verify 'CDC guideline' redirects to the following link- \"https://stg.app.arconline.io/assets/pdf/CDC%20Guidance.pdf")
 	public void Buildings_ReEntry_FMS_Question5_CheckCDC_GuideLine() {
 
 		log.info("Buildings_ReEntry_FMS_Question5_CheckCDC_GuideLine method started......................... ");
@@ -5998,8 +5984,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question5_CheckCDC_GuideLine();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6018,7 +6004,7 @@ public class BuildingPageTest extends BaseClass {
 	// Building -> Re-Entry -->FMS -> Verify USGBC credits link redirects to
 	// "https://www.usgbc.org/credits/safety-first-136-v4.1?return=/credits/Existing%20Buildings/v4.1"
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 660, enabled = true, description = "Building -> Re-Entry -->FMS -> Verify USGBC credits link redirects to \"https://www.usgbc.org/credits/safety-first-136-v4.1?return=/credits/Existing%20Buildings/v4.1\"")
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 660, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> Verify USGBC credits link redirects to \"https://www.usgbc.org/credits/safety-first-136-v4.1?return=/credits/Existing%20Buildings/v4.1\"")
 	public void Buildings_ReEntry_FMS_Question5_Check_USGBC_CreditLink() {
 
 		log.info("Buildings_ReEntry_FMS_Question5_Check_USGBC_CreditLink method started......................... ");
@@ -6036,8 +6022,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question5_USGBC_CreditLink();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6057,7 +6043,7 @@ public class BuildingPageTest extends BaseClass {
 	// academic institution)?" is selected as Yes, upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 661, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"5. Are the policies, plans, and procedures aligned with one of more authorities (e.g. government, academic institution)?\" is selected as Yes, upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 661, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"5. Are the policies, plans, and procedures aligned with one of more authorities (e.g. government, academic institution)?\" is selected as Yes, upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question5_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question5_WithYesOption method started......................... ");
@@ -6075,8 +6061,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question5_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6097,7 +6083,7 @@ public class BuildingPageTest extends BaseClass {
 	// upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 662, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"6. Do the infection control plans or policies for this facility include:\" is selected as Yes, upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 662, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"6. Do the infection control plans or policies for this facility include:\" is selected as Yes, upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question6_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question6_WithYesOption method started......................... ");
@@ -6115,8 +6101,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question6_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6137,7 +6123,7 @@ public class BuildingPageTest extends BaseClass {
 	// Cleaning)" is selected as Yes, upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 663, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Hand washing and disinfection to address disease transmission (e.g. Safety First: Green Cleaning)\" is selected as Yes, upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 663, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Hand washing and disinfection to address disease transmission (e.g. Safety First: Green Cleaning)\" is selected as Yes, upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question7_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question7_WithYesOption method started......................... ");
@@ -6155,8 +6141,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question7_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6176,7 +6162,7 @@ public class BuildingPageTest extends BaseClass {
 	// (e.g., masks, gloves, etc.) is selected as Yes, upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 664, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Providing PPE and encouraging the proper use by facility management staff and contractors (e.g., masks, gloves, etc.)\" is selected as Yes, upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 664, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Providing PPE and encouraging the proper use by facility management staff and contractors (e.g., masks, gloves, etc.)\" is selected as Yes, upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question8_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question8_WithYesOption method started......................... ");
@@ -6194,8 +6180,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question8_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6216,7 +6202,7 @@ public class BuildingPageTest extends BaseClass {
 	// and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 665, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Occupant screening (e.g. symptom or temperature checks)\" is selected as Yes, upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 665, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Occupant screening (e.g. symptom or temperature checks)\" is selected as Yes, upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question9_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question9_WithYesOption method started......................... ");
@@ -6234,8 +6220,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question9_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6256,7 +6242,7 @@ public class BuildingPageTest extends BaseClass {
 	// 'Facility or Venue staff' & 'Contractors' and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 666, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Paid sick leave (facility or venue staff, contractor)\" is selected as Yes, gives the option checkbox- 'Facility or Venue staff' &  'Contractors' and   upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 666, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Paid sick leave (facility or venue staff, contractor)\" is selected as Yes, gives the option checkbox- 'Facility or Venue staff' &  'Contractors' and   upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question10_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question10_WithYesOption method started......................... ");
@@ -6274,8 +6260,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question10_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6296,7 +6282,7 @@ public class BuildingPageTest extends BaseClass {
 	// 'Contractors' and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 667, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Health Insurance\" is selected as Yes, gives the option checkbox- 'Facility or Venue staff' &  'Contractors' and   upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 667, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Health Insurance\" is selected as Yes, gives the option checkbox- 'Facility or Venue staff' &  'Contractors' and   upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question11_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question11_WithYesOption method started......................... ");
@@ -6314,8 +6300,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question11_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6335,7 +6321,7 @@ public class BuildingPageTest extends BaseClass {
 	// selected as Yes and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 668, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Social distancing\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 668, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Social distancing\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question12_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question12_WithYesOption method started......................... ");
@@ -6353,8 +6339,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question12_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6374,7 +6360,7 @@ public class BuildingPageTest extends BaseClass {
 	// selected as Yes, and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 669, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC System Operation\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 669, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC System Operation\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question13_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question13_WithYesOption method started......................... ");
@@ -6392,8 +6378,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question13_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6413,7 +6399,7 @@ public class BuildingPageTest extends BaseClass {
 	// Quality" is selected as Yes, and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 670, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC Increase Outdoor Air Quality\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 670, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC Increase Outdoor Air Quality\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question14_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question14_WithYesOption method started......................... ");
@@ -6431,8 +6417,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question14_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6452,7 +6438,7 @@ public class BuildingPageTest extends BaseClass {
 	// rates" is selected as Yes, and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 671, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC Increase ventilation rates\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 671, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC Increase ventilation rates\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question15_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question15_WithYesOption method started......................... ");
@@ -6470,8 +6456,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question15_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6491,7 +6477,7 @@ public class BuildingPageTest extends BaseClass {
 	// is selected as Yes, and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 672, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC Enhance Filtration\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 672, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"HVAC Enhance Filtration\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question16_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question16_WithYesOption method started......................... ");
@@ -6509,8 +6495,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question16_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6531,7 +6517,7 @@ public class BuildingPageTest extends BaseClass {
 	// enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 673, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Elevator management (e.g. occupancy limits, targeted cleaning)?\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 673, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Elevator management (e.g. occupancy limits, targeted cleaning)?\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question17_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question17_WithYesOption method started......................... ");
@@ -6549,8 +6535,8 @@ public class BuildingPageTest extends BaseClass {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question17_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6565,13 +6551,13 @@ public class BuildingPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 
-	} 
+	}
 	// Building -> Re-Entry -->FMS -> In F & M survey, If "Potable water system
 	// management (e.g. flush out, testing)?" is selected as Yes, and upload file.
 	// enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 674, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Potable water system management (e.g. flush out, testing)?\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 674, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"Potable water system management (e.g. flush out, testing)?\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question18_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question18_WithYesOption method started......................... ");
@@ -6583,15 +6569,15 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		
+
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID = "8000011463";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question18_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6612,7 +6598,7 @@ public class BuildingPageTest extends BaseClass {
 	// control?" is selected as Yes, and upload file. enter url and
 	// submit.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 675, enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"IAQ assessment or commissioning process focused on systems and procedures related to infection control?\" is selected as Yes,  and  upload file. enter url and submit.")
+	@Test(groups =  {"BuildingsRegression","FMSSurvey"}, dependsOnGroups = "LoginMethodTCGroup", priority = 675, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS -> In F & M survey, If \"IAQ assessment or commissioning process focused on systems and procedures related to infection control?\" is selected as Yes,  and  upload file. enter url and submit.")
 	public void Buildings_ReEntry_FMS_Question19_WithYesOption() {
 
 		log.info("Buildings_ReEntry_FMS_Question19_WithYesOption method started......................... ");
@@ -6624,14 +6610,16 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
+		// System.setProperty("BuildingProject_Test1","8000012142");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-UTCGJ");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
 		// ProjectBuildingID = "8000011463";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
-			BuildingPage.ClickOnMetersAndSurveyMenu();
-			BuildingPage.ClickOnReEntry_FMS();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
 			flag = BuildingPage.ReEntry_FMS_Question19_WithYesOption();
 		} else {
 			log.info("Building Project is showing Null");
@@ -6646,11 +6634,432 @@ public class BuildingPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
-	
-	// Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' - Survey tools and resources- Clicking on 'Arc Re-entry guilde' downloads the Arc Guide to Rentry.pdf file.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 676, enabled = false, description = "Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' - Survey tools and resources- Clicking on 'Arc Re-entry guilde' downloads the Arc Guide to Rentry.pdf file.")
+	// Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' -
+	// Survey tools and resources- Export survey results downloads report
+	// successfully.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 676, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = " Building -> Re-Entry -->FMS ->  Verify for 'facility and management Survey' - Survey tools and resources- Export survey results  in excel successfully.")
+	public void Buildings_ReEntry_FMS_ExportSurveyResult() {
+
+		log.info("Buildings_ReEntry_FMS_ExportSurveyResult method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040359";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_FMS();
+			flag = BuildingPage.ReEntry_FMS_ExportSurveyResults();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_ExportSurveyResult method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_ExportSurveyResult method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS - > Submit all questions with YES with
+	// Upload/Link and check score. Expected Score - 100
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = {"LoginMethodTCGroup","FMSSurvey"}, priority = 680, dependsOnMethods = "Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab", enabled = true, description = "Building -> Re-Entry -->FMS - > Submit all questions with YES with Upload/Link and check score.   Expected Score - 100")
+	public void Buildings_ReEntry_FMS_Score_Scenario1() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario1 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000012085";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnProjectTools_ReEntry();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario1();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario1 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario1 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit all questions with NO and check score.
+	// Expected Score - 0
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 681, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit all questions with NO and check score.   Expected Score - 0")
+	public void Buildings_ReEntry_FMS_Score_Scenario2() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario2 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012142");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-UTCGJ");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000040359";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario2();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario2 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario2 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' -
+	// Survey tools and resources- Export survey results (All questions with NO
+	// option) successfully..
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 681, dependsOnMethods = {
+			"Buildings_ReEntry_FMS_OpenSurveyLinkInNewTab",
+			"Buildings_ReEntry_FMS_Score_Scenario2" }, enabled = true, description = " Building -> Re-Entry -->FMS ->  Verify for 'facility and management Survey' - Survey tools and resources- Export survey results (All questions with NO option) in excel successfully..")
+	public void Buildings_ReEntry_FMS_ExportSurveyResultWithNoOption() {
+
+		log.info("Buildings_ReEntry_FMS_ExportSurveyResultWithNoOption method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012104");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-JHKAN");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000012104";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_FMS();
+			flag = BuildingPage.ReEntry_FMS_ExportSurveyResults();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_ExportSurveyResultWithNoOption method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_ExportSurveyResultWithNoOption method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->FMS -> Submit all questions with NA and check score.
+	// Expected Score - 0
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 682, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit all questions with NA and check score.   Expected Score - 0")
+	public void Buildings_ReEntry_FMS_Score_Scenario3() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario3 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012142");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-UTCGJ");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000040359";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario3();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario3 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario3 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit all questions with YES without
+	// Link/Upload and check score. Expected Score - 52
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 683, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit all questions with YES without Link/Upload and check score.  Expected Score - 52")
+	public void Buildings_ReEntry_FMS_Score_Scenario4() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario4 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012142");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-UTCGJ");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000012085";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			// BuildingPage.ClickOnMetersAndSurveyMenu();
+			// BuildingPage.ClickOnReEntry_FMS();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario4();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario4 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario4 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit only 2nd and 3rd question with YES &
+	// Upload/Link, Rest all question with NA. Expected Score - 0
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 684, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit only 2nd and 3rd question with YES &  Upload/Link, Rest all question with NA.  Expected Score - 0")
+	public void Buildings_ReEntry_FMS_Score_Scenario5() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario5 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012142");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-UTCGJ");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000012085";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario5();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario5 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario5 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit 1st question with YES & Upload/Link,
+	// Rest all question with NA. Expected Score - 100
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 685, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit 1st question with YES &  Upload/Link, Rest all question with NA.  Expected Score - 100")
+	public void Buildings_ReEntry_FMS_Score_Scenario6() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario6 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011311";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario6();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario6 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario6 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit Question 1-10 with YES & Upload/Link,
+	// question 11-19 with NA. Expected Score - 100
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 686, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit Question 1-10 with YES &  Upload/Link, question 11-19 with NA.  Expected Score - 100")
+	public void Buildings_ReEntry_FMS_Score_Scenario7() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario7 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011311";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario7();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario7 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario7 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit Question 1-10 with YES & Upload/Link,
+	// question 11-19 with NO. Expected Score - 45
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 686, enabled = true, description = "Building -> Re-Entry -->FMS -> Submit Question 1-10 with YES &  Upload/Link, question 11-19 with NO.  Expected Score - 45")
+	public void Buildings_ReEntry_FMS_Score_Scenario8() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario8 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011311";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario8();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario8 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario8 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Submit Question 1-10 with NO, question 11-15
+	// with NA, question 16-19 with YES without Link/upload. Expected Score - 35
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 687, enabled = true, description = "Building -> Re-Entry -->FMS ->  Submit Question 1-10 with NO, question 11-15 with NA, question 16-19 with YES without Link/upload.  Expected Score - 35")
+	public void Buildings_ReEntry_FMS_Score_Scenario9() {
+
+		log.info("Buildings_ReEntry_FMS_Score_Scenario9 method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011312";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			flag = BuildingPage.ReEntry_FMS_Score_Scenario9();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario9 method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_FMS_Score_Scenario9 method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' -
+	// Survey tools and resources- Clicking on 'Arc Re-entry guilde' downloads the
+	// Arc Guide to Rentry.pdf file.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 688, enabled = true, description = "Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' - Survey tools and resources- Clicking on 'Arc Re-entry guilde' downloads the Arc Guide to Rentry.pdf file.")
 	public void Buildings_ReEntry_FMS_Download_ArcGuideToReEntry() {
 
 		log.info("Buildings_ReEntry_FMS_Download_ArcGuideToReEntry method started......................... ");
@@ -6662,9 +7071,9 @@ public class BuildingPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("BuildingProject_Test1","8000040293");
+		// System.setProperty("BuildingProject_Test1","8000040293");
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID = "8000011463";
+		// ProjectBuildingID = "8000012104";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
@@ -6685,13 +7094,650 @@ public class BuildingPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
-	// Building -> Re-Entry -->FMS ->  Verify for 'facility and management Survey' - Survey tools and resources- Export survey results downloads report successfully.
+	// Building -> Re-Entry -->Occupant Survey -> Verify able to select any
+	// combination of Scope and Group, Add optional name field and copy Survey link-
+	// paste to another tab, survey page loads successfully.
 
-	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_Transportation_SubmitSurveyAllLanguage", priority = 677, enabled = false, description = " Building -> Re-Entry -->FMS ->  Verify for 'facility and management Survey' - Survey tools and resources- Export survey results downloads report successfully.")
-	public void Buildings_ReEntry_FMS_ExportSurveyResult() {
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 690, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify able to select any combination of Scope and Group,  Add optional  name field  and copy Survey link- paste to another tab, survey page loads successfully. ")
+	public void Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab() {
 
-		log.info("Buildings_ReEntry_FMS_ExportSurveyResult method started......................... ");
+		log.info("Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012106");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-YYZYT");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000039885";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			flag = BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Management");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 691, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address")
+	public void Buildings_ReEntry_OccupantSurvey_CheckProjectAddress() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040263");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-TIFTE");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000039886";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			// String ProjectAddress = BuildingPage.getProjectAddress();
+			// String ProjectAddress=data.getCellData("ProjectRegistration", 3, 2);
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Management");
+			flag = BuildingPage.OccupantSurvey_SurveyPage_ProjectNameAndAddress();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Common', Group-'Management.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", priority = 692, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Management'.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Common_Management() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Management method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012143");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-ESATJ");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Management");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithCommonSpace_Management();
+			flag = BuildingPage.OccupantSurveyVerify("Common", "Management", "Never");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_OccupantSurvey_Check_Common_Management method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_OccupantSurvey_Check_Common_Management method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Common', Group-'Tenant.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 693, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Tenant'.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-RJNWI");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Tenant");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithCommonSpace_Tenant();
+			flag = BuildingPage.OccupantSurveyVerify("Common", "Tenant", "Rarely");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Common', Group-'Visitor.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 694, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Visitor'.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-RJNWI");
+		// System.setProperty("BuildingProject_Test1","8000011609");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Visitor");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor();
+			flag = BuildingPage.OccupantSurveyVerify("Common", "Visitor", "Sometimes");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Tenant', Group-'Management.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 695, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Management'.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-RJNWI");
+		// System.setProperty("BuildingProject_Test1","8000040261");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Tenant Space", "Management");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithTenantSpace_Management();
+			flag = BuildingPage.OccupantSurveyVerify("Tenant", "Management", "Usually");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Tenant', Group-'Tenant.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 696, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Tenant'.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000011959");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Tenant Space", "Tenant");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithTenantSpace_Tenant();
+			flag = BuildingPage.OccupantSurveyVerify("Tenant", "Tenant", "Always");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Tenant', Group-'Visitor.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 697, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Visitor'.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000011959");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Tenant Space", "Visitor");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithTenantSpace_Visitor();
+			flag = BuildingPage.OccupantSurveyVerify("Tenant", "Visitor", "Rarely");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Whole', Group-'Management.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 698, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Management.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Whole_Management() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Management method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000011959");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Management");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithWholeSpace_Management();
+			flag = BuildingPage.OccupantSurveyVerify("Whole", "Management", "Sometimes");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Management method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_OccupantSurvey_Check_Whole_Management method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Whole', Group-'Tenant.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 699, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Tenant.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000011959");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Tenant");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithWholeSpace_Tenant();
+			flag = BuildingPage.OccupantSurveyVerify("Whole", "Tenant", "Usually");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct
+	// project name and project address. Scope - 'Whole', Group-'Visitor.
+
+	@Test(groups = { "BuildingsRegression",
+			"OccupantSurvey" }, dependsOnGroups = "LoginMethodTCGroup", priority = 700, dependsOnMethods = "Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab", enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Visitor.")
+	public void Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor() {
+
+		log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000011959");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID = "8000011463";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Visitor");
+			BuildingPage.OccupantSurvey_SubmitSurveyWithWholeSpace_Visitor();
+			flag = BuildingPage.OccupantSurveyVerify("Whole", "Visitor", "Always");
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify all slider questions i.e.
+	// Ques 1,3,4,5,6,7,8,9 are required questions and if unanswered, user gets an
+	// error message in red as - 'Required question. Use the slider to make a
+	// selection'
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 701, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify all slider questions i.e. Ques 1,3,4,5,6,7,8,9 are required questions and if unanswered, user gets an error message in red as -  'Required question. Use the slider to make a selection'")
+	public void Buildings_ReEntry_Occupant_ValidationMessage() {
+
+		log.info("Buildings_ReEntry_Occupant_ValidationMessage method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000012185");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-YYZYT");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000012104";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Visitor");
+			flag = BuildingPage.OccupantSurvey_CheckValidationMessage();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_Occupant_ValidationMessage method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_Occupant_ValidationMessage method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->Occupant Survey -> Export Survey result and validate
+	// the excel data.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = { "LoginMethodTCGroup",
+			"OccupantSurvey" }, priority = 702, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Export Survey result and validate the excel data.")
+	public void Buildings_ReEntry_Occupant_ExportSurveyResult() {
+
+		log.info("Buildings_ReEntry_Occupant_ExportSurveyResult method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040527");
+		// System.setProperty("BuildingProject_Test1_Name","Auto-Building-TPFAH");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_OccupantSurvey();
+			flag = BuildingPage.ReEntry_Occupant_ExportSurveyResults();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_Occupant_ExportSurveyResult method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_Occupant_ExportSurveyResult method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity -> Verify in Performance sub tab-
+	// Investigate,Acceptable, Good lets you submit response based on logic that the
+	// values in Investigate+Acceptable+good contribute to 100%.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 703, enabled = true, description = "Building -> Re-Entry -->Relative Humidity -> Verify in Performance sub tab- Investigate,Acceptable, Good lets you submit response based on logic that the values in Investigate+Acceptable+good contribute to 100%.")
+	public void Buildings_ReEntry_RelativeHumadity_PerformanceAddRecord() {
+
+		log.info("Buildings_ReEntry_RelativeHumadity_PerformanceAddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		//System.setProperty("BuildingProject_Test1", "8000040509");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_RelativeHumidity();
+			flag = BuildingPage.ReEntry_PerformanceAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_RelativeHumadity_PerformanceAddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_PerformanceAddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity ->Performance Tab-> Validate able
+	// to upload documentation.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_RelativeHumadity_PerformanceAddRecord", priority = 704, enabled = true, description = "Building -> Re-Entry -->Relative Humidity ->Performance Tab-> Validate able to upload documentation.")
+	public void Buildings_ReEntry_RelativeHumadity_PerformanceUploadDocument() {
+
+		log.info(
+				"Buildings_ReEntry_RelativeHumadity_PerformanceUploadDocument method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_RelativeHumidity();
+			flag = BuildingPage.ReEntry_UploadDocument();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_PerformanceUploadDocument method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_PerformanceUploadDocument method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity ->Spatial Coverage-> Validate in
+	// Spatial coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 705, enabled = true, description = "Building -> Re-Entry -->Relative Humidity ->Spatial Coverage-> Validate in Spatial coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_RelativeHumadity_SpatialCoverage_ValidateReading() {
+
+		log.info(
+				"Buildings_ReEntry_RelativeHumadity_SpatialCoverage_ValidateReading method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -6701,507 +7747,1469 @@ public class BuildingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-		// ProjectBuildingID="8000011471";
+		// ProjectBuildingID="8000040527";
 		if (!ProjectBuildingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
 			HomePage.closeProjectSearchTextBox();
 			BuildingPage.ClickOnMetersAndSurveyMenu();
-			flag = BuildingPage.Transportation_ExportSurveyResults();
+			BuildingPage.ClickOnReEntry_RelativeHumidity();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverage_ValidateReading();
 		} else {
 			log.info("Building Project is showing Null");
 			Assert.assertTrue(false);
 		}
 		if (flag) {
-			log.info("Buildings_ReEntry_FMS_ExportSurveyResult method ends with true here ........... ");
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_SpatialCoverage_ValidateReading method ends with true here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Buildings_ReEntry_FMS_ExportSurveyResult method ends with false here ........... ");
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_SpatialCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity -> Spatial Coverage -> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 706, enabled = true, description = "Building -> Re-Entry -->Relative Humidity -> Spatial Coverage -> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_RelativeHumadity_SpatialCoverage_AddRecord() {
+
+		log.info(
+				"Buildings_ReEntry_RelativeHumadity_SpatialCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_RelativeHumidity();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_SpatialCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_SpatialCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity ->Temporal Coverage -> Validate in
+	// Temporal coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 707, enabled = true, description = "Building -> Re-Entry -->Relative Humidity ->Temporal Coverage -> Validate in Temporal coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_RelativeHumadity_TemporalCoverage_ValidateReading() {
+
+		log.info(
+				"Buildings_ReEntry_RelativeHumadity_TemporalCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_RelativeHumidity();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_TemporalCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_TemporalCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity ->Temporal Coverage-> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 708, enabled = true, description = "Building -> Re-Entry -->Relative Humidity ->Temporal Coverage-> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_RelativeHumadity_TemporalCoverage_AddRecord() {
+
+		log.info(
+				"Buildings_ReEntry_RelativeHumadity_TemporalCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_RelativeHumidity();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_TemporalCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_RelativeHumadity_TemporalCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+//--- Re Entry Carbon Dioxide
+
+	// Building -> Re-Entry -->Carbon Dioxide -> Verify in Performance sub tab-
+	// Investigate,Acceptable, Good lets you submit response based on logic that the
+	// values in Investigate+Acceptable+good contribute to 100%.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 710, enabled = true, description = "Building -> Re-Entry -->Carbon Dioxide -> Verify in Performance sub tab- Investigate,Acceptable, Good lets you submit response based on logic that the values in Investigate+Acceptable+good contribute to 100%.")
+	public void Buildings_ReEntry_CarbonDioxide_PerformanceAddRecord() {
+
+		log.info("Buildings_ReEntry_CarbonDioxide_PerformanceAddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_CarbonDioxide();
+			flag = BuildingPage.ReEntry_PerformanceAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_CarbonDioxide_PerformanceAddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_CarbonDioxide_PerformanceAddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Carbon Dioxide ->Spatial Coverage-> Validate in
+	// Spatial coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 711, enabled = true, description = "Building -> Re-Entry -->Carbon Dioxide ->Spatial Coverage-> Validate in Spatial coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_CarbonDioxide_SpatialCoverage_ValidateReading() {
+
+		log.info(
+				"Buildings_ReEntry_CarbonDioxide_SpatialCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_CarbonDioxide();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_SpatialCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_SpatialCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->CarbonDioxide -> Spatial Coverage -> Enter Effective
+	// date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 712, enabled = true, description = "Building -> Re-Entry -->CarbonDioxide -> Spatial Coverage -> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_CarbonDioxide_SpatialCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_CarbonDioxide_SpatialCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_CarbonDioxide();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_SpatialCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_SpatialCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Carbon Dioxide ->Spatial Coverage Tab-> Validate able
+	// to upload documentation.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_CarbonDioxide_SpatialCoverage_AddRecord", priority = 713, enabled = true, description = "Building -> Re-Entry -->Carbon Dioxide ->Spatial Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_ReEntry_CarbonDioxide_SpatialCoverageUploadDocument() {
+
+		log.info(
+				"Buildings_ReEntry_CarbonDioxide_SpatialCoverageUploadDocument method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_CarbonDioxide();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.ReEntry_UploadDocument();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_SpatialCoverageUploadDocument method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_SpatialCoverageUploadDocument method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->Carbon Dioxide ->Temporal Coverage -> Validate in
+	// Temporal coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 714, enabled = true, description = "Building -> Re-Entry -->Carbon Dioxide ->Temporal Coverage -> Validate in Temporal coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_CarbonDioxide_TemporalCoverage_ValidateReading() {
+
+		log.info(
+				"Buildings_ReEntry_CarbonDioxide_TemporalCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_CarbonDioxide();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_TemporalCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_TemporalCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->Relative Humidity ->Temporal Coverage-> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 715, enabled = true, description = "Building -> Re-Entry -->Relative Humidity ->Temporal Coverage-> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_CarbonDioxide_TemporalCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_CarbonDioxide_TemporalCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_CarbonDioxide();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_TemporalCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_CarbonDioxide_TemporalCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --- Re Entry TVOC
+
+	// Building -> Re-Entry -->TVOC -> Verify in Performance sub tab-
+	// Investigate,Acceptable, Good lets you submit response based on logic that the
+	// values in Investigate+Acceptable+good contribute to 100%.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 717, enabled = true, description = "Building -> Re-Entry -->TVOC -> Verify in Performance sub tab- Investigate,Acceptable, Good lets you submit response based on logic that the values in Investigate+Acceptable+good contribute to 100%.")
+	public void Buildings_ReEntry_TVOC_PerformanceAddRecord() {
+
+		log.info("Buildings_ReEntry_TVOC_PerformanceAddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_TVOC();
+			flag = BuildingPage.ReEntry_PerformanceAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_TVOC_PerformanceAddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_TVOC_PerformanceAddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->TVOC ->Spatial Coverage-> Validate in
+	// Spatial coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 718, enabled = true, description = "Building -> Re-Entry -->TVOC ->Spatial Coverage-> Validate in Spatial coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_TVOC_SpatialCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_TVOC_SpatialCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_TVOC();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_TVOC_SpatialCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_TVOC_SpatialCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->TVOC -> Spatial Coverage -> Enter Effective
+	// date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 719, enabled = true, description = "Building -> Re-Entry -->TVOC -> Spatial Coverage -> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_TVOC_SpatialCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_TVOC_SpatialCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_TVOC();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_TVOC_SpatialCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_TVOC_SpatialCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->TVOC ->Temporal Coverage -> Validate in
+	// Temporal coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 720, enabled = true, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage -> Validate in Temporal coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_TVOC_TemporalCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_TVOC_TemporalCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_TVOC();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_TVOC_TemporalCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_TVOC_TemporalCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->TVOC ->Temporal Coverage-> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 721, enabled = true, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage-> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_TVOC_TemporalCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_TVOC_TemporalCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_TVOC();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_TVOC_TemporalCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_TVOC_TemporalCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able
+	// to upload documentation.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_TVOC_TemporalCoverage_AddRecord", priority = 722, enabled = true, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_ReEntry_TVOC_TemporalCoverageUploadDocument() {
+
+		log.info("Buildings_ReEntry_TVOC_TemporalCoverageUploadDocument method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_TVOC();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.ReEntry_UploadDocument();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_TVOC_TemporalCoverageUploadDocument method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_TVOC_TemporalCoverageUploadDocument method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --- Re Entry PM 1.0
+
+	// Building -> Re-Entry -->PM 1.0 -> Verify in Performance sub tab-
+	// Investigate,Acceptable, Good lets you submit response based on logic that the
+	// values in Investigate+Acceptable+good contribute to 100%.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 723, enabled = true, description = "Building -> Re-Entry -->PM 1.0 -> Verify in Performance sub tab- Investigate,Acceptable, Good lets you submit response based on logic that the values in Investigate+Acceptable+good contribute to 100%.")
+	public void Buildings_ReEntry_PM_1_0_PerformanceAddRecord() {
+
+		log.info("Buildings_ReEntry_PM_1_0_PerformanceAddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_1_0();
+			flag = BuildingPage.ReEntry_PerformanceAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_1_0_PerformanceAddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_1_0_PerformanceAddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 1.0 ->Spatial Coverage-> Validate in
+	// Spatial coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 724, enabled = true, description = "Building -> Re-Entry -->PM 1.0 ->Spatial Coverage-> Validate in Spatial coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_PM_1_0_SpatialCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_PM_1_0_SpatialCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_1_0();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_PM_1_0_SpatialCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_1_0_SpatialCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 1.0 -> Spatial Coverage -> Enter Effective
+	// date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 725, enabled = true, description = "Building -> Re-Entry -->PM 1.0 -> Spatial Coverage -> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_PM_1_0_SpatialCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_PM_1_0_SpatialCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_1_0();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_1_0_SpatialCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_1_0_SpatialCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 1.0 ->Temporal Coverage -> Validate in
+	// Temporal coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 726, enabled = true, description = "Building -> Re-Entry -->PM 1.0 ->Temporal Coverage -> Validate in Temporal coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_PM_1_0_TemporalCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_PM_1_0_TemporalCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_1_0();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_PM_1_0_TemporalCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_1_0_TemporalCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 1.0 ->Temporal Coverage-> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 727, enabled = true, description = "Building -> Re-Entry -->PM 1.0 ->Temporal Coverage-> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_PM_1_0_TemporalCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_PM_1_0_TemporalCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_1_0();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_1_0_TemporalCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_1_0_TemporalCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->PM 1.0 ->Temporal Coverage Tab-> Validate able
+	// to upload documentation.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_PM_1_0_TemporalCoverage_AddRecord", priority = 728, enabled = true, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_ReEntry_PM_1_0_TemporalCoverageUploadDocument() {
+
+		log.info("Buildings_ReEntry_PM_1_0_TemporalCoverageUploadDocument method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_1_0();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.ReEntry_UploadDocument();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_1_0_TemporalCoverageUploadDocument method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_1_0_TemporalCoverageUploadDocument method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --- Re Entry PM 2.5
+
+	// Building -> Re-Entry -->PM 2.5 -> Verify in Performance sub tab-
+	// Investigate,Acceptable, Good lets you submit response based on logic that the
+	// values in Investigate+Acceptable+good contribute to 100%.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 730, enabled = true, description = "Building -> Re-Entry -->PM 2.5 -> Verify in Performance sub tab- Investigate,Acceptable, Good lets you submit response based on logic that the values in Investigate+Acceptable+good contribute to 100%.")
+	public void Buildings_ReEntry_PM_2_5_PerformanceAddRecord() {
+
+		log.info("Buildings_ReEntry_PM_2_5_PerformanceAddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_2_5();
+			flag = BuildingPage.ReEntry_PerformanceAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_2_5_PerformanceAddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_2_5_PerformanceAddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 2.5 ->Spatial Coverage-> Validate in
+	// Spatial coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 731, enabled = true, description = "Building -> Re-Entry -->PM 2.5 ->Spatial Coverage-> Validate in Spatial coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_PM_2_5_SpatialCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_PM_2_5_SpatialCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_2_5();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_PM_2_5_SpatialCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_2_5_SpatialCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 2.5 -> Spatial Coverage -> Enter Effective
+	// date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 732, enabled = true, description = "Building -> Re-Entry -->PM 2.5 -> Spatial Coverage -> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_PM_2_5_SpatialCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_PM_2_5_SpatialCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_2_5();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_2_5_SpatialCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_2_5_SpatialCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 2.5 ->Temporal Coverage -> Validate in
+	// Temporal coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 733, enabled = true, description = "Building -> Re-Entry -->PM 2.5 ->Temporal Coverage -> Validate in Temporal coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_PM_2_5_TemporalCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_PM_2_5_TemporalCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_2_5();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_PM_2_5_TemporalCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_2_5_TemporalCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 2.5 ->Temporal Coverage-> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 734, enabled = true, description = "Building -> Re-Entry -->PM 2.5 ->Temporal Coverage-> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_PM_2_5_TemporalCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_PM_2_5_TemporalCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_2_5();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_2_5_TemporalCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_2_5_TemporalCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->PM 2.5 ->Temporal Coverage Tab-> Validate able
+	// to upload documentation.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_PM_2_5_TemporalCoverage_AddRecord", priority = 735, enabled = true, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_ReEntry_PM_2_5_TemporalCoverageUploadDocument() {
+
+		log.info("Buildings_ReEntry_PM_2_5_TemporalCoverageUploadDocument method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_2_5();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.ReEntry_UploadDocument();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_2_5_TemporalCoverageUploadDocument method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_2_5_TemporalCoverageUploadDocument method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// --- Re Entry PM 10
+
+	// Building -> Re-Entry -->PM 10 -> Verify in Performance sub tab-
+	// Investigate,Acceptable, Good lets you submit response based on logic that the
+	// values in Investigate+Acceptable+good contribute to 100%.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 736, enabled = true, description = "Building -> Re-Entry -->PM 10 -> Verify in Performance sub tab- Investigate,Acceptable, Good lets you submit response based on logic that the values in Investigate+Acceptable+good contribute to 100%.")
+	public void Buildings_ReEntry_PM_10_PerformanceAddRecord() {
+
+		log.info("Buildings_ReEntry_PM_10_PerformanceAddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_10();
+			flag = BuildingPage.ReEntry_PerformanceAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_10_PerformanceAddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_10_PerformanceAddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 10 ->Spatial Coverage-> Validate in
+	// Spatial coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 737, enabled = true, description = "Building -> Re-Entry -->PM 10 ->Spatial Coverage-> Validate in Spatial coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_PM_10_SpatialCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_PM_10_SpatialCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_10();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_10_SpatialCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_10_SpatialCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 10 -> Spatial Coverage -> Enter Effective
+	// date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 738, enabled = true, description = "Building -> Re-Entry -->PM 10 -> Spatial Coverage -> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_PM_10_SpatialCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_PM_10_SpatialCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_10();
+			BuildingPage.clickOnReEntrySpatialCoverageTab();
+			flag = BuildingPage.SpatialCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_10_SpatialCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_10_SpatialCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 10 ->Temporal Coverage -> Validate in
+	// Temporal coverage-able to add effective at and reading not greater than 100.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 739, enabled = true, description = "Building -> Re-Entry -->PM 10 ->Temporal Coverage -> Validate in Temporal coverage-able to add effective at and reading not greater than 100.")
+	public void Buildings_ReEntry_PM_10_TemporalCoverage_ValidateReading() {
+
+		log.info("Buildings_ReEntry_PM_10_TemporalCoverage_ValidateReading method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040527";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_10();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverage_ValidateReading();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info(
+					"Buildings_ReEntry_PM_10_TemporalCoverage_ValidateReading method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info(
+					"Buildings_ReEntry_PM_10_TemporalCoverage_ValidateReading method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+
+	// Building -> Re-Entry -->PM 10 ->Temporal Coverage-> Enter
+	// Effective date, Reading and save the record.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 740, enabled = true, description = "Building -> Re-Entry -->PM 10 ->Temporal Coverage-> Enter Effective date, Reading and save the record.")
+	public void Buildings_ReEntry_PM_10_TemporalCoverage_AddRecord() {
+
+		log.info("Buildings_ReEntry_PM_10_TemporalCoverage_AddRecord method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_10();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.TemporalCoverageAddRecord();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_10_TemporalCoverage_AddRecord method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_10_TemporalCoverage_AddRecord method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Building -> Re-Entry -->PM 10 ->Temporal Coverage Tab-> Validate able
+	// to upload documentation.
+
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Buildings_ReEntry_PM_10_TemporalCoverage_AddRecord", priority = 741, enabled = true, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_ReEntry_PM_10_TemporalCoverageUploadDocument() {
+
+		log.info("Buildings_ReEntry_PM_10_TemporalCoverageUploadDocument method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_Test1","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
+		// ProjectBuildingID="8000040530";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.ClickOnReEntry_PM_10();
+			BuildingPage.clickOnReEntryTemporalCoverageTab();
+			flag = BuildingPage.ReEntry_UploadDocument();
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Buildings_ReEntry_PM_10_TemporalCoverageUploadDocument method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_ReEntry_PM_10_TemporalCoverageUploadDocument method ends with false here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
 	
+	//-----------------------------------------------Performance Sections -------------------------------
+	
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 0, enabled = false, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_Performance_EnergyScoreTest() {
 
-	// Building -> Re-Entry -->Occupant Survey -> Verify able to select any combination of Scope and Group,  Add optional  name field  and copy Survey link- paste to another tab, survey page loads successfully. 
+		log.info("Buildings_Performance_EnergyScoreTest method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
 
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 680, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify able to select any combination of Scope and Group,  Add optional  name field  and copy Survey link- paste to another tab, survey page loads successfully. ")
-		public void Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000040282");
-			//System.setProperty("BuildingProject_Test1_Name","Auto-Building-MQLRP");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000039885";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				flag=BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Management");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_OpenSurveyPageInNewTab method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
 		}
+		// System.setProperty("BuildingProject_5","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_5");
+		 ProjectBuildingID="8000040582";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.Energy_AddNewMeter("kWh","Purchased from Grid");
+			BuildingPage.clickOnEnergyMeter();
+			
+			//BuildingPage.Energy_AddRecords("BaseLine", 2);
+			BuildingPage.Energy_AddRecords("Performance", 16);
+			
+			//BuildingPage.Energy_AddRecords("BaseLine", 9);
+			//BuildingPage.Energy_AddRecords("Performance", 5);
+			//BuildingPage.ClickOnBuildingSetting();
+			//BuildingPage.ClickOnBuildingSetting_GrossFloorAreaTab();
+			
+			//CommonMethod.switchToDefaultContent();
+			//BuildingPage.ClickOnPerformanceMenu();
+			flag=BuildingPage.Energy_ValidateImprovementScore();
+			//BuildingPage.ClickOnPerformanceMenu();
 		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address 
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 681, enabled = false, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address")
-		public void Buildings_ReEntry_OccupantSurvey_CheckProjectAddress() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000040263");
-			//System.setProperty("BuildingProject_Test1_Name","Auto-Building-TIFTE");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000039886";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				//String ProjectAddress = BuildingPage.getProjectAddress();
-				//String ProjectAddress=data.getCellData("ProjectRegistration", 3, 2);
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Management");
-				flag = BuildingPage.OccupantSurvey_SurveyPage_ProjectNameAndAddress();
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
 		}
+		if (flag) {
+			log.info("Buildings_Performance_EnergyScoreTest method ends with true here ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Buildings_Performance_EnergyScoreTest method ends with false here ........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	
+	
+	@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 0, enabled = false, description = "Building -> Re-Entry -->TVOC ->Temporal Coverage Tab-> Validate able to upload documentation.")
+	public void Buildings_Performance_WaterScoreTest() {
+
+		log.info("Buildings_Performance_WaterScoreTest method started......................... ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("BuildingProject_5","8000040528");
+		String ProjectBuildingID = System.getProperty("BuildingProject_5");
+		 ProjectBuildingID="8000040582";
+		if (!ProjectBuildingID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
+			HomePage.closeProjectSearchTextBox();
+			BuildingPage.ClickOnMetersAndSurveyMenu();
+			BuildingPage.Water_AddNewMeter("gal","Municipality supplied potable water");
+			BuildingPage.clickOnWaterMeter();
+			
+			BuildingPage.Energy_AddRecords("BaseLine", 10);
+			BuildingPage.Energy_AddRecords("Performance", 9);
+			
+			//BuildingPage.Energy_AddRecords("BaseLine", 9);
+			//BuildingPage.Energy_AddRecords("Performance", 5);
+			//BuildingPage.ClickOnBuildingSetting();
+			//BuildingPage.ClickOnBuildingSetting_GrossFloorAreaTab();
+			
+			//CommonMethod.switchToDefaultContent();
+			//BuildingPage.ClickOnPerformanceMenu();
+			flag=BuildingPage.Energy_ValidateImprovementScore();
+			//BuildingPage.ClickOnPerformanceMenu();
 		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Management.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 682, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Management'.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Common_Management() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Management method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000040280");
-			//System.setProperty("BuildingProject_Test1_Name","Auto-Building-TIFTE");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");			
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Management");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithCommonSpace_Management();				
-				flag=BuildingPage.OccupantSurveyVerify("Common", "Management","Never");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Management method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Management method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
+		} else {
+			log.info("Building Project is showing Null");
+			Assert.assertTrue(false);
 		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Tenant.
+		if (flag) {
+			log.info("Buildings_Performance_WaterScoreTest method ends with true here ........... ");
+			Assert.assertTrue(true);
 
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 683, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Tenant'.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1_Name","Auto-Building-RJNWI");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Tenant");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithCommonSpace_Tenant();
-				flag=BuildingPage.OccupantSurveyVerify("Common", "Tenant","Rarely");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Tenant method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
+		} else {
+			log.info("Buildings_Performance_WaterScoreTest method ends with false here ........... ");
+			Assert.assertTrue(false);
 		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Visitor.
+	}
 
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 684, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Common', Group-'Visitor'.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1_Name","Auto-Building-RJNWI");
-			//System.setProperty("BuildingProject_Test1","8000011609");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Common Space", "Visitor");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor();
-				flag=BuildingPage.OccupantSurveyVerify("Common", "Visitor","Sometimes");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Common_Visitor method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Management.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 685, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Management'.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1_Name","Auto-Building-RJNWI");
-			//System.setProperty("BuildingProject_Test1","8000040261");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Tenant Space", "Management");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithTenantSpace_Management();
-				flag=BuildingPage.OccupantSurveyVerify("Tenant", "Management","Usually");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Management method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Tenant.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 686, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Tenant'.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000011959");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Tenant Space", "Tenant");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithTenantSpace_Tenant();
-				flag=BuildingPage.OccupantSurveyVerify("Tenant", "Tenant","Always");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Tenant method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Visitor.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 687, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Tenant', Group-'Visitor'.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000011959");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Tenant Space", "Visitor");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithTenantSpace_Visitor();
-				flag=BuildingPage.OccupantSurveyVerify("Tenant", "Visitor","Rarely");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Tenant_Visitor method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Management.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 688, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Management.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Whole_Management() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Management method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000011959");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Management");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithWholeSpace_Management();
-				flag=BuildingPage.OccupantSurveyVerify("Whole", "Management","Sometimes");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Management method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Management method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Tenant.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 689, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Tenant.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000011959");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Tenant");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithWholeSpace_Tenant();
-				flag=BuildingPage.OccupantSurveyVerify("Whole", "Tenant","Usually");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Tenant method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Visitor.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 690, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Visitor.")
-		public void Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000011959");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Visitor");
-				BuildingPage.OccupantSurvey_SubmitSurveyWithWholeSpace_Visitor();
-				flag=BuildingPage.OccupantSurveyVerify("Whole", "Visitor","Always");
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
-		
-		// Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Visitor.
-
-		@Test(groups = "BuildingsRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 691, enabled = true, description = "Building -> Re-Entry -->Occupant Survey -> Verify Survey page shows correct project name and project address. Scope - 'Whole', Group-'Visitor.")
-		public void Buildings_ReEntry_OccupantSurvey_CheckProjectAddress1() {
-
-			log.info("Buildings_ReEntry_OccupantSurvey_CheckProjectAddress1 method started......................... ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			//System.setProperty("BuildingProject_Test1","8000011959");
-			String ProjectBuildingID = System.getProperty("BuildingProject_Test1");
-			// ProjectBuildingID = "8000011463";
-			if (!ProjectBuildingID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				BuildingPage = ProjectPage.SearchAndClickOnBuildingProject(ProjectBuildingID);
-				HomePage.closeProjectSearchTextBox();
-				BuildingPage.ClickOnMetersAndSurveyMenu();
-				BuildingPage.ClickOnReEntry_OccupantSurvey();
-				BuildingPage.ReEntry_OccupantSurvey_OpenSurvey_NewTab("Whole Space", "Visitor");
-				flag=BuildingPage.OccupantSurvey_SurveyPage_ProjectNameAndAddress();
-			} else {
-				log.info("Building Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method ends with true here ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Buildings_ReEntry_OccupantSurvey_Check_Whole_Visitor method ends with false here ........... ");
-				Assert.assertTrue(false);
-			}
-		}
 }
