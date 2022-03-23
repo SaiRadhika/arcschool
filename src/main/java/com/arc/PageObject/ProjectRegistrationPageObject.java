@@ -154,45 +154,49 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//*[@id=\"organization\"]")
 	WebElement OrgTextbox;
 
-	@FindBy(xpath = "(//div[@class='datepicker-days'])[2]")
+	@FindBy(xpath = "/html/body/div[24]/div[1]")
 	WebElement CalenderPopUp;
-
+	
 	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
 	WebElement TestProjectCheckBox;
-
+	
 	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[6]/td/div/input")
 	WebElement AnnualRidershipTextbox;
-
+	
 	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[7]/td/div/input")
 	WebElement WeeklyHrsTextbox;
-
+	
 	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[8]/td/div/input")
 	WebElement FulltimeStaffTextbox;
-
+	
 	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[9]/td/div/input")
 	WebElement AvgTimeSpentTextbox;
-
+	
 	@FindBy(xpath = "//span[normalize-space()='Please enter valid annual ridership.']")
 	WebElement AnnualRiderValidationMsg;
-
+	
 	@FindBy(xpath = "//span[normalize-space()='Please enter valid hours.']")
 	WebElement AvgTimeSpentValidationMsg;
-
-	@FindBy(xpath = "//span[normalize-space()='Please enter valid number of hours']")
+	
+	@FindBy(xpath= "//span[normalize-space()='Please enter valid number of hours']")
 	WebElement WeeklyHrsValidationMsg;
-
+	
 	@FindBy(xpath = "//span[normalize-space()='Please enter valid full time staff.']")
 	WebElement FulltimeStaffValidationMsg;
-
+	
 	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.station_type, 'station_type')\"]")
 	WebElement TransitStationType;
-
+	
 	@FindBy(xpath = "//span[normalize-space()='Preview Access']")
 	WebElement PreviewAccessButton;
-
+	
 	@FindBy(xpath = "//span[normalize-space()='Pay Now']")
 	WebElement PayNowButton;
-
+	
+	@FindBy(xpath = "//input[@ng-model='formdata.occupancy']")
+	WebElement WeightedOccupancyTextbox;
+	
+	
 	public ProjectRegistrationPageObject() {
 		PageFactory.initElements(driver, this);
 	}
@@ -872,22 +876,18 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	}
 
-	public boolean Check_Calender_Opens() {
-		boolean flag = false;
+	public boolean DateCommisonedOpensCalendar() {
+		log.info("DateCommisonedOpensCalendar method starts here........");
+		boolean flag = true;
 		DateCommisioned.click();
-		try {
-			Thread.sleep(2000);
-			waithelper.WaitForElementVisibleWithPollingTime(CalenderPopUp, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			if (CalenderPopUp.isDisplayed())
-				flag = true;
-			else 
-				return false;
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		WebElement ele = driver.findElement(By.xpath("//div[@class='datepicker datepicker-dropdown dropdown-menu'][2]"));
+		if (ele.isDisplayed()) {
+			flag = true;
+			log.info("DateCommisonedOpensCalendar method ends here........");
 		}
 		return flag;
-
+		
 	}
 
 	public boolean Check_Owner_Region(String Region) {
@@ -1049,5 +1049,278 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		ParkingLevelTextBox.clear();
 		ParkingLevelTextBox.sendKeys(ParkingLevel);
 	}
-	 
+	
+	
+	public boolean SelectTransitProjectType() {
+		boolean flag = true;
+
+		try {
+	
+			if (dropdownhelper.getSelectedValue(ProjectType).equals("Buildings - Transit"))
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+	
+	public void enterAnnualRidership(String AnnualRider) {
+		AnnualRidershipTextbox.clear();
+		AnnualRidershipTextbox.sendKeys(AnnualRider);
+
+	}
+	
+	public void enterWeeklyOperatingHrs(String WeeklyHrs) {
+		WeeklyHrsTextbox.clear();
+		WeeklyHrsTextbox.sendKeys(WeeklyHrs);
+
+	}
+	
+	public void enterFulltimeStaff(String FulltimeStaff) {
+		FulltimeStaffTextbox.clear();
+		FulltimeStaffTextbox.sendKeys(FulltimeStaff);
+
+	}
+	
+	public void enterAvgTimeSpent(String AvgTime) {
+		AvgTimeSpentTextbox.clear();
+		AvgTimeSpentTextbox.sendKeys(AvgTime);
+
+	}
+	
+	public boolean CheckAnnualRidershipValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = AnnualRiderValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+	
+	public boolean CheckAvgTimeSpentValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = AvgTimeSpentValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+	
+	public boolean CheckWeeklyHrsValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = WeeklyHrsValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+	
+	
+	public boolean CheckFulltimeStaffValidationMsg() {
+		boolean flag = false;
+		try {
+			flag = FulltimeStaffValidationMsg.isDisplayed();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
+	}
+	
+	
+	
+	public void SelectStationType(String Station) {
+
+		try {
+			dropdownhelper.selectUsingVisibleText(TransitStationType, Station);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public void ClickonTransitAddProjectButton() {
+
+		AddProjectButton.click();
+		waithelper.WaitForElementInvisible(
+				driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+
+	public TransitPageObject ClickOnPreviewAccess() {
+
+		PreviewAccessButton.click();
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new TransitPageObject();
+
+	}
+	
+	public ProjectPaymentPageObject ClickOnPayNow() {
+
+		PayNowButton.click();
+		try {
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ProjectPaymentPageObject();
+
+	}
+	
+	public boolean TransitDownLoadServiceAgreement() {
+		log.info("TransitDownLoadServiceAgreement  method starts here -----");
+		String pdfcontent = null;
+		waithelper.WaitForElementClickable(ServiceAgreementLink, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		ServiceAgreementLink.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		Set<String> handles = driver.getWindowHandles();
+		for (String window : handles) {
+			if (!BaseWindow.equals(window)) {
+				driver.switchTo().window(window);
+				String Agreementurl = "https://" + (System.getProperty("environment")).toLowerCase()
+						+ ".app.arconline.io/assets/pdf/addendum_agreement.pdf";
+				log.info("Agreement URL is " + Agreementurl);
+				pdfcontent = CommonMethod.getPDFContent(Agreementurl);
+				if (pdfcontent.contains("Green Business Certification Inc.™")) {
+					driver.close();
+					driver.switchTo().window(BaseWindow);
+					log.info("TransitDownLoadServiceAgreement  method ends with true here -----");
+					return true;
+				} else
+					log.info("TransitDownLoadServiceAgreement  method ends with false here -----");
+				return false;
+
+			}
+		}
+
+		log.info("TransitDownLoadServiceAgreement  method ends with false here -----");
+		return false;
+	}
+
+	public boolean Validate_WeightedDailyOccupancy() {
+		log.info("Validate_WeightedDailyOccupancy method starts here..........");
+		
+		double RiderShip = Double.parseDouble(System.getProperty("Annual_Ridership"));
+		double WeeklyHours = Double.parseDouble(System.getProperty("Weekly_Hours"));
+		double FulltimeStaff =  Double.parseDouble(System.getProperty("Fulltime_Staff"));
+		double AverageTime =  Double.parseDouble(System.getProperty("Average_Time"));
+		
+		log.info("-----------------------");
+		log.info("Annual Ridership ---->" + RiderShip);
+		log.info("Weekly Operating Hours ---->" + WeeklyHours);
+		log.info("Full Time Staff ---->" + FulltimeStaff);
+		log.info("Average Time Spent ---->" + AverageTime);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String ActWeightedDailyOccupancy = WeightedOccupancyTextbox.getAttribute("value");
+		log.info("Actual Weighted Daily Occupancy is ---->" + ActWeightedDailyOccupancy);
+		
+		int WeightedDailyOccupancy = (int) (FulltimeStaff + (Math.round((RiderShip/365) * ((AverageTime/60)/(WeeklyHours/7)))));
+		String ExpWeightedDailyOccupancy = Integer.toString(WeightedDailyOccupancy);
+		log.info("Expected Weighted Daily Occupancy is ---->" + ExpWeightedDailyOccupancy);
+		
+		if(ActWeightedDailyOccupancy.equals(ExpWeightedDailyOccupancy)) {
+			log.info("Validate_WeightedDailyOccupancy method ends with true here..........");
+			return true;
+		}else
+			log.info("Validate_WeightedDailyOccupancy method ends with false here..........");
+			return false;
+	}
+	
+	public boolean CheckTransit_Address_City_Country_State_ZipCode(String Address) {
+		log.info("CheckAddress_City_Country_State_ZipCode starts here..................");
+		AddressTextBox.clear();
+		AddressTextBox.sendKeys(Address);
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By
+							.xpath("//ul[@class='dropdown-menu address normal dropdown-menu-fixed address_dropdown']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		List<WebElement> list = driver.findElements(
+				By.xpath("//ul[@class='dropdown-menu address normal dropdown-menu-fixed address_dropdown']/li"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < list.size(); i++) {
+			log.info(list.get(i).getText());
+			if (list.get(i).getText().equals("2101 L St NW - 2101 L St NW, Washington, DC 20037, USA")) {
+				list.get(i).click();
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+
+		log.info("Actual Address Value is --" + AddressTextBox.getAttribute("value"));
+		log.info("Expected Address Value is --" + data.getCellData("TransitRegistration", 3, 2));
+		log.info("Actual City Value is --" + CityTextBox.getAttribute("value"));
+		log.info("Expected City Value is --" + data.getCellData("TransitRegistration", 4, 2));
+		log.info("Actual Country Value is --" + dropdownhelper.getSelectedValue(CountryDropDown));
+		log.info("Expected Country Value is --" + data.getCellData("TransitRegistration", 5, 2));
+		log.info("Actual State Value is --" + dropdownhelper.getSelectedValue(StateDropDown));
+		log.info("Expected State Value is --" + data.getCellData("TransitRegistration", 6, 2));
+		log.info("Actual Zip Value is --" + ZipTextBox.getAttribute("value"));
+		log.info("Expected Zip Value is --" + data.getCellData("TransitRegistration", 7, 2));
+		if (AddressTextBox.getAttribute("value").equals(data.getCellData("TransitRegistration", 3, 2))
+				&& CityTextBox.getAttribute("value").equals(data.getCellData("TransitRegistration", 4, 2))
+				&& dropdownhelper.getSelectedValue(CountryDropDown)
+						.equals(data.getCellData("TransitRegistration", 5, 2))
+				&& dropdownhelper.getSelectedValue(StateDropDown).equals(data.getCellData("TransitRegistration", 6, 2))
+				&& ZipTextBox.getAttribute("value").equals(data.getCellData("TransitRegistration", 7, 2))) {
+			log.info("Address matched--------------");
+			log.info("CheckAddress_City_Country_State_ZipCode starts ends with true..................");
+			return true;
+		} else {
+			log.info("Address not maching--------------");
+			log.info("CheckAddress_City_Country_State_ZipCode ends with false..................");
+			return false;
+		}
+
+	}
+	
+	
+	
+	
 }

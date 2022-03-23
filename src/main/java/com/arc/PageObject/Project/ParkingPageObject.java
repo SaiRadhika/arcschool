@@ -50,7 +50,7 @@ public class ParkingPageObject extends BaseClass {
 	@FindBy(xpath = "(//a[text()=' Project '])[1]")
 	WebElement ProjectSubmenu;
 
-	@FindBy(xpath = "(//input[@type='radio'])[1]")
+	@FindBy(xpath = "//span[text()='Private']//following-sibling::div//span[contains(text(),'Yes')]/input")
 	WebElement PrivateYesRadioButton;
 
 	@FindBy(name = "test_project")
