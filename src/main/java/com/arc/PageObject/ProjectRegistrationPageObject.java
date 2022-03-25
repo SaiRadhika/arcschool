@@ -79,7 +79,7 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//span[normalize-space()='Exceeded maximum value']")
 	WebElement GrossAreaTextBoxValidationMsg;
 
-	@FindBy(xpath = "//*[@id=\"year_constructed\"]")
+	@FindBy(xpath = "//input[@id='year_constructed']")
 	WebElement DateCommisioned;
 
 	@FindBy(xpath = "//select[@ng-change=\"verifyField(formdata.unitType, 'unitType')\"]")
@@ -196,7 +196,9 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "//input[@ng-model='formdata.occupancy']")
 	WebElement WeightedOccupancyTextbox;
 	
-	
+	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
+	WebElement TestProjectCheckBox;
+
 	public ProjectRegistrationPageObject() {
 		PageFactory.initElements(driver, this);
 	}

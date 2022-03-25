@@ -2669,6 +2669,7 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		ProjectRegistrationPage = HomePage.ClickOnAddAProjectButton();
 		ProjectRegistrationPage.enterProjectName(
 				data.getCellData("ProjectRegistration", 16, 2) + CommonMethod.generateRandomString(5));
+
 		ProjectRegistrationPage.SelectParkingProjectType();
 
 		flag = ProjectRegistrationPage.DateCommisonedOpensCalendar();
@@ -2677,11 +2678,9 @@ public class ProjectRegistrationPageTest extends BaseClass {
 		if (flag) {
 			Assert.assertTrue(true);
 			log.info("Parking_DateCommisioned_Open_Calendar method ends with true here ........... ");
-
 		} else
 			Assert.assertTrue(false);
 		log.info("Parking_DateCommisioned_Open_Calendar method ends with false here ........... ");
-
 	}
 
 	// Verify Auto-Population of the Address
