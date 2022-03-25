@@ -96,6 +96,10 @@ public class HomePageObjects extends BaseClass {
 	@FindBy(xpath = "(//*[@class='ml10' and text()='Parking'])[1]")
 	WebElement ParkingSubMenu;
 	
+	@FindBy(xpath = "(//*[@class='ml10' and text()='Transit'])[1]")
+	WebElement TransitSubMenu;
+
+	
 	public boolean CheckHomePageLabel() {
 		try {
 			return HomePageLabel.isDisplayed();
@@ -389,6 +393,19 @@ public class HomePageObjects extends BaseClass {
 		log.info("ProfileBillingInvoice method completed--------------");
 		return MonthlyLinkExist;
 
+	}
+
+	public void clickOnTransitSubMenu() {
+		waithelper.WaitForElementClickable(TransitSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		TransitSubMenu.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 	}
 
 }

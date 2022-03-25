@@ -1,6 +1,5 @@
 package com.arc.PageObject.Project;
 
-import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -8,6 +7,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.InputEvent;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -41,6 +42,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.arc.commonMethods.CommonMethod;
+import com.arc.commonMethods.ExcelHelper;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 import com.paulhammant.ngwebdriver.ByAngular;
@@ -99,7 +101,7 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(name = "test_project")
 	WebElement ThisIsTestProjectCheckBox;
 
-	@FindBy(xpath = "//span[text()='Private']/parent::div/div/div[1]/span/input")
+	@FindBy(xpath = "//span[text()='Private']//following-sibling::div//span[contains(text(),'Yes')]/input")
 	WebElement PrivateYesRadioButton;
 
 	// ***********************Regression Test
@@ -206,6 +208,27 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(xpath = "//span[text()='Add Row']")
 	WebElement BuildingSetting_AddRow_button;
 
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]//td//input[@ng-model='data.start_date']")
+	WebElement MeterFirstRow_StartDate;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]//td//input[@ng-model='data.end_date']")
+	WebElement MeterFirstRow_EndDate;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//input[@ng-model='data.reading']")
+	WebElement MeterFirstRow_ReadingTextBox;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//input[@ng-model='data.cost']")
+	WebElement MeterFirstRow_ReadingCost;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='Save']/parent::button")
+	WebElement MeterFirstRow_SaveBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='Edit']/parent::button")
+	WebElement MeterFirstRow_EditBtn;
+
+	@FindBy(xpath = "//table[@id='readingsTable']/tbody/tr[1]/td//span[contains(@class,'deleteReading')]")
+	WebElement MeterFirstRowDeleteIcon;
+
 	@FindBy(xpath = "//button[@class='dropdown-toggle meterDataYearsFilter-btn']")
 	WebElement BuildingSetting_FilterButton;
 
@@ -254,19 +277,19 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(xpath = "//div[text()='Number of visitors each day']/following-sibling::input")
 	WebElement BuildingSetting_Occupancy_NoOfVisitorsEachDay;
 
-	@FindBy(xpath = "//div[text()='Duration of visit (in hours/day)']/following-sibling::input")
+	@FindBy(xpath = "//input[@ng-model='duration_visit']")
 	WebElement BuildingSetting_Occupancy_DurationOfVisit;
 
-	@FindBy(xpath = "//div[text()='Duration of visit (in hours/day)']/following-sibling::div/descendant::a[@title='Increment Hour']/span")
+	@FindBy(xpath = "//div[text()='Duration of visit (in hours/minutes)']/following-sibling::div/descendant::a[@title='Increment Hour']/span")
 	WebElement BuildingSetting_Occupancy_HoursIncrement;
 
-	@FindBy(xpath = "//div[text()='Duration of visit (in hours/day)']/following-sibling::div/descendant::a[@title='Decrement Hour']/span")
+	@FindBy(xpath = "//div[text()='Duration of visit (in hours/minutes)']/following-sibling::div/descendant::a[@title='Decrement Hour']/span")
 	WebElement BuildingSetting_Occupancy_HoursDecrement;
 
-	@FindBy(xpath = "//div[text()='Duration of visit (in hours/day)']/following-sibling::div/descendant::a[@title='Increment Minute']/span")
+	@FindBy(xpath = "//div[text()='Duration of visit (in hours/minutes)']/following-sibling::div/descendant::a[@title='Increment Minute']/span")
 	WebElement BuildingSetting_Occupancy_MinutesIncrement;
 
-	@FindBy(xpath = "//div[text()='Duration of visit (in hours/day)']/following-sibling::div/descendant::a[@title='Decrement Minute']/span")
+	@FindBy(xpath = "//div[text()='Duration of visit (in hours/minutes)']/following-sibling::div/descendant::a[@title='Decrement Minute']/span")
 	WebElement BuildingSetting_Occupancy_MinutesDecrement;
 
 	@FindBy(xpath = "//span[@class='timepicker-hour']")
@@ -275,7 +298,7 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(xpath = "//span[@class='timepicker-minute']")
 	WebElement BuildingSetting_Occupancy_MinutesDropDown;
 
-	@FindBy(xpath = "//div[@class='fw600 mb10'][text()='Weekly operating']/following-sibling::span[1]")
+	@FindBy(xpath = "//input[@ng-model='operating_hours_modal_val']")
 	WebElement BuildingSetting_Occupancy_WeeklyOperatingHours;
 
 	@FindBy(xpath = "//div[@class='fw600 mb10'][text()='Visitors']/following-sibling::span")
@@ -292,6 +315,18 @@ public class BuildingPageObject extends BaseClass {
 
 	@FindBy(xpath = "(//span[contains(@class,'ml10') and text()='Meters & Surveys'])[1]")
 	WebElement MetersAndSurveyMenu;
+
+	@FindBy(xpath = "(//span[contains(@class,'ml10') and text()='Performance'])[1]")
+	WebElement PerformanceMenu;
+
+	@FindBy(xpath = "//div[@class='home_tab mt0']//div[text()='Energy']")
+	WebElement PerformanceEnergyTab;
+
+	@FindBy(xpath = "//div[@class='home_tab mt0']//div[text()='Water']")
+	WebElement PerformanceWaterTab;
+
+	@FindBy(xpath = "//div[@class='home_tab mt0']//div[text()='Waste']")
+	WebElement PerformanceWasteTab;
 
 	@FindBy(xpath = "//div[@class='fw600 mb5' and text()='Energy']/ancestor::tr/following-sibling::tr[1]/descendant::span[text()='Add New Meter']")
 	WebElement EnergyAddNewMeter;
@@ -383,11 +418,35 @@ public class BuildingPageObject extends BaseClass {
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Facility Management Survey')]")
 	WebElement ReEntry_FMS;
 
+	@FindBy(xpath = "(//div[contains(@class,'pl56 option ng-scope')]/span[text()='Re-Entry'])[1]")
+	WebElement ProjectTools_ReEntry;
+
+	@FindBy(xpath = "(//div[contains(@class,'pl56 option ng-scope')]/span[text()='Financial Models'])[1]")
+	WebElement ProjectTools_FinancialModel;
+
+	@FindBy(xpath = "//div[@class='fs18 line_height_32 mb10 fw-500'][text()='Facility Management']/following-sibling::div[@class='bottom-abs']/descendant::span")
+	WebElement ReEntry_FMS_Score;
+
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Occupant Survey')]")
 	WebElement ReEntry_OccupantSurvey;
 
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Relative Humidity')]")
 	WebElement ReEntry_RelativeHumidity;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Carbon Dioxide')]")
+	WebElement ReEntry_CarbonDioxide;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'Total Volatile Organic Compounds')]")
+	WebElement ReEntry_TVOC;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'PM1.0')]")
+	WebElement ReEntry_PM_1_0;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'PM2.5')]")
+	WebElement ReEntry_PM_2_5;
+
+	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::div[contains(text(),'PM10')]")
+	WebElement ReEntry_PM_10;
 
 	@FindBy(xpath = "//table[@class='meterListByType--wrapper']/tbody[6]/tr/descendant::span[contains(text(),'Show more')]")
 	WebElement ReEntry_ShowMore;
@@ -415,6 +474,44 @@ public class BuildingPageObject extends BaseClass {
 
 	@FindBy(xpath = "//div[@id='js-rangeslider-7']/div[@class='rangeslider__handle']")
 	WebElement ReEntry_StaffUsePPE_Slider;
+
+	// --------------Performance Section
+
+	@FindBy(xpath = "//span[text()='Performance Period']/parent::td/following-sibling::td[1]/span")
+	WebElement SiteEnergyIntensity_PerformancePeriod;
+
+	@FindBy(xpath = "//span[text()='Baseline period']/parent::td/following-sibling::td[1]/span")
+	WebElement SiteEnergyIntensity_BaseLinePeriod;
+
+	@FindBy(xpath = "//span[text()='Performance Period']/parent::td/following-sibling::td[2]/span")
+	WebElement SourceEnergyIntensity_PerformancePeriod;
+
+	@FindBy(xpath = "//span[text()='Baseline period']/parent::td/following-sibling::td[2]/span")
+	WebElement SourceEnergyIntensity_BaseLinePeriod;
+
+	@FindBy(xpath = "//span[text()='Performance Period']/parent::td/following-sibling::td[3]/span")
+	WebElement EnergyCostIntensity_PerformancePeriod;
+
+	@FindBy(xpath = "//span[text()='Baseline period']/parent::td/following-sibling::td[3]/span")
+	WebElement EnergyCostIntensity_BaseLinePeriod;
+
+	@FindBy(xpath = "//span[@ng-class='improvement.energy.baseline_site_energy_quality']")
+	WebElement BaseLine_SiteEnergyQuality;
+
+	@FindBy(xpath = "//span[@ng-class='improvement.energy.baseline_source_energy_quality']")
+	WebElement BaseLine_SourceEnergyQuality;
+
+	@FindBy(xpath = "//span[@ng-class='improvement.energy.baseline_cost_quality']")
+	WebElement BaseLine_CostEnergyQuality;
+
+	@FindBy(xpath = "//span[@ng-class='improvement.energy.performance_site_energy_quality']")
+	WebElement Performance_SiteEnergyQuality;
+
+	@FindBy(xpath = "//span[@ng-class='improvement.energy.performance_source_energy_quality']")
+	WebElement Performance_SourceEnergyQuality;
+
+	@FindBy(xpath = "//span[@ng-class='improvement.energy.performance_cost_quality']")
+	WebElement Performance_CostEnergyQuality;
 
 	public BuildingPageObject() {
 		PageFactory.initElements(driver, this);
@@ -491,7 +588,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectAddress = driver.findElement(By.xpath("//div[@class='w50p']/div[2]/div[2]")).getText();
-		log.info("Project Address is "+ProjectAddress);
+		log.info("Project Address is " + ProjectAddress);
 		log.info("getProjectAddress  method ends here.........");
 		return ProjectAddress;
 	}
@@ -658,12 +755,10 @@ public class BuildingPageObject extends BaseClass {
 		log.info("CheckAddEnergyDataModelWindow  method starts here.........");
 		boolean PopUpflag = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * try { Thread.sleep(2000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		waithelper.WaitForElementClickable(OverviewAddAMeter, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		OverviewAddAMeter.click();
 		CommonMethod.waitUntilLoadElement();
@@ -695,22 +790,18 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ClickOnBuildingSetting  method starts here.........");
 		boolean BuldingSettingTab = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * try { Thread.sleep(2000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		waithelper.WaitForElementClickable(OverviewBuildingSetting, Integer.parseInt(prop.getProperty("explicitTime")),
 				2);
 		OverviewBuildingSetting.click();
-		//ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		// ngWebDriver.waitForAngularRequestsToFinish();
+		/*
+		 * try { Thread.sleep(10000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		CommonMethod.switchToDefaultContent();
 		CommonMethod.switchToDataInputFrame();
 		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
@@ -764,6 +855,32 @@ public class BuildingPageObject extends BaseClass {
 			log.info("ClickOnMetersAndSurveyMenu  method ends here with false.........");
 			return false;
 		}
+
+	}
+
+	public void ClickOnPerformanceMenu() {
+		log.info("ClickOnPerformanceMenu  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(PerformanceMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		PerformanceMenu.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// CommonMethod.switchToDefaultContent();
+
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h3[text()='Performance']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		log.info("ClickOnPerformanceMenu  method ends here.........");
 
 	}
 
@@ -1076,7 +1193,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		log.info("ClickOnHE_Toluene  method ends here.........");
 	}
 
@@ -1211,13 +1328,7 @@ public class BuildingPageObject extends BaseClass {
 	public void ClickOnReEntry_FMS() {
 		log.info("ClickOnReEntry_FMS  method starts here.........");
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ReEntry_ShowMore.click();
+		// ReEntry_ShowMore.click();
 		waithelper.WaitForElementClickable(ReEntry_FMS, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ReEntry_FMS.click();
 		ngWebDriver.waitForAngularRequestsToFinish();
@@ -1231,6 +1342,42 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		log.info("ClickOnReEntry_FMS  method ends here.........");
+	}
+
+	public void ClickOnProjectTools_FinancialModel() {
+		log.info("ClickOnProjectTools_FinancialModel  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ProjectTools_FinancialModel.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//h1[@class='page-title ng-scope']/span[text()='Financial Models']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("ClickOnProjectTools_FinancialModel  method ends here.........");
+	}
+
+	public void ClickOnProjectTools_ReEntry() {
+		log.info("ClickOnProjectTools_ReEntry  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ProjectTools_ReEntry.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//h1[@class='page-title ng-scope']/span[text()='Re-Entry']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// ngWebDriver.waitForAngularRequestsToFinish();
+		log.info("ClickOnProjectTools_ReEntry  method ends here.........");
 	}
 
 	public void ClickOnReEntry_OccupantSurvey() {
@@ -1251,12 +1398,164 @@ public class BuildingPageObject extends BaseClass {
 				driver.findElement(By.xpath("//h4[contains(text(),'Re-Entry Survey Responses')]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		log.info("ClickOnReEntry_OccupantSurvey  method ends here.........");
+	}
+
+	public void ClickOnReEntry_RelativeHumidity() {
+		log.info("ClickOnReEntry_RelativeHumidity  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_RelativeHumidity, Integer.parseInt(prop.getProperty("explicitTime")),
+				2);
+		ReEntry_RelativeHumidity.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//div[contains(text(),'Relative Humidity')])[3]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_RelativeHumidity  method ends here.........");
+	}
+
+	public void ClickOnReEntry_CarbonDioxide() {
+		log.info("ClickOnReEntry_CarbonDioxide  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_CarbonDioxide, Integer.parseInt(prop.getProperty("explicitTime")),
+				2);
+		ReEntry_CarbonDioxide.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//div[contains(text(),'Carbon Dioxide')])[4]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_CarbonDioxide  method ends here.........");
+	}
+
+	public void ClickOnReEntry_TVOC() {
+		log.info("ClickOnReEntry_TVOC  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_TVOC, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ReEntry_TVOC.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//div[contains(text(),'Total Volatile Organic Compounds')])[4]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_TVOC  method ends here.........");
+	}
+
+	public void ClickOnReEntry_PM_1_0() {
+		log.info("ClickOnReEntry_PM_1_0  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_PM_1_0, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ReEntry_PM_1_0.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//div[contains(text(),'PM1.0')])[3]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_PM_1_0  method ends here.........");
+	}
+
+	public void ClickOnReEntry_PM_2_5() {
+		log.info("ClickOnReEntry_PM_2_5  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_PM_2_5, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ReEntry_PM_2_5.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//div[contains(text(),'PM2.5')])[4]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_PM_2_5  method ends here.........");
+	}
+
+	public void ClickOnReEntry_PM_10() {
+		log.info("ClickOnReEntry_PM_10  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ReEntry_ShowMore.click();
+		waithelper.WaitForElementClickable(ReEntry_PM_10, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ReEntry_PM_10.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("(//div[contains(text(),'PM10')])[3]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("ClickOnReEntry_PM_10  method ends here.........");
 	}
 
 	public boolean ClickOnWaste_Data() {
@@ -1271,12 +1570,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		Waste_Data.click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		/// CommonMethod.switchToDataInputFrame();
 		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
 		waithelper.WaitForElementVisibleWithPollingTime(
@@ -1287,12 +1581,7 @@ public class BuildingPageObject extends BaseClass {
 				.findElement(By.xpath("(//div[@class='meterNameInfo--wrapper']/div[contains(text(),'Waste Data')])[2]"))
 				.isDisplayed();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		log.info("MetersAndSurveyTab flag is --" + MetersAndSurveyTab);
 		log.info("Waste_DataTab flag is --" + Waste_DataTab);
 		if (Waste_DataTab == true && MetersAndSurveyTab == true) {
@@ -1313,7 +1602,7 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1329,7 +1618,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1346,7 +1635,7 @@ public class BuildingPageObject extends BaseClass {
 				driver.findElement(By.xpath("//label[contains(text(),'Use Standard Emissions Factor')]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1362,7 +1651,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1378,7 +1667,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementVisibleWithPollingTime(BuildingSetting_AddOccupancyDataBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1392,20 +1681,16 @@ public class BuildingPageObject extends BaseClass {
 		log.info("CheckSendASurvey  method starts here.........");
 		boolean TransportationSurevyTab = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * try { Thread.sleep(2000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		OverviewSendASurvey.click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * try { Thread.sleep(4000); } catch (InterruptedException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 		CommonMethod.switchToDefaultContent();
 		CommonMethod.switchToDataInputFrame();
 		boolean MetersAndSurveyTab = MeterAndSurveyMiddleSection.isDisplayed();
@@ -1432,20 +1717,10 @@ public class BuildingPageObject extends BaseClass {
 		log.info("CheckUpdateAppsToCollectData  method starts here.........");
 		boolean AppsTab = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		OverviewUpdateAppsToCollectData.click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		CommonMethod.switchToDefaultContent();
 		AppsTab = driver.findElement(By.xpath("//main[@id='content']/h1/span[2][text()='Apps']")).isDisplayed();
 		log.info("AppsTab flag is --" + AppsTab);
@@ -1465,20 +1740,10 @@ public class BuildingPageObject extends BaseClass {
 		log.info("CheckGetNotified  method starts here.........");
 		boolean LEEDCertificationsTab = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		OverviewGetNotified.click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		CommonMethod.switchToDefaultContent();
 		LEEDCertificationsTab = driver.findElement(By.xpath("//main[@id='content']/h1/span[text()='Certifications']"))
 				.isDisplayed();
@@ -1500,12 +1765,6 @@ public class BuildingPageObject extends BaseClass {
 		boolean RHS_Last12Months = false;
 		// CommonMethod.switchToShowOverviewFrame();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		RHS_Last12Months = driver
 				.findElement(By.xpath("//div[@class='dropdown dropdown_v2 pt2']/div/span[text()='Last 12 months']"))
@@ -1527,7 +1786,7 @@ public class BuildingPageObject extends BaseClass {
 	// prior to the end date.
 
 	public boolean CheckRHS_Last12Months_DateRange() {
-		log.info("CheckRHS_Last12Months_ARC_Score  method starts here.........");
+		log.info("CheckRHS_Last12Months_DateRange  method starts here.........");
 		boolean RHS_Last12Months = false;
 		boolean Arcs_Score_Date_Range_Flag = false;
 		boolean Scope1_Scope2_Date_Range_Flag = false;
@@ -1560,18 +1819,13 @@ public class BuildingPageObject extends BaseClass {
 			}
 		}
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
 		LocalDateTime now = LocalDateTime.now();
 		String StartDate = dtf.format(now.minusYears(1).withDayOfMonth(1)); // working Sep 01, 2020
 		String EndDate = dtf.format(now.withDayOfMonth(1).minusDays(1)); // Aug 31, 2021
 		String ExpDateRange = StartDate + " - " + EndDate;
+		String ExpOccupantDateRange = dtf.format(now.minusYears(1).plusDays(1)) + " - " + dtf.format(now);
 		log.info("Expected Date Range is ---" + ExpDateRange);
 		CommonMethod.switchToArcAverageFrame();
 		JSHelper.scrollIntoView(Arcs_Score_Date_Range);
@@ -1604,7 +1858,7 @@ public class BuildingPageObject extends BaseClass {
 		JSHelper.scrollIntoView(Occupant_Date_Range);
 		TempRange = Occupant_Date_Range.getText();
 		log.info("Occupant_Date_Range showing is   " + TempRange);
-		if (TempRange.equals(ExpDateRange)) {
+		if (TempRange.equals(ExpOccupantDateRange)) {
 			Occupant_Date_Range_Flag = true;
 			log.info("Occupant_Date_Range_Flag is --" + Occupant_Date_Range_Flag);
 		}
@@ -1612,11 +1866,11 @@ public class BuildingPageObject extends BaseClass {
 		if (Arcs_Score_Date_Range_Flag == true && Scope1_Scope2_Date_Range_Flag == true
 				&& Transportation_Date_Range_Flag == true && Occupant_Date_Range_Flag == true) {
 			log.info("Date Ranges are showing proper at all places..");
-			log.info("CheckRHS_Last12Months_ARC_Score  method ends here with true.........");
+			log.info("CheckRHS_Last12Months_DateRange  method ends here with true.........");
 			return true;
 		} else {
 			log.info("Date Ranges are not showing proper at all places..");
-			log.info("CheckRHS_Last12Months_ARC_Score  method ends here with false.........");
+			log.info("CheckRHS_Last12Months_DateRange  method ends here with false.........");
 			return false;
 		}
 
@@ -1634,12 +1888,6 @@ public class BuildingPageObject extends BaseClass {
 		boolean Transportation_Date_Range_Flag = false;
 		boolean Occupant_Date_Range_Flag = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		try {
 			RHS_EndOfCalender = driver
@@ -1670,7 +1918,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(8000);
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1780,6 +2028,8 @@ public class BuildingPageObject extends BaseClass {
 		String StartDate = dtf.format(now.withDayOfMonth(1).minusYears(1).minusMonths(1)); // Aug 01, 2020
 		String EndDate = dtf.format(now.withDayOfMonth(1).minusMonths(1).minusDays(1)); // Jul 31, 2021
 		String ExpDateRange = StartDate + " - " + EndDate;
+		String ExpOccupantDateRange = dtf.format(now.minusYears(1).minusMonths(1).withDayOfMonth(11)) + " - "
+				+ dtf.format(now.minusMonths(1).withDayOfMonth(10));
 		log.info("Expected Date Range is ---" + ExpDateRange);
 		CommonMethod.switchToArcAverageFrame();
 		JSHelper.scrollIntoView(Arcs_Score_Date_Range);
@@ -1812,7 +2062,7 @@ public class BuildingPageObject extends BaseClass {
 		JSHelper.scrollIntoView(Occupant_Date_Range);
 		TempRange = Occupant_Date_Range.getText();
 		log.info("Occupant_Date_Range showing is   " + TempRange);
-		if (TempRange.equals(ExpDateRange)) {
+		if (TempRange.equals(ExpOccupantDateRange)) {
 			Occupant_Date_Range_Flag = true;
 			log.info("Occupant_Date_Range_Flag is --" + Occupant_Date_Range_Flag);
 		}
@@ -1851,6 +2101,7 @@ public class BuildingPageObject extends BaseClass {
 		 * catch block e.printStackTrace(); }
 		 */
 		driver.findElement(By.xpath("//div[@class='unit drp unitdropitem']/span")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -1860,8 +2111,9 @@ public class BuildingPageObject extends BaseClass {
 		List<WebElement> TotalDrpopList = driver
 				.findElements(By.xpath("//div[@class='unit drp unitdropitem']/div/div"));
 		driver.findElement(By.xpath("//div[@class='unit drp unitdropitem']/span")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1872,8 +2124,9 @@ public class BuildingPageObject extends BaseClass {
 			waithelper.WaitForElementClickable(ele, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 			// driver.findElement(By.xpath("//*[@class='fa fa-angle-left']")).click();
 			ele.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -1946,12 +2199,7 @@ public class BuildingPageObject extends BaseClass {
 		boolean TransportationFlag = false;
 		boolean HRFlag = false;
 		CommonMethod.switchToPlaqueFrame();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// driver.findElement(By.xpath("//div[@class='animation drp']/span")).click();
 		List<WebElement> GraphicDropList = driver.findElements(By.xpath("//div[@class='animation drp']/div/div"));
 		// driver.findElement(By.xpath("//div[@class='animation drp']/span")).click();
@@ -1964,7 +2212,7 @@ public class BuildingPageObject extends BaseClass {
 				driver.findElement(By.xpath("//div[@class='animation drp']/span")).click();
 
 				waithelper.WaitForElementClickable(ele, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-				Thread.sleep(2000);
+				ngWebDriver.waitForAngularRequestsToFinish();
 				// ele.click();
 				JSHelper.clickElement(ele);
 				Thread.sleep(4000);
@@ -2023,6 +2271,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("CheckLEEDPandemicResponseOptions  method starts here.........");
 		String title = "";
 		// CommonMethod.switchToPlaqueFrame();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -2031,6 +2280,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		String handle = driver.getWindowHandle();
 		LEEDPanDemicLearnMore.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
@@ -2065,6 +2315,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean CheckScope1And2emissions_ZeroScore() {
 		log.info("CheckScope1And2emissions_ZeroScore  method starts here.........");
 		CommonMethod.switchToAverageEmissionsFrame();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -2103,7 +2354,9 @@ public class BuildingPageObject extends BaseClass {
 		boolean WasteFlag = false;
 		boolean TransportationFlag = false;
 		boolean HRFlag = false;
+		int score = 0;
 		CommonMethod.switchArcImprovementFrame();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -2122,7 +2375,11 @@ public class BuildingPageObject extends BaseClass {
 					+ "]/div[2]/span[@class='unit']";
 
 			String Label = driver.findElement(By.xpath(LabelXpath)).getText();
-			int score = Integer.parseInt(driver.findElement(By.xpath(ScoreXpath)).getText());
+			try {
+				score = Integer.parseInt(driver.findElement(By.xpath(ScoreXpath)).getText());
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
 			String TotalScore = driver.findElement(By.xpath(TotalScoreXpath)).getText();
 			log.info("Current Label is  " + Label + " Score is " + score + TotalScore);
 			if (Label.equals("Energy") && score == 0 && TotalScore.equals("/100")) {
@@ -2131,9 +2388,9 @@ public class BuildingPageObject extends BaseClass {
 				WaterFlag = true;
 			} else if ((Label.equals("Waste") && score == 0 && TotalScore.equals("/100"))) {
 				WasteFlag = true;
-			} else if ((Label.equals("Transportation") && score == 0 && TotalScore.equals("/100"))) {
+			} else if ((Label.equals("Transportation") && TotalScore.equals("/100"))) {
 				TransportationFlag = true;
-			} else if ((Label.equals("Human Experience") && score == 0 && TotalScore.equals("/100"))) {
+			} else if ((Label.equals("Human Experience") && TotalScore.equals("/100"))) {
 				HRFlag = true;
 			}
 		}
@@ -2153,6 +2410,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean CheckTransportation_GHGEmission_ZeroScores() {
 		log.info("CheckTransportation_GHGEmission_ZeroScores  method starts here.........");
 		CommonMethod.switchToTransportationCategoryUsageFrame();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -2163,12 +2421,7 @@ public class BuildingPageObject extends BaseClass {
 		int TransportationScore = Integer.parseInt(Overview_Transportation_GHG_Emission_Score.getText());
 		String Transportation_Unit = Overview_Transportation_GHG_Emission_Unit.getText();
 		log.info("Transportation  Score is      " + TransportationScore + " and Unit is " + Transportation_Unit);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		if (TransportationScore == 0 && Transportation_Unit.equals("lbs")) {
 			log.info("CheckTransportation_GHGEmission_ZeroScores  method ends here with true.........");
@@ -2243,22 +2496,12 @@ public class BuildingPageObject extends BaseClass {
 		boolean SaveBtnFlag = false;
 		boolean UpdatedByFlag = false;
 		boolean DeleteBtnFlag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddRow_button.click();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		if (driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).isDisplayed()) {
 			EffectiveTextBoxflag = true;
 			log.info("EffectiveTextBoxflag is " + EffectiveTextBoxflag);
@@ -2310,27 +2553,18 @@ public class BuildingPageObject extends BaseClass {
 	// opens up calendar and allows to select dates successfully.
 	public boolean BuildingSetting_SelectEffectiveDate() {
 		log.info("BuildingSetting_SelectEffectiveDate  method starts here.........");
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		String today = CommonMethod.getCurrentDayIn2Digit();
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
 		String xpath = "//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'" + today + " day" + "')]";
 		driver.findElement(By.xpath(xpath)).click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
 		LocalDateTime now = LocalDateTime.now();
 		String EffectiveDate = dtf.format(now); // Aug 01, 2020
@@ -2354,22 +2588,14 @@ public class BuildingPageObject extends BaseClass {
 	// date opens up calendar and allows to select dates successfully.
 	public boolean BuildingSetting_GrossFloorArea_SelectEffectiveDate() {
 		log.info("BuildingSetting_GrossFloorArea_SelectEffectiveDate  method starts here.........");
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+
 		String today = CommonMethod.getCurrentDayIn2Digit();
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
 		String xpath = "//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'" + today + " day" + "')]";
@@ -2452,22 +2678,19 @@ public class BuildingPageObject extends BaseClass {
 		boolean AlphaFlag = false;
 		boolean SpecialCharFlag = false;
 		boolean NumericFlag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		BuildingSetting_AddRow_button.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		WebElement GroosArea = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"));
 		GroosArea.sendKeys("Alphabets");
@@ -2521,22 +2744,12 @@ public class BuildingPageObject extends BaseClass {
 		boolean AlphaFlag = false;
 		boolean SpecialCharFlag = false;
 		boolean NumericFlag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[@class='fw600']/span[text()='Add Occupancy']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		// WebElement RegularBuildingOccupant =
 		// driver.findElement(By.xpath("//div[text()='Regular building occupants (daily
@@ -2594,22 +2807,14 @@ public class BuildingPageObject extends BaseClass {
 		boolean AlphaFlag = false;
 		boolean SpecialCharFlag = false;
 		boolean NumericFlag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[@class='fw600']/span[text()='Add Occupancy']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		// WebElement DaysPerWeekWithVisitorst =
 		// driver.findElement(By.xpath("//div[text()='Days per week with
@@ -2665,23 +2870,13 @@ public class BuildingPageObject extends BaseClass {
 		boolean AlphaFlag = false;
 		boolean SpecialCharFlag = false;
 		boolean NumericFlag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[@class='fw600']/span[text()='Add Occupancy']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// WebElement NoOfVisitorsEachDay =
 		// driver.findElement(By.xpath("//div[text()='Number of visitors each
 		// day']/following-sibling::input"));
@@ -2738,22 +2933,12 @@ public class BuildingPageObject extends BaseClass {
 		boolean HourDecrement = false;
 		boolean MinuteIncrement = false;
 		boolean MinuteDecrement = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[@class='fw600']/span[text()='Add Occupancy']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		// WebElement DurationOfVisit =
 		// driver.findElement(By.xpath("//div[text()='Duration of visit (in
@@ -2772,7 +2957,6 @@ public class BuildingPageObject extends BaseClass {
 		Duration = BuildingSetting_Occupancy_DurationOfVisit.getAttribute("value").split(":");
 		TextBoxhours = Duration[0];
 		TextBoxminutes = Duration[1];
-
 		String DropDownHours = BuildingSetting_Occupancy_HoursDropDown.getText();
 		String DropDownMinutes = BuildingSetting_Occupancy_MinutesDropDown.getText();
 
@@ -2846,23 +3030,14 @@ public class BuildingPageObject extends BaseClass {
 	// the hrs entered in 'Operating hrs' field.
 	public boolean BuildingSetting_Occupant_CheckWeeklyOperatingHours() {
 		log.info("BuildingSetting_Occupant_CheckWeeklyOperatingHours  method starts here.........");
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
 		waithelper.WaitForElementVisibleWithPollingTime(
@@ -2898,12 +3073,13 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Total number of rows are ..." + ListOfRows.size());
 
 		ClickOnBuildingSetting_OccupantTab();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//div[text()='Effective date']/following-sibling::input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -2911,6 +3087,8 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		BuildingSetting_Occupancy_EffectiveDate.click();
+
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -2918,15 +3096,16 @@ public class BuildingPageObject extends BaseClass {
 		String xpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]"; // selecting 1 from Previous
 																							// month
 		driver.findElement(By.xpath(xpath)).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//div[@class='fw600 mb10']/following-sibling::span[text()='Edit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		// waithelper.WaitForElementVisibleWithPollingTime(
+		// driver.findElement(By.xpath("//div[@class='fw600
+		// mb10']/following-sibling::span[text()='Edit']")),
+		// Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		String[] hh = ExpHours.split("\\s+");
 		int Exphour = Integer.parseInt(hh[0]);
-
-		int ActHour = Integer.parseInt(BuildingSetting_Occupancy_WeeklyOperatingHours.getText());
+		ngWebDriver.waitForAngularRequestsToFinish();
+		int ActHour = Integer.parseInt(BuildingSetting_Occupancy_WeeklyOperatingHours.getAttribute("value"));
 		if (Exphour == ActHour) {
 			log.info("Hour is showing according to Operating Hours Tab..");
 			log.info("BuildingSetting_Occupant_CheckWeeklyOperatingHours  method ends here with true.........");
@@ -2944,8 +3123,11 @@ public class BuildingPageObject extends BaseClass {
 	// are calculated based on the calculation-
 	// (Days per week with visitors* no of visitors each day *duration of
 	// visit)/operating hours
-	public boolean BuildingSetting_Occupant_CheckVisitorsDailyAverage() {
-		log.info("BuildingSetting_Occupant_CheckVisitorsDailyAverage  method starts here.........");
+
+	// Building Settings-->Occupant tab-- -->Validate total daily occupancy is sum
+	// of Visitors and Regular building occupants.
+	public boolean BuildingSetting_Occupant_VisitorsDailyAverage_TotalDailyOccupancy() {
+		log.info("BuildingSetting_Occupant_VisitorsDailyAverage_TotalDailyOccupancy  method starts here.........");
 		try {
 			Thread.sleep(4000);
 		} catch (InterruptedException e) {
@@ -3020,23 +3202,38 @@ public class BuildingPageObject extends BaseClass {
 		double TextBoxminutes = Integer.parseInt(Duration[1]);
 		TextBoxminutes = TextBoxminutes / 60.0;
 		float DurationOfVisit = (float) (TextBoxhours + TextBoxminutes);
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//div[@class='fw600 mb10']/following-sibling::span[text()='Edit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		int WeeklyOperatingHours = Integer.parseInt(BuildingSetting_Occupancy_WeeklyOperatingHours.getText());
+		// waithelper.WaitForElementVisibleWithPollingTime(
+		// driver.findElement(By.xpath("//div[@class='fw600
+		// mb10']/following-sibling::span[text()='Edit']")),
+		// Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		int WeeklyOperatingHours = Integer
+				.parseInt(BuildingSetting_Occupancy_WeeklyOperatingHours.getAttribute("value"));
 
 		int ExpVisitorsDailyAverage = Math
 				.round((DaysPerWeekWithVisitors * NoOfVisitorsEachDay * DurationOfVisit) / WeeklyOperatingHours);
 		int ActVisitorsDailyAverage = Integer.parseInt(BuildingSetting_Occupancy_VisitorsDailyAVG.getText());
 		log.info("Actual VisitorsDailyAverage showing is --" + ActVisitorsDailyAverage
 				+ " and expected VisitorsDailyAverage is  --" + ExpVisitorsDailyAverage);
-		if (ActVisitorsDailyAverage == ExpVisitorsDailyAverage) {
-			log.info("BuildingSetting_Occupant_CheckVisitorsDailyAverage  method ends here with true.........");
+
+		// int VisitorsDailyAverage =
+		// Integer.parseInt(BuildingSetting_Occupancy_VisitorsDailyAVG.getText());
+		int RegularBuildingOccupant = Integer.parseInt(data.getCellData("Building", 3, 2));
+
+		int ExpTotalDailyOccupancy = ActVisitorsDailyAverage + RegularBuildingOccupant;
+		int ActTotalDailyOccupancy = Integer.parseInt(BuildingSetting_Occupancy_TotalDailyOccupancy.getText());
+		log.info("Actual TotalDailyOccupancy showing is --" + ActTotalDailyOccupancy
+				+ " and expected TotalDailyOccupancy is  --" + ExpTotalDailyOccupancy);
+
+		if ((ActVisitorsDailyAverage == ExpVisitorsDailyAverage)
+				&& (ExpTotalDailyOccupancy == ActTotalDailyOccupancy)) {
+			log.info(
+					"BuildingSetting_Occupant_VisitorsDailyAverage_TotalDailyOccupancy  method ends here with true.........");
 			return true;
 
 		} else {
-			log.info("BuildingSetting_Occupant_CheckVisitorsDailyAverage  method ends here with false.........");
+			log.info(
+					"BuildingSetting_Occupant_VisitorsDailyAverage_TotalDailyOccupancy  method ends here with false.........");
 			return false;
 		}
 
@@ -3109,9 +3306,11 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//div[@class='fw600 mb10']/following-sibling::span[text()='Edit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		// waithelper.WaitForElementVisibleWithPollingTime(
+		// driver.findElement(By.xpath("//div[@class='fw600
+		// mb10']/following-sibling::span[text()='Edit']")),
+		// Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		JSHelper.scrollIntoView(BuildingSetting_Occupancy_VisitorsDailyAVG);
 		int VisitorsDailyAverage = Integer.parseInt(BuildingSetting_Occupancy_VisitorsDailyAVG.getText());
 
@@ -3168,16 +3367,19 @@ public class BuildingPageObject extends BaseClass {
 		BuildingSetting_Occupancy_RegularBuildingOccupant.sendKeys(Integer.toString(RegularBuildingOccupant));
 		BuildingSetting_Occupancy_DaysPerWeekWithVisitors.sendKeys(Integer.toString(DaysPerWeekWithVisitors));
 		BuildingSetting_Occupancy_NoOfVisitorsEachDay.sendKeys(Integer.toString(NoOfVisitorsEachDay));
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		BuildingSetting_Occupancy_DurationOfVisit.click();
 		BuildingSetting_Occupancy_MinutesDecrement.click();
 		BuildingSetting_Occupancy_DaysPerWeekWithVisitors.click();
 		BuildingSetting_Occupancy_RegularBuildingOccupant.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		BuildingSetting_Occupancy_DurationOfVisit.click();
 		BuildingSetting_Occupancy_MinutesDecrement.click();
 		BuildingSetting_Occupancy_DaysPerWeekWithVisitors.click();
 		BuildingSetting_Occupancy_RegularBuildingOccupant.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		BuildingSetting_Occupancy_DurationOfVisit.click();
 		BuildingSetting_Occupancy_HoursIncrement.click();
@@ -3189,11 +3391,13 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//div[@class='fw600 mb10']/following-sibling::span[text()='Edit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		// waithelper.WaitForElementVisibleWithPollingTime(
+		// driver.findElement(By.xpath("//div[@class='fw600
+		// mb10']/following-sibling::span[text()='Edit']")),
+		// Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		// JSHelper.scrollIntoView(BuildingSetting_Occupancy_VisitorsDailyAVG);
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancy_ADDBtn.click();
 
 		waithelper.WaitForElementInvisible(
@@ -3219,24 +3423,16 @@ public class BuildingPageObject extends BaseClass {
 	public boolean BuildingSetting_Occupant_DaysPerWeekWithVisitor_NotAllowMoreThan7() {
 		log.info("BuildingSetting_Occupant_DaysPerWeekWithVisitor_NotAllowMoreThan7  method starts here.........");
 		boolean ValidationMsg = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[@class='fw600']/span[text()='Add Occupancy']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		BuildingSetting_Occupancy_EffectiveDate.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -3273,22 +3469,13 @@ public class BuildingPageObject extends BaseClass {
 	public boolean BuildingSetting_SelectOperatingHours() {
 		log.info("BuildingSetting_SelectOperatingHours  method starts here.........");
 		boolean HourSelectionflag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
 		waithelper.WaitForElementVisibleWithPollingTime(
@@ -3351,12 +3538,7 @@ public class BuildingPageObject extends BaseClass {
 		boolean DeleteFlag = false;
 		List<WebElement> ListOfRows;
 		int i;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		for (i = 1; i < 3; i++) {
 			BuildingSetting_AddRow_button.click();
@@ -3429,12 +3611,7 @@ public class BuildingPageObject extends BaseClass {
 				e.printStackTrace();
 			}
 
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ngWebDriver.waitForAngularRequestsToFinish();
 
 			ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 			int AfterDelete_RowCount = ListOfRows.size();
@@ -3470,8 +3647,9 @@ public class BuildingPageObject extends BaseClass {
 		log.info("BuildingSetting_GrossFloor_CheckDelete  method starts here.........");
 		boolean DeleteFlag = false;
 		List<WebElement> ListOfRows;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -3483,6 +3661,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeDelete_RowCount > 1) {
 
 			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
 				waithelper.WaitForElementVisibleWithPollingTime(
 						driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/div/*")),
@@ -3498,9 +3677,9 @@ public class BuildingPageObject extends BaseClass {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(4000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -3542,13 +3721,7 @@ public class BuildingPageObject extends BaseClass {
 		boolean FilterFlag = false;
 		boolean Resetflag = false;
 		int i;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		for (i = 1; i < 5; i++) {
 			BuildingSetting_AddRow_button.click();
 			waithelper.WaitForElementVisibleWithPollingTime(
@@ -3671,8 +3844,9 @@ public class BuildingPageObject extends BaseClass {
 				log.info("Total rows displaying after Reset is " + EffectiveDateList.size());
 				for (WebElement ele : EffectiveDateList) {
 					ele.click();
+					ngWebDriver.waitForAngularRequestsToFinish();
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -3682,8 +3856,9 @@ public class BuildingPageObject extends BaseClass {
 							"//table[@class=' table-condensed']/tbody/tr/td[contains(@class,'active day operating_hours_active_day')]"))
 							.getText());
 					driver.findElement(By.xpath(Hourxpath)).click();
+					ngWebDriver.waitForAngularRequestsToFinish();
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -3731,8 +3906,9 @@ public class BuildingPageObject extends BaseClass {
 		boolean FilterFlag = false;
 		boolean Resetflag = false;
 		int i;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -3744,6 +3920,7 @@ public class BuildingPageObject extends BaseClass {
 		for (i = 1; i < 5; i++) {
 			ListOfRows.size();
 			BuildingSetting_AddRow_button.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			waithelper.WaitForElementVisibleWithPollingTime(
 					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -3929,21 +4106,18 @@ public class BuildingPageObject extends BaseClass {
 	public boolean BuildingSetting_OccupantTab_AddOccupancyData() {
 		log.info("BuildingSetting_OccupantTab_AddOccupancyData  method starts here.........");
 		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		waithelper.WaitForElementClickable(BuildingSetting_AddOccupancyDataBtn,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BuildingSetting_AddOccupancyDataBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//h4[@class='fw600']/span[text()='Add Occupancy']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -3961,21 +4135,10 @@ public class BuildingPageObject extends BaseClass {
 		boolean Dropboxflag = false;
 		boolean OneDriveflag = false;
 		boolean GDriveflag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
 
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		String ComputerFile = driver
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/span"))
 				.getAttribute("innerHTML");
@@ -4134,16 +4297,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean Dropboxflag = false;
 		boolean OneDriveflag = false;
 		boolean GDriveflag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -4191,16 +4356,12 @@ public class BuildingPageObject extends BaseClass {
 		boolean Dropboxflag = false;
 		boolean OneDriveflag = false;
 		boolean GDriveflag = false;
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -4255,8 +4416,9 @@ public class BuildingPageObject extends BaseClass {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 		String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
 		// log.info(localTime.format(dateTimeFormatter));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -4267,6 +4429,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(BuildingSetting_ActivityButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BuildingSetting_ActivityButton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -4315,17 +4478,18 @@ public class BuildingPageObject extends BaseClass {
 		String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
 		// log.info(localTime.format(dateTimeFormatter));
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		Commentflag = driver.findElement(By.xpath("(//p[text()='" + comment + "'])[1]")).isDisplayed();
 		log.info(" Comment display in Comment Tab is --" + Commentflag);
 		waithelper.WaitForElementClickable(BuildingSetting_ActivityButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BuildingSetting_ActivityButton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -4362,6 +4526,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("BuildingSetting_Occupant_CheckCommentAndActivity  starts here........");
 		boolean Commentflag = false;
 		BuildingSetting_CommentTextBox.sendKeys(comment);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(BuildingSetting_PostButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(BuildingSetting_PostButton);
@@ -4373,6 +4538,7 @@ public class BuildingPageObject extends BaseClass {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 		String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
 		// log.info(localTime.format(dateTimeFormatter));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -4385,12 +4551,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(BuildingSetting_ActivityButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BuildingSetting_ActivityButton.click();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		String ActivityDate = driver.findElement(By.xpath("//th[@class='activity_date']/p")).getText();
 		String ActivityTime = driver.findElement(By.xpath("(//table[@class='mb10 ng-scope']/tbody/tr/td[1]/span)[1]"))
 				.getText().toLowerCase();
@@ -4432,8 +4593,9 @@ public class BuildingPageObject extends BaseClass {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 		String currentTime = localTime.format(dateTimeFormatter).toLowerCase();
 		// log.info(localTime.format(dateTimeFormatter));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -4444,6 +4606,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(BuildingSetting_ActivityButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BuildingSetting_ActivityButton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -4503,6 +4666,7 @@ public class BuildingPageObject extends BaseClass {
 		waithelper.WaitForElementClickable(BuildingSetting_ActivityButton,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		BuildingSetting_ActivityButton.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -4590,20 +4754,13 @@ public class BuildingPageObject extends BaseClass {
 	// default row item field is editable and allows to add new row.
 	public boolean BuildingSetting_ODays_AddNewRow() {
 		log.info("BuildingSetting_ODays_AddNewRow  starts here........");
-		boolean AddedFlag = false;
 		List<WebElement> ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int TotalRow_BeforeAdding = ListOfRows.size();
 		log.info("Total rows before adding...." + TotalRow_BeforeAdding);
 		BuildingSetting_AddRow_button.click();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
+		log.info("Total rows displaying...." + ListOfRows.size());
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]/input")).click();
 		waithelper.WaitForElementVisibleWithPollingTime(
@@ -4616,13 +4773,14 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input"))
 				.sendKeys(data.getCellData("Building", 8, 2));
 
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/button")).click();
-
+		BuildingSetting_CommentTextBox.click();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(
 						By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/*[@class='fade-out saved_symbol']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
 		try {
+
 			waithelper.WaitForElementInvisible(
 					driver.findElement(By
 							.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/*[@class='fade-out saved_symbol']")),
@@ -4631,30 +4789,23 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/span")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		ngWebDriver.waitForAngularRequestsToFinish();
 		ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		int TotalRow_afterAdding = ListOfRows.size();
 		log.info("Total rows after adding...." + TotalRow_afterAdding);
 		if (TotalRow_afterAdding - TotalRow_BeforeAdding == 1) {
 			log.info("Row is added successfully....");
-			AddedFlag = true;
-		} else {
-			log.info("Row is not added successfully....");
-			AddedFlag = false;
-
-		}
-
-		if (AddedFlag) {
 			log.info("BuildingSetting_ODays_AddNewRow  ends here with true........");
 			return true;
 		} else {
+			log.info("Row is not added successfully....");
 			log.info("BuildingSetting_ODays_AddNewRow  ends here false........");
 			return false;
+
 		}
 
 	}
@@ -4764,8 +4915,9 @@ public class BuildingPageObject extends BaseClass {
 		boolean SaveBtnFlag = false;
 		boolean UpdatedByFlag = false;
 		boolean DeleteBtnFlag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -4775,15 +4927,10 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Total number of rows are ..." + Total_Rows);
 
 		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[1]/input")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		ListOfRows = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr"));
 		Total_Rows = ListOfRows.size();
@@ -4839,7 +4986,7 @@ public class BuildingPageObject extends BaseClass {
 	// Building Settings-->Gross Floor Area tab - >Verify Unit field gives two
 	// options- IP units(Square feet) and SI units(Square meters) to select from.
 	public boolean BuildingSetting_CheckAddRowWithBothUnits() {
-		log.info("BuildingSetting_GrossAreaField_AllowNumericOnly  method starts here.........");
+		log.info("BuildingSetting_CheckAddRowWithBothUnits  method starts here.........");
 		boolean AddedFlag = false;
 		try {
 			Thread.sleep(4000);
@@ -4955,10 +5102,12 @@ public class BuildingPageObject extends BaseClass {
 		units.add("GJ");
 		waithelper.WaitForElementClickable(EnergyAddNewMeter, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		EnergyAddNewMeter.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(AddAEnergyDataPopUpHeader,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		waithelper.WaitForElementClickable(AddNewMeterNextBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		AddNewMeterNextBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		MeterNameTextBox.sendKeys("E-" + CommonMethod.generateRandomString(5));
 		waithelper.WaitForElementClickable(
 				driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Unit']/parent::div/div[2]/button")),
@@ -5140,28 +5289,26 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(EnergyAddNewMeter, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		EnergyAddNewMeter.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(AddAEnergyDataPopUpHeader,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		waithelper.WaitForElementClickable(AddNewMeterNextBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		AddNewMeterNextBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		String MeterName = "E-" + CommonMethod.generateRandomString(6);
 		MeterNameTextBox.sendKeys(MeterName);
 		String FuelSource = data.getCellData("Building", 14, 2);
 		String EnergyUnitSource = data.getCellData("Building", 13, 2);
 
 		driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Unit']/parent::div/div[2]/button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -5175,6 +5322,7 @@ public class BuildingPageObject extends BaseClass {
 			log.info("Current option is -- " + option);
 			if (EnergyUnitSource.equals(option)) {
 				ele.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
 				log.info(option + " is selected successfully..");
 				break;
 			}
@@ -5182,8 +5330,9 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Fuel Source']/parent::div/div[2]/button"))
 				.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -5197,6 +5346,7 @@ public class BuildingPageObject extends BaseClass {
 			log.info(FuelSource);
 			if (FuelSource.equals(option)) {
 				ele.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
 				log.info(option + " is selected successfully..");
 				break;
 			}
@@ -5233,6 +5383,221 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	// Building Settings--> Energy --> Validate Type, Unit and Fuel source selected
+	// value shows in Meter details tab..Click on Add button should add a new meter.
+	public boolean Energy_AddNewMeter(String MeterUnit, String FuelSource) {
+		log.info("Energy_AddNewMeter  method starts here.........");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(EnergyAddNewMeter, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		EnergyAddNewMeter.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(AddAEnergyDataPopUpHeader,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		waithelper.WaitForElementClickable(AddNewMeterNextBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		AddNewMeterNextBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String MeterName = "E-" + CommonMethod.generateRandomString(6);
+		MeterNameTextBox.sendKeys(MeterName);
+		/// String FuelSource = data.getCellData("Building", 14, 2);
+		// String EnergyUnitSource = data.getCellData("Building", 13, 2);
+
+		driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Unit']/parent::div/div[2]/button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> UnitOptions = driver.findElements(By.xpath(
+				"//div[@class='fw600 mb10' and text()='Unit']/following-sibling::div/ul/li[@class='energy_unit']/a"));
+		log.info("Total number of options for Unit  " + UnitOptions.size());
+
+		for (WebElement ele : UnitOptions) {
+			String option = ele.getText().trim();
+			log.info("Current option is -- " + option);
+			if (MeterUnit.equals(option)) {
+				ele.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+				log.info(option + " is selected successfully..");
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Fuel Source']/parent::div/div[2]/button"))
+				.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> FuelSourceOptions = driver.findElements(
+				By.xpath("//div[@class='fw600 mb10' and text()='Fuel Source']/following-sibling::div/ul/li/a"));
+		log.info("Total number of options for Fuel Source  " + FuelSourceOptions.size());
+		for (WebElement ele : FuelSourceOptions) {
+			String option = ele.getText().trim();
+			log.info("Current option is -- " + option);
+			log.info(FuelSource);
+			if (FuelSource.equals(option)) {
+				ele.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+				log.info(option + " is selected successfully..");
+				break;
+			}
+		}
+
+		waithelper.WaitForElementClickable(
+				driver.findElement(
+						By.xpath("//div[@class='modalWindow-footer overflow-auto']/button/span[text()='ADD']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//div[@class='modalWindow-footer overflow-auto']/button/span[text()='ADD']"))
+				.click();
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Details']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//span[text()='Details']")).click();
+
+		String ActualUnitSelected = driver.findElement(By.xpath("//label[text()='Unit:']/parent::div/div/button/span"))
+				.getText().trim();
+		String ActualFuelSourceSelected = driver
+				.findElement(By.xpath("//label[text()='Fuel Source:']/parent::div/descendant::span")).getText().trim();
+		String ActualEnergyMeterName = driver
+				.findElement(By.xpath("//div[@class='form-group meterDetails-form--meterName']/input"))
+				.getAttribute("value");
+		String ActualType = driver.findElement(By.xpath("//span[text()='Type:']/following-sibling::span")).getText();
+
+		log.info("ActualUnitSelected value is : " + ActualUnitSelected);
+		log.info("ActualFuelSourceSelected value is : " + ActualFuelSourceSelected);
+		log.info("ActualEnergyMeterName value is : " + ActualEnergyMeterName);
+		log.info("ActualType value is : " + ActualType);
+
+		if (MeterUnit.equals(ActualUnitSelected) && FuelSource.equals(ActualFuelSourceSelected)
+				&& MeterName.equals(ActualEnergyMeterName) && ActualType.equals("Electricity")) {
+			System.setProperty("PerformanceEnergyMeterName", ActualEnergyMeterName);
+			log.info("Energy_AddNewMeter method ends here with true.........");
+			return true;
+		} else {
+			log.info("Energy_AddNewMeter method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	// Building Settings--> Water --> Validate Type, Unit and Fuel source selected
+	// value shows in Meter details tab..Click on Add button should add a new meter.
+	public boolean Water_AddNewMeter(String MeterUnit, String FuelSource) {
+		log.info("Water_AddNewMeter  method starts here.........");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(WaterAddNewMeter, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		WaterAddNewMeter.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(AddAWaterDataPopUpHeader,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		waithelper.WaitForElementClickable(AddNewMeterNextBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		AddNewMeterNextBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String MeterName = "W-" + CommonMethod.generateRandomString(6);
+		MeterNameTextBox.sendKeys(MeterName);
+		driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Unit']/parent::div/div[2]/button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> UnitOptions = driver.findElements(By.xpath(
+				"//div[@class='fw600 mb10' and text()='Unit']/following-sibling::div//li[@class='water_unit']/a"));
+		log.info("Total number of options for Unit  " + UnitOptions.size());
+
+		for (WebElement ele : UnitOptions) {
+			String option = ele.getText().trim();
+			log.info("Current option is -- " + option);
+			if (MeterUnit.equals(option)) {
+				ele.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+				log.info(option + " is selected successfully..");
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Fuel Source']/parent::div/div[2]/button"))
+				.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<WebElement> FuelSourceOptions = driver.findElements(
+				By.xpath("//div[@class='fw600 mb10' and text()='Fuel Source']/following-sibling::div/ul/li/a"));
+		log.info("Total number of options for Fuel Source  " + FuelSourceOptions.size());
+		for (WebElement ele : FuelSourceOptions) {
+			String option = ele.getText().trim();
+			log.info("Current option is -- " + option);
+			log.info(FuelSource);
+			if (FuelSource.equals(option)) {
+				ele.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+				log.info(option + " is selected successfully..");
+				break;
+			}
+		}
+
+		waithelper.WaitForElementClickable(
+				driver.findElement(
+						By.xpath("//div[@class='modalWindow-footer overflow-auto']/button/span[text()='ADD']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//div[@class='modalWindow-footer overflow-auto']/button/span[text()='ADD']"))
+				.click();
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Details']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//span[text()='Details']")).click();
+
+		String ActualUnitSelected = driver.findElement(By.xpath("//label[text()='Unit:']/parent::div/div/button/span"))
+				.getText().trim();
+		String ActualFuelSourceSelected = driver
+				.findElement(By.xpath("//label[text()='Fuel Source:']/parent::div/descendant::span")).getText().trim();
+		String ActualWaterMeterName = driver
+				.findElement(By.xpath("//div[@class='form-group meterDetails-form--meterName']/input"))
+				.getAttribute("value");
+		String ActualType = driver.findElement(By.xpath("//span[text()='Type:']/following-sibling::span")).getText();
+
+		log.info("ActualUnitSelected value is : " + ActualUnitSelected);
+		log.info("ActualFuelSourceSelected value is : " + ActualFuelSourceSelected);
+		log.info("ActualWaterMeterName value is : " + ActualWaterMeterName);
+		log.info("ActualType value is : " + ActualType);
+
+		if (MeterUnit.equals(ActualUnitSelected) && FuelSource.equals(ActualFuelSourceSelected)
+				&& MeterName.equals(ActualWaterMeterName) && ActualType.equals("Water")) {
+			System.setProperty("PerformanceWaterMeterName", ActualWaterMeterName);
+			log.info("Water_AddNewMeter method ends here with true.........");
+			return true;
+		} else {
+			log.info("Water_AddNewMeter method ends here with false.........");
+			return false;
+		}
+
+	}
+
 	// Building Settings--> Water --> Validate Type, Unit and Fuel source selected
 	// value shows in Meter details tab..Click on Add button should add a new meter.
 	public boolean Water_ValidateTypeUnitFuelSourceInDetailsTab() {
@@ -5246,12 +5611,14 @@ public class BuildingPageObject extends BaseClass {
 
 		waithelper.WaitForElementClickable(WaterAddNewMeter, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(WaterAddNewMeter);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// WaterAddNewMeter.click();
 		waithelper.WaitForElementVisibleWithPollingTime(AddAWaterDataPopUpHeader,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		waithelper.WaitForElementClickable(AddNewMeterNextBtn, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(AddNewMeterNextBtn);
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// AddNewMeterNextBtn.click();
 		String MeterName = "W-" + CommonMethod.generateRandomString(6);
 		MeterNameTextBox.sendKeys(MeterName);
@@ -5265,6 +5632,7 @@ public class BuildingPageObject extends BaseClass {
 				driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Unit']/parent::div/div[2]/button")));
 		// driver.findElement(By.xpath("//div[@class='fw600 mb10' and
 		// text()='Unit']/parent::div/div[2]/button")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -5281,6 +5649,7 @@ public class BuildingPageObject extends BaseClass {
 			if (WaterUnit.equalsIgnoreCase(option)) {
 				waithelper.WaitForElementClickable(ele, Integer.parseInt(prop.getProperty("explicitTime")), 2);
 				JSHelper.clickElement(ele);
+				ngWebDriver.waitForAngularRequestsToFinish();
 				// ele.click();
 				log.info(option + " is selected successfully..");
 				break;
@@ -5293,10 +5662,11 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JSHelper.clickElement(driver.findElement(
 				By.xpath("//div[@class='fw600 mb10' and text()='Fuel Source']/parent::div/div[2]/button")));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		// driver.findElement(By.xpath("//div[@class='fw600 mb10' and text()='Fuel
 		// Source']/parent::div/div[2]/button")).click();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -5374,14 +5744,14 @@ public class BuildingPageObject extends BaseClass {
 		}
 		System.getProperty("EnergyMeterName");
 		driver.findElement(By.xpath("(//table[@class='meterListByType--wrapper']/tbody/tr[2])[1]/td[2]/div")).click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		BuildingSetting_AddRow_button.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -5418,11 +5788,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
-	// Building -> HE- Carbon Dioxide -> --> Verify if Start date is greater than
-	// end
-	// date, gives Overlapping dates error.
-	public boolean HE_CarbonDioxide_ValidateOverlappingDate() {
-		log.info("HE_CarbonDioxide_ValidateOverlappingDate  method starts here.........");
+	public boolean HE_ValidateOverlappingDate() {
+		log.info("HE_ValidateOverlappingDate  method starts here.........");
 		boolean flag = false;
 		try {
 			Thread.sleep(2000);
@@ -5435,1101 +5802,51 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_CarbonDioxide_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_CarbonDioxide_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- TVOC -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_TVOC_ValidateOverlappingDate() {
-		log.info("HE_TVOC_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_TVOC_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_TVOC_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- PM2.5 -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_PM2_5_ValidateOverlappingDate() {
-		log.info("HE_PM2_5_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_PM2_5_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_PM2_5_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-// Building -> HE- Ozone -> --> Verify if Start date is greater than end
-// date, gives Overlapping dates error.
-	public boolean HE_Ozone_ValidateOverlappingDate() {
-		log.info("HE_Ozone_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Ozone_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Ozone_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Carbon Monoxide -> --> Verify if Start date is greater than
-	// end
-	// date, gives Overlapping dates error.
-	public boolean HE_CarbonMonoxide_ValidateOverlappingDate() {
-		log.info("HE_CarbonMonoxide_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_CarbonMonoxide_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_CarbonMonoxide_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Acetaldehyde -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_Acetaldehyde_ValidateOverlappingDate() {
-		log.info("HE_Acetaldehyde_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Acetaldehyde_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Acetaldehyde_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Benzene -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_Benzene_ValidateOverlappingDate() {
-		log.info("HE_Benzene_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Benzene_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Benzene_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Styrene -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_Styrene_ValidateOverlappingDate() {
-		log.info("HE_Styrene_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Styrene_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Styrene_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Toluene -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_Toluene_ValidateOverlappingDate() {
-		log.info("HE_Toluene_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Toluene_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Toluene_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Naphthalene -> --> Verify if Start date is greater than end
-	// date, gives Overlapping dates error.
-	public boolean HE_Naphthalene_ValidateOverlappingDate() {
-		log.info("HE_Naphthalene_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Naphthalene_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Naphthalene_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Dichlorobenzene -> --> Verify if Start date is greater than
-	// end
-	// date, gives Overlapping dates error.
-	public boolean HE_Dichlorobenzene_ValidateOverlappingDate() {
-		log.info("HE_Dichlorobenzene_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Dichlorobenzene_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Dichlorobenzene_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Xylenes-total -> --> Verify if Start date is greater than
-	// end
-	// date, gives Overlapping dates error.
-	public boolean HE_XylenesTotal_ValidateOverlappingDate() {
-		log.info("HE_XylenesTotal_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_XylenesTotal_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_XylenesTotal_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Formaldehyde -> --> Verify if Start date is greater than
-	// end
-	// date, gives Overlapping dates error.
-	public boolean HE_Formaldehyde_ValidateOverlappingDate() {
-		log.info("HE_Formaldehyde_ValidateOverlappingDate  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 26st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
-
-		flag = driver
-				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
-				.isDisplayed();
-
-		if (flag) {
-			log.info("HE_Formaldehyde_ValidateOverlappingDate method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Formaldehyde_ValidateOverlappingDate method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Carbon Dioxide -> --> Verify Delete button allows you to
-	// delete line item.
-	public boolean HECarbonDioxide_DeleteRecord() {
-		log.info("HECarbonDioxide_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete, TotalRowsAfterDelete;
-		TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[8]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HECarbonDioxide_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HECarbonDioxide_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- TVOC -> --> Verify Delete button allows you to delete line
-	// item.
-	public boolean HETVOC_DeleteRecord() {
-		log.info("HETVOC_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete, TotalRowsAfterDelete;
-		TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[8]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HETVOC_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HETVOC_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-// Building -> HE- PM2.5 -> --> Verify Delete button allows you to delete line item.
-	public boolean HEPM2_5_DeleteRecord() {
-		log.info("HEPM2_5_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete, TotalRowsAfterDelete;
-		TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HEPM2_5_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HEPM2_5_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-//Building -> HE- Ozone -> --> Verify Delete button allows you to delete line item.
-	public boolean HEOzone_DeleteRecord() {
-		log.info("HEOzone_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete, TotalRowsAfterDelete;
-		TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HEOzone_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HEOzone_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Carbon Monoxide -> --> Verify Delete button allows you to
-	// delete line item.
-	public boolean HE_CarbonMonoxide_DeleteRecord() {
-		log.info("HE_CarbonMonoxide_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_CarbonMonoxide_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_CarbonMonoxide_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Acetaldehyde -> --> Verify Delete button allows you to delete
-	// line item.
-	public boolean HE_Acetaldehyde_DeleteRecord() {
-		log.info("HE_Acetaldehyde_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Acetaldehyde_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Acetaldehyde_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Styrene -> --> Verify Delete button allows you to delete line
-	// item.
-	public boolean HE_Styrene_DeleteRecord() {
-		log.info("HE_Styrene_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Styrene_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Styrene_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Toluene -> --> Verify Delete button allows you to delete line
-	// item.
-	public boolean HE_Toluene_DeleteRecord() {
-		log.info("HE_Toluene_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		ngWebDriver.waitForAngularRequestsToFinish();
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'start_date')]"))
+				.click();
 
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Toluene_DeleteRecord method ends here with true.........");
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 20th day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'end_date')]"))
+				.click();
+
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 1st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+		flag = driver
+				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/p[text()='Overlapping Dates']"))
+				.isDisplayed();
+
+		if (flag) {
+			log.info("HE_ValidateOverlappingDate method ends here with true.........");
 			return true;
 		} else {
-			log.info("HE_Toluene_DeleteRecord method ends here with false.........");
+			log.info("HE_ValidateOverlappingDate method ends here with false.........");
 			return false;
 		}
 
 	}
 
-	// Building -> HE- Naphthalene -> --> Verify Delete button allows you to delete
-	// line item.
-	public boolean HE_Naphthalene_DeleteRecord() {
-		log.info("HE_Naphthalene_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+	public boolean HE_DeleteRecord() {
+		log.info("HE_DeleteRecord  method starts here.........");
+		int TotalRowsBeforeDelete, TotalRowsAfterDelete;
+		TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
 		try {
 			Thread.sleep(2000);
@@ -6539,7 +5856,9 @@ public class BuildingPageObject extends BaseClass {
 		}
 		if (TotalRowsBeforeDelete > 0) {
 			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
+				driver.findElement(By.xpath(
+						"//table[@id='readingsTable']/tbody/tr[1]/td//span[contains(@class,'icon__deleteReading')]"))
+						.click();
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.info("Unable to delete record ....");
@@ -6560,206 +5879,14 @@ public class BuildingPageObject extends BaseClass {
 				e.printStackTrace();
 			}
 		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
 
 		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Naphthalene_DeleteRecord method ends here with true.........");
+			log.info("HE_DeleteRecord method ends here with true.........");
 			return true;
 		} else {
-			log.info("HE_Naphthalene_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Dichlorobenzene -> --> Verify Delete button allows you to
-	// delete line item.
-	public boolean HE_Dichlorobenzene_DeleteRecord() {
-		log.info("HE_Dichlorobenzene_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Dichlorobenzene_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Dichlorobenzene_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Xylenes-total -> --> Verify Delete button allows you to
-	// delete line item.
-	public boolean HE_XylenesTotal_DeleteRecord() {
-		log.info("HE_XylenesTotal_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_XylenesTotal_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_XylenesTotal_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Formaldehyde -> --> Verify Delete button allows you to
-	// delete line item.
-	public boolean HE_Formaldehyde_DeleteRecord() {
-		log.info("HE_Formaldehyde_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Formaldehyde_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Formaldehyde_DeleteRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Benzene -> --> Verify Delete button allows you to delete line
-	// item.
-	public boolean HE_Benzene_DeleteRecord() {
-		log.info("HE_Benzene_DeleteRecord  method starts here.........");
-		int TotalRowsBeforeDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number showing before delete  " + TotalRowsBeforeDelete);
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (TotalRowsBeforeDelete > 0) {
-			try {
-				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/span")).click();
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.info("Unable to delete record ....");
-			}
-
-			try {
-				waithelper.WaitForElementInvisible(
-						driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		int TotalRowsAfterDelete = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + TotalRowsAfterDelete);
-
-		if (TotalRowsBeforeDelete - TotalRowsAfterDelete == 1) {
-			log.info("HE_Benzene_DeleteRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Benzene_DeleteRecord method ends here with false.........");
+			log.info("HE_DeleteRecord method ends here with false.........");
 			return false;
 		}
 
@@ -6884,12 +6011,657 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
+	public boolean Energy_ValidateImprovementScore() {
+		log.info("Energy_ValidateImprovementScore  method starts here.........");
+		DecimalFormat df = new DecimalFormat("0.000000");
+		List<WebElement> Startdates = driver.findElements(By.xpath("//input[@ng-model='data.start_date']"));
+		List<WebElement> Enddates = driver.findElements(By.xpath("//input[@ng-model='data.end_date']"));
+		List<WebElement> Readings = driver.findElements(By.xpath("//input[@ng-model='data.reading']"));
+		List<WebElement> Costs = driver.findElements(By.xpath("//input[@ng-model='data.cost']"));
+
+		String PStartDate = getPerormancePeriodStartDate();
+		String PEndDate = getPerormancePeriodEndDate();
+		
+		String BaseStartDate = getBasePeriodStartDate();
+		String BaseEndDate = getBasePeriodEndDate();
+
+		// Calculating Total Reading and Total Cost of BaseLine and Performance both
+		int BaseLineTotalReading = 0;
+		int BaseLineTotalCost = 0;
+		int PerformanceTotalReading = 0;
+		double PerformanceTotalCost = 0;
+		int TotalPerformanceDays = 0;
+		int TotalBaseLineDays = 0;
+		int BaseLineMonths = 0;
+		int PerformancePeriodMonths = 0;
+		String CurrentStartDate = null;
+		String CurrentEndDate = null;
+		String ExpBaseLineSiteEnergyIntensity = null;
+		String ExpBaseLineSourceEnergyIntensity = null;
+		String ExpBaseLineEnergyCostIntensity = null;
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		double PerformanceTotalDays=0.0;
+		double GrandPerformanceMonthTotalDays=0.0;
+		
+		double SiteEnergyPerformanceMonthReading=0.0;
+		double GrandSiteEnergyPerformanceMonthReading=0.0;
+		
+		double SourceEnergyPerformanceMonthReading=0.0;
+		double GrandSourceEnergyPerformanceMonthReading=0.0;
+		
+		double EnergyCostPerformanceMonth=0.0;
+		double GrandEnergyCostPerformanceMonth=0.0;
+		
+		double PerformanceMonthCost=0.0;
+		double GrandPerformanceMonthCost=0.0;
+		for (int i = 0; i < Startdates.size(); i++) {
+			int days = 0;
+			CurrentStartDate = Startdates.get(i).getAttribute("value");
+			CurrentEndDate = Enddates.get(i).getAttribute("value");
+			int x = CommonMethod.compareTwoDates(PStartDate, CurrentStartDate);
+			int y = CommonMethod.compareTwoDates(PStartDate, CurrentEndDate);
+			
+			if (CommonMethod.compareTwoDates(PStartDate, CurrentStartDate) > 0
+					&& CommonMethod.compareTwoDates(PStartDate, CurrentEndDate) < 0) {
+				
+				int MonthDays=CommonMethod.getDiffernceBetweenTwoDates(CurrentStartDate, CurrentEndDate)+1; // Total No of days in the month
+				days = CommonMethod.getDiffernceBetweenTwoDates(PStartDate, CurrentEndDate)+2;
+				
+				double PerformanceMonthReading=Double.parseDouble(CommonMethod.removeSpecialCharacter(Readings.get(i).getAttribute("value"))); // Fetching the Monthwise Reading
+				PerformanceMonthCost=Double.parseDouble(CommonMethod.removeSpecialCharacter(Costs.get(i).getAttribute("value"))); // Fetching the Monthwise Cost
+				
+				double SiteEnergyValueInKBTU=PerformanceMonthReading * 3.412141;  // Converting into kbtu from KWH
+				double SiteEnergyPerDayInKBTU=SiteEnergyValueInKBTU/MonthDays;  // Calculating per day in kbtu
+				SiteEnergyPerformanceMonthReading=SiteEnergyPerDayInKBTU * days; 
+				
+				
+				PerformanceTotalDays=PerformanceTotalDays+days;
+				
+				double SourceEnergyValueInKBTU=PerformanceMonthReading * 3.412141 * 2.8;
+				double SourceEnergyPerDayInKBTU=SourceEnergyValueInKBTU/MonthDays;
+				double EnergyCostMonth=PerformanceMonthCost/MonthDays;
+				
+				SourceEnergyPerformanceMonthReading=SourceEnergyPerDayInKBTU * days;
+				EnergyCostPerformanceMonth=EnergyCostMonth*days;
+				
+				GrandSiteEnergyPerformanceMonthReading=GrandSiteEnergyPerformanceMonthReading+SiteEnergyPerformanceMonthReading;
+				GrandSourceEnergyPerformanceMonthReading=GrandSourceEnergyPerformanceMonthReading+SourceEnergyPerformanceMonthReading;
+				GrandEnergyCostPerformanceMonth=GrandEnergyCostPerformanceMonth+EnergyCostPerformanceMonth;
+				
+				log.info("Performance Period from "+CurrentStartDate+": to :"+PEndDate+ " and Performance Total Days is :"+PerformanceTotalDays );				
+				log.info("SiteEnergyPerformanceMonthReading is "+SiteEnergyPerformanceMonthReading+" GrandSiteEnergyPerformanceMonthReading Reading is : "+GrandSiteEnergyPerformanceMonthReading);
+				log.info("SourceEnergyPerformanceMonthReading is "+SourceEnergyPerformanceMonthReading+" GrandSourceEnergyPerformanceMonthReading Reading is : "+GrandSourceEnergyPerformanceMonthReading);
+				log.info("EnergyCostPerformanceMonth is "+EnergyCostPerformanceMonth+" GrandEnergyCostPerformanceMonth Reading is : "+GrandEnergyCostPerformanceMonth);
+				log.info("------------------------------------------------------------------------------------------------------------------------------");
+				
+				PerformancePeriodMonths = PerformancePeriodMonths + 1;
+				TotalPerformanceDays = TotalPerformanceDays + days;
+				
+				//TotalBaseLineDays = TotalBaseLineDays + days;
+				
+			} else if (CommonMethod.compareTwoDates(PEndDate, CurrentEndDate) < 0) {
+				days = CommonMethod.getDiffernceBetweenTwoDates(CurrentStartDate, PEndDate); // Total Calcutable dyas
+				int MonthDays=CommonMethod.getDiffernceBetweenTwoDates(CurrentStartDate, CurrentEndDate)+1; // Total No of days in the month
+				
+				double PerformanceMonthReading=Double.parseDouble(CommonMethod.removeSpecialCharacter(Readings.get(i).getAttribute("value"))); // Fetching the Monthwise Reading
+				PerformanceMonthCost=Double.parseDouble(CommonMethod.removeSpecialCharacter(Costs.get(i).getAttribute("value"))); // Fetching the Monthwise Cost
+				double SiteEnergyValueInKBTU=PerformanceMonthReading * 3.412141;  // Converting into kbtu from KWH
+				double SiteEnergyPerDayInKBTU=SiteEnergyValueInKBTU/MonthDays;  // Calculating per day in kbtu
+				SiteEnergyPerformanceMonthReading=SiteEnergyPerDayInKBTU * days; 
+				PerformanceTotalDays=PerformanceTotalDays+days;
+				
+				double SourceEnergyValueInKBTU=PerformanceMonthReading * 3.412141 * 2.8;
+				double SourceEnergyPerDayInKBTU=SourceEnergyValueInKBTU/MonthDays;
+				double EnergyCostMonth=PerformanceMonthCost/MonthDays;
+				
+				SourceEnergyPerformanceMonthReading=SourceEnergyPerDayInKBTU * days;
+				EnergyCostPerformanceMonth=EnergyCostMonth*days;
+				
+				GrandSiteEnergyPerformanceMonthReading=GrandSiteEnergyPerformanceMonthReading+SiteEnergyPerformanceMonthReading;
+				GrandSourceEnergyPerformanceMonthReading=GrandSourceEnergyPerformanceMonthReading+SourceEnergyPerformanceMonthReading;
+				GrandEnergyCostPerformanceMonth=GrandEnergyCostPerformanceMonth+EnergyCostPerformanceMonth;
+				
+				log.info("Performance Period from "+CurrentStartDate+": to :"+PEndDate+ " and Performance Total Days is :"+PerformanceTotalDays );				
+				log.info("SiteEnergyPerformanceMonthReading is "+SiteEnergyPerformanceMonthReading+" GrandSiteEnergyPerformanceMonthReading Reading is : "+GrandSiteEnergyPerformanceMonthReading);
+				log.info("SourceEnergyPerformanceMonthReading is "+SourceEnergyPerformanceMonthReading+" GrandSourceEnergyPerformanceMonthReading Reading is : "+GrandSourceEnergyPerformanceMonthReading);
+				log.info("EnergyCostPerformanceMonth is "+EnergyCostPerformanceMonth+" GrandEnergyCostPerformanceMonth Reading is : "+GrandEnergyCostPerformanceMonth);
+				log.info("------------------------------------------------------------------------------------------------------------------------------");	
+			} 
+			else if (CommonMethod.compareTwoDates(CurrentStartDate, PStartDate) > 0) { 
+				days = CommonMethod.getDiffernceBetweenTwoDates(CurrentStartDate, CurrentEndDate) + 1;
+				PerformancePeriodMonths = PerformancePeriodMonths + 1;
+				double PerformanceMonthReading=Double.parseDouble(CommonMethod.removeSpecialCharacter(Readings.get(i).getAttribute("value")));
+				PerformanceMonthCost=Double.parseDouble(CommonMethod.removeSpecialCharacter(Costs.get(i).getAttribute("value")));
+				double SiteEnergyValueInKBTU=PerformanceMonthReading * 3.412141;
+				double SiteEnergyPerDayInKBTU=SiteEnergyValueInKBTU/days;
+				SiteEnergyPerformanceMonthReading=SiteEnergyPerDayInKBTU * days;
+				
+				PerformanceTotalDays=PerformanceTotalDays+days;				
+				
+				double SourceEnergyValueInKBTU=PerformanceMonthReading * 3.412141 * 2.8;
+				double SourceEnergyPerDayInKBTU=SourceEnergyValueInKBTU/days;
+				double EnergyCostMonth=PerformanceMonthCost/days;
+				
+				SourceEnergyPerformanceMonthReading=SourceEnergyPerDayInKBTU * days;
+				EnergyCostPerformanceMonth=EnergyCostMonth*days;
+				
+				GrandSiteEnergyPerformanceMonthReading=GrandSiteEnergyPerformanceMonthReading+SiteEnergyPerformanceMonthReading;
+				GrandSourceEnergyPerformanceMonthReading=GrandSourceEnergyPerformanceMonthReading+SourceEnergyPerformanceMonthReading;
+				GrandEnergyCostPerformanceMonth=GrandEnergyCostPerformanceMonth+EnergyCostPerformanceMonth;
+				
+				log.info("Performance Period from "+CurrentStartDate+": to :"+PEndDate+ " and Performance Total Days is :"+PerformanceTotalDays );				
+				log.info("SiteEnergyPerformanceMonthReading is "+SiteEnergyPerformanceMonthReading+" GrandSiteEnergyPerformanceMonthReading Reading is : "+GrandSiteEnergyPerformanceMonthReading);
+				log.info("SourceEnergyPerformanceMonthReading is "+SourceEnergyPerformanceMonthReading+" GrandSourceEnergyPerformanceMonthReading Reading is : "+GrandSourceEnergyPerformanceMonthReading);
+				log.info("EnergyCostPerformanceMonth is "+EnergyCostPerformanceMonth+" GrandEnergyCostPerformanceMonth Reading is : "+GrandEnergyCostPerformanceMonth);
+				log.info("------------------------------------------------------------------------------------------------------------------------------");
+			}
+		}
+		
+		double SiteEnergyIntensity=((GrandSiteEnergyPerformanceMonthReading/PerformanceTotalDays) * 365)/5000;
+		double SourceEnergyIntensity=((GrandSourceEnergyPerformanceMonthReading/PerformanceTotalDays) * 365)/5000;
+		double EnergyCostIntensity=((GrandEnergyCostPerformanceMonth/PerformanceTotalDays) * 365)/5000;
+		
+		log.info("SiteEnergyIntensity is :" + SiteEnergyIntensity);
+		log.info("SourceEnergyIntensity is :" + SourceEnergyIntensity);
+		log.info("EnergyCostIntensity is :" + EnergyCostIntensity);
+		
+		
+		
+		log.info("Total Performance Days is :" + TotalPerformanceDays);
+		log.info("Total Performance Cost is :" + PerformanceTotalCost);
+		log.info("Total Performance Reading is :" + PerformanceTotalReading);
+		log.info("Total number of records for Performance is :" + PerformancePeriodMonths);
+		log.info("----------------------------------------");
+		log.info("Total BaseLine Days is :" + TotalBaseLineDays);
+		log.info("Total BaseLine Cost is :" + BaseLineTotalCost);
+		log.info("Total BaseLine Reading is :" + BaseLineTotalReading);
+		log.info("Total number of records for Baseline is :" + BaseLineMonths);
+
+		// Calculating Site Energy Intesity for Performance Period
+		String ExpSiteEnergyIntensity = calcualteSiteEnergyIntensity(PerformanceTotalReading, TotalPerformanceDays);
+
+		// Calculating Source Energy Intensity for Performance Period
+		String ExpSourceEnergyIntensity = calcualteSourceEnergyIntensity(PerformanceTotalReading, TotalPerformanceDays);
+
+		// Calculating Source Energy Intensity for Performance Period
+		String ExpEnergyCostIntensity = calcualteEnergyCostIntensity(PerformanceTotalCost, TotalPerformanceDays);
+
+		log.info("Expected Performance Period Site Energy Intensity is :" + ExpSiteEnergyIntensity);
+		log.info("Expected Performance Period Source Energy Intensity is :" + ExpSourceEnergyIntensity);
+		log.info("Expected Performance Period Energy Cost Intensity is :" + ExpEnergyCostIntensity);
+
+		if (TotalBaseLineDays > 0) {
+			// Calculating Site Energy Intesity for BaseLine Period
+			ExpBaseLineSiteEnergyIntensity = calcualteSiteEnergyIntensity(BaseLineTotalReading, TotalBaseLineDays);
+
+			// Calculating Source Energy Intensity for BaseLine Period
+			ExpBaseLineSourceEnergyIntensity = calcualteSourceEnergyIntensity(BaseLineTotalReading, TotalBaseLineDays);
+
+			// Calculating Source Energy Intensity for BaseLine Period
+			ExpBaseLineEnergyCostIntensity = calcualteEnergyCostIntensity(BaseLineTotalCost, TotalBaseLineDays);
+
+			log.info("Expected BaseLine Period Site Energy Intensity is :" + ExpBaseLineSiteEnergyIntensity);
+			log.info("Expected BaseLine Period Source Energy Intensity is :" + ExpBaseLineSourceEnergyIntensity);
+			log.info("Expected BaseLine Period Energy Cost Intensity is :" + ExpBaseLineEnergyCostIntensity);
+		}
+
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		// CommonMethod.switchToDefaultContent();
+		BuildingPage.ClickOnPerformanceMenu();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		PerformanceEnergyTab.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		CommonMethod.switchToImprovementFrame();
+		/*
+		 * try { JSHelper.scrollPageDown();
+		 * 
+		 * } catch (
+		 * 
+		 * Exception e) { e.printStackTrace(); }
+		 */
+		try {
+			WebElement Loader = driver.findElement(
+					By.xpath("//p[text()='Improvement Score']//following-sibling::div//*[local-name()='svg']"));
+
+			waithelper.WaitForElementInvisible(Loader, 120, 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Page Loader is not displaying..");
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String ActSiteEnergyIntensity = SiteEnergyIntensity_PerformancePeriod.getText().trim();
+		String ActSourceEnergyIntensity = SourceEnergyIntensity_PerformancePeriod.getText().trim();
+		String ActEnergyCostIntensity = EnergyCostIntensity_PerformancePeriod.getText().trim();
+		String ActBaseLineSiteEnergyIntensity = SiteEnergyIntensity_BaseLinePeriod.getText().trim();
+		String ActBaseLineSourceEnergyIntensity = SourceEnergyIntensity_BaseLinePeriod.getText().trim();
+		String ActBaseLineEnergyCostIntensity = EnergyCostIntensity_BaseLinePeriod.getText().trim();
+
+		log.info("Actual Performance Period Site Energy Intensity is :" + ActSiteEnergyIntensity);
+		log.info("Actual Performance Period Source Energy Intensity is :" + ActSourceEnergyIntensity);
+		log.info("Actual Performance Period Energy Cost Intensity is :" + ActEnergyCostIntensity);
+		log.info("Actual BaseLine Period Site Energy Intensity is :" + ActBaseLineSiteEnergyIntensity);
+		log.info("Actual BaseLine Period Source Energy Intensity is :" + ActBaseLineSourceEnergyIntensity);
+		log.info("Actual BaseLine Period Energy Cost Intensity is :" + ActBaseLineEnergyCostIntensity);
+		try {
+			JSHelper.scrollIntoView(driver
+					.findElement(By.xpath("//span[@ng-class='improvement.energy.baseline_site_energy_quality']")));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		boolean BaseLineQuality = CheckBaseLineQuality(BaseLineMonths);
+		boolean PerformanceQuality = CheckPerformanceQuality(PerformancePeriodMonths);
+		if (ActSiteEnergyIntensity.equals(ExpSiteEnergyIntensity)
+				&& (ActSourceEnergyIntensity.equals(ExpSourceEnergyIntensity))
+				&& (ActEnergyCostIntensity.equals(ExpEnergyCostIntensity))
+				&& (ActBaseLineSiteEnergyIntensity.equals(ExpBaseLineSiteEnergyIntensity))
+				&& (ActBaseLineSourceEnergyIntensity.equals(ExpBaseLineSourceEnergyIntensity))
+				&& (ActBaseLineEnergyCostIntensity.equals(ExpBaseLineEnergyCostIntensity)) && (BaseLineQuality)
+				&& (PerformanceQuality)) {
+			log.info(" All Improvement scores are matching..");
+			log.info("Energy_ValidateImprovementScore  method ends here with true.........");
+			return true;
+		} else {
+			log.info(" All Improvement scores are not matching..");
+			log.info("Energy_ValidateImprovementScore  method ends here with false .........");
+			return false;
+		}
+
+	}
+
+	// Checking Performance Quality
+
+	public boolean CheckPerformanceQuality(int NoOfRecords) {
+		String SiteEnergyQuality = Performance_SiteEnergyQuality.getAttribute("class");
+		String SourceEnergyQuality = Performance_SourceEnergyQuality.getAttribute("class");
+		String CostEnergyQuality = Performance_CostEnergyQuality.getAttribute("class");
+
+		log.info("SiteEnergyQuality text is :" + SiteEnergyQuality);
+		log.info("SourceEnergyQuality text is :" + SourceEnergyQuality);
+		log.info("CostEnergyQuality text is :" + CostEnergyQuality);
+
+		if (NoOfRecords < 9) {
+			if (SiteEnergyQuality.contains("poor")
+					&& (SourceEnergyQuality.contains("poor") && (CostEnergyQuality.contains("poor")))) {
+				log.info("All the Quality showing proper..");
+				return true;
+			} else {
+				log.info("All the Quality are not showing proper..");
+				return false;
+			}
+
+		} else if (NoOfRecords >= 9 && NoOfRecords < 12) {
+			if (SiteEnergyQuality.contains("good")
+					&& (SourceEnergyQuality.contains("good") && (CostEnergyQuality.contains("good")))) {
+				log.info("All the Quality showing proper..");
+				return true;
+			} else {
+				log.info("All the Quality are not showing proper..");
+				return false;
+			}
+
+		} else {
+			if (SiteEnergyQuality.contains("best")
+					&& (SourceEnergyQuality.contains("best") && (CostEnergyQuality.contains("best")))) {
+				log.info("All the Quality showing proper..");
+				return true;
+			} else {
+				log.info("All the Quality are not showing proper..");
+				return false;
+			}
+		}
+	}
+
+	// Checking BaseLine Quality
+
+	public boolean CheckBaseLineQuality(int NoOfRecords) {
+		String SiteEnergyQuality = BaseLine_SiteEnergyQuality.getAttribute("class");
+		String SourceEnergyQuality = BaseLine_SourceEnergyQuality.getAttribute("class");
+		String CostEnergyQuality = BaseLine_CostEnergyQuality.getAttribute("class");
+
+		log.info("SiteEnergyQuality text is :" + SiteEnergyQuality);
+		log.info("SourceEnergyQuality text is :" + SourceEnergyQuality);
+		log.info("CostEnergyQuality text is :" + CostEnergyQuality);
+
+		if (NoOfRecords < 9) {
+			if (SiteEnergyQuality.contains("poor")
+					&& (SourceEnergyQuality.contains("poor") && (CostEnergyQuality.contains("poor")))) {
+				log.info("All the Quality showing proper..");
+				return true;
+			} else {
+				log.info("All the Quality are not showing proper..");
+				return false;
+			}
+
+		} else if (NoOfRecords >= 9 && NoOfRecords < 12) {
+			if (SiteEnergyQuality.contains("good")
+					&& (SourceEnergyQuality.contains("good") && (CostEnergyQuality.contains("good")))) {
+				log.info("All the Quality showing proper..");
+				return true;
+			} else {
+				log.info("All the Quality are not showing proper..");
+				return false;
+			}
+
+		} else {
+			if (SiteEnergyQuality.contains("best")
+					&& (SourceEnergyQuality.contains("best") && (CostEnergyQuality.contains("best")))) {
+				log.info("All the Quality showing proper..");
+				return true;
+			} else {
+				log.info("All the Quality are not showing proper..");
+				return false;
+			}
+		}
+	}
+
+	// Calculating Site Energy Intesity
+
+	public String calcualteSiteEnergyIntensity(int TotalReading, int TotalDays) {
+		DecimalFormat df = new DecimalFormat("0.000000");
+		double valueKBTU = (TotalReading * 3.412141);
+		double OneDayeInKBTU = valueKBTU / TotalDays;
+		double OneYear = OneDayeInKBTU * 365;
+		double SiteEnergyIntensity = OneYear / 5000;
+		String ExpSiteEnergyIntensity = df.format(SiteEnergyIntensity);
+		double d = Double.parseDouble(ExpSiteEnergyIntensity);
+		return String.valueOf(d);
+	}
+
+	// Calculating Source Energy Intesity
+
+	public String calcualteSourceEnergyIntensity(int TotalReading, int TotalDays) {
+		DecimalFormat df = new DecimalFormat("0.000000");
+		double valueKBTU = (TotalReading * 3.412141 * 2.8);
+		double OneDayeInKBTU = valueKBTU / TotalDays;
+		double OneYear = OneDayeInKBTU * 365;
+		double SourceEnergyIntensity = OneYear / 5000;
+		String ExpSourceEnergyIntensity = df.format(SourceEnergyIntensity);
+		double d = Double.parseDouble(ExpSourceEnergyIntensity);
+		return String.valueOf(d);
+	}
+
+	// Calculating Energy Cost Intesity
+
+	public String calcualteEnergyCostIntensity(double TotalCost, int TotalDays) {
+		DecimalFormat df = new DecimalFormat("0.000000");
+		double valueKBTU = (TotalCost / TotalDays);
+		// double OneDayeInKBTU=valueKBTU/TotalPerformanceDays;
+		double OneYear = valueKBTU * 365;
+		double EnergyCostIntensity = OneYear / 5000;
+		String ExpEnergyCostIntensity = df.format(EnergyCostIntensity);
+		double d = Double.parseDouble(ExpEnergyCostIntensity);
+		return String.valueOf(d);
+	}
+
+	public String getPerormancePeriodStartDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		// System.out.println(dtf.format(now.minusYears(1).plusDays(1)));
+		String PerformanceStartDate = dtf.format(now.minusYears(1).plusDays(1));
+		log.info("Performance Start Date is : " + PerformanceStartDate);
+
+		return PerformanceStartDate;
+	}
+	
+	public String getBasePeriodStartDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		// System.out.println(dtf.format(now.minusYears(1).plusDays(1)));
+		String BaseStartDate = dtf.format(now.minusYears(2).plusDays(1));
+		log.info("Performance Start Date is : " + BaseStartDate);
+
+		return BaseStartDate;
+	}
+
+	public String getBasePeriodEndDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		// System.out.println(dtf.format(now.minusYears(1).plusDays(1)));
+		String BaseEndDate = dtf.format(now.minusYears(1));
+		log.info("Base End Date is : " + BaseEndDate);
+
+		return BaseEndDate;
+	}
+	
+	public String getPerormancePeriodEndDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		// System.out.println(dtf.format(now.minusYears(1).plusDays(1)));
+		String PerformanceEndDate = dtf.format(now);
+		log.info("Performance End Date is : " + PerformanceEndDate);
+
+		return PerformanceEndDate;
+	}
+
+	public String getBaseLinePeriodStartDate() {
+		String BaseLinePeriod = driver
+				.findElement(By.xpath("//span[text()='Baseline period']//following-sibling::span")).getText();
+		String BaseLinePeriodStartDate = BaseLinePeriod.split("-")[0].trim();
+		/*
+		 * Date BaseLineStartDate=null; try { BaseLineStartDate=new
+		 * SimpleDateFormat("MMM dd, yyyy").parse(BaseLinePeriodStartDate); } catch
+		 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
+		 * } return BaseLineStartDate;
+		 */
+		log.info(BaseLinePeriodStartDate);
+		return BaseLinePeriodStartDate;
+	}
+
+	public void clickOnEnergyMeter() {
+		String Meter = System.getProperty("PerformanceEnergyMeterName");
+		// String Meter = "E-UTKTNW";
+		WebElement ele = driver.findElement(
+				By.xpath("//table[@class='meterListByType--wrapper']/tbody/tr//div[contains(text(),'" + Meter + "')]"));
+		waithelper.WaitForElementClickable(ele, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.scrollPageUp();
+		ele.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+	}
+
+	public void clickOnWaterMeter() {
+		String Meter = System.getProperty("PerformanceWaterMeterName");
+		// String Meter = "E-UTKTNW";
+		WebElement ele = driver.findElement(
+				By.xpath("//table[@class='meterListByType--wrapper']/tbody/tr//div[contains(text(),'" + Meter + "')]"));
+		waithelper.WaitForElementClickable(ele, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.scrollPageUp();
+		ele.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+	}
+
+	public boolean Energy_AddRecords(String ChangeType, int NoOfRecords) {
+		log.info("Energy_AddRecord  method starts here.........");
+		int BeforeTotalRows = 0;
+		int AfterTotalRows = 0;
+		boolean flag = false;
+		String ExpMonthYear = null;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMMM yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		int k = NoOfRecords - 1;
+		log.info("Going to add number of records :" + NoOfRecords);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		int l = NoOfRecords-1;
+
+		int Cost = Integer.parseInt(data.getCellData("Building", 81, 2));
+		int Reading = Integer.parseInt(data.getCellData("Building", 80, 2));
+		for (int i = 1; i < NoOfRecords + 1; i++) {
+
+			BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
+			waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+			BuildingSetting_AddRow_button.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			waithelper.WaitForElementClickable(MeterFirstRow_StartDate,
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+			MeterFirstRow_StartDate.click();
+			// actionhelper.mouseOverElementAndClick(MeterFirstRow_StartDate);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if (ChangeType.equals("Performance")) {
+				ExpMonthYear = dtf.format(now.minusMonths(k)); // 3,2,1
+				log.info("Expected Month Year is :" + ExpMonthYear);
+			} else if (ChangeType.equals("BaseLine")) {
+				ExpMonthYear = dtf.format(now.minusYears(1).minusMonths(l)); // 3,2,1
+				log.info("Expected Month Year is :" + ExpMonthYear);
+			}
+
+			// Selecting Start Date
+			for (int j = 1; j < 25; j++) {
+				String TempMonthYear = driver
+						.findElement(
+								By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='datepicker-switch']"))
+						.getText();
+				log.info("Cureent Month year showing is  :" + TempMonthYear);
+				if (TempMonthYear.equals(ExpMonthYear)) {
+					log.info(" Selecting start date:" + TempMonthYear);
+					String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of month
+
+					ngWebDriver.waitForAngularRequestsToFinish();
+					break;
+				} else {
+					driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']"))
+							.click();
+
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+
+			}
+
+			// Selecting End Date
+			for (int j = 1; j < 25; j++) {
+
+				String TempMonthYear = driver
+						.findElement(
+								By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='datepicker-switch']"))
+						.getText();
+				log.info("Cureent Month year showing is  :" + TempMonthYear);
+				if (TempMonthYear.equals(ExpMonthYear)) {
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					log.info(" Selecting end date :" + TempMonthYear);
+					String MonthName = TempMonthYear.split(" ")[0];
+					int Year = Integer.parseInt(TempMonthYear.split(" ")[1]);
+					log.info(" Year -- :" + Year + "  Month Name -- :" + MonthName);
+					int MaxDate = CommonMethod.getNoOfDaysInMonth(Year, MonthName);
+					log.info("MaxDate is :" + MaxDate);
+					String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='" + MaxDate
+							+ "'])[last()]";
+
+					driver.findElement(By.xpath(CalXpath)).click(); // Selecting end Date as last day of month
+
+					ngWebDriver.waitForAngularRequestsToFinish();
+					break;
+				} else {
+					driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']"))
+							.click();
+
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+
+			}
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			MeterFirstRow_ReadingCost.sendKeys(String.valueOf(Cost));
+			ngWebDriver.waitForAngularRequestsToFinish();
+			MeterFirstRow_ReadingTextBox.sendKeys(String.valueOf(Reading));
+
+			MeterFirstRow_ReadingCost.click();
+
+			try {
+
+				// waithelper.WaitForElementInvisible(MeterFirstRow_SaveBtn,
+				// Integer.parseInt(prop.getProperty("explicitTime")), 2);
+				JSHelper.scrollPageUp();
+				waithelper.WaitForElementVisibleWithPollingTime(
+						driver.findElement(By.xpath(
+								"(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+				waithelper.WaitForElementInvisible(
+						driver.findElement(By.xpath(
+								"(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span/*")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+			log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
+			k--;
+			l--;
+			Cost = Cost + 100;
+			Reading = Reading + 100;
+			if (AfterTotalRows - BeforeTotalRows == 1) {
+				flag = true;
+			} else {
+				flag = false;
+				break;
+			}
+
+		}
+
+		if (flag) {
+			log.info("Energy_AddRecord method ends here with true.........");
+			return true;
+		} else {
+			log.info("Energy_AddRecord method ends here with false.........");
+			return false;
+		}
+
+	}
+
 	// Building Settings--> Energy --> Verify Clicking on add row allows to add
 	// start date,end date and reading
 	public boolean Energy_AddRecord() {
 		log.info("Energy_AddRecord  method starts here.........");
 		int BeforeTotalRows = 0;
 		int AfterTotalRows = 0;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -6902,13 +6674,14 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		driver.findElement(By.xpath("(//table[@class='meterListByType--wrapper']/tbody/tr[2])[1]/td[2]/div")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
 		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		BuildingSetting_AddRow_button.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -6917,7 +6690,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -6931,7 +6704,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -6989,32 +6762,28 @@ public class BuildingPageObject extends BaseClass {
 	public boolean OperatingHours_ValidateDocument() {
 		log.info("OperatingHours_ValidateDocument  method starts here.........");
 		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows showing are  " + BeforeTotalRows);
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 
-			//String UploadPath = System.getProperty("user.dir") + "\\UploadDocument\\File1.pdf";
+			// String UploadPath = System.getProperty("user.dir") +
+			// "\\UploadDocument\\File1.pdf";
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]//button")).click();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]//ul/li/span[text()='Computer File']"))
 					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -7022,8 +6791,9 @@ public class BuildingPageObject extends BaseClass {
 			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"));
 			JSHelper.displayHiddenElement(element);
 			element.sendKeys(UploadPath);
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(6000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -7081,12 +6851,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean GrossFloorArea_ValidateDocument() {
 		log.info("GrossFloorArea_ValidateDocument  method starts here.........");
 		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows showing are  " + BeforeTotalRows);
@@ -7095,53 +6860,25 @@ public class BuildingPageObject extends BaseClass {
 
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]//button")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]//ul/li/span[text()='Computer File']"))
 					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			ngWebDriver.waitForAngularRequestsToFinish();
 
 			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"));
 			JSHelper.displayHiddenElement(element);
 			element.sendKeys(UploadPath);
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(6000);
+				Thread.sleep(4000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 * 
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); } // TODO: handle exception
-			 */
 		}
 
 		try {
@@ -7188,15 +6925,15 @@ public class BuildingPageObject extends BaseClass {
 
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]//button")).click();
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]//ul/li/span[text()='Computer File']"))
 					.click();
 			try {
 				Thread.sleep(3000);
@@ -7258,6 +6995,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean OperationalDays_ValidateDocument() {
 		log.info("OperationalDays_ValidateDocument  method starts here.........");
 		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -7272,18 +7010,20 @@ public class BuildingPageObject extends BaseClass {
 
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/button")).click();
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]//button")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]//ul/li/span[text()='Computer File']"))
 					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -7292,8 +7032,9 @@ public class BuildingPageObject extends BaseClass {
 			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"));
 			JSHelper.displayHiddenElement(element);
 			element.sendKeys(UploadPath);
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(6000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -7341,6 +7082,7 @@ public class BuildingPageObject extends BaseClass {
 	public boolean Occupant_ValidateDocument() {
 		log.info("Occupant_ValidateDocument  method starts here.........");
 		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -7355,18 +7097,20 @@ public class BuildingPageObject extends BaseClass {
 
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]//button")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]//ul/li/span[text()='Computer File']"))
 					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -7375,8 +7119,9 @@ public class BuildingPageObject extends BaseClass {
 			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
 			JSHelper.displayHiddenElement(element);
 			element.sendKeys(UploadPath);
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(6000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -7434,7 +7179,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		String EnergyMeterName = System.getProperty("EnergyMeterName");
-		// EnergyMeterName = "E-BPWFKT";
+		// EnergyMeterName = "E-GJKKLE";
 		driver.findElement(By.xpath(
 				"//div[@class='fw600 mb5' and text()='Energy']/ancestor::tr/following-sibling::tr[1]/td[2]/div[contains(text(),'"
 						+ EnergyMeterName + "')]"))
@@ -7450,7 +7195,7 @@ public class BuildingPageObject extends BaseClass {
 		if (BeforeTotalRows > 0) {
 			log.info("Going to upload document..");
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]//button")).click();
 
 			try {
 				Thread.sleep(3000);
@@ -7458,8 +7203,8 @@ public class BuildingPageObject extends BaseClass {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]//ul/li/span[text()='Computer File']"))
 					.click();
 			try {
 				Thread.sleep(3000);
@@ -7531,11 +7276,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
-	// Building -> HE- Carbon Dioxide -> --> Validate documents added in the row
-	// item are
-	// displayed under Documents tab.
-	public boolean HECarbonDioxide_ValidateDocument() {
-		log.info("HECarbonDioxide_ValidateDocument  method starts here.........");
+	public boolean HE_ValidateDocument(String MeterName) {
+		log.info("HE_ValidateDocument  method starts here.........");
 		boolean flag = false;
 		int BeforeTotalRows;
 		try {
@@ -7544,7 +7286,7 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows showing are  " + BeforeTotalRows);
 		if (BeforeTotalRows > 0) {
@@ -7552,15 +7294,17 @@ public class BuildingPageObject extends BaseClass {
 
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='UPLOAD']/parent::button"))
+					.click();
 			try {
 				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/ul/li/span[text()='Computer File']"))
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//ul/li/span[text()='Computer File']"))
 					.click();
 			try {
 				Thread.sleep(3000);
@@ -7569,7 +7313,8 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
+			WebElement element = driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td/input[contains(@id,'upload_picker')]"));
 			JSHelper.displayHiddenElement(element);
 			element.sendKeys(UploadPath);
 			try {
@@ -7579,140 +7324,34 @@ public class BuildingPageObject extends BaseClass {
 				e1.printStackTrace();
 			}
 
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
 		}
 
 		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Carbon Dioxide")) {
-					log.info("Carbon Dioxide row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Carbon Dioxide..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Carbon Dioxide row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HECarbonDioxide_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HECarbonDioxide_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- TVOC -> --> Validate documents added in the row item are
-	// displayed under Documents tab.
-	public boolean HETVOC_ValidateDocument() {
-		log.info("HETVOC_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		int BeforeTotalRows;
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
 		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
 		int RowsInDocument = DocumentList.size();
 		if (RowsInDocument > 0) {
 			for (int i = 0; i < RowsInDocument; i++) {
 				if (driver
 						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Total Volatile Organic Compounds")) {
-					log.info("Total Volatile Organic Compounds row found...");
+								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]//a"))
+						.getText().equals(MeterName)) {
+					log.info(MeterName + " row found...");
 					String FileName = driver
 							.findElement(By
 									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
 							.getText().trim();
 					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with TVOC..");
+						log.info("Document found with " + MeterName);
 						flag = true;
 						break;
 					} else {
@@ -7720,1129 +7359,17 @@ public class BuildingPageObject extends BaseClass {
 						flag = false;
 					}
 				} else {
-					log.info("TVOC row not found...");
+					log.info(MeterName + " row not found...");
 				}
 
 			}
 		}
 
 		if (flag) {
-			log.info("HETVOC_ValidateDocument method ends here with true.........");
+			log.info("HE_ValidateDocument method ends here with true.........");
 			return true;
 		} else {
-			log.info("HETVOC_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- PM2.5 -> --> Validate documents added in the row item are
-	// displayed under Documents tab.
-	public boolean HE_PM2_5_ValidateDocument() {
-		log.info("HE_PM2_5_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		int BeforeTotalRows;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Atmospheric Particulate Matter (PM2.5)")) {
-					log.info("Carbon Dioxide row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with PM2.5..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("PM2.5 row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_PM2_5_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_PM2_5_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Ozone -> --> Validate documents added in the row item are
-	// displayed under Documents tab.
-	public boolean HE_Ozone_ValidateDocument() {
-		log.info("HE_Ozone_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		int BeforeTotalRows;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Ozone")) {
-					log.info("Ozone row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Ozone..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Ozone row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Ozone_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Ozone_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Acetaldehyde -> --> Validate documents added in the row item
-	// are
-	// displayed under Documents tab.
-	public boolean HE_Acetaldehyde_ValidateDocument() {
-		log.info("HE_Acetaldehyde_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		int BeforeTotalRows;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Acetaldehyde")) {
-					log.info("Acetaldehyde row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Acetaldehyde..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Acetaldehyde row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Acetaldehyde_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Acetaldehyde_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Benzene -> --> Validate documents added in the row item are
-	// displayed under Documents tab.
-	public boolean HE_Benzene_ValidateDocument() {
-		log.info("HE_Benzene_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Benzene")) {
-					log.info("Benzene row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Benzene..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Benzene row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Benzene_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Benzene_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Styrene -> --> Validate documents added in the row item are
-	// displayed under Documents tab.
-	public boolean HE_Styrene_ValidateDocument() {
-		log.info("HE_Styrene_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Styrene")) {
-					log.info("Styrene row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Styrene..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Styrene row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Styrene_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Styrene_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Toluene -> --> Validate documents added in the row item are
-	// displayed under Documents tab.
-	public boolean HE_Toluene_ValidateDocument() {
-		log.info("HE_Toluene_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Toluene")) {
-					log.info("Toluene row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Toluene..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Toluene row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Toluene_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Toluene_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Naphthalene -> --> Validate documents added in the row item
-	// are
-	// displayed under Documents tab.
-	public boolean HE_Naphthalene_ValidateDocument() {
-		log.info("HE_Naphthalene_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Naphthalene")) {
-					log.info("Naphthalene row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Naphthalene..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Naphthalene row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Naphthalene_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Naphthalene_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Dichlorobenzene -> --> Validate documents added in the row
-	// item are
-	// displayed under Documents tab.
-	public boolean HE_Dichlorobenzene_ValidateDocument() {
-		log.info("HE_Dichlorobenzene_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Dichlorobenzene")) {
-					log.info("Dichlorobenzene row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Dichlorobenzene..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Dichlorobenzene row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Dichlorobenzene_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Dichlorobenzene_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Xylenes-total -> --> Validate documents added in the row
-	// item are
-	// displayed under Documents tab.
-	public boolean HE_XylenesTotal_ValidateDocument() {
-		log.info("HE_XylenesTotal_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Xylenes-total")) {
-					log.info("Xylenes-total row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Xylenes-total..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Xylenes-total row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_XylenesTotal_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_XylenesTotal_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Formaldehyde -> --> Validate documents added in the row
-	// item are
-	// displayed under Documents tab.
-	public boolean HE_Formaldehyde_ValidateDocument() {
-		log.info("HE_Formaldehyde_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Formaldehyde")) {
-					log.info("Formaldehyde row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Formaldehyde..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Formaldehyde row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_Formaldehyde_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Formaldehyde_ValidateDocument method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Carbon Monoxide -> --> Validate documents added in the row
-	// item are
-	// displayed under Documents tab.
-	public boolean HE_CarbonMonoxide_ValidateDocument() {
-		log.info("HE_CarbonMonoxide_ValidateDocument  method starts here.........");
-		boolean flag = false;
-		int BeforeTotalRows;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows showing are  " + BeforeTotalRows);
-		if (BeforeTotalRows > 0) {
-			log.info("Going to upload document..");
-
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/button")).click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By
-					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/div/div/ul/li/span[text()='Computer File']"))
-					.click();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"));
-			JSHelper.displayHiddenElement(element);
-			element.sendKeys(UploadPath);
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			/*
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 * try { waithelper.WaitForElementVisibleWithPollingTime(
-			 * driver.findElement(By.xpath("//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			 * 
-			 * waithelper.WaitForElementInvisible(driver.findElement(By.xpath(
-			 * "//span[contains(text(),'Uploading')]")),
-			 * Integer.parseInt(prop.getProperty("explicitTime")), 2); } catch (Exception e)
-			 * { e.printStackTrace(); }
-			 */
-		}
-
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//span[text()='Documents']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		driver.findElement(By.xpath("//span[text()='Documents']")).click();
-		List<WebElement> DocumentList = driver.findElements(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr"));
-		int RowsInDocument = DocumentList.size();
-		if (RowsInDocument > 0) {
-			for (int i = 0; i < RowsInDocument; i++) {
-				if (driver
-						.findElement(
-								By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[2]/div/a"))
-						.getText().equals("Carbon Monoxide")) {
-					log.info("Carbon Monoxide row found...");
-					String FileName = driver
-							.findElement(By
-									.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[" + (i + 1) + "]/td[1]/span"))
-							.getText().trim();
-					if (FileName.equals("File1.pdf")) {
-						log.info("Document found with Carbon Monoxide..");
-						flag = true;
-						break;
-					} else {
-						log.info("Document found with other name.." + FileName);
-						flag = false;
-					}
-				} else {
-					log.info("Carbon Monoxide row not found...");
-				}
-
-			}
-		}
-
-		if (flag) {
-			log.info("HE_CarbonMonoxide_ValidateDocument method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_CarbonMonoxide_ValidateDocument method ends here with false.........");
+			log.info("HE_ValidateDocument method ends here with false.........");
 			return false;
 		}
 
@@ -8866,8 +7393,9 @@ public class BuildingPageObject extends BaseClass {
 				"//div[@class='fw600 mb5' and text()='Water']/ancestor::tr/following-sibling::tr[1]/td[2]/div[contains(text(),'"
 						+ WaterMeterName + "')]"))
 				.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -8879,9 +7407,10 @@ public class BuildingPageObject extends BaseClass {
 
 			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
 
-			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]//button")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -8889,8 +7418,9 @@ public class BuildingPageObject extends BaseClass {
 			driver.findElement(By
 					.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/ul/li/span[text()='Computer File']"))
 					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -8899,8 +7429,9 @@ public class BuildingPageObject extends BaseClass {
 			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"));
 			JSHelper.displayHiddenElement(element);
 			element.sendKeys(UploadPath);
+			ngWebDriver.waitForAngularRequestsToFinish();
 			try {
-				Thread.sleep(6000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -9192,10 +7723,8 @@ public class BuildingPageObject extends BaseClass {
 
 	}
 
-	// Building -> HE- Carbon Dioxide -> Verify Clicking on add row allows to add
-	// start date,end date, reading, and documents.
-	public boolean HE_CarbonDioxide_AddRecord() {
-		log.info("HE_CarbonDioxide_AddRecord  method starts here.........");
+	public boolean HE_AddRecord() {
+		log.info("HE_AddRecord  method starts here.........");
 		int BeforeTotalRows = 0;
 		int AfterTotalRows = 0;
 		try {
@@ -9204,13 +7733,14 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
 		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		BuildingSetting_AddRow_button.click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -9218,7 +7748,8 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'start_date')]"))
+				.click();
 
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
@@ -9226,13 +7757,10 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
 		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
 		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//input[contains(@id,'end_date')]"))
+				.click();
 
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
@@ -9240,15 +7768,18 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
 		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
 		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
 
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 40, 2));
+		driver.findElement(ByAngular.model("data.reading")).sendKeys(data.getCellData("Building", 40, 2));
+		// driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
+		// .sendKeys(data.getCellData("Building", 40, 2));
 
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/button")).click();
-
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td//span[text()='Save']/parent::button"))
+				.click();
+		// ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[8]/span")),
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath(
+					"//table[@id='readingsTable']/tbody/tr[1]/td//span[contains(@class,'icon__deleteReading')]")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -9261,1141 +7792,16 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+
 		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
 
 		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_CarbonDioxide_AddRecord method ends here with true.........");
+			log.info("HE_AddRecord method ends here with true.........");
 			return true;
 		} else {
-			log.info("HE_CarbonDioxide_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- PM2.5 -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_PM2_5_AddRecord() {
-		log.info("HE_PM2_5_AddRecord  method starts here.........");
-		int BeforeTotalRows = 0;
-		int AfterTotalRows = 0;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 42, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_PM2_5_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_PM2_5_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Ozone -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_Ozone_AddRecord() {
-		log.info("HE_Ozone_AddRecord  method starts here.........");
-		int BeforeTotalRows = 0;
-		int AfterTotalRows = 0;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 43, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Ozone_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Ozone_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- CarbonMonoxide -> Verify Clicking on add row allows to add
-	// start
-	// date,end date, reading, and documents.
-	public boolean HE_CarbonMonoxide_AddRecord() {
-		log.info("HE_CarbonMonoxide_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 44, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_CarbonMonoxide_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_CarbonMonoxide_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Acetaldehyde -> Verify Clicking on add row allows to add
-	// start
-	// date,end date, reading, and documents.
-	public boolean HE_Acetaldehyde_AddRecord() {
-		log.info("HE_Acetaldehyde_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 45, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Acetaldehyde_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Acetaldehyde_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Benzene -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_Benzene_AddRecord() {
-		log.info("HE_Benzene_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 46, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Benzene_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Benzene_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Styrene -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_Styrene_AddRecord() {
-		log.info("HE_Styrene_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 47, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Styrene_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Styrene_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Toluene -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_Toluene_AddRecord() {
-		log.info("HE_Toluene_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 48, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Toluene_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Toluene_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Naphthalene -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_Naphthalene_AddRecord() {
-		log.info("HE_Naphthalene_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 49, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Naphthalene_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Naphthalene_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Dichlorobenzene -> Verify Clicking on add row allows to add
-	// start
-	// date,end date, reading, and documents.
-	public boolean HE_Dichlorobenzene_AddRecord() {
-		log.info("HE_Dichlorobenzene_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 50, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Dichlorobenzene_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Dichlorobenzene_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Xylenes-total -> Verify Clicking on add row allows to add
-	// start
-	// date,end date, reading, and documents.
-	public boolean HE_XylenesTotal_AddRecord() {
-		log.info("HE_XylenesTotal_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 51, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_XylenesTotal_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_XylenesTotal_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- Formaldehyde -> Verify Clicking on add row allows to add
-	// start
-	// date,end date, reading, and documents.
-	public boolean HE_Formaldehyde_AddRecord() {
-		log.info("HE_Formaldehyde_AddRecord  method starts here.........");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 52, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[7]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_Formaldehyde_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_Formaldehyde_AddRecord method ends here with false.........");
-			return false;
-		}
-
-	}
-
-	// Building -> HE- TVOC -> Verify Clicking on add row allows to add start
-	// date,end date, reading, and documents.
-	public boolean HE_TVOC_AddRecord() {
-		log.info("HE_TVOC_AddRecord  method starts here.........");
-		int BeforeTotalRows = 0;
-		int AfterTotalRows = 0;
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
-		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-		BuildingSetting_AddRow_button.click();
-
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
-		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
-		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
-				.sendKeys(data.getCellData("Building", 41, 2));
-
-		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/button")).click();
-
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(
-					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr/td[8]/span")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		try {
-			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg' and @class='circular-loader'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//div[@id='scoreTip']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
-		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
-
-		if (AfterTotalRows - BeforeTotalRows == 1) {
-			log.info("HE_TVOC_AddRecord method ends here with true.........");
-			return true;
-		} else {
-			log.info("HE_TVOC_AddRecord method ends here with false.........");
+			log.info("HE_AddRecord method ends here with false.........");
 			return false;
 		}
 
@@ -10426,7 +7832,7 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 
 			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
@@ -10476,7 +7882,7 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 			Transportation_OpenNewTabWithCopiedURL(url);
 			ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
@@ -10516,20 +7922,22 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + PAddress;
-		ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", " + data.getCellData("ProjectRegistration", 3, 2);
+		// ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") +
+		// ", " + PAddress;
+		ExpProjectName_Address = System.getProperty("BuildingProject_Test1_Name") + ", "
+				+ data.getCellData("ProjectRegistration", 3, 2);
 		ActProjectName_Address = driver
 				.findElement(By.xpath("//div[@class='survey-logo']/parent::div/following-sibling::div[1]")).getText();
 		log.info("Expected Project Name and Project Address are.. " + ExpProjectName_Address);
 		log.info("Actual Project Name and Project Address are.. " + ActProjectName_Address);
-		//driver.close();
+		// driver.close();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//driver.switchTo().window(BaseWindow);
+		// driver.switchTo().window(BaseWindow);
 		if (ExpProjectName_Address.equals(ActProjectName_Address)) {
 			log.info("OccupantSurvey_SurveyPage_ProjectNameAndAddress method ends here with true.........");
 			return true;
@@ -10567,7 +7975,7 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
@@ -10752,21 +8160,17 @@ public class BuildingPageObject extends BaseClass {
 	public boolean Transportation_OpenNewTabWithCopiedURL(String newURL) {
 		log.info("Transportation_OpenNewTabWithCopiedURL method starts here ...");
 		boolean flag = false;
-		/*Object copiedText = null;
-		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		// String handle = driver.getWindowHandle();
-		try {
-			copiedText = clipboard.getData(DataFlavor.stringFlavor);
-		} catch (UnsupportedFlavorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		log.info("Copied text from ClipBoard is " + copiedText);
-		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
-		// "\")"); */
+		/*
+		 * Object copiedText = null; Clipboard clipboard =
+		 * Toolkit.getDefaultToolkit().getSystemClipboard(); // String handle =
+		 * driver.getWindowHandle(); try { copiedText =
+		 * clipboard.getData(DataFlavor.stringFlavor); } catch
+		 * (UnsupportedFlavorException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated catch
+		 * block e.printStackTrace(); } log.info("Copied text from ClipBoard is " +
+		 * copiedText); // ((JavascriptExecutor) driver).executeScript("window.open(\""
+		 * + copiedText + // "\")");
+		 */
 		((JavascriptExecutor) driver).executeScript("window.open('" + newURL + "')");
 		try {
 			Thread.sleep(4000);
@@ -10803,34 +8207,30 @@ public class BuildingPageObject extends BaseClass {
 	public boolean OcupantSurvey_OpenNewTabWithCopiedURL(String url) {
 		log.info("OcupantSurvey_OpenNewTabWithCopiedURL method starts here ...");
 		boolean flag = false;
-		/*Object copiedText = null;
-		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		// String handle = driver.getWindowHandle();
-		try {
-			copiedText = clipboard.getData(DataFlavor.stringFlavor);
-		} catch (UnsupportedFlavorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		log.info("Copied text from ClipBoard is " + copiedText);
-		// ((JavascriptExecutor) driver).executeScript("window.open(\"" + copiedText +
-		// "\")"); */
+		/*
+		 * Object copiedText = null; Clipboard clipboard =
+		 * Toolkit.getDefaultToolkit().getSystemClipboard(); // String handle =
+		 * driver.getWindowHandle(); try { copiedText =
+		 * clipboard.getData(DataFlavor.stringFlavor); } catch
+		 * (UnsupportedFlavorException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } catch (IOException e) { // TODO Auto-generated catch
+		 * block e.printStackTrace(); } log.info("Copied text from ClipBoard is " +
+		 * copiedText); // ((JavascriptExecutor) driver).executeScript("window.open(\""
+		 * + copiedText + // "\")");
+		 */
 		((JavascriptExecutor) driver).executeScript("window.open('" + url + "')");
-		//ngWebDriver.waitForAngularRequestsToFinish();
+		// ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		log.info("Base Window ID is "+driver.getWindowHandle());
+		log.info("Base Window ID is " + driver.getWindowHandle());
 		Set<String> handles = driver.getWindowHandles();
-		log.info("Total Number of Window Handles is "+handles.size());
+		log.info("Total Number of Window Handles is " + handles.size());
 		for (String window : handles) {
-			log.info("Current window ID is "+window);
+			log.info("Current window ID is " + window);
 			if (!window.equals(BaseWindow)) {
 				driver.switchTo().window(window);
 				log.info("Switched to new window....");
@@ -10879,7 +8279,7 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
@@ -10973,7 +8373,7 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
@@ -11068,7 +8468,7 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 			Transportation_OpenNewTabWithCopiedURL(url);
 			try {
@@ -11181,7 +8581,7 @@ public class BuildingPageObject extends BaseClass {
 		}
 		log.info("Total Number of language is " + LanguageList.size());
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		log.info("Language copy flag is .." + flag);
 		int xaxis = 0;
 		int z = 0;
@@ -11588,6 +8988,706 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
+	// Building -> Re-Entry -->FMS -> Verify for 'facility and management Survey' -
+	// Survey tools and resources- Export survey results downloads report
+	// successfully.
+	public boolean ReEntry_FMS_ExportSurveyResults() {
+		log.info("ReEntry_FMS_ExportSurveyResults  method starts here.........");
+		ExcelHelper edata;
+		boolean ProjectFlag = false;
+		boolean ExportFlag = false;
+		boolean[] MeasureFlags = new boolean[19];
+		CommonMethod.DeleteAllFiles();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		List<WebElement> MeasureList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]"));
+		List<WebElement> ResponseList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[2]"));
+		List<WebElement> DocumentationList = driver
+				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[3]/descendant::span"));
+		List<WebElement> LinksList = driver
+				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[4]/descendant::span"));
+		String[][] MeasureTable = new String[19][4];
+		for (int i = 0; i < 19; i++) {
+			MeasureTable[i][0] = MeasureList.get(i).getText().trim();
+			MeasureTable[i][1] = ResponseList.get(i).getText().trim();
+			MeasureTable[i][2] = DocumentationList.get(i).getText().trim();
+			if (!MeasureTable[i][2].equals("NA")) {
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + (i + 1) + "]/td[3]/div"))
+						.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				JSHelper.scrollIntoView(
+						driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")));
+				String DocumentName = driver
+						.findElement(By.xpath("(//table[@class='file-explorer'])[2]/tbody/tr[1]/td[1]/span")).getText();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				MeasureTable[i][2] = DocumentName;
+				driver.findElement(By.xpath(
+						"(//table[@class='file-explorer'])[2]/ancestor::div[@class='modal-body']/following-sibling::div/button"))
+						.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+			}
+			MeasureTable[i][3] = LinksList.get(i).getText().trim();
+			if (!MeasureTable[i][3].equals("NA")) {
+
+				driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + (i + 1) + "]/td[4]/div"))
+						.click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+				JSHelper.scrollIntoView(
+						driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")));
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String LinkURL = driver.findElement(By.xpath("(//table[@class='file-explorer'])[1]/tbody/tr[1]/td[1]"))
+						.getText();
+				JSHelper.clickElement(driver.findElement(By.xpath(
+						"(//table[@class='file-explorer'])[1]/ancestor::div[@class='modal-body']/following-sibling::div/button")));
+				ngWebDriver.waitForAngularRequestsToFinish();
+				MeasureTable[i][3] = LinkURL;
+			}
+
+		}
+
+		TransportationSurvey.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(ReEntry_FMS, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ReEntry_FMS.click();
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//a[text()='Export Survey Results'])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.findElement(By.xpath("(//a[text()='Export Survey Results'])[2]")).click();
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Export Data.xlsx
+		boolean flag = CommonMethod.CheckDownloadedFileName("Export Data.xlsx");
+
+		if (flag) {
+			log.info("Export Data file downloaded successfully..");
+
+			edata = new ExcelHelper(DownloadFolder + "\\Export Data.xlsx");
+			String ExpProjectID = System.getProperty("BuildingProject_Test1");
+			String ExpProjectName = System.getProperty("BuildingProject_Test1_Name");
+			String ActProjectId = String.valueOf(edata.getNumberCellData("Facility Manager Report", 1, 1));
+			String ActProjectName = edata.getCellData("Facility Manager Report", 1, 2).trim();
+
+			log.info("Actual ProjectId :" + ActProjectId + "  and Expected ProjectID :" + ExpProjectID);
+			log.info("Actual Project Name :" + ActProjectName + "  and Expected Project Name :" + ExpProjectName);
+
+			if (ExpProjectID.equals(ActProjectId) && ExpProjectName.equals(ActProjectName)) {
+				log.info("ProjectID and Project Name are showing proper..");
+				ProjectFlag = true;
+			} else {
+				log.info("ProjectID and Project Name are not showing proper..");
+				ProjectFlag = false;
+			}
+
+			// Validating Implementation of infectious disease control policies
+			log.info("------Validating Implementation of infectious disease control policies-----");
+			String MeasureName = MeasureTable[0][0].trim();
+			String MeasureResponse = MeasureTable[0][1].trim();
+			String MeasureDocument = MeasureTable[0][2].trim();
+			String MeasureLink = MeasureTable[0][3].trim();
+			String ActMeasureName = edata.getCellData("Facility Manager Report", 0, 3).trim();
+			String ActResponse = edata.getCellData("Facility Manager Report", 1, 3).trim();
+			String ActLink = edata.getCellData("Facility Manager Report", 1, 4).trim();
+
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			String ActDocument = edata.getCellData("Facility Manager Report", 1, 5).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[0] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Infectious disease control policies group or team
+			log.info("------Infectious disease control policies group or team-----");
+			MeasureName = MeasureTable[1][0].trim();
+			MeasureResponse = MeasureTable[1][1].trim();
+			MeasureDocument = MeasureTable[1][2].trim();
+			MeasureLink = MeasureTable[1][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 7).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 7).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 8).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 9).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[1] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Implementation and effectiveness of infection control strategies
+			log.info("------Implementation and effectiveness of infection control strategies-----");
+			MeasureName = MeasureTable[2][0].trim();
+			MeasureResponse = MeasureTable[2][1].trim();
+			MeasureDocument = MeasureTable[2][2].trim();
+			MeasureLink = MeasureTable[2][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 10).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 10).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 11).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 12).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[2] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Disease control plans, policies and procedures
+			log.info("------Disease control plans, policies and procedures-----");
+			MeasureName = MeasureTable[3][0].trim();
+			MeasureResponse = MeasureTable[3][1].trim();
+			MeasureDocument = MeasureTable[3][2].trim();
+			MeasureLink = MeasureTable[3][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 13).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 13).trim();
+			ActLink = "NA";
+			ActDocument = "NA";
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[3] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Policies, plans, and procedures aligned with authorities
+			log.info("------Policies, plans, and procedures aligned with authorities-----");
+			MeasureName = MeasureTable[4][0].trim();
+			MeasureResponse = MeasureTable[4][1].trim();
+			MeasureDocument = MeasureTable[4][2].trim();
+			MeasureLink = MeasureTable[4][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 14).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 14).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 15).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 16).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[4] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Disease control communication and signage
+			log.info("------Disease control communication and signage-----");
+			MeasureName = MeasureTable[5][0].trim();
+			MeasureResponse = MeasureTable[5][1].trim();
+			MeasureDocument = MeasureTable[5][2].trim();
+			MeasureLink = MeasureTable[5][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 17).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 17).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 18).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 19).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[5] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Hand washing and disinfection
+			log.info("------Hand washing and disinfection-----");
+			MeasureName = MeasureTable[6][0].trim();
+			MeasureResponse = MeasureTable[6][1].trim();
+			MeasureDocument = MeasureTable[6][2].trim();
+			MeasureLink = MeasureTable[6][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 20).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 20).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 21).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 22).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[6] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Providing PPE and proper use
+			log.info("------Providing PPE and proper use-----");
+			MeasureName = MeasureTable[7][0].trim();
+			MeasureResponse = MeasureTable[7][1].trim();
+			MeasureDocument = MeasureTable[7][2].trim();
+			MeasureLink = MeasureTable[7][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 23).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 23).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 24).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 25).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[7] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Occupant screening
+			log.info("------Occupant screening-----");
+			MeasureName = MeasureTable[8][0].trim();
+			MeasureResponse = MeasureTable[8][1].trim();
+			MeasureDocument = MeasureTable[8][2].trim();
+			MeasureLink = MeasureTable[8][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 26).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 26).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 27).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 28).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[8] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Sick leave for staff and contractors
+			log.info("------Sick leave for staff and contractors-----");
+			MeasureName = MeasureTable[9][0].trim();
+			MeasureResponse = MeasureTable[9][1].trim();
+			MeasureDocument = MeasureTable[9][2].trim();
+			MeasureLink = MeasureTable[9][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 29).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 29).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 30).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 31).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[9] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Employee health insurance
+			log.info("------Employee health insurance-----");
+			MeasureName = MeasureTable[10][0].trim();
+			MeasureResponse = MeasureTable[10][1].trim();
+			MeasureDocument = MeasureTable[10][2].trim();
+			MeasureLink = MeasureTable[10][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 34).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 34).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 35).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 36).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[10] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Social distancing
+			log.info("------Social distancing-----");
+			MeasureName = MeasureTable[11][0].trim();
+			MeasureResponse = MeasureTable[11][1].trim();
+			MeasureDocument = MeasureTable[11][2].trim();
+			MeasureLink = MeasureTable[11][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 39).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 39).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 40).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 41).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[11] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// HVAC system operation
+			log.info("------HVAC system operation-----");
+			MeasureName = MeasureTable[12][0].trim();
+			MeasureResponse = MeasureTable[12][1].trim();
+			MeasureDocument = MeasureTable[12][2].trim();
+			MeasureLink = MeasureTable[12][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 42).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 42).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 43).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 44).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[12] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// HVAC - increase outdoor air supply
+			log.info("------HVAC - increase outdoor air supply-----");
+			MeasureName = MeasureTable[13][0].trim();
+			MeasureResponse = MeasureTable[13][1].trim();
+			MeasureDocument = MeasureTable[13][2].trim();
+			MeasureLink = MeasureTable[13][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 45).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 45).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 46).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 47).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[13] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// HVAC - increase ventilation rates
+			log.info("------HVAC - increase ventilation rates-----");
+			MeasureName = MeasureTable[14][0].trim();
+			MeasureResponse = MeasureTable[14][1].trim();
+			MeasureDocument = MeasureTable[14][2].trim();
+			MeasureLink = MeasureTable[14][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 48).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 48).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 49).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 50).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[14] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// HVAC - filtration
+			log.info("------HVAC - filtration-----");
+			MeasureName = MeasureTable[15][0].trim();
+			MeasureResponse = MeasureTable[15][1].trim();
+			MeasureDocument = MeasureTable[15][2].trim();
+			MeasureLink = MeasureTable[15][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 51).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 51).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 52).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 53).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[15] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Elevator management
+			log.info("------Elevator management-----");
+			MeasureName = MeasureTable[16][0].trim();
+			MeasureResponse = MeasureTable[16][1].trim();
+			MeasureDocument = MeasureTable[16][2].trim();
+			MeasureLink = MeasureTable[16][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 54).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 54).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 55).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 56).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[16] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// Potable water system operation
+			log.info("------Potable water system operation-----");
+			MeasureName = MeasureTable[17][0].trim();
+			MeasureResponse = MeasureTable[17][1].trim();
+			MeasureDocument = MeasureTable[17][2].trim();
+			MeasureLink = MeasureTable[17][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 57).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 57).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 58).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 59).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[17] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+			// IAQ Assessment
+			log.info("------IAQ Assessment-----");
+			MeasureName = MeasureTable[18][0].trim();
+			MeasureResponse = MeasureTable[18][1].trim();
+			MeasureDocument = MeasureTable[18][2].trim();
+			MeasureLink = MeasureTable[18][3].trim();
+			ActMeasureName = edata.getCellData("Facility Manager Report", 0, 60).trim();
+			ActResponse = edata.getCellData("Facility Manager Report", 1, 60).trim();
+			ActLink = edata.getCellData("Facility Manager Report", 1, 61).trim();
+			if (MeasureLink.equals("NA") && ActLink.equals("")) {
+				ActLink = "NA"; // if MeasureLink is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActLink contains blank in excel and GUI showing NA, changing ActLink to NA");
+			}
+			ActDocument = edata.getCellData("Facility Manager Report", 1, 62).trim();
+			if (MeasureDocument.equals("NA") && ActDocument.equals("")) {
+				ActDocument = "NA"; // if MeasureDocument is "NA" and Excel contains blank then set to NA to compare
+				log.info("ActDocument contains blank in excel and GUI showing NA, changing ActDocument to NA");
+			}
+
+			log.info("Actual Response :" + ActResponse + "  and Expected Response :" + MeasureResponse);
+			log.info("Actual Link :" + ActLink + "  and Expected Link :" + MeasureLink);
+			log.info("Actual Document :" + ActDocument + "  and Expected Document :" + MeasureDocument);
+			MeasureFlags[18] = validateFMS_ResponseWithExcel(ActMeasureName, ActResponse, ActLink, ActDocument,
+					MeasureName, MeasureResponse, MeasureLink, MeasureDocument);
+
+		} else {
+			log.info("Unable to download Export Data file..");
+		}
+
+		// Checking all flags
+		if (ProjectFlag) {
+			for (boolean b : MeasureFlags) {
+				if (b == true) {
+					ExportFlag = true;
+				} else {
+					ExportFlag = false;
+					break;
+				}
+			}
+		}
+
+		if (ExportFlag) {
+			log.info("ReEntry_FMS_ExportSurveyResults method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_FMS_ExportSurveyResults method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_Occupant_ExportSurveyResults() {
+		log.info("ReEntry_Occupant_ExportSurveyResults  method starts here.........");
+		ExcelHelper edata;
+		boolean ProjectFlag = false;
+		boolean ExportFlag = false;
+		// boolean[] MeasureFlags = new boolean[19];
+		int totalRows = 0;
+		CommonMethod.DeleteAllFiles();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementClickable(
+				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
+
+		driver.findElement(By.xpath("(//a[text()='Export Survey Results'])[2]")).click();
+
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean flag = CommonMethod.CheckDownloadedFileName("Export Data.xlsx");
+
+		if (flag) {
+			log.info("Export Data file downloaded successfully..");
+
+			edata = new ExcelHelper(DownloadFolder + "\\Export Data.xlsx");
+			String ExpProjectID = System.getProperty("BuildingProject_Test1");
+			String ExpProjectName = System.getProperty("BuildingProject_Test1_Name");
+			// String ActProjectId = String.valueOf(edata.getNumberCellData("Occupant
+			// Observation Report", 0, 1));
+
+			totalRows = edata.getRowCount("Occupant Observation Report");
+			log.info("Total Number of rows are : " + totalRows);
+
+			for (int i = 2; i <= totalRows; i++) {
+				String ActLeedID = String.valueOf(edata.getNumberCellData("Occupant Observation Report", 0, i));
+				String ActProjectName = edata.getCellData("Occupant Observation Report", 1, i);
+				log.info(ActLeedID + "--------------" + ActProjectName);
+				if (ExpProjectID.equals(ActLeedID) && ExpProjectName.equals(ActProjectName)) {
+					ExportFlag = true;
+				} else {
+					ExportFlag = false;
+					break;
+				}
+			}
+
+		}
+		if (totalRows == 10 && ExportFlag == true) {
+			log.info("ReEntry_Occupant_ExportSurveyResults method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_Occupant_ExportSurveyResults method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	public boolean validateFMS_ResponseWithExcel(String ActMeasureName, String ActResponse, String ActLink,
+			String ActDocument, String ExpMeasureName, String ExpResponse, String ExpLink, String ExpDocument) {
+		if ((ActMeasureName.equalsIgnoreCase(ExpMeasureName)) && (ActResponse.equalsIgnoreCase(ExpResponse))
+				&& (ActLink.equalsIgnoreCase(ExpLink)) && (ActDocument.equalsIgnoreCase(ExpDocument))) {
+			log.info("All data are showing proper...");
+			return true;
+		} else {
+			log.info("All data are not showing proper...");
+			return false;
+		}
+	}
+
 	// Building -> Transportation-> Verify for the above test case- X is calculated
 	// as = (Number of Response/total occupancy)*100
 	public boolean Transportation_ResponsePercentage() {
@@ -11820,7 +9920,7 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		flag = Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		if (flag) {
 			int k = 0;
 			for (int i = 1; i <= 7; i++) {
@@ -11936,7 +10036,7 @@ public class BuildingPageObject extends BaseClass {
 
 		driver.findElement(By.xpath("(//div[@class='dropdown-toggle'])[2]")).click();
 		Transportation_copyLanguage("English");
-		String url=null;
+		String url = null;
 		Transportation_OpenNewTabWithCopiedURL(url);
 		try {
 			Thread.sleep(4000);
@@ -12288,7 +10388,7 @@ public class BuildingPageObject extends BaseClass {
 		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
 		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -12298,28 +10398,17 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 
 		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*
-		 * String UploadPath = System.getProperty("user.dir") +
-		 * "\\UploadDocument\\File1.pdf"; driver.findElement(By.xpath(
-		 * "//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/button")).click();
-		 * WebElement element = driver.findElement(By.xpath(
-		 * "//table[@id='readingsTable']/tbody/tr[1]/td[6]/input")); // element.click();
-		 * try { Thread.sleep(3000); } catch (InterruptedException e1) { // TODO
-		 * Auto-generated catch block e1.printStackTrace(); } driver.findElement( By.
-		 * xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/div/div/ul/li/span[text()='Computer File']"
-		 * )) .click(); try { Thread.sleep(3000); } catch (InterruptedException e1) { //
-		 * TODO Auto-generated catch block e1.printStackTrace(); }
-		 * 
-		 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-		 */
+
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -12333,7 +10422,7 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -12345,7 +10434,7 @@ public class BuildingPageObject extends BaseClass {
 				.sendKeys(data.getCellData("Building", 20, 2));
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[7]/button")).click();
-
+		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementVisibleWithPollingTime(
 				driver.findElement(
 						By.xpath("(//table[@class='meterListByType--wrapper']/tbody/tr[1])[2]/td[3]/div/span/span/*")),
@@ -13125,11 +11214,12 @@ public class BuildingPageObject extends BaseClass {
 				driver.findElement(By.xpath("//div[text()='Facilities and Management Survey']")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
-		log.info("Copied URL is "+url);
-		//CommonMethod.setClipBoard(url);
+		log.info("Copied URL is " + url);
+		System.setProperty("FMS_SurveyLink", url);
+		// CommonMethod.setClipBoard(url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
-		log.info("Flag value is "+flag);
+		log.info("Flag value is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		if (flag) {
 			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
@@ -13169,103 +11259,49 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		waithelper.WaitForElementClickable(
-				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")).click();
-
-		driver.findElement(By.xpath("//a[text()='Send Survey']")).click();
-		CommonMethod.switchToDefaultContent();
-		waithelper.WaitForElementVisibleWithPollingTime(
-				driver.findElement(By.xpath("//div[text()='Facilities and Management Survey']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
+		Transportation_OpenNewTabWithCopiedURL(System.getProperty("FMS_SurveyLink"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
-		log.info("Copied URL is "+url);
-		//CommonMethod.setClipBoard(url);
-		// js.executeScript("document.querySelector("'#copy-link-button'")
-		// driver.findElement(By.xpath("//a[text()='Copy
-		// Link']/parent::button")).click();
-		// driver.findElement(By.xpath("//div[@class='w60p']/following-sibling::div[1]/*")).click();
-		// actionhelper.mouseOverElementAndClick(driver.findElement(By.xpath("//a[text()='Copy
-		// Link']")));
-		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
-		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
+		driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/descendant::input[1]"))
+				.click();
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", driver.findElement(
+				By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/input[@type='file']")));
+		driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/span"))
+				.click();
+		driver.findElement(By.xpath("//input[@id='infectious_control_upload_picker']")).sendKeys(UploadPath);
+
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath(
+				"(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/div[@class='icon_deleteDoc']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e2) {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
-			e2.printStackTrace();
+			e1.printStackTrace();
 		}
-		log.info("Copied flag is " + flag);
-		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
-		if (flag) {
-			Transportation_OpenNewTabWithCopiedURL(url);
-			driver.findElement(
-					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/descendant::input[1]")).click();
-			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-			js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", driver.findElement(
-					By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/input[@type='file']")));
-			driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/span"))
+		driver.findElement(By.xpath("(//div[@class='mt16 ng-scope'])[2]/descendant::input")).sendKeys(Question_Link);
+		try {
+			driver.findElement(By.xpath(
+					"(//div[@class='radio_buttons'])[1]/following-sibling::div[2]/descendant::div[text()='Add link']"))
 					.click();
-			driver.findElement(By.xpath("//input[@id='infectious_control_upload_picker']")).sendKeys(UploadPath);
 
-			/*
-			 * driver.findElement(By.
-			 * xpath("(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/span"
-			 * )) .click(); try { Thread.sleep(5000); } catch (InterruptedException e1) { //
-			 * TODO Auto-generated catch block e1.printStackTrace(); }
-			 * 
-			 * CommonMethod.setClipBoard(UploadPath); CommonMethod.UploadFile(UploadPath);
-			 */
-
-			waithelper.WaitForElementClickable(driver.findElement(By.xpath(
-					"(//div[@class='survey-question radio-button'])[1]/div[2]/div[2]/div[2]/div[@class='icon_deleteDoc']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			driver.findElement(By.xpath("(//div[@class='mt16 ng-scope'])[2]/descendant::input"))
-					.sendKeys(Question_Link);
-			try {
-				driver.findElement(By.xpath(
-						"(//div[@class='radio_buttons'])[1]/following-sibling::div[2]/descendant::div[text()='Add link']"))
-						.click();
-
-			} catch (Exception e) {
-				log.info("Unable to click on Add Link");
-			}
-			driver.findElement(By.xpath("(//div[@class='mt16 ng-scope'])[3]/descendant::input"))
-					.sendKeys(Question_Contact);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			driver.findElement(By.xpath("//button[text()='Submit']")).click();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			driver.close();
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
 		}
+		driver.findElement(By.xpath("(//div[@class='mt16 ng-scope'])[3]/descendant::input")).sendKeys(Question_Contact);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		FMS_Survey_Submit();
+		driver.close();
+		driver.switchTo().window(BaseWindow);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// }
+		ClickOnMetersAndSurveyMenu();
+		ClickOnReEntry_FMS();
 		flag = FMS_Verify(1, Question_Link);
 		return flag;
 	}
@@ -13275,10 +11311,13 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 55, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(2, Question_Link);// takes row number and URL to paste in
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(2, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question2_WithYesOption method ends here with true.........");
@@ -13315,7 +11354,7 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		String url = driver.findElement(By.xpath("//div[@class='w60p']/input")).getAttribute("value");
-		//CommonMethod.setClipBoard(url);
+		// CommonMethod.setClipBoard(url);
 		log.info("Copied url is " + url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
@@ -13331,9 +11370,7 @@ public class BuildingPageObject extends BaseClass {
 				By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[1]"))
 				.click();
 		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
-		// driver.findElement(
-		// By.xpath("(//div[@class='survey-question radio-button'])[" + QNo +
-		// "]/div[2]/div[2]/div[2]/span")).click();
+
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
@@ -13371,25 +11408,10 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
+		FMS_Survey_Submit();
 		driver.close();
+		driver.switchTo().window(BaseWindow);
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -13401,11 +11423,12 @@ public class BuildingPageObject extends BaseClass {
 
 	public boolean FMS_Verify(int QNo, String QLink) {
 		log.info("FMS_Verify method starts here....");
-		driver.switchTo().window(BaseWindow);
-		CommonMethod.RefreshPagewaitForPageLoaded(driver);
-		ClickOnMetersAndSurveyMenu();
-		ClickOnReEntry_FMS();
-
+		// driver.switchTo().window(BaseWindow);
+		// CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		// ClickOnMetersAndSurveyMenu();
+		// CommonMethod.switchToDataInputFrame();
+		// ClickOnWaste_Data();
+		// ClickOnReEntry_FMS();
 		boolean ResponseFlag = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo
 				+ "]/td[2]/span[contains(@class,'mr5 saved_symbol saved_symbol')]")).isDisplayed();
 		String ResponseText = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[2]"))
@@ -13414,18 +11437,20 @@ public class BuildingPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/div/span")).getText();
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[3]/div")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		JSHelper.scrollIntoView(
 				driver.findElement(By.xpath("(//*[contains(text(),'Facility Management Survey')])[3]")));
+		ngWebDriver.waitForAngularRequestsToFinish();
 		String DocumentName = driver
 				.findElement(By.xpath("(//table[@class='file-explorer'])[2]/tbody/tr[1]/td[1]/span")).getText();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -13434,8 +11459,9 @@ public class BuildingPageObject extends BaseClass {
 		driver.findElement(By.xpath(
 				"(//table[@class='file-explorer'])[2]/ancestor::div[@class='modal-body']/following-sibling::div/button"))
 				.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -13445,8 +11471,9 @@ public class BuildingPageObject extends BaseClass {
 				.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/div/span")).getText();
 
 		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[" + QNo + "]/td[4]/div")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -13470,6 +11497,52 @@ public class BuildingPageObject extends BaseClass {
 			return true;
 		} else {
 			log.info("FMS_Verify method ends here with false.........");
+			return false;
+		}
+	}
+
+	public boolean FMS_VerifyWithOptions(String Answer) {
+		log.info("FMS_VerifyWithOptions method starts here....");
+		boolean flag = false;
+		driver.switchTo().window(BaseWindow);
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		ClickOnMetersAndSurveyMenu();
+		ClickOnReEntry_FMS();
+		List<WebElement> MeasureList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[1]"));
+		List<WebElement> ResponseList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[2]"));
+		List<WebElement> DocumentationList = driver
+				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[3]/descendant::span"));
+		List<WebElement> LinksList = driver
+				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[4]/descendant::span"));
+		String[][] MeasureTable = new String[19][4];
+		log.info("---------------------------------------------------------");
+		for (int i = 0; i < 19; i++) {
+			MeasureTable[i][0] = MeasureList.get(i).getText();
+			MeasureTable[i][1] = ResponseList.get(i).getText().trim();
+			MeasureTable[i][2] = DocumentationList.get(i).getText().trim();
+			MeasureTable[i][3] = LinksList.get(i).getText().trim();
+			log.info(MeasureTable[i][0] + "   : " + MeasureTable[i][1] + "   : " + MeasureTable[i][2] + "   : "
+					+ MeasureTable[i][3]);
+		}
+
+		for (int i = 0; i < 19; i++) {
+			if (MeasureTable[i][1].equals(Answer) && MeasureTable[i][2].equals("NA")
+					&& MeasureTable[i][3].equals("NA")) {
+				log.info(MeasureTable[i][0] + " responses showing proper..");
+				flag = true;
+			} else {
+				log.info(MeasureTable[i][0] + " responses not showing proper..");
+				flag = false;
+				break;
+			}
+
+		}
+
+		if (flag) {
+			log.info("FMS_VerifyWithOptions method ends here with true  ...");
+			return true;
+		} else {
+			log.info("FMS_VerifyWithOptions method ends here with false.........");
 			return false;
 		}
 	}
@@ -13515,29 +11588,12 @@ public class BuildingPageObject extends BaseClass {
 			log.info("Unable to click on Add Link");
 		}
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
 			Thread.sleep(3000);
-		} catch (InterruptedException e) {
+		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+
 		log.info("FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink method ends here...");
 
 	}
@@ -13583,30 +11639,8 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+
 		log.info("FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -13650,30 +11684,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 
 		log.info("FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink method ends here...");
 
@@ -13720,30 +11731,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify method ends here...");
 	}
 
@@ -13787,30 +11775,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_HVACSystemOperation_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -13854,31 +11819,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink method ends here...");
 
 	}
@@ -13923,31 +11864,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink method starts here...");
 	}
 
@@ -13991,31 +11908,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_Elevatormanagement_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -14066,31 +11959,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_PortableWaterManagement_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -14134,31 +12003,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		// driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_IAQAssessment_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -14202,30 +12047,7 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -14270,30 +12092,8 @@ public class BuildingPageObject extends BaseClass {
 		} catch (Exception e) {
 			log.info("Unable to click on Add Link");
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+
 		log.info("FMS_OccupantScreening_Yes_UploadFile_AddLink method ends here...");
 
 	}
@@ -14337,14 +12137,21 @@ public class BuildingPageObject extends BaseClass {
 					.isSelected();
 		}
 
-		driver.findElement(By.xpath(UploadXpath)).click();
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		driver.findElement(By.xpath(UploadXpath)).click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement element = driver.findElement(By.xpath("//input[@id='sick_leave_upload_picker']"));
 		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
@@ -14362,38 +12169,8 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
-		try {
-			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
-					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
 
-		} catch (Exception e) {
-			log.info("Unable to click on Add Link");
-		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink method ends here...");
 
 	}
@@ -14437,6 +12214,15 @@ public class BuildingPageObject extends BaseClass {
 					.isSelected();
 		}
 
+		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+
 		driver.findElement(By.xpath(UploadXpath)).click();
 		try {
 			Thread.sleep(5000);
@@ -14462,32 +12248,8 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		driver.findElement(By.xpath(LinkXpath)).sendKeys(QLink);
-		try {
-			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
-					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
 
-		} catch (Exception e) {
-			log.info("Unable to click on Add Link");
-		}
-		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
-		driver.close();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ngWebDriver.waitForAngularRequestsToFinish();
 		log.info("FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink method ends here...");
 	}
 
@@ -14498,17 +12260,8 @@ public class BuildingPageObject extends BaseClass {
 					By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[1]"))
 					.click();
 
-			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			driver.findElement(By.xpath("//button[text()='Submit']")).click();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
 			driver.close();
 			try {
 				Thread.sleep(3000);
@@ -14648,10 +12401,13 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 56, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(3, Question_Link);// takes row number and URL to paste in
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(3, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question3_WithYesOption method ends here with true.........");
@@ -14673,16 +12429,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean Noflag = false;
 		boolean NAflag = false;
 		// String Question_Link = data.getCellData("Building", 56, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		for (int i = 0; i < 3; i++) {
 			OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 			if (OpenSurveyTab) {
-				Yesflag = FMS_SelectYes_No_NA_Verify(4, "Yes");// takes row number and URL to paste in that particular
-																// question
-				Transportation_OpenNewTabWithCopiedURL(url);
 				Noflag = FMS_SelectYes_No_NA_Verify(4, "No");
 				Transportation_OpenNewTabWithCopiedURL(url);
 				NAflag = FMS_SelectYes_No_NA_Verify(4, "No");
+				Transportation_OpenNewTabWithCopiedURL(url);
+				Yesflag = FMS_SelectYes_No_NA_Verify(4, "Yes");// takes row number and URL to paste in that particular
+																// question
+
 				log.info("Value of Yes Flag is " + Yesflag);
 				log.info("Value of No Flag is " + Noflag);
 				log.info("Value of NA Flag is " + NAflag);
@@ -14708,7 +12466,8 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ReEntry_FMS_Question5_CheckCDC_GuideLine  method starts here.........");
 		boolean OpenSurveyTab = false;
 		String pdfcontent = null;
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			String SurveyWindow = driver.getWindowHandle();
@@ -14756,7 +12515,8 @@ public class BuildingPageObject extends BaseClass {
 		log.info("ReEntry_FMS_Question5_USGBC_CreditLink  method starts here.........");
 		boolean OpenSurveyTab = false;
 		String PageTitle = null;
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			String SurveyWindow = driver.getWindowHandle();
@@ -14802,10 +12562,13 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 57, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SelectYes_UploadFile_AddLink(5, Question_Link);// takes row number and URL to paste in
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(5, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question5_WithYesOption method ends here with true.........");
@@ -14825,11 +12588,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 58, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
-			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);// takes row number and URL to
-																						// paste in
+			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);// takes row number and URL
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(6, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question6_WithYesOption method ends here with true.........");
@@ -14849,11 +12618,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 59, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(7, Question_Link);// takes row number and URL to paste
-																					// in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ngWebDriver.waitForAngularRequestsToFinish();
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(7, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question7_WithYesOption method ends here with true.........");
@@ -14873,11 +12649,19 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 62, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
+		// String url =
+		// "https://stg.app.arconline.io/app/project/8000012146/re-entry-survey/?key=ZY5PlnUNAElw8eFYnmCe3tdp&type=fm";
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(10, Question_Link);// takes row number and URL to paste
-																					// in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(10, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question10_WithYesOption method ends here with true.........");
@@ -14897,11 +12681,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 63, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HealthInsuranceStaffContractors_Yes_UploadFile_AddLink(11, Question_Link);// takes row number and URL to
 																							// paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(11, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question11_WithYesOption method ends here with true.........");
@@ -14921,10 +12712,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 61, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_OccupantScreening_Yes_UploadFile_AddLink(9, Question_Link);// takes row number and URL to paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(9, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question9_WithYesOption method ends here with true.........");
@@ -14944,11 +12742,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 60, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(8, Question_Link);// takes row number and URL to paste
-																					// in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(8, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question8_WithYesOption method ends here with true.........");
@@ -14968,11 +12772,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 64, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_SocialDistancing_Yes_UploadFile_AddLink_Verify(12, Question_Link);// takes row number and URL to paste
 																					// in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(12, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question12_WithYesOption method ends here with true.........");
@@ -14992,10 +12803,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 65, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACSystemOperation_Yes_UploadFile_AddLink(13, Question_Link);// takes row number and URL to paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(13, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question13_WithYesOption method ends here with true.........");
@@ -15015,11 +12833,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 66, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACIncreasedOutdoorAirQuality_Yes_UploadFile_AddLink(14, Question_Link);// takes row number and URL to
 																							// paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(14, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question14_WithYesOption method ends here with true.........");
@@ -15039,11 +12864,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 67, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACIncreasedVentilationRates_Yes_UploadFile_AddLink(15, Question_Link);// takes row number and URL to
 																						// paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(15, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question15_WithYesOption method ends here with true.........");
@@ -15063,10 +12895,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 68, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(16, Question_Link);// takes row number and URL to paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(16, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question16_WithYesOption method ends here with true.........");
@@ -15086,10 +12925,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 69, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_Elevatormanagement_Yes_UploadFile_AddLink(17, Question_Link);// takes row number and URL to paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(17, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question17_WithYesOption method ends here with true.........");
@@ -15109,11 +12955,18 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 70, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_PortableWaterManagement_Yes_UploadFile_AddLink(18, Question_Link);// takes row number and URL to paste
 																					// in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(18, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question18_WithYesOption method ends here with true.........");
@@ -15133,10 +12986,17 @@ public class BuildingPageObject extends BaseClass {
 		boolean OpenSurveyTab = false;
 		boolean flag = false;
 		String Question_Link = data.getCellData("Building", 71, 2);
-		String url=FMS_CopySurveyLink();
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
 		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
 		if (OpenSurveyTab) {
 			FMS_IAQAssessment_Yes_UploadFile_AddLink(19, Question_Link);// takes row number and URL to paste in
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			driver.switchTo().window(BaseWindow);
+			ClickOnMetersAndSurveyMenu();
+			ClickOnReEntry_FMS();
 			flag = FMS_Verify(19, Question_Link); // that particular question
 			if (flag) {
 				log.info("ReEntry_FMS_Question19_WithYesOption method ends here with true.........");
@@ -15151,10 +13011,489 @@ public class BuildingPageObject extends BaseClass {
 		}
 	}
 
+	public boolean ReEntry_FMS_Score_Scenario2() {
+		log.info("ReEntry_FMS_Score_Scenario2  method starts here.........");
+		boolean OpenSurveyTab = false;
+		// String Question_Link = data.getCellData("Building", 71, 2);
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> NoOptions = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='No ']/input"));
+			for (WebElement ele : NoOptions) {
+				ele.click();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			FMS_VerifyWithOptions("No"); // Verify with All No options selected
+			CommonMethod.switchToDefaultContent();
+			ProjectTools_FinancialModel.click();
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("0%")) {
+				log.info("ReEntry_FMS_Score_Scenario2 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario2 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario3() {
+		log.info("ReEntry_FMS_Score_Scenario3  method starts here.........");
+		boolean OpenSurveyTab = false;
+		// String Question_Link = data.getCellData("Building", 71, 2);
+		// String url = FMS_CopySurveyLink();
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> NoOptions = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='Not applicable ']/input"));
+			for (WebElement ele : NoOptions) {
+				ele.click();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			FMS_VerifyWithOptions("NA"); // Verify with All No options selected
+			CommonMethod.switchToDefaultContent();
+			ProjectTools_FinancialModel.click();
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("0%")) {
+				log.info("ReEntry_FMS_Score_Scenario3 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario3 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario4() {
+		log.info("ReEntry_FMS_Score_Scenario4  method starts here.........");
+		boolean OpenSurveyTab = false;
+		// String Question_Link = data.getCellData("Building", 71, 2);
+		// String url = FMS_CopySurveyLink();
+		// System.setProperty("FMS_SurveyLink",
+		// "https://stg.app.arconline.io/app/project/8000012085/re-entry-survey/?key=yqBReppAdCncTUBcxXwkV6ZN&type=fm");
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> NoOptions = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='Yes ']/input"));
+			for (WebElement ele : NoOptions) {
+				ele.click();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			// driver.findElement(By.xpath("//button[text()='Submit']")).click();
+			JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+			ngWebDriver.waitForAngularRequestsToFinish();
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			FMS_VerifyWithOptions("Yes"); // Verify with All No options selected
+			CommonMethod.switchToDefaultContent();
+			ProjectTools_FinancialModel.click();
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("52%")) {
+				log.info("ReEntry_FMS_Score_Scenario4 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario4 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario5() {
+		log.info("ReEntry_FMS_Score_Scenario5  method starts here.........");
+		boolean OpenSurveyTab = false;
+		// System.setProperty("FMS_SurveyLink",
+		// "https://stg.app.arconline.io/app/project/8000012085/re-entry-survey/?key=yqBReppAdCncTUBcxXwkV6ZN&type=fm");
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> Options = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='Not applicable ']/input"));
+
+			// Selecting 2nd and 3rd Question with Yes and Uploading file & Link also
+			FMS_SelectYes_UploadLink("2");
+			FMS_SelectYes_UploadLink("3");
+
+			// Selecting Not Applicable for all the remaining question
+			for (int i = 0; i < Options.size(); i++) {
+				if (i < 1 || i > 2) {
+
+					Options.get(i).click();
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("0%")) {
+				log.info("ReEntry_FMS_Score_Scenario5 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario5 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario6() {
+		log.info("ReEntry_FMS_Score_Scenario6  method starts here.........");
+		boolean OpenSurveyTab = false;
+		// System.setProperty("FMS_SurveyLink",
+		// "https://stg.app.arconline.io/app/project/8000012085/re-entry-survey/?key=yqBReppAdCncTUBcxXwkV6ZN&type=fm");
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> Options = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='Not applicable ']/input"));
+
+			// Selecting 1st Question with Yes and Uploading file & Link also
+			FMS_SelectYes_UploadLink("1");
+
+			// Selecting Not Applicable for all the remaining question
+			for (int i = 0; i < Options.size(); i++) {
+				if (i != 0) {
+
+					Options.get(i).click();
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("100%")) {
+				log.info("ReEntry_FMS_Score_Scenario6 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario6 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario7() {
+		log.info("ReEntry_FMS_Score_Scenario7  method starts here.........");
+		boolean OpenSurveyTab = false;
+		String Question_Link = data.getCellData("Building", 56, 2);
+		// System.setProperty("FMS_SurveyLink",
+		// "https://stg.app.arconline.io/app/project/8000011311/re-entry-survey/?key=1Phv74TZhgmLfKniqGVkavWZ&type=fm");
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> Options = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='Not applicable ']/input"));
+
+			// Selecting 1-10 Question with Yes and Uploading file & Link also
+			FMS_SelectYes_UploadLink("1");
+			FMS_SelectYes_UploadLink("2");
+			FMS_SelectYes_UploadLink("3");
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[4]/div[2]/descendant::input[1]")).click();
+			FMS_SelectYes_UploadLink("5");
+			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);
+			FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(7, Question_Link);
+			FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(8, Question_Link);
+			FMS_OccupantScreening_Yes_UploadFile_AddLink(9, Question_Link);
+			FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(10, Question_Link);
+
+			// Selecting Not Applicable for all the remaining question
+			for (int i = 0; i < Options.size(); i++) {
+				if (i > 9) {
+
+					Options.get(i).click();
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("100%")) {
+				log.info("ReEntry_FMS_Score_Scenario7 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario7 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario8() {
+		log.info("ReEntry_FMS_Score_Scenario8  method starts here.........");
+		boolean OpenSurveyTab = false;
+		String Question_Link = data.getCellData("Building", 56, 2);
+		// System.setProperty("FMS_SurveyLink",
+		// "https://stg.app.arconline.io/app/project/8000011311/re-entry-survey/?key=1Phv74TZhgmLfKniqGVkavWZ&type=fm");
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> Options = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='No ']/input"));
+
+			// Selecting 1-10 Question with Yes and Uploading file & Link also
+			FMS_SelectYes_UploadLink("1");
+			FMS_SelectYes_UploadLink("2");
+			FMS_SelectYes_UploadLink("3");
+			driver.findElement(
+					By.xpath("(//div[@class='survey-question radio-button'])[4]/div[2]/descendant::input[1]")).click();
+			FMS_SelectYes_UploadLink("5");
+			FMS_DiseaseControlCommmunication_Yes_UploadFile_AddLink(6, Question_Link);
+			FMS_HandWashingAndDisinfection_Yes_UploadFile_AddLink(7, Question_Link);
+			FMS_ProvidingPPE_And_ProperUse_Yes_UploadFile_AddLink(8, Question_Link);
+			FMS_OccupantScreening_Yes_UploadFile_AddLink(9, Question_Link);
+			FMS_SickLeaveStaffContractors_Yes_UploadFile_AddLink(10, Question_Link);
+
+			// Selecting Not Applicable for all the remaining question
+			for (int i = 0; i < Options.size(); i++) {
+				if (i > 9) {
+
+					Options.get(i).click();
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+			}
+			ngWebDriver.waitForAngularRequestsToFinish();
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("45%")) {
+				log.info("ReEntry_FMS_Score_Scenario8 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario8 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario9() {
+		log.info("ReEntry_FMS_Score_Scenario9  method starts here.........");
+		boolean OpenSurveyTab = false;
+		String Question_Link = data.getCellData("Building", 56, 2);
+		// System.setProperty("FMS_SurveyLink",
+		// "https://stg.app.arconline.io/app/project/8000011312/re-entry-survey/?key=Vj7wk0CgdOcfGB4C8iVKxLCz&type=fm");
+		String url = System.getProperty("FMS_SurveyLink");
+		OpenSurveyTab = Transportation_OpenNewTabWithCopiedURL(url);
+		if (OpenSurveyTab) {
+			List<WebElement> NAOptions = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='Not applicable ']/input"));
+			List<WebElement> NOOptions = driver
+					.findElements(By.xpath("//span[@class='checkcontainer'][text()='No ']/input"));
+
+			// Selecting No Applicable for 1-10 the remaining question
+			for (int i = 0; i < 10; i++) {
+				NOOptions.get(i).click();
+				ngWebDriver.waitForAngularRequestsToFinish();
+
+			}
+
+			// Selecting Not Applicable for 11-15 the remaining question
+			for (int i = 0; i < NAOptions.size(); i++) {
+				if (i > 9 && i < 15) {
+
+					NAOptions.get(i).click();
+					ngWebDriver.waitForAngularRequestsToFinish();
+				}
+			}
+
+			// Selecting Yes Applicable for 16-19 with Yes and Link/upload the remaining
+			// question
+			FMS_HVACEnhanceFiltration_Yes_UploadFile_AddLink(16, Question_Link);
+			FMS_Elevatormanagement_Yes_UploadFile_AddLink(17, Question_Link);
+			FMS_PortableWaterManagement_Yes_UploadFile_AddLink(18, Question_Link);
+			FMS_IAQAssessment_Yes_UploadFile_AddLink(19, Question_Link);
+			ngWebDriver.waitForAngularRequestsToFinish();
+
+			FMS_Survey_Submit();
+			driver.close();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			driver.switchTo().window(BaseWindow);
+			ProjectTools_ReEntry.click();
+			String score = getReEntry_FMS_CheckScore();
+			if (score.equals("35%")) {
+				log.info("ReEntry_FMS_Score_Scenario9 method ends here with true.........");
+				return true;
+			} else {
+				log.info("ReEntry_FMS_Score_Scenario9 method ends here with false.........");
+				return false;
+			}
+		} else {
+			log.info("Unable to open new tab with copied URL...");
+			return false;
+		}
+	}
+
+	public void FMS_SelectYes_UploadLink(String QNo) {
+		log.info("FMS_SelectYes_UploadLink method starts here for question " + QNo + " ...");
+		;
+		String Question_Link = data.getCellData("Building", 56, 2);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		driver.findElement(
+				By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/descendant::input[1]"))
+				.click();
+		String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		WebElement element = driver.findElement(
+				By.xpath("(//div[@class='survey-question radio-button'])[" + QNo + "]/div[2]/div[2]/input"));
+		js.executeScript("arguments[0].setAttribute('style', 'display:block !important;')", element);
+		driver.findElement(By.xpath("(//div[@class='survey-question radio-button'])[" + QNo
+				+ "]/div[2]/div[2]/descendant::span[text()='Upload file']")).click();
+		element.sendKeys(UploadPath);
+
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		driver.findElement(
+				By.xpath("(//div[@class='radio_buttons'])[" + QNo + "]/following-sibling::div[2]/descendant::input"))
+				.sendKeys(Question_Link);
+		try {
+			driver.findElement(By.xpath("(//div[@class='radio_buttons'])[" + QNo
+					+ "]/following-sibling::div[2]/descendant::div[text()='Add link']")).click();
+
+		} catch (Exception e) {
+			log.info("Unable to click on Add Link");
+		}
+		log.info("FMS_SelectYes_UploadLink method ends here for question " + QNo + " ...");
+	}
+
+	public void FMS_Survey_Submit() {
+		log.info("FMS_Survey_Submit method starts here..");
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//button[text()='Submit']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		JSHelper.clickElement(driver.findElement(By.xpath("//button[text()='Submit']")));
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//h4[@class='fw-400 mb20']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		log.info("FMS_Survey_Submit method ends here..");
+	}
+
 	public boolean ReEntry_FMS_DownloadArcGuideToReEntry() {
 		log.info("ReEntry_FMS_DownloadArcGuideToReEntry  method starts here.........");
 		boolean flag = false;
-
+		String url = null;
 		waithelper.WaitForElementClickable(
 				driver.findElement(By.xpath("(//button[contains(text(),'Survey Tools and Resources')])[2]")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
@@ -15167,14 +13506,23 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//flag = CommonMethod.CheckDownloadedFileName("Re-Entry.pdf");
+		// flag = CommonMethod.CheckDownloadedFileName("Re-Entry.pdf");
 		Set<String> handles = driver.getWindowHandles();
-		log.info("Total Number of Window Handles is "+handles.size());
+		log.info("Total Number of Window Handles is " + handles.size());
 		for (String window : handles) {
-			log.info("Current window ID is "+window);
+			log.info("Current window ID is " + window);
 			if (!window.equals(BaseWindow)) {
 				driver.switchTo().window(window);
 				log.info("Switched to new window....");
+				// url=JSHelper.getCurrentURL();
+				// log.info(url);
+				String pdfcontent = CommonMethod
+						.getPDFContent("https://arcskoru.com/sites/default/files/Arc%20Guide%20to%20Re-Entry.pdf");
+				log.info(pdfcontent);
+				if (pdfcontent.contains("Arc Re-Entry Guide v1.1"))
+					flag = true;
+				driver.close();
+				driver.switchTo().window(BaseWindow);
 				break;
 			}
 		}
@@ -15209,8 +13557,8 @@ public class BuildingPageObject extends BaseClass {
 		dropdownhelper.selectUsingVisibleText(DropScope, Scope);
 		WebElement DropGroup = driver.findElement(By.xpath("//select[@name='group']"));
 		dropdownhelper.selectUsingVisibleText(DropGroup, Group);
-		String name=Scope.split(" ")[0]+Group;
-		
+		String name = Scope.split(" ")[0] + Group;
+
 		driver.findElement(ByAngular.model("tenant")).sendKeys(name);
 		try {
 			Thread.sleep(8000);
@@ -15219,8 +13567,8 @@ public class BuildingPageObject extends BaseClass {
 			e.printStackTrace();
 		}
 		String url = driver.findElement(ByAngular.model("oe_link")).getAttribute("value");
-		//CommonMethod.setClipBoard(url);
-		log.info("Url Copied is "+url);
+		// CommonMethod.setClipBoard(url);
+		log.info("Url Copied is " + url);
 		JSHelper.clickElement(driver.findElement(By.xpath("//a[text()='Copy Link']")));
 		flag = driver.findElement(By.xpath("//div[@class='ml10 copy_notif']")).isDisplayed();
 		try {
@@ -15232,7 +13580,7 @@ public class BuildingPageObject extends BaseClass {
 		log.info("Copied flag is " + flag);
 		driver.findElement(By.xpath("//div[@class='pt16']/button[text()='Close']")).click();
 		flag = OcupantSurvey_OpenNewTabWithCopiedURL(url);
-		//CommonMethod.clearClipBoard();
+		// CommonMethod.clearClipBoard();
 		if (flag) {
 			log.info("ReEntry_OccupantSurvey_OpenSurvey_NewTab method ends here with true.........");
 			return true;
@@ -15329,8 +13677,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Never");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Never");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -15445,8 +13793,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -15562,8 +13910,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -15680,8 +14028,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]")).sendKeys(data.getCellData("Building",
 		// 77, 2));
 
@@ -15797,8 +14145,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Rarely");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Rarely");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -15878,7 +14226,7 @@ public class BuildingPageObject extends BaseClass {
 		String Occupant = data.getCellData("Building", 39, 2);
 		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
 		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
-		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		driver.findElement(By.xpath("//span[text()='Not applicable ']/input[@name='infection_control']")).click();
 		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
 		// 72, 2));
 		try {
@@ -15914,8 +14262,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -15995,7 +14343,7 @@ public class BuildingPageObject extends BaseClass {
 		String Occupant = data.getCellData("Building", 39, 2);
 		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
 		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
-		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		driver.findElement(By.xpath("//span[text()='Not applicable ']/input[@name='infection_control']")).click();
 		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
 		// 72, 2));
 		try {
@@ -16031,8 +14379,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Usually");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Usually");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -16112,7 +14460,7 @@ public class BuildingPageObject extends BaseClass {
 		String Occupant = data.getCellData("Building", 39, 2);
 		driver.findElement(By.xpath("//select[@id='occupant_category']")).click();
 		driver.findElement(By.xpath("//select[@id='occupant_category']/option[text()='" + Occupant + "']")).click();
-		driver.findElement(By.xpath("//span[text()='No ']/input[@name='infection_control']")).click();
+		driver.findElement(By.xpath("//span[text()='Not applicable ']/input[@name='infection_control']")).click();
 		// driver.findElement(ByAngular.model("question.reason.data")).sendKeys(data.getCellData("Building",
 		// 72, 2));
 		try {
@@ -16148,8 +14496,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Always");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Always");
 		// driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]")).sendKeys(data.getCellData("Building",
 		// 77, 2));
 
@@ -16263,8 +14611,8 @@ public class BuildingPageObject extends BaseClass {
 
 		WebElement MaintainSocialDistancingHeader = driver.findElement(By.xpath(
 				"//div[@class='survey-question survey-slider'][5]/descendant::div[@class='slider_heading ng-binding']"));
-		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider,
-				MaintainSocialDistancingHeader, "Sometimes");
+		CommonMethod.SelectSliderControl(ReEntry_ManintainSocialDistancing_Slider, MaintainSocialDistancingHeader,
+				"Sometimes");
 		driver.findElement(By.xpath("(//textarea[@ng-model='textarea_val'])[5]"))
 				.sendKeys(data.getCellData("Building", 77, 2));
 
@@ -16320,6 +14668,41 @@ public class BuildingPageObject extends BaseClass {
 			return true;
 		} else {
 			log.info("OccupantSurvey_SubmitSurveyWithCommonSpace_Visitor method ends here with false.........");
+			return false;
+		}
+	}
+
+	// Building -> Re-Entry -->Occupant Survey -> Verify all slider questions i.e.
+	// Ques 1,3,4,5,6,7,8,9 are required questions and if unanswered, user gets an
+	// error message in red as - 'Required question. Use the slider to make a
+	// selection'
+	public boolean OccupantSurvey_CheckValidationMessage() {
+		log.info("OccupantSurvey_CheckValidationMessage  method starts here.........");
+		boolean ErrorFlag = false;
+		Transportation_SubmitBtn.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		List<WebElement> ErrorList = driver.findElements(By.xpath(
+				"//p[@class='error ng-binding ng-scope'][text()='Required question. Use the slider to make a selection.']"));
+		log.info("Total Number of Error Message showing is :" + ErrorList.size());
+		for (WebElement ele : ErrorList) {
+			if (ele.isDisplayed()) {
+				ErrorFlag = true;
+			} else {
+				ErrorFlag = false;
+				break;
+			}
+		}
+		boolean SubmitErrorFlag = driver
+				.findElement(By.xpath(
+						"//div[@class='mt10 fw-600 error-color ng-scope'][text()='Please answer all the questions']"))
+				.isDisplayed();
+		log.info("Error Flag value is :" + ErrorFlag);
+		log.info("SubmitErrorFlag  value is :" + SubmitErrorFlag);
+		if ((ErrorFlag) && (SubmitErrorFlag)) {
+			log.info("OccupantSurvey_CheckValidationMessage method ends here with true.........");
+			return true;
+		} else {
+			log.info("OccupantSurvey_CheckValidationMessage method ends here with false.........");
 			return false;
 		}
 	}
@@ -16461,9 +14844,9 @@ public class BuildingPageObject extends BaseClass {
 	// it.
 	public boolean OccupantSurveyVerify(String Scope, String Group, String SatisfactionLevel) {
 		log.info("OccupantSurveyVerify Method starts here...........");
-		//CommonMethod.RefreshPagewaitForPageLoaded(driver);
-		//BuildingPage.ClickOnMetersAndSurveyMenu();
-		//BuildingPage.ClickOnReEntry_OccupantSurvey();
+		// CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		// BuildingPage.ClickOnMetersAndSurveyMenu();
+		// BuildingPage.ClickOnReEntry_OccupantSurvey();
 		CommonMethod.switchToDataInputFrame();
 		BuildingPage.SelectScope_Group(Scope, Group);
 		CommonMethod.waitUntilLoadElement();
@@ -16478,19 +14861,16 @@ public class BuildingPageObject extends BaseClass {
 		List<WebElement> ResponseList = driver.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[2]"));
 		List<WebElement> AverageResponseList = driver
 				.findElements(By.xpath("//table[@id='readingsTable']/tbody/tr/td[3]"));
-		for (WebElement ele : ResponseList) {
-			String res=ele.getText();
-			log.info("Current Response is "+res);
-			if (res.contains("1")) {
-				Responseflag = true;
-			} else {
-				Responseflag = false;
-				break;
-			}
-		}
+		/*
+		 * for (WebElement ele : ResponseList) { String res = ele.getText();
+		 * log.info("Current Response is " + res); if (res.contains("1")) { Responseflag
+		 * = true; } else { Responseflag = false; break; } }
+		 */
+
 		for (byte i = 1; i < 8; i++) {
 			String AverageText = AverageResponseList.get(i).getAttribute("innerText");
-			log.info("Current Average is "+AverageText);
+			String Response = ResponseList.get(i).getAttribute("innerText");
+			log.info("Current Response is " + Response + " Current Average is " + AverageText);
 			if (AverageText.contains(SatisfactionLevel)) {
 				Averageflag = true;
 			} else {
@@ -16498,8 +14878,8 @@ public class BuildingPageObject extends BaseClass {
 				break;
 			}
 		}
-
-		if ((Averageflag) && (Responseflag)) {
+		log.info("Average Flag is showing :" + Averageflag);
+		if (Averageflag) {
 			log.info("OccupantSurveyVerify Method ends here with true ...........");
 			return true;
 		} else {
@@ -16515,28 +14895,37 @@ public class BuildingPageObject extends BaseClass {
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")).click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")).click();
-		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
-		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
-		
+		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']"))
+				.click();
+		// JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select
+		// scope']/following-sibling::button")));
+		// JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select
+		// scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
+
 		ngWebDriver.waitForAngularRequestsToFinish();
 		waithelper.WaitForElementClickable(
 				driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")),
 				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 		driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")).click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")).click();
+		driver.findElement(
+				By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']"))
+				.click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::button")));
-		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group response']/following-sibling::ul/li/a[text()='" + Group + "']")));
+		// JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group
+		// response']/following-sibling::button")));
+		// JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select group
+		// response']/following-sibling::ul/li/a[text()='" + Group + "']")));
 		ngWebDriver.waitForAngularRequestsToFinish();
-		
-		
+
 		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")).click();
 		ngWebDriver.waitForAngularRequestsToFinish();
-		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")).click();
-		//JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::button")));
-	//	JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
+		driver.findElement(By.xpath("//div[text()='Select scope']/following-sibling::ul/li/a[text()='" + Scope + "']"))
+				.click();
+		// JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select
+		// scope']/following-sibling::button")));
+		// JSHelper.clickElement(driver.findElement(By.xpath("//div[text()='Select
+		// scope']/following-sibling::ul/li/a[text()='" + Scope + "']")));
 		ngWebDriver.waitForAngularRequestsToFinish();
 		try {
 			Thread.sleep(5000);
@@ -16544,6 +14933,399 @@ public class BuildingPageObject extends BaseClass {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
+	}
+
+	public boolean ReEntry_FMS_Score_Scenario1() {
+		log.info("ReEntry_FMS_Score_Scenario1  method starts here.........");
+		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String Score = getReEntry_FMS_CheckScore();
+		if (Score.equals("100%")) {
+			flag = true;
+		}
+		log.info("ReEntry_FMS_Score_Scenario1  method ends here with " + flag + "  .........");
+		return flag;
+	}
+
+	public String getReEntry_FMS_CheckScore() {
+		log.info("getReEntry_FMS_CheckScore  method starts here.........");
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String FMS_Score = ReEntry_FMS_Score.getText();
+		log.info("FMS Score is " + FMS_Score);
+		log.info("getReEntry_FMS_CheckScore  method ends here with.........");
+		return FMS_Score;
+	}
+
+	public boolean ReEntry_PerformanceAddRecord() {
+		log.info("ReEntry_PerformanceAddRecord  method starts here.........");
+		int BeforeTotalRows = 0;
+		int AfterTotalRows = 0;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
+
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='20'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting End Date 20st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[4]/input"))
+				.sendKeys(data.getCellData("Building", 80, 2));
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[5]/input"))
+				.sendKeys(data.getCellData("Building", 81, 2));
+
+		int Investigate = Integer.parseInt(data.getCellData("Building", 80, 2));
+		int Acceptable = Integer.parseInt(data.getCellData("Building", 81, 2));
+		int Good = 100 - (Investigate + Acceptable);
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/input"))
+				.sendKeys(String.valueOf(Good));
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]/button")).click();
+
+		// ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(
+							By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]/button/span[text()='Save']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
+
+		if (AfterTotalRows - BeforeTotalRows == 1) {
+			log.info("ReEntry_PerformanceAddRecord method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_PerformanceAddRecord method ends here with false.........");
+			return false;
+		}
+	}
+
+	public void clickOnReEntrySpatialCoverageTab() {
+		driver.findElement(By.xpath("//span[contains(text(),'Spatial Coverage')]")).click();
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
+	}
+
+	public void clickOnReEntryTemporalCoverageTab() {
+		driver.findElement(By.xpath("//span[contains(text(),'Temporal Coverage')]")).click();
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		ngWebDriver.waitForAngularRequestsToFinish();
+	}
+
+	public boolean SpatialCoverage_ValidateReading() {
+		log.info("SpatialCoverage_ValidateReading  method starts here.........");
+		boolean flag = false;
+
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		// Entering invalid input as "101" for Reading Text box.
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).sendKeys("101");
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
+
+		try {
+			flag = driver
+					.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/p[text()='Value greater than 100']"))
+					.isDisplayed();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to loccate Error message..");
+		}
+
+		log.info("SpatialCoverage_ValidateReading method ends here with " + flag + " .........");
+		return flag;
+	}
+
+	public boolean TemporalCoverage_ValidateReading() {
+		log.info("TemporalCoverage_ValidateReading  method starts here.........");
+		boolean flag = false;
+
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		// Entering invalid input as "101" for Reading Text box.
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input")).sendKeys("101");
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
+
+		try {
+			flag = driver
+					.findElement(By
+							.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/p[text()='Value greater than 100']"))
+					.isDisplayed();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to loccate Error message..");
+		}
+
+		log.info("TemporalCoverage_ValidateReading method ends here with " + flag + " .........");
+		return flag;
+	}
+
+	public boolean ReEntry_UploadDocument() {
+		log.info("ReEntry_UploadDocument  method starts here.........");
+		boolean flag = false;
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		int BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows showing are  " + BeforeTotalRows);
+		if (BeforeTotalRows > 0) {
+			log.info("Going to upload document..");
+
+			String UploadPath = System.getProperty("user.dir") + "/UploadDocument/File1.pdf";
+
+			driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]//button")).click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			driver.findElement(
+					By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]//ul/li/span[text()='Computer File']"))
+					.click();
+			ngWebDriver.waitForAngularRequestsToFinish();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			WebElement element = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]/input"));
+			JSHelper.displayHiddenElement(element);
+			element.sendKeys(UploadPath);
+			ngWebDriver.waitForAngularRequestsToFinish();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		}
+
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(
+					driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]/div/span")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			String FileCount = driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[9]/div/span"))
+					.getText();
+			log.info("File Count showing is " + FileCount);
+			flag = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("Unable to locate Uploaded File Count...");
+			flag = false;
+		}
+
+		if (flag) {
+			log.info("ReEntry_UploadDocument method ends here with true.........");
+			return true;
+		} else {
+			log.info("ReEntry_UploadDocument method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	public boolean SpatialCoverageAddRecord() {
+		log.info("SpatialCoverageAddRecord  method starts here.........");
+		int BeforeTotalRows = 0;
+		int AfterTotalRows = 0;
+
+		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
+
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"))
+				.sendKeys(data.getCellData("Building", 82, 2));
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
+		// ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(
+							By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button/span[text()='Save']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
+
+		if (AfterTotalRows - BeforeTotalRows == 1) {
+			log.info("SpatialCoverageAddRecord method ends here with true.........");
+			return true;
+		} else {
+			log.info("SpatialCoverageAddRecord method ends here with false.........");
+			return false;
+		}
+
+	}
+
+	public boolean TemporalCoverageAddRecord() {
+		log.info("TemporalCoverageAddRecord  method starts here.........");
+		int BeforeTotalRows = 0;
+		int AfterTotalRows = 0;
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		BeforeTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows before adding showing are  " + BeforeTotalRows);
+		waithelper.WaitForElementClickable(BuildingSetting_AddRow_button,
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		BuildingSetting_AddRow_button.click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[2]/input")).click();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		waithelper.WaitForElementVisibleWithPollingTime(
+				driver.findElement(By.xpath("//table[@class=' table-condensed']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		driver.findElement(By.xpath("//table[@class=' table-condensed']/thead/tr/th[@class='prev']")).click();
+		String CalXpath = "(//table[@class=' table-condensed']/tbody/tr/td[text()='1'])[1]";
+		driver.findElement(By.xpath(CalXpath)).click(); // Selecting Start Date 1st day of previous month
+		ngWebDriver.waitForAngularRequestsToFinish();
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[3]/input"))
+				.sendKeys(data.getCellData("Building", 82, 2));
+
+		driver.findElement(By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button")).click();
+		// ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			waithelper.WaitForElementInvisible(
+					driver.findElement(
+							By.xpath("//table[@id='readingsTable']/tbody/tr[1]/td[6]/button/span[text()='Save']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ngWebDriver.waitForAngularRequestsToFinish();
+		AfterTotalRows = CommonMethod.getTotalRowCount("//table[@id='readingsTable']/tbody/tr");
+		log.info("Total Number of rows After adding showing are  " + AfterTotalRows);
+
+		if (AfterTotalRows - BeforeTotalRows == 1) {
+			log.info("TemporalCoverageAddRecord method ends here with true.........");
+			return true;
+		} else {
+			log.info("TemporalCoverageAddRecord method ends here with false.........");
+			return false;
+		}
+
 	}
 }

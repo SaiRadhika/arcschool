@@ -157,6 +157,46 @@ public class ExcelHelper {
 		}
 	}
 
+	
+	/**
+	 *  method. To read a data from a cell based column No. Returns the
+	 * data from a cell
+	 * 
+	 * @param sheetName
+	 * @param colNum
+	 * @param rowNum
+	 * @return cellText - the text value in the specific cell.
+	 */
+	// returns the numeric long data from a cell
+	public long getNumberCellData(String sheetName, int colNum, int rowNum) {
+		try {
+			if (rowNum <= 0)
+				return 0;
+
+			int index = workbook.getSheetIndex(sheetName);
+
+			if (index == -1)
+				return 0;
+
+			sheet = workbook.getSheetAt(index);
+			row = sheet.getRow(rowNum - 1);
+			if (row == null)
+				return 0;
+			cell = row.getCell(colNum);
+			if (cell == null)
+				return 0;
+
+			return (long) cell.getNumericCellValue();
+
+		}
+
+		catch (Exception e) {
+
+			e.printStackTrace();
+			//return "row " + rowNum + " or column " + colNum + " does not exist  in xlsx";
+		}
+		return 0;
+	}
 	// returns true if data is set successfully else false
 	/**
 	 * To write the data in a excel result sheet cell, using ColumnName. Return

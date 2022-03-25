@@ -183,7 +183,7 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("CityProject_Test1","8000040329");
+		// System.setProperty("CityProject_Test1","8000040329");
 		String ProjectCityID = System.getProperty("CityProject_Test1");
 		// ProjectCityID="8000012008";
 		if (!ProjectCityID.equals(null)) {
@@ -224,9 +224,9 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		
+
 		String ProjectCityID = System.getProperty("CityProject_Test1");
-		//ProjectCityID="8000040324";
+		// ProjectCityID="8000040324";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -329,8 +329,11 @@ public class CityPageTest extends BaseClass {
 		}
 	}
 
-	
-	//Verify Under Certifications-Message is displayed "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites." Followed by individual score given for each performance category.
+	// Verify Under Certifications-Message is displayed "This project does not meet
+	// the requirements of the LEED performance prerequisites. Project must achieve
+	// a minimum score of 40 to meet the requirements of LEED performance
+	// prerequisites." Followed by individual score given for each performance
+	// category.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 95, enabled = true, description = "Verify Under Certifications-Message is displayed \"This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.\" Followed by individual score given for each performance category.")
 	public void City_Certifications_VerifyTextMessage() {
@@ -377,8 +380,6 @@ public class CityPageTest extends BaseClass {
 	public void City_ProjectSetting_Population_Add_Row() {
 
 		log.info("City_ProjectSetting_Population_Add_Row method started......................... ");
-		// CommonMethod.switchToDefaultContent();
-		// CityPage = new CityPageObject();
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -576,8 +577,8 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProjectSetting();
-
-			flag = CityPage.checkPopulationCommentAndActivity(data.getCellData("City", 2, 2), ProfileUserName);
+			flag = CityPage.CheckProjectSettingCommentAndActivity(data.getCellData("City", 2, 2), ProfileUserName,
+					"Population");
 
 		} else {
 			log.info("City Project is showing Null");
@@ -648,7 +649,7 @@ public class CityPageTest extends BaseClass {
 	// the line items falling into those year should be displayed.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" }, priority = 104, enabled = true, description = "Project Setting - > Population - >Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed. ")
+			"City_ProjectSetting_Population_Save_Row_DecadeCalender_Display" }, priority = 104, enabled = true, description = "Project Setting - > Population - >Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.\n Verify 'Reset' button resets the filter conditions. ")
 	public void City_Population_Filter_Test() {
 
 		log.info("City_Population_Filter_Test method started......................... ");
@@ -671,7 +672,8 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProjectSetting();
-			flag = CityPage.CheckPopulationFilter();
+			CityPage.ProjectSetting_AddRecords();
+			flag = CityPage.CheckFilter_Reset();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -876,7 +878,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004423";
+		// ProjectCityID="8000040613";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
@@ -886,8 +888,9 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProjectSetting();
-
-			flag = CityPage.checkProjectAreaCommentAndActivity(data.getCellData("City", 3, 2), ProfileUserName);
+			CityPage.ClickOnProjectAreaTab();
+			flag = CityPage.CheckProjectSettingCommentAndActivity(data.getCellData("City", 3, 2), ProfileUserName,
+					"Project Area");
 
 		} else {
 			log.info("City Project is showing Null");
@@ -951,7 +954,7 @@ public class CityPageTest extends BaseClass {
 	// the line items falling into those year should be displayed.
 
 	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
-			"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 112, enabled = true, description = "Project Setting - > Project Area - >Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed. ")
+			"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 112, enabled = true, description = "Project Setting - > Project Area - >Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.\n Verify 'Reset' button resets the filter conditions. ")
 	public void City_ProjectArea_Filter_Test() {
 
 		log.info("City_ProjectArea_Filter_Test method started......................... ");
@@ -965,7 +968,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000011415";
+		// ProjectCityID="8000040577";
 		if (!ProjectCityID.equals(null)) {
 			CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
@@ -974,7 +977,9 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProjectSetting();
-			flag = CityPage.CheckProjectAreaFilter();
+			CityPage.ClickOnProjectAreaTab();
+			CityPage.ProjectSetting_AddRecords();
+			flag = CityPage.CheckFilter_Reset();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -1148,7 +1153,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			flag = CityPage.CheckGHGEmission_Data_DetailsTab_Display();
+			flag = CityPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -1193,8 +1198,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			flag = CityPage.CheckGHGEmission_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -1326,18 +1330,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			// OldScore = CityPage.getEnergyScore();
 			flag = CityPage.CheckGHGEmission_EditRow();
-			/*
-			 * if (flag) { CommonMethod.switchToDefaultContent(); ProjectPage =
-			 * HomePage.clickOnProject(); CityPage =
-			 * ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-			 * HomePage.closeProjectSearchTextBox(); CityPage.ClickonDataInput();
-			 * CommonMethod.switchToDataInputFrame(); CityPage.ClickonGHGEmiissions();
-			 */
-			// NewScore = CityPage.getEnergyScore();
+
 			if (flag) {
-				// log.info(OldScore + " is updated with---" + NewScore);
+
 				log.info("Record is updated successfully");
 				log.info("City_Energy_GHGEmission_Edit_Row method ends here ........... ");
 				Assert.assertTrue(true);
@@ -1373,14 +1369,12 @@ public class CityPageTest extends BaseClass {
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
 		// ProjectCityID="8000004409";
 		if (!ProjectCityID.equals(null)) {
-			// CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
 			HomePage.closeProjectSearchTextBox();
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			// OldScore = CityPage.getEnergyScore();
 			flag = CityPage.CheckGHGEmission_DeleteRow();
 
 			if (flag) {
@@ -1477,6 +1471,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
+			CityPage.ClickOnDetailsTab();
 			flag = CityPage.checkEnergyCommentAndActivity(data.getCellData("City", 5, 2), ProfileUserName);
 
 		} else {
@@ -1556,7 +1551,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000011512";
+		// ProjectCityID="8000040572";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -1564,7 +1559,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonGHGEmiissions();
-			flag = CityPage.CheckEnergyFilter();
+			CityPage.Energy_AddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonGHGEmiissions();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -1605,8 +1603,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
-			flag = CityPage.CheckWaterConsumption_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -1647,8 +1644,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
-			flag = CityPage.CheckWatwr_Consumption_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -1688,15 +1684,7 @@ public class CityPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
-
 			CityPage.ClickonWaterConsumption();
-			/*
-			 * OldScore = CityPage.getWaterScore(); CommonMethod.switchToDefaultContent();
-			 * ProjectPage = HomePage.clickOnProject(); CityPage =
-			 * ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-			 * HomePage.closeProjectSearchTextBox(); CityPage.ClickonDataInput();
-			 * CommonMethod.switchToDataInputFrame(); CityPage.ClickonWaterConsumption();
-			 */
 			flag = CityPage.CheckWaterConsumption_SaveNewRecord();
 
 			if (flag) {
@@ -2019,6 +2007,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
+			CityPage.ClickOnDetailsTab();
 			flag = CityPage.checkWaterCommentAndActivity(data.getCellData("City", 9, 2), ProfileUserName);
 
 		} else {
@@ -2061,6 +2050,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
+			// CityPage.ClickOnDetailsTab();
 			flag = CityPage.CheckWaterGraph();
 
 		} else {
@@ -2096,7 +2086,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000011513";
+		// ProjectCityID="8000040572";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2104,7 +2094,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonWaterConsumption();
-			flag = CityPage.CheckWaterFilter();
+			CityPage.Water_AddRecords();
+			CityPage.ClickonMunicipalSolidWasteDiversion();
+			CityPage.ClickonWaterConsumption();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -2150,8 +2143,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidwastegeneration();
-			flag = CityPage.CheckWasteGeneration_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -2193,8 +2185,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidwastegeneration();
-			flag = CityPage.CheckWaste_Generation_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -2367,7 +2358,6 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidwastegeneration();
-
 			flag = CityPage.CheckWasteGeneration_DeleteRow();
 
 			if (flag) {
@@ -2409,7 +2399,6 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
 		// ProjectCityID="8000004465";
 		if (!ProjectCityID.equals(null)) {
@@ -2420,8 +2409,8 @@ public class CityPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
-
 			CityPage.ClickonMunicipalSolidwastegeneration();
+			CityPage.ClickOnDetailsTab();
 			flag = CityPage.checkWasteGenerationCommentAndActivity(data.getCellData("City", 11, 2), ProfileUserName);
 
 		} else {
@@ -2501,7 +2490,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID = "8000011517";
+		// ProjectCityID = "8000040572";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -2509,7 +2498,11 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidwastegeneration();
-			flag = CityPage.CheckWaste_GenerationFilter();
+
+			CityPage.Waste_AddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonMunicipalSolidwastegeneration();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -2552,8 +2545,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CityPage.CheckWasteDiversion_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -2595,8 +2587,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CityPage.CheckWaste_Diversion_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -2815,7 +2806,6 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidWasteDiversion();
-
 			flag = CityPage.CheckWasteDiversion_DeleteRow();
 
 			if (flag) {
@@ -2929,6 +2919,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidWasteDiversion();
+			CityPage.ClickOnDetailsTab();
 			flag = CityPage.checkWasteDiversionCommentAndActivity(data.getCellData("City", 13, 2), ProfileUserName);
 
 		} else {
@@ -3015,7 +3006,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CityPage.CheckWaste_DiversionFilter();
+			CityPage.Waste_AddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonMunicipalSolidWasteDiversion();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -3049,7 +3043,7 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		// System.setProperty("CityProject_NonLeed2","8000004525");
+
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
 		// ProjectCityID="8000006972";
 		if (!ProjectCityID.equals(null)) {
@@ -3059,8 +3053,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			flag = CityPage.CheckVMT_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -3101,8 +3094,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			flag = CityPage.CheckTransport_VMT_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -3142,7 +3134,6 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			// OldScore = CityPage.getTransportScore();
 			flag = CityPage.CheckTransportation_SaveNewRecord();
 
 			if (flag) {
@@ -3234,6 +3225,7 @@ public class CityPageTest extends BaseClass {
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
 			flag = CityPage.Transportation_VMT_SavePreviousAndNextYearRecord();
+
 			if (flag) {
 				log.info("City_Transportation_VMT_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -3314,7 +3306,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_NonLeed2");
-		// ProjectCityID="8000004409";
+		// ProjectCityID="8000040572";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3322,9 +3314,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-
 			flag = CityPage.Transportation_VMT_DeleteRow();
-
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -3407,7 +3397,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000011517";
+		// ProjectCityID="8000040572";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3415,7 +3405,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			flag = CityPage.CheckTransportationFilter();
+			CityPage.VMT_AddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonVMT();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -3462,7 +3455,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonVMT();
-			// OldScore = CityPage.getTransportScore();
+			CityPage.ClickOnDetailsTab();
 			flag = CityPage.checkTransportCommentAndActivity(data.getCellData("City", 15, 2), ProfileUserName);
 
 		} else {
@@ -3497,6 +3490,8 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
+		// System.setProperty("CityProject_Private3","8000040554");
+		// System.setProperty("CityProject_Perf4","8000040560");
 		String ProjectCityID = System.getProperty("CityProject_Private3");
 		// ProjectCityID="8000004564";
 		if (!ProjectCityID.equals(null)) {
@@ -3506,8 +3501,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.CheckHealthAndSafety_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -3548,8 +3542,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.CheckHealthAndSafety_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -3631,7 +3624,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.CheckHealthAndSafety_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 16, 2));
 
 			if (flag) {
 				log.info("City_HealthAndSafety_SavePreviousYearData method ends here ........... ");
@@ -3677,7 +3670,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.HealthAndSafety_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 16, 2));
 			if (flag) {
 				log.info("City_HealthAndSafety_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -3714,7 +3707,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Private3");
-		// ProjectCityID="8000004564";
+		// ProjectCityID="8000040563";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3722,7 +3715,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.CheckHealthAndSafety_EditRecord();
+			flag = CityPage.QualityOfLife_EditRecord();
 
 			if (flag) {
 				log.info("Record is updated successfully");
@@ -3767,8 +3760,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.HealthAndSafety_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -3793,7 +3785,7 @@ public class CityPageTest extends BaseClass {
 	// date) and To (End date) uopens up decade calendar and on selecting any year
 	// range, the line items falling into those year should be displayed.
 
-	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 156, enabled = true, description = "Quality Of Life--> Health And Safety - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
+	@Test(groups = "CityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 156, dependsOnMethods = "City_HealthAndSafety_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Health And Safety - Verify filter button - From (Start date) and To (End date) uopens up decade calendar and on selecting any year range, the line items falling into those year should be displayed.")
 	public void City_HealthAndSafey_FilterTest() {
 
 		log.info("City_HealthAndSafey_FilterTest method started......................... ");
@@ -3808,7 +3800,7 @@ public class CityPageTest extends BaseClass {
 		}
 
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
-		// ProjectCityID="8000004565";
+		// ProjectCityID="8000040539";
 		if (!ProjectCityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
@@ -3816,7 +3808,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafety();
-			flag = CityPage.CheckHealthAndSafetyFilter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonHealthAndSafety();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -3907,7 +3902,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.CheckEducation_BachelorPopulation_Data_DetailsTab_Display();
+			flag = CityPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -3949,7 +3944,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.CheckEducation_Bachelor_Population_AddYear_NewRow_Display();
+			flag = CityPage.CheckAddYear_NewRow_Display();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -3991,7 +3986,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.CheckEducation_Bachelor_Population_CheckWithInvalidPercent();
+			flag = CityPage.CheckWithInvalidPercent();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -4033,7 +4028,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.CheckEductaion_Bachelor_Population_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 18, 2));
 
 			if (flag) {
 				log.info("City_Education_Bachelor_Population_SavePreviousYearData method ends here ........... ");
@@ -4081,7 +4076,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.Education_Bachelor_Population_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 18, 2));
 			if (flag) {
 				log.info(
 						"City_Education_Bachelor_Population_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -4128,8 +4123,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.CheckEducation_Bachelor_population_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_Education_Bachelor_Population_Edit_Test method ends here ........... ");
@@ -4173,8 +4167,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.Education_Bachelor_Population_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -4223,7 +4216,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_BachelorPopulation();
-			flag = CityPage.CheckEducation_Bachelor_Population_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonEducation_BachelorPopulation();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -4315,7 +4311,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CityPage.CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display();
+			flag = CityPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -4357,8 +4353,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CityPage.CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -4441,8 +4436,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CityPage.CheckEquitability_Gini_Coefficient_SaveNewRecord();
-
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 20, 2));
 			if (flag) {
 				log.info("City_Equitability_Gini_Coefficient_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -4580,8 +4574,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CityPage.Equitability_Gini_Coefficient_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -4630,7 +4623,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CityPage.CheckEquitability_Gini_Coefficient_Filter();
+			CityPage.QualityOfLifeAddRecordsForGinni();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonEquitability_Gini_Coeffiecient();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -4722,8 +4718,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -4764,8 +4759,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -4806,7 +4800,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent();
+			flag = CityPage.CheckWithInvalidPercent();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -4849,7 +4843,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.CheckEducation_HighSchoolPopulation_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 22, 2));
 
 			if (flag) {
 				log.info("City_Education_HighSchoolPopulation_SavePreviousYearData method ends here ........... ");
@@ -4897,7 +4891,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.Education_HighSchoolPopulation_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 22, 2));
 			if (flag) {
 				log.info(
 						"City_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -4944,8 +4938,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.CheckEducation_HighSchoolPopulation_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_Education_HighSchoolPopulation_Edit_Test method ends here ........... ");
@@ -4989,8 +4982,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.Education_HighSchoolPopulation_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -5039,7 +5031,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEducation_HighSchoolPopulation();
-			flag = CityPage.CheckEducation_HighSchoolPopulation_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonEducation_HighSchoolPopulation();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -5087,7 +5082,6 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_Gini_Coeffiecient();
-
 			flag = CityPage.checkTransportCommentAndActivity(data.getCellData("City", 23, 2), ProfileUserName);
 
 		} else {
@@ -5130,8 +5124,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.CheckProsperityMedianIncome_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -5172,8 +5165,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.CheckProsperityMedianIncome_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -5214,7 +5206,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.CheckProsperityMedianIncome_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 24, 2));
 
 			if (flag) {
 				log.info("City_ProsperityMedianIncome_SavePreviousYearData method ends here ........... ");
@@ -5260,7 +5252,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.ProsperityMedianIncome_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 24, 2));
 			if (flag) {
 				log.info("City_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -5305,8 +5297,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.CheckProsperityMedianIncome_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_ProsperityMedianIncome_Edit_Test method ends here ........... ");
@@ -5350,8 +5341,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.ProsperityMedianIncome_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -5400,7 +5390,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperity_MedianIncome();
-			flag = CityPage.CheckProsperityMedianIncome_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonProsperity_MedianIncome();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -5490,7 +5483,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display();
+			flag = CityPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -5532,8 +5525,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -5574,8 +5566,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue();
-
+			flag = CityPage.CheckWithInvalidPercent();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -5616,7 +5607,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.CheckEquitability_MedianGrossIncome_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 26, 2));
 
 			if (flag) {
 				log.info("City_Equitability_MedianGrossIncome_SavePreviousYearData method ends here ........... ");
@@ -5663,7 +5654,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 26, 2));
 			if (flag) {
 				log.info(
 						"City_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -5710,8 +5701,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.CheckEquitability_MedianGrossIncome_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_Equitability_MedianGrossIncome_Edit_Test method ends here ........... ");
@@ -5755,8 +5745,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.Equitability_MedianGrossIncome_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -5805,7 +5794,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonEquitability_MedianGrossIncome();
-			flag = CityPage.CheckEquitability_MedianGrossIncome_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonEquitability_MedianGrossIncome();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -5896,8 +5888,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.CheckProsperityUnemployementRate_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -5938,8 +5929,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.CheckProsperityUnemployementRate_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -5980,7 +5970,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.CheckProsperityUnemployementRate_CheckWithInvalidValue();
+			flag = CityPage.CheckWithInvalidPercent();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -6021,7 +6011,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.CheckProsperityUnemployementRate_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 28, 2));
 
 			if (flag) {
 				log.info("City_ProsperityUnemployementRate_SavePreviousYearData method ends here ........... ");
@@ -6068,7 +6058,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.ProsperityUnemployementRate_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 28, 2));
 			if (flag) {
 				log.info("City_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -6113,8 +6103,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.CheckProsperityUnemployementRate_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_ProsperityUnemployementRate_Edit_Test method ends here ........... ");
@@ -6158,8 +6147,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.ProsperityUnemployementRate_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -6208,7 +6196,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonProsperityUnemployementRate();
-			flag = CityPage.CheckProsperityUnemployementRate_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonProsperityUnemployementRate();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -6300,8 +6291,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.CheckHealthAndSafetySensitiveGroup_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -6342,8 +6332,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -6385,7 +6374,6 @@ public class CityPageTest extends BaseClass {
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
 			flag = CityPage.CheckHealthAndSafetySensitiveGroup_CheckWithInvalidValue();
-
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -6426,7 +6414,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.CheckHealthAndSafetySensitiveGroup_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 30, 2));
 
 			if (flag) {
 				log.info("City_HealthAndSafetySensitiveGroup_SavePreviousYearData method ends here ........... ");
@@ -6474,7 +6462,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 30, 2));
 			if (flag) {
 				log.info(
 						"City_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -6521,8 +6509,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.CheckHealthAndSafetySensitiveGroup_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_HealthAndSafetySensitiveGroup_Edit_Test method ends here ........... ");
@@ -6566,8 +6553,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.HealthAndSafetySensitiveGroup_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -6616,7 +6602,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CityPage.CheckHealthAndSafetySensitiveGroup_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonHealthAndSafetySensitiveGroup();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -6711,8 +6700,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display();
-
+			flag = CityPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -6753,8 +6741,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.CheckHealthAndSafetyVoilentCrime_AddYear_NewRow_Display();
-
+			flag = CityPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("City Project is showing Null");
 			Assert.assertTrue(false);
@@ -6796,7 +6783,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.CheckHealthAndSafetyVoilentCrime_SaveNewRecord();
+			flag = CityPage.QualityOfLife_SaveNewRecord(data.getCellData("City", 32, 2));
 
 			if (flag) {
 				log.info("City_HealthAndSafetyVoilentCrime_SavePreviousYearData method ends here ........... ");
@@ -6843,7 +6830,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord();
+			flag = CityPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("City", 32, 2));
 			if (flag) {
 				log.info("City_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -6888,8 +6875,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.CheckHealthAndSafetyVoilentCrime_EditRecord();
-
+			flag = CityPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("City_HealthAndSafetyVoilentCrime_Edit_Test method ends here ........... ");
@@ -6933,8 +6919,7 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.HealthAndSafetyVoilentCrime_DeleteRow();
-
+			flag = CityPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -6983,7 +6968,10 @@ public class CityPageTest extends BaseClass {
 			CityPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CityPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CityPage.CheckHealthAndSafetyVoilentCrime_Filter();
+			CityPage.QualityOfLifeAddRecords();
+			CityPage.ClickonWaterConsumption();
+			CityPage.ClickonHealthAndSafetySensitiveGroup();
+			flag = CityPage.CheckFilter_Reset();
 
 		} else {
 			log.info("City Project is showing Null");
@@ -7147,7 +7135,7 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("CityProject5","8000012010");
+		// System.setProperty("CityProject5","8000012010");
 		String ProjectCityID = System.getProperty("CityProject5");
 		// ProjectCityID="1000102092";
 		if (!ProjectCityID.equals(null)) {
@@ -7792,7 +7780,7 @@ public class CityPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		 //System.setProperty("CityProject_Perf4","8000040326");
+		// System.setProperty("CityProject_Perf4","8000040326");
 		String ProjectCityID = System.getProperty("CityProject_Perf4");
 		// ProjectCityID="8000040272";
 		if (!ProjectCityID.equals(null)) {
@@ -7814,75 +7802,76 @@ public class CityPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
-	// Verify able to turn the toggle button 'on' and 'off' for "Show the score animation on the Arc app"
 
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"CityRegression" }, enabled = false, priority = 269, description = "Verify able to turn the toggle button 'on' and 'off' for \"Show the score animation on the Arc app\"")
-		public void City_Settings_ScoreAnimationToggleButton() {
-			log.info("City_Settings_ScoreAnimationToggleButton method started ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			 //System.setProperty("CityProject_Perf4","8000040326");
-			String ProjectCityID = System.getProperty("CityProject_Perf4");
-			// ProjectCityID="8000040272";
-			if (!ProjectCityID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonSettingsInManage();
-				flag = CityPage.Settings_ScoreAnimationToggleButton();
-			} else {
-				log.info("City Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("City_Settings_ScoreAnimationToggleButton method ends here with true ........... ");
-				Assert.assertTrue(true);
+	// Verify able to turn the toggle button 'on' and 'off' for "Show the score
+	// animation on the Arc app"
 
-			} else {
-				log.info("City_Settings_ScoreAnimationToggleButton method ends here with false........... ");
-				Assert.assertTrue(false);
-			}
-		}	
-	// Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. 
-
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"CityRegression" }, enabled = true, priority = 270, description = "Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. ")
-		public void City_ScoreVersion() {
-			log.info("City_ScoreVersion method started ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			 //System.setProperty("CityProject_Perf4","8000040326");
-			String ProjectCityID = System.getProperty("CityProject_Perf4");
-			// ProjectCityID="8000040272";
-			if (!ProjectCityID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
-				HomePage.closeProjectSearchTextBox();
-				CityPage.ClickonScoreVersionInManage();
-				flag = CityPage.CheckScoreVersion();
-			} else {
-				log.info("City Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("City_ScoreVersion method ends here with true ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("City_ScoreVersion method ends here with false........... ");
-				Assert.assertTrue(false);
-			}
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CityRegression" }, enabled = false, priority = 269, description = "Verify able to turn the toggle button 'on' and 'off' for \"Show the score animation on the Arc app\"")
+	public void City_Settings_ScoreAnimationToggleButton() {
+		log.info("City_Settings_ScoreAnimationToggleButton method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
 		}
+		// System.setProperty("CityProject_Perf4","8000040326");
+		String ProjectCityID = System.getProperty("CityProject_Perf4");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonSettingsInManage();
+			flag = CityPage.Settings_ScoreAnimationToggleButton();
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_Settings_ScoreAnimationToggleButton method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_Settings_ScoreAnimationToggleButton method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022.
+
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CityRegression" }, enabled = true, priority = 270, description = "Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. ")
+	public void City_ScoreVersion() {
+		log.info("City_ScoreVersion method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040326");
+		String ProjectCityID = System.getProperty("CityProject_Perf4");
+		// ProjectCityID="8000040272";
+		if (!ProjectCityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CityPage = ProjectPage.SearchAndClickOnCityProject(ProjectCityID);
+			HomePage.closeProjectSearchTextBox();
+			CityPage.ClickonScoreVersionInManage();
+			flag = CityPage.CheckScoreVersion();
+		} else {
+			log.info("City Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("City_ScoreVersion method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("City_ScoreVersion method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
 }

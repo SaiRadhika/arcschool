@@ -182,7 +182,7 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("CommunitiesProject_Test1","8000039783");
+		// System.setProperty("CommunitiesProject_Test1","8000039783");
 		String ProjectCommunityID = System.getProperty("CommunitiesProject_Test1");
 		// ProjectCommunityID="8000039783";
 		if (!ProjectCommunityID.equals(null)) {
@@ -327,8 +327,12 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
-	//Verify Under Certifications-Message is displayed "This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites." Followed by individual score given for each performance category.
+
+	// Verify Under Certifications-Message is displayed "This project does not meet
+	// the requirements of the LEED performance prerequisites. Project must achieve
+	// a minimum score of 40 to meet the requirements of LEED performance
+	// prerequisites." Followed by individual score given for each performance
+	// category.
 
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 95, enabled = true, description = "Verify Under Certifications-Message is displayed \"This project does not meet the requirements of the LEED performance prerequisites. Project must achieve a minimum score of 40 to meet the requirements of LEED performance prerequisites.\" Followed by individual score given for each performance category.")
 	public void Community_Certifications_VerifyTextMessage() {
@@ -448,11 +452,13 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 		if (flag) {
-			log.info("Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display method ends here ........... ");
+			log.info(
+					"Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display method ends here ........... ");
+			log.info(
+					"Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -482,7 +488,8 @@ public class CommunitiesPageTest extends BaseClass {
 			if (flag) {
 				log.info("Team Member added-----------------");
 				HomePage.checkSignOut();
-				HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
+				HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2),
+						data.getCellData("Communities", 1, 2));
 				boolean Updatedflag = false;
 
 				try {
@@ -496,7 +503,7 @@ public class CommunitiesPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
 				HomePage.closeProjectSearchTextBox();
-				String ProfileName=HomePage.getCurrentProfileUserName();
+				String ProfileName = HomePage.getCurrentProfileUserName();
 				CommunitiesPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
@@ -574,9 +581,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProjectSetting();
-
-			flag = CommunitiesPage.checkPopulationCommentAndActivity(data.getCellData("Communities", 2, 2), ProfileUserName);
-
+			//flag = CommunitiesPage.checkPopulationCommentAndActivity(data.getCellData("Communities", 2, 2),ProfileUserName);
+			flag = CommunitiesPage.CheckProjectSettingCommentAndActivity(data.getCellData("Communities", 2, 2), ProfileUserName, "Population");
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -669,7 +675,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProjectSetting();
-			flag = CommunitiesPage.CheckPopulationFilter();
+			CommunitiesPage.ProjectSetting_AddRecords();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -684,7 +691,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 	}
 
-	// Project Setting - > Population - > Verify delete button deletes the line item successfully.
+	// Project Setting - > Population - > Verify delete button deletes the line item
+	// successfully.
 
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"Community_ProjectSetting_Population_Save_Row_DecadeCalender_Display" }, priority = 105, enabled = true, description = "Project Setting - > Population - > Verify delete button deletes the line item successfully. ")
@@ -723,7 +731,7 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 
-	}	
+	}
 	// Verify in DI, Project settings - ProjectArea tab- Add row button adds a new
 	// line item with fields- 'Effective year', Population, Updated by followed by
 	// Save and delete button
@@ -802,11 +810,13 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 		if (flag) {
-			log.info("Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method ends here ........... ");
+			log.info(
+					"Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method ends here ........... ");
+			log.info(
+					"Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -860,7 +870,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 110, enabled = true, description = "Project Area - > Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_ProjectSetting_ProjectArea_Comments_Activity_Test() {
 
-		log.info("Community_ProjectSetting_ProjectArea_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_ProjectSetting_ProjectArea_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -882,9 +893,9 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProjectSetting();
-
-			flag = CommunitiesPage.checkProjectAreaCommentAndActivity(data.getCellData("Communities", 3, 2), ProfileUserName);
-
+			CommunitiesPage.ClickOnProjectAreaTab();
+			//flag = CommunitiesPage.checkProjectAreaCommentAndActivity(data.getCellData("Communities", 3, 2),ProfileUserName);
+			flag = CommunitiesPage.CheckProjectSettingCommentAndActivity(data.getCellData("Communities", 3, 2), ProfileUserName, "Project Area");
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -899,7 +910,8 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 	}
 
-	// Verify after creating Community Project with Gross Area as "Square Miles unit",
+	// Verify after creating Community Project with Gross Area as "Square Miles
+	// unit",
 	// check in Data Input – Project Setting - > Project Area Tab -> Unit Drop down
 	// by default value.
 
@@ -970,7 +982,9 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProjectSetting();
-			flag = CommunitiesPage.CheckProjectAreaFilter();
+			CommunitiesPage.ClickOnProjectAreaTab();
+			CommunitiesPage.ProjectSetting_AddRecords();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -984,8 +998,9 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 
 	}
-	
-	// Project Setting - > Project Area - > Verify delete button deletes the line item successfully.
+
+	// Project Setting - > Project Area - > Verify delete button deletes the line
+	// item successfully.
 
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = {
 			"Community_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display" }, priority = 113, enabled = true, description = "Project Setting - > Project Area - > Verify delete button deletes the line item successfully. ")
@@ -1058,7 +1073,8 @@ public class CommunitiesPageTest extends BaseClass {
 			if (flag) {
 				log.info("Team Member added-----------------");
 				HomePage.checkSignOut();
-				HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2), data.getCellData("Communities", 1, 2));
+				HomePage = LoginPage.loginLater(data.getCellData("Communities", 0, 2),
+						data.getCellData("Communities", 1, 2));
 				// CommunitiesPage = new CommunitiesPageObject();
 				boolean Updatedflag = false;
 
@@ -1073,7 +1089,7 @@ public class CommunitiesPageTest extends BaseClass {
 				ProjectPage = HomePage.clickOnProject();
 				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
 				HomePage.closeProjectSearchTextBox();
-				String ProfileName=HomePage.getCurrentProfileUserName();
+				String ProfileName = HomePage.getCurrentProfileUserName();
 				CommunitiesPage.ClickonDataInput();
 				CommonMethod.switchToDataInputFrame();
 				CommunitiesPage.ClickonProjectSetting();
@@ -1106,7 +1122,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 			} else {
 				log.info("Unable to add the team member.-----------------");
-				log.info("Community_ProjectSetting_ProjectArea_UpdatedBy_Test method ends with false here ........... ");
+				log.info(
+						"Community_ProjectSetting_ProjectArea_UpdatedBy_Test method ends with false here ........... ");
 				Assert.assertTrue(false);
 			}
 
@@ -1147,7 +1164,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonGHGEmiissions();
-			flag = CommunitiesPage.CheckGHGEmission_Data_DetailsTab_Display();
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -1192,8 +1209,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonGHGEmiissions();
-			flag = CommunitiesPage.CheckGHGEmission_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -1237,20 +1253,21 @@ public class CommunitiesPageTest extends BaseClass {
 			flag = CommunitiesPage.CheckGHGEmission_SaveNewRecord();
 			if (flag) {
 				log.info("Record is added successfully");
-				log.info(
-						"Community_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag + " ........... ");
+				log.info("Community_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag
+						+ " ........... ");
 				Assert.assertTrue(true);
 			} else {
 				log.info("Record is not added successfully");
-				log.info(
-						"Community_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag + " ........... ");
+				log.info("Community_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag
+						+ " ........... ");
 				Assert.assertTrue(false);
 			}
 		}
 
 		else {
 			log.info("Community Project is showing Null");
-			log.info("Community_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag + " ........... ");
+			log.info("Community_Energy_GHGEmission_SavePreviousYearData method ends here with " + flag
+					+ " ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -1325,18 +1342,9 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonGHGEmiissions();
-			// OldScore = CommunitiesPage.getEnergyScore();
 			flag = CommunitiesPage.CheckGHGEmission_EditRow();
-			/*
-			 * if (flag) { CommonMethod.switchToDefaultContent(); ProjectPage =
-			 * HomePage.clickOnProject(); CommunitiesPage =
-			 * ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-			 * HomePage.closeProjectSearchTextBox(); CommunitiesPage.ClickonDataInput();
-			 * CommonMethod.switchToDataInputFrame(); CommunitiesPage.ClickonGHGEmiissions();
-			 */
-			// NewScore = CommunitiesPage.getEnergyScore();
+
 			if (flag) {
-				// log.info(OldScore + " is updated with---" + NewScore);
 				log.info("Record is updated successfully");
 				log.info("Community_Energy_GHGEmission_Edit_Row method ends here ........... ");
 				Assert.assertTrue(true);
@@ -1379,7 +1387,6 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonGHGEmiissions();
-			// OldScore = CommunitiesPage.getEnergyScore();
 			flag = CommunitiesPage.CheckGHGEmission_DeleteRow();
 
 			if (flag) {
@@ -1418,7 +1425,6 @@ public class CommunitiesPageTest extends BaseClass {
 		String ProjectCommunityID = System.getProperty("CommunitiesProject_Private3");
 		// ProjectCommunityID="8000004560";
 		if (!ProjectCommunityID.equals(null)) {
-			// CommonMethod.switchToDefaultContent();
 			ProjectPage = HomePage.clickOnProject();
 			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
 			HomePage.closeProjectSearchTextBox();
@@ -1476,7 +1482,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonGHGEmiissions();
-			flag = CommunitiesPage.checkEnergyCommentAndActivity(data.getCellData("Communities", 5, 2), ProfileUserName);
+			CommunitiesPage.ClickOnDetailsTab();
+			flag = CommunitiesPage.checkEnergyCommentAndActivity(data.getCellData("Communities", 5, 2),	ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -1555,7 +1562,7 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 
 		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
-		//ProjectCommunityID="8000011512";
+		// ProjectCommunityID="8000011512";
 		if (!ProjectCommunityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
@@ -1563,7 +1570,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonGHGEmiissions();
-			flag = CommunitiesPage.CheckEnergyFilter();
+			CommunitiesPage.Energy_AddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonGHGEmiissions();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -1604,7 +1614,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonWaterConsumption();
-			flag = CommunitiesPage.CheckWaterConsumption_Data_DetailsTab_Display();
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -1646,7 +1656,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonWaterConsumption();
-			flag = CommunitiesPage.CheckWatwr_Consumption_AddYear_NewRow_Display();
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -1687,16 +1697,7 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
-
 			CommunitiesPage.ClickonWaterConsumption();
-			/*OldScore = CommunitiesPage.getWaterScore();
-			CommonMethod.switchToDefaultContent();
-			ProjectPage = HomePage.clickOnProject();
-			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-			HomePage.closeProjectSearchTextBox();
-			CommunitiesPage.ClickonDataInput();
-			CommonMethod.switchToDataInputFrame();
-			CommunitiesPage.ClickonWaterConsumption();*/
 			flag = CommunitiesPage.CheckWaterConsumption_SaveNewRecord();
 
 			if (flag) {
@@ -1831,7 +1832,6 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonWaterConsumption();
-			//CommunitiesPage.getWaterScore();
 			flag = CommunitiesPage.CheckWaterConsumption_AddRow_DurationTypes();
 
 			if (flag) {
@@ -2019,6 +2019,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickOnDetailsTab();
 			flag = CommunitiesPage.checkWaterCommentAndActivity(data.getCellData("Communities", 9, 2), ProfileUserName);
 
 		} else {
@@ -2104,7 +2105,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonWaterConsumption();
-			flag = CommunitiesPage.CheckWaterFilter();
+			CommunitiesPage.Water_AddRecords();
+			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
+			CommunitiesPage.ClickonWaterConsumption();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -2150,7 +2154,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidwastegeneration();
-			flag = CommunitiesPage.CheckWasteGeneration_Data_DetailsTab_Display();
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -2193,8 +2197,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidwastegeneration();
-			flag = CommunitiesPage.CheckWaste_Generation_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -2367,7 +2370,6 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidwastegeneration();
-
 			flag = CommunitiesPage.CheckWasteGeneration_DeleteRow();
 
 			if (flag) {
@@ -2420,9 +2422,10 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
-
 			CommunitiesPage.ClickonMunicipalSolidwastegeneration();
-			flag = CommunitiesPage.checkWasteGenerationCommentAndActivity(data.getCellData("Communities", 11, 2), ProfileUserName);
+			CommunitiesPage.ClickOnDetailsTab();
+			flag = CommunitiesPage.checkWasteGenerationCommentAndActivity(data.getCellData("Communities", 11, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -2509,8 +2512,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidwastegeneration();
-			flag = CommunitiesPage.CheckWaste_GenerationFilter();
-
+			CommunitiesPage.Waste_AddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonMunicipalSolidwastegeneration();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -2552,8 +2557,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CommunitiesPage.CheckWasteDiversion_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -2595,8 +2599,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CommunitiesPage.CheckWaste_Diversion_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -2815,7 +2818,6 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
-
 			flag = CommunitiesPage.CheckWasteDiversion_DeleteRow();
 
 			if (flag) {
@@ -2893,7 +2895,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_Waste_Score_SavePreviousYearDataForGenerationAndDiversion method ends here ........... ");
+			log.info(
+					"Community_Waste_Score_SavePreviousYearDataForGenerationAndDiversion method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -2929,7 +2932,9 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CommunitiesPage.checkWasteDiversionCommentAndActivity(data.getCellData("Communities", 13, 2), ProfileUserName);
+			CommunitiesPage.ClickOnDetailsTab();
+			flag = CommunitiesPage.checkWasteDiversionCommentAndActivity(data.getCellData("Communities", 13, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -3015,7 +3020,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
-			flag = CommunitiesPage.CheckWaste_DiversionFilter();
+			CommunitiesPage.Waste_AddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonMunicipalSolidWasteDiversion();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -3059,8 +3067,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonVMT();
-			flag = CommunitiesPage.CheckVMT_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -3101,8 +3108,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonVMT();
-			flag = CommunitiesPage.CheckTransport_VMT_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -3142,13 +3148,12 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonVMT();
-			//OldScore = CommunitiesPage.getTransportScore();
 			flag = CommunitiesPage.CheckTransportation_SaveNewRecord();
 
 			if (flag) {
-					log.info("Community_Transportation_SavePreviousYearData method ends here ........... ");
-					Assert.assertTrue(true);
-				
+				log.info("Community_Transportation_SavePreviousYearData method ends here ........... ");
+				Assert.assertTrue(true);
+
 			} else {
 				log.info("Record is not added successfully");
 				log.info("Community_Transportation_SavePreviousYearData method ends here ........... ");
@@ -3162,8 +3167,7 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 
 	}
-	
-	
+
 	// Verify score gets populated when data is added for previous year
 
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Transportation_SavePreviousYearData", priority = 144, enabled = true, description = "Transportation - >Verify score gets populated when data is added for previous year  ")
@@ -3190,13 +3194,12 @@ public class CommunitiesPageTest extends BaseClass {
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonVMT();
 			Score = CommunitiesPage.getTransportScore();
-			
-				if (Score>0) {
-					log.info("Score is updated with---" + Score);
-					log.info("Community_Transportation_CheckScore method ends here ........... ");
-					Assert.assertTrue(true);
-				}
-			 else {
+
+			if (Score > 0) {
+				log.info("Score is updated with---" + Score);
+				log.info("Community_Transportation_CheckScore method ends here ........... ");
+				Assert.assertTrue(true);
+			} else {
 				log.info("Community_Transportation_CheckScore method ends here ........... ");
 				Assert.assertTrue(false);
 			}
@@ -3417,7 +3420,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonVMT();
-			flag = CommunitiesPage.CheckTransportationFilter();
+			CommunitiesPage.VMT_AddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonVMT();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -3464,8 +3470,9 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonVMT();
-			// OldScore = CommunitiesPage.getTransportScore();
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 15, 2), ProfileUserName);
+			CommunitiesPage.ClickOnDetailsTab();
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 15, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -3508,8 +3515,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.CheckHealthAndSafety_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -3550,8 +3556,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.CheckHealthAndSafety_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -3633,8 +3638,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.CheckHealthAndSafety_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 16, 2));
 			if (flag) {
 				log.info("Community_HealthAndSafety_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -3679,7 +3683,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.HealthAndSafety_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 16, 2));
 			if (flag) {
 				log.info("Community_HealthAndSafety_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -3724,8 +3728,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.CheckHealthAndSafety_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_HealthAndSafety_Edit_Test method ends here ........... ");
@@ -3769,8 +3772,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.HealthAndSafety_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -3818,7 +3820,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.CheckHealthAndSafetyFilter();
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonHealthAndSafety();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -3865,7 +3870,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafety();
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 17, 2), ProfileUserName);
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 17, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -3909,19 +3915,20 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.CheckEducation_BachelorPopulation_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
 		}
 
 		if (flag) {
-			log.info("Community_Education_Bachelor_Population_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Education_Bachelor_Population_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_Education_Bachelor_Population_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Education_Bachelor_Population_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -3951,8 +3958,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.CheckEducation_Bachelor_Population_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -3973,7 +3979,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Education_Bachelor_Population_AddYear_AddNewLine", priority = 159, enabled = true, description = "Verify validation Message after adding Invalid Percent value(101)")
 	public void Community_Education_Bachelor_Population_SaveWithInvalidPercent() {
 
-		log.info("Community_Education_Bachelor_Population_SaveWithInvalidPercent method started......................... ");
+		log.info(
+				"Community_Education_Bachelor_Population_SaveWithInvalidPercent method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -3993,8 +4000,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.CheckEducation_Bachelor_Population_CheckWithInvalidPercent();
-
+			flag = CommunitiesPage.CheckWithInvalidPercent();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -4016,7 +4022,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Education_Bachelor_Population_AddYear_AddNewLine", priority = 160, enabled = true, description = "Quality Of Life --> Education: Population with (at least) Bachelor's degree (%) - >Verify by adding value to reading and clicking on save button for previous year ")
 	public void Community_Education_Bachelor_Population_SavePreviousYearData() {
 
-		log.info("Community_Education_Bachelor_Population_SavePreviousYearData method started......................... ");
+		log.info(
+				"Community_Education_Bachelor_Population_SavePreviousYearData method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -4035,7 +4042,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.CheckEductaion_Bachelor_Population_SaveNewRecord();
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 18, 2));
 
 			if (flag) {
 				log.info("Community_Education_Bachelor_Population_SavePreviousYearData method ends here ........... ");
@@ -4083,7 +4090,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.Education_Bachelor_Population_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 18, 2));
 			if (flag) {
 				log.info(
 						"Community_Education_Bachelor_Population_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -4098,7 +4105,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_Education_Bachelor_Population_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_Education_Bachelor_Population_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -4130,8 +4138,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.CheckEducation_Bachelor_population_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_Education_Bachelor_Population_Edit_Test method ends here ........... ");
@@ -4153,7 +4160,7 @@ public class CommunitiesPageTest extends BaseClass {
 
 	// Quality Of Life--> Education: Population with (at least) Bachelor's degree
 	// (%) - Verify able to delete line item by using delete button.
-	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup",dependsOnMethods = "Community_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
+	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Education_Bachelor_Population_SavePreviousYearData", priority = 162, enabled = true, description = "Quality Of Life--> Education: Population with (at least) Bachelor's degree (%) - Verify able to delete line item by using delete button.")
 	public void Community_Education_Bachelor_Population_Delete_Row() {
 
 		log.info("Community_Education_Bachelor_Population_Delete_Row method started......................... ");
@@ -4175,7 +4182,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.Education_Bachelor_Population_DeleteRow();
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 
 			if (flag) {
 
@@ -4225,8 +4232,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.CheckEducation_Bachelor_Population_Filter();
-
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonEducation_BachelorPopulation();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -4252,7 +4261,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 163, enabled = false, description = "Quality Of Life--> Health And Safety -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_Education_Bachelor_Population_Comments_Activity_Test() {
 
-		log.info("Community_Education_Bachelor_Population_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_Education_Bachelor_Population_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -4273,7 +4283,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_BachelorPopulation();
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 19, 2), ProfileUserName);
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 19, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -4317,19 +4328,20 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
 		}
 
 		if (flag) {
-			log.info("Community_Equitability_Gini_Coefficient_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Equitability_Gini_Coefficient_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_Equitability_Gini_Coefficient_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Equitability_Gini_Coefficient_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -4359,8 +4371,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -4381,7 +4392,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Equitability_Gini_Coefficient_AddYear_AddNewLine", priority = 165, enabled = true, description = "Verify validation Message after adding Invalid value(Test Data -2)")
 	public void Community_Equitability_Gini_Coefficient_SaveWithInvalidValue() {
 
-		log.info("Community_Equitability_Gini_Coefficient_SaveWithInvalidValue method started......................... ");
+		log.info(
+				"Community_Equitability_Gini_Coefficient_SaveWithInvalidValue method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -4424,7 +4436,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Equitability_Gini_Coefficient_AddYear_AddNewLine", priority = 166, enabled = true, description = "Quality Of Life --> Equitability: Gini coefficient (for income distribution) - >Verify by adding value to reading and clicking on save button for previous year ")
 	public void Community_Equitability_Gini_Coefficient_SavePreviousYearData() {
 
-		log.info("Community_Equitability_Gini_Coefficient_SavePreviousYearData method started......................... ");
+		log.info(
+				"Community_Equitability_Gini_Coefficient_SavePreviousYearData method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -4443,7 +4456,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_SaveNewRecord();
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 20, 2));
 
 			if (flag) {
 				log.info("Community_Equitability_Gini_Coefficient_SavePreviousYearData method ends here ........... ");
@@ -4505,7 +4518,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_Equitability_Gini_Coefficient_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_Equitability_Gini_Coefficient_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -4582,8 +4596,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.Equitability_Gini_Coefficient_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -4632,7 +4645,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.CheckEquitability_Gini_Coefficient_Filter();
+			CommunitiesPage.QualityOfLifeAddRecordsForGinni();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -4659,7 +4675,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 169, enabled = false, description = "Quality Of Life--> Equitability: Gini coefficient (for income distribution)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_Equitability_Gini_Coefficient_Comments_Activity_Test() {
 
-		log.info("Community_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -4680,7 +4697,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 21, 2), ProfileUserName);
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 21, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -4724,19 +4742,20 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
 		}
 
 		if (flag) {
-			log.info("Community_Education_HighSchoolPopulation_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Education_HighSchoolPopulation_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_Education_HighSchoolPopulation_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Education_HighSchoolPopulation_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -4746,7 +4765,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Education_HighSchoolPopulation_With_DataAndDetails_Display", priority = 171, enabled = true, description = "Verify 'Add year' button adds line item with year for previous year.")
 	public void Community_Education_HighSchoolPopulation_AddYear_AddNewLine() {
 
-		log.info("Community_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
+		log.info(
+				"Community_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -4766,8 +4786,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -4788,7 +4807,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Education_HighSchoolPopulation_AddYear_AddNewLine", priority = 171, enabled = true, description = "Verify validation Message after adding Invalid Percent value(Test Data - 101)")
 	public void Community_Education_HighSchoolPopulation_SaveWithInvalidPercent() {
 
-		log.info("Community_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
+		log.info(
+				"Community_Education_HighSchoolPopulation_AddYear_AddNewLine method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -4808,7 +4828,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_CheckWithInvalidPercent();
+			flag = CommunitiesPage.CheckWithInvalidPercent();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -4832,7 +4852,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Education_HighSchoolPopulation_AddYear_AddNewLine", priority = 172, enabled = true, description = "Quality Of Life --> Education: Population with (at least) High School degree (%) - >Verify by adding value to reading and clicking on save button for previous year. ")
 	public void Community_Education_HighSchoolPopulation_SavePreviousYearData() {
 
-		log.info("Community_Education_HighSchoolPopulation_SavePreviousYearData method started......................... ");
+		log.info(
+				"Community_Education_HighSchoolPopulation_SavePreviousYearData method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -4851,8 +4872,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 22, 2));
 			if (flag) {
 				log.info("Community_Education_HighSchoolPopulation_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -4899,7 +4919,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.Education_HighSchoolPopulation_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 22, 2));
 			if (flag) {
 				log.info(
 						"Community_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -4914,7 +4934,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_Education_HighSchoolPopulation_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -4946,8 +4967,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_Education_HighSchoolPopulation_Edit_Test method ends here ........... ");
@@ -4991,8 +5011,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.Education_HighSchoolPopulation_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -5041,7 +5060,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
-			flag = CommunitiesPage.CheckEducation_HighSchoolPopulation_Filter();
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonEducation_HighSchoolPopulation();
+			flag = CommunitiesPage.CheckFilter_Reset();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -5068,7 +5090,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 176, enabled = false, description = "Quality Of Life--> Education: Population with (at least) High School degree (%)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_Equitability_Gini_Coefficient_Comments_Activity_Test1() {
 
-		log.info("Community_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_Equitability_Gini_Coefficient_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5089,8 +5112,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 23, 2), ProfileUserName);
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 23, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -5113,7 +5136,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 177, enabled = true, description = "Verify for Prosperity: Median household income (US Dollars/Year) gets added by default with Data and Details tab.")
 	public void Community_ProsperityMedianIncome_With_DataAndDetails_Display() {
 
-		log.info("Community_ProsperityMedianIncome_With_DataAndDetails_Display method started......................... ");
+		log.info(
+				"Community_ProsperityMedianIncome_With_DataAndDetails_Display method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5132,8 +5156,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.CheckProsperityMedianIncome_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5174,8 +5197,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.CheckProsperityMedianIncome_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5216,8 +5238,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.CheckProsperityMedianIncome_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 24, 2));
 			if (flag) {
 				log.info("Community_ProsperityMedianIncome_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -5242,7 +5263,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 177, dependsOnMethods = "Community_ProsperityMedianIncome_SavePreviousYearData", enabled = true, description = "Quality Of Life--> Prosperity: Median household income (US Dollars/Year)  - > Verify 'previous year' and 'next year' button adds reading respectively.")
 	public void Community_ProsperityMedianIncome_AddRow_PreviousYear_NextYear() {
 
-		log.info("Community_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method started......................... ");
+		log.info(
+				"Community_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5262,7 +5284,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.ProsperityMedianIncome_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 24, 2));
 			if (flag) {
 				log.info("Community_ProsperityMedianIncome_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
@@ -5307,8 +5329,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.CheckProsperityMedianIncome_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_ProsperityMedianIncome_Edit_Test method ends here ........... ");
@@ -5352,8 +5373,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.ProsperityMedianIncome_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -5402,8 +5422,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperity_MedianIncome();
-			flag = CommunitiesPage.CheckProsperityMedianIncome_Filter();
-
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonProsperity_MedianIncome();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5449,7 +5471,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_Gini_Coeffiecient();
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 25, 2), ProfileUserName);
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 25, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -5492,7 +5515,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_Data_DetailsTab_Display();
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -5500,11 +5523,13 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 
 		if (flag) {
-			log.info("Community_Equitability_MedianGrossIncome_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Equitability_MedianGrossIncome_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_Equitability_MedianGrossIncome_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_Equitability_MedianGrossIncome_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -5514,7 +5539,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Equitability_MedianGrossIncome_With_DataAndDetails_Display", priority = 183, enabled = true, description = "Verify 'Add year' button adds line item with year for previous year.")
 	public void Community_Equitability_MedianGrossIncome_AddYear_AddNewLine() {
 
-		log.info("Community_Equitability_MedianGrossIncome_AddYear_AddNewLine method started......................... ");
+		log.info(
+				"Community_Equitability_MedianGrossIncome_AddYear_AddNewLine method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5534,8 +5560,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5556,7 +5581,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Equitability_MedianGrossIncome_AddYear_AddNewLine", priority = 183, enabled = true, description = "Verify validation Message after adding Invalid Percent value(Test Data - 101)")
 	public void Community_Equitability_MedianGrossIncome_SaveWithInvalidPercent() {
 
-		log.info("Community_Equitability_MedianGrossIncome_SaveWithInvalidPercent method started......................... ");
+		log.info(
+				"Community_Equitability_MedianGrossIncome_SaveWithInvalidPercent method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5576,8 +5602,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_CheckWithInvalidPercentValue();
-
+			flag = CommunitiesPage.CheckWithInvalidPercent();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5599,7 +5624,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_Equitability_MedianGrossIncome_AddYear_AddNewLine", priority = 184, enabled = true, description = "Quality Of Life --> Equitability: Median gross rent as (%) of household income - >Verify by adding value to reading and clicking on save button for previous year  ")
 	public void Community_Equitability_MedianGrossIncome_SavePreviousYearData() {
 
-		log.info("Community_Equitability_MedianGrossIncome_SavePreviousYearData method started......................... ");
+		log.info(
+				"Community_Equitability_MedianGrossIncome_SavePreviousYearData method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -5618,8 +5644,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 26, 2));
 			if (flag) {
 				log.info("Community_Equitability_MedianGrossIncome_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -5665,7 +5690,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.Equitability_MedianGrossIncome_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 26, 2));
 			if (flag) {
 				log.info(
 						"Community_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -5680,7 +5705,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_Equitability_MedianGrossIncome_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -5712,8 +5738,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_Equitability_MedianGrossIncome_Edit_Test method ends here ........... ");
@@ -5757,8 +5782,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.Equitability_MedianGrossIncome_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -5807,8 +5831,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.CheckEquitability_MedianGrossIncome_Filter();
-
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5834,7 +5860,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 187, enabled = false, description = "Quality Of Life--> Equitability: Median gross rent as (%) of household income  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_Equitability_MedianGrossIncome_Comments_Activity_Test() {
 
-		log.info("Community_Equitability_MedianGrossIncome_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_Equitability_MedianGrossIncome_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5855,7 +5882,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonEquitability_MedianGrossIncome();
-			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 27, 2), ProfileUserName);
+			flag = CommunitiesPage.checkTransportCommentAndActivity(data.getCellData("Communities", 27, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -5898,8 +5926,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.CheckProsperityUnemployementRate_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5940,8 +5967,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.CheckProsperityUnemployementRate_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -5962,7 +5988,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_ProsperityUnemployementRate_AddYear_AddNewLine", priority = 189, enabled = true, description = "Verify validation Message after adding Invalid Percent value(Test Data - 101)")
 	public void Community_ProsperityUnemployementRate_SaveWithInvalidPercent() {
 
-		log.info("Community_ProsperityUnemployementRate_SaveWithInvalidPercent method started......................... ");
+		log.info(
+				"Community_ProsperityUnemployementRate_SaveWithInvalidPercent method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -5982,8 +6009,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.CheckProsperityUnemployementRate_CheckWithInvalidValue();
-
+			flag = CommunitiesPage.CheckWithInvalidPercent();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -6023,8 +6049,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.CheckProsperityUnemployementRate_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 28, 2));
 			if (flag) {
 				log.info("Community_ProsperityUnemployementRate_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -6070,20 +6095,23 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.ProsperityUnemployementRate_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 28, 2));
 			if (flag) {
-				log.info("Community_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
+				log.info(
+						"Community_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
 
 			} else {
 				log.info("Record is not added successfully");
-				log.info("Community_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
+				log.info(
+						"Community_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_ProsperityUnemployementRate_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -6115,8 +6143,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.CheckProsperityUnemployementRate_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_ProsperityUnemployementRate_Edit_Test method ends here ........... ");
@@ -6160,8 +6187,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.ProsperityUnemployementRate_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -6210,8 +6236,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.CheckProsperityUnemployementRate_Filter();
-
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonProsperityUnemployementRate();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -6236,7 +6264,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 193, enabled = false, description = "Quality Of Life--> Prosperity: Unemployment rate (%)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_ProsperityUnemployementRate_Comments_Activity_Test() {
 
-		log.info("Community_ProsperityUnemployementRate_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_ProsperityUnemployementRate_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -6257,7 +6286,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonProsperityUnemployementRate();
-			flag = CommunitiesPage.checkProsperityUnemployementRate(data.getCellData("Communities", 29, 2), ProfileUserName);
+			flag = CommunitiesPage.checkProsperityUnemployementRate(data.getCellData("Communities", 29, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
@@ -6302,19 +6332,20 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
 		}
 
 		if (flag) {
-			log.info("Community_HealthAndSafetySensitiveGroup_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_HealthAndSafetySensitiveGroup_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_HealthAndSafetySensitiveGroup_With_DataAndDetails_Display method ends here ........... ");
+			log.info(
+					"Community_HealthAndSafetySensitiveGroup_With_DataAndDetails_Display method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -6344,8 +6375,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_AddYear_NewRow_Display();
-
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -6366,7 +6396,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 195, dependsOnMethods = "Community_HealthAndSafetySensitiveGroup_AddYear_AddNewLine", enabled = true, description = "Verify validation Message after adding Invalid value(Test Data - 366)")
 	public void Community_HealthAndSafetySensitiveGroup_SaveWithInvalidValue() {
 
-		log.info("Community_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method started......................... ");
+		log.info(
+				"Community_HealthAndSafetySensitiveGroup_SaveWithInvalidValue method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -6409,7 +6440,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", dependsOnMethods = "Community_HealthAndSafetySensitiveGroup_AddYear_AddNewLine", priority = 196, enabled = true, description = "Quality Of Life --> Health & Safety: Air quality days unhealthy for sensitive groups (Days/yr) - >Verify by adding value to reading and clicking on save button for previous year ")
 	public void Community_HealthAndSafetySensitiveGroup_SavePreviousYearData() {
 
-		log.info("Community_HealthAndSafetySensitiveGroup_SavePreviousYearData method started......................... ");
+		log.info(
+				"Community_HealthAndSafetySensitiveGroup_SavePreviousYearData method started......................... ");
 		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
@@ -6428,8 +6460,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 30, 2));
 			if (flag) {
 				log.info("Community_HealthAndSafetySensitiveGroup_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -6476,7 +6507,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.HealthAndSafetySensitiveGroup_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 30, 2));
 			if (flag) {
 				log.info(
 						"Community_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear method ends here ........... ");
@@ -6491,7 +6522,8 @@ public class CommunitiesPageTest extends BaseClass {
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_HealthAndSafetySensitiveGroup_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -6523,8 +6555,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_HealthAndSafetySensitiveGroup_Edit_Test method ends here ........... ");
@@ -6568,8 +6599,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.HealthAndSafetySensitiveGroup_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -6618,8 +6648,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.CheckHealthAndSafetySensitiveGroup_Filter();
-
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -6668,18 +6700,21 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
-			flag = CommunitiesPage.checkHealthAndSafetySensitiveGroup(data.getCellData("Communities", 31, 2), ProfileUserName);
+			flag = CommunitiesPage.checkHealthAndSafetySensitiveGroup(data.getCellData("Communities", 31, 2),
+					ProfileUserName);
 
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
 		}
 		if (flag) {
-			log.info("Community_Community_HealthAndSafetySensitiveGroup_Comments_Activity_Test method ends here ........... ");
+			log.info(
+					"Community_Community_HealthAndSafetySensitiveGroup_Comments_Activity_Test method ends here ........... ");
 			Assert.assertTrue(true);
 
 		} else {
-			log.info("Community_Community_HealthAndSafetySensitiveGroup_Comments_Activity_Test method ends here ........... ");
+			log.info(
+					"Community_Community_HealthAndSafetySensitiveGroup_Comments_Activity_Test method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 	}
@@ -6713,8 +6748,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_Data_DetailsTab_Display();
-
+			flag = CommunitiesPage.Check_Data_DetailsTab_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -6755,8 +6789,9 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_AddYear_NewRow_Display();
-
+			// flag =
+			// CommunitiesPage.CheckHealthAndSafetyVoilentCrime_AddYear_NewRow_Display();
+			flag = CommunitiesPage.CheckAddYear_NewRow_Display();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -6798,8 +6833,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_SaveNewRecord();
-
+			flag = CommunitiesPage.QualityOfLife_SaveNewRecord(data.getCellData("Communities", 32, 2));
 			if (flag) {
 				log.info("Community_HealthAndSafetyVoilentCrime_SavePreviousYearData method ends here ........... ");
 				Assert.assertTrue(true);
@@ -6845,20 +6879,23 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.HealthAndSafetyVoilentCrime_SavePreviousAndNextYearRecord();
+			flag = CommunitiesPage.QualityOfLife_SavePreviousAndNextYearRecord(data.getCellData("Communities", 32, 2));
 			if (flag) {
-				log.info("Community_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
+				log.info(
+						"Community_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(true);
 
 			} else {
 				log.info("Record is not added successfully");
-				log.info("Community_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
+				log.info(
+						"Community_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
 				Assert.assertTrue(false);
 			}
 
 		} else {
 			log.info("Community Project is showing Null");
-			log.info("Community_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
+			log.info(
+					"Community_HealthAndSafetyVoilentCrime_AddRow_PreviousYear_NextYear method ends here ........... ");
 			Assert.assertTrue(false);
 		}
 
@@ -6890,8 +6927,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_EditRecord();
-
+			flag = CommunitiesPage.QualityOfLife_EditRecord();
 			if (flag) {
 				log.info("Record is updated successfully");
 				log.info("Community_HealthAndSafetyVoilentCrime_Edit_Test method ends here ........... ");
@@ -6935,8 +6971,7 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.HealthAndSafetyVoilentCrime_DeleteRow();
-
+			flag = CommunitiesPage.QualityOfLife_DeleteRow();
 			if (flag) {
 
 				log.info("Record is deleted successfully");
@@ -6985,8 +7020,10 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.CheckHealthAndSafetyVoilentCrime_Filter();
-
+			CommunitiesPage.QualityOfLifeAddRecords();
+			CommunitiesPage.ClickonWaterConsumption();
+			CommunitiesPage.ClickonHealthAndSafetySensitiveGroup();
+			flag = CommunitiesPage.CheckFilter_Reset();
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -7011,7 +7048,8 @@ public class CommunitiesPageTest extends BaseClass {
 	@Test(groups = "CommunityRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 204, enabled = false, description = "Quality Of Life--> Health & Safety: Violent Crime (per year per capita)  -->Verify 'Comments' section by adding comment should show correct timestamp.\r\n Verify 'Activity' section should show correct activity with date and timestamp")
 	public void Community_HealthAndSafetyVoilentCrime_Comments_Activity_Test() {
 
-		log.info("Community_HealthAndSafetyVoilentCrime_Comments_Activity_Test method started......................... ");
+		log.info(
+				"Community_HealthAndSafetyVoilentCrime_Comments_Activity_Test method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -7032,8 +7070,8 @@ public class CommunitiesPageTest extends BaseClass {
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
 			CommunitiesPage.ClickonHealthAndSafetyVoilentCrime();
-			flag = CommunitiesPage.checkHealthAndSafetyVoilentCrime(data.getCellData("Communities", 33, 2), ProfileUserName);
-
+			flag = CommunitiesPage.checkHealthAndSafetyVoilentCrime(data.getCellData("Communities", 33, 2),
+					ProfileUserName);
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
@@ -7071,7 +7109,6 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.closeProjectSearchTextBox();
 			CommunitiesPage.ClickonDataInput();
 			CommonMethod.switchToDataInputFrame();
-
 			QualityScore = CommunitiesPage.getQualityOfLifeScore();
 
 		} else {
@@ -7129,10 +7166,9 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
+
 	// --------------------------------------------Manage Section Test
 	// Cases---------------------
-
 
 	// --> Verify under Manage--Project-- Project Details, Year founded is a
 	// dropdown field with year values ranging from 1900 to current year.
@@ -7150,7 +7186,7 @@ public class CommunitiesPageTest extends BaseClass {
 			HomePage.setHomePageApplication();
 			e.printStackTrace();
 		}
-		//System.setProperty("CommunityProject5","8000040382");
+		// System.setProperty("CommunityProject5","8000040382");
 		String ProjectCommunityID = System.getProperty("CommunityProject5");
 		// ProjectCommunityID="1000102092";
 		if (!ProjectCommunityID.equals(null)) {
@@ -7265,7 +7301,8 @@ public class CommunitiesPageTest extends BaseClass {
 			+ "	 Verify 'Intend to precertify?' field has radio button with options- Yes and No.Able to select any value from it.")
 	public void Community_ManageProject_PrivateRadioButton_IntendToPrecertify() {
 
-		log.info("Community_ManageProject_PrivateRadioButton_IntendToPrecertify method started......................... ");
+		log.info(
+				"Community_ManageProject_PrivateRadioButton_IntendToPrecertify method started......................... ");
 		boolean flag = false;
 
 		try {
@@ -7277,7 +7314,7 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 
 		String ProjectCommunityID = System.getProperty("CommunityProject5");
-		//ProjectCommunityID="8000012001";
+		// ProjectCommunityID="8000012001";
 		if (!ProjectCommunityID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
@@ -7743,14 +7780,14 @@ public class CommunitiesPageTest extends BaseClass {
 			Assert.assertTrue(false);
 		}
 	}
-	
-	//Verify agreement is downloaded successfully.
-	
+
+	// Verify agreement is downloaded successfully.
+
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
 			"CommunityRegression" }, enabled = true, priority = 267, description = "Verify able to download the agreement successfully.")
 	public void Community_Agreement_CheckDownloadAgreement() {
 		log.info("Community_Agreement_CheckDownloadAgreement method started ");
-		boolean flag=false;
+		boolean flag = false;
 		try {
 			HomePage.setHomePageApplication();
 		} catch (Exception e) {
@@ -7759,19 +7796,19 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 		// System.setProperty("CommunitiesProject_Perf4","8000040272");
 		String ProjectCommunityID = System.getProperty("CommunityProject5");
-		 //ProjectCommunityID="8000040272";
+		// ProjectCommunityID="8000040272";
 		if (!ProjectCommunityID.equals(null)) {
-			String username=HomePage.getCurrentProfileUserName();
+			String username = HomePage.getCurrentProfileUserName();
 			ProjectPage = HomePage.clickOnProject();
 			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-			HomePage.closeProjectSearchTextBox();			
+			HomePage.closeProjectSearchTextBox();
 			CommunitiesPage.ClickonAgreementInManage();
 			CommonMethod.ClikOnAgreementRegistrationDownloadLink();
 			flag = CommunitiesPage.CheckAgreementDownloadedFile(username);
 		} else {
 			log.info("Community Project is showing Null");
 			Assert.assertTrue(false);
-		}		
+		}
 		if (flag) {
 			log.info("Community_Agreement_CheckDownloadAgreement method ends here with true ........... ");
 			Assert.assertTrue(true);
@@ -7782,111 +7819,113 @@ public class CommunitiesPageTest extends BaseClass {
 		}
 	}
 
-	
-	// Verify links redirect to correct pages: Data guide for buildings -"https://www.usgbc.org/resources/data-management-buildings" and Data review checklst (pdf)downloads the data review checklist file.
+	// Verify links redirect to correct pages: Data guide for buildings
+	// -"https://www.usgbc.org/resources/data-management-buildings" and Data review
+	// checklst (pdf)downloads the data review checklist file.
 
-		@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-				"CommunityRegression" }, enabled = true, priority = 268, description = "Verify links redirect to correct pages: Data guide for buildings -\"https://www.usgbc.org/resources/data-management-buildings\" and Data review checklst (pdf)downloads the data review checklist file.")
-		public void Community_Settings_DataResourceLinks() {
-			log.info("Community_Settings_DataResourceLinks method started ");
-			boolean flag = false;
-			try {
-				HomePage.setHomePageApplication();
-			} catch (Exception e) {
-				HomePage.setHomePageApplication();
-				e.printStackTrace();
-			}
-			 //System.setProperty("CityProject_Perf4","8000040326");
-			String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
-			// ProjectCommunityID="8000040272";
-			if (!ProjectCommunityID.equals(null)) {
-				ProjectPage = HomePage.clickOnProject();
-				CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-				HomePage.closeProjectSearchTextBox();
-				CommunitiesPage.ClickonSettingsInManage();
-				flag = CommunitiesPage.CheckSettings_DataResourceLink();
-			} else {
-				log.info("Community Project is showing Null");
-				Assert.assertTrue(false);
-			}
-			if (flag) {
-				log.info("Community_Settings_DataResourceLinks method ends here with true ........... ");
-				Assert.assertTrue(true);
-
-			} else {
-				log.info("Community_Settings_DataResourceLinks method ends here with false........... ");
-				Assert.assertTrue(false);
-			}
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CommunityRegression" }, enabled = true, priority = 268, description = "Verify links redirect to correct pages: Data guide for buildings -\"https://www.usgbc.org/resources/data-management-buildings\" and Data review checklst (pdf)downloads the data review checklist file.")
+	public void Community_Settings_DataResourceLinks() {
+		log.info("Community_Settings_DataResourceLinks method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
 		}
-		
-		// Verify able to turn the toggle button 'on' and 'off' for "Show the score animation on the Arc app"
+		// System.setProperty("CityProject_Perf4","8000040326");
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+		// ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonSettingsInManage();
+			flag = CommunitiesPage.CheckSettings_DataResourceLink();
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Settings_DataResourceLinks method ends here with true ........... ");
+			Assert.assertTrue(true);
 
-				@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-						"CommunityRegression" }, enabled = false, priority = 269, description = "Verify able to turn the toggle button 'on' and 'off' for \"Show the score animation on the Arc app\"")
-				public void Community_Settings_ScoreAnimationToggleButton() {
-					log.info("Community_Settings_ScoreAnimationToggleButton method started ");
-					boolean flag = false;
-					try {
-						HomePage.setHomePageApplication();
-					} catch (Exception e) {
-						HomePage.setHomePageApplication();
-						e.printStackTrace();
-					}
-					 //System.setProperty("CityProject_Perf4","8000040326");
-					String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
-					// ProjectCommunityID="8000040272";
-					if (!ProjectCommunityID.equals(null)) {
-						ProjectPage = HomePage.clickOnProject();
-						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-						HomePage.closeProjectSearchTextBox();
-						CommunitiesPage.ClickonSettingsInManage();
-						flag = CityPage.Settings_ScoreAnimationToggleButton();
-					} else {
-						log.info("Community Project is showing Null");
-						Assert.assertTrue(false);
-					}
-					if (flag) {
-						log.info("Community_Settings_ScoreAnimationToggleButton method ends here with true ........... ");
-						Assert.assertTrue(true);
+		} else {
+			log.info("Community_Settings_DataResourceLinks method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
 
-					} else {
-						log.info("Community_Settings_ScoreAnimationToggleButton method ends here with false........... ");
-						Assert.assertTrue(false);
-					}
-				}	
-			// Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. 
+	// Verify able to turn the toggle button 'on' and 'off' for "Show the score
+	// animation on the Arc app"
 
-				@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-						"CommunityRegression" }, enabled = true, priority = 270, description = "Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. ")
-				public void Community_ScoreVersion() {
-					log.info("Community_ScoreVersion method started ");
-					boolean flag = false;
-					try {
-						HomePage.setHomePageApplication();
-					} catch (Exception e) {
-						HomePage.setHomePageApplication();
-						e.printStackTrace();
-					}
-					 //System.setProperty("CityProject_Perf4","8000040326");
-					String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
-					// ProjectCommunityID="8000040272";
-					if (!ProjectCommunityID.equals(null)) {
-						ProjectPage = HomePage.clickOnProject();
-						CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
-						HomePage.closeProjectSearchTextBox();
-						CommunitiesPage.ClickonScoreVersionInManage();
-						flag = CommunitiesPage.CheckScoreVersion();
-					} else {
-						log.info("Community Project is showing Null");
-						Assert.assertTrue(false);
-					}
-					if (flag) {
-						log.info("Community_ScoreVersion method ends here with true ........... ");
-						Assert.assertTrue(true);
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CommunityRegression" }, enabled = false, priority = 269, description = "Verify able to turn the toggle button 'on' and 'off' for \"Show the score animation on the Arc app\"")
+	public void Community_Settings_ScoreAnimationToggleButton() {
+		log.info("Community_Settings_ScoreAnimationToggleButton method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040326");
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+		// ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonSettingsInManage();
+			flag = CityPage.Settings_ScoreAnimationToggleButton();
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_Settings_ScoreAnimationToggleButton method ends here with true ........... ");
+			Assert.assertTrue(true);
 
-					} else {
-						log.info("Community_ScoreVersion method ends here with false........... ");
-						Assert.assertTrue(false);
-					}
-				}
+		} else {
+			log.info("Community_Settings_ScoreAnimationToggleButton method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
+	// Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022.
+
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
+			"CommunityRegression" }, enabled = true, priority = 270, description = "Verify the Score version for cities shows version 2.0 as of date-Jan-10-2022. ")
+	public void Community_ScoreVersion() {
+		log.info("Community_ScoreVersion method started ");
+		boolean flag = false;
+		try {
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		// System.setProperty("CityProject_Perf4","8000040326");
+		String ProjectCommunityID = System.getProperty("CommunitiesProject_Perf4");
+		// ProjectCommunityID="8000040272";
+		if (!ProjectCommunityID.equals(null)) {
+			ProjectPage = HomePage.clickOnProject();
+			CommunitiesPage = ProjectPage.SearchAndClickOnCommunitiesProject(ProjectCommunityID);
+			HomePage.closeProjectSearchTextBox();
+			CommunitiesPage.ClickonScoreVersionInManage();
+			flag = CommunitiesPage.CheckScoreVersion();
+		} else {
+			log.info("Community Project is showing Null");
+			Assert.assertTrue(false);
+		}
+		if (flag) {
+			log.info("Community_ScoreVersion method ends here with true ........... ");
+			Assert.assertTrue(true);
+
+		} else {
+			log.info("Community_ScoreVersion method ends here with false........... ");
+			Assert.assertTrue(false);
+		}
+	}
 }

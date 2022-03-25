@@ -290,6 +290,10 @@ public class ProjectPaymentPageObject extends BaseClass {
 	public void selectSpaceType(String Stype) {
 		dropdownhelper.selectUsingVisibleText(SpaceTypeTextbox, Stype);
 	}
+	
+	public void selectOwnerRegion(String Region) {
+		dropdownhelper.selectUsingVisibleText(OwnerRegionTextbox, Region);
+	}
 
 	public void selectOwnerType(String Otype) {
 		dropdownhelper.selectUsingVisibleText(OwnerTypeTextbox, Otype);
@@ -353,9 +357,6 @@ public class ProjectPaymentPageObject extends BaseClass {
 	
 	public void clickOnSave() {
 		SaveButton.click();
-		waithelper.WaitForElementInvisible(
-				driver.findElement(By.xpath("(//span[@class='ng-scope' and text()='Saving']")),
-				Integer.parseInt(prop.getProperty("explicitTime")), 2);
 	}
 
 	public TransitPageObject ClickonTransitSubmitButton() {

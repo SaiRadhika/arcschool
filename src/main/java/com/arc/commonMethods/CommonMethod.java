@@ -12,15 +12,20 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
@@ -129,6 +134,122 @@ public class CommonMethod extends BaseClass {
 
 	}
 
+	
+	/**
+	 * This method will return number of days in the month
+	 * @param year
+	 * @param MonthName
+	 * @return
+	 */
+	public static int getNoOfDaysInMonth(int year, String MonthName) {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("MMMM", Locale.ENGLISH).parse(MonthName);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int Month = cal.get(Calendar.MONTH) + 1;
+		log.info("Month Number is :" + Month);
+		YearMonth yearMonthObject = YearMonth.of(year, Month);
+		int daysInMonth = yearMonthObject.lengthOfMonth();
+		return daysInMonth;
+
+	}
+
+	/**
+	 * This method will return the difference of days between two dates
+	 * @param StartDate
+	 * @param EndDate
+	 * @return
+	 */
+	public static int getDiffernceBetweenTwoDates(String StartDate, String EndDate) {
+		// DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+		// String s1="Feb 01, 2022";
+		// String s2="Feb 28, 2022";
+		Date date1 = null;
+		Date date2 = null;
+		try {
+			date1 = new SimpleDateFormat("MMM dd, yyyy").parse(StartDate);
+			date2 = new SimpleDateFormat("MMM dd, yyyy").parse(EndDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		long diffInMillies = Math.abs(date2.getTime() - date1.getTime());
+		long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+		return (int) diff;
+	}
+
+	/**
+	 * This method will compare two dates 
+	 * returns >0 if StartDate is greater than End Date
+	 * returns <0 if StartDate is less than End Date
+	 * returns 0 if both are equal
+	 * @param StartDate
+	 * @param EndDate
+	 * @return
+	 */
+	public static int compareTwoDates(String StartDate, String EndDate) {
+
+		Date date1 = null;
+		Date date2 = null;
+		try {
+			date1 = new SimpleDateFormat("MMM dd, yyyy").parse(StartDate);
+			date2 = new SimpleDateFormat("MMM dd, yyyy").parse(EndDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		int result = date1.compareTo(date2);
+		return result;
+
+		/*
+		 * if (result == 0) { System.out.println("Date1 is equal to Date2"); } else if
+		 * (result > 0) { System.out.println("Date1 is after Date2"); } else if (result
+		 * < 0) { System.out.println("Date1 is before Date2"); } else {
+		 * System.out.println("How to get here?"); }
+		 */
+	}
+
+	/**
+	 * This method will return the time difference in milliseconds
+	 * @param Time1
+	 * @param Time2
+	 * @return
+	 */
+	public static long AbsoluteTimeDifference(String Time1, String Time2) {
+
+		Date d1 = null;
+		Date d2 = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm a");
+		try {
+			d1 = sdf.parse(Time1);
+			d2 = sdf.parse(Time2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		long TimeDiff = Math.abs(d2.getTime() - d1.getTime());
+		log.info("Time difference showing : " + TimeDiff);
+		return TimeDiff;
+	}
+
+	/**
+	 * This method will remove the special character from String
+	 * @param Text
+	 * @return
+	 */
+	public static String removeSpecialCharacter(String Text) {
+		String TextWithoutSPCR = Text.replaceAll("[^a-zA-Z0-9]", "");
+		return TextWithoutSPCR;
+	}
+
 	// This method will return current Month
 
 	public static int getCurrentMonth() {
@@ -202,8 +323,7 @@ public class CommonMethod extends BaseClass {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
 				is.close();
 			} catch (IOException e) {
@@ -581,7 +701,7 @@ public class CommonMethod extends BaseClass {
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(obj, null);
 		log.info("setClipBoard method ends here ......");
 	}
-	
+
 	public static void clearClipBoard() {
 		log.info("clearClipBoard method starts here ......");
 		StringSelection obj = new StringSelection("");
@@ -672,7 +792,7 @@ public class CommonMethod extends BaseClass {
 
 		return sb.toString();
 	}
-	
+
 	public static String generateRandomNumber(int n) {
 		String NumericSeries = "0123456789";
 		StringBuilder sb = new StringBuilder(n);
@@ -686,7 +806,7 @@ public class CommonMethod extends BaseClass {
 
 		return sb.toString();
 	}
-	
+
 	// This method will switch to defautl content from any frame
 
 	public static void switchToDefaultContent() {
@@ -703,6 +823,13 @@ public class CommonMethod extends BaseClass {
 		log.info("switchToDataInputFrame method ends here......");
 	}
 
+	// This method will switch to Improvement Frame
+
+	public static void switchToImprovementFrame() {
+		log.info("switchToImprovementFrame method starts here......");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@widget='improvement']")));
+		log.info("switchToImprovementFrame method ends here......");
+	}
 	// This method will switch to ShowOverviewFrame Frame
 
 	public static void switchToShowOverviewFrame() {
@@ -777,8 +904,7 @@ public class CommonMethod extends BaseClass {
 		log.info("waitUntilLoadElement method starts here......");
 		try {
 			waithelper.WaitForElementInvisible(
-					driver.findElement(By.xpath("(//*[name()='svg']//*[local-name()='circle' ])[2]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+					driver.findElement(By.xpath("(//*[name()='svg']//*[local-name()='circle' ])[2]")), 50, 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1094,21 +1220,21 @@ public class CommonMethod extends BaseClass {
 				"Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttaranchal",
 				"West Bengal" };
 		if (Country.equals("United States")) {
-			 StateList = Arrays.asList(USStates);
+			StateList = Arrays.asList(USStates);
 		} else if (Country.equals("India")) {
-			 StateList = Arrays.asList(IndiaStates);
-		}		
+			StateList = Arrays.asList(IndiaStates);
+		}
 		return StateList;
 
 	}
-	
-	
-	// This method will take email and role and return whether this email belongs to specific role or not
+
+	// This method will take email and role and return whether this email belongs to
+	// specific role or not
 	public static boolean CheckRoleOfEmail(String email, String role) {
 		log.info("CheckRoleOfEmail Method starts here...........");
 		boolean Emailflag = false;
 		boolean Roleflag = false;
-		String CurrentEmail=null;
+		String CurrentEmail = null;
 		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
 		ngWebDriver.waitForAngularRequestsToFinish();
 		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
@@ -1127,142 +1253,136 @@ public class CommonMethod extends BaseClass {
 				e.printStackTrace();
 			}
 			if (CurrentEmail.equals(email)) {
-				Emailflag=true;
+				Emailflag = true;
 				log.info(CurrentEmail + "  found in this project.....");
 				ngWebDriver.waitForAngularRequestsToFinish();
 				String AccessXpath = Rowxpath + "[" + row + "]/td[3]/select";
-				String CurrentRole=dropdownhelper.getSelectedValue(driver.findElement(By.xpath(AccessXpath)));
-				if(CurrentRole.equals(role))
-				{
-					Roleflag=true;
-					log.info(CurrentRole + "  found for the email "+CurrentEmail+" .....");
+				String CurrentRole = dropdownhelper.getSelectedValue(driver.findElement(By.xpath(AccessXpath)));
+				if (CurrentRole.equals(role)) {
+					Roleflag = true;
+					log.info(CurrentRole + "  found for the email " + CurrentEmail + " .....");
 					break;
 				}
-				
-			}
-			else {
-				Emailflag=false;
+
+			} else {
+				Emailflag = false;
 			}
 		}
-		log.info("CheckRoleOfEmail Method ends here with "+Roleflag+"  ...........");
-		if(!Emailflag)
-		{
-			log.info(email+"  not found in this project.....");
+		log.info("CheckRoleOfEmail Method ends here with " + Roleflag + "  ...........");
+		if (!Emailflag) {
+			log.info(email + "  not found in this project.....");
 			return false;
 		}
-		
-		if(Roleflag) {
+
+		if (Roleflag) {
 			return true;
-		}
-		else
-		{
-			log.info(role + "  not found for the email "+CurrentEmail+" .....");
+		} else {
+			log.info(role + "  not found for the email " + CurrentEmail + " .....");
 			return false;
 		}
 	}
 
-	
-	// This method will take one email and try to add as Team Member and returns the message
+	// This method will take one email and try to add as Team Member and returns the
+	// message
 
-		public static String Team_InviteMember(String EmailAddress) {
-			log.info("Team_InviteMember Method starts here.............................................");
-			CommonMethod.RefreshPagewaitForPageLoaded(driver);
-			CommonMethod.waitUntilLoadElement();
-			String msgText = null;
-			waithelper.WaitForElementClickable(driver.findElement(By.xpath("//input[@name='input']")),
+	public static String Team_InviteMember(String EmailAddress) {
+		log.info("Team_InviteMember Method starts here.............................................");
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		CommonMethod.waitUntilLoadElement();
+		String msgText = null;
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("//input[@name='input']")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		ngWebDriver.waitForAngularRequestsToFinish();
+		driver.findElement(By.xpath("//input[@name='input']")).sendKeys(EmailAddress);
+
+		waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")),
+				Integer.parseInt(prop.getProperty("explicitTime")), 2);
+
+		driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		try {
+			waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//span[@class='error']/p[2]")),
 					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			msgText = driver.findElement(By.xpath("//span[@class='error']/p[2]")).getText();
+		} catch (NoSuchElementException e) {
+			log.info("Success/Failure message is not displaying..");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		CommonMethod.waitUntilLoadElement();
+		log.info(msgText + " .........  displaying");
+		log.info("Team_InviteMember Method ends here.............................................");
+		return msgText;
+	}
 
-			ngWebDriver.waitForAngularRequestsToFinish();
-			driver.findElement(By.xpath("//input[@name='input']")).sendKeys(EmailAddress);
+	// This method will take email and role then update the role. It returns the
+	// Success/Fail message.
 
-			waithelper.WaitForElementClickable(driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")),
-					Integer.parseInt(prop.getProperty("explicitTime")), 2);
-
-			driver.findElement(By.xpath("(//button[@id='invite_team'])[1]")).click();
-			CommonMethod.waitUntilLoadElement();
-			ngWebDriver.waitForAngularRequestsToFinish();
+	public static String Team_EditRole(String email, String Role, String ExpectedRole) {
+		log.info("Team_EditRole Method starts here.............................................");
+		CommonMethod.RefreshPagewaitForPageLoaded(driver);
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		String CurrentEmail = null;
+		boolean flag = false;
+		String msgText = "";
+		String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
+		List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
+		log.info("Size of the Table is ----- " + TeamMemberRow.size());
+		for (int i = 0; i < TeamMemberRow.size(); i++) {
+			int row = i + 1;
+			String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
 			try {
-				waithelper.WaitForElementVisibleWithPollingTime(driver.findElement(By.xpath("//span[@class='error']/p[2]")),
-						Integer.parseInt(prop.getProperty("explicitTime")),2);
-				msgText = driver.findElement(By.xpath("//span[@class='error']/p[2]")).getText();
-			} catch (NoSuchElementException e) {
-				log.info("Success/Failure message is not displaying..");
+				CurrentEmail = driver.findElement(By.xpath(EmailXpath)).getText();
+				log.info("Current email address is --" + CurrentEmail);
+			} catch (StaleElementReferenceException e) {
+				log.info("StaleElementReferenceException exception showing for--" + EmailXpath);
+
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			CommonMethod.waitUntilLoadElement();
-			log.info(msgText + " .........  displaying");
-			log.info("Team_InviteMember Method ends here.............................................");
-			return msgText;
-		}
-		
-		
-		// This method will take email and role then update the role. It returns the Success/Fail message.
-
-		public static String Team_EditRole(String email, String Role, String ExpectedRole) {
-			log.info("Team_EditRole Method starts here.............................................");
-			CommonMethod.RefreshPagewaitForPageLoaded(driver);
-			CommonMethod.waitUntilLoadElement();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			String CurrentEmail=null;
-			boolean flag = false;
-			String msgText = "";	
-			String Rowxpath = "//table[@class='table table-striped arc-table mb40 ng-scope']/tbody/tr";
-			List<WebElement> TeamMemberRow = driver.findElements(By.xpath(Rowxpath));
-			log.info("Size of the Table is ----- " + TeamMemberRow.size());
-			for (int i = 0; i < TeamMemberRow.size(); i++) {
-				int row = i + 1;
-				String EmailXpath = Rowxpath + "[" + row + "]/td[2]";
-				try {
-					CurrentEmail = driver.findElement(By.xpath(EmailXpath)).getText();
-					log.info("Current email address is --" + CurrentEmail);
-				} catch (StaleElementReferenceException e) {
-					log.info("StaleElementReferenceException exception showing for--" + EmailXpath);
-
-					e.printStackTrace();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				if (CurrentEmail.equals(email)) {
-					log.info(CurrentEmail + "  found in this project.....");					
+			if (CurrentEmail.equals(email)) {
+				log.info(CurrentEmail + "  found in this project.....");
+				ngWebDriver.waitForAngularRequestsToFinish();
+				String AccessXpath = Rowxpath + "[" + row + "]/td[3]/select";
+				String CurrentRole = dropdownhelper.getSelectedValue(driver.findElement(By.xpath(AccessXpath)));
+				if (CurrentRole.equals(Role)) {
+					log.info(CurrentRole + "  found for the email " + CurrentEmail + " .....");
+					String EditBtnXpath = Rowxpath + "[" + row + "]/td[4]/descendant::button[text()='Edit']";
+					String SaveBtnXpath = Rowxpath + "[" + row + "]/td[4]/descendant::button[text()='Save']";
+					driver.findElement(By.xpath(EditBtnXpath)).click();
+					dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath(AccessXpath)), ExpectedRole);
+					driver.findElement(By.xpath(SaveBtnXpath)).click();
 					ngWebDriver.waitForAngularRequestsToFinish();
-					String AccessXpath = Rowxpath + "[" + row + "]/td[3]/select";
-					String CurrentRole=dropdownhelper.getSelectedValue(driver.findElement(By.xpath(AccessXpath)));
-					if(CurrentRole.equals(Role))
-					{
-						log.info(CurrentRole + "  found for the email "+CurrentEmail+" .....");
-						String EditBtnXpath=Rowxpath+ "[" + row + "]/td[4]/descendant::button[text()='Edit']";
-						String SaveBtnXpath=Rowxpath+ "[" + row + "]/td[4]/descendant::button[text()='Save']";						
-						driver.findElement(By.xpath(EditBtnXpath)).click();
-						dropdownhelper.selectUsingVisibleText(driver.findElement(By.xpath(AccessXpath)),ExpectedRole);
-						driver.findElement(By.xpath(SaveBtnXpath)).click();		
-						ngWebDriver.waitForAngularRequestsToFinish();
-						break;
-					}
-					
+					break;
 				}
-			}
-					
-			try {
-				waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-						Integer.parseInt(prop.getProperty("explicitTime")));
-				msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
 
-				waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
-						Integer.parseInt(prop.getProperty("explicitTime")), 2);
-			} catch (NoSuchElementException e) {
-				log.info("Success/Failure message is not displaying..");
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-			CommonMethod.waitUntilLoadElement();
-			ngWebDriver.waitForAngularRequestsToFinish();
-			log.info(msgText + "  .........  displaying");
-			
-			log.info("Team_EditRole Method ends here.............................................");
-			return msgText;
-
 		}
+
+		try {
+			waithelper.waitForElement(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")));
+			msgText = driver.findElement(By.xpath("//*[@class='messenger-message-inner']")).getText();
+
+			waithelper.WaitForElementInvisible(driver.findElement(By.xpath("//*[@class='messenger-message-inner']")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+		} catch (NoSuchElementException e) {
+			log.info("Success/Failure message is not displaying..");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		CommonMethod.waitUntilLoadElement();
+		ngWebDriver.waitForAngularRequestsToFinish();
+		log.info(msgText + "  .........  displaying");
+
+		log.info("Team_EditRole Method ends here.............................................");
+		return msgText;
+
+	}
 }

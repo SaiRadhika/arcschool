@@ -77,7 +77,7 @@ public class BaseClass {
 
 	@Parameters({ "browserName" })
 	@BeforeTest(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
-			"ProjectRegsRegression", "ParkSmartRegression" })
+			"ProjectRegsRegression", "ParkSmartRegression", "TransitRegression"})
 	public static void initializtion(String browserName) {
 		log.info("Initialization method started");
 		try {
@@ -102,6 +102,8 @@ public class BaseClass {
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			else if (testSuite != null && testSuite.equalsIgnoreCase("ParkSmartRegressionTestSuite.xml"))
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");	
+			else if (testSuite != null && testSuite.equalsIgnoreCase("TransitRegressionTestSuite.xml"))
+				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 			else
 				data = new ExcelHelper("TestData/RegressionTestData.xlsx");
 
@@ -194,9 +196,9 @@ public class BaseClass {
 
 		else {
 			log.info("Environment is not provided or wrong environment entered......");
-			System.setProperty("environment", "QAS");
-			driver.get(prop.getProperty("QAurl"));
-			log.info("URL navigated to .. " + prop.getProperty("QAurl"));
+			System.setProperty("environment", "STG");
+			driver.get(prop.getProperty("STGurl"));
+			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		}
 		ngWebDriver.waitForAngularRequestsToFinish();
 		BaseWindow = driver.getWindowHandle();
@@ -205,7 +207,7 @@ public class BaseClass {
 	}
 
 	@AfterTest(groups = { "LoginMethodTCGroup", "Reboot", "Regression", "BuildingsRegression", "CityRegression",
-			"CommunityRegression","ParkSmartRegression" })
+			"CommunityRegression","ParkSmartRegression", "TransitRegression" })
 	public void closeBrowser() {
 
 		driver.close();
