@@ -157,9 +157,6 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	@FindBy(xpath = "/html/body/div[24]/div[1]")
 	WebElement CalenderPopUp;
 	
-	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
-	WebElement TestProjectCheckBox;
-	
 	@FindBy(xpath = "//*[@id=\"details-form\"]/div[1]/table/tbody/tr[6]/td/div/input")
 	WebElement AnnualRidershipTextbox;
 	
