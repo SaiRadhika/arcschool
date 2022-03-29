@@ -572,7 +572,7 @@ public class ParkingPageObject extends BaseClass {
 		boolean flag = false;
 		String Message = null;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		String Username = data.getCellData("Parking", 0, 2);
+		String Username = data.getCellData("Parking", 2, 2);
 		Message = CommonMethod.Team_InviteMember(Username);
 		String ExpMessage = "This ID is already added to the team.";
 		if (Message != null) {
@@ -602,16 +602,16 @@ public class ParkingPageObject extends BaseClass {
 		ngWebDriver.waitForAngularRequestsToFinish();
 		boolean AddFlag = false;
 		boolean SearchFlag = false;
-		String AltenateUser = data.getCellData("Parking", 2, 2);
+		String AltenateUser = data.getCellData("Parking", 1, 2);
 		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
 		log.info("Add Member flag is "+AddFlag);
 		if (AddFlag) {
 			CommonMethod.Team_Delete_Member(AltenateUser);
 			HomePage.checkSignOut();
-			HomePage = LoginPage.loginLater(data.getCellData("Parking", 2, 2), data.getCellData("Parking", 3, 2));
+			HomePage = LoginPage.loginLater(data.getCellData("Parking", 1, 2), data.getCellData("Parking", 3, 2));
 			ProjectPage = HomePage.clickOnProject();
 			SearchFlag = ProjectPage.SearchProject(System.getProperty("LEEDParkSmartProjectID"));
-//			SearchFlag = ProjectPage.SearchProject("1000196249");
+//			SearchFlag = ProjectPage.SearchProject("1000196253");
 			HomePage.closeProjectSearchTextBox();
 			HomePage.checkSignOut();
 			HomePage = LoginPage.loginLater(prop.getProperty("email"), prop.getProperty("password"));
@@ -638,7 +638,7 @@ public class ParkingPageObject extends BaseClass {
 		String Message1 = null;
 		String Message2 = null;
 		String ExpMsg = null;
-		String AltenateUser = data.getCellData("Parking", 2, 2);
+		String AltenateUser = data.getCellData("Parking", 1, 2);
 		AddFlag = CommonMethod.Team_Add_Member(AltenateUser);
 		log.info("Add Member flag is "+AddFlag);
 		if (AddFlag) {
@@ -668,7 +668,7 @@ public class ParkingPageObject extends BaseClass {
 		boolean MemberAddedflag = false;
 		boolean flag = false;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		String username = data.getCellData("Parking", 0, 2);
+		String username = data.getCellData("Parking", 2, 2);
 		MemberAddedflag = CommonMethod.Team_Add_Member(username);
 		if (MemberAddedflag) {
 			flag = CommonMethod.CheckRoleOfEmail(username, "Team Member");
@@ -736,7 +736,7 @@ public class ParkingPageObject extends BaseClass {
 		boolean Memberflag = false;
 		String Message = null;
 		ngWebDriver.waitForAngularRequestsToFinish();
-		String UnRegisteredUsername = data.getCellData("Parking", 1, 2);
+		String UnRegisteredUsername = data.getCellData("Parking", 0, 2);
 		Message = CommonMethod.Team_InviteMember(UnRegisteredUsername);
 		String ExpMessage = UnRegisteredUsername
 				+ "is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.";
@@ -809,7 +809,7 @@ public class ParkingPageObject extends BaseClass {
 		String Message = null;
 		ngWebDriver.waitForAngularRequestsToFinish();
 		String ExistingUser = prop.getProperty("email");
-		String AltenateUser = data.getCellData("Parking", 0, 2);
+		String AltenateUser = data.getCellData("Parking", 2, 2);
 		ValidationMessage = CommonMethod.Team_EditRole(ExistingUser, "Arc Administrator", "Team Member");// (In case of
 																											// Logged in
 																											// User and
