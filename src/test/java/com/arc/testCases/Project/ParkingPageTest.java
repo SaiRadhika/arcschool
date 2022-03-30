@@ -345,7 +345,7 @@ public class ParkingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(ProjectParkingID);
@@ -394,7 +394,7 @@ public class ParkingPageTest extends BaseClass {
 				e.printStackTrace();
 			}
 			String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//			String ProjectParkingID = "1000195711";
+//			String ProjectParkingID = "1000196253";
 			if (!ProjectParkingID.equals(null)) {
 				ProjectPage = HomePage.clickOnProject();
 				ParkingPage = ProjectPage.SearchAndClickOnParkingProject(ProjectParkingID);
@@ -438,7 +438,7 @@ public class ParkingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(ProjectParkingID);
@@ -458,7 +458,7 @@ public class ParkingPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-	"ParkSmartRegression" }, enabled = true, priority = 46, description = "Verify team member can be added who is a registered USGBC.org user. Verify authorization level should be by default as 'Team Member' if added any new team member")
+	"ParkSmartRegression" }, enabled = true, priority = 45, description = "Verify team member can be added who is a registered USGBC.org user. Verify authorization level should be by default as 'Team Member' if added any new team member")
 	public void Parking_Team_CheckAddRegisteredTeamMember() {
 
 		log.info("Parking_Team_CheckAddRegisteredTeamMember method started......................... ");
@@ -473,7 +473,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(ProjectParkingID);
@@ -494,7 +494,7 @@ public class ParkingPageTest extends BaseClass {
 	}
 
 	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = {
-	"ParkSmartRegression" }, enabled = true, priority = 47, description = "Verify team member can be added who is not a registered USGBC.org user, Gives error message apandey9698@icloud.com is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.")
+	"ParkSmartRegression" }, enabled = true, priority = 46, description = "Verify team member can be added who is not a registered USGBC.org user, Gives error message apandey9698@icloud.com is not a registered USGBC.org user, please have the user register at https://new.usgbc.org/registration/create-user and try again.")
 	public void Parking_Team_CheckAddUnregisteredTeamMember() {
 
 		log.info("Parking_Team_CheckAddUnregisteredTeamMember method started......................... ");
@@ -509,7 +509,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(ProjectParkingID);
@@ -531,7 +531,7 @@ public class ParkingPageTest extends BaseClass {
 	
 	// Verify Team manager role is not present in the dropdown
 
-	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 48, enabled = true, description = "Verify Team manager role is not present in the dropdown")
+	@Test(groups = "ParkSmartRegression", dependsOnGroups = "LoginMethodTCGroup", priority = 47, enabled = true, description = "Verify Team manager role is not present in the dropdown")
 	public void Parking_Team_Verify_Manager_Role_In_DropDown() {
 
 		log.info("Parking_Verify_Team_Manager_Role_In_DropDown method starts here.........");
@@ -545,7 +545,7 @@ public class ParkingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 			ProjectPage = HomePage.clickOnProject();
 			ParkingPage = ProjectPage.SearchAndClickOnParkingProject(ProjectParkingID);
@@ -572,7 +572,7 @@ public class ParkingPageTest extends BaseClass {
 	}
 
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 49, description = "Adding the same team role for a member again, should give a validation message like 'ashree511@gmail.com already has the same team role'")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 48, description = "Adding the same team role for a member again, should give a validation message like 'ashree511@gmail.com already has the same team role'")
 	public void Parking_Team_AddingExistingTeamMember() {
 		log.info("Parking_Team_AddingExistingTeamMember method starts here........");
 		boolean flag = false;
@@ -585,7 +585,7 @@ public class ParkingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 
 			ProjectPage = HomePage.clickOnProject();
@@ -605,7 +605,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 	
-@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 50, description = "Verify authorization level Member, etc can be changed and vice-versa.")
+@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 49, description = "Verify authorization level Member, etc can be changed and vice-versa.")
 	
 	public void Parking_Team_AddEditMember() {
 
@@ -621,7 +621,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 
 			ProjectPage = HomePage.clickOnProject();
@@ -643,7 +643,7 @@ public class ParkingPageTest extends BaseClass {
 	}
 	
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 51, description = "Verify a user with role 'Team member' doesnt have the edit/add/remove access to the team section.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 50, description = "Verify a user with role 'Team member' doesnt have the edit/add/remove access to the team section.")
 	
 	public void Parking_Team_AddRemoveMember() {
 
@@ -658,7 +658,7 @@ public class ParkingPageTest extends BaseClass {
 			e.printStackTrace();
 		}
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 
 			ProjectPage = HomePage.clickOnProject();
@@ -679,7 +679,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 52, description = "Verify that project should have minimum one ARC adminsitrator. Project can also have more than one ARC administrator." 
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 51, description = "Verify that project should have minimum one ARC adminsitrator. Project can also have more than one ARC administrator." 
 	+ "Verify existing ARC administrator can't be edited until another ARC adminstrator is present. If edited, error message will display as 'Project should have atleast one ARC Administrator'.")
 	public void Parking_Team_EditAdminRole() {
 		log.info("Parking_Team_EditAdminRole method starts here...........");
@@ -694,7 +694,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 
 		String ProjectParkingID = System.getProperty("LEEDParkSmartProjectID");
-//		String ProjectParkingID = "1000195711";
+//		String ProjectParkingID = "1000196253";
 		if (!ProjectParkingID.equals(null)) {
 
 			ProjectPage = HomePage.clickOnProject();
@@ -716,7 +716,7 @@ public class ParkingPageTest extends BaseClass {
 	}
 	
 	
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 53, description = "Verify Manage-Teams- Right hand side 'How team roles work?' tooltip opens a modal window with team roles definition")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 52, description = "Verify Manage-Teams- Right hand side 'How team roles work?' tooltip opens a modal window with team roles definition")
 	public void Parking_Team_Tooltip_Validation() {
 		log.info("Parking_Team_Tool_Tip_Validation method starts here........");
 
@@ -748,7 +748,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 54, description = "Verify under each credit at the bottom of the page- Hyperlink FAQs redirect to FAQ tab for Parksmart- https://parksmart.gbci.org/faq")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 53, description = "Verify under each credit at the bottom of the page- Hyperlink FAQs redirect to FAQ tab for Parksmart- https://parksmart.gbci.org/faq")
 	public void Parking_FAQ_Navigation_Validation() {
 		log.info("Parking_FAQ_Navigation_Validation method starts here.........");
 
@@ -793,13 +793,14 @@ public class ParkingPageTest extends BaseClass {
 			if (flag) {
 				Assert.assertTrue(true);
 				log.info("Parking_FAQ_Navigation_Validation method ends with true here.........");	
-			} else
+			} else {
 				Assert.assertTrue(false);
 				log.info("Parking_FAQ_Navigation_Validation method ends with false here.........");
 		}
+		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 55, description = "Verify under each credit at the bottom of the page- Hyperlink 'Parksmart Resources' redirect to resources tab for Parksmart- https://parksmart.gbci.org/resources")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 54, description = "Verify under each credit at the bottom of the page- Hyperlink 'Parksmart Resources' redirect to resources tab for Parksmart- https://parksmart.gbci.org/resources")
 	public void Parking_ParkSmart_Resources_Navigation_Validation() {
 		log.info("Parking_ParkSmart_Resources_Navigation_Validation method starts here.........");
 		String handle = driver.getWindowHandle();
@@ -850,7 +851,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 56, description = "Verify Management,Programs,Technology and Structure Design,Innovation are displayed.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 55, description = "Verify Management,Programs,Technology and Structure Design,Innovation are displayed.")
 	public void Parking_SideBar_Elements_Displayed() {
 		log.info("Parking_SideBar_Element_Displayed method starts here...........");
 		
@@ -883,7 +884,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 57, description = "Go to measures-->All Measures shows a list of credits from A1 to A16, B1 to B13, C1 to C18 and D1")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 56, description = "Go to measures-->All Measures shows a list of credits from A1 to A16, B1 to B13, C1 to C18 and D1")
 	public void Parking_All_Credits_Present_AllMeasures_SubSection() {
 		log.info("Parking_All_Credits_Present_AllMeasures_SubSection method starts here........");
 		try {
@@ -922,7 +923,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 58, description = "Verify Under Management- All A1 to A16 Credits are present.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 57, description = "Verify Under Management- All A1 to A16 Credits are present.")
 	public void Parking_ManagementSubmenu_Credits_Validation() {
 		log.info("Parking_ManagementSubmenu_Credits_Validation method starts here..........");
 
@@ -962,7 +963,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 59, description = "Verify Under Programs- All B1 to B13 Credits are present.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 58, description = "Verify Under Programs- All B1 to B13 Credits are present.")
 	public void Parking_ProgramsSubmenu_Credits_Validation() {
 		log.info("Parking_ProgramsSubmenu_Credits_Validation method starts here..........");
 
@@ -1002,7 +1003,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 60, description = "Verify Under Technology and Structure Design- All C1 to C18 Credits are present.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 59, description = "Verify Under Technology and Structure Design- All C1 to C18 Credits are present.")
 	public void Parking_TechAndDesignSubmenu_Credits_Validation() {
 		log.info("Parking_TechAndDesignSubmenu_Credits_Validation method starts here..........");
 
@@ -1042,7 +1043,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 61, description = "Verify Under Innovation- D1 Credit is present.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 60, description = "Verify Under Innovation- D1 Credit is present.")
 	public void Parking_InnovationSubmenu_Credits_Validation() {
 		log.info("Parking_InnovationSubmenu_Credits_Validation method starts here..........");
 
@@ -1082,7 +1083,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 62, description = "Verify if status button is not displayed under each measure")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 61, description = "Verify if status button is not displayed under each measure")
 	public void Parking_StatusButton_Validation() {
 		log.info("Parking_StatusButton_Validation method starts here..........");
 
@@ -1116,7 +1117,7 @@ public class ParkingPageTest extends BaseClass {
 
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 63, description = "Verify under each credit able to upload documentation by clicking on 'Upload using Computer' button."
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 62, description = "Verify under each credit able to upload documentation by clicking on 'Upload using Computer' button."
 			+ "Verify  under each credit able to delete uploaded documents by clicking on 'Delete' bucket button.")
 	public void Parking_File_Upload_Remove() {
 		log.info("Parking_File_Upload_Remove method started ");
@@ -1162,7 +1163,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 64, description = "Verify under each credit able to download uploaded document successfully.")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 63, description = "Verify under each credit able to download uploaded document successfully.")
 	public void Parking_Download_Uploaded_File() {
 		log.info("Parking_Upload_Download_Uploaded_File method starts here...........");
 		boolean downloadflag = false;
@@ -1207,7 +1208,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 65, description = "Verify if the tooltip under each measure displays help text")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 64, description = "Verify if the tooltip under each measure displays help text")
 	public void Parking_Tool_Tip_Validation() {
 		log.info("Parking_Tool_Tip_Validation method starts here........");
 
@@ -1243,7 +1244,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 66, description = "Verify  under each credit 'Measure Language' pdf button downloads a pdf doc with name 'credit_name.pdf'")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 65, description = "Verify  under each credit 'Measure Language' pdf button downloads a pdf doc with name 'credit_name.pdf'")
 	public void Parking_Download_Measure_Language_Pdf() {
 		log.info(" Parking_Download_Measure_Language_Pdf method started ");
 		
@@ -1312,7 +1313,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 67, description = "Verify appropriate points gets updated on selecting the checkboxes")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 66, description = "Verify appropriate points gets updated on selecting the checkboxes")
 	public void Parking_Points_Updating_Appropriate_Points() {
 		log.info(" Parking_Points_Updating_Appropriate_Points method starts here.........");
 
@@ -1347,7 +1348,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 68, description = "Verify appropriate points gets updated on selecting the checkboxes")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 67, description = "Verify appropriate points gets updated on selecting the checkboxes")
 	public void Parking_Points_Updating_When_Selecting_All_Checkboxes() {
 		log.info(" Parking_Points_Updating_When_Selecting_Checkboxes method starts here.........");
 
@@ -1388,7 +1389,7 @@ public class ParkingPageTest extends BaseClass {
 		}
 	}
 
-	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 69, description = "Verify Hyperlinked words in each Measure takes to appropriate navigations")
+	@Test(dependsOnGroups = "LoginMethodTCGroup", groups = "ParkSmartRegression", enabled = true, priority = 68, description = "Verify Hyperlinked words in each Measure takes to appropriate navigations")
 	public void Parking_Measures_Hyperlinks_Navigation_Validation() {
 		log.info(" Parking_Measures_Hyperlinks_Navigation_Validation method starts here.........");
 
