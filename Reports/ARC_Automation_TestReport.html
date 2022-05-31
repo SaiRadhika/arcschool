@@ -39,8 +39,7 @@
 		<!-- slideout menu -->
 		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
 			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
-						<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
-			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
+						<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
 		</ul>
 		<!-- report name -->
 		<span class='report-name'>Test Automation Report</span>
@@ -49,7 +48,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jun 28, 2021 08:40:50 AM</span>
+			<span class='label blue darken-3 suite-start-time'>May 11, 2022 06:36:02 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -65,8 +64,6 @@
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
 										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
-					<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
-					<li status='skip'><a href='#!'>Skip <i class='material-icons cyan-text'>redo</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -109,10 +106,10 @@
 					<canvas id='parent-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='81.818%'><span class='strong'>18</span> test(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>11</span> test(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='9.091%'>2</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='9.091%'>2</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -133,14 +130,14 @@
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>Login_ApplicationTest</span>
-						<span class='test-time'>Jun 28, 2021 08:41:22 AM</span>
+						<span class='test-time'>May 11, 2022 06:36:42 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:41:22 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:41:22 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+9ms</span>
+	<span class='label start-time'>May 11, 2022 06:36:42 PM</span>
+	<span class='label end-time'>May 11, 2022 06:36:42 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+8ms</span>
 </div>
 <div class='test-desc'>Verify clicking on Login button should redirect to Home/Overview tab. </div>
 <div class='test-steps'>
@@ -155,7 +152,7 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:41:22 AM</td>
+				<td class='timestamp'>6:36:42 PM</td>
 				<td class='step-details'>
 						<span class='badge white-text green'>Login_ApplicationTest</span>
 					
@@ -168,17 +165,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
 					<div class='test-heading'>
-						<span class='test-name'>Check_Add_A_Project</span>
-						<span class='test-time'>Jun 28, 2021 08:41:23 AM</span>
+						<span class='test-name'>ProjectName_With_Valid_SpecialCharacters</span>
+						<span class='test-time'>May 11, 2022 06:37:35 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:41:23 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:41:23 AM</span>
+	<span class='label start-time'>May 11, 2022 06:37:35 PM</span>
+	<span class='label end-time'>May 11, 2022 06:37:35 PM</span>
 	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify clicking on add a project at RHS button opens the registration form successfully. </div>
+<div class='test-desc'>Verify Project Name should allow special character (-&+/:',-.#) </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -191,9 +188,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:41:23 AM</td>
+				<td class='timestamp'>6:37:35 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>Check_Add_A_Project</span>
+						<span class='badge white-text green'>ProjectName_With_Valid_SpecialCharacters</span>
 					
 				</td>
 			</tr>
@@ -204,17 +201,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
 					<div class='test-heading'>
-						<span class='test-name'>Check_ProjectType_City_Value</span>
-						<span class='test-time'>Jun 28, 2021 08:41:29 AM</span>
+						<span class='test-name'>ProjectName_With_Invalid_SpecialCharacters</span>
+						<span class='test-time'>May 11, 2022 06:37:36 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:41:29 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:41:29 AM</span>
+	<span class='label start-time'>May 11, 2022 06:37:36 PM</span>
+	<span class='label end-time'>May 11, 2022 06:37:36 PM</span>
 	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
 </div>
-<div class='test-desc'>Verify Project Type as 'Cities' available in dropdown or not </div>
+<div class='test-desc'>Verify with Invalid special characters for Project name are !~$%^*() </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -227,9 +224,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:41:29 AM</td>
+				<td class='timestamp'>6:37:36 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>Check_ProjectType_City_Value</span>
+						<span class='badge white-text green'>ProjectName_With_Invalid_SpecialCharacters</span>
 					
 				</td>
 			</tr>
@@ -240,18 +237,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='4'>
 					<div class='test-heading'>
-						<span class='test-name'>City_AutoPopulate_Address_City_Country_State_ZipCode</span>
-						<span class='test-time'>Jun 28, 2021 08:41:47 AM</span>
+						<span class='test-name'>ProjectRegistration_SchoolGrossArea_Valid_20499999_SQ_Feet</span>
+						<span class='test-time'>May 11, 2022 06:38:40 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:41:47 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:41:47 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
+	<span class='label start-time'>May 11, 2022 06:38:40 PM</span>
+	<span class='label end-time'>May 11, 2022 06:38:40 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify address field auto populates the address(this address is being pulled using google maps API).
-	Verify auto pulled address populates all the fields -City, County,States,zipcode </div>
+<div class='test-desc'>Verify Schools adding Gross area - limit allowed is Max: 20,499,999  square feets </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -264,9 +260,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:41:47 AM</td>
+				<td class='timestamp'>6:38:40 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_AutoPopulate_Address_City_Country_State_ZipCode</span>
+						<span class='badge white-text green'>ProjectRegistration_SchoolGrossArea_Valid_20499999_SQ_Feet</span>
 					
 				</td>
 			</tr>
@@ -277,17 +273,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='5'>
 					<div class='test-heading'>
-						<span class='test-name'>City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow</span>
-						<span class='test-time'>Jun 28, 2021 08:41:52 AM</span>
+						<span class='test-name'>ProjectRegistration_SchoolsGrossArea_Invalid_20500000_SQ_Feet</span>
+						<span class='test-time'>May 11, 2022 06:38:53 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:41:52 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:41:52 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
+	<span class='label start-time'>May 11, 2022 06:38:53 PM</span>
+	<span class='label end-time'>May 11, 2022 06:38:53 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify the new modal window shows two buttons- 'Register for LEED certification now' and 'Not now' </div>
+<div class='test-desc'>Verify Schoolss adding invalid Gross area - 20,500,000  square feets should display Validation message </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -300,9 +296,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:41:52 AM</td>
+				<td class='timestamp'>6:38:53 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow</span>
+						<span class='badge white-text green'>ProjectRegistration_SchoolsGrossArea_Invalid_20500000_SQ_Feet</span>
 					
 				</td>
 			</tr>
@@ -313,17 +309,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='6'>
 					<div class='test-heading'>
-						<span class='test-name'>City_AutoPopulate_Latitude_Longitude</span>
-						<span class='test-time'>Jun 28, 2021 08:42:13 AM</span>
+						<span class='test-name'>ProjectRegistration_SchoolsGrossArea_Valid_1904514_SQ_MT</span>
+						<span class='test-time'>May 11, 2022 06:39:56 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:42:13 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:42:13 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
+	<span class='label start-time'>May 11, 2022 06:39:56 PM</span>
+	<span class='label end-time'>May 11, 2022 06:39:56 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
 </div>
-<div class='test-desc'>Verify after address is auto pulled, geo location gets auto -populated. </div>
+<div class='test-desc'>Verify Schools adding Gross area - limit allowed is Max: 1,904,514 square meters </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -336,9 +332,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:42:13 AM</td>
+				<td class='timestamp'>6:39:56 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_AutoPopulate_Latitude_Longitude</span>
+						<span class='badge white-text green'>ProjectRegistration_SchoolsGrossArea_Valid_1904514_SQ_MT</span>
 					
 				</td>
 			</tr>
@@ -349,17 +345,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='7'>
 					<div class='test-heading'>
-						<span class='test-name'>City_LEED_Regis_Redirects_LeedOnlineportal</span>
-						<span class='test-time'>Jun 28, 2021 08:42:25 AM</span>
+						<span class='test-name'>ProjectRegistration_SchoolsGrossArea_Invalid_1904515_SQ_MT</span>
+						<span class='test-time'>May 11, 2022 06:40:09 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:42:25 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:42:25 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
+	<span class='label start-time'>May 11, 2022 06:40:09 PM</span>
+	<span class='label end-time'>May 11, 2022 06:40:09 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
 </div>
-<div class='test-desc'>Verify clicking on 'Register for LEED certification now' redirects to Leed Online portal. </div>
+<div class='test-desc'>Verify Schools adding invalid Gross area -  1,904,515 square meters should display validation message </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -372,9 +368,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:42:25 AM</td>
+				<td class='timestamp'>6:40:09 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_LEED_Regis_Redirects_LeedOnlineportal</span>
+						<span class='badge white-text green'>ProjectRegistration_SchoolsGrossArea_Invalid_1904515_SQ_MT</span>
 					
 				</td>
 			</tr>
@@ -385,18 +381,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='8'>
 					<div class='test-heading'>
-						<span class='test-name'>City_LEED_Registration_Not_Now_Test</span>
-						<span class='test-time'>Jun 28, 2021 08:42:30 AM</span>
+						<span class='test-name'>ProjectRegistration_School_OwnerOrganization_AutoSuggestion</span>
+						<span class='test-time'>May 11, 2022 06:40:24 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:42:30 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:42:30 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
+	<span class='label start-time'>May 11, 2022 06:40:24 PM</span>
+	<span class='label end-time'>May 11, 2022 06:40:24 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify clicking on 'Not now' closes the modal window and keeps the user at the registration page. 
-	// Verify clicking on 'Not now' closes the modal window and selects the 'No' radio button. </div>
+<div class='test-desc'>Verify 'Owner organization' field by adding a letter should give suggested values from the database. </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -409,9 +404,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:42:30 AM</td>
+				<td class='timestamp'>6:40:24 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_LEED_Registration_Not_Now_Test</span>
+						<span class='badge white-text green'>ProjectRegistration_School_OwnerOrganization_AutoSuggestion</span>
 					
 				</td>
 			</tr>
@@ -422,18 +417,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='9'>
 					<div class='test-heading'>
-						<span class='test-name'>City_Project_Is_Private_Creation_Opens_Performance_Screen</span>
-						<span class='test-time'>Jun 28, 2021 08:43:02 AM</span>
+						<span class='test-name'>SchoolRegistration_InvalidEmailCheck</span>
+						<span class='test-time'>May 11, 2022 06:40:38 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:43:02 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:43:02 AM</span>
+	<span class='label start-time'>May 11, 2022 06:40:38 PM</span>
+	<span class='label end-time'>May 11, 2022 06:40:38 PM</span>
 	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify if 'project is private' is selected, shows private as 'Yes' under Manage--project. 
- Verify clicking on 'Add project' button opens the 'Performance' Tab. </div>
+<div class='test-desc'>Verify 'Owner Email' field gives error if @ and 2 letters after . are missing </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -446,9 +440,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:43:02 AM</td>
+				<td class='timestamp'>6:40:38 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_Project_Is_Private_Creation_Opens_Performance_Screen</span>
+						<span class='badge white-text green'>SchoolRegistration_InvalidEmailCheck</span>
 					
 				</td>
 			</tr>
@@ -459,19 +453,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='10'>
 					<div class='test-heading'>
-						<span class='test-name'>City_TestProject_NonLEED_Creation</span>
-						<span class='test-time'>Jun 28, 2021 08:44:34 AM</span>
+						<span class='test-name'>SchoolRegistration_Check_AddButton_Disabled</span>
+						<span class='test-time'>May 11, 2022 06:40:57 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:44:34 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:44:34 AM</span>
+	<span class='label start-time'>May 11, 2022 06:40:57 PM</span>
+	<span class='label end-time'>May 11, 2022 06:40:57 PM</span>
 	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify clicking on checkbox for 'This is a test project' creates a test project and the same gets populated after project creation under  manage-project.
-	
-	// Verify clicking on 'Add project' button registers the project with non-leed id. </div>
+<div class='test-desc'>Verify 'Add Project' button is disabled until checkbox for 'Agreement' is selected. </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -484,9 +476,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:44:34 AM</td>
+				<td class='timestamp'>6:40:57 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_TestProject_NonLEED_Creation</span>
+						<span class='badge white-text green'>SchoolRegistration_Check_AddButton_Disabled</span>
 					
 				</td>
 			</tr>
@@ -497,17 +489,17 @@
 				</li>
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='11'>
 					<div class='test-heading'>
-						<span class='test-name'>City_DI_ProjectSetting_Population_Add_Row</span>
-						<span class='test-time'>Jun 28, 2021 08:45:46 AM</span>
+						<span class='test-name'>School_Project_Creation_Opens_Overview_Screen</span>
+						<span class='test-time'>May 11, 2022 06:41:25 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:45:46 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:45:46 AM</span>
+	<span class='label start-time'>May 11, 2022 06:41:25 PM</span>
+	<span class='label end-time'>May 11, 2022 06:41:25 PM</span>
 	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
 </div>
-<div class='test-desc'>Verify in DI, Project settings - population tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button </div>
+<div class='test-desc'>Verify clicking on 'Add project' button redirects to newly registered project at 'Overview' Tab. </div>
 <div class='test-steps'>
 	<table class='bordered table-results'>
 		<thead>
@@ -520,522 +512,9 @@
 		<tbody>
 			<tr class='log' status='pass'>
 				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:45:46 AM</td>
+				<td class='timestamp'>6:41:25 PM</td>
 				<td class='step-details'>
-						<span class='badge white-text green'>City_DI_ProjectSetting_Population_Add_Row</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='12'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Energy_GHGEmission_With_DataAndDetails_Display</span>
-						<span class='test-time'>Jun 28, 2021 08:46:55 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:46:55 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:46:55 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
-</div>
-<div class='test-desc'>Verify Energy meter shows GHG emissions meter with data and detals tab. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:46:55 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_Energy_GHGEmission_With_DataAndDetails_Display</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='13'>
-					<div class='test-heading'>
-						<span class='test-name'>City_ProjectArea_Field_Comma_Display</span>
-						<span class='test-time'>Jun 28, 2021 08:48:06 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:48:06 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:48:06 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Verify Project Area field allows to add values followed by commas. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:48:06 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_ProjectArea_Field_Comma_Display</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='14'>
-					<div class='test-heading'>
-						<span class='test-name'>City_ProjectSetting_Population_Save_Row_DecadeCalender_Display</span>
-						<span class='test-time'>Jun 28, 2021 08:50:32 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:50:32 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:50:32 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Project Setting -> Population 
- Verify in DI, Project settings - population tab- Save One row button 
-		Verify Effective year opens up decade calendar and gives the option to select any year. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:50:32 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_ProjectSetting_Population_Save_Row_DecadeCalender_Display</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='15'>
-					<div class='test-heading'>
-						<span class='test-name'>City_ProjectSetting_ProjectArea_Add_Row</span>
-						<span class='test-time'>Jun 28, 2021 08:51:45 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:51:45 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:51:45 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+1ms</span>
-</div>
-<div class='test-desc'>Verify in DI, Project settings - ProjectArea tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:51:45 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_ProjectSetting_ProjectArea_Add_Row</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  fail' status='fail' bdd='false' test-id='16'>
-					<div class='test-heading'>
-						<span class='test-name'>City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</span>
-						<span class='test-time'>Jun 28, 2021 08:54:10 AM</span>
-						<span class='test-status right fail'>fail</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:54:10 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:54:10 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+652ms</span>
-</div>
-<div class='test-desc'>Verify in DI, Project settings - Project Area tab- Add row button adds a new line item with fields- 'Effective year', Population, Updated by followed by Save and delete button 
-			 Verify Effective year opens up decade calendar and gives the option to select any year. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='fail'>
-				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-				<td class='timestamp'>8:54:10 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text red'>City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</span>
-					
-				</td>
-			</tr>
-			<tr class='log' status='fail'>
-				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-				<td class='timestamp'>8:54:10 AM</td>
-				<td class='step-details'>
-						<pre>java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:513)
-	at org.testng.Assert.assertTrue(Assert.java:42)
-	at org.testng.Assert.assertTrue(Assert.java:52)
-	at com.arc.testCases.Project.CityPageTest.City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display(CityPageTest.java:913)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:756)
-	at org.testng.TestRunner.run(TestRunner.java:610)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
-	at org.testng.TestNG.runSuites(TestNG.java:1133)
-	at org.testng.TestNG.run(TestNG.java:1104)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-						<ul class='screenshots'>
-							<li><img class='r-img' onerror='this.style.display="none"' data-featherlight='C:\AutomationTasks\ARCEssential/Screenshots/City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display.png' src='C:\AutomationTasks\ARCEssential/Screenshots/City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display.png' data-src='C:\AutomationTasks\ARCEssential/Screenshots/City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display.png'></li>
-						</ul>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='17'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Project_Area_GrossArea_SquareMiles_Display</span>
-						<span class='test-time'>Jun 28, 2021 08:55:23 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:55:23 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:55:23 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Verify after creating City Project with Gross Area as "Square Miles unit", check in Data Input – Project Setting - > Project Area Tab -> Unit Drop down by default value. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:55:23 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_Project_Area_GrossArea_SquareMiles_Display</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='18'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Energy_GHGEmission_AddYear_AddNewLine</span>
-						<span class='test-time'>Jun 28, 2021 08:56:36 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:56:36 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:56:36 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Verify 'Add year' button adds line item with year for previous year. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:56:36 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_Energy_GHGEmission_AddYear_AddNewLine</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='19'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Population_Field_Comma_Display</span>
-						<span class='test-time'>Jun 28, 2021 08:57:51 AM</span>
-						<span class='test-status right pass'>pass</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 08:57:51 AM</span>
-	<span class='label end-time'>Jun 28, 2021 08:57:51 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Verify population field allows to add values followed by commas. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='pass'>
-				<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-				<td class='timestamp'>8:57:51 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text green'>City_Population_Field_Comma_Display</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  fail' status='fail' bdd='false' test-id='20'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Energy_GHGEmission_SavePreviousYearData_CheckScore</span>
-						<span class='test-time'>Jun 28, 2021 09:02:16 AM</span>
-						<span class='test-status right fail'>fail</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 09:02:16 AM</span>
-	<span class='label end-time'>Jun 28, 2021 09:02:17 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+684ms</span>
-</div>
-<div class='test-desc'>Verify by adding value to reading and clicking on save button. 
-				 Verify score gets populated when data is added for previous year </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='fail'>
-				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-				<td class='timestamp'>9:02:16 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text red'>City_Energy_GHGEmission_SavePreviousYearData_CheckScore</span>
-					
-				</td>
-			</tr>
-			<tr class='log' status='fail'>
-				<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-				<td class='timestamp'>9:02:17 AM</td>
-				<td class='step-details'>
-						<pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span"}
-  (Session info: chrome=91.0.4472.114)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'G10GGNLT065', ip: '192.168.43.9', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 91.0.4472.114, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\NARAYA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:58845}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 835f54ea0e79db627c08082410384cf2
-*** Element info: {Using=xpath, value=(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at jdk.internal.reflect.GeneratedMethodAccessor5.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.lambda$new$1(EventFiringWebDriver.java:105)
-	at com.sun.proxy.$Proxy11.findElement(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:194)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy15.getText(Unknown Source)
-	at com.arc.PageObject.Project.CityPageObject.getEnergyScore(CityPageObject.java:272)
-	at com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_SavePreviousYearData_CheckScore(CityPageTest.java:573)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:756)
-	at org.testng.TestRunner.run(TestRunner.java:610)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
-	at org.testng.TestNG.runSuites(TestNG.java:1133)
-	at org.testng.TestNG.run(TestNG.java:1104)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-						<ul class='screenshots'>
-							<li><img class='r-img' onerror='this.style.display="none"' data-featherlight='C:\AutomationTasks\ARCEssential/Screenshots/City_Energy_GHGEmission_SavePreviousYearData_CheckScore.png' src='C:\AutomationTasks\ARCEssential/Screenshots/City_Energy_GHGEmission_SavePreviousYearData_CheckScore.png' data-src='C:\AutomationTasks\ARCEssential/Screenshots/City_Energy_GHGEmission_SavePreviousYearData_CheckScore.png'></li>
-						</ul>
-					</div>
-				</li>
-				<li class='test displayed active  skip' status='skip' bdd='false' test-id='21'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Energy_GHGEmission_Edit_Row</span>
-						<span class='test-time'>Jun 28, 2021 09:02:17 AM</span>
-						<span class='test-status right skip'>skip</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 09:02:17 AM</span>
-	<span class='label end-time'>Jun 28, 2021 09:02:17 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Verify able to Edit line item by using delete button.. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='skip'>
-				<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-				<td class='timestamp'>9:02:17 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text orange'>City_Energy_GHGEmission_Edit_Row</span>
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-					</div>
-				</li>
-				<li class='test displayed active  skip' status='skip' bdd='false' test-id='22'>
-					<div class='test-heading'>
-						<span class='test-name'>City_Energy_GHGEmission_Delete_Row</span>
-						<span class='test-time'>Jun 28, 2021 09:02:17 AM</span>
-						<span class='test-status right skip'>skip</span>
-					</div>
-					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Jun 28, 2021 09:02:17 AM</span>
-	<span class='label end-time'>Jun 28, 2021 09:02:17 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+0ms</span>
-</div>
-<div class='test-desc'>Verify able to delete line item by using delete button. </div>
-<div class='test-steps'>
-	<table class='bordered table-results'>
-		<thead>
-			<tr>
-				<th>Status</th>
-				<th>Timestamp</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class='log' status='skip'>
-				<td class='status skip' title='skip' alt='skip'><i class='material-icons'>redo</i></td>
-				<td class='timestamp'>9:02:17 AM</td>
-				<td class='step-details'>
-						<span class='badge white-text orange'>City_Energy_GHGEmission_Delete_Row</span>
+						<span class='badge white-text green'>School_Project_Creation_Opens_Overview_Screen</span>
 					
 				</td>
 			</tr>
@@ -1065,181 +544,7 @@ Session ID: 835f54ea0e79db627c08082410384cf2
 	</div>
 	<!-- subview right -->
 </div>
-<!-- test view --><!-- category view --><div id='exception-view' class='view hide'>
-	<section id='controls'>
-		<div class='controls grey lighten-4'>
-			<!-- search -->
-			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
-				<a href="#" class='search-div'>
-				<i class='material-icons'>search</i> Search
-				</a>
-				<div class='input-field left hide'>
-					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
-				</div>
-			</div>
-			<!-- search -->
-		</div>
-	</section>
-	<div class='subview-left left'>
-		<div class='view-summary'>
-			<ul id='exception-collection' class='exception-collection'>
-				<li class='exception displayed active'>
-					<div class='exception-heading'>
-						<span class='exception-name'>java.lang.AssertionError</span>
-						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
-					</div>
-					<div class='exception-content hide'>
-						<div class='exception-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Jun 28, 2021 08:54:10 AM</td>
-										<td class='linked' test-id='16'>City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display</td>
-										<td>
-											<pre>java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:513)
-	at org.testng.Assert.assertTrue(Assert.java:42)
-	at org.testng.Assert.assertTrue(Assert.java:52)
-	at com.arc.testCases.Project.CityPageTest.City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display(CityPageTest.java:913)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:756)
-	at org.testng.TestRunner.run(TestRunner.java:610)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
-	at org.testng.TestNG.runSuites(TestNG.java:1133)
-	at org.testng.TestNG.run(TestNG.java:1104)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='exception displayed active'>
-					<div class='exception-heading'>
-						<span class='exception-name'>org.openqa.selenium.NoSuchElementException</span>
-						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
-					</div>
-					<div class='exception-content hide'>
-						<div class='exception-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Jun 28, 2021 09:02:16 AM</td>
-										<td class='linked' test-id='20'>City_Energy_GHGEmission_SavePreviousYearData_CheckScore</td>
-										<td>
-											<pre>org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span"}
-  (Session info: chrome=91.0.4472.114)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'G10GGNLT065', ip: '192.168.43.9', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 91.0.4472.114, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: C:\Users\NARAYA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:58845}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 835f54ea0e79db627c08082410384cf2
-*** Element info: {Using=xpath, value=(//table[@class='meterListByType--wrapper']/tbody/tr[1])[1]/td[3]/div/span/span}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at jdk.internal.reflect.GeneratedMethodAccessor5.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.lambda$new$1(EventFiringWebDriver.java:105)
-	at com.sun.proxy.$Proxy11.findElement(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:194)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy15.getText(Unknown Source)
-	at com.arc.PageObject.Project.CityPageObject.getEnergyScore(CityPageObject.java:272)
-	at com.arc.testCases.Project.CityPageTest.City_Energy_GHGEmission_SavePreviousYearData_CheckScore(CityPageTest.java:573)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:104)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:645)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:851)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1177)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:756)
-	at org.testng.TestRunner.run(TestRunner.java:610)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:387)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:382)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1293)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1218)
-	at org.testng.TestNG.runSuites(TestNG.java:1133)
-	at org.testng.TestNG.run(TestNG.java:1104)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class='subview-right left'>
-		<div class='view-summary'>
-			<h5 class='exception-name'></h5>
-		</div>
-	</div>
-</div>
-<!-- exception view --><div id='dashboard-view' class='view hide'>
+<!-- test view --><!-- category view --><!-- exception view --><div id='dashboard-view' class='view hide'>
 	<div class='card-panel transparent np-v'>
 		<h5>Dashboard</h5>
 
@@ -1247,7 +552,7 @@ Session ID: 835f54ea0e79db627c08082410384cf2
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Tests
-					<div class='panel-lead'>22</div>
+					<div class='panel-lead'>11</div>
 				</div>
 			</div>
 			<div class='col s2'>
@@ -1259,13 +564,13 @@ Session ID: 835f54ea0e79db627c08082410384cf2
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jun 28, 2021 08:40:50 AM</div>
+					<div class='panel-lead'>May 11, 2022 06:36:02 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jun 28, 2021 08:40:50 AM</div>
+			 		<div class='panel-lead'>May 11, 2022 06:36:02 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
@@ -1298,13 +603,13 @@ Session ID: 835f54ea0e79db627c08082410384cf2
 		<!-- container -->
 		<script>
 			var statusGroup = {
-				passParent: 18,
-				failParent: 2,
+				passParent: 11,
+				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
-				skipParent: 2,
-				exceptionsParent: 4,
+				skipParent: 0,
+				exceptionsParent: 0,
 				
 				passChild: 0,
 				failChild: 0,
@@ -1329,7 +634,7 @@ Session ID: 835f54ea0e79db627c08082410384cf2
 		</script>
 		<script>
 			var timeline = {
-			        "Login_ApplicationTest":0.009,"Check_Add_A_Project":0,"Check_ProjectType_City_Value":0.001,"City_AutoPopulate_Address_City_Country_State_ZipCode":0.001,"City_LEED_Regis_Shows_RegisterforLEEDcertification_NotNow":0.001,"City_AutoPopulate_Latitude_Longitude":0,"City_LEED_Regis_Redirects_LeedOnlineportal":0,"City_LEED_Registration_Not_Now_Test":0.001,"City_Project_Is_Private_Creation_Opens_Performance_Screen":0,"City_TestProject_NonLEED_Creation":0,"City_DI_ProjectSetting_Population_Add_Row":0,"City_Energy_GHGEmission_With_DataAndDetails_Display":0.001,"City_ProjectArea_Field_Comma_Display":0,"City_ProjectSetting_Population_Save_Row_DecadeCalender_Display":0,"City_ProjectSetting_ProjectArea_Add_Row":0.001,"City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display":0.652,"City_Project_Area_GrossArea_SquareMiles_Display":0,"City_Energy_GHGEmission_AddYear_AddNewLine":0,"City_Population_Field_Comma_Display":0,"City_Energy_GHGEmission_SavePreviousYearData_CheckScore":0.684,"City_Energy_GHGEmission_Edit_Row":0,"City_Energy_GHGEmission_Delete_Row":0
+			        "Login_ApplicationTest":0.008,"ProjectName_With_Valid_SpecialCharacters":0,"ProjectName_With_Invalid_SpecialCharacters":0.001,"ProjectRegistration_SchoolGrossArea_Valid_20499999_SQ_Feet":0,"ProjectRegistration_SchoolsGrossArea_Invalid_20500000_SQ_Feet":0,"ProjectRegistration_SchoolsGrossArea_Valid_1904514_SQ_MT":0.001,"ProjectRegistration_SchoolsGrossArea_Invalid_1904515_SQ_MT":0.001,"ProjectRegistration_School_OwnerOrganization_AutoSuggestion":0,"SchoolRegistration_InvalidEmailCheck":0,"SchoolRegistration_Check_AddButton_Disabled":0,"School_Project_Creation_Opens_Overview_Screen":0
 			};
 		</script>
 		<script src='https://cdn.rawgit.com/extent-framework/extent-github-cdn/master/v3html/js/extent.js' type='text/javascript'></script>

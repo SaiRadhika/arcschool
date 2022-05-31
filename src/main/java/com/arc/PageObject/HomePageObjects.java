@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.SendKeysAction;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -98,7 +99,16 @@ public class HomePageObjects extends BaseClass {
 	
 	@FindBy(xpath = "(//*[@class='ml10' and text()='Transit'])[1]")
 	WebElement TransitSubMenu;
+	
+	@FindBy(xpath= "(//*[@class='ml10' and text()='Schools'])[1]")
+	WebElement SchoolsSubMenu;
 
+	@FindBy(xpath= "//button[@ class='blue outline mr25 mt15 ng-scope']")
+	WebElement ClaimSchool;
+	
+	@FindBy(xpath= "//input[@ng-change='searchSchool(query)']" )
+	WebElement SchoolSearchBox;
+			
 	
 	public boolean CheckHomePageLabel() {
 		try {
@@ -403,9 +413,85 @@ public class HomePageObjects extends BaseClass {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+   
+		} 
+	}
+		
+		public void clickOnSchoolsSubMenu() {
+			waithelper.WaitForElementClickable(SchoolsSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			SchoolsSubMenu.click();
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}       
+		
+		// The School project is searched and takes to registration page//
+		public ProjectRegistrationPageObject clickOnClaimSchool() {
+			waithelper.WaitForElementClickable(SchoolsSubMenu, Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			ClaimSchool.click();
+			try {
+				Thread.sleep(3000);				 
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		
+	     }			
+			SchoolSearchBox.sendKeys("JUANITA RAMIREZ GONZALEZ");
+			try {
+				waithelper.WaitForElementVisibleWithPollingTime(
+						driver.findElement(By
+								.xpath("//table[contains(@class,'arcTbl')]/tbody")),
+						Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			String xpath="//table[contains(@class,'arcTbl')]/tbody/tr/td[1]/span";
+			List<WebElement> SchoolNames = driver.findElements(
+					By.xpath(xpath));
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+	}
+			for (int i = 0; i < SchoolNames.size(); i++) {
+				SchoolNames.get(i).getText();
+				if (SchoolNames.get(i).getText().equals("JUANITA RAMIREZ GONZALEZ")) {
+					String ClaimXpath="//table[contains(@class,'arcTbl')]/tbody/tr["+(i+1)+"]/td[4]//button";
+					driver.findElement(By.xpath(ClaimXpath)).click();
+					return new ProjectRegistrationPageObject();
+				}
+			}
+			return null;
+				
 		}
+				
+}
+					 
+				
+					
+				
+				
+				
+				 
+			
+	
+		
+	
+			
+			
+			
+			
+	
+									 
+	
+						
 
 		
-	}
 
-}
+
+	 
+

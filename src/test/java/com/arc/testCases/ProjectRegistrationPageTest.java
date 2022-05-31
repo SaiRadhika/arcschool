@@ -4594,5 +4594,343 @@ public class ProjectRegistrationPageTest extends BaseClass {
 
 		log.info("Transit_AG_Leed_PrivateProject_Creation method ends here ........... ");
 	}
+	
+	// -----------------------------------------------SChools related Test
+			// Cases----------------------------
 
+//Verify School adding Gross area - limit allowed is Max: 20,499,999 square
+	// feets
+
+	@Test(groups = {
+			"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 31, enabled = true, description = " Verify Schools adding Gross area - limit allowed is Max: 20,499,999  square feets")
+	public void ProjectRegistration_SchoolGrossArea_Valid_20499999_SQ_Feet() {
+		log.info("ProjectRegistration_SchoolsGrossArea_Valid_20499999_SQ_Feet method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+		HomePage.clickOnProject();
+		HomePage.clickOnSchoolsSubMenu();
+        ProjectRegistrationPage =HomePage.clickOnClaimSchool();
+		ProjectRegistrationPage.SelectUnitType("square feet");
+		ProjectRegistrationPage.enterGrossArea("20499999");
+		
+
+		try {
+
+			flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (!flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("ProjectRegistration_SchoolsGrossArea_Valid_20499999_SQ_Feet method ends here ........... ");
+
+	}
+	
+	
+
+
+	//Verify Schools adding invalid Gross area - 20,500,000 square feets should
+	// display Validation message
+
+	@Test(groups = {
+			"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 32, enabled = true, description = "Verify Schoolss adding invalid Gross area - 20,500,000  square feets should display Validation message")
+	public void ProjectRegistration_SchoolsGrossArea_Invalid_20500000_SQ_Feet() {
+		log.info("ProjectRegistration_SchoolsGrossArea_Invalid_20500000_SQ_Feet method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			ProjectRegistrationPage.closeClaimSchoolButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+		HomePage.clickOnProject();
+		HomePage.clickOnSchoolsSubMenu();
+        ProjectRegistrationPage =HomePage.clickOnClaimSchool();
+		ProjectRegistrationPage.SelectUnitType("square feet");
+		ProjectRegistrationPage.enterGrossArea("20500000");
+		
+		try {
+
+			flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (flag) {
+			Assert.assertTrue(true);
+		} else
+			Assert.assertTrue(false);
+		log.info("ProjectRegistration_SchoolsGrossArea_Invalid_20500000_SQ_Feet method ends here ........... ");
+
+	}
+
+	// Verify Schools adding Gross area - limit allowed is Max: 1,904,514 square
+		// meters
+
+		@Test(groups = {
+				"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 33, enabled = true, description = " Verify Schools adding Gross area - limit allowed is Max: 1,904,514 square meters")
+		public void ProjectRegistration_SchoolsGrossArea_Valid_1904514_SQ_MT() {
+			log.info("ProjectRegistration_SchoolsGrossArea_Valid_1904514_SQ_MT method started ........... ");
+			try {
+				ProjectRegistrationPage.closeProjectButton();
+				ProjectRegistrationPage.closeClaimSchoolButton();
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			boolean flag = false;
+			HomePage.clickOnProject();
+			HomePage.clickOnSchoolsSubMenu();
+	        ProjectRegistrationPage =HomePage.clickOnClaimSchool();
+			ProjectRegistrationPage.SelectUnitType("square meters");
+			ProjectRegistrationPage.enterGrossArea("1904514");
+			
+			try {
+
+				flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (!flag) {
+				Assert.assertTrue(true);
+			} else
+				Assert.assertTrue(false);
+			// ProjectRegistrationPage.closeProjectButton();
+			log.info("ProjectRegistration_SchoolsGrossArea_Valid_1904514_SQ_MT method ends here ........... ");
+
+		}
+
+		// Verify Schools adding invalid Gross area - 1,904,515 square meters should
+		// display validation message
+
+		@Test(groups = {
+				"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 34, enabled = true, description = " Verify Schools adding invalid Gross area -  1,904,515 square meters should display validation message")
+		public void ProjectRegistration_SchoolsGrossArea_Invalid_1904515_SQ_MT() {
+			log.info("ProjectRegistration_SchoolsGrossArea_Invalid_1904515_SQ_MT method started ........... ");
+			try {
+				ProjectRegistrationPage.closeProjectButton();
+				ProjectRegistrationPage.closeClaimSchoolButton();
+				HomePage.setHomePageApplication();
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			boolean flag = false;
+			HomePage.clickOnProject();
+			HomePage.clickOnSchoolsSubMenu();
+	        ProjectRegistrationPage =HomePage.clickOnClaimSchool();	
+	        ProjectRegistrationPage.SelectUnitType("square meters");
+			ProjectRegistrationPage.enterGrossArea("1904515");
+			
+			
+			try {
+
+				flag = ProjectRegistrationPage.CheckGrossAreaValidationMsg();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (flag) {
+				Assert.assertTrue(true);
+			} else
+				Assert.assertTrue(false);
+			// ProjectRegistrationPage.closeProjectButton();
+			log.info("ProjectRegistration_BuildingsGrossArea_Invalid_1904515_SQ_MT method ends here ........... ");
+
+		}
+
+		
+		// Verify 'Owner organization' field by adding a letter should give suggested
+		// values from the database.
+
+		@Test(groups = {
+				"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 35, enabled = true, description = "Verify 'Owner organization' field by adding a letter should give suggested values from the database.")
+		public void ProjectRegistration_School_OwnerOrganization_AutoSuggestion() {
+			log.info("ProjectRegistration_OwnerOrganization_AutoSuggestion method started ........... ");
+			try {
+				ProjectRegistrationPage.closeProjectButton();
+				ProjectRegistrationPage.closeClaimSchoolButton();
+				HomePage.setHomePageApplication();
+
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+			HomePage.clickOnProject();
+			HomePage.clickOnSchoolsSubMenu();
+	        ProjectRegistrationPage =HomePage.clickOnClaimSchool();
+			ProjectRegistrationPage.enterGrossArea("1904510");
+			ProjectRegistrationPage.SelectUnitType("square meters");
+			ProjectRegistrationPage.selectSpaceType(data.getCellData("ProjectRegistration", 11, 2));
+			ProjectRegistrationPage.selectOwnerType(data.getCellData("ProjectRegistration", 12, 2));			
+			int totalOwnerName = ProjectRegistrationPage
+					.CheckOwnerOrgAutoSuggetion(data.getCellData("ProjectRegistration", 13, 2));
+			log.info("Total Suggestion showing is ---" + totalOwnerName);
+			if (totalOwnerName > 0) {
+				Assert.assertTrue(true);
+			} else
+				Assert.assertTrue(false);
+			log.info("ProjectRegistration_OwnerOrganization_AutoSuggestion method ends here ........... ");
+
+		}
+		
+	
+
+     //Verify 'Owner Email' field gives error if @ and 2 letters after . are
+	// missing.
+
+	@Test(groups = {
+			"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 36, enabled = true, description = "Verify 'Owner Email' field gives error if @ and 2 letters after . are missing")
+	public void SchoolRegistration_InvalidEmailCheck() {
+		log.info("ProjectRegistration_InvalidEmailCheck method started ........... ");
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			ProjectRegistrationPage.closeClaimSchoolButton();
+			HomePage.setHomePageApplication();
+
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+
+		boolean flag = false;
+		HomePage.clickOnProject();
+		HomePage.clickOnSchoolsSubMenu();
+        ProjectRegistrationPage =HomePage.clickOnClaimSchool();				
+		ProjectRegistrationPage.enterGrossArea("1904510");
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.selectSpaceType(data.getCellData("ProjectRegistration", 11, 2));
+		ProjectRegistrationPage.selectOwnerType(data.getCellData("ProjectRegistration", 12, 2));
+		flag = ProjectRegistrationPage.CheckInvalidEmail();
+		if (flag) {
+			log.info("ProjectRegistration_InvalidEmailCheck method ends here ........... ");
+			Assert.assertTrue(true);
+		} else {
+			log.info("ProjectRegistration_InvalidEmailCheck method ends here ........... ");
+			Assert.assertTrue(false);
+		}
+
+	}
+
+
+	// Verify 'Add Project' button is disabled until checkbox for 'Agreement' is
+		// selected.
+
+		@Test(groups = {
+				"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 38, enabled = true, description = " Verify 'Add Project' button is disabled until checkbox for 'Agreement' is selected.")
+		public void SchoolRegistration_Check_AddButton_Disabled() {
+			log.info("SchoolRegistration_Check_AddButton_Disabled method started ........... ");
+			try {
+				ProjectRegistrationPage.closeProjectButton();
+				ProjectRegistrationPage.closeClaimSchoolButton();
+				HomePage.setHomePageApplication();
+			} catch (Exception e) {
+				HomePage.setHomePageApplication();
+				e.printStackTrace();
+			}
+
+			boolean BeforeAddbuttonEnabled = false;
+			boolean AfterAddbuttonEnabled = false;
+			
+			HomePage.clickOnProject();
+			HomePage.clickOnSchoolsSubMenu();
+	        ProjectRegistrationPage =HomePage.clickOnClaimSchool();				
+			ProjectRegistrationPage.enterGrossArea("1904510");
+			ProjectRegistrationPage.SelectUnitType("square meters");
+			ProjectRegistrationPage.selectSpaceType(data.getCellData("ProjectRegistration", 11, 2));			
+			ProjectRegistrationPage.selectOwnerType(data.getCellData("ProjectRegistration", 12, 2));
+			ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 13, 2));
+			ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 14, 2));
+			ProjectRegistrationPage.selectCountry(data.getCellData("ProjectRegistration", 15, 2));
+			BeforeAddbuttonEnabled = ProjectRegistrationPage.CheckAddButtonEnabled();
+
+			ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+			AfterAddbuttonEnabled = ProjectRegistrationPage.CheckAddButtonEnabled();
+
+			if (BeforeAddbuttonEnabled == false && AfterAddbuttonEnabled == true) {
+				log.info(" BeforeAddbuttonEnabled flag is --" + BeforeAddbuttonEnabled
+						+ " and  AfterAddbuttonEnabled flag is --" + AfterAddbuttonEnabled);
+				log.info("ProjectRegistration_Check_AddButton_Disabled method ended ........... ");
+				Assert.assertTrue(true);
+			} else {
+				log.info(" BeforeAddbuttonEnabled flag is --" + BeforeAddbuttonEnabled
+						+ " and  AfterAddbuttonEnabled flag is --" + AfterAddbuttonEnabled);
+				log.info("ProjectRegistration_Check_AddButton_Disabled method ended ........... ");
+				Assert.assertTrue(false);
+			}
+
+		}
+
+
+//Verify clicking on 'Add project' button redirects to newly registered project
+	// at 'Overview' Tab.
+
+	@Test(groups = {
+			"SchoolRegression" }, dependsOnGroups = "LoginMethodTCGroup", priority = 41, enabled = true, description = "Verify clicking on 'Add project' button redirects to newly registered project at 'Overview' Tab.")
+	public void School_Project_Creation_Opens_Overview_Screen() {
+		log.info("School_Project_Creation_Opens_Overview_Screen method started ........... ");
+		String ProjectSchoolID = "";
+		try {
+			ProjectRegistrationPage.closeProjectButton();
+			ProjectRegistrationPage.closeClaimSchoolButton();
+			HomePage.setHomePageApplication();
+		} catch (Exception e) {
+			HomePage.setHomePageApplication();
+			e.printStackTrace();
+		}
+		HomePage.clickOnProject();
+		HomePage.clickOnSchoolsSubMenu();
+        ProjectRegistrationPage =HomePage.clickOnClaimSchool();				
+		String SchoolProjectName= "JUANITA RAMIREZ GONZALEZ";
+		ProjectRegistrationPage.enterGrossArea("1904510");
+		ProjectRegistrationPage.SelectUnitType("square meters");
+		ProjectRegistrationPage.selectSpaceType(data.getCellData("ProjectRegistration", 11, 2));			
+		ProjectRegistrationPage.selectOwnerType(data.getCellData("ProjectRegistration", 12, 2));
+		ProjectRegistrationPage.selectOwnerOrg(data.getCellData("ProjectRegistration", 13, 2));
+		ProjectRegistrationPage.enterOwnerEmail(data.getCellData("ProjectRegistration", 14, 2));
+		ProjectRegistrationPage.selectCountry(data.getCellData("ProjectRegistration", 15, 2));		
+		ProjectRegistrationPage.CheckServiceAgreementCheckbox();
+		SchoolPage = ProjectRegistrationPage.ClickonSchoolsAddProjectButton();
+
+		boolean flag = SchoolPage.checkSchoolsProjectCreation(SchoolProjectName);
+		String HeaderText = SchoolPage.CheckOverviewHeaderShowing();
+		if (flag) {
+			SchoolPage.ClickonProjectInManage();
+			ProjectSchoolID = SchoolPage.getProjectID(SchoolProjectName);
+			System.setProperty("JUANITA RAMIREZ GONZALEZ", ProjectSchoolID);
+			log.info("  JUANITA RAMIREZ GONZALEZ is ---" + ProjectSchoolID);
+			if (HeaderText.equals("Overview")) {
+				Assert.assertTrue(true);
+			} else {
+				log.info("Overview screen not showing..................");
+				Assert.assertTrue(false);
+			}
+
+		} else {
+			log.info("Project Creation gets failed..........");
+			Assert.assertTrue(false);
+		}
+
+		log.info("Schools_Project_Creation_Opens_Overview_Screen method ends here ........... ");
+	}
 }

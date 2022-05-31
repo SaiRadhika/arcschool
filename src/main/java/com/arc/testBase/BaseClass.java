@@ -33,6 +33,7 @@ import com.arc.PageObject.Project.CityPageObject;
 import com.arc.PageObject.Project.CommunitiesPageObject;
 import com.arc.PageObject.Project.ParkingPageObject;
 import com.arc.PageObject.Project.ProjectPageObjects;
+import com.arc.PageObject.Project.SchoolFinancialModelPageObject;
 import com.arc.PageObject.Project.SchoolPageObject;
 import com.arc.PageObject.Project.TransitPageObject;
 import com.arc.commonMethods.ActionsHelper;
@@ -74,6 +75,7 @@ public class BaseClass {
 	public static InsightPageObject InsightPage;
 	public static String BaseWindow = null; // This will capture the base window handle
 	public static NgWebDriver ngWebDriver;
+	public static SchoolFinancialModelPageObject SchoolFinancialModelPage;
 
 	@Parameters({ "browserName" })
 	@BeforeTest(groups = { "LoginMethodTCGroup", "Reboot", "CityRegression", "CommunityRegression",
@@ -127,11 +129,12 @@ public class BaseClass {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--start-maximized");
 
-			options.addArguments("--no-sandbox");
-			options.addArguments("--disable-dev-shm-usage");
-			options.addArguments("--headless");
-			options.addArguments("--disable-gpu");
-			options.addArguments("window-size=1382x754");
+			/*
+			 * options.addArguments("--no-sandbox");
+			 * options.addArguments("--disable-dev-shm-usage");
+			 * options.addArguments("--headless"); options.addArguments("--disable-gpu");
+			 * options.addArguments("window-size=1382x754");
+			 */
 
 			Map<String, Object> Pref = new HashMap<String, Object>();
 			Pref.put("profile.default_content_settings.popus", 0);
@@ -197,7 +200,7 @@ public class BaseClass {
 		else {
 			log.info("Environment is not provided or wrong environment entered......");
 			System.setProperty("environment", "STG");
-			driver.get(prop.getProperty("STGurl"));
+			driver.get(prop.getProperty("QAurl"));
 			log.info("URL navigated to .. " + prop.getProperty("STGurl"));
 		}
 		ngWebDriver.waitForAngularRequestsToFinish();

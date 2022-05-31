@@ -2,6 +2,7 @@ package com.arc.testCases.Project;
 
 import java.io.File;
 
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -234,4 +235,15 @@ public class SchoolPageTest extends BaseClass {
 		}
 
 	}
+	///////////////////////////////////////////////////////////////////////Regression///////////////////////////////////////
+	
+	
 }
+
+
+
+
+
+
+
+

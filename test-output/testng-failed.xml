@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [ARC Essential City Regression Suite ]" guice-stage="DEVELOPMENT">
+<suite name="Failed suite [ARC Essential School Regression Suite ]" guice-stage="DEVELOPMENT">
   <listeners>
     <listener class-name="com.arc.commonMethods.ExtentReportListener"/>
+    <listener class-name="com.arc.commonMethods.RetryListener"/>
   </listeners>
-  <test name="City RegressionTest Cases(failed)">
+  <test name="Building RegressionTest Cases(failed)">
+    <parameter name="environment" value="QAS"/>
     <parameter name="browserName" value="chrome"/>
     <groups>
       <run>
-        <include name="Regression"/>
+        <include name="ProjectRegsRegression"/>
+        <include name="SchoolRegression"/>
       </run>
     </groups>
     <classes>
+      <class name="com.arc.testCases.ProjectRegistrationPageTest">
+        <methods>
+          <include name="ProjectRegistration_SchoolsGrossArea_Invalid_1904515_SQ_MT"/>
+        </methods>
+      </class> <!-- com.arc.testCases.ProjectRegistrationPageTest -->
       <class name="com.arc.testCases.LoginPageTest">
         <methods>
           <include name="initializtion"/>
           <include name="Login_ApplicationTest"/>
-          <include name="closeBrowser"/>
         </methods>
       </class> <!-- com.arc.testCases.LoginPageTest -->
-      <class name="com.arc.testCases.Project.CityPageTest">
-        <methods>
-          <include name="City_Energy_GHGEmission_With_DataAndDetails_Display"/>
-          <include name="City_Energy_GHGEmission_SavePreviousYearData_CheckScore"/>
-          <include name="City_ProjectSetting_ProjectArea_Save_Row_DecadeCalender_Display"/>
-          <include name="City_Energy_GHGEmission_AddYear_AddNewLine"/>
-          <include name="City_Energy_GHGEmission_Edit_Row"/>
-          <include name="City_Energy_GHGEmission_Delete_Row"/>
-        </methods>
-      </class> <!-- com.arc.testCases.Project.CityPageTest -->
     </classes>
-  </test> <!-- City RegressionTest Cases(failed) -->
-</suite> <!-- Failed suite [ARC Essential City Regression Suite ] -->
+  </test> <!-- Building RegressionTest Cases(failed) -->
+</suite> <!-- Failed suite [ARC Essential School Regression Suite ] -->

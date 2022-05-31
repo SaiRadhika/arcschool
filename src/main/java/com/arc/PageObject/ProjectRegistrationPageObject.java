@@ -20,6 +20,7 @@ import com.arc.PageObject.Project.TransitPageObject;
 import com.arc.commonMethods.LoggerHelper;
 import com.arc.testBase.BaseClass;
 import com.arc.commonMethods.CommonMethod;
+import com.arc.PageObject.Project.SchoolPageObject;
 
 public class ProjectRegistrationPageObject extends BaseClass {
 
@@ -87,6 +88,9 @@ public class ProjectRegistrationPageObject extends BaseClass {
 
 	@FindBy(xpath = "//*[@class='svg_hover']")
 	WebElement CloseProjectbtn;
+	
+	@FindBy(xpath = "//div[@ng-click='goBack()']//*[name()='svg']")
+	WebElement  CloseClaimSchoolbtn;
 
 	@FindBy(xpath = "(//input[@type='radio'])[1]")
 	WebElement RegisterLEEDYesRadioBtn;
@@ -195,6 +199,13 @@ public class ProjectRegistrationPageObject extends BaseClass {
 	
 	@FindBy(xpath = "//label[normalize-space()='This is a test project']")
 	WebElement TestProjectCheckBox;
+	
+	@FindBy(xpath= "//button[@ class='blue outline mr25 mt15 ng-scope']")
+	WebElement ClaimSchool;
+	
+	@FindBy(xpath= "//input[@ng-change='searchSchool(query)']" )
+	WebElement SchoolSearchBox;
+			
 
 	public ProjectRegistrationPageObject() {
 		PageFactory.initElements(driver, this);
@@ -848,6 +859,21 @@ public class ProjectRegistrationPageObject extends BaseClass {
 		return new BuildingPageObject();
 
 	}
+	public SchoolPageObject ClickonSchoolsAddProjectButton() {
+
+		try {
+			AddProjectButton.click();
+			// Thread.sleep(2000);
+			waithelper.WaitForElementInvisible(
+					driver.findElement(By.xpath("(//*[text()='Validating info...'])[1]/parent::div")),
+					Integer.parseInt(prop.getProperty("explicitTime")), 2);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new SchoolPageObject();
+
+	}
 
 	public CommunitiesPageObject ClickonCommunitiesAddProjectButton() {
 
@@ -1316,10 +1342,26 @@ public class ProjectRegistrationPageObject extends BaseClass {
 			log.info("CheckAddress_City_Country_State_ZipCode ends with false..................");
 			return false;
 		}
-
+	
 	}
 	
-	
-	
-	
+
+    
+    public void closeClaimSchoolButton() {
+	   boolean flag = false;
+	try {
+		flag = CloseClaimSchoolbtn.isDisplayed();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	if (flag)
+		CloseClaimSchoolbtn.click();
+
+     }
 }
+ 
+		
+
+	
+	
+
